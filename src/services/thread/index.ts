@@ -8,6 +8,16 @@ interface CreateThreadWithMessageParams extends CreateThreadParams {
   message: CreateMessageParams;
 }
 
+type UpdateThreadValue = Parameters<typeof lambdaClient.thread.updateThread.mutate>[0]['value'];
+
+const normalizeThreadUpdateValue = ({
+  metadata,
+  ...data
+}: Partial<ThreadItem>): UpdateThreadValue => ({
+  ...data,
+  ...(metadata === undefined ? {} : { metadata: metadata as UpdateThreadValue['metadata'] }),
+});
+
 export class ThreadService {
   getThreads = (topicId: string): Promise<ThreadItem[]> => {
     return lambdaClient.thread.getThreads.query({ topicId });
@@ -28,7 +38,7 @@ export class ThreadService {
   };
 
   updateThread = async (id: string, data: Partial<ThreadItem>) => {
-    return lambdaClient.thread.updateThread.mutate({ id, value: data });
+    return lambdaClient.thread.updateThread.mutate({ id, value: normalizeThreadUpdateValue(data) });
   };
 
   removeThread = async (id: string) => {
