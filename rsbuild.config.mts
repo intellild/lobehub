@@ -17,7 +17,9 @@ const platform = isAuth ? 'auth' : isMobile ? 'mobile' : 'web';
 
 const loadEnv = () => {
   const shellEnv = Object.fromEntries(
-    Object.entries(process.env).filter((entry): entry is [string, string] => entry[1] !== undefined),
+    Object.entries(process.env).filter(
+      (entry): entry is [string, string] => entry[1] !== undefined,
+    ),
   );
   const dotenvEnv: Record<string, string> = {};
   const result = dotenv.config({
@@ -43,7 +45,11 @@ const entry = isAuth
   : isMobile
     ? './src/spa/entry.mobile.tsx'
     : './src/spa/entry.web.tsx';
-const htmlTemplate = isAuth ? './index.auth.html' : isMobile ? './index.mobile.html' : './index.html';
+const htmlTemplate = isAuth
+  ? './index.auth.html'
+  : isMobile
+    ? './index.mobile.html'
+    : './index.html';
 const outDir = isAuth ? 'dist/auth' : isMobile ? 'dist/mobile' : 'dist/desktop';
 const assetPrefix = isDev ? '/' : process.env.VITE_CDN_BASE || (isAuth ? '/_spa-auth/' : '/_spa/');
 const emptyModulePath = path.resolve(rootDir, 'plugins/rsbuild/emptyModule.ts');
@@ -148,6 +154,11 @@ export default defineConfig({
     },
   },
   tools: {
+    cssLoader(config) {
+      config.url = {
+        filter: (url) => !url.startsWith('/images/'),
+      };
+    },
     rspack(config, { rspack }) {
       config.module ??= {};
       config.module.parser ??= {};
