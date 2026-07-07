@@ -1,7 +1,12 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { defineConfig, type RsbuildPlugin } from '@rsbuild/core';
+import {
+  type CSSLoaderOptions,
+  defineConfig,
+  type RsbuildPlugin,
+  type Rspack,
+} from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';
@@ -38,6 +43,8 @@ const loadEnv = () => {
 };
 
 loadEnv();
+
+const useNativeCss = !['0', 'false'].includes((process.env.RSBUILD_NATIVE_CSS ?? '').toLowerCase());
 
 const entryName = isAuth ? 'index.auth' : isMobile ? 'index.mobile' : 'index';
 const entry = isAuth
@@ -97,6 +104,144 @@ const rsbuildHtmlCompatPlugin = (): RsbuildPlugin => ({
   },
 });
 
+const preservePublicImageUrls = (config: CSSLoaderOptions) => {
+  config.url = {
+    filter: (url) => !url.startsWith('/images/'),
+  };
+};
+
+type Rule = Rspack.RuleSetRule;
+type RuleUseItem = Rspack.RuleSetUseItem;
+
+const isRule = (rule: unknown): rule is Rule => {
+  return typeof rule === 'object' && rule !== null;
+};
+
+const hasLoader = (useItem: RuleUseItem, matcher: (loader: string) => boolean) => {
+  if (typeof useItem === 'string') return matcher(useItem);
+
+  return matcher(useItem.loader);
+};
+
+const hasCssLoaderPipeline = (rule: Rule) => {
+  const isCssPipelineLoader = (loader: string) => {
+    return (
+      loader.includes('/css-loader/') ||
+      loader.includes('cssExtractLoader') ||
+      loader.includes('/style-loader/') ||
+      loader.includes('/postcss-loader/') ||
+      loader.includes('builtin:lightningcss-loader')
+    );
+  };
+
+  if (rule.loader && isCssPipelineLoader(rule.loader)) return true;
+
+  if (!rule.use || typeof rule.use === 'function') return false;
+
+  const useItems = Array.isArray(rule.use) ? rule.use : [rule.use];
+
+  return useItems.some((useItem) => hasLoader(useItem, isCssPipelineLoader));
+};
+
+const isCssRule = (rule: Rule) => {
+  return rule.test instanceof RegExp && rule.test.test('index.css');
+};
+
+const toNativeCssRule = (rule: Rule) => {
+  delete rule.loader;
+  delete rule.options;
+  delete rule.use;
+  rule.sideEffects = true;
+  rule.type = 'css/auto';
+};
+
+const enableNativeCssRules = (rules: Rspack.RuleSetRules | undefined) => {
+  if (!rules) return;
+
+  for (const rule of rules) {
+    if (!isRule(rule)) continue;
+
+    if (isCssRule(rule)) {
+      const passthroughRules = rule.oneOf?.filter((oneOfRule) => {
+        return isRule(oneOfRule) && !hasCssLoaderPipeline(oneOfRule);
+      });
+
+      if (passthroughRules?.length) {
+        rule.oneOf = [...passthroughRules, { sideEffects: true, type: 'css/auto' }];
+      } else {
+        delete rule.oneOf;
+        toNativeCssRule(rule);
+      }
+
+      continue;
+    }
+
+    enableNativeCssRules(rule.rules);
+    enableNativeCssRules(rule.oneOf);
+  }
+};
+
+const enableNativeCss = (config: Rspack.Configuration) => {
+  config.module ??= {};
+  config.module.parser ??= {};
+  config.module.generator ??= {};
+
+  const parserOptions = {
+    import: true,
+    namedExports: false,
+    url: false,
+  };
+  const moduleGeneratorOptions = {
+    esModule: true,
+    exportsConvention: 'camel-case' as const,
+    localIdentName: isDev ? '[path][name]__[local]-[hash:base64:6]' : '[local]-[hash:base64:6]',
+  };
+
+  config.module.parser.css = {
+    ...(config.module.parser.css as Record<string, unknown> | undefined),
+    ...parserOptions,
+  };
+  config.module.parser['css/auto'] = {
+    ...(config.module.parser['css/auto'] as Record<string, unknown> | undefined),
+    ...parserOptions,
+  };
+  config.module.parser['css/global'] = {
+    ...(config.module.parser['css/global'] as Record<string, unknown> | undefined),
+    ...parserOptions,
+  };
+  config.module.parser['css/module'] = {
+    ...(config.module.parser['css/module'] as Record<string, unknown> | undefined),
+    ...parserOptions,
+  };
+
+  config.module.generator.css = {
+    ...(config.module.generator.css as Record<string, unknown> | undefined),
+    esModule: true,
+  };
+  config.module.generator['css/auto'] = {
+    ...(config.module.generator['css/auto'] as Record<string, unknown> | undefined),
+    ...moduleGeneratorOptions,
+  };
+  config.module.generator['css/global'] = {
+    ...(config.module.generator['css/global'] as Record<string, unknown> | undefined),
+    ...moduleGeneratorOptions,
+  };
+  config.module.generator['css/module'] = {
+    ...(config.module.generator['css/module'] as Record<string, unknown> | undefined),
+    ...moduleGeneratorOptions,
+  };
+
+  config.ignoreWarnings = [
+    ...(config.ignoreWarnings ?? []),
+    { message: /Conflicting order between .*\.css and .*\.css/ },
+  ];
+
+  enableNativeCssRules(config.module.rules);
+  config.plugins = config.plugins?.filter((plugin) => {
+    return plugin?.constructor?.name !== 'CssExtractRspackPlugin';
+  });
+};
+
 export default defineConfig({
   html: {
     inject: 'body',
@@ -154,11 +299,7 @@ export default defineConfig({
     },
   },
   tools: {
-    cssLoader(config) {
-      config.url = {
-        filter: (url) => !url.startsWith('/images/'),
-      };
-    },
+    ...(useNativeCss ? {} : { cssLoader: preservePublicImageUrls }),
     rspack(config, { rspack }) {
       config.module ??= {};
       config.module.parser ??= {};
@@ -192,6 +333,8 @@ export default defineConfig({
       config.plugins.push(
         new rspack.NormalModuleReplacementPlugin(/^node:stream$/, emptyModulePath),
       );
+
+      if (useNativeCss) enableNativeCss(config);
     },
   },
 });
