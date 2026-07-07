@@ -1,0 +1,26 @@
+.desc {
+font-size: 12px;
+line-height: 1.5;
+color: var(--ant-color-text-tertiary);
+}
+
+.fieldIcon {
+color: var(--ant-color-text-tertiary);
+}
+
+.fieldLabel {
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}
+
+.row {
+padding: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+}
+
+.rowTitle {
+font-weight: 600;
+color: var(--ant-color-text);
+}

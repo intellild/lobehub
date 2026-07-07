@@ -1,5 +1,4 @@
 import { Flexbox, Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { BanIcon, CircleCheckBigIcon, CircleDashedIcon } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
@@ -21,12 +20,12 @@ const ScoreItem = memo<ScoreItemProps>(({ required, check, desc, title }) => {
         icon={check ? CircleCheckBigIcon : required ? BanIcon : CircleDashedIcon}
         size={24}
         color={
-          check ? cssVar.colorSuccess : required ? cssVar.colorError : cssVar.colorTextQuaternary
+          check ? 'var(--ant-color-success)' : required ? 'var(--ant-color-error)' : 'var(--ant-color-text-quaternary)'
         }
       />
       <Flexbox gap={4}>
         <Title level={3}>{title}</Title>
-        <p style={{ color: cssVar.colorTextSecondary, margin: 0 }}>{desc}</p>
+        <p style={{ color: 'var(--ant-color-text-secondary)', margin: 0 }}>{desc}</p>
       </Flexbox>
     </Flexbox>
   );

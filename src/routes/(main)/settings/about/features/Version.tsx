@@ -5,7 +5,6 @@ import {
   useWatchBroadcast,
 } from '@lobechat/electron-client-ipc';
 import { Block, Button, Flexbox, Tag } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -17,12 +16,7 @@ import { autoUpdateService } from '@/services/electron/autoUpdate';
 import { useGlobalStore } from '@/store/global';
 
 import { APP_VERSION } from './appVersion';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  logo: css`
-    border-radius: calc(${cssVar.borderRadiusLG} * 2);
-  `,
-}));
+import styles from './Version.module.css';
 
 const Version = memo<{ mobile?: boolean }>(({ mobile }) => {
   const hasNewVersion = useNewVersion();

@@ -1,0 +1,19 @@
+.count {
+font-size: 12px;
+font-variant-numeric: tabular-nums;
+color: var(--ant-color-text-tertiary);
+}
+
+.empty {
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.flatHeader {
+padding-inline: 4px;
+}
+
+.label {
+font-size: 12px;
+font-weight: 500;
+}

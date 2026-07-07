@@ -4,7 +4,6 @@ import { getLobehubSkillProviderById } from '@lobechat/const';
 import { Avatar, Markdown, Skeleton } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { Button } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { Plus, SquareArrowOutUpRight, Trash2, Unplug } from 'lucide-react';
 import { lazy, memo, Suspense, useCallback, useEffect, useState } from 'react';
@@ -17,6 +16,7 @@ import { useToolStore } from '@/store/tool';
 import { builtinToolSelectors, lobehubSkillStoreSelectors } from '@/store/tool/selectors';
 import { connectorSelectors } from '@/store/tool/slices/connector';
 
+import styles from './index.module.css';
 import { getLocalizedBuiltinSkillDetail, getNoPermissionsTitle } from './localization';
 
 const AgentSkillDetail = lazy(() => import('@/features/AgentSkillDetail'));
@@ -28,48 +28,6 @@ export type ToolDetailType =
   | 'lobehub-connector'
   | 'mcp-connector'
   | 'plugin';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  description: css`
-    margin-block-start: 8px;
-    font-size: 13px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  header: css`
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    padding-block: 20px 16px;
-    padding-inline: 24px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  name: css`
-    font-size: 16px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-  noPermissions: css`
-    padding: 24px;
-    font-size: 14px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  noPermissionsHeader: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-block-end: 8px;
-  `,
-  noPermissionsTitle: css`
-    font-size: 16px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 interface SkillDetailProps {
   identifier: string;

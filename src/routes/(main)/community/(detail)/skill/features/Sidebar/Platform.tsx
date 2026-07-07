@@ -15,7 +15,6 @@ import {
 } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
 import { Divider } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import { BotIcon, UserRoundIcon } from 'lucide-react';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -26,7 +25,21 @@ import { builtinAgentSelectors } from '@/store/agent/selectors';
 import { useChatStore } from '@/store/chat';
 
 import Title from '../../../../components/Title';
+import styles from './Platform.module.css';
 import VsCodeIcon from './VsCodeIcon';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 type GuideMode = 'agent' | 'human';
 
@@ -38,14 +51,7 @@ enum PlatformType {
   LobeHub = 'lobehub',
   VsCode = 'vscode',
 }
-
-export const styles = createStaticStyles(({ css }) => ({
-  lite: css`
-    pre {
-      padding: 12px !important;
-    }
-  `,
-}));
+export { styles };
 
 interface PlatformProps {
   downloadUrl?: string;

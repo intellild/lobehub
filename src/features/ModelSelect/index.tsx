@@ -1,31 +1,13 @@
 import { TooltipGroup } from '@lobehub/ui';
 import { Select, type SelectProps } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo, useMemo } from 'react';
 
-import { ModelItemRender, ProviderItemRender, TAG_CLASSNAME } from '@/components/ModelSelect';
+import { ModelItemRender, ProviderItemRender } from '@/components/ModelSelect';
 import { useEnabledChatModels } from '@/hooks/useEnabledChatModels';
 import { type EnabledProviderWithModels } from '@/types/aiProvider';
 
-const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css }) => ({
-  popup: css`
-    width: max(360px, var(--anchor-width));
-
-    &.${prefixCls}-select-dropdown .${prefixCls}-select-item-option-grouped {
-      padding-inline-start: 12px;
-    }
-  `,
-  select: css`
-    .${prefixCls}-select-selection-item {
-      .${TAG_CLASSNAME} {
-        display: none;
-      }
-    }
-  `,
-}));
+import styles from './index.module.css';
 
 interface ModelOption {
   abilities?: Record<string, boolean>;

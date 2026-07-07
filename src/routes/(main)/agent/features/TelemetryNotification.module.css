@@ -1,0 +1,8 @@
+.desc {
+color: var(--ant-color-text-secondary);
+}
+
+.title {
+font-size: 18px;
+font-weight: bold;
+}

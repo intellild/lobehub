@@ -4,7 +4,6 @@ import { AGENT_CHAT_URL } from '@lobechat/const';
 import { Flexbox } from '@lobehub/ui';
 import { Button, Select } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { customAlphabet } from 'nanoid/non-secure';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,49 +20,7 @@ import { useAgentStore } from '@/store/agent';
 import { useHomeStore } from '@/store/home';
 
 import { useDetailContext } from '../../DetailProvider';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  buttonGroup: css`
-    width: 100%;
-  `,
-  forkButton: css`
-    flex: 1;
-    width: unset;
-    border-start-start-radius: 0 !important;
-    border-end-start-radius: 0 !important;
-  `,
-  // Match Button type="primary" on the right so the two halves read as one
-  // pill. (colorPrimary bg + colorBgLayout text) auto-flips with the theme:
-  // dark bg + near-white text in light theme, white bg + near-black text
-  // in dark theme. We use colorBgLayout directly instead of the
-  // semantically-named colorTextLightSolid because the cssVar proxy doesn't
-  // pick up LobeHub's JS-level override of that token.
-  visibilitySelect: css`
-    width: 130px;
-    border-color: ${cssVar.colorPrimary} !important;
-    border-inline-end-width: 0 !important;
-    border-start-end-radius: 0 !important;
-    border-end-end-radius: 0 !important;
-
-    color: ${cssVar.colorBgLayout} !important;
-
-    background: ${cssVar.colorPrimary} !important;
-
-    & svg {
-      color: ${cssVar.colorBgLayout};
-    }
-
-    &:hover:not([data-disabled]) {
-      border-color: ${cssVar.colorPrimaryHover} !important;
-      background: ${cssVar.colorPrimaryHover} !important;
-    }
-
-    &:active:not([data-disabled]) {
-      border-color: ${cssVar.colorPrimaryActive} !important;
-      background: ${cssVar.colorPrimaryActive} !important;
-    }
-  `,
-}));
+import styles from './ForkAndChat.module.css';
 
 /**
  * Generate a market identifier (8-character lowercase alphanumeric string)

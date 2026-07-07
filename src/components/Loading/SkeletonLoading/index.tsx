@@ -2,16 +2,24 @@
 
 import { Skeleton } from '@lobehub/ui';
 import { type SkeletonProps } from 'antd';
-import { createStaticStyles, cx, responsive } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(
-  ({ css }) => css`
-    ${responsive.sm} {
-      padding: 16px;
-    }
-  `,
-);
+import stylesModule from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
+const styles = stylesModule.root;
 
 const SkeletonLoading = memo<SkeletonProps>(
   ({ className, classNames, styles: customStyles, ...rest }) => {

@@ -4,7 +4,6 @@ import { type AuthorizationPhase, type AuthorizationProgress } from '@lobechat/e
 import { useWatchBroadcast } from '@lobechat/electron-client-ipc';
 import { Alert, Button, Center, Flexbox, Icon, Input, Text } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cssVar } from 'antd-style';
 import { Cloud, Server, Undo2Icon } from 'lucide-react';
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -318,7 +317,7 @@ const LoginStep = memo<LoginStepProps>(({ onBack, onNext }) => {
           />
           <UserInfo
             style={{
-              background: cssVar.colorFillSecondary,
+              background: 'var(--ant-color-fill-secondary)',
               borderRadius: 8,
             }}
           />
@@ -327,7 +326,7 @@ const LoginStep = memo<LoginStepProps>(({ onBack, onNext }) => {
         <Flexbox horizontal justify={'space-between'} style={{ marginTop: 32 }}>
           <Button
             icon={Undo2Icon}
-            style={{ color: cssVar.colorTextDescription }}
+            style={{ color: 'var(--ant-color-text-description)' }}
             type={'text'}
             onClick={() => handleBackToLoginMethods(method)}
           >
@@ -378,12 +377,12 @@ const LoginStep = memo<LoginStepProps>(({ onBack, onNext }) => {
           <Button block disabled={true} icon={Cloud} loading={true} size={'large'} type={'primary'}>
             {t('screen5.actions.signingIn')}
           </Button>
-          <Text style={{ color: cssVar.colorTextDescription }} type={'secondary'}>
+          <Text style={{ color: 'var(--ant-color-text-description)' }} type={'secondary'}>
             {phaseText}
           </Text>
           <Flexbox horizontal align={'center'} justify={'space-between'}>
             {localRemainingSeconds !== null ? (
-              <Text style={{ color: cssVar.colorTextDescription }} type={'secondary'}>
+              <Text style={{ color: 'var(--ant-color-text-description)' }} type={'secondary'}>
                 {t('screen5.auth.remaining', {
                   time: localRemainingSeconds,
                 })}
@@ -452,12 +451,12 @@ const LoginStep = memo<LoginStepProps>(({ onBack, onNext }) => {
           >
             {t('screen5.actions.connecting')}
           </Button>
-          <Text style={{ color: cssVar.colorTextDescription }} type={'secondary'}>
+          <Text style={{ color: 'var(--ant-color-text-description)' }} type={'secondary'}>
             {phaseText}
           </Text>
           <Flexbox horizontal align={'center'} justify={'space-between'}>
             {localRemainingSeconds !== null ? (
-              <Text style={{ color: cssVar.colorTextDescription }} type={'secondary'}>
+              <Text style={{ color: 'var(--ant-color-text-description)' }} type={'secondary'}>
                 {t('screen5.auth.remaining', {
                   time: localRemainingSeconds,
                 })}
@@ -475,7 +474,7 @@ const LoginStep = memo<LoginStepProps>(({ onBack, onNext }) => {
 
     return (
       <Flexbox gap={16} style={{ width: '100%' }}>
-        <Text color={cssVar.colorTextSecondary}>{t(loginMethodMetas.selfhost.descriptionKey)}</Text>
+        <Text color={'var(--ant-color-text-secondary)'}>{t(loginMethodMetas.selfhost.descriptionKey)}</Text>
         <Input
           placeholder={t('screen5.selfhost.endpointPlaceholder')}
           prefix={<Icon icon={Server} style={{ marginRight: 4 }} />}
@@ -546,7 +545,7 @@ const LoginStep = memo<LoginStepProps>(({ onBack, onNext }) => {
             <Button
               type={'text'}
               style={{
-                color: cssVar.colorTextSecondary,
+                color: 'var(--ant-color-text-secondary)',
               }}
               onClick={() => setShowEndpoint(true)}
             >
@@ -570,7 +569,7 @@ const LoginStep = memo<LoginStepProps>(({ onBack, onNext }) => {
         <Flexbox horizontal justify={'space-between'} style={{ marginTop: 32 }}>
           <Button
             icon={Undo2Icon}
-            style={{ color: cssVar.colorTextDescription }}
+            style={{ color: 'var(--ant-color-text-description)' }}
             type={'text'}
             onClick={onBack}
           >

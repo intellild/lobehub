@@ -3,31 +3,11 @@
 import { Button, Flexbox } from '@lobehub/ui';
 import { useMutation } from '@tanstack/react-query';
 import { Avatar, Empty, Form, Input, Select, Spin } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useCredsApi } from '../useCredsApi';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  connectionOption: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  `,
-  footer: css`
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-    margin-block-start: 24px;
-  `,
-  provider: css`
-    font-weight: 500;
-  `,
-  username: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+import styles from './OAuthCredForm.module.css';
 
 interface OAuthCredFormProps {
   disabled?: boolean;

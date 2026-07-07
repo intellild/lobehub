@@ -1,0 +1,32 @@
+.baseline {
+align-items: baseline;
+}
+
+.separator {
+margin-inline: 2px;
+color: var(--ant-color-text-quaternary);
+}
+
+.tag {
+padding-block: 1px;
+padding-inline: 6px;
+border-radius: 4px;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.tagsList {
+display: inline-flex;
+flex-shrink: 1;
+gap: 4px;
+align-items: center;
+
+min-width: 0;
+margin-inline-start: 6px;
+
+white-space: nowrap;
+}

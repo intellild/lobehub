@@ -1,0 +1,6 @@
+.hotArea::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+}

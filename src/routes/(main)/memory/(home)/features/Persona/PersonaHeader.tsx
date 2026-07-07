@@ -1,15 +1,7 @@
 import { Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  title: css`
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.4;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './PersonaHeader.module.css';
 
 const PersonaHeader = memo(() => {
   return (

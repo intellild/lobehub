@@ -1,7 +1,7 @@
 // Thin CC-side wrapper around the shared Linear label utilities. Kept free
-// of antd-style / React / lucide imports so the workflow-summary path can
+// of React / lucide / style imports so the workflow-summary path can
 // pull `formatLinearMcpShortLabel` without dragging the inspector component
-// (and its `keyframes`-using style modules) into tests transitively — same
+// (and its style modules) into tests transitively — same
 // reason the labels file lives separately from `LinearMcp.tsx`.
 
 import {

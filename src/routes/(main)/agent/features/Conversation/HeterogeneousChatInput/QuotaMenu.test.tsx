@@ -29,14 +29,6 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: (
-    create: (utils: { css: (...args: unknown[]) => string }) => Record<string, string>,
-  ) => create({ css: () => 'cls' }),
-  cssVar: new Proxy({}, { get: (_target, prop) => `var(--${String(prop)})` }),
-  cx: (...args: unknown[]) => args.filter(Boolean).join(' '),
-}));
-
 vi.mock('@lobehub/ui', () => ({
   ActionIcon: ({ disabled, onClick }: { disabled?: boolean; onClick?: () => void }) => (
     <button data-testid="refresh" disabled={disabled} type="button" onClick={onClick} />

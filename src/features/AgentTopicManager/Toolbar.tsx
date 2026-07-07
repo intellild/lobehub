@@ -11,7 +11,6 @@ import {
 } from '@lobehub/ui';
 import { confirmModal, Tabs } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import {
   Archive,
   CalendarRange,
@@ -36,115 +35,12 @@ import { useChatStore } from '@/store/chat';
 import { topicSelectors } from '@/store/chat/selectors';
 
 import { useTopicsViewStore } from './store';
+import stylesModule from './Toolbar.module.css';
 import type { GroupBy, SortBy, StatusFilter, TimeRangeFilter, TriggerFilter } from './types';
 
 const CONTROL_HEIGHT = 32;
 const THREE_MONTHS_MS = 90 * 24 * 60 * 60 * 1000;
-
-const styles = createStaticStyles(({ css }) => ({
-  addPill: css`
-    cursor: pointer;
-    user-select: none;
-
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
-
-    height: ${CONTROL_HEIGHT}px;
-    padding-inline: 12px;
-    border: 1px dashed ${cssVar.colorBorder};
-    border-radius: ${CONTROL_HEIGHT / 2}px;
-
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-
-    transition: all 0.15s;
-
-    &:hover {
-      border-color: ${cssVar.colorPrimary};
-      color: ${cssVar.colorText};
-    }
-  `,
-  chip: css`
-    display: inline-flex;
-    align-items: stretch;
-
-    height: ${CONTROL_HEIGHT}px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${CONTROL_HEIGHT / 2}px;
-
-    background: ${cssVar.colorFillTertiary};
-
-    transition: border-color 0.15s;
-
-    &:hover {
-      border-color: ${cssVar.colorBorder};
-    }
-  `,
-  chipClose: css`
-    all: unset;
-
-    cursor: pointer;
-
-    display: inline-flex;
-    align-items: center;
-
-    padding-inline: 8px 12px;
-    border-start-end-radius: ${CONTROL_HEIGHT / 2}px;
-    border-end-end-radius: ${CONTROL_HEIGHT / 2}px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  chipMain: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
-
-    padding-block: 0;
-    padding-inline: 12px 6px;
-
-    font-size: 13px;
-    color: ${cssVar.colorText};
-  `,
-  chipValue: css`
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-  divider: css`
-    width: 1px;
-    height: 16px;
-    margin-inline: 4px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  sortPill: css`
-    cursor: pointer;
-    user-select: none;
-
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
-
-    height: ${CONTROL_HEIGHT}px;
-    padding-inline: 12px;
-    border-radius: ${CONTROL_HEIGHT / 2}px;
-
-    font-size: 13px;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillTertiary};
-
-    &:hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-}));
+const styles = stylesModule;
 
 const STATUS_OPTIONS: { key: StatusFilter; labelKey: string }[] = [
   { key: 'all', labelKey: 'management.filters.status.all' },
@@ -191,7 +87,7 @@ const FilterChip = memo<FilterChipProps>(({ icon, label, value, items, onClear }
       <DropdownMenu items={items}>
         <span className={styles.chipMain}>
           {icon && <Icon icon={icon} size={12} />}
-          <Text style={{ color: cssVar.colorTextSecondary, fontSize: 12 }}>{label}:</Text>
+          <Text style={{ color: 'var(--ant-color-text-secondary)', fontSize: 12 }}>{label}:</Text>
           <span className={styles.chipValue}>{value}</span>
           <Icon icon={ChevronDown} size={10} />
         </span>
@@ -432,7 +328,7 @@ const Toolbar = memo<ToolbarProps>(({ projects, statusCounts }) => {
                 <span>{t(opt.labelKey as any) as string}</span>
                 <Text
                   style={{
-                    color: status === opt.key ? 'inherit' : cssVar.colorTextTertiary,
+                    color: status === opt.key ? 'inherit' : 'var(--ant-color-text-tertiary)',
                     fontSize: 12,
                     fontVariantNumeric: 'tabular-nums',
                     opacity: status === opt.key ? 0.7 : 1,
@@ -519,7 +415,7 @@ const Toolbar = memo<ToolbarProps>(({ projects, statusCounts }) => {
 
       <DropdownMenu items={sortItems}>
         <span className={styles.sortPill}>
-          <Text style={{ color: cssVar.colorTextSecondary, fontSize: 12 }}>
+          <Text style={{ color: 'var(--ant-color-text-secondary)', fontSize: 12 }}>
             {t('management.sort.label')}:
           </Text>
           <span style={{ fontWeight: 500 }}>{t(`management.sort.${sortBy}` as any)}</span>

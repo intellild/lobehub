@@ -1,0 +1,8 @@
+.logoLink {
+line-height: 1;
+color: inherit;
+
+&:hover {
+  color: var(--ant-color-link);
+}
+}

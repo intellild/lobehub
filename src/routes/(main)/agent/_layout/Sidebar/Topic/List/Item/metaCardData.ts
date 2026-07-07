@@ -3,7 +3,6 @@ import {
   getTopicMetadataWorkingDirectoryEffectivePath,
   getTopicMetadataWorkingDirectorySourcePath,
 } from '@lobechat/utils/client/topic';
-import { cssVar } from 'antd-style';
 import type { LucideIcon } from 'lucide-react';
 import { GitMerge, GitPullRequestArrow, GitPullRequestClosed } from 'lucide-react';
 
@@ -35,9 +34,9 @@ export interface PullRequestStateVisual {
 }
 
 export const PR_STATE_VISUAL: Record<PullRequestState, PullRequestStateVisual> = {
-  closed: { color: cssVar.colorError, icon: GitPullRequestClosed, labelKey: 'metaCard.pr.closed' },
+  closed: { color: 'var(--ant-color-error)', icon: GitPullRequestClosed, labelKey: 'metaCard.pr.closed' },
   merged: { color: MERGED_PURPLE, icon: GitMerge, labelKey: 'metaCard.pr.merged' },
-  open: { color: cssVar.colorSuccess, icon: GitPullRequestArrow, labelKey: 'metaCard.pr.open' },
+  open: { color: 'var(--ant-color-success)', icon: GitPullRequestArrow, labelKey: 'metaCard.pr.open' },
 };
 
 /**

@@ -11,7 +11,6 @@ import {
   Icon,
   menuSharedStyles,
 } from '@lobehub/ui';
-import { cssVar, cx } from 'antd-style';
 import { LucideArrowRight, LucideBolt } from 'lucide-react';
 import type { ComponentType } from 'react';
 import { memo, useState } from 'react';
@@ -30,6 +29,19 @@ import { buildWorkspaceAwarePath } from '@/features/Workspace/workspaceAwarePath
 import type { EnabledProviderWithModels } from '@/types/index';
 
 import GenerationMultipleProvidersItem from './GenerationMultipleProvidersItem';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface GenerationListItemRendererProps {
   activeKey: string;
@@ -55,7 +67,7 @@ const GenerationListItemRenderer = memo<GenerationListItemRendererProps>(
             horizontal
             className={modelSwitchPanelStyles.menuItem}
             gap={8}
-            style={{ color: cssVar.colorTextTertiary }}
+            style={{ color: 'var(--ant-color-text-tertiary)' }}
             onClick={() => {
               onClose();
               navigate('/settings/provider/all');
@@ -109,7 +121,7 @@ const GenerationListItemRenderer = memo<GenerationListItemRendererProps>(
             horizontal
             className={modelSwitchPanelStyles.menuItem}
             gap={8}
-            style={{ color: cssVar.colorTextTertiary }}
+            style={{ color: 'var(--ant-color-text-tertiary)' }}
             onClick={() => {
               navigate(`/settings/provider/${item.provider.id}`);
               onClose();

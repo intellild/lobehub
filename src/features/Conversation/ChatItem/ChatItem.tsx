@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import { memo } from 'react';
 
 import FollowUpChips from '../FollowUp/FollowUpChips';
@@ -13,6 +12,19 @@ import MessageContent from './components/MessageContent';
 import Title from './components/Title';
 import { styles } from './style';
 import { type ChatItemProps } from './type';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const ChatItem = memo<ChatItemProps>(
   ({

@@ -2,7 +2,6 @@ import { type ToolManifest } from '@lobechat/types';
 import { Block, Button, Flexbox, Icon, Text } from '@lobehub/ui';
 import { type FormInstance } from 'antd';
 import { Form as AForm } from 'antd';
-import { cssVar } from 'antd-style';
 import { FileCode } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -22,7 +21,7 @@ const PluginPreview = memo<{ form: FormInstance }>(({ form }) => {
 
   if (!manifest)
     return (
-      <Flexbox flex={2} height={'100%'} style={{ background: cssVar.colorBgLayout }}>
+      <Flexbox flex={2} height={'100%'} style={{ background: 'var(--ant-color-bg-layout)' }}>
         <PluginEmptyState />
       </Flexbox>
     );
@@ -32,7 +31,7 @@ const PluginPreview = memo<{ form: FormInstance }>(({ form }) => {
       flex={2}
       gap={24}
       padding={12}
-      style={{ background: cssVar.colorBgLayout, overflowY: 'auto' }}
+      style={{ background: 'var(--ant-color-bg-layout)', overflowY: 'auto' }}
     >
       <Block
         horizontal

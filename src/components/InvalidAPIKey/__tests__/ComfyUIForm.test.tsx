@@ -1,4 +1,3 @@
-import type * as AntdStyleModule from 'antd-style';
 import { ModelProvider } from 'model-bank';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -18,23 +17,6 @@ vi.mock('react-i18next', () => ({
     t: (key: string) => key,
   }),
 }));
-
-vi.mock('antd-style', async (importOriginal) => {
-  const actual = await importOriginal<typeof AntdStyleModule>();
-
-  return {
-    ...actual,
-    createStaticStyles: vi.fn((fn: any) =>
-      fn({
-        css: () => '',
-        cssVar: {},
-      }),
-    ),
-    useTheme: () => ({
-      colorTextSecondary: '#999',
-    }),
-  };
-});
 
 vi.mock('@/components/FormInput', () => ({
   FormInput: vi.fn(({ value, onChange, ...props }) => (

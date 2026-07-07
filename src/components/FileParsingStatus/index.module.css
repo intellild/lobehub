@@ -1,0 +1,9 @@
+.errorReason {
+padding: 4px;
+border-radius: 4px;
+
+font-family: monospace;
+font-size: 12px;
+
+background: var(--ant-color-fill-tertiary);
+}

@@ -1,41 +1,9 @@
 'use client';
 
 import { Flexbox, Skeleton } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 12px;
-    border-radius: ${cssVar.borderRadiusLG};
-  `,
-  leftContent: css`
-    display: flex;
-    flex: 1;
-    gap: 8px;
-    align-items: center;
-
-    min-width: 0;
-  `,
-  rightContent: css`
-    display: flex;
-    gap: 4px;
-    align-items: center;
-  `,
-  textContent: css`
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 4px;
-
-    min-width: 0;
-  `,
-}));
+import styles from './SkeletonList.module.css';
 
 export const Placeholder = memo(() => {
   return (

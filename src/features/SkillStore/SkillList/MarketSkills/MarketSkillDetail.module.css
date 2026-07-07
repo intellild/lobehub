@@ -1,0 +1,43 @@
+.description {
+overflow: hidden;
+
+margin: 0;
+
+font-size: 13px;
+line-height: 1.5;
+color: var(--ant-color-text-secondary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.divider {
+flex-shrink: 0;
+width: 1px;
+background: var(--ant-color-border-secondary);
+}
+
+.left {
+overflow-y: auto;
+flex-shrink: 0;
+width: 240px;
+padding: 8px;
+}
+
+.meta {
+flex-shrink: 0;
+padding: 16px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.name {
+font-size: 16px;
+font-weight: 500;
+line-height: 1.4;
+color: var(--ant-color-text);
+}
+
+.right {
+container-type: size;
+overflow: auto;
+flex: 1;
+}

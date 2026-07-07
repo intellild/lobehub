@@ -1,9 +1,9 @@
 import { Flexbox } from '@lobehub/ui';
-import { cssVar, useTheme } from 'antd-style';
 import { memo, useMemo } from 'react';
 
 import { isCustomBranding } from '@/const/version';
 import NavHeader from '@/features/NavHeader';
+import { useTheme } from '@/hooks/useTheme';
 
 import CreateButton from '../features/CreateButton';
 import StoreSearchBar from '../features/Search';
@@ -11,11 +11,11 @@ import UserAvatar from '../features/UserAvatar';
 import { styles } from './Header/style';
 
 const Header = memo(() => {
-  const theme = useTheme(); // Keep for colorBgContainerSecondary (not in cssVar)
+  const theme = useTheme(); // Keep for colorBgContainerSecondary, which is set dynamically below.
   const cssVariables = useMemo<Record<string, string>>(
     () => ({
       '--header-bg': theme.colorBgContainerSecondary,
-      '--header-border-color': cssVar.colorBorderSecondary,
+      '--header-border-color': 'var(--ant-color-border-secondary)',
     }),
     [theme.colorBgContainerSecondary],
   );

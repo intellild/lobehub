@@ -1,7 +1,6 @@
 'use client';
 
 import { Skeleton } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 export const GroupSkeleton = memo<{
@@ -15,7 +14,7 @@ export const GroupSkeleton = memo<{
       key={i}
       size={'large'}
       style={{
-        borderRadius: cssVar.borderRadiusLG,
+        borderRadius: 'var(--ant-border-radius-lg)',
         height,
         maxHeight: height,
         maxWidth: width,

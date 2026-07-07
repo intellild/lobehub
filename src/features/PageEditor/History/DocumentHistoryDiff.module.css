@@ -1,0 +1,20 @@
+.container {
+overflow: hidden;
+display: flex;
+flex: 1;
+flex-direction: column;
+
+min-height: 0;
+
+background: var(--ant-color-bg-container);
+}
+
+.content {
+overflow: auto;
+flex: 1;
+min-height: 0;
+}
+
+.empty {
+padding: 24px;
+}

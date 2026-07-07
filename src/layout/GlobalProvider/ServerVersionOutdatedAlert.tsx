@@ -1,86 +1,18 @@
 'use client';
 
 import { Button, Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, useTheme } from 'antd-style';
 import { TriangleAlert, X } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { MANUAL_UPGRADE_URL } from '@/const/url';
 import { CURRENT_VERSION } from '@/const/version';
+import { useTheme } from '@/hooks/useTheme';
 import { useElectronStore } from '@/store/electron';
 import { electronSyncSelectors } from '@/store/electron/selectors';
 import { useGlobalStore } from '@/store/global';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  closeButton: css`
-    cursor: pointer;
-
-    position: absolute;
-    inset-block-start: 20px;
-    inset-inline-end: 20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 28px;
-    height: 28px;
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorTextSecondary};
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  container: css`
-    position: fixed;
-    z-index: 9999;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: ${cssVar.colorBgMask};
-  `,
-  content: css`
-    position: relative;
-
-    overflow: hidden;
-
-    max-width: 480px;
-    padding: 24px;
-    border: 1px solid ${cssVar.colorFillQuaternary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-    box-shadow: ${cssVar.boxShadowSecondary};
-  `,
-  desc: css`
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  title: css`
-    font-size: 16px;
-    font-weight: bold;
-    color: ${cssVar.colorWarningText};
-  `,
-  titleIcon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorWarning};
-  `,
-  warning: css`
-    padding: 12px;
-    border-radius: ${cssVar.borderRadius};
-    color: ${cssVar.colorWarningText};
-    background: var(--warning-yellow-bg, ${cssVar.colorWarningBg});
-  `,
-}));
+import styles from './ServerVersionOutdatedAlert.module.css';
 
 const ServerVersionOutdatedAlert = () => {
   const theme = useTheme();

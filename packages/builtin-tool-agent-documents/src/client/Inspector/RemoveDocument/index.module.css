@@ -1,0 +1,15 @@
+.removeChip {
+flex-shrink: 0;
+
+padding-block: 2px;
+padding-inline: 8px;
+border: 1px dashed var(--ant-color-error-border);
+border-radius: 999px;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-error);
+text-decoration: line-through;
+
+background: transparent;
+}

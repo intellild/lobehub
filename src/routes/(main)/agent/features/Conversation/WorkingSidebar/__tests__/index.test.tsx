@@ -61,10 +61,6 @@ vi.mock('@lobehub/ui', () => ({
   Flexbox: ({ children }: { children?: ReactNode }) => <div>{children}</div>,
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => () => ({}),
-}));
-
 afterEach(() => {
   rightPanel.current = undefined;
   vi.clearAllMocks();

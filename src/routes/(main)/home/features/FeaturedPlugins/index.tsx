@@ -2,7 +2,6 @@
 
 import { MCP } from '@lobehub/icons';
 import { ActionIcon, DropdownMenu, Grid } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { MoreHorizontal } from 'lucide-react';
 import { memo, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +19,7 @@ const FeaturedPlugins = memo(() => {
 
   return (
     <GroupBlock
-      icon={<MCP color={cssVar.colorTextDescription} size={18} />}
+      icon={<MCP color={'var(--ant-color-text-description)'} size={18} />}
       title={t('home.featuredPlugins')}
       action={
         <DropdownMenu

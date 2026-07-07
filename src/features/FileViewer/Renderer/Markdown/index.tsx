@@ -1,20 +1,12 @@
 'use client';
 
 import { Center, Flexbox, Highlighter } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import CircleLoading from '@/components/Loading/CircleLoading';
 
 import { useTextFileLoader } from '../../hooks/useTextFileLoader';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  page: css`
-    width: 100%;
-    padding: ${cssVar.paddingLG};
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
+import styles from './index.module.css';
 
 interface MarkdownViewerProps {
   fileId: string;

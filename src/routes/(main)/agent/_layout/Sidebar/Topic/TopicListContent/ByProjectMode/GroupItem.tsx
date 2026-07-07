@@ -1,6 +1,5 @@
 import { AGENT_CHAT_URL } from '@lobechat/const';
 import { AccordionItem, ActionIcon, Center, Flexbox, Icon, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx, keyframes } from 'antd-style';
 import {
   FolderClosedIcon,
   FolderOpenIcon,
@@ -28,109 +27,28 @@ import { operationSelectors } from '@/store/chat/selectors';
 import { buildPrefixedAgentRoutePath, parseAgentPathname } from '../../../utils/agentPathname';
 import TopicItem from '../../List/Item';
 import { type GroupItemComponentProps } from '../GroupedAccordion';
+import stylesModule from './GroupItem.module.css';
 import {
   getProjectTopicStatusCounts,
   hasProjectTopicStatusCounts,
   type ProjectTopicStatusCounts,
 } from './statusCounts';
 
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const PROJECT_GROUP_PREFIX = 'project:';
-
-const rippleAnim = keyframes`
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(3);
-    opacity: 0;
-  }
-`;
-
-const styles = createStaticStyles(({ css }) => ({
-  statusBadge: css`
-    display: inline-flex;
-    gap: 2px;
-    align-items: center;
-    justify-content: center;
-
-    min-width: 20px;
-    height: 18px;
-    padding-inline: 4px;
-    border-radius: 9px;
-
-    font-size: 11px;
-    font-weight: 500;
-    line-height: 1;
-  `,
-  statusBadgeError: css`
-    color: ${cssVar.colorError};
-    background: color-mix(in srgb, ${cssVar.colorError} 14%, transparent);
-  `,
-  statusBadgeLoading: css`
-    color: ${cssVar.colorWarning};
-    background: color-mix(in srgb, ${cssVar.colorWarning} 14%, transparent);
-  `,
-  statusBadgeWaiting: css`
-    color: ${cssVar.colorInfo};
-    background: color-mix(in srgb, ${cssVar.colorInfo} 14%, transparent);
-  `,
-  unreadDot: css`
-    position: relative;
-    z-index: 1;
-
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-
-    background: ${cssVar.colorInfo};
-  `,
-  unreadRipple: css`
-    position: absolute;
-    inset: 0;
-
-    width: 6px;
-    height: 6px;
-    margin: auto;
-    border: 1px solid ${cssVar.colorInfo};
-    border-radius: 50%;
-
-    background: transparent;
-
-    animation: ${rippleAnim} 1.8s ease-out infinite;
-  `,
-  unreadWrapper: css`
-    position: relative;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 14px;
-    height: 18px;
-  `,
-  addTopicAction: css`
-    pointer-events: none;
-
-    overflow: hidden;
-    display: inline-flex;
-
-    width: 0;
-
-    opacity: 0;
-
-    transition:
-      width 150ms ${cssVar.motionEaseOut},
-      opacity 150ms ${cssVar.motionEaseOut};
-
-    &:focus-within,
-    .accordion-header:hover & {
-      pointer-events: auto;
-      width: 24px;
-      opacity: 1;
-    }
-  `,
-}));
+const styles = stylesModule;
 
 interface StatusBadgeConfig {
   className: string;
@@ -173,9 +91,9 @@ const CollapsedStatusBadges = memo<{ counts: ProjectTopicStatusCounts }>(({ coun
           <span aria-label={label} className={cx(styles.statusBadge, className)} role="status">
             {loading ? (
               <RingLoadingIcon
-                ringColor={`color-mix(in srgb, ${cssVar.colorWarning} 28%, transparent)`}
+                ringColor={`color-mix(in srgb, ${'var(--ant-color-warning)'} 28%, transparent)`}
                 size={11}
-                style={{ color: cssVar.colorWarning }}
+                style={{ color: 'var(--ant-color-warning)' }}
               />
             ) : (
               icon && <Icon icon={icon} size={{ size: 11, strokeWidth: 2 }} />
@@ -308,12 +226,12 @@ const GroupItem = memo<GroupItemComponentProps>(
           <Flexbox horizontal align="center" gap={8} height={24} style={{ overflow: 'hidden' }}>
             <Center flex={'none'} height={24} width={28}>
               <Icon
-                color={cssVar.colorTextTertiary}
+                color={'var(--ant-color-text-tertiary)'}
                 icon={ProjectFolderIcon}
                 size={{ size: 15, strokeWidth: 1.5 }}
               />
             </Center>
-            <Text ellipsis fontSize={14} style={{ color: cssVar.colorTextSecondary, flex: 1 }}>
+            <Text ellipsis fontSize={14} style={{ color: 'var(--ant-color-text-secondary)', flex: 1 }}>
               {title}
             </Text>
           </Flexbox>

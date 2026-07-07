@@ -1,0 +1,18 @@
+.addCirclePos {
+position: absolute;
+z-index: 100;
+inset-block-end: -2px;
+inset-inline-end: -2px;
+}
+
+.stack {
+position: relative;
+padding-block: 4px;
+padding-inline: 0;
+
+&:hover {
+  .inline-ref-close {
+    opacity: 1;
+  }
+}
+}

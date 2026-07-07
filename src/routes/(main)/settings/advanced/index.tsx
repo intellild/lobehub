@@ -4,7 +4,6 @@ import { isDesktop } from '@lobechat/const';
 import { type FormGroupItemType, type FormItemProps } from '@lobehub/ui';
 import { Form, Icon, Skeleton } from '@lobehub/ui';
 import { Select, Switch } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { Loader2Icon } from 'lucide-react';
 import { memo, useCallback, useEffect, useState } from 'react';
@@ -18,15 +17,9 @@ import { serverConfigSelectors, useServerConfigStore } from '@/store/serverConfi
 import { useUserStore } from '@/store/user';
 import { labPreferSelectors, preferenceSelectors, settingsSelectors } from '@/store/user/selectors';
 
-type UpdateChannelValue = 'canary' | 'stable';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css }) => ({
-  labItem: css`
-    .ant-form-item-row {
-      align-items: center !important;
-    }
-  `,
-}));
+type UpdateChannelValue = 'canary' | 'stable';
 
 const Page = memo(() => {
   const { t } = useTranslation('setting');

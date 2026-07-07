@@ -1,9 +1,10 @@
 'use client';
 
 import { DonutChart } from '@lobehub/charts';
-import { useTheme } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { useTheme } from '@/hooks/useTheme';
 
 interface StatusDonutProps {
   errorCases: number;

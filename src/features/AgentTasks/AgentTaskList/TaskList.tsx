@@ -1,6 +1,5 @@
 import { Accordion, AccordionItem, Block, Center, Empty, Flexbox, Icon, Text } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cssVar } from 'antd-style';
 import { ClipboardCheckIcon, UserRound } from 'lucide-react';
 import { Fragment, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -104,7 +103,7 @@ const renderGroupPrefix = (group: TaskGroupMeta) => {
       PRIORITY_ICON_MAP[priority as keyof typeof PRIORITY_ICON_MAP] || PriorityNoneIcon;
     return (
       <PriorityIcon
-        color={priority === 1 ? cssVar.orange : cssVar.colorTextDescription}
+        color={priority === 1 ? 'var(--ant-orange)' : 'var(--ant-color-text-description)'}
         size={16}
       />
     );
@@ -131,7 +130,7 @@ const renderGroupTitle = (group: TaskGroupMeta, count: number, sub?: boolean) =>
       {count}
     </Text>
     {sub ? (
-      <Divider style={{ margin: 0, borderColor: cssVar.colorBorder }} />
+      <Divider style={{ margin: 0, borderColor: 'var(--ant-color-border)' }} />
     ) : (
       <Flexbox flex={1} />
     )}

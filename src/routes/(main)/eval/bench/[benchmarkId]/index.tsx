@@ -2,7 +2,6 @@
 
 import { Flexbox } from '@lobehub/ui';
 import { Card, Skeleton } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import {
   Activity,
   Award,
@@ -25,6 +24,7 @@ import { runSelectors, useEvalStore } from '@/store/eval';
 import BenchmarkHeader from './features/BenchmarkHeader';
 import DatasetsTab from './features/DatasetsTab';
 import RunsTab from './features/RunsTab';
+import styles from './index.module.css';
 
 const SYSTEM_ICONS = [
   LoaderPinwheel,
@@ -44,31 +44,6 @@ const getSystemIcon = (id: string) => {
   const hash = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return SYSTEM_ICONS[hash % SYSTEM_ICONS.length];
 };
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    overflow-y: auto;
-    padding-block: 24px;
-    padding-inline: 32px;
-  `,
-  sectionTitle: css`
-    margin: 0;
-    font-size: ${cssVar.fontSizeLG};
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-  tag: css`
-    padding-block: 2px;
-    padding-inline: 8px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: ${cssVar.borderRadiusXS};
-
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-
-    background: transparent;
-  `,
-}));
 
 const BenchmarkDetail = memo(() => {
   const { t } = useTranslation('eval');
@@ -117,7 +92,7 @@ const BenchmarkDetail = memo(() => {
         {/* Header skeleton */}
         <Flexbox gap={16}>
           <Flexbox horizontal align="start" gap={12}>
-            <Skeleton.Avatar active shape="square" size={40} style={{ borderRadius: cssVar.borderRadiusLG }} />
+            <Skeleton.Avatar active shape="square" size={40} style={{ borderRadius: 'var(--ant-border-radius-lg)' }} />
             <Flexbox flex={1} gap={8}>
               <Skeleton.Input active style={{ height: 24, width: 200 }} />
               <Skeleton.Input active size="small" style={{ height: 14, width: 320 }} />
@@ -132,8 +107,8 @@ const BenchmarkDetail = memo(() => {
               key={i}
               styles={{ body: { padding: 16 } }}
               style={{
-                border: `1px solid ${cssVar.colorBorderSecondary}`,
-                borderRadius: cssVar.borderRadius,
+                border: `1px solid ${'var(--ant-color-border-secondary)'}`,
+                borderRadius: 'var(--ant-border-radius)',
                 flex: 1,
                 minWidth: 0,
               }}
@@ -144,7 +119,7 @@ const BenchmarkDetail = memo(() => {
                     active
                     shape="square"
                     size={36}
-                    style={{ borderRadius: cssVar.borderRadius }}
+                    style={{ borderRadius: 'var(--ant-border-radius)' }}
                   />
                   <Skeleton.Input active size="small" style={{ height: 14, width: 80 }} />
                 </Flexbox>

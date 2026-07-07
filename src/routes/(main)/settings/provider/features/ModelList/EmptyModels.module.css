@@ -1,0 +1,38 @@
+.circle {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+background: var(--ant-color-fill-secondary);
+}
+
+.container {
+width: 100%;
+border: 1px dashed var(--ant-color-border);
+border-radius: 12px;
+background: var(--ant-color-bg-container);
+}
+
+.description {
+max-width: 280px;
+
+font-size: var(--ant-font-size);
+color: var(--ant-color-text-description);
+text-align: center;
+text-wrap: balance;
+}
+
+.iconWrapper {
+position: relative;
+width: 64px;
+height: 64px;
+}
+
+.sparklesIcon {
+font-size: 40px;
+color: var(--ant-color-text);
+}
+
+.title {
+font-size: var(--ant-font-size-lg);
+font-weight: 500;
+}

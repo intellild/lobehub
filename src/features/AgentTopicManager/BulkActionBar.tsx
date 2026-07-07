@@ -2,46 +2,15 @@
 
 import { ActionIcon, Flexbox, Text } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Archive, Star, Trash2, X } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useChatStore } from '@/store/chat';
 
+import styles from './BulkActionBar.module.css';
 import MoveToAgentButton from './MoveToAgentButton';
 import { useTopicsViewStore } from './store';
-
-const styles = createStaticStyles(({ css }) => ({
-  bar: css`
-    pointer-events: auto;
-
-    padding-block: 8px;
-    padding-inline: 16px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 999px;
-
-    background: ${cssVar.colorBgElevated};
-    box-shadow: ${cssVar.boxShadowSecondary};
-  `,
-  divider: css`
-    width: 1px;
-    height: 16px;
-    margin-inline: 2px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  overlay: css`
-    pointer-events: none;
-
-    position: fixed;
-    z-index: 1000;
-    inset-block-end: 24px;
-    inset-inline: 0;
-
-    display: flex;
-    justify-content: center;
-  `,
-}));
 
 const BulkActionBar = memo(() => {
   const { t } = useTranslation('topic');
@@ -108,7 +77,7 @@ const BulkActionBar = memo(() => {
         <ActionIcon
           icon={Trash2}
           size={'small'}
-          style={{ color: cssVar.colorError }}
+          style={{ color: 'var(--ant-color-error)' }}
           title={t('management.bulk.delete')}
           onClick={handleBatchDelete}
         />

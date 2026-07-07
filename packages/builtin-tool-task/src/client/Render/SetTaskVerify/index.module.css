@@ -1,0 +1,31 @@
+.offBadge {
+display: inline-flex;
+flex-shrink: 0;
+gap: 4px;
+align-items: center;
+
+padding-block: 2px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.onBadge {
+display: inline-flex;
+flex-shrink: 0;
+gap: 4px;
+align-items: center;
+
+padding-block: 2px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-size: 12px;
+color: var(--ant-color-success);
+
+background: var(--ant-color-success-bg);
+}

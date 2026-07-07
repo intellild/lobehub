@@ -1,7 +1,6 @@
 import { ActionIcon, Button, DropdownMenu, Flexbox, Tag } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App, Card } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ArrowRight, ChevronRight, Database, Ellipsis, Pencil, Play, Trash2 } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,122 +10,9 @@ import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
 import { agentEvalService } from '@/services/agentEval';
 
 import { DATASET_PRESETS } from '../../../../config/datasetPresets';
+import styles from './DatasetCard.module.css';
 import TestCaseEmptyState from './TestCaseEmptyState';
 import TestCaseTable from './TestCaseTable';
-
-const styles = createStaticStyles(({ css }) => ({
-  card: css`
-    .ant-card-body {
-      padding: 0;
-    }
-  `,
-  // Tonal figure block that leads with the dataset's headline metric — its
-  // test-case count — given mono weight so it reads as a result at a glance.
-  caseCount: css`
-    display: flex;
-    flex-shrink: 0;
-    flex-direction: column;
-    gap: 2px;
-    align-items: flex-end;
-
-    padding-block: 6px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  caseCountLabel: css`
-    font-size: ${cssVar.fontSizeSM};
-    line-height: 1;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  caseCountValue: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeLG};
-    font-weight: 600;
-    line-height: 1;
-    color: ${cssVar.colorText};
-  `,
-  chevron: css`
-    flex-shrink: 0;
-
-    color: ${cssVar.colorTextTertiary};
-
-    transition: transform 0.15s ease;
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  datasetDescription: css`
-    overflow: hidden;
-
-    margin: 0;
-
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  datasetHeader: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 12px;
-    align-items: center;
-
-    width: 100%;
-    padding: 16px;
-    border: none;
-
-    text-align: start;
-
-    background: transparent;
-
-    transition: background 0.15s ease;
-
-    &:hover {
-      background: ${cssVar.colorFillQuaternary};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: -1px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  datasetIcon: css`
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 32px;
-    height: 32px;
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorPrimaryBg};
-  `,
-  datasetName: css`
-    margin: 0;
-    font-size: ${cssVar.fontSize};
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-  expandedSection: css`
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  footer: css`
-    padding: 12px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  footerLink: css`
-    text-decoration: none;
-  `,
-}));
 
 interface DatasetCardProps {
   benchmarkId: string;
@@ -208,7 +94,7 @@ const DatasetCard = memo<DatasetCardProps>(
           }}
         >
           <div className={styles.datasetIcon}>
-            <Database size={16} style={{ color: cssVar.colorPrimary }} />
+            <Database size={16} style={{ color: 'var(--ant-color-primary)' }} />
           </div>
           <Flexbox flex={1} gap={2} style={{ minWidth: 0 }}>
             <Flexbox horizontal align="center" gap={8}>

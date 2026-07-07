@@ -4,7 +4,6 @@ import { type SkillResourceTreeNode } from '@lobechat/types';
 import { Github } from '@lobehub/icons';
 import { ActionIcon, Flexbox, Icon } from '@lobehub/ui';
 import { Skeleton } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { DotIcon, ExternalLinkIcon } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,47 +14,7 @@ import FileTree, { FileTreeSkeleton } from '@/features/FileTree';
 import { useToolStore } from '@/store/tool';
 
 import ContentViewer from './ContentViewer';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  description: css`
-    overflow: hidden;
-
-    margin: 0;
-
-    font-size: 13px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  divider: css`
-    flex-shrink: 0;
-    width: 1px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  left: css`
-    overflow-y: auto;
-    flex-shrink: 0;
-    width: 240px;
-    padding: 8px;
-  `,
-  meta: css`
-    flex-shrink: 0;
-    padding: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  name: css`
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: ${cssVar.colorText};
-  `,
-  right: css`
-    container-type: size;
-    overflow: auto;
-    flex: 1;
-  `,
-}));
+import styles from './index.module.css';
 
 interface AgentSkillDetailProps {
   skillId: string;
@@ -137,7 +96,7 @@ const AgentSkillDetail = memo<AgentSkillDetailProps>(({ skillId }) => {
                     {repository && (
                       <a href={repository} rel="noreferrer" target={'_blank'}>
                         <ActionIcon
-                          fill={cssVar.colorTextDescription}
+                          fill={'var(--ant-color-text-description)'}
                           icon={Github}
                           title={t('agentSkillDetail.repository')}
                         />

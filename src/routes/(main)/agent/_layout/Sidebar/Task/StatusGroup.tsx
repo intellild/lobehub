@@ -1,7 +1,6 @@
 'use client';
 
 import { AccordionItem, Center, Flexbox, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { CircleDashed, CircleDot, HandIcon, type LucideIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,17 +12,17 @@ import TaskItem from './TaskItem';
 
 const STATUS_META: Record<string, { color: string; icon: LucideIcon; titleKey: string }> = {
   backlog: {
-    color: cssVar.colorTextQuaternary,
+    color: 'var(--ant-color-text-quaternary)',
     icon: CircleDashed,
     titleKey: 'taskList.kanban.backlog',
   },
   needsInput: {
-    color: cssVar.colorInfo,
+    color: 'var(--ant-color-info)',
     icon: HandIcon,
     titleKey: 'taskList.kanban.needsInput',
   },
   running: {
-    color: cssVar.colorWarning,
+    color: 'var(--ant-color-warning)',
     icon: CircleDot,
     titleKey: 'taskList.kanban.running',
   },
@@ -49,7 +48,7 @@ const StatusGroup = memo<StatusGroupProps>(({ group }) => {
           <Center flex={'none'} height={24} width={24}>
             <Icon color={meta.color} icon={meta.icon} size={{ size: 14, strokeWidth: 1.75 }} />
           </Center>
-          <Text ellipsis fontSize={13} style={{ color: cssVar.colorTextSecondary, flex: 1 }}>
+          <Text ellipsis fontSize={13} style={{ color: 'var(--ant-color-text-secondary)', flex: 1 }}>
             {t(meta.titleKey as 'taskList.kanban.backlog')}
           </Text>
           <Text fontSize={11} type="secondary">

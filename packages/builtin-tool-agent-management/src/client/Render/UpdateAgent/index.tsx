@@ -2,34 +2,10 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Block, Markdown } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import type { UpdateAgentParams } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding: 12px;
-    border-radius: 8px;
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  field: css`
-    margin-block-end: 8px;
-
-    &:last-child {
-      margin-block-end: 0;
-    }
-  `,
-  label: css`
-    margin-block-end: 4px;
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  value: css`
-    font-size: 13px;
-  `,
-}));
+import styles from './index.module.css';
 
 const safeParse = (val: unknown): Record<string, any> | undefined => {
   if (!val) return undefined;

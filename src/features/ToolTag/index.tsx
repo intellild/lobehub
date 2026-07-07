@@ -3,7 +3,6 @@
 import { type ComposioAppType } from '@lobechat/const';
 import { COMPOSIO_APP_TYPES } from '@lobechat/const';
 import { Avatar, Icon, Tag } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo, useMemo } from 'react';
 
@@ -18,6 +17,8 @@ import {
   pluginSelectors,
 } from '@/store/tool/selectors';
 
+import styles from './index.module.css';
+
 /**
  * Composio server icon component
  */
@@ -26,21 +27,8 @@ const ComposioIcon = memo<Pick<ComposioAppType, 'icon' | 'label'>>(({ icon, labe
     return <img alt={label} height={16} src={icon} style={{ flexShrink: 0 }} width={16} />;
   }
 
-  return <Icon fill={cssVar.colorText} icon={icon} size={16} />;
+  return <Icon fill={'var(--ant-color-text)'} icon={icon} size={16} />;
 });
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  compact: css`
-    height: auto !important;
-    padding: 0 !important;
-    border: none !important;
-    background: transparent !important;
-  `,
-  tag: css`
-    height: 24px !important;
-    border-radius: ${cssVar.borderRadiusSM} !important;
-  `,
-}));
 
 export interface ToolTagProps {
   /**

@@ -1,6 +1,5 @@
 import type { IconType } from '@lobehub/icons';
 import { type DropdownItem, DropdownMenu, Icon, type MenuInfo, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Loader2Icon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -15,6 +14,7 @@ import PriorityMediumIcon from './icons/PriorityMediumIcon';
 import PriorityNoneIcon from './icons/PriorityNoneIcon';
 import PriorityUrgentIcon from './icons/PriorityUrgentIcon';
 import { renderMenuExtra } from './menuExtra';
+import styles from './TaskPriorityTag.module.css';
 
 interface PriorityMeta {
   icon: IconType;
@@ -32,38 +32,6 @@ export const PRIORITY_META: Record<number, PriorityMeta> = {
 };
 
 const PRIORITY_LEVELS = [0, 1, 2, 3, 4];
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  trigger: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    align-items: center;
-
-    color: ${cssVar.colorTextDescription};
-
-    transition: color ${cssVar.motionDurationMid};
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-  `,
-  triggerUrgent: css`
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    color: ${cssVar.orange};
-  `,
-  triggerDisabled: css`
-    cursor: not-allowed;
-    opacity: 0.5;
-
-    &:hover {
-      color: ${cssVar.colorTextDescription};
-      filter: none;
-    }
-  `,
-}));
 
 interface TaskPriorityTagProps {
   children?: ReactNode;
@@ -133,7 +101,7 @@ const TaskPriorityTag = memo<TaskPriorityTagProps>(
             extra: renderMenuExtra(String(index + 1), isCurrent),
             icon: (
               <IconRender
-                color={isUrgentLevel ? cssVar.orange : cssVar.colorTextSecondary}
+                color={isUrgentLevel ? 'var(--ant-orange)' : 'var(--ant-color-text-secondary)'}
                 size={16}
               />
             ),
@@ -154,7 +122,7 @@ const TaskPriorityTag = memo<TaskPriorityTagProps>(
     const triggerNode = children ? (
       children
     ) : loading ? (
-      <Icon spin color={cssVar.colorTextDescription} icon={Loader2Icon} size={size} />
+      <Icon spin color={'var(--ant-color-text-description)'} icon={Loader2Icon} size={size} />
     ) : (
       <Tooltip title={t(`taskDetail.${meta.labelKey}` as never, { defaultValue: meta.label })}>
         <span

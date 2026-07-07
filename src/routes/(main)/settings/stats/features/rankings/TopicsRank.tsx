@@ -1,7 +1,6 @@
 import { AGENT_CHAT_TOPIC_URL } from '@lobechat/const';
 import { BarList } from '@lobehub/charts';
 import { ActionIcon, Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { MaximizeIcon, MessageSquareIcon } from 'lucide-react';
 import qs from 'query-string';
 import { memo, useState } from 'react';
@@ -41,7 +40,7 @@ export const TopicsRank = memo<{ mobile?: boolean }>(({ mobile }) => {
         ? qs.stringifyUrl({ query: { showMobileWorkspace: true }, url: path })
         : path;
     return {
-      icon: <Icon color={cssVar.colorTextDescription} icon={MessageSquareIcon} size={16} />,
+      icon: <Icon color={'var(--ant-color-text-description)'} icon={MessageSquareIcon} size={16} />,
       link,
       name: (
         <Link href={link} style={{ color: 'inherit' }}>

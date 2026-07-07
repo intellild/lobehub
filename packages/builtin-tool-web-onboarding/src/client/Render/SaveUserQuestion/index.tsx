@@ -3,67 +3,10 @@
 import type { InterestAreaKey } from '@lobechat/const';
 import type { BuiltinRenderProps, SaveUserQuestionInput } from '@lobechat/types';
 import { Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  avatar: css`
-    display: inline-flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    box-sizing: border-box;
-    width: 48px;
-    height: 48px;
-    border-radius: 16px;
-
-    font-size: 28px;
-    line-height: 1;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  chip: css`
-    display: inline-flex;
-    align-items: center;
-
-    padding-block: 4px;
-    padding-inline: 10px;
-    border-radius: 999px;
-
-    font-size: 12px;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  detailCard: css`
-    padding: 16px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-    background: ${cssVar.colorFillTertiary};
-  `,
-  name: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
-    font-size: 16px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-  sectionLabel: css`
-    font-size: 12px;
-    font-weight: 600;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  value: css`
-    font-size: 14px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './index.module.css';
 
 const SaveUserQuestion = memo<BuiltinRenderProps<SaveUserQuestionInput, unknown, unknown>>(
   ({ args }) => {

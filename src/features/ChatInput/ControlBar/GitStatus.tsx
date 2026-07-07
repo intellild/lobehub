@@ -1,6 +1,5 @@
 import { Icon, Tooltip } from '@lobehub/ui';
 import { toast } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ArrowDownIcon, ArrowUpIcon, GitBranchIcon, GitPullRequest } from 'lucide-react';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,132 +18,8 @@ import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
 
 import BranchSwitcher from './BranchSwitcher';
+import styles from './GitStatus.module.css';
 import WorktreeSwitcher from './WorktreeSwitcher';
-
-const styles = createStaticStyles(({ css }) => {
-  return {
-    aheadBehindStat: css`
-      display: inline-flex;
-      gap: 0;
-      align-items: center;
-
-      margin-inline-start: -2px;
-
-      font-variant-numeric: tabular-nums;
-      line-height: 1;
-    `,
-    aheadStat: css`
-      color: ${cssVar.colorInfo};
-    `,
-    behindStat: css`
-      color: ${cssVar.colorError};
-    `,
-    branchLabel: css`
-      overflow: hidden;
-      max-width: 160px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    `,
-    diffStat: css`
-      display: inline-flex;
-      flex-shrink: 0;
-      gap: 4px;
-      align-items: center;
-
-      font-variant-numeric: tabular-nums;
-    `,
-    diffStatAdded: css`
-      color: ${cssVar.colorSuccess};
-    `,
-    diffStatDeleted: css`
-      color: ${cssVar.colorError};
-    `,
-    diffStatModified: css`
-      color: ${cssVar.colorWarning};
-    `,
-    prTrigger: css`
-      cursor: pointer;
-
-      display: flex;
-      flex: none;
-      gap: 4px;
-      align-items: center;
-
-      padding-block: 2px;
-      padding-inline: 4px;
-      border-radius: 4px;
-
-      font-size: 12px;
-      color: ${cssVar.colorTextSecondary};
-      white-space: nowrap;
-
-      transition: background 0.2s;
-
-      &:hover {
-        color: ${cssVar.colorText};
-        background: ${cssVar.colorFillTertiary};
-      }
-    `,
-    separator: css`
-      flex: none;
-      width: 1px;
-      height: 10px;
-      background: ${cssVar.colorSplit};
-    `,
-    syncTrigger: css`
-      cursor: pointer;
-
-      display: inline-flex;
-      flex: none;
-      gap: 2px;
-      align-items: center;
-
-      padding-block: 2px;
-      padding-inline: 4px;
-      border-radius: 4px;
-
-      font-size: 12px;
-      font-variant-numeric: tabular-nums;
-      line-height: 1;
-
-      transition: background 0.2s;
-
-      &:hover {
-        background: ${cssVar.colorFillTertiary};
-      }
-    `,
-    syncTriggerDisabled: css`
-      cursor: progress;
-      opacity: 0.6;
-
-      &:hover {
-        background: transparent;
-      }
-    `,
-    trigger: css`
-      cursor: pointer;
-
-      display: flex;
-      flex: none;
-      gap: 4px;
-      align-items: center;
-
-      padding-block: 2px;
-      padding-inline: 4px;
-      border-radius: 4px;
-
-      font-size: 12px;
-      color: ${cssVar.colorTextSecondary};
-      white-space: nowrap;
-
-      transition: background 0.2s;
-
-      &:hover {
-        background: ${cssVar.colorFillTertiary};
-      }
-    `,
-  };
-});
 
 interface GitStatusProps {
   /** When set, git status / branch switch / pull / push all run against this

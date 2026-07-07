@@ -2,42 +2,14 @@
 
 import { ActionIcon, Flexbox, Icon, Text } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Play, Plus } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { runSelectors, useEvalStore } from '@/store/eval';
 
+import styles from './index.module.css';
 import RunSummaryCard from './RunSummaryCard';
-
-const styles = createStaticStyles(({ css }) => ({
-  emptyCard: css`
-    align-items: center;
-    justify-content: center;
-
-    padding-block: 32px;
-    padding-inline: 20px;
-    border: 1px dashed ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-
-    text-align: center;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  iconBox: css`
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 40px;
-    height: 40px;
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
 
 interface RunCardsProps {
   benchmarkId: string;
@@ -65,11 +37,11 @@ const RunCards = memo<RunCardsProps>(({ datasetId, onCreateRun, benchmarkId }) =
       {runList.length === 0 ? (
         <Flexbox className={styles.emptyCard} gap={12}>
           <div className={styles.iconBox}>
-            <Icon icon={Play} size={20} style={{ color: cssVar.colorTextQuaternary }} />
+            <Icon icon={Play} size={20} style={{ color: 'var(--ant-color-text-quaternary)' }} />
           </div>
           <Flexbox align="center" gap={2}>
-            <Text color={cssVar.colorTextTertiary}>{t('run.empty.title')}</Text>
-            <Text color={cssVar.colorTextQuaternary} fontSize={12}>
+            <Text color={'var(--ant-color-text-tertiary)'}>{t('run.empty.title')}</Text>
+            <Text color={'var(--ant-color-text-quaternary)'} fontSize={12}>
               {t('run.empty.description')}
             </Text>
           </Flexbox>

@@ -1,0 +1,17 @@
+.bar {
+position: relative;
+
+inline-size: 100%;
+padding-block: 12px;
+padding-inline: 16px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+
+background: var(--ant-color-bg-container);
+}
+
+.count {
+position: absolute;
+inset-block-start: 50%;
+inset-inline-start: 16px;
+transform: translateY(-50%);
+}

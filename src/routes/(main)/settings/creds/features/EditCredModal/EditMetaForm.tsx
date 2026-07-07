@@ -4,22 +4,13 @@ import { type UserCredSummary } from '@lobechat/types';
 import { Button } from '@lobehub/ui';
 import { useMutation } from '@tanstack/react-query';
 import { Form, Input } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { usePermission } from '@/hooks/usePermission';
 
 import { useCredsApi } from '../useCredsApi';
-
-const styles = createStaticStyles(({ css }) => ({
-  footer: css`
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-    margin-block-start: 24px;
-  `,
-}));
+import styles from './EditMetaForm.module.css';
 
 interface EditMetaFormProps {
   cred: UserCredSummary;

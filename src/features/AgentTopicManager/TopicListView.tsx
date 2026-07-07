@@ -3,7 +3,6 @@
 import { AGENT_CHAT_TOPIC_URL } from '@lobechat/const';
 import type { GroupedTopic } from '@lobechat/types';
 import { ActionIcon, Checkbox, DropdownMenu, Flexbox, Icon, Tag, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { FolderIcon, MoreHorizontal, Star } from 'lucide-react';
 import { Fragment, memo, type MouseEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,114 +14,11 @@ import type { ChatTopic } from '@/types/topic';
 
 import StatusDot from './StatusDot';
 import { useTopicsViewStore } from './store';
+import styles from './TopicListView.module.css';
 import type { GroupBy, TriggerFilter } from './types';
 import { getProjectGroupTitle, getProjectLabel, getTimeGroupTitle } from './utils';
 
 const KNOWN_TRIGGERS: readonly TriggerFilter[] = ['chat', 'api', 'task', 'eval'];
-
-const styles = createStaticStyles(({ css }) => ({
-  cell: css`
-    overflow: hidden;
-    min-width: 0;
-  `,
-  checkboxBox: css`
-    border-color: ${cssVar.colorBorder};
-  `,
-  groupBar: css`
-    display: flex;
-    gap: 6px;
-    align-items: baseline;
-
-    padding-block: 8px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorSplit};
-
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  groupCount: css`
-    font-size: 11px;
-    font-weight: 400;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  header: css`
-    position: sticky;
-    z-index: 2;
-    inset-block-start: 0;
-
-    display: grid;
-    grid-template-columns: 24px minmax(0, 1fr) 120px 100px 80px 100px 32px;
-    gap: 12px;
-    align-items: center;
-
-    padding-block: 10px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorSplit};
-
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-
-    /* opaque so scrolled rows don't bleed through */
-    background: ${cssVar.colorBgElevated};
-  `,
-  headerCellEnd: css`
-    text-align: end;
-  `,
-  list: css`
-    position: relative;
-
-    overflow: hidden;
-
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  row: css`
-    cursor: pointer;
-
-    display: grid;
-    grid-template-columns: 24px minmax(0, 1fr) 120px 100px 80px 100px 32px;
-    gap: 12px;
-    align-items: center;
-
-    padding-block: 10px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorSplit};
-
-    transition: background 0.12s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &:last-child {
-      border-block-end: none;
-    }
-  `,
-  rowSelected: css`
-    background: ${cssVar.colorPrimaryBg};
-
-    &:hover {
-      background: ${cssVar.colorPrimaryBgHover};
-    }
-  `,
-  sub: css`
-    overflow: hidden;
-    margin-block-start: 2px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  title: css`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
 
 interface TopicListViewProps {
   agentId: string;
@@ -194,7 +90,7 @@ const Row = memo<RowProps>(({ topic, agentId }) => {
       <div className={styles.cell}>
         <Flexbox horizontal align={'center'} gap={6}>
           {topic.favorite && (
-            <Icon icon={Star} size={12} style={{ color: cssVar.colorWarning, flexShrink: 0 }} />
+            <Icon icon={Star} size={12} style={{ color: 'var(--ant-color-warning)', flexShrink: 0 }} />
           )}
           <Text className={styles.title} fontSize={13} weight={500}>
             {topic.title || t('defaultTitle')}
@@ -223,7 +119,7 @@ const Row = memo<RowProps>(({ topic, agentId }) => {
       </Text>
       <Text
         fontSize={12}
-        style={{ color: cssVar.colorTextQuaternary, textAlign: 'end' }}
+        style={{ color: 'var(--ant-color-text-quaternary)', textAlign: 'end' }}
         title={updatedAt.title}
       >
         {updatedAt.text}

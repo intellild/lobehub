@@ -1,6 +1,5 @@
 import { type BriefAction, DEFAULT_BRIEF_ACTIONS, type TaskStatus } from '@lobechat/types';
 import { Button, Flexbox, Icon, Text, Tooltip } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Check, SquarePen, Workflow } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -33,7 +32,7 @@ type CommentMode = { type: 'feedback' } | { key: string; type: 'comment' };
 
 const SuccessTag = memo<{ label: string }>(({ label }) => (
   <Flexbox horizontal align={'center'} gap={4}>
-    <Icon color={cssVar.colorTextQuaternary} icon={Check} size={14} />
+    <Icon color={'var(--ant-color-text-quaternary)'} icon={Check} size={14} />
     <Text className={styles.resolvedTag}>{label}</Text>
   </Flexbox>
 ));
@@ -77,7 +76,7 @@ const BriefCardActions = memo<BriefCardActionsProps>(
         className={'brief-view-run-btn'}
         icon={Workflow}
         size={'small'}
-        style={{ color: cssVar.colorTextSecondary }}
+        style={{ color: 'var(--ant-color-text-secondary)' }}
         type={'text'}
         onClick={handleViewRun}
       >
@@ -192,7 +191,7 @@ const BriefCardActions = memo<BriefCardActionsProps>(
                 icon={SquarePen}
                 shape={'round'}
                 style={{
-                  color: cssVar.colorTextSecondary,
+                  color: 'var(--ant-color-text-secondary)',
                 }}
                 onClick={() => setCommentMode({ type: 'feedback' })}
               />

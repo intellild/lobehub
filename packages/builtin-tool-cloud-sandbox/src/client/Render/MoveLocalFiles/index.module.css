@@ -1,0 +1,22 @@
+.arrow {
+color: var(--ant-color-text-secondary);
+}
+
+.container {
+overflow: hidden;
+padding-inline: 8px 0;
+}
+
+.header {
+font-size: 12px;
+}
+
+.moveItem {
+padding-block: 4px;
+padding-inline: 8px;
+border-radius: 4px;
+}
+
+.statusIcon {
+font-size: 12px;
+}

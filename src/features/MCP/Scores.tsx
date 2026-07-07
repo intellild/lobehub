@@ -1,7 +1,6 @@
 'use client';
 
 import { Center, Flexbox, Icon, stopPropagation, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { CircleDashedIcon, HammerIcon, LayersIcon, MessageSquareQuoteIcon } from 'lucide-react';
 import qs from 'query-string';
 import { memo } from 'react';
@@ -17,60 +16,20 @@ import {
   createScoreItems,
   getGradeStyleClass,
 } from './calculateScore';
+import styles from './Scores.module.css';
 
-const styles = createStaticStyles(({ css }) => {
-  return {
-    active: css`
-      background: ${cssVar.colorSuccessBgHover};
-    `,
-    disable: css`
-      color: ${cssVar.colorTextDescription};
-    `,
-    extraTag: css`
-      padding-block: 4px;
-      padding-inline: 10px 12px;
-      border-radius: 16px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-      color: ${cssVar.colorTextSecondary};
-
-      background: ${cssVar.colorFillTertiary};
-    `,
-    extraTagActive: css`
-      &:hover {
-        color: ${cssVar.colorText};
-      }
-    `,
-    gradeA: css`
-      color: ${cssVar.colorSuccess};
-      background: ${cssVar.colorSuccessBg};
-    `,
-    gradeB: css`
-      color: ${cssVar.colorWarning};
-      background: ${cssVar.colorWarningBg};
-    `,
-    gradeF: css`
-      color: ${cssVar.colorError};
-      background: ${cssVar.colorErrorBg};
-    `,
-    gradeIcon: css`
-      flex: none;
-
-      width: 22px;
-      height: 22px;
-      border: 1.5px solid;
-      border-radius: 50%;
-
-      font-size: 12px;
-      font-weight: 600;
-    `,
-    tag: css`
-      padding-block: 4px;
-      padding-inline: 8px 12px;
-      border-radius: 16px;
-      background: ${cssVar.colorFillTertiary};
-    `,
-  };
-});
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ScoresProps {
   deploymentOptions?: Array<{
@@ -162,12 +121,12 @@ const Scores = memo<ScoresProps>(
             style={{
               borderColor:
                 grade === 'a'
-                  ? cssVar.colorSuccess
+                  ? 'var(--ant-color-success)'
                   : grade === 'b'
-                    ? cssVar.colorWarning
+                    ? 'var(--ant-color-warning)'
                     : grade === 'f'
-                      ? cssVar.colorError
-                      : cssVar.colorTextSecondary,
+                      ? 'var(--ant-color-error)'
+                      : 'var(--ant-color-text-secondary)',
             }}
           >
             {grade.toUpperCase()}
@@ -187,11 +146,11 @@ const Scores = memo<ScoresProps>(
           className={styles.tag}
           gap={8}
           style={{
-            color: cssVar.colorTextDescription,
+            color: 'var(--ant-color-text-description)',
             paddingLeft: 4,
           }}
         >
-          <Icon color={cssVar.colorTextQuaternary} icon={CircleDashedIcon} size={22} />
+          <Icon color={'var(--ant-color-text-quaternary)'} icon={CircleDashedIcon} size={22} />
           {t('mcp.unvalidated.title')}
         </Flexbox>
       </Tooltip>

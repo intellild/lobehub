@@ -1,0 +1,23 @@
+.container {
+margin-block-end: 8px;
+padding-block: 8px;
+padding-inline: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 12px;
+
+background: var(--ant-color-bg-container);
+}
+
+.contentScroll {
+max-height: min(40vh, 400px);
+}
+
+.header {
+.ant-tabs-nav {
+  margin-block-end: 0;
+}
+}
+
+.messagesContainer {
+padding-block: 8px;
+}

@@ -2,7 +2,6 @@
 
 import { ActionIcon, Block, DropdownMenu, Flexbox, Icon, stopPropagation } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
-import { cssVar } from 'antd-style';
 import { Loader2, MoreVerticalIcon, Plus, Unplug } from 'lucide-react';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -60,7 +59,7 @@ const Item = memo<ItemProps>(
       if (typeof icon === 'string') {
         return <img alt={label} height={40} src={icon} width={40} />;
       }
-      return <Icon fill={cssVar.colorText} icon={icon as any} size={40} />;
+      return <Icon fill={'var(--ant-color-text)'} icon={icon as any} size={40} />;
     };
 
     const renderAction = () => {

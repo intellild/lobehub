@@ -1,21 +1,10 @@
 'use client';
 
 import { Collapse } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { kebabCase } from 'es-toolkit';
 import { type FC, type ReactNode } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  collapse: css`
-    margin-block: 1em;
-  `,
-  label: css`
-    font-size: 1.25em;
-    font-weight: 600;
-    line-height: 1.4;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './CollapsibleSection.module.css';
 
 interface CollapsibleSectionProps {
   children?: ReactNode;

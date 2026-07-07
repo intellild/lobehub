@@ -1,0 +1,18 @@
+.empty {
+padding-block: 24px;
+padding-inline: 16px;
+
+font-size: 13px;
+color: var(--ant-color-text-quaternary);
+text-align: center;
+}
+
+.item {
+cursor: pointer;
+border-radius: var(--ant-border-radius);
+transition: background 0.15s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}

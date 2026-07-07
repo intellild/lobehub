@@ -1,7 +1,6 @@
 import { ModelIcon } from '@lobehub/icons';
 import { Button, Center, Skeleton, Tag, Tooltip } from '@lobehub/ui';
 import { App } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -18,28 +17,21 @@ import { useAgentStore } from '@/store/agent';
 import { agentByIdSelectors } from '@/store/agent/selectors';
 
 import { useResolvedHomeAgentId } from '../AgentSelect/useResolvedHomeAgentId';
+import styles from './StarterList.module.css';
 import { useStarterModelDefaults } from './useStarterModelDefaults';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  button: css`
-    height: 40px;
-    border-color: ${cssVar.colorFillSecondary};
-    background: transparent;
-    box-shadow: none !important;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    &:hover {
-      border-color: ${cssVar.colorFillSecondary} !important;
-      background: ${cssVar.colorBgElevated} !important;
-    }
-  `,
-  container: css`
-    flex-wrap: wrap;
-  `,
-  newTag: css`
-    padding-inline: 10px !important;
-    border-radius: 999px !important;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const getStarterItemKey = (item: HomeNewModelItem) => `${item.type}:${item.model}`;
 const getStarterItemProvider = (item: HomeNewModelItem, fallbackProvider: string) =>

@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, SearchBar, Skeleton, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { type ChangeEvent } from 'react';
 import { memo, useCallback, useMemo, useState } from 'react';
@@ -14,28 +13,9 @@ import { homeAgentListSelectors } from '@/store/home/selectors';
 
 import { type AgentItemData } from './AgentItem';
 import AgentItem from './AgentItem';
+import styles from './AvailableAgentList.module.css';
 
 type Row = { agent: AgentItemData; type: 'agent' } | { label: string; type: 'header' };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    user-select: none;
-
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-
-    padding-block: ${cssVar.paddingSM}px 0;
-    padding-inline: ${cssVar.paddingSM}px;
-    border-inline-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  sectionHeader: css`
-    padding-block: 6px 4px;
-    padding-inline: 8px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
 
 interface AvailableAgentListProps {
   agents: AgentItemData[];

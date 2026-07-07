@@ -3,9 +3,10 @@ import { TITLE_BAR_HEIGHT } from '@lobechat/desktop-bridge';
 import { type LobeToolCustomPlugin } from '@lobechat/types';
 import { Button, Drawer, Flexbox } from '@lobehub/ui';
 import { App, Form, Popconfirm } from 'antd';
-import { useResponsive } from 'antd-style';
 import { memo, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { useResponsive } from '@/hooks/useResponsive';
 
 import MCPManifestForm from './MCPManifestForm';
 import PluginPreview from './PluginPreview';

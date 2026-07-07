@@ -71,16 +71,6 @@ vi.mock('@lobehub/ui', () => ({
   ),
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({
-    dropdownItem: 'dropdownItem',
-    leftButton: 'leftButton',
-    rightButton: 'rightButton',
-    root: 'root',
-  }),
-  cssVar: new Proxy({}, { get: () => 'var(--placeholder)' }),
-}));
-
 vi.mock('lucide-react', () => {
   const Stub = () => null;
   return {

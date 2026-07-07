@@ -4,7 +4,6 @@ import { useEditor } from '@lobehub/editor/react';
 import { ActionIcon, Block, Flexbox, Icon, Text } from '@lobehub/ui';
 import { useModalContext } from '@lobehub/ui/base-ui';
 import { Button } from 'antd';
-import { cssVar } from 'antd-style';
 import { Minimize2, Paperclip, UserCircle2, X } from 'lucide-react';
 import { type KeyboardEvent, memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -197,7 +196,7 @@ const CreateTaskContent = memo<CreateTaskContentProps>(
           horizontal
           align={'center'}
           justify={'space-between'}
-          style={{ borderTop: `1px solid ${cssVar.colorBorderSecondary}`, padding: '8px 16px' }}
+          style={{ borderTop: `1px solid ${'var(--ant-color-border-secondary)'}`, padding: '8px 16px' }}
         >
           <Flexbox horizontal gap={2} wrap={'wrap'}>
             <TaskPriorityTag priority={priority} onChange={setPriority}>
@@ -239,8 +238,8 @@ const CreateTaskContent = memo<CreateTaskContentProps>(
                     </>
                   ) : (
                     <>
-                      <Icon color={cssVar.colorTextDescription} icon={UserCircle2} size={14} />
-                      <Text color={cssVar.colorTextDescription} fontSize={12}>
+                      <Icon color={'var(--ant-color-text-description)'} icon={UserCircle2} size={14} />
+                      <Text color={'var(--ant-color-text-description)'} fontSize={12}>
                         {t('createTask.assignee')}
                       </Text>
                     </>

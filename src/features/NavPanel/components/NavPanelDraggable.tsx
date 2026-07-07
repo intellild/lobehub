@@ -1,15 +1,12 @@
 'use client';
 
 import { DraggablePanel } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo, Suspense, useMemo, useRef } from 'react';
 
 import NavPanelUpgradeEntry from '@/business/client/features/NavPanelUpgradeEntry';
 import { isDesktop } from '@/const/version';
-import { TOGGLE_BUTTON_ID } from '@/features/NavPanel/ToggleLeftPanelButton';
 import Footer from '@/routes/(main)/home/_layout/Footer';
-import { USER_DROPDOWN_ICON_ID } from '@/routes/(main)/home/_layout/Header/components/User';
 import { useGlobalStore } from '@/store/global';
 import {
   NAV_PANEL_MAX_WIDTH,
@@ -19,85 +16,17 @@ import {
 import { isMacOS } from '@/utils/platform';
 
 import { useNavPanelSizeChangeHandler } from '../hooks/useNavPanel';
-import { BACK_BUTTON_ID } from './BackButton';
+import draggableStylesModule from './NavPanelDraggable.module.css';
 
-const draggableStyles = createStaticStyles(({ css, cssVar }) => ({
-  content: css`
-    position: relative;
-
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-
-    height: 100%;
-    min-height: 100%;
-    max-height: 100%;
-  `,
-  inner: css`
-    position: relative;
-
-    overflow: hidden;
-    flex: 1;
-
-    min-width: 240px;
-    max-width: 100%;
-    min-height: 0;
-  `,
-  layer: css`
-    position: absolute;
-    inset: 0;
-
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-
-    min-width: 240px;
-    max-width: 100%;
-    min-height: 100%;
-    max-height: 100%;
-  `,
-  panel: css`
-    user-select: none;
-    height: 100%;
-    color: ${cssVar.colorTextSecondary};
-    background: ${isDesktop && isMacOS() ? 'transparent' : cssVar.colorBgLayout};
-
-    * {
-      user-select: none;
-    }
-
-    #${TOGGLE_BUTTON_ID} {
-      width: 0 !important;
-      opacity: 0;
-      transition:
-        opacity,
-        width 0.2s ${cssVar.motionEaseOut};
-    }
-
-    #${USER_DROPDOWN_ICON_ID} {
-      width: 0 !important;
-      opacity: 0;
-      transition:
-        opacity,
-        width 0.2s ${cssVar.motionEaseOut};
-    }
-    #${BACK_BUTTON_ID} {
-      width: 24px !important;
-    }
-
-    &:hover {
-      #${TOGGLE_BUTTON_ID} {
-        width: 32px !important;
-        opacity: 1;
-      }
-
-      #${USER_DROPDOWN_ICON_ID} {
-        width: 14px !important;
-        opacity: 1;
-      }
-    }
-  `,
-}));
+const draggableStyles: typeof draggableStylesModule & { panel: string } = {
+  ...draggableStylesModule,
+  panel: [
+    draggableStylesModule.panel,
+    isDesktop && isMacOS()
+      ? draggableStylesModule.panelTransparent
+      : draggableStylesModule.panelLayoutBackground,
+  ].join(' '),
+};
 
 interface NavPanelDraggableProps {
   activeContent: {
@@ -127,7 +56,7 @@ export const NavPanelDraggable = memo<NavPanelDraggableProps>(({ activeContent }
 
   const styles = useMemo(
     () => ({
-      background: isDesktop && isMacOS() ? 'transparent' : cssVar.colorBgLayout,
+      background: isDesktop && isMacOS() ? 'transparent' : 'var(--ant-color-bg-layout)',
       zIndex: 11,
     }),
     [],

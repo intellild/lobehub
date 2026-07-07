@@ -1,7 +1,6 @@
 'use client';
 
 import { Button, Flexbox, Icon, Skeleton, TextArea } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { SmilePlus } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -93,7 +92,7 @@ const TitleSection = memo(() => {
           type="text"
           style={{
             opacity: isHoveringTitle ? 1 : 0,
-            transition: `opacity ${cssVar.motionDurationMid} ${cssVar.motionEaseInOut}`,
+            transition: `opacity ${'var(--ant-motion-duration-mid)'} ${'var(--ant-motion-ease-in-out)'}`,
             width: 'fit-content',
           }}
           onClick={() => {

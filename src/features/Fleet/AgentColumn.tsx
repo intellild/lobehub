@@ -3,7 +3,6 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { ActionIcon, Avatar, Button, DropdownMenu, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import {
   ChevronDownIcon,
   FolderIcon,
@@ -38,6 +37,7 @@ import { useFetchGitBranch } from '@/store/device/gitHooks';
 import { useElectronStore } from '@/store/electron';
 import { type ChatTopicStatus } from '@/types/topic';
 
+import styles from './AgentColumn.module.css';
 import { useFleetStore } from './store';
 import {
   DEFAULT_COLUMN_WIDTH,
@@ -47,132 +47,18 @@ import {
   toConversationContext,
 } from './types';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  body: css`
-    position: relative;
-    overflow: hidden;
-    flex: 1;
-    width: 100%;
-  `,
-  column: css`
-    position: relative;
-    flex: none;
-    height: 100%;
-    border-inline-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  dragPreview: css`
-    cursor: grabbing;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    overflow: hidden;
-
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-
-    background: ${cssVar.colorBgContainer};
-    box-shadow:
-      inset 0 0 0 1px ${cssVar.colorBorder},
-      ${cssVar.boxShadowSecondary};
-  `,
-  dragPreviewBody: css`
-    flex: 1;
-    padding: 16px;
-    color: ${cssVar.colorTextQuaternary};
-    text-align: center;
-  `,
-  grip: css`
-    cursor: grab;
-    flex: none;
-    color: ${cssVar.colorTextQuaternary};
-    transition: color 0.15s;
-
-    &:hover {
-      color: ${cssVar.colorTextTertiary};
-    }
-
-    &:active {
-      cursor: grabbing;
-    }
-  `,
-  header: css`
-    flex: none;
-    padding-block: 8px;
-    padding-inline: 8px 6px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  list: css`
-    /* Owns the flexible space so the seamless tray + reply bar below keep their
-       natural height instead of being squeezed (and clipped) by the list. */
-    position: relative;
-    flex: 1;
-    min-height: 0;
-  `,
-  replyBar: css`
-    flex: none;
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  replyClose: css`
-    pointer-events: none;
-
-    position: absolute;
-    z-index: 11;
-    inset-block-end: 100%;
-    inset-inline-start: 12px;
-
-    /* sit just above the input's top edge */
-    overflow: hidden;
-
-    margin-block-end: 4px;
-    border-radius: ${cssVar.borderRadius};
-
-    /* opaque chip so the conversation behind never bleeds through the button */
-    background: ${cssVar.colorBgContainer};
-
-    /* lifted above the floating status tray (translateY set inline) so it never
-       overlaps and cuts into the tray's top border */
-    transition: transform 0.2s ${cssVar.motionEaseInOut};
-
-    button {
-      pointer-events: auto;
-    }
-  `,
-  replyOpen: css`
-    position: relative;
-    flex: none;
-  `,
-  resize: css`
-    cursor: col-resize;
-
-    position: absolute;
-    z-index: 6;
-    inset-block: 0;
-    inset-inline-end: -3px;
-
-    width: 6px;
-
-    opacity: 0;
-
-    transition: opacity 0.15s;
-
-    &::after {
-      content: '';
-
-      position: absolute;
-      inset-block: 0;
-      inset-inline-start: 2px;
-
-      width: 2px;
-
-      background: ${cssVar.colorPrimaryBorder};
-    }
-
-    &:hover {
-      opacity: 1;
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const buildChatPath = (column: FleetColumn) =>
   column.topicId ? `/agent/${column.agentId}/${column.topicId}` : `/agent/${column.agentId}`;
@@ -188,7 +74,7 @@ const WorkingDirRow = memo<{ workingDirectory: string }>(({ workingDirectory }) 
       align={'center'}
       gap={4}
       paddingInline={'22px 0'}
-      style={{ color: cssVar.colorTextTertiary, overflow: 'hidden' }}
+      style={{ color: 'var(--ant-color-text-tertiary)', overflow: 'hidden' }}
     >
       <Icon icon={FolderIcon} size={12} style={{ flex: 'none' }} />
       <Text ellipsis fontSize={11} style={{ color: 'inherit', flex: 'none', maxWidth: '55%' }}>
@@ -336,7 +222,7 @@ export const ColumnDragPreview = memo<{
       {/* Centered hint so the lifted card reads as a column being moved, not loading */}
       <Flexbox align={'center'} className={styles.dragPreviewBody} gap={8} justify={'center'}>
         <Icon icon={MoveIcon} size={22} />
-        <Text style={{ color: cssVar.colorTextTertiary, fontSize: 13 }}>{t('fleet.dragHint')}</Text>
+        <Text style={{ color: 'var(--ant-color-text-tertiary)', fontSize: 13 }}>{t('fleet.dragHint')}</Text>
       </Flexbox>
     </Flexbox>
   );

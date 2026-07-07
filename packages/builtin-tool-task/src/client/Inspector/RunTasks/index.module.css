@@ -1,0 +1,51 @@
+.countBadge {
+flex-shrink: 0;
+
+padding-block: 1px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-size: 12px;
+font-weight: 500;
+color: var(--ant-color-warning);
+
+background: var(--ant-color-warning-bg);
+}
+
+.failedBadge {
+flex-shrink: 0;
+
+padding-block: 1px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-size: 12px;
+color: var(--ant-color-error);
+
+background: var(--ant-color-error-bg);
+}
+
+.identifierChip {
+flex-shrink: 0;
+
+padding-block: 1px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.moreBadge {
+flex-shrink: 0;
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.separator {
+flex-shrink: 0;
+color: var(--ant-color-text-quaternary);
+}

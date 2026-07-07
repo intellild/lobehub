@@ -1,22 +1,29 @@
-import { createStaticStyles, cx } from 'antd-style';
+
 import type { ReactNode, RefObject } from 'react';
 import type { VirtuosoHandle } from 'react-virtuoso';
 
+import localStyles from './ListViewDropZone.module.css';
 import { styles } from './styles';
 import { useExplorerDropZone } from './useExplorerDropZone';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ListViewDropZoneProps {
   children: ReactNode;
   currentFolderId: string | null;
   virtuosoRef: RefObject<VirtuosoHandle | null>;
 }
-
-const localStyles = createStaticStyles(({ css }) => ({
-  container: css`
-    position: relative;
-    overflow: hidden;
-  `,
-}));
 
 const ListViewDropZone = ({ children, currentFolderId, virtuosoRef }: ListViewDropZoneProps) => {
   const { containerRef, handleDragLeave, handleDragOver, handleDrop, isDropZoneActive } =

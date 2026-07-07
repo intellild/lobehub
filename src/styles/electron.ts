@@ -1,12 +1,8 @@
-import { css, cx } from 'antd-style';
+import electronStylishModule from './electron.module.css';
 
-export const draggable = cx(css`
-  -webkit-app-region: drag;
-`);
+export const draggable = electronStylishModule.draggable;
 
-export const nodrag = cx(css`
-  -webkit-app-region: no-drag;
-`);
+export const nodrag = electronStylishModule.nodrag;
 
 export const electronStylish = {
   draggable,

@@ -1,0 +1,19 @@
+.actions {
+transition: opacity 0.15s ease;
+}
+
+.masonryCard {
+cursor: pointer;
+position: relative;
+background: var(--ant-color-fill-quaternary);
+box-shadow: 0 0 0 1px var(--ant-color-fill-tertiary) inset;
+.memory-masonry-actions {
+  opacity: 0;
+}
+
+&:hover {
+  .memory-masonry-actions {
+    opacity: 1;
+  }
+}
+}

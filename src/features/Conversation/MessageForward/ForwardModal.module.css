@@ -1,0 +1,73 @@
+.body {
+block-size: 460px;
+}
+
+.divider {
+align-self: stretch;
+inline-size: 1px;
+background: var(--ant-color-border-secondary);
+}
+
+.list {
+overflow-y: auto;
+flex: 1;
+margin-inline: -4px;
+padding-inline: 4px;
+}
+
+.preview {
+overflow: hidden;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-fill-quaternary);
+}
+
+.previewLines {
+overflow-y: auto;
+flex: 1;
+padding-block: 12px;
+padding-inline: 12px;
+}
+
+.note {
+background: transparent;
+}
+
+.noteDivider {
+block-size: 1px;
+background: var(--ant-color-border-secondary);
+}
+
+.previewLine {
+overflow: hidden;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.previewMore {
+padding-block-start: 2px;
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.row {
+cursor: pointer;
+
+min-block-size: 44px;
+padding-block: 6px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius-lg);
+
+transition: background-color 0.1s var(--ant-motion-ease-in-out);
+
+&:hover {
+  background-color: var(--ant-color-fill-tertiary);
+}
+}
+
+.rowSelected {
+background-color: var(--ant-color-fill-quaternary);
+}

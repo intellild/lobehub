@@ -1,0 +1,19 @@
+.folderHeader {
+cursor: pointer;
+
+padding-block: 4px;
+padding-inline: 8px;
+
+color: var(--ant-color-text-secondary);
+
+transition: background-color 0.2s;
+
+&:hover {
+  background-color: var(--ant-color-fill-tertiary);
+}
+}
+
+.folderHeaderActive {
+color: var(--ant-color-text);
+background-color: var(--ant-color-fill-secondary);
+}

@@ -1,0 +1,22 @@
+.callbackBody {
+overflow: auto;
+max-height: 360px;
+}
+
+.callbackItem {
+padding-block: 4px;
+
+&:not(:last-child) {
+  border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+}
+
+.sequence {
+flex: none;
+
+min-width: 20px;
+
+font-size: 11px;
+font-feature-settings: 'tnum';
+color: var(--ant-color-text-tertiary);
+}

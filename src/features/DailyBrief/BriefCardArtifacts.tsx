@@ -1,25 +1,11 @@
 import type { BriefArtifactDocument, BriefArtifacts } from '@lobechat/types';
 import { Block, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ChevronRightIcon, FileTextIcon } from 'lucide-react';
 import { memo } from 'react';
 
 import { useDocumentStore } from '@/store/document';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  iconWrap: css`
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
+import styles from './BriefCardArtifacts.module.css';
 
 const BriefArtifactCard = memo<{ doc: BriefArtifactDocument }>(({ doc }) => {
   const openDocumentPreview = useDocumentStore((s) => s.openDocumentPreview);
@@ -38,7 +24,7 @@ const BriefArtifactCard = memo<{ doc: BriefArtifactDocument }>(({ doc }) => {
     >
       <div className={styles.iconWrap}>
         <Icon
-          color={cssVar.colorTextSecondary}
+          color={'var(--ant-color-text-secondary)'}
           icon={FileTextIcon}
           size={{ size: 20, strokeWidth: 1.5 }}
         />
@@ -47,7 +33,7 @@ const BriefArtifactCard = memo<{ doc: BriefArtifactDocument }>(({ doc }) => {
         {title}
       </Text>
       <Icon
-        color={cssVar.colorTextQuaternary}
+        color={'var(--ant-color-text-quaternary)'}
         icon={ChevronRightIcon}
         size={16}
         style={{ flexShrink: 0 }}

@@ -1,7 +1,6 @@
 'use client';
 
 import { Avatar, ContextMenuTrigger, Flexbox, type GenericItemType, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import type { CSSProperties, MouseEvent } from 'react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,33 +9,20 @@ import { useActiveWorkspaceId } from '@/business/client/hooks/useActiveWorkspace
 import { type ImageGenerationTopic } from '@/types/generation';
 
 import { useGenerationTopicContext } from '../StoreContext';
+import styles from './GridItem.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  gridItem: css`
-    cursor: pointer;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    position: relative;
-
-    aspect-ratio: 1;
-    width: 100% !important;
-    height: auto !important;
-    border-radius: 4px;
-
-    object-fit: cover;
-    background: ${cssVar.colorFillSecondary};
-
-    transition: border 0.15s ${cssVar.motionEaseInOut};
-
-    img {
-      aspect-ratio: 1;
-      width: 100% !important;
-    }
-  `,
-  gridItemActive: css`
-    border: 2px solid ${cssVar.colorBgLayout} !important;
-    box-shadow: 0 0 0 2px ${cssVar.colorPrimary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface TopicItemProps {
   contextMenuItems?: GenericItemType[] | (() => GenericItemType[]);

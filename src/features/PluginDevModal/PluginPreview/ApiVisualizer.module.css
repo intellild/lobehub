@@ -1,0 +1,87 @@
+.apiDesc {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.apiHeader {
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.apiTitle {
+font-family: var(--ant-font-family-code);
+}
+
+.emptyState {
+padding: 32px;
+color: var(--ant-color-text-disabled);
+text-align: center;
+}
+
+.header {
+display: flex;
+gap: 8px;
+align-items: center;
+margin-block-end: 24px;
+}
+
+.paramDesc {
+font-size: 12px;
+line-height: 18px;
+color: var(--ant-color-text-secondary);
+}
+
+.paramGrid {
+display: grid;
+grid-template-columns: 1fr 2fr;
+gap: 12px;
+align-items: center;
+
+margin-block-end: 12px;
+}
+
+.paramName {
+display: flex;
+gap: 6px;
+align-items: center;
+font-family: monospace;
+}
+
+.params {
+color: var(--ant-color-text-quaternary);
+}
+
+.required {
+margin-inline-start: 2px;
+color: var(--ant-color-error);
+}
+
+.searchIcon {
+position: absolute;
+z-index: 1;
+inset-block-start: 50%;
+inset-inline-start: 12px;
+transform: translateY(-50%);
+
+color: var(--ant-color-text-secondary);
+}
+
+.searchWrapper {
+position: relative;
+}
+
+.typeTag {
+height: 20px;
+padding-block: 0;
+padding-inline: 6px;
+
+font-size: 12px;
+line-height: 20px;
+}

@@ -3,7 +3,6 @@
 import { ActionIcon, Flexbox, Input, Text } from '@lobehub/ui';
 import { Badge, Card, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Eye, Search } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,142 +11,7 @@ import { useEvalStore } from '@/store/eval';
 
 import SegmentBar from '../../../../features/SegmentBar';
 import { createTestCasePreviewModal } from '../TestCasePreviewModal';
-
-const styles = createStaticStyles(({ css }) => ({
-  card: css`
-    .ant-card-body {
-      padding: 0;
-    }
-  `,
-  filterButton: css`
-    cursor: pointer;
-
-    padding-block: 4px;
-    padding-inline: 8px;
-    border: none;
-
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 500;
-    text-transform: capitalize;
-
-    background: transparent;
-
-    transition:
-      color 0.15s ease,
-      background 0.15s ease;
-
-    &[data-active='true'] {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-
-    &[data-active='false'] {
-      color: ${cssVar.colorTextTertiary};
-
-      &:hover {
-        color: ${cssVar.colorText};
-      }
-    }
-
-    &:not(:first-child) {
-      border-inline-start: 1px solid ${cssVar.colorBorderSecondary};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: -1px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  filterContainer: css`
-    overflow: hidden;
-    display: flex;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusSM};
-  `,
-  header: css`
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  headerTitle: css`
-    font-size: ${cssVar.fontSize};
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-  indexCell: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-  inputCell: css`
-    overflow: hidden;
-
-    max-width: 400px;
-    margin: 0;
-
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  // Summary strip — case total as a mono figure plus the difficulty mix bar,
-  // sitting between the title row and the table.
-  summaryDot: css`
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-  `,
-  summaryRow: css`
-    display: flex;
-    gap: 16px;
-    align-items: center;
-
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  summaryValue: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeLG};
-    font-weight: 600;
-    line-height: 1;
-    color: ${cssVar.colorText};
-  `,
-  searchIcon: css`
-    position: absolute;
-    inset-block-start: 50%;
-    inset-inline-start: 12px;
-    transform: translateY(-50%);
-
-    color: ${cssVar.colorTextTertiary};
-  `,
-  searchInput: css`
-    width: 192px;
-    padding-inline-start: 32px;
-    font-size: ${cssVar.fontSizeSM};
-  `,
-  table: css`
-    .ant-table {
-      font-size: ${cssVar.fontSize};
-    }
-
-    .ant-table-thead > tr > th {
-      font-size: ${cssVar.fontSizeSM};
-      font-weight: 500;
-      color: ${cssVar.colorTextTertiary};
-      background: ${cssVar.colorFillQuaternary};
-    }
-
-    .ant-table-tbody > tr {
-      &:hover {
-        background: ${cssVar.colorFillQuaternary};
-      }
-    }
-  `,
-}));
+import styles from './index.module.css';
 
 interface TestCasesTabProps {
   datasetId: string;
@@ -180,9 +44,9 @@ const TestCasesTab = memo<TestCasesTabProps>(({ datasetId }) => {
     return {
       counts,
       segments: [
-        { color: cssVar.colorSuccess, value: counts.easy },
-        { color: cssVar.colorWarning, value: counts.medium },
-        { color: cssVar.colorError, value: counts.hard },
+        { color: 'var(--ant-color-success)', value: counts.easy },
+        { color: 'var(--ant-color-warning)', value: counts.medium },
+        { color: 'var(--ant-color-error)', value: counts.hard },
       ],
       tagged: counts.easy + counts.medium + counts.hard,
     };
@@ -198,16 +62,16 @@ const TestCasesTab = memo<TestCasesTabProps>(({ datasetId }) => {
   const getDifficultyBadge = (difficulty: string) => {
     const config: Record<string, { bg: string; color: string }> = {
       easy: {
-        bg: cssVar.colorSuccessBg,
-        color: cssVar.colorSuccess,
+        bg: 'var(--ant-color-success-bg)',
+        color: 'var(--ant-color-success)',
       },
       hard: {
-        bg: cssVar.colorErrorBg,
-        color: cssVar.colorError,
+        bg: 'var(--ant-color-error-bg)',
+        color: 'var(--ant-color-error)',
       },
       medium: {
-        bg: cssVar.colorWarningBg,
-        color: cssVar.colorWarning,
+        bg: 'var(--ant-color-warning-bg)',
+        color: 'var(--ant-color-warning)',
       },
     };
 
@@ -264,8 +128,8 @@ const TestCasesTab = memo<TestCasesTabProps>(({ datasetId }) => {
                 key={tag}
                 style={{
                   backgroundColor: 'transparent',
-                  borderColor: cssVar.colorBorder,
-                  color: cssVar.colorTextTertiary,
+                  borderColor: 'var(--ant-color-border)',
+                  color: 'var(--ant-color-text-tertiary)',
                   fontSize: 12,
                 }}
               >
@@ -334,7 +198,7 @@ const TestCasesTab = memo<TestCasesTabProps>(({ datasetId }) => {
         <div className={styles.summaryRow}>
           <Flexbox gap={2}>
             <span className={styles.summaryValue}>{total}</span>
-            <Text color={cssVar.colorTextTertiary} fontSize={12}>
+            <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
               {t('benchmark.detail.stats.cases')}
             </Text>
           </Flexbox>
@@ -349,13 +213,13 @@ const TestCasesTab = memo<TestCasesTabProps>(({ datasetId }) => {
                       style={{
                         background:
                           d === 'easy'
-                            ? cssVar.colorSuccess
+                            ? 'var(--ant-color-success)'
                             : d === 'medium'
-                              ? cssVar.colorWarning
-                              : cssVar.colorError,
+                              ? 'var(--ant-color-warning)'
+                              : 'var(--ant-color-error)',
                       }}
                     />
-                    <Text color={cssVar.colorTextTertiary} fontSize={12}>
+                    <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
                       {t(`difficulty.${d}`)} {difficulty.counts[d]}
                     </Text>
                   </Flexbox>

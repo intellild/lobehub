@@ -2,31 +2,13 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Markdown } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Play } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { RunTaskParams, RunTaskState } from '../../../types';
 import { InlineField, monoChipClassName, SectionField, TaskResultCard } from '../shared';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  topicChip: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-    align-self: flex-start;
-
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    font-size: 12px;
-    color: ${cssVar.colorInfo};
-
-    background: ${cssVar.colorInfoBg};
-  `,
-}));
+import styles from './index.module.css';
 
 export const RunTaskRender = memo<BuiltinRenderProps<RunTaskParams, RunTaskState>>(
   ({ args, pluginState }) => {
@@ -43,7 +25,7 @@ export const RunTaskRender = memo<BuiltinRenderProps<RunTaskParams, RunTaskState
     return (
       <TaskResultCard
         icon={Play}
-        iconColor={cssVar.colorWarning}
+        iconColor={'var(--ant-color-warning)'}
         identifier={identifier}
         title={t('builtins.lobe-task.apiName.runTask')}
       >

@@ -2,7 +2,6 @@
 
 import { Center, Flexbox, Text, Tooltip } from '@lobehub/ui';
 import { Badge } from 'antd';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -71,7 +70,7 @@ const ContextRightPanel = memo(() => {
           showInfo
           format={(percent) => `${t('filter.sort.scoreUrgency')}: ${percent}%`}
           percent={(context.scoreUrgency ?? 0) * 100}
-          strokeColor={(context.scoreUrgency ?? 0) >= 0.7 ? cssVar.colorError : cssVar.colorWarning}
+          strokeColor={(context.scoreUrgency ?? 0) >= 0.7 ? 'var(--ant-color-error)' : 'var(--ant-color-warning)'}
         />
       </Flexbox>
       <Flexbox horizontal align="center" gap={16} justify="space-between">

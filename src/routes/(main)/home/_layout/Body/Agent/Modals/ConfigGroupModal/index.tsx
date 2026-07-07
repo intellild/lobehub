@@ -1,7 +1,6 @@
 import { type ModalProps, SortableList } from '@lobehub/ui';
 import { Flexbox, Icon } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { Plus } from 'lucide-react';
 import { memo, useState } from 'react';
@@ -14,19 +13,7 @@ import { homeAgentListSelectors } from '@/store/home/selectors';
 import type { SessionGroupItemBase } from '@/types/session';
 
 import GroupItem from './GroupItem';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    height: 36px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius}px;
-    transition: background 0.2s ease-in-out;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
+import styles from './index.module.css';
 
 interface ConfigGroupModalProps extends ModalProps {
   scope?: 'private' | 'public';

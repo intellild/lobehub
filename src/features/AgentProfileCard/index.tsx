@@ -1,69 +1,11 @@
 'use client';
 
 import { Avatar, Center, Flexbox, Skeleton, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, type ReactNode } from 'react';
 
 import { DEFAULT_AVATAR } from '@/const/meta';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  banner: css`
-    position: relative;
-    overflow: hidden;
-    height: 60px;
-  `,
-  bannerInner: css`
-    filter: blur(44px);
-  `,
-  clickableAvatar: css`
-    cursor: pointer;
-  `,
-  clickableTitle: css`
-    cursor: pointer;
-
-    &:hover {
-      color: ${cssVar.colorPrimary};
-    }
-  `,
-  container: css`
-    overflow: hidden;
-    width: 280px;
-    background: ${cssVar.colorBgElevated};
-  `,
-  description: css`
-    overflow: hidden;
-
-    max-height: 80px;
-
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-  `,
-  descriptionSkeleton: css`
-    .ant-skeleton-paragraph {
-      margin-block-start: 4px !important;
-    }
-
-    .ant-skeleton-paragraph > li {
-      height: 12px !important;
-    }
-
-    .ant-skeleton-paragraph > li + li {
-      margin-block-start: 6px !important;
-    }
-  `,
-  header: css`
-    position: relative;
-    margin-block-start: -24px;
-    padding-inline: 16px;
-  `,
-  name: css`
-    font-size: 16px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './index.module.css';
 
 export interface AgentProfileCardProps {
   avatar?: string | null;
@@ -91,7 +33,7 @@ const AgentProfileCard = memo<AgentProfileCardProps>(
   }) => {
     return (
       <Flexbox className={styles.container}>
-        <Center className={styles.banner} style={{ background: cssVar.colorFillTertiary }}>
+        <Center className={styles.banner} style={{ background: 'var(--ant-color-fill-tertiary)' }}>
           <Avatar
             emojiScaleWithBackground
             avatar={avatar || DEFAULT_AVATAR}
@@ -110,7 +52,7 @@ const AgentProfileCard = memo<AgentProfileCardProps>(
             className={onHeaderClick ? styles.clickableAvatar : undefined}
             shape={'square'}
             size={48}
-            style={{ border: `2px solid ${cssVar.colorBgElevated}` }}
+            style={{ border: `2px solid ${'var(--ant-color-bg-elevated)'}` }}
             onClick={onHeaderClick}
           />
           <Flexbox gap={2}>

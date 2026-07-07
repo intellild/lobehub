@@ -1,0 +1,22 @@
+.container {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.instruction {
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+}
+
+.taskCard {
+padding: 12px;
+border-radius: 8px;
+background: var(--ant-color-fill-quaternary);
+}
+
+.taskTitle {
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-text);
+}

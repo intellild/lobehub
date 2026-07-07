@@ -15,13 +15,6 @@ vi.mock('@lobehub/ui', () => ({
   ScrollArea: ({ children }: { children?: ReactNode }) => <div>{children}</div>,
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({
-    scrollTask: 'scroll-task',
-    scrollWorkflow: 'scroll-workflow',
-  }),
-}));
-
 vi.mock('./ContentBlock', () => ({
   default: ({ disableMarkdownStreaming, id }: RenderableAssistantContentBlock) => (
     <div
@@ -69,12 +62,12 @@ describe('ContentBlocksScroll', () => {
     const { container } = render(
       <ContentBlocksScroll
         assistantId="assistant-1"
+        scroll={false}
+        variant="workflow"
         blocks={[
           { content: 'first workflow block', id: 'block-1' },
           { content: 'second workflow block', id: 'block-2' },
         ]}
-        scroll={false}
-        variant="workflow"
       />,
     );
 

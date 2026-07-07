@@ -1,9 +1,10 @@
 import { Accordion, AccordionItem, Center, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo, type ReactNode, useState } from 'react';
 
 import AsyncError from '@/components/AsyncError';
 import NeuralNetworkLoading from '@/components/NeuralNetworkLoading';
+
+import styles from './SkillSection.module.css';
 
 export interface SkillSectionHeader {
   /** Wrap the section in a collapsible Accordion. Defaults to true. */
@@ -33,25 +34,6 @@ export interface SkillSectionProps {
    */
   sectionHeader?: SkillSectionHeader;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  count: css`
-    font-size: 12px;
-    font-variant-numeric: tabular-nums;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  empty: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  flatHeader: css`
-    padding-inline: 4px;
-  `,
-  label: css`
-    font-size: 12px;
-    font-weight: 500;
-  `,
-}));
 
 const ITEM_KEY = 'skill-section';
 

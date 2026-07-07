@@ -1,0 +1,83 @@
+.container {
+overflow: hidden;
+
+padding: 16px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.dragger {
+.ant-upload-drag {
+  border-radius: var(--ant-border-radius-lg);
+  transition: border-color 0.15s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+}
+
+.draggerContent {
+min-height: 160px;
+}
+
+.fieldsWrapper {
+flex-wrap: wrap;
+}
+
+.formatDescription {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+}
+
+.hintText {
+margin: 0;
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+}
+
+.icon {
+color: var(--ant-color-primary);
+}
+
+.iconCenter {
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius);
+background: var(--ant-color-bg-elevated);
+}
+
+.presetDescription {
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-secondary);
+}
+
+.presetName {
+font-size: var(--ant-font-size-lg);
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.progressWrapper {
+width: 100%;
+max-width: 320px;
+}
+
+.roleLabel {
+font-size: var(--ant-font-size-sm);
+}
+
+.sectionLabel {
+font-size: var(--ant-font-size-sm);
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}
+
+.uploadText {
+margin: 0;
+font-size: var(--ant-font-size-lg);
+font-weight: 500;
+color: var(--ant-color-text);
+}

@@ -2,41 +2,29 @@
 
 import { type BlockProps, type GenericItemType, type IconProps } from '@lobehub/ui';
 import { Block, Center, ContextMenuTrigger, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
 
 import NeuralNetworkLoading from '@/components/NeuralNetworkLoading';
 import { isModifierClick } from '@/utils/navigation';
 
+import stylesModule from './NavItem.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const ACTION_CLASS_NAME = 'nav-item-actions';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    user-select: none;
-    overflow: hidden;
-    min-width: 32px;
-
-    .${ACTION_CLASS_NAME} {
-      width: 0;
-      margin-inline-end: 2px;
-      opacity: 0;
-      transition: opacity 0.2s ${cssVar.motionEaseOut};
-
-      &:has([data-popup-open]) {
-        width: unset;
-        opacity: 1;
-      }
-    }
-
-    &:hover {
-      .${ACTION_CLASS_NAME} {
-        width: unset;
-        opacity: 1;
-      }
-    }
-  `,
-}));
+const styles = stylesModule;
 
 export interface NavItemSlots {
   iconPostfix?: ReactNode;
@@ -66,7 +54,7 @@ export interface NavItemProps extends Omit<BlockProps, 'children' | 'title'> {
   title: ReactNode;
   /**
    * Override the title text color. Defaults to colorText when active and
-   * colorTextSecondary otherwise. Pass cssVar.colorText to keep a row's title
+   * colorTextSecondary otherwise. Pass 'var(--ant-color-text)' to keep a row's title
    * fully emphasized regardless of active state (e.g. topic titles).
    */
   titleColor?: string;
@@ -92,8 +80,8 @@ const NavItem = memo<NavItemProps>(
     style,
     ...rest
   }) => {
-    const iconColor = active ? cssVar.colorText : cssVar.colorTextDescription;
-    const textColor = titleColor ?? (active ? cssVar.colorText : cssVar.colorTextSecondary);
+    const iconColor = active ? 'var(--ant-color-text)' : 'var(--ant-color-text-description)';
+    const textColor = titleColor ?? (active ? 'var(--ant-color-text)' : 'var(--ant-color-text-secondary)');
     const variant = active ? 'filled' : 'borderless';
 
     const { titlePrefix, iconPostfix } = slots || {};

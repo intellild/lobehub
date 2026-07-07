@@ -4,7 +4,6 @@ import type { ProjectFileIndexEntry } from '@lobechat/electron-client-ipc';
 import { Center, copyToClipboard, Empty, Flexbox, SearchBar, stopPropagation } from '@lobehub/ui';
 import type { MenuProps } from 'antd';
 import { message } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { FileIcon } from 'lucide-react';
 import type { DragEvent } from 'react';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -25,6 +24,7 @@ import { projectFileService } from '@/services/projectFile';
 import { useChatStore } from '@/store/chat';
 import { useGlobalStore } from '@/store/global';
 
+import styles from './index.module.css';
 import { buildGitStatusEntries, useGitWorkingTreeFiles } from './useGitWorkingTreeFiles';
 import { useProjectFiles } from './useProjectFiles';
 
@@ -38,30 +38,6 @@ interface FilesProps {
   deviceId?: string;
   workingDirectory: string;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  tree: css`
-    --trees-bg-override: transparent;
-    --trees-border-color-override: transparent;
-    --trees-selected-bg-override: ${cssVar.colorFillSecondary};
-    --trees-selected-fg-override: ${cssVar.colorText};
-    --trees-bg-muted-override: ${cssVar.colorFillTertiary};
-    --trees-fg-override: ${cssVar.colorTextSecondary};
-    --trees-fg-muted-override: ${cssVar.colorTextSecondary};
-    --trees-accent-override: ${cssVar.colorPrimary};
-    --trees-padding-inline-override: 0px;
-    --trees-font-size-override: 12px;
-    --trees-border-radius-override: 6px;
-
-    flex: 1;
-    min-height: 0;
-  `,
-  subheader: css`
-    flex-shrink: 0;
-    padding-block: 6px 8px;
-    padding-inline: 12px;
-  `,
-}));
 
 const stripTrailingSlash = (value: string) => (value.endsWith('/') ? value.slice(0, -1) : value);
 

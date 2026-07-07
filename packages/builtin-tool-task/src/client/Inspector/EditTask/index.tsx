@@ -2,7 +2,6 @@
 
 import { priorityLabel } from '@lobechat/prompts';
 import type { BuiltinInspectorProps } from '@lobechat/types';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import type { ReactNode } from 'react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,106 +11,20 @@ import { useAgentDisplayMeta } from '@/features/AgentTasks/shared/useAgentDispla
 import { inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { EditTaskParams, EditTaskState } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  addChip: css`
-    flex-shrink: 0;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    padding-block: 1px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorSuccess};
-
-    background: ${cssVar.colorSuccessBg};
-  `,
-  assigneeAvatar: css`
-    flex-shrink: 0;
-  `,
-  assigneeChip: css`
-    overflow: hidden;
-    display: inline-flex;
-    flex-shrink: 1;
-    gap: 6px;
-    align-items: center;
-
-    min-width: 0;
-    max-width: 220px;
-    padding-block: 1px;
-    padding-inline: 4px 8px;
-    border-radius: 999px;
-
-    font-size: 12px;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  assigneeName: css`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  chip: css`
-    overflow: hidden;
-    display: inline-flex;
-    flex-shrink: 1;
-    align-items: center;
-
-    min-width: 0;
-    max-width: 200px;
-    padding-block: 1px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    font-size: 12px;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  group: css`
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    align-items: center;
-  `,
-  identifierChip: css`
-    flex-shrink: 0;
-
-    padding-block: 1px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  label: css`
-    flex-shrink: 0;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  removeChip: css`
-    flex-shrink: 0;
-
-    padding-block: 1px;
-    padding-inline: 8px;
-    border: 1px dashed ${cssVar.colorErrorBorder};
-    border-radius: 999px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorError};
-    text-decoration: line-through;
-
-    background: transparent;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const AssigneeChip = memo<{ agentId: string }>(({ agentId }) => {
   const agentMeta = useAgentDisplayMeta(agentId, { fallbackToDefault: false });
@@ -250,7 +163,7 @@ export const EditTaskInspector = memo<BuiltinInspectorProps<EditTaskParams, Edit
         {identifier && <span className={styles.identifierChip}>{identifier}</span>}
         {segments.map((segment, index) => (
           <span className={styles.group} key={segment.key}>
-            {index > 0 && <span style={{ color: cssVar.colorTextQuaternary }}>·</span>}
+            {index > 0 && <span style={{ color: 'var(--ant-color-text-quaternary)' }}>·</span>}
             {segment.content}
           </span>
         ))}

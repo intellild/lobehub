@@ -1,42 +1,10 @@
 'use client';
 
 import { CopyButton, Flexbox, Markdown, ScrollShadow, TooltipGroup } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { FileTextIcon } from 'lucide-react';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-
-    width: 100%;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 16px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  content: css`
-    padding-inline: 16px;
-    font-size: 14px;
-  `,
-  header: css`
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  icon: css`
-    color: ${cssVar.colorPrimary};
-  `,
-  title: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './DocumentCard.module.css';
 
 interface DocumentCardProps {
   content: string;

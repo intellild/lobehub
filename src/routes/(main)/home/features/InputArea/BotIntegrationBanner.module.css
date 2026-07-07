@@ -1,0 +1,51 @@
+.avatar {
+display: flex;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+
+width: 24px;
+height: 24px;
+border-radius: 50%;
+
+background: var(--ant-color-bg-container);
+box-shadow:
+  0 0 8px -2px rgb(0 0 0 / 5%),
+  0 0 0 1px var(--ant-color-fill-tertiary);
+}
+
+.banner {
+cursor: pointer;
+
+position: absolute;
+z-index: 0;
+inset-block-end: 0;
+inset-inline: 0;
+
+display: flex;
+gap: 12px;
+align-items: center;
+justify-content: space-between;
+
+margin-block-end: -6px;
+padding-block: 42px 10px;
+padding-inline: 16px 12px;
+border: 1px solid var(--ant-color-fill-secondary);
+border-radius: 20px;
+
+background: color-mix(in srgb, var(--ant-color-fill-quaternary) 50%, var(--ant-color-bg-container));
+}
+
+.icon {
+color: var(--ant-color-text-secondary);
+}
+
+.iconGroup {
+display: flex;
+align-items: center;
+}
+
+.text {
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+}

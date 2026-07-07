@@ -1,31 +1,11 @@
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ArrowRight } from 'lucide-react';
 import { memo } from 'react';
 
 import { useElectronStore } from '@/store/electron';
 import { desktopStateSelectors } from '@/store/electron/selectors';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  icon: css`
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  item: css`
-    padding-block: 4px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadius};
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: ${cssVar.colorFillQuaternary};
-    }
-  `,
-  path: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    word-break: break-all;
-  `,
-}));
+import styles from './MoveFileItem.module.css';
 
 interface MoveFileItemProps {
   newPath: string;

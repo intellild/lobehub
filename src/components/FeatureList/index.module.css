@@ -1,0 +1,37 @@
+.desc {
+width: 280px;
+margin-block-end: 0;
+color: var(--ant-color-text-secondary);
+
+@media (max-width: 575.98px) {
+  line-height: var(--ant-line-height);
+}
+}
+
+.iconCtnDark {
+width: 72px;
+height: 72px;
+border-radius: 50%;
+background: var(--ant-blue-1);
+}
+
+.iconCtnLight {
+width: 72px;
+height: 72px;
+border-radius: 50%;
+background: var(--ant-geekblue-1);
+}
+
+.iconDark {
+color: var(--ant-blue);
+}
+
+.iconLight {
+color: var(--ant-geekblue);
+}
+
+.title {
+margin-block-end: 0;
+font-size: var(--ant-font-size-lg);
+font-weight: bold;
+}

@@ -1,0 +1,22 @@
+.bodyBox {
+overflow: hidden;
+
+padding-block: 4px;
+padding-inline: 8px;
+border-radius: 8px;
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.container {
+padding-block: 4px;
+}
+
+.header {
+padding-inline: 4px;
+color: var(--ant-color-text-secondary);
+}
+
+.status {
+padding-inline: 4px;
+}

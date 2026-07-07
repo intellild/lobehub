@@ -1,6 +1,5 @@
 import { ActionIcon, Flexbox, Highlighter, Text } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cssVar, cx } from 'antd-style';
 import { WrapText } from 'lucide-react';
 import { parse } from 'partial-json';
 import type { ReactNode } from 'react';
@@ -11,6 +10,19 @@ import type { DescriptionItem } from '@/components/Descriptions';
 import Descriptions from '@/components/Descriptions';
 import { useYamlArguments } from '@/hooks/useYamlArguments';
 import { shinyTextStyles } from '@/styles';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const formatValue = (value: any): string => {
   if (Array.isArray(value)) {
@@ -78,7 +90,7 @@ const Arguments = memo<ArgumentsProps>(({ arguments: args = '', loading, actions
           }}
           styles={{
             label: loading
-              ? { color: `color-mix(in srgb, ${cssVar.colorText} 33%, transparent)` }
+              ? { color: `color-mix(in srgb, ${'var(--ant-color-text)'} 33%, transparent)` }
               : {},
           }}
         />

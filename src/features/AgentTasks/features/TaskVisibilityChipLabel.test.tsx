@@ -13,13 +13,6 @@ vi.mock('@lobehub/ui', () => ({
   Text: ({ children }: { children: ReactNode }) => <span>{children}</span>,
 }));
 
-vi.mock('antd-style', () => ({
-  cssVar: {
-    colorTextDescription: '#999',
-    colorTextSecondary: '#666',
-  },
-}));
-
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string, options?: { defaultValue?: string }) => {

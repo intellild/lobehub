@@ -2,7 +2,6 @@
 
 import { type TaskDetail } from '@lobechat/types';
 import { Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, keyframes } from 'antd-style';
 import { Footprints, Timer, Wrench } from 'lucide-react';
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,86 +10,10 @@ import NeuralNetworkLoading from '@/components/NeuralNetworkLoading';
 import { useChatStore } from '@/store/chat';
 
 import { MAX_PROGRESS, PROGRESS_INCREMENT, PROGRESS_INTERVAL } from './constants';
+import stylesModule from './ProcessingState.module.css';
 import { formatElapsedTime, formatToolName } from './utils';
 
-const shimmer = keyframes`
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(100%);
-  }
-`;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  activityRow: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    padding-block: 8px;
-  `,
-  footer: css`
-    padding-block-start: 8px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  progress: css`
-    position: relative;
-
-    overflow: hidden;
-
-    height: 3px;
-    margin-block: 12px;
-    margin-inline: 8px;
-    border-radius: 2px;
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  progressBar: css`
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-start: 0;
-
-    height: 100%;
-    border-radius: 2px;
-
-    background: linear-gradient(90deg, ${cssVar.colorPrimary}, ${cssVar.colorPrimaryHover});
-
-    transition: width 0.5s ease-out;
-  `,
-  progressCompact: css`
-    position: relative;
-
-    overflow: hidden;
-
-    height: 3px;
-    border-radius: 2px;
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  progressShimmer: css`
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-start: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: linear-gradient(90deg, transparent, ${cssVar.colorPrimaryBgHover}, transparent);
-
-    animation: ${shimmer} 2s infinite;
-
-    @media (prefers-reduced-motion: reduce) {
-      display: none;
-    }
-  `,
-  separator: css`
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: ${cssVar.colorTextQuaternary};
-  `,
-}));
+const styles = stylesModule;
 
 export type ProcessingStateVariant = 'detail' | 'compact';
 

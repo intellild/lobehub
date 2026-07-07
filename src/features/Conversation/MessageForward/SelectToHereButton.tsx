@@ -2,37 +2,12 @@
 
 import { Flexbox, Icon } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ArrowDownToLine } from 'lucide-react';
 import { memo, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { messageStateSelectors, useConversationStore } from '../store';
-
-const styles = createStaticStyles(({ css }) => ({
-  button: css`
-    pointer-events: auto;
-    background: ${cssVar.colorBgElevated};
-    box-shadow: ${cssVar.boxShadowSecondary};
-  `,
-  line: css`
-    flex: 1;
-    block-size: 0;
-    border-block-start: 1px dashed ${cssVar.colorBorder};
-  `,
-  // The "here" marker: a dashed rule across the chat area at ~25% from the
-  // bottom edge, with the trigger centered on it. Purely a visual guide except
-  // for the button, so it never blocks scrolling or message clicks.
-  wrap: css`
-    pointer-events: none;
-
-    position: absolute;
-    z-index: 20;
-    inset-block-start: 75%;
-    inset-inline: 0;
-    transform: translateY(-50%);
-  `,
-}));
+import styles from './SelectToHereButton.module.css';
 
 /**
  * "Select to here" marker shown while multi-selecting: a dashed line across the

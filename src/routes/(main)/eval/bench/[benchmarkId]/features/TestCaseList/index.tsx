@@ -3,16 +3,15 @@
 import { Flexbox, Text } from '@lobehub/ui';
 import { Badge, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { cssVar } from 'antd-style';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useEvalStore } from '@/store/eval';
 
 const DIFFICULTY_COLORS: Record<string, { bg: string; color: string }> = {
-  easy: { bg: cssVar.colorSuccessBg, color: cssVar.colorSuccess },
-  hard: { bg: cssVar.colorErrorBg, color: cssVar.colorError },
-  medium: { bg: cssVar.colorWarningBg, color: cssVar.colorWarning },
+  easy: { bg: 'var(--ant-color-success-bg)', color: 'var(--ant-color-success)' },
+  hard: { bg: 'var(--ant-color-error-bg)', color: 'var(--ant-color-error)' },
+  medium: { bg: 'var(--ant-color-warning-bg)', color: 'var(--ant-color-warning)' },
 };
 
 interface TestCaseListProps {

@@ -1,0 +1,28 @@
+.batchActions {
+opacity: 0;
+  transition: opacity 0.1s var(--ant-motion-ease-in-out);
+}
+
+.batchDeleteButton {
+&:hover {
+  border-color: var(--ant-color-error) !important;
+  color: var(--ant-color-error) !important;
+  background: var(--ant-color-error-bg) !important;
+}
+}
+
+.container {
+&:hover {
+  .batch-actions {
+    opacity: 1;
+  }
+}
+}
+
+.prompt {
+pre {
+  overflow: hidden !important;
+  padding-block: 4px;
+  font-size: 13px;
+}
+}

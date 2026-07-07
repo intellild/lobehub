@@ -1,0 +1,50 @@
+.caption {
+margin-block-start: 2px;
+
+font-size: 11px;
+font-weight: 500;
+line-height: 1;
+color: var(--ant-color-text-tertiary);
+text-transform: uppercase;
+letter-spacing: 0.18em;
+}
+
+.hud {
+pointer-events: none;
+
+display: flex;
+flex-direction: column;
+gap: 4px;
+align-items: center;
+justify-content: center;
+
+width: 144px;
+height: 108px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 22px;
+
+background: var(--ant-color-bg-elevated);
+backdrop-filter: blur(28px) saturate(1.6);
+box-shadow: var(--ant-box-shadow-secondary);
+}
+
+.layer {
+pointer-events: none;
+
+position: fixed;
+z-index: 1500;
+inset-block-start: 28%;
+inset-inline: 0;
+
+display: flex;
+justify-content: center;
+}
+
+.num {
+font-size: 34px;
+font-weight: 600;
+font-variant-numeric: tabular-nums;
+line-height: 1;
+color: var(--ant-color-text);
+letter-spacing: -0.02em;
+}

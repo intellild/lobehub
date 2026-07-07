@@ -22,7 +22,6 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import { ActionIcon, Flexbox, Icon, Text, Tooltip } from '@lobehub/ui';
 import { Button, createModal, type ModalInstance, useModalContext } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { t } from 'i18next';
 import { ArrowDownToLine, Eye, EyeOff, GripVertical, PinIcon, RotateCcw } from 'lucide-react';
 import { memo, useCallback, useMemo, useState } from 'react';
@@ -41,6 +40,21 @@ import {
   SIDEBAR_ACCORDION_KEYS,
   SIDEBAR_SPACER_ID,
 } from '@/store/global/selectors/systemStatus';
+
+import styles from './CustomizeSidebarModal.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 // ---------------------------------------------------------------------------
 // Types & constants
@@ -101,51 +115,6 @@ const mergeAvailableSidebarItems = (
 };
 
 // ---------------------------------------------------------------------------
-// Styles
-// ---------------------------------------------------------------------------
-
-const styles = createStaticStyles(({ css }) => ({
-  accordionGroup: css`
-    margin-inline: -5px;
-    padding: 4px;
-    border: 1px dashed ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-  `,
-  item: css`
-    height: 40px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-    transition: background 0.2s ease-in-out;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  itemDragging: css`
-    opacity: 0;
-  `,
-  overlay: css`
-    height: 40px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorBgElevated};
-    box-shadow: ${cssVar.boxShadowSecondary};
-  `,
-  spacerLine: css`
-    flex: 1;
-    block-size: 1px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  footer: css`
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-    padding-block-start: 16px;
-  `,
-}));
-
-// ---------------------------------------------------------------------------
 // SortableItem
 // ---------------------------------------------------------------------------
 
@@ -197,7 +166,7 @@ const SortableItem = memo<{
           style={{ cursor: isDragging ? 'grabbing' : 'grab', flexShrink: 0, touchAction: 'none' }}
           {...listeners}
         >
-          <Icon icon={GripVertical} size={14} style={{ color: cssVar.colorTextQuaternary }} />
+          <Icon icon={GripVertical} size={14} style={{ color: 'var(--ant-color-text-quaternary)' }} />
         </Flexbox>
         {route?.icon && <Icon icon={route.icon} size={18} />}
         <Text>{t(labelKey as any)}</Text>
@@ -250,9 +219,9 @@ const SpacerSortableItem = memo(() => {
         style={{ cursor: isDragging ? 'grabbing' : 'grab', flexShrink: 0, touchAction: 'none' }}
         {...listeners}
       >
-        <Icon icon={GripVertical} size={14} style={{ color: cssVar.colorTextQuaternary }} />
+        <Icon icon={GripVertical} size={14} style={{ color: 'var(--ant-color-text-quaternary)' }} />
       </Flexbox>
-      <Icon icon={ArrowDownToLine} size={14} style={{ color: cssVar.colorTextQuaternary }} />
+      <Icon icon={ArrowDownToLine} size={14} style={{ color: 'var(--ant-color-text-quaternary)' }} />
       <div className={styles.spacerLine} />
       <Text style={{ fontSize: 12 }} type={'secondary'}>
         {t('navPanel.bottomDivider' as any)}
@@ -267,7 +236,7 @@ const BoundSpacerItem = memo(() => {
 
   return (
     <Flexbox horizontal align={'center'} className={styles.item} gap={8}>
-      <Icon icon={ArrowDownToLine} size={14} style={{ color: cssVar.colorTextQuaternary }} />
+      <Icon icon={ArrowDownToLine} size={14} style={{ color: 'var(--ant-color-text-quaternary)' }} />
       <div className={styles.spacerLine} />
       <Text style={{ fontSize: 12 }} type={'secondary'}>
         {t('navPanel.bottomDivider' as any)}
@@ -313,7 +282,7 @@ const OverlayItem = memo<{ id: string }>(({ id }) => {
   if (id === ACCORDION_GROUP_ID) {
     return (
       <Flexbox horizontal align={'center'} className={styles.overlay} gap={8}>
-        <Icon icon={GripVertical} size={14} style={{ color: cssVar.colorTextQuaternary }} />
+        <Icon icon={GripVertical} size={14} style={{ color: 'var(--ant-color-text-quaternary)' }} />
         <Text>{t(agentLabelKey as any)}</Text>
         <Text type={'secondary'}>+ {t('recents' as any)}</Text>
       </Flexbox>
@@ -323,8 +292,8 @@ const OverlayItem = memo<{ id: string }>(({ id }) => {
   if (isSpacer(id)) {
     return (
       <Flexbox horizontal align={'center'} className={styles.overlay} gap={8}>
-        <Icon icon={GripVertical} size={14} style={{ color: cssVar.colorTextQuaternary }} />
-        <Icon icon={ArrowDownToLine} size={14} style={{ color: cssVar.colorTextQuaternary }} />
+        <Icon icon={GripVertical} size={14} style={{ color: 'var(--ant-color-text-quaternary)' }} />
+        <Icon icon={ArrowDownToLine} size={14} style={{ color: 'var(--ant-color-text-quaternary)' }} />
         <Text style={{ fontSize: 12 }} type={'secondary'}>
           {t('navPanel.bottomDivider' as any)}
         </Text>
@@ -339,7 +308,7 @@ const OverlayItem = memo<{ id: string }>(({ id }) => {
 
   return (
     <Flexbox horizontal align={'center'} className={styles.overlay} gap={8}>
-      <Icon icon={GripVertical} size={14} style={{ color: cssVar.colorTextQuaternary }} />
+      <Icon icon={GripVertical} size={14} style={{ color: 'var(--ant-color-text-quaternary)' }} />
       {route?.icon && <Icon icon={route.icon} size={18} />}
       <Text>{t(labelKey as any)}</Text>
     </Flexbox>

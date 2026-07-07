@@ -1,29 +1,23 @@
 'use client';
 
 import { Center, Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Check } from 'lucide-react';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css }) => ({
-  checked: css`
-    border-color: ${cssVar.colorPrimary};
-    color: ${cssVar.colorBgContainer};
-    background: ${cssVar.colorPrimary};
-  `,
-  circle: css`
-    flex: none;
+import styles from './SelectCircle.module.css';
 
-    inline-size: 20px;
-    block-size: 20px;
-    border: 1.5px solid ${cssVar.colorBorder};
-    border-radius: 50%;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    transition:
-      background-color 0.15s ${cssVar.motionEaseInOut},
-      border-color 0.15s ${cssVar.motionEaseInOut};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface SelectCircleProps {
   checked?: boolean;

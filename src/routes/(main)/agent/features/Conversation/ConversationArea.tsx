@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import debug from 'debug';
 import { memo, Suspense, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -123,7 +122,7 @@ const Conversation = memo(() => {
               >
                 <span
                   style={{
-                    color: cssVar.colorTextDescription,
+                    color: 'var(--ant-color-text-description)',
                     fontSize: 12,
                     textAlign: 'center',
                   }}

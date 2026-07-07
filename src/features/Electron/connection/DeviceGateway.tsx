@@ -1,7 +1,6 @@
 import { useWatchBroadcast } from '@lobechat/electron-client-ipc';
 import { ActionIcon, Flexbox } from '@lobehub/ui';
 import { Input, Popover, Switch } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { HardDrive } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,43 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useElectronStore } from '@/store/electron';
 import { electronSyncSelectors } from '@/store/electron/selectors';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  fieldLabel: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  greenDot: css`
-    position: absolute;
-    inset-block-end: 0;
-    inset-inline-end: 0;
-
-    width: 8px;
-    height: 8px;
-    border: 1.5px solid ${cssVar.colorBgContainer};
-    border-radius: 50%;
-
-    background: #52c41a;
-  `,
-  input: css`
-    border: none;
-    background: ${cssVar.colorFillTertiary};
-
-    &:hover,
-    &:focus {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  popoverContent: css`
-    width: 280px;
-    padding-block: 4px;
-    padding-inline: 0;
-  `,
-  statusTitle: css`
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './DeviceGateway.module.css';
 
 const DeviceGateway = memo(() => {
   const { t } = useTranslation('electron');

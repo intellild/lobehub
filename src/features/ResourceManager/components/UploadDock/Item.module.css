@@ -1,0 +1,31 @@
+.cancelButton {
+opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.container {
+&:hover .cancel-button {
+    opacity: 1;
+  }
+}
+
+.progress {
+position: absolute;
+  inset-block: 0;
+  inset-inline: 0 1%;
+
+  height: 100%;
+  border-block-end: 3px solid var(--ant-geekblue);
+
+  background: var(--ant-color-fill-tertiary);
+}
+
+.title {
+overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+
+  font-size: 15px;
+  text-overflow: ellipsis;
+}

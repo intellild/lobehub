@@ -4,7 +4,6 @@ import type { IEditor } from '@lobehub/editor';
 import { DiffAction, LITEXML_DIFFNODE_ALL_COMMAND } from '@lobehub/editor';
 import { Block, Icon } from '@lobehub/ui';
 import { Button, Space } from 'antd';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Check, X } from 'lucide-react';
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,29 +11,20 @@ import { useTranslation } from 'react-i18next';
 import { useIsDark } from '@/hooks/useIsDark';
 import { useDocumentStore } from '@/store/document';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    position: absolute;
-    z-index: 1000;
-    inset-block-end: 24px;
-    inset-inline-start: 50%;
-    transform: translateX(-50%);
-  `,
-  toolbar: css`
-    border-color: ${cssVar.colorFillSecondary};
-    background: ${cssVar.colorBgElevated};
-  `,
-  toolbarDark: css`
-    box-shadow:
-      0 14px 28px -6px #0003,
-      0 2px 4px -1px #0000001f;
-  `,
-  toolbarLight: css`
-    box-shadow:
-      0 14px 28px -6px #0000001a,
-      0 2px 4px -1px #0000000f;
-  `,
-}));
+import styles from './DiffAllToolbar.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const useIsEditorInit = (editor?: IEditor) => {
   const [isEditInit, setEditInit] = useState<boolean>(!!editor?.getLexicalEditor());

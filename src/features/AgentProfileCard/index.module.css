@@ -1,0 +1,64 @@
+.banner {
+position: relative;
+overflow: hidden;
+height: 60px;
+}
+
+.bannerInner {
+filter: blur(44px);
+}
+
+.clickableAvatar {
+cursor: pointer;
+}
+
+.clickableTitle {
+cursor: pointer;
+
+&:hover {
+  color: var(--ant-color-primary);
+}
+}
+
+.container {
+overflow: hidden;
+width: 280px;
+background: var(--ant-color-bg-elevated);
+}
+
+.description {
+overflow: hidden;
+
+max-height: 80px;
+
+font-size: 12px;
+line-height: 1.5;
+color: var(--ant-color-text-secondary);
+text-overflow: ellipsis;
+}
+
+.descriptionSkeleton {
+.ant-skeleton-paragraph {
+  margin-block-start: 4px !important;
+}
+
+.ant-skeleton-paragraph > li {
+  height: 12px !important;
+}
+
+.ant-skeleton-paragraph > li + li {
+  margin-block-start: 6px !important;
+}
+}
+
+.header {
+position: relative;
+margin-block-start: -24px;
+padding-inline: 16px;
+}
+
+.name {
+font-size: 16px;
+font-weight: 600;
+color: var(--ant-color-text);
+}

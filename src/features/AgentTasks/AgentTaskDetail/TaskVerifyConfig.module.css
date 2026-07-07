@@ -1,0 +1,28 @@
+.collapsedRequirement {
+/* full requirement, wrapping to as many lines as it needs — readable at a glance.
+   Inset past the trigger icon so it reads flat under the title, not as a clickable row. */
+padding-inline: 32px 8px;
+line-height: 1.5;
+}
+
+.list {
+width: 100%;
+}
+
+.row {
+padding-block: 8px;
+padding-inline: 8px;
+}
+
+.rowTitle {
+flex: 1;
+}
+
+.section {
+padding: 16px;
+border-radius: 12px;
+}
+
+.subtitle {
+color: var(--ant-color-text-secondary);
+}

@@ -2,7 +2,6 @@
 
 import { ActionIcon, Button, Flexbox, Input, Text } from '@lobehub/ui';
 import { Switch } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { snakeCase } from 'es-toolkit/compat';
 import { ListRestartIcon, XIcon } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
@@ -11,67 +10,7 @@ import { useServerConfigStore } from '@/store/serverConfig';
 import { type FeatureFlagKey } from '@/store/serverConfig/slices/featureFlagOverride/action';
 
 import FlagRow from './FlagRow';
-
-const styles = createStaticStyles(({ css }) => ({
-  body: css`
-    overflow: auto;
-    flex: 1;
-    padding-block: 4px;
-    padding-inline: 4px;
-  `,
-  container: css`
-    position: fixed;
-    z-index: 1099;
-    inset-block-end: 112px;
-    inset-inline-end: 16px;
-
-    display: flex;
-    flex-direction: column;
-
-    width: 380px;
-    height: min(70vh, 600px);
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-
-    background: ${cssVar.colorBgElevated};
-    box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
-  `,
-  empty: css`
-    padding-block: 32px;
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-    text-align: center;
-  `,
-  footer: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  header: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  toolbar: css`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-}));
+import styles from './Panel.module.css';
 
 interface PanelProps {
   onClose: () => void;

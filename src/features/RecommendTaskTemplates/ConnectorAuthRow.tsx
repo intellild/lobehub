@@ -1,6 +1,5 @@
 import type { TaskTemplateConnectorReference } from '@lobechat/const';
 import { Button, Flexbox, Icon, Image, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -45,7 +44,7 @@ export const ConnectorAuthRow = memo<ConnectorAuthRowProps>(({ disabled, spec, o
         {typeof meta.icon === 'string' ? (
           <Image alt={meta.label} height={16} src={meta.icon} style={{ flex: 'none' }} width={16} />
         ) : (
-          <Icon color={cssVar.colorText} fill={cssVar.colorText} icon={meta.icon} size={16} />
+          <Icon color={'var(--ant-color-text)'} fill={'var(--ant-color-text)'} icon={meta.icon} size={16} />
         )}
         <Text ellipsis fontSize={13}>
           {meta.label}

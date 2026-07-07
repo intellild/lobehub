@@ -30,15 +30,6 @@ vi.mock('@lobehub/ui/base-ui', async () => {
   };
 });
 
-vi.mock('antd-style', async () => {
-  const React = await import('react');
-
-  return {
-    StyleProvider: ({ children }: { children?: ReactNode }) =>
-      React.createElement(React.Fragment, null, children),
-  };
-});
-
 vi.mock('motion/react', async () => {
   const React = await import('react');
 

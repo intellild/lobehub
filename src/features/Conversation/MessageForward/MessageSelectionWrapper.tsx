@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { memo, type MouseEvent, type ReactNode, useCallback } from 'react';
 
 import { CONVERSATION_MIN_WIDTH } from '@/const/layoutTokens';
@@ -9,85 +8,22 @@ import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
 
 import { messageStateSelectors, useConversationStore } from '../store';
+import styles from './MessageSelectionWrapper.module.css';
 import { isSelectableRole } from './selectableRoles';
 import SelectCircle from './SelectCircle';
 
-const styles = createStaticStyles(({ css }) => ({
-  // Full-bleed clickable band, WeChat-style. Stretches to the full stream width
-  // regardless of the reading-column preference; the lane inside keeps the
-  // content at its normal width. Kept light: selection uses the weakest fill
-  // (the filled circle is the real indicator); hover is one notch up.
-  band: css`
-    cursor: pointer;
-    user-select: none;
-    inline-size: 100%;
-    transition: background-color 0.1s ${cssVar.motionEaseInOut};
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    &:hover {
-      background-color: ${cssVar.colorFillTertiary};
-    }
-  `,
-  bandSelected: css`
-    background-color: ${cssVar.colorFillQuaternary};
-
-    &:hover {
-      background-color: ${cssVar.colorFillQuaternary};
-    }
-  `,
-  // Pinned to the band's leading edge; vertical centering is handled by the
-  // band's cross-axis alignment.
-  checkbox: css`
-    flex: none;
-    padding-inline-start: 16px;
-  `,
-  content: css`
-    /* Content is non-interactive while selecting — the whole row is the toggle. */
-    pointer-events: none;
-    flex: 1;
-    min-width: 0;
-
-    /* The hover action bar is suppressed in selection mode, so collapse its 28px
-       placeholder too — otherwise every selected row carries a big empty
-       highlighted strip beneath the bubble. */
-    [data-user-action-bar-portal],
-    [data-assitant-action-bar-portal],
-    [data-assistant-group-action-bar-portal] {
-      display: none;
-    }
-
-    /* The avatar + name + time header is redundant while scanning to select —
-       drop it so every turn reads as one clean line. */
-    .message-header {
-      display: none;
-    }
-  `,
-  // Assistant turns flow from the leading edge of the lane. User turns keep their
-  // native right alignment + indent so they still read as "sent by the user".
-  contentAssistant: css`
-    .message-wrapper {
-      align-items: flex-start !important;
-      padding-inline-start: 0 !important;
-    }
-  `,
-  // Assistant turns (esp. tool-call workflows) are long; fold them to a preview
-  // height while selecting so the list stays scannable. Fades out at the bottom.
-  contentCollapsed: css`
-    overflow: hidden;
-    max-height: 84px;
-
-    mask-image: linear-gradient(to bottom, #000 56%, transparent 100%);
-  `,
-  disabledBand: css`
-    cursor: not-allowed;
-    inline-size: 100%;
-    opacity: 0.4;
-  `,
-  // Centered reading column inside the full-bleed band — the width preference the
-  // rest of the conversation follows.
-  lane: css`
-    padding-inline: 16px;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface MessageSelectionWrapperProps {
   children: ReactNode;

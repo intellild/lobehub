@@ -1,4 +1,4 @@
-import { createStaticStyles, cx } from 'antd-style';
+
 import { memo } from 'react';
 
 import { LOADING_FLAT } from '@/const/message';
@@ -8,14 +8,21 @@ import ContentLoading from '@/features/Conversation/Messages/components/ContentL
 import { dataSelectors, useConversationStore } from '../../../store';
 import { normalizeThinkTags, processWithArtifact } from '../../../utils/markdown';
 import { useMarkdown } from '../useMarkdown';
+import styles from './MessageContent.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    pWithTool: css`
-      color: ${cssVar.colorTextTertiary};
-    `,
-  };
-});
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 interface MessageContentProps {
   contentOverride?: string;
   disableStreaming?: boolean;

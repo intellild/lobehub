@@ -1,6 +1,5 @@
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
 import { ActionIcon, Center, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { UploadIcon, XIcon } from 'lucide-react';
 import { AnimatePresence, m } from 'motion/react';
@@ -9,43 +8,8 @@ import { useTranslation } from 'react-i18next';
 
 import { fileManagerSelectors, useFileStore } from '@/store/file';
 
+import styles from './index.module.css';
 import Item from './Item';
-
-const styles = createStaticStyles(({ css }) => {
-  return {
-    container: css`
-      position: fixed;
-      z-index: 100;
-      inset-block-end: 24px;
-      inset-inline-end: 24px;
-
-      overflow: hidden;
-
-      width: 360px;
-      border: 1px solid ${cssVar.colorSplit};
-      border-radius: 8px;
-
-      box-shadow: ${cssVar.boxShadow};
-    `,
-    progress: css`
-      pointer-events: none;
-
-      position: absolute;
-      inset-block: 0;
-      inset-inline: 0 1%;
-
-      height: 100%;
-      border-block-end: 3px solid ${cssVar.geekblue};
-
-      background: ${cssVar.colorFillTertiary};
-    `,
-    title: css`
-      height: 36px;
-      font-size: 16px;
-      color: ${cssVar.colorText};
-    `,
-  };
-});
 
 /**
  * Show & manage current uploading tasks
@@ -82,10 +46,10 @@ const UploadDock = memo(() => {
   const icon = useMemo(() => {
     switch (overviewUploadingStatus) {
       case 'success': {
-        return <CheckCircleFilled style={{ color: cssVar.colorSuccess }} />;
+        return <CheckCircleFilled style={{ color: 'var(--ant-color-success)' }} />;
       }
       case 'error': {
-        return <CloseCircleFilled style={{ color: cssVar.colorError }} />;
+        return <CloseCircleFilled style={{ color: 'var(--ant-color-error)' }} />;
       }
 
       default: {
@@ -132,8 +96,8 @@ const UploadDock = memo(() => {
         align={'center'}
         justify={'space-between'}
         style={{
-          background: cssVar.colorBgContainer,
-          borderBottom: expand ? `1px solid ${cssVar.colorSplit}` : undefined,
+          background: 'var(--ant-color-bg-container)',
+          borderBottom: expand ? `1px solid ${'var(--ant-color-split)'}` : undefined,
           borderBottomLeftRadius: expand ? 0 : 8,
           borderBottomRightRadius: expand ? 0 : 8,
           borderTopLeftRadius: 8,
@@ -193,7 +157,7 @@ const UploadDock = memo(() => {
           >
             <Flexbox
               style={{
-                background: cssVar.colorBgContainer,
+                background: 'var(--ant-color-bg-container)',
                 borderBottomLeftRadius: 8,
                 borderBottomRightRadius: 8,
                 height: 400,
@@ -239,9 +203,9 @@ const UploadDock = memo(() => {
                 style={{
                   borderColor:
                     overviewUploadingStatus === 'success'
-                      ? cssVar.colorSuccess
+                      ? 'var(--ant-color-success)'
                       : overviewUploadingStatus === 'error'
-                        ? cssVar.colorError
+                        ? 'var(--ant-color-error)'
                         : undefined,
                   insetInlineEnd: `${100 - totalUploadingProgress}%`,
                 }}

@@ -4,7 +4,6 @@ import { type ErrorShape, type ImportFileUploadState } from '@lobechat/types';
 import { ImportStage } from '@lobechat/types';
 import { Center } from '@lobehub/ui';
 import { Upload } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import { ImportIcon } from 'lucide-react';
 import { type ReactNode } from 'react';
 import React, { memo, useMemo, useState } from 'react';
@@ -20,8 +19,22 @@ import { parseConfigFile } from './config';
 import ImportError from './Error';
 import { FileUploading } from './FileUploading';
 import ImportPreviewModal from './ImportDetail';
+import styles from './index.module.css';
 import DataLoading from './Loading';
 import SuccessResult from './SuccessResult';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface ImportResult {
   added: number;
@@ -36,20 +49,6 @@ export interface ImportResults {
   topics?: ImportResult;
   type?: string;
 }
-
-const styles = createStaticStyles(({ css }) => ({
-  children: css`
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-color: transparent;
-    }
-  `,
-  wrapper: css`
-    font-size: inherit;
-  `,
-}));
 
 interface DataImporterProps {
   children?: ReactNode;

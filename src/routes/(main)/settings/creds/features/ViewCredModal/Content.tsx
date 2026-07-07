@@ -4,85 +4,27 @@ import { type UserCredSummary } from '@lobechat/types';
 import { CopyButton, Flexbox } from '@lobehub/ui';
 import { useQuery } from '@tanstack/react-query';
 import { Alert, Descriptions, Skeleton, Typography } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import { Eye, EyeOff } from 'lucide-react';
 import { type FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useCredsApi } from '../useCredsApi';
+import styles from './Content.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const { Text } = Typography;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  kvKey: css`
-    min-width: 140px;
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadius} 0 0 ${cssVar.borderRadius};
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  kvRow: css`
-    display: flex;
-    align-items: stretch;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-
-    &:not(:last-child) {
-      margin-block-end: 8px;
-    }
-  `,
-  kvValue: css`
-    display: flex;
-    flex: 1;
-    gap: 8px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: 0 ${cssVar.borderRadius} ${cssVar.borderRadius} 0;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 13px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  maskedValue: css`
-    color: ${cssVar.colorTextQuaternary};
-    letter-spacing: 2px;
-  `,
-  toggleBtn: css`
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 4px;
-    border-radius: ${cssVar.borderRadiusSM};
-
-    color: ${cssVar.colorTextTertiary};
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  valuesSection: css`
-    margin-block-start: 16px;
-  `,
-  valuesTitle: css`
-    margin-block-end: 12px;
-    font-weight: 500;
-  `,
-}));
 
 const maskValue = (value: string): string => {
   if (value.length <= 4) return '••••••••';

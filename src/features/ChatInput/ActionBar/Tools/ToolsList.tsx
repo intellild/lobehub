@@ -1,50 +1,14 @@
 import type { ItemType } from '@lobehub/ui';
 import { Flexbox, Icon, Popover, Text } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import type { ReactNode } from 'react';
 import { Fragment, isValidElement, memo, useCallback, useEffect, useRef, useState } from 'react';
 
 import { useScrollSignal } from './ScrollSignalContext';
+import toolsListStyles from './ToolsList.module.css';
 
 const CLOSE_TOOL_DETAIL_POPOVER_EVENT = 'lobe-chat-tool-detail-popover-close';
-
-export const toolsListStyles = createStaticStyles(({ css }) => ({
-  groupLabel: css`
-    padding-block: 12px 4px;
-    padding-inline: 12px;
-  `,
-  item: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 12px;
-    align-items: center;
-
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: 6px;
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  itemContent: css`
-    flex: 1;
-    min-width: 0;
-  `,
-  itemIcon: css`
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 24px;
-    height: 24px;
-  `,
-}));
+export { toolsListStyles };
 
 interface ToolItemData {
   children?: ToolItemData[];

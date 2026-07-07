@@ -1,0 +1,38 @@
+.button {
+cursor: pointer;
+
+display: inline-flex;
+gap: 6px;
+align-items: center;
+justify-content: center;
+
+padding-block: 6px;
+padding-inline: 12px;
+border: none;
+border-radius: var(--ant-border-radius);
+
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+
+background: transparent;
+
+transition: background 0.15s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.buttonActive {
+color: var(--ant-color-text);
+background: var(--ant-color-bg-elevated);
+box-shadow: 0 1px 2px rgb(0 0 0 / 6%);
+}
+
+.group {
+display: inline-flex;
+padding: 3px;
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-fill-quaternary);
+}

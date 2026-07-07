@@ -1,31 +1,9 @@
 import { ActionIcon, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, responsive } from 'antd-style';
 import { XIcon } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { useState } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  close: css`
-    position: absolute;
-    inset-block-start: 16px;
-    inset-inline-end: 16px;
-  `,
-  container: css`
-    position: relative;
-
-    width: 100%;
-    padding-inline: 40px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 8px;
-
-    background: ${cssVar.colorBgContainer};
-
-    ${responsive.sm} {
-      width: 100%;
-      padding-inline: 12px;
-    }
-  `,
-}));
+import styles from './Container.module.css';
 
 const Container = ({
   setError,

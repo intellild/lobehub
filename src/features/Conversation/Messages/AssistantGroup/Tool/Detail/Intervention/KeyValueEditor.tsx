@@ -1,35 +1,11 @@
 import { ActionIcon, Button, Flexbox, Icon, Input } from '@lobehub/ui';
 import { type FormInstance } from 'antd';
 import { App, Form } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { LucidePlus, LucideTrash } from 'lucide-react';
 import { memo, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  form: css`
-    position: relative;
-
-    width: 100%;
-    min-width: 600px;
-    padding: 8px;
-    border-radius: ${cssVar.borderRadiusLG};
-  `,
-  formItem: css`
-    margin-block-end: 4px !important;
-  `,
-  input: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-  `,
-  row: css`
-    position: relative;
-  `,
-  title: css`
-    margin-block-end: 4px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
+import styles from './KeyValueEditor.module.css';
 
 interface KeyValueItem {
   id: string;

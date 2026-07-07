@@ -3,7 +3,6 @@
 import { Flexbox, Skeleton, Text } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
@@ -17,6 +16,7 @@ import { messengerService } from '@/services/messenger';
 
 import { type MessengerPlatform, PlatformAvatar } from './constants';
 import { getDiscordInstallErrorReason, getSlackInstallErrorReason } from './i18n';
+import styles from './index.module.css';
 import IntegrationDetail from './IntegrationDetail';
 import IntegrationList from './IntegrationList';
 
@@ -30,22 +30,6 @@ const VALID_PLATFORMS: ReadonlySet<MessengerPlatform> = new Set(['slack', 'teleg
 
 const isMessengerPlatform = (value: string | undefined): value is MessengerPlatform =>
   !!value && VALID_PLATFORMS.has(value as MessengerPlatform);
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  emptyState: css`
-    padding-block: 48px;
-    padding-inline: 24px;
-    border: 1px dashed ${cssVar.colorBorder};
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorTextSecondary};
-    text-align: center;
-  `,
-  page: css`
-    overflow-y: auto;
-    flex: 1;
-  `,
-}));
 
 const MessengerSettings = memo(() => {
   const { t, ready } = useTranslation('messenger');

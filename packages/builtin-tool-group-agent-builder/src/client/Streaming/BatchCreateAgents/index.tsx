@@ -3,57 +3,12 @@
 import type { BuiltinStreamingProps } from '@lobechat/types';
 import { Avatar, Block, Flexbox, Markdown } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import ToolTag from '@/features/ToolTag';
 
 import type { BatchCreateAgentsParams } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  description: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
-    line-height: 1.5;
-    color: ${cssVar.colorTextDescription};
-    text-overflow: ellipsis;
-  `,
-  index: css`
-    flex-shrink: 0;
-    font-size: 12px;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  item: css`
-    padding-block: 10px;
-    padding-inline: 12px;
-
-    &:not(:last-child) {
-      border-block-end: 1px dashed ${cssVar.colorBorderSecondary};
-    }
-  `,
-  systemRole: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextTertiary};
-    text-overflow: ellipsis;
-  `,
-  title: css`
-    overflow: hidden;
-
-    font-size: 13px;
-    font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+import styles from './index.module.css';
 
 export const BatchCreateAgentsStreaming = memo<BuiltinStreamingProps<BatchCreateAgentsParams>>(
   ({ args }) => {

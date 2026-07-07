@@ -1,5 +1,4 @@
 import { Avatar, Button, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -9,27 +8,7 @@ import { useAgentStore } from '@/store/agent';
 import { agentSelectors } from '@/store/agent/selectors';
 import { useChatStore } from '@/store/chat';
 
-const styles = createStaticStyles(({ css }) => ({
-  header: css`
-    min-height: 128px;
-  `,
-  title: css`
-    overflow: hidden;
-
-    font-size: 16px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  channelCount: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  channelIcon: css`
-    flex-shrink: 0;
-  `,
-}));
+import styles from './AgentSummary.module.css';
 
 const AgentSummary = memo(() => {
   const { t } = useTranslation(['chat', 'discover']);
@@ -90,7 +69,7 @@ const AgentSummary = memo(() => {
         block
         shape={'round'}
         size={'small'}
-        style={{ color: cssVar.colorTextTertiary, width: 'fit-content' }}
+        style={{ color: 'var(--ant-color-text-tertiary)', width: 'fit-content' }}
         variant={'filled'}
         onClick={() => activeAgentId && navigate(`/agent/${activeAgentId}/profile`)}
       >

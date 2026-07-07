@@ -1,6 +1,5 @@
 import { Block, Flexbox, Skeleton } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 /** Loading placeholder for {@link BriefCard}. */
@@ -9,7 +8,7 @@ const BriefCardSkeleton = memo(() => {
     <Block
       gap={12}
       padding={12}
-      style={{ borderRadius: cssVar.borderRadiusLG }}
+      style={{ borderRadius: 'var(--ant-border-radius-lg)' }}
       variant={'outlined'}
     >
       <Flexbox horizontal align={'center'} gap={16} justify={'space-between'}>
@@ -23,7 +22,7 @@ const BriefCardSkeleton = memo(() => {
             active
             shape={'square'}
             size={28}
-            style={{ borderRadius: cssVar.borderRadius, flex: 'none' }}
+            style={{ borderRadius: 'var(--ant-border-radius)', flex: 'none' }}
           />
           <Skeleton.Button active style={{ height: 20, width: 200 }} />
           <Skeleton.Button active style={{ height: 14, width: 72 }} />

@@ -2,7 +2,6 @@
 
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Avatar, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -11,31 +10,22 @@ import { agentGroupSelectors } from '@/store/agentGroup/selectors';
 import { inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { UpdateAgentPromptParams, UpdateAgentPromptState } from '../../../types';
+import stylesModule from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar: cv }) => ({
-  agentName: css`
-    overflow: hidden;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    max-width: 120px;
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
-    font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  label: css`
-    flex-shrink: 0;
-    color: ${cv.colorTextSecondary};
-    white-space: nowrap;
-  `,
-  root: css`
-    overflow: hidden;
-    display: flex;
-    gap: 6px;
-    align-items: center;
-
-    min-width: 0;
-  `,
-}));
+const styles = stylesModule;
 
 export const UpdateAgentPromptInspector = memo<
   BuiltinInspectorProps<UpdateAgentPromptParams, UpdateAgentPromptState>
@@ -106,7 +96,7 @@ export const UpdateAgentPromptInspector = memo<
           code
           noWrap
           as="span"
-          color={lengthDiff >= 0 ? cssVar.colorSuccess : cssVar.colorError}
+          color={lengthDiff >= 0 ? 'var(--ant-color-success)' : 'var(--ant-color-error)'}
           fontSize={12}
         >
           {lengthDiff >= 0 ? '+' : ''}
@@ -116,7 +106,7 @@ export const UpdateAgentPromptInspector = memo<
       )}
       {/* Show streaming length */}
       {(isArgumentsStreaming || isLoading) && streamingLength > 0 && (
-        <Text code as="span" color={cssVar.colorTextDescription} fontSize={12}>
+        <Text code as="span" color={'var(--ant-color-text-description)'} fontSize={12}>
           ({streamingLength}
           {t('builtins.lobe-agent-builder.inspector.chars')})
         </Text>

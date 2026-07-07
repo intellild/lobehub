@@ -1,24 +1,12 @@
 'use client';
 
 import { Markdown, ScrollArea } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import type { RefObject } from 'react';
 import { memo, useEffect } from 'react';
 
 import { useAutoScroll } from '@/hooks/useAutoScroll';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-radius: 8px;
-    font-size: 14px;
-  `,
-  scrollRoot: css`
-    border-radius: 0;
-    background: transparent;
-  `,
-}));
+import styles from './index.module.css';
 
 interface StreamingMarkdownProps {
   children?: string;

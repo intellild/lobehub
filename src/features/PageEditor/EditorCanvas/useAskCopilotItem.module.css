@@ -1,0 +1,8 @@
+.askCopilot {
+border-radius: 6px;
+color: var(--ant-color-text-description);
+
+&:hover {
+  color: var(--ant-color-text-secondary);
+}
+}

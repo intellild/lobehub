@@ -1,0 +1,19 @@
+.bordered {
+overflow: hidden;
+  border: 1px solid var(--ant-color-border-secondary);
+  border-radius: var(--ant-border-radius-lg);
+  @media (max-width: 575.98px) {
+    background: var(--ant-color-bg-container);
+  }
+}
+
+.cell {
+overflow: hidden;
+  box-shadow: 0 0 0 0.5px var(--ant-color-border-secondary);
+}
+
+.label {
+overflow: hidden;
+  border-inline-end: 1px solid var(--ant-color-border-secondary);
+  background: var(--ant-color-fill-quaternary);
+}

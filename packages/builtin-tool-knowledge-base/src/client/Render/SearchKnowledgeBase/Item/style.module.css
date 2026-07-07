@@ -1,0 +1,58 @@
+.badge {
+padding-block: 4px;
+padding-inline: 6px;
+border-radius: 2222px;
+
+font-size: 12px;
+line-height: 12px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-secondary);
+}
+
+.container {
+cursor: pointer;
+
+width: fit-content;
+padding-block: 6px;
+padding-inline: 8px;
+padding-inline-end: 12px;
+border-radius: 8px;
+
+color: var(--ant-color-text);
+
+background: color-mix(in srgb, var(--ant-color-bg-elevated) 90%, white);
+box-shadow: var(--ant-box-shadow-tertiary);
+
+transition: all 0.2s;
+
+&:hover {
+  box-shadow: var(--ant-box-shadow-secondary);
+}
+}
+
+.containerDark {
+&:hover {
+  background: color-mix(in srgb, var(--ant-color-bg-elevated) 85%, white);
+}
+}
+
+.containerLight {
+&:hover {
+  background: color-mix(in srgb, var(--ant-color-bg-elevated) 90%, white);
+}
+}
+
+.filename {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+
+font-size: 12px;
+text-overflow: ellipsis;
+}
+
+.mobile {
+width: 100%;
+}

@@ -3,7 +3,6 @@ import { type IconAvatarProps } from '@lobehub/icons';
 import { LobeHub, ModelIcon, ProviderIcon } from '@lobehub/icons';
 import { type FlexboxProps } from '@lobehub/ui';
 import { Avatar, Flexbox, Icon, Tag, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, useResponsive } from 'antd-style';
 import {
   AudioLines,
   Infinity as InfinityIcon,
@@ -19,37 +18,14 @@ import { type CSSProperties, type FC } from 'react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useResponsive } from '@/hooks/useResponsive';
 import { type AiProviderSourceType } from '@/types/aiProvider';
 import { formatTokenNumber } from '@/utils/format';
 
+import styles from './index.module.css';
 import NewModelBadgeI18n, { NewModelBadge as NewModelBadgeCore } from './NewModelBadge';
 
 export const TAG_CLASSNAME = 'lobe-model-info-tags';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  tag: css`
-    cursor: default;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 20px !important;
-    height: 20px;
-    border-radius: 4px;
-  `,
-  token: css`
-    width: 36px !important;
-    height: 20px;
-    border-radius: 4px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 11px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
 
 type TooltipStyles = typeof styles;
 

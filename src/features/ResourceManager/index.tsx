@@ -1,13 +1,13 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, useTheme } from 'antd-style';
 import { memo, useCallback, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 
 import DragUploadZone from '@/components/DragUploadZone';
 import { PageEditor } from '@/features/PageEditor';
 import { usePermission } from '@/hooks/usePermission';
+import { useTheme } from '@/hooks/useTheme';
 import dynamic from '@/libs/next/dynamic';
 import { useResourceManagerStore } from '@/routes/(main)/resource/features/store';
 import { documentService } from '@/services/document';
@@ -18,37 +18,9 @@ import FileEditor from './components/Editor';
 import Explorer from './components/Explorer';
 import UploadDock from './components/UploadDock';
 import { useTopLevelFileUpload } from './hooks/useTopLevelFileUpload';
+import styles from './index.module.css';
 
 const ChunkDrawer = dynamic(() => import('./components/ChunkDrawer'), { ssr: false });
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    container: css`
-      position: relative;
-      overflow: hidden;
-    `,
-    editorOverlay: css`
-      position: absolute;
-      z-index: 1;
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-
-      background-color: var(--editor-overlay-bg, ${cssVar.colorBgContainer});
-    `,
-    pageEditorOverlay: css`
-      position: absolute;
-      z-index: 1;
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-
-      background-color: ${cssVar.colorBgLayout};
-    `,
-  };
-});
 
 export type ResourceManagerMode = 'editor' | 'explorer' | 'page';
 

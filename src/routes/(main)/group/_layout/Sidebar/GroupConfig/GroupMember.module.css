@@ -1,0 +1,9 @@
+.memberTrigger {
+border-radius: var(--ant-border-radius);
+transition: background 0.2s var(--ant-motion-ease-out);
+
+&[data-popup-open],
+&[data-active='true'] {
+  background: var(--ant-color-fill-tertiary);
+}
+}

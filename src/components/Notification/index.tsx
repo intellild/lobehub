@@ -2,53 +2,25 @@
 
 import { type FlexboxProps } from '@lobehub/ui';
 import { ActionIcon, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { XIcon } from 'lucide-react';
 import { memo } from 'react';
 
 import { useIsDark } from '@/hooks/useIsDark';
 
-const styles = createStaticStyles(({ css }) => ({
-  cancelIcon: css`
-    position: absolute;
-    z-index: 100;
-    inset-block-start: 8px;
-    inset-inline-end: 8px;
-  `,
-  container: css`
-    position: absolute;
-    z-index: 1100;
-    inset-block-end: 16px;
-    inset-inline-end: 20px;
+import styles from './index.module.css';
 
-    overflow: hidden;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    border: 1px solid ${cssVar.colorSplit};
-    border-radius: 8px;
-
-    background: ${cssVar.colorBgContainer};
-    box-shadow: ${cssVar.boxShadowSecondary};
-  `,
-  mobileContainer: css`
-    inset-block-end: 8px;
-    inset-inline-start: 8px;
-  `,
-  wrapper: css`
-    background:
-      linear-gradient(
-        180deg,
-        color-mix(in srgb, ${cssVar.colorBgContainer} 0%, transparent),
-        ${cssVar.colorBgContainer} var(--gradient-stop, 140px)
-      ),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cg fill='${cssVar.colorFillTertiary}' %3E %3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E");
-  `,
-  wrapperDark: css`
-    --gradient-stop: 80px;
-  `,
-  wrapperLight: css`
-    --gradient-stop: 140px;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface NotificationProps extends FlexboxProps {
   height?: number | string;

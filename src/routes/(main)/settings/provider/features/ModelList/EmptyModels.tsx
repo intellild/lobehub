@@ -1,6 +1,5 @@
 import { Button, Center, Flexbox, Icon, Tooltip } from '@lobehub/ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { BrainIcon, LucideRefreshCcwDot, PlusIcon } from 'lucide-react';
 import { memo, use, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,43 +8,8 @@ import { usePermission } from '@/hooks/usePermission';
 import { useAiInfraStore } from '@/store/aiInfra';
 
 import { createCreateNewModelModal } from './CreateNewModelModal';
+import styles from './EmptyModels.module.css';
 import { ProviderSettingsContext } from './ProviderSettingsContext';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  circle: css`
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: ${cssVar.colorFillSecondary};
-  `,
-  container: css`
-    width: 100%;
-    border: 1px dashed ${cssVar.colorBorder};
-    border-radius: 12px;
-    background: ${cssVar.colorBgContainer};
-  `,
-  description: css`
-    max-width: 280px;
-
-    font-size: ${cssVar.fontSize};
-    color: ${cssVar.colorTextDescription};
-    text-align: center;
-    text-wrap: balance;
-  `,
-  iconWrapper: css`
-    position: relative;
-    width: 64px;
-    height: 64px;
-  `,
-  sparklesIcon: css`
-    font-size: 40px;
-    color: ${cssVar.colorText};
-  `,
-  title: css`
-    font-size: ${cssVar.fontSizeLG};
-    font-weight: 500;
-  `,
-}));
 
 const EmptyState = memo<{ provider: string }>(({ provider }) => {
   const { t } = useTranslation('modelProvider');

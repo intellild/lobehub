@@ -1,0 +1,14 @@
+.container {
+padding-inline: 12px;
+border-radius: 12px;
+}
+
+.content {
+color: var(--ant-color-text-description);
+}
+
+.line {
+width: 3px;
+height: 100%;
+background: var(--ant-color-border);
+}

@@ -3,7 +3,6 @@
 import { Button, Empty, Flexbox, Text } from '@lobehub/ui';
 import { confirmModal, type ModalInstance } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import dayjs from 'dayjs';
 import { ArrowLeftIcon, Clock3Icon } from 'lucide-react';
 import { memo, useMemo, useRef, useState } from 'react';
@@ -30,54 +29,13 @@ import { openDocumentCompareModal } from './CompareModal';
 import { formatHistoryAbsoluteTime } from './formatHistoryDate';
 import { HistoryItemsProvider } from './HistoryItemsProvider';
 import { HistoryListItem } from './HistoryListItem';
+import styles from './index.module.css';
 
 interface HistoryDayGroup {
   historyIds: string[];
   key: string;
   label: string;
 }
-
-const styles = createStaticStyles(({ css }) => ({
-  empty: css`
-    height: 100%;
-    padding: 24px;
-  `,
-  groupHeader: css`
-    position: sticky;
-    z-index: 1;
-    inset-block-start: 0;
-
-    display: flex;
-    gap: 8px;
-    align-items: baseline;
-
-    padding-block: 14px 6px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorSplit};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  groupTitle: css`
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1;
-    color: ${cssVar.colorText};
-  `,
-  groupCount: css`
-    font-size: 11px;
-    line-height: 1;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  headerButton: css`
-    padding-inline: 8px;
-  `,
-  list: css`
-    overflow-y: auto;
-    flex: 1;
-    min-height: 0;
-    padding-block: 0 20px;
-  `,
-}));
 
 const HistoryPanel = memo(() => {
   const { t } = useTranslation(['common', 'file']);

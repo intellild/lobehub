@@ -2,7 +2,6 @@ import { type UserMemoryEffort } from '@lobechat/types';
 import { Center, Flexbox, Icon } from '@lobehub/ui';
 import { BrainOffIcon } from '@lobehub/ui/icons';
 import { Divider } from 'antd';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { type LucideIcon } from 'lucide-react';
 import { Brain } from 'lucide-react';
 import { memo } from 'react';
@@ -15,43 +14,23 @@ import { chatConfigByIdSelectors } from '@/store/agent/selectors';
 
 import { useAgentId } from '../../hooks/useAgentId';
 import { useUpdateAgentConfig } from '../../hooks/useUpdateAgentConfig';
+import styles from './Controls.module.css';
 import { useMemoryEnabled } from './useMemoryEnabled';
 
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const MEMORY_EFFORT_LEVELS: readonly UserMemoryEffort[] = ['low', 'medium', 'high'];
-
-const styles = createStaticStyles(({ css }) => ({
-  active: css`
-    background: ${cssVar.colorFillTertiary};
-  `,
-  description: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  icon: css`
-    border: 1px solid ${cssVar.colorFillTertiary};
-    border-radius: ${cssVar.borderRadius};
-    background: ${cssVar.colorBgElevated};
-  `,
-  option: css`
-    cursor: pointer;
-
-    width: 100%;
-    padding-block: 8px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  title: css`
-    font-size: 14px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 interface ToggleOption {
   description: string;

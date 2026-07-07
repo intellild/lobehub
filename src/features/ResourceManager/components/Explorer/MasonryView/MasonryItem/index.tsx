@@ -4,7 +4,6 @@ import {
   MARKDOWN_MIME_TYPES,
 } from '@lobechat/const';
 import { Checkbox, showContextMenu, stopPropagation } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
@@ -21,8 +20,22 @@ import DropdownMenu from '../../ItemDropdown/DropdownMenu';
 import { useFileItemDropdown } from '../../ItemDropdown/useFileItemDropdown';
 import DefaultFileItem from './DefaultFileItem';
 import ImageFileItem from './ImageFileItem';
+import styles from './index.module.css';
 import MarkdownFileItem from './MarkdownFileItem';
 import NoteFileItem from './NoteFileItem';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 // Image file types
 const IMAGE_TYPES = new Set([
@@ -87,95 +100,6 @@ const extractTextFromEditorJSON = (editorData: any): string => {
 
   return editorData.root.children.map((node: any) => extractFromNode(node)).join('\n');
 };
-
-const styles = createStaticStyles(({ css }) => ({
-  actions: css`
-    opacity: 0;
-    transition: opacity ${cssVar.motionDurationMid};
-  `,
-  card: css`
-    cursor: pointer;
-
-    position: relative;
-
-    overflow: hidden;
-
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-
-    transition: all ${cssVar.motionDurationMid};
-
-    &:hover {
-      border-color: ${cssVar.colorPrimary};
-      box-shadow: ${cssVar.boxShadowTertiary};
-
-      .actions {
-        opacity: 1;
-      }
-
-      .checkbox {
-        opacity: 1;
-      }
-
-      .dropdown {
-        opacity: 1;
-      }
-
-      .floatingChunkBadge {
-        opacity: 1;
-      }
-    }
-  `,
-  checkbox: css`
-    position: absolute;
-    z-index: 2;
-    inset-block-start: 8px;
-    inset-inline-start: 8px;
-
-    opacity: 0;
-
-    transition: opacity ${cssVar.motionDurationMid};
-  `,
-  content: css`
-    position: relative;
-  `,
-  contentWithPadding: css`
-    padding: 12px;
-  `,
-  dragOver: css`
-    border-color: ${cssVar.colorText} !important;
-    color: ${cssVar.colorBgElevated} !important;
-    background-color: ${cssVar.colorText} !important;
-
-    * {
-      color: ${cssVar.colorBgElevated} !important;
-    }
-  `,
-  dragging: css`
-    will-change: transform;
-    opacity: 0.5;
-  `,
-  dropdown: css`
-    position: absolute;
-    z-index: 2;
-    inset-block-start: 8px;
-    inset-inline-end: 8px;
-
-    opacity: 0;
-
-    transition: opacity ${cssVar.motionDurationMid};
-  `,
-  selected: css`
-    border-color: ${cssVar.colorPrimary};
-    background: ${cssVar.colorPrimaryBg};
-
-    .checkbox {
-      opacity: 1;
-    }
-  `,
-}));
 
 interface MasonryFileItemProps extends FileListItem {
   knowledgeBaseId?: string;

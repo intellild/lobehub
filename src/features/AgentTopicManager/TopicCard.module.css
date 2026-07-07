@@ -1,0 +1,61 @@
+.card {
+cursor: pointer;
+
+position: relative;
+
+display: flex;
+flex-direction: column;
+
+/* min-height keeps short cards consistent without forcing tall empty
+   whitespace — preview + footer can still grow the card naturally. */
+min-height: 140px;
+padding: 14px;
+
+transition:
+  transform 0.18s,
+  box-shadow 0.18s,
+  border-color 0.18s;
+
+&:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 6%);
+}
+}
+
+.cardSelected {
+border-color: var(--ant-color-primary);
+box-shadow: 0 0 0 1px var(--ant-color-primary);
+}
+
+.checkbox {
+position: absolute;
+z-index: 1;
+inset-block-start: 10px;
+inset-inline-end: 10px;
+}
+
+.checkboxBox {
+border-color: var(--ant-color-border);
+}
+
+.description {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+}
+
+.footer {
+/* push to bottom so cards with short content keep the stats row anchored */
+margin-block-start: auto;
+padding-block-start: 10px;
+border-block-start: 1px solid var(--ant-color-split);
+}
+
+.title {
+overflow: hidden;
+display: -webkit-box;
+flex: 1;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+}

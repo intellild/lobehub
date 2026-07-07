@@ -1,0 +1,8 @@
+.addRow {
+padding-block: 10px;
+padding-inline: 12px;
+}
+
+.dragHandlePlaceholder {
+width: 8px;
+}

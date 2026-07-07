@@ -1,0 +1,36 @@
+.divider {
+  height: 24px;
+}
+
+.innerContainerDark,
+.innerContainerLight {
+  position: relative;
+
+  overflow: hidden;
+
+  background: var(--ant-color-bg-container);
+}
+
+.innerContainerDark {
+  border: 1px solid var(--ant-color-border-secondary);
+}
+
+.innerContainerLight {
+  border: 1px solid var(--ant-color-border);
+}
+
+.defaultBorderRadius {
+  border-radius: var(--ant-border-radius);
+}
+
+.largeWindowBorderRadius {
+  border-radius: var(--ant-border-radius) 12px var(--ant-border-radius) 12px;
+}
+
+.outerContainer {
+  position: relative;
+}
+
+.contentContainer {
+  overflow: auto;
+}

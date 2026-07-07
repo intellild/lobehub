@@ -1,30 +1,11 @@
 import { ModelIcon } from '@lobehub/icons';
 import { Block, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { type DiscoverProviderDetailModelItem } from '@/types/discover';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    desc: css`
-      flex: 1;
-      margin: 0 !important;
-      font-size: 14px !important;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    title: css`
-      margin: 0 !important;
-      font-size: 14px !important;
-      font-weight: 500 !important;
-
-      &:hover {
-        color: ${cssVar.colorLink};
-      }
-    `,
-  };
-});
+import styles from './Item.module.css';
 
 const RelatedItem = memo<DiscoverProviderDetailModelItem>(({ description, id, displayName }) => {
   const { t } = useTranslation('models');

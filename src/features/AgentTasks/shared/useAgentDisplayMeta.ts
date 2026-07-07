@@ -1,5 +1,4 @@
 import { DEFAULT_AVATAR } from '@lobechat/const';
-import { cssVar } from 'antd-style';
 import { useTranslation } from 'react-i18next';
 
 import { DEFAULT_INBOX_AVATAR } from '@/const/meta';
@@ -48,7 +47,7 @@ export const useAgentDisplayMeta = (
   return {
     avatar: meta?.avatar || sidebarAvatar || (isInbox ? DEFAULT_INBOX_AVATAR : DEFAULT_AVATAR),
     backgroundColor:
-      meta?.backgroundColor || sidebarAgent?.backgroundColor || cssVar.colorBgContainer,
+      meta?.backgroundColor || sidebarAgent?.backgroundColor || 'var(--ant-color-bg-container)',
     title:
       meta?.title?.trim() ||
       sidebarAgent?.title ||

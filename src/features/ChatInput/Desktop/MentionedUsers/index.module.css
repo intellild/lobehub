@@ -1,0 +1,9 @@
+.container {
+overflow-x: scroll;
+
+width: 100%;
+border-start-start-radius: 8px;
+border-start-end-radius: 8px;
+
+background: color-mix(in srgb, var(--ant-color-bg-layout) 99%, white);
+}

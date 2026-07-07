@@ -1,5 +1,4 @@
 import { Button, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { CornerDownLeft } from 'lucide-react';
 import type { KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -8,7 +7,21 @@ import { useTranslation } from 'react-i18next';
 import { useUserStore } from '@/store/user';
 
 import { useConversationStore } from '../../../../../store';
+import styles from './ApprovalActions.module.css';
 import { type ApprovalMode } from './index';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ApprovalActionsProps {
   apiName: string;
@@ -25,105 +38,6 @@ interface ApprovalActionsProps {
 }
 
 type Choice = 'approve' | 'approve-remember' | 'reject';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    width: 100%;
-  `,
-  footer: css`
-    display: flex;
-    justify-content: flex-end;
-    margin-block-start: 8px;
-  `,
-  number: css`
-    flex-shrink: 0;
-    width: 18px;
-    font-variant-numeric: tabular-nums;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  option: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    min-height: 40px;
-    padding-block: 7px;
-    padding-inline: 16px;
-    border-radius: calc(${cssVar.borderRadiusLG} - 2px);
-
-    color: ${cssVar.colorTextSecondary};
-
-    transition:
-      background 120ms,
-      color 120ms;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  optionLabel: css`
-    flex: 1;
-    line-height: 1.4;
-  `,
-  optionList: css`
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  `,
-  optionSelected: css`
-    color: ${cssVar.colorText};
-    background: ${cssVar.colorFillSecondary};
-
-    &:hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  rejectInput: css`
-    flex: 1;
-
-    width: 100%;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-
-    font-family: inherit;
-    font-size: 14px;
-    line-height: 1.4;
-    color: ${cssVar.colorText};
-
-    background: transparent;
-
-    &::placeholder {
-      color: ${cssVar.colorTextSecondary};
-    }
-
-    &:focus,
-    &:focus-visible {
-      outline: none;
-    }
-
-    &:disabled {
-      cursor: pointer;
-      color: ${cssVar.colorTextSecondary};
-    }
-  `,
-  shortcutHint: css`
-    display: inline-flex;
-    align-items: center;
-    margin-inline-start: 6px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  submitButton: css`
-    &.ant-btn {
-      min-width: 88px;
-      height: 36px;
-      border-radius: calc(${cssVar.borderRadiusLG} - 2px);
-    }
-  `,
-}));
 
 const ApprovalActions = memo<ApprovalActionsProps>(
   ({ approvalMode, apiName, assistantGroupId, identifier, messageId, onBeforeApprove }) => {

@@ -1,23 +1,9 @@
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { AlertTriangle } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding-block: 8px;
-    padding-inline: 6px;
-  `,
-  reason: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  title: css`
-    font-size: 14px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+import styles from './RejectedResponse.module.css';
 
 interface RejectedResponseProps {
   reason?: string;
@@ -29,7 +15,7 @@ const RejectedResponse = memo<RejectedResponseProps>(({ reason }) => {
   return (
     <Flexbox className={styles.container} gap={8}>
       <Flexbox horizontal align={'center'} gap={8}>
-        <Icon color={cssVar.colorWarning} icon={AlertTriangle} size={16} />
+        <Icon color={'var(--ant-color-warning)'} icon={AlertTriangle} size={16} />
         <div className={styles.title}>
           {reason
             ? t('tool.intervention.rejectedWithReason', { reason })

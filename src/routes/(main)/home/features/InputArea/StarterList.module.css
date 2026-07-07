@@ -1,0 +1,20 @@
+.button {
+height: 40px;
+border-color: var(--ant-color-fill-secondary);
+background: transparent;
+box-shadow: none !important;
+
+&:hover {
+  border-color: var(--ant-color-fill-secondary) !important;
+  background: var(--ant-color-bg-elevated) !important;
+}
+}
+
+.container {
+flex-wrap: wrap;
+}
+
+.newTag {
+padding-inline: 10px !important;
+border-radius: 999px !important;
+}

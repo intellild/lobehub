@@ -1,22 +1,9 @@
 'use client';
-
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { SubAgentRunStats } from '../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  root: css`
-    overflow: hidden;
-    flex-shrink: 0;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+import styles from './SubAgentStats.module.css';
 
 const formatTokens = (n: number): string => {
   if (n < 1000) return String(n);

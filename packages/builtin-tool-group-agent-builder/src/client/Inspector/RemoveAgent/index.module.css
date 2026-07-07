@@ -1,0 +1,17 @@
+.root {
+overflow: hidden;
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.statusIcon {
+flex-shrink: 0;
+margin-block-end: -2px;
+}
+
+.title {
+flex-shrink: 0;
+color: var(--ant-color-text-secondary);
+white-space: nowrap;
+}

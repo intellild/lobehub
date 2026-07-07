@@ -1,0 +1,6 @@
+.link {
+padding-block-end: 1px;
+color: var(--ant-color-text);
+text-decoration: none;
+background: linear-gradient(to top, var(--ant-color-primary-bg-hover) 30%, transparent 30%);
+}

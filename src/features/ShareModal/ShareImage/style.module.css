@@ -1,0 +1,47 @@
+.background {
+  padding: 24px;
+
+  background-color: var(--ant-color-bg-layout);
+  background-image: url('/images/screenshot_background.webp');
+  background-position: center;
+  background-size: 120% 120%;
+}
+
+.container {
+  background: var(--ant-color-bg-container);
+}
+
+.container_withBackground_true {
+  overflow: hidden;
+  border: 2px solid var(--ant-color-border);
+  border-radius: var(--ant-border-radius-lg);
+}
+
+.footer {
+  padding: 16px;
+  border-block-start: 1px solid var(--ant-color-border);
+}
+
+.header {
+  margin-block-end: -24px;
+  padding-block: 16px;
+  padding-inline: 24px;
+  border-block-end: 1px solid var(--ant-color-border);
+
+  background: var(--ant-color-bg-container);
+}
+
+.role {
+  margin-block-start: 12px;
+  padding-block-start: 12px;
+  border-block-start: 1px dashed var(--ant-color-border-secondary);
+  opacity: 0.75;
+}
+
+.role * {
+  font-size: 12px !important;
+}
+
+.url {
+  color: var(--ant-color-text-description);
+}

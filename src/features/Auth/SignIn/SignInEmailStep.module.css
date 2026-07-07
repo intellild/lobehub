@@ -1,0 +1,5 @@
+.inlineLink {
+  cursor: pointer;
+  color: var(--ant-color-primary);
+  text-decoration: underline;
+}

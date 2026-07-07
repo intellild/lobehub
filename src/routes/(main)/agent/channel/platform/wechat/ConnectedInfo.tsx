@@ -1,22 +1,13 @@
 'use client';
 
 import { Alert, Flexbox, FormItem } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FormInput, FormPassword } from '@/components/FormInput';
 
+import styles from './ConnectedInfo.module.css';
 import QrCodeAuth from './QrCodeAuth';
-
-const styles = createStaticStyles(({ css }) => ({
-  header: css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-block-end: 16px;
-  `,
-}));
 
 const ReadOnlyField = memo<{
   description?: string;

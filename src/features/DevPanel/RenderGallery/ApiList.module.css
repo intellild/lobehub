@@ -1,0 +1,101 @@
+.column {
+display: flex;
+flex-direction: column;
+flex-shrink: 0;
+
+width: 240px;
+height: 100%;
+border-inline-end: 1px solid var(--ant-color-border-secondary);
+
+background: var(--ant-color-bg-container);
+}
+
+.dot {
+flex-shrink: 0;
+
+width: 5px;
+height: 5px;
+border-radius: 999px;
+
+background: var(--ant-color-text-quaternary);
+}
+
+.dotActive {
+background: var(--ant-color-primary);
+}
+
+.header {
+flex-shrink: 0;
+padding-block: 14px 10px;
+padding-inline: 16px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.item {
+cursor: pointer;
+
+overflow: hidden;
+flex-shrink: 0;
+gap: 8px;
+align-items: center;
+
+height: 30px;
+padding-inline: 10px;
+border-radius: 6px;
+
+color: var(--ant-color-text-secondary);
+
+transition:
+  background 0.15s,
+  color 0.15s;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-quaternary);
+}
+}
+
+.itemActive {
+color: var(--ant-color-text);
+background: var(--ant-color-fill-secondary);
+
+&:hover {
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.labelHead {
+overflow: hidden;
+flex: 0 1 auto;
+
+color: var(--ant-color-text-quaternary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.labelRow {
+overflow: hidden;
+display: flex;
+flex: 1;
+align-items: baseline;
+
+min-width: 0;
+
+font-family: var(--ant-font-family-code);
+font-size: 13px;
+}
+
+.labelTail {
+flex-shrink: 0;
+white-space: nowrap;
+}
+
+.list {
+overflow: auto;
+flex: 1;
+gap: 2px;
+
+min-height: 0;
+padding-block: 8px;
+padding-inline: 8px;
+}

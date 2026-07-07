@@ -2,58 +2,15 @@
 
 import { Flexbox, Text } from '@lobehub/ui';
 import { Segmented } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { snakeCase } from 'es-toolkit/compat';
 import { memo, useMemo } from 'react';
 
 import { useServerConfigStore } from '@/store/serverConfig';
 import { type FeatureFlagKey } from '@/store/serverConfig/slices/featureFlagOverride/action';
 
+import styles from './FlagRow.module.css';
+
 type SegmentedValue = 'true' | 'false' | 'inherit';
-
-const styles = createStaticStyles(({ css }) => ({
-  control: css`
-    flex: none;
-  `,
-  meta: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 10px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  name: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-  row: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-block: 2px;
-    margin-inline: 4px;
-    padding-block: 6px;
-    padding-inline: 8px;
-    border-inline-start: 2px solid transparent;
-    border-radius: 6px;
-
-    transition: background 120ms ease;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  rowOverridden: css`
-    border-inline-start-color: ${cssVar.colorWarning};
-    background: ${cssVar.colorWarningBg};
-
-    &:hover {
-      background: ${cssVar.colorWarningBgHover};
-    }
-  `,
-}));
 
 const segmentOptions = [
   { label: 'true', value: 'true' as const },

@@ -1,0 +1,38 @@
+.active {
+background: var(--ant-color-fill-tertiary);
+}
+
+.container {
+display: flex;
+flex-wrap: wrap;
+gap: 4px;
+}
+
+.count {
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+}
+
+.reactionTag {
+cursor: pointer;
+
+display: inline-flex;
+gap: 4px;
+align-items: center;
+
+height: 28px;
+padding-block: 0;
+padding-inline: 10px;
+border-radius: 14px;
+
+font-size: 14px;
+line-height: 1;
+
+background: var(--ant-color-fill-secondary);
+
+transition: all 0.2s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}

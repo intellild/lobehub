@@ -1,0 +1,21 @@
+.description {
+max-width: 360px;
+
+font-size: 14px;
+line-height: 1.6;
+color: var(--ant-color-text-secondary);
+text-align: center;
+}
+
+.title {
+margin-block: 0;
+font-size: 18px;
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.wrapper {
+width: 100%;
+height: 100%;
+padding: 24px;
+}

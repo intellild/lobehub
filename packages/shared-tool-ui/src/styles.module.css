@@ -1,0 +1,66 @@
+@keyframes shine {
+0% {
+background-position: 100%;
+  }
+
+  100% {
+background-position: -100%;
+  }
+}
+
+.root {
+overflow: hidden;
+display: flex;
+align-items: center;
+
+min-width: 0;
+
+color: var(--ant-color-text-secondary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.shinyText {
+color: color-mix(in srgb, var(--ant-color-text) 45%, transparent);
+
+background: linear-gradient(
+  120deg,
+  color-mix(in srgb, var(--ant-color-text-base) 0%, transparent) 40%,
+  var(--ant-color-text-secondary) 50%,
+  color-mix(in srgb, var(--ant-color-text-base) 0%, transparent) 60%
+);
+background-clip: text;
+background-size: 200% 100%;
+
+animation: shine 1.5s linear infinite;
+}
+
+.gold,
+.info,
+.primary,
+.warning {
+overflow: hidden;
+
+min-width: 0;
+margin-inline-start: 4px;
+padding-block-end: 1px;
+
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+}
+
+.gold {
+background: linear-gradient(to top, var(--ant-gold-4) 40%, transparent 40%);
+}
+
+.info {
+background: linear-gradient(to top, var(--ant-color-info-bg) 40%, transparent 40%);
+}
+
+.primary {
+background: linear-gradient(to top, var(--ant-color-primary-bg-hover) 40%, transparent 40%);
+}
+
+.warning {
+background: linear-gradient(to top, var(--ant-color-warning-bg) 40%, transparent 40%);
+}

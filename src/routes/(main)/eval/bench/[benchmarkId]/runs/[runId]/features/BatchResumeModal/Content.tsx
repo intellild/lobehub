@@ -2,19 +2,12 @@
 
 import { Badge, Checkbox, Skeleton, Table, Tag, Tooltip, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { type FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { agentEvalService } from '@/services/agentEval';
 
-const styles = createStaticStyles(({ css }) => ({
-  indexCell: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
+import styles from './Content.module.css';
 
 type ResumableCase = Awaited<ReturnType<typeof agentEvalService.getResumableCases>>[number];
 

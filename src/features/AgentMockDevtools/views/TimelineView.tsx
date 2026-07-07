@@ -1,6 +1,5 @@
 import type { MockEvent } from '@lobechat/agent-mock';
 import { Center, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useCallback, useMemo } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 
@@ -8,31 +7,7 @@ import { useAgentMockPlayer } from '../hooks/useAgentMockPlayer';
 import { useMockCases } from '../hooks/useMockCases';
 import { useAgentMockStore } from '../store/agentMockStore';
 import { EventRow } from '../Timeline/EventRow';
-
-const styles = createStaticStyles(({ css }) => ({
-  list: css`
-    overflow: hidden;
-    flex: 1;
-
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 8px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  meta: css`
-    margin-block-end: 8px;
-    font-size: 11px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  wrap: css`
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-
-    height: 100%;
-    min-height: 0;
-  `,
-}));
+import styles from './TimelineView.module.css';
 
 export const TimelineView = memo(() => {
   const { all } = useMockCases();

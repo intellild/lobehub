@@ -1,0 +1,29 @@
+.clickable {
+position: relative;
+transition: all 200ms ease-out 0s;
+
+&::before {
+  content: '';
+
+  position: absolute;
+  transform: skewX(-45deg) translateX(-400%);
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+  width: 25%;
+  height: 100%;
+
+  background: rgb(255 255 255 / 50%);
+
+  transition: all 200ms ease-out 0s;
+}
+
+&:hover {
+  box-shadow: 0 0 0 2px var(--ant-color-primary);
+
+  &::before {
+    transform: skewX(-45deg) translateX(400%);
+  }
+}
+}

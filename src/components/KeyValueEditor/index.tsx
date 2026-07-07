@@ -1,5 +1,4 @@
 import { ActionIcon, Button, Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import fastDeepEqual from 'fast-deep-equal';
 import { LucidePlus, LucideTrash } from 'lucide-react';
 import { type CSSProperties } from 'react';
@@ -9,34 +8,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { FormInput } from '@/components/FormInput';
 
+import styles from './index.module.css';
 import { type KeyValueItem } from './utils';
 import { localListToRecord, recordToLocalList } from './utils';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    position: relative;
-
-    width: 100%;
-    padding: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-  `,
-  input: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-  `,
-  row: css`
-    margin-block-end: 8px;
-
-    &:last-child {
-      margin-block-end: 0;
-    }
-  `,
-  title: css`
-    margin-block-end: 8px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
 
 export interface KeyValueEditorProps {
   addButtonText?: string;

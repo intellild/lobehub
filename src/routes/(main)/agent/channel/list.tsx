@@ -4,76 +4,31 @@ import { exportJSONFile } from '@lobechat/utils/client';
 import { ActionIcon, type DropdownItem, DropdownMenu, Icon, Tag } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles, cx, useTheme } from 'antd-style';
 import { Book, Download, MoreHorizontal, Trash2, Upload } from 'lucide-react';
 import { memo, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useTheme } from '@/hooks/useTheme';
 import { useAgentStore } from '@/store/agent';
 import type { BotProviderItem } from '@/store/agent/slices/bot/action';
 
 import { BOT_RUNTIME_STATUSES, type BotRuntimeStatus } from '../../../../types/botRuntimeStatus';
 import { type ChannelPlatformDefinition, getPlatformIcon } from './const';
+import styles from './list.module.css';
 import MessengerPromo from './MessengerPromo';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  item: css`
-    cursor: pointer;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    display: flex;
-    gap: 12px;
-    align-items: center;
-
-    width: 100%;
-    padding-block: 10px;
-    padding-inline: 12px;
-    border: none;
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorTextSecondary};
-    text-align: start;
-
-    background: transparent;
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &.active {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  list: css`
-    overflow-y: auto;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 4px;
-
-    padding: 12px;
-    padding-block-start: 16px;
-  `,
-  root: css`
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-
-    width: 260px;
-    border-inline-end: 1px solid ${cssVar.colorBorder};
-  `,
-  statusDot: css`
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-
-    background: ${cssVar.colorSuccess};
-    box-shadow: 0 0 0 1px ${cssVar.colorBgContainer};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface PlatformListProps {
   activeId: string;

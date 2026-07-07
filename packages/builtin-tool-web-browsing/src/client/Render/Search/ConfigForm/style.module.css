@@ -1,0 +1,15 @@
+.container {
+border-radius: 8px;
+color: var(--ant-color-text);
+}
+
+.desc {
+color: var(--ant-color-text-tertiary);
+text-align: center;
+}
+
+.form {
+width: 100%;
+max-width: 300px;
+padding-block: 12px;
+}

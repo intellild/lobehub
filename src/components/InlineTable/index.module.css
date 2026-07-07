@@ -1,0 +1,35 @@
+.hoverToActive {
+opacity: 0.6;
+
+&:hover {
+  opacity: 1;
+}
+}
+
+.table {
+.ant-table {
+  background: transparent;
+
+  th,
+  td {
+    border: none !important;
+    font-size: 13px;
+  }
+
+  .ant-table-cell:before {
+    display: none;
+  }
+}
+
+tr {
+  td:first-child,
+  th:first-child {
+    padding-inline-start: 24px !important;
+  }
+
+  td:last-child,
+  th:last-child {
+    padding-inline-end: 24px !important;
+  }
+}
+}

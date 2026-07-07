@@ -1,0 +1,166 @@
+.actions {
+padding-block: 8px 12px;
+padding-inline: 12px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+background: color-mix(in srgb, var(--ant-color-bg-elevated) 92%, var(--ant-color-fill-secondary));
+
+&:empty {
+  display: none;
+}
+}
+
+.card {
+pointer-events: auto;
+
+overflow: hidden;
+display: flex;
+flex-direction: column;
+
+width: 100%;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-elevated);
+box-shadow: var(--ant-box-shadow-secondary);
+}
+
+.content {
+overflow-y: auto;
+flex: 1;
+
+min-height: 0;
+max-height: 42vh;
+padding-block: 6px 8px;
+padding-inline: 12px;
+}
+
+.header {
+display: flex;
+gap: 8px;
+align-items: center;
+
+padding-block: 8px;
+padding-inline: 12px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.headerMeta {
+overflow: hidden;
+flex: 1;
+min-width: 0;
+}
+
+.headerSubtitle {
+overflow: hidden;
+
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.headerTitle {
+overflow: hidden;
+
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.moreHint {
+pointer-events: auto;
+
+align-self: center;
+
+padding-block: 2px;
+
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.pill {
+pointer-events: auto;
+cursor: pointer;
+
+display: flex;
+gap: 8px;
+align-items: center;
+
+height: 36px;
+padding-inline: 14px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 999px;
+
+font-size: 13px;
+color: var(--ant-color-text);
+
+background: var(--ant-color-bg-elevated);
+box-shadow: var(--ant-box-shadow-secondary);
+}
+
+.pillDot {
+flex-shrink: 0;
+
+width: 7px;
+height: 7px;
+border-radius: 999px;
+
+background: var(--ant-color-primary);
+}
+
+.stack {
+display: flex;
+flex-direction: column;
+gap: 10px;
+width: 100%;
+}
+
+.userRequest {
+display: flex;
+flex-direction: column;
+gap: 4px;
+
+padding-block: 8px;
+padding-inline: 12px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.userRequestBody {
+overflow-y: auto;
+max-height: 120px;
+
+/* Trim the Markdown block's outer margins so it sits flush in the strip. */
+p:first-child {
+  margin-block-start: 0;
+}
+
+p:last-child {
+  margin-block-end: 0;
+}
+}
+
+.userRequestLabel {
+flex-shrink: 0;
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.wrapper {
+pointer-events: none;
+
+position: fixed;
+z-index: 1000;
+inset-block-start: var(--global-approval-top, 16px);
+inset-inline-start: 50%;
+transform: translateX(-50%);
+
+display: flex;
+flex-direction: column;
+align-items: center;
+
+width: min(640px, 92vw);
+}

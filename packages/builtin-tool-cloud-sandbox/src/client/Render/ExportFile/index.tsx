@@ -3,20 +3,10 @@
 import { CheckCircleFilled, CloseCircleFilled, DownloadOutlined } from '@ant-design/icons';
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { ActionIcon, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useCallback } from 'react';
 
 import type { ExportFileState } from '../../../types';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    overflow: hidden;
-    padding-inline: 8px 0;
-  `,
-  statusIcon: css`
-    font-size: 12px;
-  `,
-}));
+import styles from './index.module.css';
 
 interface ExportFileParams {
   path: string;
@@ -57,10 +47,10 @@ const ExportFile = memo<BuiltinRenderProps<ExportFileParams, ExportFileState>>(
           {pluginState === undefined ? null : isSuccess ? (
             <CheckCircleFilled
               className={styles.statusIcon}
-              style={{ color: cssVar.colorSuccess }}
+              style={{ color: 'var(--ant-color-success)' }}
             />
           ) : (
-            <CloseCircleFilled className={styles.statusIcon} style={{ color: cssVar.colorError }} />
+            <CloseCircleFilled className={styles.statusIcon} style={{ color: 'var(--ant-color-error)' }} />
           )}
           <Text code as={'span'} fontSize={12}>
             {isSuccess

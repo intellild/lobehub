@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -10,11 +9,20 @@ import { PortalContent } from '@/features/Portal/router';
 import { useChatStore } from '@/store/chat';
 import { portalThreadSelectors } from '@/store/chat/selectors';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    background: linear-gradient(${cssVar.colorBgElevated}, ${cssVar.colorBgContainer}) !important;
-  `,
-}));
+import styles from './Mobile.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const Layout = () => {
   const [showMobilePortal, isPortalThread, clearPortalStack] = useChatStore((s) => [

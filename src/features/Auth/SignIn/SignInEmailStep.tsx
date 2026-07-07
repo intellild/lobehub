@@ -2,7 +2,6 @@ import { BRANDING_NAME } from '@lobechat/business-const';
 import { Alert, Button, Flexbox, Icon, Input, Text } from '@lobehub/ui';
 import { type FormInstance, type InputRef } from 'antd';
 import { Badge, Divider, Form } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { Mail } from 'lucide-react';
 import { type CSSProperties, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,13 +10,7 @@ import AuthIcons from '@/components/AuthIcons';
 import AuthCard from '@/features/AuthCard';
 import { AuthAgreement } from '@/features/AuthShell';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  inlineLink: css`
-    cursor: pointer;
-    color: ${cssVar.colorPrimary};
-    text-decoration: underline;
-  `,
-}));
+import styles from './SignInEmailStep.module.css';
 
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@][^\s.@]*\.[^\s@]+$/;
 export const USERNAME_REGEX = /^\w+$/;

@@ -11,7 +11,6 @@ import {
   Text,
 } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { startCase } from 'es-toolkit/compat';
 import { LinkIcon, Share2Icon } from 'lucide-react';
 import { type ComponentProps, type ReactNode } from 'react';
@@ -22,42 +21,7 @@ import ImperativeModal from '@/components/ImperativeModal';
 import { useShare } from '@/hooks/useShare';
 
 import CardBanner from '../../components/CardBanner';
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    banner: css`
-      overflow: hidden;
-
-      border: 1px solid ${cssVar.colorBorderSecondary};
-      border-radius: ${cssVar.borderRadiusLG};
-
-      background: ${cssVar.colorBgContainer};
-      box-shadow: ${cssVar.boxShadowTertiary};
-    `,
-    copy: css`
-      background: ${cssVar.colorPrimary};
-
-      &:hover {
-        background: ${cssVar.colorPrimaryHover};
-      }
-    `,
-    icon: css`
-      border: 1px solid ${cssVar.colorFillSecondary};
-
-      svg {
-        fill: ${cssVar.colorTextSecondary};
-      }
-
-      &:hover {
-        border: 1px solid ${cssVar.colorBorderSecondary};
-
-        svg {
-          fill: ${cssVar.colorText};
-        }
-      }
-    `,
-  };
-});
+import styles from './ShareButton.module.css';
 
 interface ShareButtonProps extends ComponentProps<typeof Button> {
   meta?: {
@@ -94,7 +58,7 @@ const ShareButton = memo<ShareButtonProps>(({ meta, ...rest }) => {
             height={72}
             width={72}
             style={{
-              backgroundColor: cssVar.colorBgContainer,
+              backgroundColor: 'var(--ant-color-bg-container)',
               borderRadius: '50%',
               overflow: 'hidden',
               zIndex: 2,
@@ -104,7 +68,7 @@ const ShareButton = memo<ShareButtonProps>(({ meta, ...rest }) => {
           </Center>
           <Center padding={12} width={'100%'}>
             <h3 style={{ fontWeight: 'bold', textAlign: 'center' }}>{meta.title}</h3>
-            <Text as={'p'} style={{ color: cssVar.colorTextSecondary, textAlign: 'center' }}>
+            <Text as={'p'} style={{ color: 'var(--ant-color-text-secondary)', textAlign: 'center' }}>
               {meta.desc}
             </Text>
             {meta.hashtags && (
@@ -136,7 +100,7 @@ const ShareButton = memo<ShareButtonProps>(({ meta, ...rest }) => {
           <Input value={meta.url} variant={'filled'} />
           <CopyButton
             className={styles.copy}
-            color={cssVar.colorBgLayout}
+            color={'var(--ant-color-bg-layout)'}
             content={meta.url}
             icon={LinkIcon}
             size={{ blockSize: 36, size: 16 }}

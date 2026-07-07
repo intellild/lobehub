@@ -3,7 +3,6 @@
 import { LayersEnum } from '@lobechat/types';
 import { Icon } from '@lobehub/ui';
 import { SkillsIcon } from '@lobehub/ui/icons';
-import { createStaticStyles } from 'antd-style';
 import type { LucideIcon } from 'lucide-react';
 import { Brain, ClipboardCheck } from 'lucide-react';
 import { memo, useCallback, useRef, useState } from 'react';
@@ -15,6 +14,7 @@ import { agentSignalService } from '@/services/agentSignal';
 import { useChatStore } from '@/store/chat';
 
 import type { AgentSignalReceiptView } from '../hooks/useAgentSignalReceipts';
+import styles from './AgentSignalReceiptList.module.css';
 
 const MEMORY_ROUTE_BY_LAYER = {
   [LayersEnum.Activity]: { idParam: 'activityId', path: '/memory/activities' },
@@ -23,17 +23,6 @@ const MEMORY_ROUTE_BY_LAYER = {
   [LayersEnum.Identity]: { idParam: 'identityId', path: '/memory/identities' },
   [LayersEnum.Preference]: { idParam: 'preferenceId', path: '/memory/preferences' },
 } satisfies Record<LayersEnum, { idParam: string; path: string }>;
-
-const styles = createStaticStyles(({ css }) => ({
-  list: css`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    width: 100%;
-    margin-block-start: 8px;
-  `,
-}));
 
 const RECEIPT_LUCIDE_ICON_BY_KIND = {
   memory: Brain,

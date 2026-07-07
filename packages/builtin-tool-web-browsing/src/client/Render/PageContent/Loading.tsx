@@ -1,41 +1,29 @@
 'use client';
 
 import { CopyButton, Flexbox, Skeleton } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { lineEllipsis, shinyTextStyles } from '@/styles';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    cardBody: css`
-      padding-block-start: 12px;
-      padding-inline: 12px;
-    `,
-    container: css`
-      overflow: hidden;
-      justify-content: space-between;
+import stylesModule from './Loading.module.css';
 
-      min-width: 360px;
-      max-width: 360px;
-      height: 136px;
-      border: 1px solid ${cssVar.colorBorderSecondary};
-      border-radius: 12px;
-    `,
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    footer: css`
-      padding-block: 8px;
-      padding-inline: 12px;
-
-      font-size: ${cssVar.fontSizeSM};
-      color: ${cssVar.colorTextTertiary};
-
-      background-color: ${cssVar.colorFillQuaternary};
-    `,
-    text: cx(lineEllipsis(2), shinyTextStyles.shinyText),
-  };
-});
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+const styles: typeof stylesModule & { text: string } = {
+  ...stylesModule,
+  text: [lineEllipsis(2), shinyTextStyles.shinyText].join(' '),
+};
 
 const LoadingCard = memo<{ url: string }>(({ url }) => {
   const { t } = useTranslation('plugin');

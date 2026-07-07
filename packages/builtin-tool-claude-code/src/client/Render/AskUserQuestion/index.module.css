@@ -1,0 +1,38 @@
+.answer {
+line-height: 1.6;
+color: var(--ant-color-text);
+}
+
+.check {
+flex-shrink: 0;
+margin-block-start: 3px;
+color: var(--ant-color-primary);
+}
+
+.container {
+padding-block: 4px;
+}
+
+.description {
+font-size: 13px;
+line-height: 1.6;
+color: var(--ant-color-text-tertiary);
+}
+
+.divider {
+align-self: stretch;
+height: 1px;
+background: var(--ant-color-fill-secondary);
+}
+
+.label {
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.question {
+font-size: 15px;
+font-weight: 500;
+line-height: 1.5;
+color: var(--ant-color-text);
+}

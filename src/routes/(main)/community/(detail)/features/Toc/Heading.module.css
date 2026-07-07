@@ -1,0 +1,13 @@
+.anchor {
+display: none;
+  margin-inline-start: 0.5rem;
+  color: var(--ant-color-text-description) !important;
+}
+
+.container {
+&:hover {
+  .toc-anchor {
+    display: inline;
+  }
+}
+}

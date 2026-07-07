@@ -1,0 +1,54 @@
+.dropdownItem {
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.leftButton {
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+padding-inline: 8px;
+
+color: var(--ant-color-text-secondary);
+
+transition: all 0.2s;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.rightButton {
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+padding-inline: 4px;
+border-inline-start: 1px solid var(--ant-color-border-secondary);
+
+color: var(--ant-color-text-secondary);
+
+transition: all 0.2s;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.root {
+overflow: hidden;
+display: inline-flex;
+align-items: stretch;
+
+height: 24px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 6px;
+}

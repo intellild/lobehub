@@ -2,7 +2,6 @@
 
 import { AGENT_CHAT_URL } from '@lobechat/const';
 import { Button, Flexbox, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { MessagesSquare } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +19,7 @@ const EmptyState = memo<EmptyStateProps>(({ agentId, hasFilters, onClearFilters 
 
   return (
     <Flexbox align={'center'} flex={1} gap={16} justify={'center'} paddingBlock={64}>
-      <Icon icon={MessagesSquare} size={48} style={{ color: cssVar.colorTextQuaternary }} />
+      <Icon icon={MessagesSquare} size={48} style={{ color: 'var(--ant-color-text-quaternary)' }} />
       <Flexbox align={'center'} gap={4}>
         <Text fontSize={16} weight={600}>
           {hasFilters ? t('management.empty.filtered.title') : t('management.empty.noTopics.title')}

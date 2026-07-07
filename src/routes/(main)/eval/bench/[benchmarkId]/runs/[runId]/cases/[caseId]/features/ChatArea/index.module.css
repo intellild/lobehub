@@ -1,0 +1,15 @@
+.header {
+flex: none;
+
+padding-block: 12px;
+padding-inline: 16px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.scroll {
+overflow-x: hidden;
+overflow-y: auto;
+
+position: relative;
+flex: 1;
+}

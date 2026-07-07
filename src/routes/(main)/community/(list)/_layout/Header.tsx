@@ -1,6 +1,4 @@
 'use client';
-
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 import { useLocation } from 'react-router';
 
@@ -16,7 +14,7 @@ const Header = memo(() => {
   const isHome = location.pathname === '/';
 
   const cssVariables: Record<string, string> = {
-    '--header-border-color': cssVar.colorBorderSecondary,
+    '--header-border-color': 'var(--ant-color-border-secondary)',
   };
 
   return (

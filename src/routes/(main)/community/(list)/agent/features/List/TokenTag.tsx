@@ -1,25 +1,12 @@
 import { MCP } from '@lobehub/icons';
 import { Flexbox, Icon, Tag, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { BookTextIcon, CoinsIcon, GitForkIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { formatIntergerNumber } from '@/utils/format';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    token: css`
-      border-radius: 4px;
-
-      font-family: ${cssVar.fontFamilyCode};
-      font-size: 11px;
-      color: ${cssVar.colorTextSecondary};
-
-      background: ${cssVar.colorFillTertiary};
-    `,
-  };
-});
+import styles from './TokenTag.module.css';
 
 interface TokenTagProps {
   forkCount?: number;
@@ -60,7 +47,7 @@ const TokenTag = memo<TokenTagProps>(
             styles={{ root: { pointerEvents: 'none' } }}
             title={t('assistants.withPlugin')}
           >
-            <Tag icon={<Icon fill={cssVar.colorTextSecondary} icon={MCP} />}>{pluginCount}</Tag>
+            <Tag icon={<Icon fill={'var(--ant-color-text-secondary)'} icon={MCP} />}>{pluginCount}</Tag>
           </Tooltip>
         )}
         {Boolean(knowledgeCount && knowledgeCount > 0) && (

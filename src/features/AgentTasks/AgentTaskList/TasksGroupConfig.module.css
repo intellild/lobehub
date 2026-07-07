@@ -1,0 +1,6 @@
+.form {
+label {
+    font-size: 13px !important;
+    color: var(--ant-color-text-secondary) !important;
+  }
+}

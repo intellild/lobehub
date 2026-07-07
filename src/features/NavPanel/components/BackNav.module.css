@@ -1,0 +1,10 @@
+.button {
+height: 32px;
+padding-inline-start: 4px;
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+
+&:hover {
+  color: var(--ant-color-text);
+}
+}

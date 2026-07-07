@@ -4,68 +4,13 @@ import { DEFAULT_AVATAR } from '@lobechat/const';
 import { HETEROGENEOUS_TYPE_LABELS } from '@lobechat/heterogeneous-agents';
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Avatar, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, useTheme } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useTheme } from '@/hooks/useTheme';
+
 import type { AgentSearchItem, SearchAgentParams, SearchAgentState } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  agentItem: css`
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: 6px;
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  agentTitle: css`
-    font-size: 13px;
-    font-weight: 500;
-  `,
-  container: css`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    padding: 12px;
-    border-radius: 8px;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  description: css`
-    overflow: hidden;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  heteroBadge: css`
-    padding-block: 2px;
-    padding-inline: 6px;
-    border-radius: 4px;
-
-    font-size: 10px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  marketBadge: css`
-    padding-block: 2px;
-    padding-inline: 6px;
-    border-radius: 4px;
-
-    font-size: 10px;
-    color: ${cssVar.colorPrimary};
-
-    background: ${cssVar.colorPrimaryBg};
-  `,
-  noResults: css`
-    padding: 12px;
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-    text-align: center;
-  `,
-}));
+import styles from './index.module.css';
 
 export const SearchAgentRender = memo<BuiltinRenderProps<SearchAgentParams, SearchAgentState>>(
   ({ pluginState }) => {

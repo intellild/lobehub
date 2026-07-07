@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Icon, Text, Tooltip } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Loader2Icon, PencilIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -32,7 +31,7 @@ const EditingIndicator = memo<EditingIndicatorProps>(({ holderId, pending }) => 
 
     const checkingLabel = t('pageEditor.editMode.checking');
     return (
-      <Flexbox horizontal align={'center'} gap={4} style={{ color: cssVar.colorTextTertiary }}>
+      <Flexbox horizontal align={'center'} gap={4} style={{ color: 'var(--ant-color-text-tertiary)' }}>
         <Icon spin icon={Loader2Icon} size={14} />
         <Text ellipsis style={{ color: 'inherit', fontSize: 12, maxWidth: 200 }}>
           {checkingLabel}
@@ -47,7 +46,7 @@ const EditingIndicator = memo<EditingIndicatorProps>(({ holderId, pending }) => 
 
   return (
     <Tooltip title={label}>
-      <Flexbox horizontal align={'center'} gap={4} style={{ color: cssVar.colorTextTertiary }}>
+      <Flexbox horizontal align={'center'} gap={4} style={{ color: 'var(--ant-color-text-tertiary)' }}>
         <Icon icon={PencilIcon} size={14} />
         <Text ellipsis style={{ color: 'inherit', fontSize: 12, maxWidth: 200 }}>
           {label}

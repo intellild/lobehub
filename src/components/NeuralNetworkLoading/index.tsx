@@ -1,93 +1,10 @@
 'use client';
-
-import { createStaticStyles, keyframes } from 'antd-style';
 import { type CSSProperties } from 'react';
 import { memo } from 'react';
 
-const pulseAnim = keyframes`
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 1;
-  }
-`;
+import stylesModule from './index.module.css';
 
-const flowAnim = keyframes`
-  0% {
-    transform: translateX(0);
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(var(--flow-distance));
-    opacity: 0.5;
-  }
-`;
-
-const rotateAnim = keyframes`
-  100% {
-    transform: rotate(360deg);
-  }
-`;
-
-const scaleAnim = keyframes`
-  0%, 100% {
-    transform: scale(0.8);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 1;
-  }
-`;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  center: css`
-    fill: ${cssVar.colorTextSecondary};
-    animation: ${scaleAnim} 2s infinite;
-  `,
-
-  connection: css`
-    opacity: 0.3;
-    stroke: ${cssVar.colorTextSecondary};
-    stroke-width: 0.5;
-  `,
-
-  container: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `,
-
-  node: css`
-    fill: ${cssVar.colorTextSecondary};
-    animation: ${pulseAnim} 2s infinite;
-  `,
-
-  particle: css`
-    fill: ${cssVar.colorTextSecondary};
-    animation: ${flowAnim} 2s infinite;
-  `,
-
-  ring: css`
-    transform-origin: center;
-
-    fill: none;
-    stroke: ${cssVar.colorFill};
-    stroke-dasharray: 0 8;
-    stroke-width: 1;
-
-    animation: ${rotateAnim} 20s infinite linear;
-  `,
-
-  svg: css`
-    width: 100%;
-    height: 100%;
-  `,
-}));
+const styles = stylesModule;
 
 interface NeuralNetworkLoadingProps {
   size?: number;

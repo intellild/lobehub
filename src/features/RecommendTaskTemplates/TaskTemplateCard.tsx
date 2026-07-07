@@ -1,7 +1,6 @@
 import type { TaskTemplate } from '@lobechat/const';
 import { ActionIcon, Block, Button, Center, Flexbox, Tag, Text } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cssVar, cx } from 'antd-style';
 import { Clock, X } from 'lucide-react';
 import { memo, type MouseEvent, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +16,19 @@ import { INTEREST_ICON_MAP, TemplateBriefIcon } from './TemplateBriefIcon';
 import { useScheduleText } from './useScheduleText';
 import { useTaskTemplateCreate } from './useTaskTemplateCreate';
 import { useVisibleAuthSpecs } from './useVisibleAuthSpecs';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface TaskTemplateCardProps {
   onCreated: (templateId: number) => void;
@@ -84,7 +96,7 @@ export const TaskTemplateCard = memo<TaskTemplateCardProps>(
         className={cx(briefStyles.card, styles.card)}
         gap={12}
         padding={12}
-        style={{ borderRadius: cssVar.borderRadiusLG, cursor: 'pointer' }}
+        style={{ borderRadius: 'var(--ant-border-radius-lg)', cursor: 'pointer' }}
         variant={'outlined'}
         onClick={handleOpenDetail}
       >

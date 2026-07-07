@@ -2,17 +2,10 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Block, Flexbox, Highlighter, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import type { ReadLocalFileState } from '../../../types';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    overflow: hidden;
-    padding-inline: 8px 0;
-  `,
-}));
+import styles from './index.module.css';
 
 interface ReadLocalFileParams {
   endLine?: number;

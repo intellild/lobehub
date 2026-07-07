@@ -3,7 +3,6 @@
 import { ModelTag } from '@lobehub/icons';
 import { ActionIconGroup, Block, Flexbox, Markdown, Tag, Text } from '@lobehub/ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import dayjs from 'dayjs';
 import { CopyIcon, RotateCcwSquareIcon, Trash2 } from 'lucide-react';
 import { type RuntimeVideoGenParamsKeys, type RuntimeVideoGenParamsValue } from 'model-bank';
@@ -18,27 +17,16 @@ import { AsyncTaskErrorType, AsyncTaskStatus } from '@/types/asyncTask';
 import type { GenerationBatch } from '@/types/generation';
 import { downloadFile } from '@/utils/client/downloadFile';
 
+import stylesModule from './BatchItem.module.css';
 import VideoErrorItem from './VideoErrorItem';
 import VideoLoadingItem from './VideoLoadingItem';
 import VideoReferenceFrames from './VideoReferenceFrames';
 import VideoSuccessItem from './VideoSuccessItem';
 
-const styles = createStaticStyles(({ css, cssVar, cx }) => ({
-  batchActions: cx(
-    'batch-actions',
-    css`
-      opacity: 0;
-      transition: opacity 0.1s ${cssVar.motionEaseInOut};
-    `,
-  ),
-  container: css`
-    &:hover {
-      .batch-actions {
-        opacity: 1;
-      }
-    }
-  `,
-}));
+const styles: typeof stylesModule & { batchActions: string } = {
+  ...stylesModule,
+  batchActions: [stylesModule.batchActions, 'batch-actions'].join(' '),
+};
 
 interface VideoGenerationBatchItemProps {
   batch: GenerationBatch;

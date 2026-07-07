@@ -1,0 +1,98 @@
+.card {
+padding-block: 16px 12px;
+padding-inline: 16px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-container);
+}
+
+.credOption {
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.manageLink {
+cursor: pointer;
+font-size: 12px;
+color: var(--ant-color-primary);
+
+&:hover {
+  text-decoration: underline;
+}
+}
+
+.repoItem {
+cursor: pointer;
+
+display: flex;
+gap: 8px;
+align-items: center;
+
+min-height: 36px;
+padding-block: 6px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius-sm);
+
+transition: background 0.15s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+
+  .repo-delete-btn {
+    opacity: 1;
+  }
+}
+}
+
+.repoItemActive {
+background: var(--ant-color-fill-secondary);
+}
+
+.repoDeleteBtn {
+cursor: pointer;
+
+flex-shrink: 0;
+
+margin-inline-start: auto;
+padding: 2px;
+border: none;
+border-radius: 4px;
+
+color: var(--ant-color-text-tertiary);
+
+opacity: 0;
+background: transparent;
+
+transition:
+  opacity 0.15s,
+  color 0.15s;
+
+&:hover {
+  color: var(--ant-color-error);
+}
+}
+
+.repoList {
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
+
+.sectionDesc {
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+}
+
+.sectionDivider {
+margin-block: 12px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+}
+
+.sectionLabel {
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+text-transform: uppercase;
+letter-spacing: 0.04em;
+}

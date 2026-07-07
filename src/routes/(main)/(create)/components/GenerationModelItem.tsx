@@ -4,7 +4,6 @@ import { BRANDING_PROVIDER } from '@lobechat/business-const';
 import { CREDITS_PER_DOLLAR } from '@lobechat/const/currency';
 import { ModelIcon } from '@lobehub/icons';
 import { Flexbox, Popover, Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import type { AiModelForSelect } from 'model-bank';
 import numeral from 'numeral';
 import { memo, useMemo } from 'react';
@@ -15,36 +14,22 @@ import { useIsDark } from '@/hooks/useIsDark';
 import { useServerConfigStore } from '@/store/serverConfig';
 import { serverConfigSelectors } from '@/store/serverConfig/selectors';
 
-const POPOVER_MAX_WIDTH = 320;
+import styles from './GenerationModelItem.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  descriptionText: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-  descriptionText_dark: css`
-    color: ${cssVar.colorText};
-  `,
-  popover: css`
-    .ant-popover-inner {
-      background: ${cssVar.colorBgElevated};
-    }
-  `,
-  popover_dark: css`
-    .ant-popover-inner {
-      background: ${cssVar.colorBgSpotlight};
-    }
-  `,
-  priceText: css`
-    font-weight: 500;
-    color: ${cssVar.colorTextTertiary};
-    word-break: keep-all;
-    white-space: nowrap;
-  `,
-  priceText_dark: css`
-    font-weight: 500;
-    color: ${cssVar.colorTextLightSolid};
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
+const POPOVER_MAX_WIDTH = 320;
 
 export interface GenerationModelItemProps extends AiModelForSelect {
   /**

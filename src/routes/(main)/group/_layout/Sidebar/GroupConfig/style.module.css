@@ -1,0 +1,38 @@
+.memberItem {
+cursor: pointer;
+
+display: flex;
+flex-direction: row;
+gap: 4px;
+align-items: center;
+
+width: 100%;
+min-height: 36px;
+max-height: 36px;
+padding-block: 0 !important;
+padding-inline: 4px !important;
+border-radius: var(--ant-border-radius);
+
+transition: all 0.2s ease;
+
+.show-on-hover {
+  opacity: 0;
+}
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+
+  .show-on-hover {
+    opacity: 1;
+  }
+}
+}
+
+.prompt {
+opacity: 0.75;
+transition: opacity 200ms var(--ant-motion-ease-out);
+
+&:hover {
+  opacity: 1;
+}
+}

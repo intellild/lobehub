@@ -2,56 +2,13 @@
 
 import { AGENT_CHAT_URL } from '@lobechat/const';
 import { Avatar, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ArrowRight } from 'lucide-react';
 import { memo, useCallback } from 'react';
 
 import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwareNavigate';
 
 import { type MarkdownElementProps } from '../../type';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  arrowIcon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  card: css`
-    cursor: pointer;
-
-    padding-block: 14px;
-    padding-inline: 14px;
-    border-radius: 10px;
-
-    background: ${cssVar.colorFillQuaternary};
-
-    transition: background 0.15s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  description: css`
-    overflow: hidden;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  content: css`
-    /* Allow the text column to shrink below its content width so the
-       nowrap title/description ellipsize instead of overflowing the card. */
-    min-width: 0;
-  `,
-  title: css`
-    overflow: hidden;
-
-    font-size: 14px;
-    font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+import styles from './index.module.css';
 
 interface LobeAgentsProps extends MarkdownElementProps {
   avatar?: string;

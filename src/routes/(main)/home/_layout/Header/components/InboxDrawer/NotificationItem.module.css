@@ -1,0 +1,25 @@
+.container {
+cursor: pointer;
+user-select: none;
+
+.notification-item-actions {
+  opacity: 0;
+  transition: opacity 0.2s var(--ant-motion-ease-out);
+}
+
+&:hover {
+  .notification-item-actions {
+    opacity: 1;
+  }
+}
+}
+
+.unreadDot {
+flex-shrink: 0;
+
+width: 8px;
+height: 8px;
+border-radius: 50%;
+
+background: var(--ant-color-primary);
+}

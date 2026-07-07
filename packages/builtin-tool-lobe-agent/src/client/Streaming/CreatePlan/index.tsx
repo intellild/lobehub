@@ -2,41 +2,13 @@
 
 import type { BuiltinStreamingProps } from '@lobechat/types';
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ListChecksIcon } from 'lucide-react';
 import { memo } from 'react';
 
 import StreamingMarkdown from '@/components/StreamingMarkdown';
 
 import type { CreatePlanParams } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-    padding: 12px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 8px;
-  `,
-  description: css`
-    font-size: 14px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  header: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    padding-block: 4px;
-  `,
-  title: css`
-    overflow: hidden;
-
-    font-size: 16px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+import styles from './index.module.css';
 
 export const CreatePlanStreaming = memo<BuiltinStreamingProps<CreatePlanParams>>(({ args }) => {
   const { goal, description, context } = args || {};

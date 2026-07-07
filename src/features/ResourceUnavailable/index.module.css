@@ -1,0 +1,41 @@
+.attachment {
+padding-block: 8px;
+padding-inline: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 8px;
+
+color: var(--ant-color-text-tertiary);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.card {
+padding-block: 12px;
+padding-inline: 16px;
+border: 1px dashed var(--ant-color-border-secondary);
+border-radius: 8px;
+
+color: var(--ant-color-text-description);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.icon {
+flex: none;
+color: var(--ant-color-text-tertiary);
+}
+
+.inline {
+padding-block: 2px;
+padding-inline: 8px;
+border-radius: 4px;
+
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.small {
+font-size: 12px;
+}

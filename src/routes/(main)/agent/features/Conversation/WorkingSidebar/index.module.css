@@ -1,0 +1,52 @@
+.body {
+overflow-y: auto;
+flex: 1;
+min-height: 0;
+}
+
+.header {
+flex-shrink: 0;
+}
+
+.pane {
+overflow-y: auto;
+flex: 1;
+min-height: 0;
+}
+
+.paneHidden {
+display: none;
+}
+
+.tab {
+cursor: pointer;
+
+padding-block: 4px;
+padding-inline: 10px;
+border: none;
+border-radius: 6px;
+
+font-size: 13px;
+color: var(--ant-color-text-tertiary);
+
+background: transparent;
+
+transition:
+  color 0.15s,
+  background 0.15s;
+
+&:hover {
+  color: var(--ant-color-text);
+}
+}
+
+.tabActive {
+color: var(--ant-color-text);
+background: var(--ant-color-fill-tertiary);
+}
+
+.tabs {
+display: flex;
+gap: 4px;
+align-items: center;
+}

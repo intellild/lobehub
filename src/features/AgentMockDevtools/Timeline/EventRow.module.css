@@ -1,0 +1,40 @@
+.active {
+background: var(--ant-color-fill-secondary);
+}
+
+.dot {
+width: 6px;
+height: 6px;
+margin-block-start: 5px;
+border-radius: 50%;
+}
+
+.preview {
+overflow: hidden;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.row {
+cursor: pointer;
+
+display: grid;
+grid-template-columns: 64px 16px 140px 1fr;
+gap: 8px;
+
+padding-block: 4px;
+padding-inline: 12px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+
+font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+font-size: 11px;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.type {
+color: var(--ant-color-text-secondary);
+}

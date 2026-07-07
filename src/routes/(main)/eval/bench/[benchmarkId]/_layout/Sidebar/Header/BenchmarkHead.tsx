@@ -10,7 +10,6 @@ import {
   stopPropagation,
   Text,
 } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import {
   Activity,
   Award,
@@ -30,6 +29,8 @@ import { memo, useCallback, useMemo } from 'react';
 import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwareNavigate';
 import { useEvalStore } from '@/store/eval';
 
+import styles from './BenchmarkHead.module.css';
+
 const SYSTEM_ICONS = [
   LoaderPinwheel,
   Volleyball,
@@ -48,12 +49,6 @@ const getSystemIcon = (id: string) => {
   const hash = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return SYSTEM_ICONS[hash % SYSTEM_ICONS.length];
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  menuIcon: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
 
 const BenchmarkHead = memo<{ id: string }>(({ id }) => {
   const navigate = useWorkspaceAwareNavigate();
@@ -93,7 +88,7 @@ const BenchmarkHead = memo<{ id: string }>(({ id }) => {
       key: b.id,
       label: b.name,
       onClick: () => handleBenchmarkSwitch(b.id),
-      style: b.id === id ? { backgroundColor: cssVar.controlItemBgActive } : {},
+      style: b.id === id ? { backgroundColor: 'var(--ant-control-item-bg-active)' } : {},
     }));
   }, [benchmarkList, handleBenchmarkSwitch, id, styles.menuIcon]);
 

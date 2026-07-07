@@ -1,6 +1,5 @@
 import { Button, Flexbox, Markdown, Snippet, Text } from '@lobehub/ui';
 import { Card, Space } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { AlertTriangle, CheckCircle, ExternalLink, Terminal } from 'lucide-react';
 import * as m from 'motion/react-m';
 import { memo } from 'react';
@@ -9,65 +8,12 @@ import { useTranslation } from 'react-i18next';
 import { useToolStore } from '@/store/tool';
 import { type SystemDependencyCheckResult } from '@/types/plugins';
 
+import styles from './MCPDependenciesGuide.module.css';
+
 interface MCPDependenciesGuideProps {
   identifier: string;
   systemDependencies: SystemDependencyCheckResult[];
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  commandBlock: css`
-    position: relative;
-
-    padding-block: ${cssVar.paddingXS};
-    padding-inline: ${cssVar.paddingSM};
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: ${cssVar.borderRadiusSM};
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-
-    background-color: ${cssVar.colorFillTertiary};
-
-    &:hover {
-      background-color: ${cssVar.colorFillSecondary};
-    }
-  `,
-  container: css`
-    margin-block-start: ${cssVar.marginXS};
-    padding: ${cssVar.padding};
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: ${cssVar.borderRadius};
-
-    background-color: ${cssVar.colorBgContainer};
-  `,
-  copyButton: css`
-    position: absolute;
-    inset-block-start: ${cssVar.paddingXXS};
-    inset-inline-end: ${cssVar.paddingXXS};
-
-    height: auto;
-    min-height: auto;
-    padding-block: 2px;
-    padding-inline: 6px;
-
-    font-size: 12px;
-  `,
-  dependencyCard: css`
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusSM};
-  `,
-  footer: css`
-    display: flex;
-    gap: ${cssVar.marginXS};
-    justify-content: flex-end;
-    margin-block-start: ${cssVar.marginXS};
-  `,
-  statusIcon: css`
-    display: flex;
-    gap: ${cssVar.marginXXS};
-    align-items: center;
-  `,
-}));
 
 const MCPDependenciesGuide = memo<MCPDependenciesGuideProps>(
   ({ identifier, systemDependencies }) => {
@@ -106,7 +52,7 @@ const MCPDependenciesGuide = memo<MCPDependenciesGuideProps>(
         >
           <Flexbox gap={8}>
             <Flexbox horizontal align="center" gap={8}>
-              <AlertTriangle color={cssVar.colorWarning} size={16} />
+              <AlertTriangle color={'var(--ant-color-warning)'} size={16} />
               <Text as={'h5'} style={{ margin: 0 }}>
                 {t('mcpInstall.dependenciesRequired')}
               </Text>
@@ -140,14 +86,14 @@ const MCPDependenciesGuide = memo<MCPDependenciesGuideProps>(
                     <div className={styles.statusIcon}>
                       {dep.meetRequirement ? (
                         <>
-                          <CheckCircle color={cssVar.colorSuccess} size={14} />
+                          <CheckCircle color={'var(--ant-color-success)'} size={14} />
                           <Text style={{ fontSize: 12 }} type="success">
                             {t('mcpInstall.dependencyStatus.installed')}
                           </Text>
                         </>
                       ) : (
                         <>
-                          <AlertTriangle color={cssVar.colorWarning} size={14} />
+                          <AlertTriangle color={'var(--ant-color-warning)'} size={14} />
                           <Text style={{ fontSize: 12 }} type="warning">
                             {t('mcpInstall.dependencyStatus.notInstalled')}
                           </Text>

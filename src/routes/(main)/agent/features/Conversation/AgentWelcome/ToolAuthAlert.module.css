@@ -1,0 +1,8 @@
+.row:hover :global(.tool-auth-remove) {
+  opacity: 1;
+}
+
+.removeIcon {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}

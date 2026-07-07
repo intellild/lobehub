@@ -1,0 +1,111 @@
+.card {
+overflow: hidden;
+
+width: 100%;
+margin-block-end: 24px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 12px;
+}
+
+.codeBox {
+display: flex;
+flex: 1;
+align-items: center;
+justify-content: center;
+
+padding-block: 16px;
+padding-inline: 24px;
+border-radius: 12px;
+
+font-family: monospace;
+font-size: 28px;
+font-weight: 600;
+letter-spacing: 6px;
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.content {
+display: flex;
+flex-direction: column;
+gap: 20px;
+align-items: center;
+
+margin-block: 0 40px;
+padding-inline: 48px;
+}
+
+.errorText {
+color: var(--ant-color-error);
+}
+
+.header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+padding-block: 16px;
+padding-inline: 24px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.hero {
+display: flex;
+flex-direction: column;
+gap: 16px;
+align-items: center;
+justify-content: center;
+
+padding-block: 48px 32px;
+padding-inline: 24px;
+border-radius: 16px 16px 0 0;
+}
+
+.pollingHint {
+display: flex;
+gap: 8px;
+align-items: center;
+justify-content: center;
+
+padding-block: 12px;
+padding-inline: 16px;
+border-radius: 8px;
+
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.serviceNote {
+font-size: 13px;
+color: var(--ant-color-text-description);
+text-align: center;
+}
+
+.successBadge {
+display: flex;
+gap: 6px;
+align-items: center;
+
+font-size: 13px;
+color: var(--ant-color-success);
+}
+
+.userAvatar {
+border: 2px solid var(--ant-color-border-secondary);
+box-shadow: 0 4px 12px var(--ant-color-fill-secondary);
+}
+
+.userInfo {
+display: flex;
+flex-direction: column;
+gap: 6px;
+align-items: center;
+}
+
+.username {
+font-size: 16px;
+font-weight: 600;
+color: var(--ant-color-text);
+}

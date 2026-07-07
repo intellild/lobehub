@@ -19,7 +19,6 @@ import {
   SiYarn,
 } from '@icons-pack/react-simple-icons';
 import { Icon, Tooltip } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import Java from './Java';
@@ -63,7 +62,7 @@ const InstallationIcon = memo<{ size?: number; type: string }>(({ type, size = 2
   if (iconType === 'none') return;
   return (
     <Tooltip title={iconType}>
-      <Icon fill={cssVar.colorTextDescription} icon={icons?.[iconType] || Terminal} size={size} />
+      <Icon fill={'var(--ant-color-text-description)'} icon={icons?.[iconType] || Terminal} size={size} />
     </Tooltip>
   );
 });

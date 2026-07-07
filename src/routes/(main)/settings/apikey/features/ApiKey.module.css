@@ -1,0 +1,20 @@
+.container {
+.ant-pro-card-body {
+  padding-inline: 0;
+
+  .ant-pro-table-list-toolbar-container {
+    padding-block-start: 0;
+  }
+}
+}
+
+.header {
+display: flex;
+justify-content: flex-end;
+margin-block-end: var(--ant-margin);
+}
+
+.table {
+border-radius: var(--ant-border-radius);
+background: var(--ant-color-bg-container);
+}

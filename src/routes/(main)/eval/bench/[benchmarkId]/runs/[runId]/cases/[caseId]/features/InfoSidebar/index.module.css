@@ -1,0 +1,67 @@
+.container {
+border-inline-start: 1px solid var(--ant-color-border-secondary);
+background: var(--ant-color-bg-container);
+}
+
+.copyBlock {
+font-size: var(--ant-font-size);
+line-height: 1.5;
+color: var(--ant-color-text);
+}
+
+.infoItem {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+padding-block: 4px;
+padding-inline: 0;
+}
+
+.infoLabel {
+font-size: var(--ant-font-size);
+color: var(--ant-color-text-secondary);
+}
+
+.infoValue {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size);
+color: var(--ant-color-text);
+}
+
+.scoreCard {
+padding: 12px;
+border-radius: var(--ant-border-radius);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.scoreValue {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-heading-3);
+font-weight: 600;
+line-height: 1;
+color: var(--ant-color-text);
+}
+
+.section {
+padding-block-end: 16px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.rubricName {
+font-size: var(--ant-font-size);
+font-weight: 500;
+}
+
+.rubricReason {
+font-size: var(--ant-font-size-sm);
+line-height: 1.5;
+color: var(--ant-color-text-secondary);
+}
+
+.rubricScore {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-secondary);
+}

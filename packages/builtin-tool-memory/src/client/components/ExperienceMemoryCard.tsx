@@ -2,7 +2,6 @@
 
 import { Accordion, AccordionItem, Avatar, Flexbox, Tag, Text } from '@lobehub/ui';
 import { Steps } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import BubblesLoading from '@/components/BubblesLoading';
@@ -11,74 +10,7 @@ import StreamingMarkdown from '@/components/StreamingMarkdown';
 import { highlightTextStyles } from '@/styles';
 
 import type { AddExperienceMemoryParams } from '../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-
-    width: 100%;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 16px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  content: css`
-    padding-block: 12px;
-    padding-inline: 16px;
-  `,
-  detail: css`
-    font-size: 13px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  header: css`
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  keyLearning: css`
-    font-size: 14px;
-    line-height: 1.6;
-    color: ${cssVar.colorText};
-  `,
-  section: css`
-    padding: 4px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  stepContent: css`
-    font-size: 13px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-    white-space: pre-wrap;
-  `,
-  stepsContainer: css`
-    .ant-steps-item-content {
-      min-height: auto;
-    }
-
-    .ant-steps-item-description {
-      padding-block-end: 12px !important;
-    }
-  `,
-  summary: css`
-    font-size: 14px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  tags: css`
-    padding-block-start: 8px;
-    border-block-start: 1px dashed ${cssVar.colorBorderSecondary};
-  `,
-  title: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './ExperienceMemoryCard.module.css';
 
 export interface ExperienceMemoryCardProps {
   data?: AddExperienceMemoryParams;
@@ -177,7 +109,7 @@ export const ExperienceMemoryCard = memo<ExperienceMemoryCardProps>(({ data, loa
                         shape={'square'}
                         size={20}
                         style={{
-                          border: `1px solid ${cssVar.colorBorderSecondary}`,
+                          border: `1px solid ${'var(--ant-color-border-secondary)'}`,
                           fontSize: 11,
                         }}
                       />

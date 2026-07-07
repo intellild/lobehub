@@ -1,8 +1,7 @@
 import { Flexbox, Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { CheckIcon } from 'lucide-react';
 
-const renderCheck = () => <Icon color={cssVar.colorTextSecondary} icon={CheckIcon} size={14} />;
+const renderCheck = () => <Icon color={'var(--ant-color-text-secondary)'} icon={CheckIcon} size={14} />;
 
 export const renderMenuExtra = (shortcut: string, isCurrent: boolean) =>
   isCurrent ? (

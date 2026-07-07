@@ -1,7 +1,6 @@
 import { type ChatPluginPayload } from '@lobechat/types';
 import { Avatar, Button, Center, Flexbox } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -34,7 +33,7 @@ const PluginSettings = memo<PluginSettingsProps>(({ id, plugin }) => {
         <Center gap={16} style={{ maxWidth: 400 }}>
           <Avatar
             avatar={pluginHelpers.getPluginAvatar(pluginMeta) || '⚙️'}
-            background={cssVar.colorFillContent}
+            background={'var(--ant-color-fill-content)'}
             gap={12}
             shape={'square'}
             size={80}

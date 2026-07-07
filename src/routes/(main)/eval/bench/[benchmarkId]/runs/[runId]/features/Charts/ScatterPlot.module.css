@@ -1,0 +1,38 @@
+.axisLabel {
+pointer-events: none;
+position: absolute;
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+}
+
+.dot {
+cursor: pointer;
+
+transition:
+  transform 0.15s ease,
+  opacity 0.15s ease;
+
+&:hover {
+  transform: translate(-50%, 50%) scale(1.5);
+  opacity: 1 !important;
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+}
+
+.scatterArea {
+position: relative;
+overflow: hidden;
+flex: 1;
+}
+
+.tooltipLabel {
+color: var(--ant-color-text-tertiary);
+}

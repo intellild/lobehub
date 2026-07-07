@@ -3,7 +3,6 @@
 import { SOCIAL_URL } from '@lobechat/business-const';
 import { Flexbox, Icon, Tag } from '@lobehub/ui';
 import { Tabs, type TabsItem } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import {
   BookOpenIcon,
   BotIcon,
@@ -23,31 +22,7 @@ import { pluginSelectors } from '@/store/tool/selectors';
 import { McpNavKey } from '@/types/discover';
 
 import { useDetailContext } from './DetailProvider';
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    link: css`
-      color: ${cssVar.colorTextDescription};
-
-      &:hover {
-        color: ${cssVar.colorInfo};
-      }
-    `,
-    nav: css`
-      border-block-end: 1px solid ${cssVar.colorBorder};
-    `,
-    tabs: css`
-      scrollbar-width: none;
-      overflow-x: auto;
-      flex: 1;
-      min-width: 0;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    `,
-  };
-});
+import styles from './Nav.module.css';
 
 interface NavProps {
   activeTab?: McpNavKey;

@@ -1,6 +1,5 @@
 import type { TaskStatus } from '@lobechat/types';
 import { type DropdownItem, DropdownMenu, Icon, type MenuInfo, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import type { LucideIcon } from 'lucide-react';
 import {
   CircleCheck,
@@ -20,6 +19,7 @@ import { usePermission } from '@/hooks/usePermission';
 import { useTaskStore } from '@/store/task';
 
 import { renderMenuExtra } from './menuExtra';
+import styles from './TaskStatusTag.module.css';
 
 interface StatusMeta {
   color: string;
@@ -30,43 +30,43 @@ interface StatusMeta {
 
 export const STATUS_META: Record<TaskStatus, StatusMeta> = {
   backlog: {
-    color: cssVar.colorTextQuaternary,
+    color: 'var(--ant-color-text-quaternary)',
     icon: CircleDashed,
     label: 'Backlog',
     labelKey: 'status.backlog',
   },
   canceled: {
-    color: cssVar.colorTextSecondary,
+    color: 'var(--ant-color-text-secondary)',
     icon: CircleSlash,
     label: 'Canceled',
     labelKey: 'status.canceled',
   },
   completed: {
-    color: cssVar.colorSuccess,
+    color: 'var(--ant-color-success)',
     icon: CircleCheck,
     label: 'Completed',
     labelKey: 'status.completed',
   },
   failed: {
-    color: cssVar.colorError,
+    color: 'var(--ant-color-error)',
     icon: CircleX,
     label: 'Failed',
     labelKey: 'status.failed',
   },
   paused: {
-    color: cssVar.colorInfo,
+    color: 'var(--ant-color-info)',
     icon: HandIcon,
     label: 'Pending review',
     labelKey: 'status.paused',
   },
   running: {
-    color: cssVar.colorWarning,
+    color: 'var(--ant-color-warning)',
     icon: CircleDot,
     label: 'Running',
     labelKey: 'status.running',
   },
   scheduled: {
-    color: cssVar.colorWarning,
+    color: 'var(--ant-color-warning)',
     icon: Clock,
     label: 'Scheduled',
     labelKey: 'status.scheduled',
@@ -79,28 +79,6 @@ export const USER_SELECTABLE_STATUSES: TaskStatus[] = [
   'completed',
   'canceled',
 ];
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  trigger: css`
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    transition: filter ${cssVar.motionDurationMid};
-
-    &:hover {
-      filter: brightness(0.85);
-    }
-  `,
-  triggerDisabled: css`
-    cursor: not-allowed;
-    display: inline-flex;
-    opacity: 0.5;
-
-    &:hover {
-      filter: none;
-    }
-  `,
-}));
 
 interface TaskStatusTagProps {
   children?: ReactNode;
@@ -183,7 +161,7 @@ const TaskStatusTag = memo<TaskStatusTagProps>(
     const triggerNode =
       children ||
       (loading ? (
-        <Icon spin color={cssVar.colorTextDescription} icon={Loader2Icon} size={size} />
+        <Icon spin color={'var(--ant-color-text-description)'} icon={Loader2Icon} size={size} />
       ) : (
         <Tooltip title={t(`taskDetail.${meta.labelKey}`, { defaultValue: meta.label })}>
           <span className={styles.trigger} onClick={(e) => e.stopPropagation()}>

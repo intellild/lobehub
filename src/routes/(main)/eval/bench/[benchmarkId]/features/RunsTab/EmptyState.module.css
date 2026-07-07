@@ -1,0 +1,26 @@
+.emptyCard {
+align-items: center;
+justify-content: center;
+
+padding-block: 64px;
+padding-inline: 24px;
+border: 1px dashed var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+text-align: center;
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.iconBox {
+display: flex;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+
+width: 56px;
+height: 56px;
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-fill-tertiary);
+}

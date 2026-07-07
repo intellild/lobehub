@@ -1,0 +1,12 @@
+.card {
+padding: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-bg-container);
+}
+
+.grid {
+display: grid;
+gap: 16px;
+padding-block: 12px;
+}

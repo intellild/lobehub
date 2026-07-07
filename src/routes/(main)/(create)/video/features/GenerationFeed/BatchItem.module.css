@@ -1,0 +1,12 @@
+.batchActions {
+opacity: 0;
+  transition: opacity 0.1s var(--ant-motion-ease-in-out);
+}
+
+.container {
+&:hover {
+  .batch-actions {
+    opacity: 1;
+  }
+}
+}

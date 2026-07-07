@@ -1,5 +1,4 @@
 import { SKILL_DRAG_MIME } from '@lobechat/const';
-import { cssVar } from 'antd-style';
 import type React from 'react';
 
 import type { ActionTagCategory, ActionTagType } from './types';
@@ -25,7 +24,7 @@ export const writeSkillDragData = (dataTransfer: DataTransfer, payload: SkillDra
 };
 
 /**
- * Resolve a `var(--x)` reference (e.g. from antd-style `cssVar.*`) to its
+ * Resolve a `var(--x)` reference (e.g. from Ant Design CSS variables) to its
  * concrete computed value in the context of `ctx`. Lets the drag preview live
  * on `document.body` (free of transformed ancestors that would break
  * fixed-position cursor tracking) while still picking up the themed token.
@@ -80,10 +79,10 @@ const setSkillDragImage = (event: React.DragEvent, label: string): void => {
   const preview = document.createElement('div');
   Object.assign(preview.style, {
     alignItems: 'center',
-    background: resolveCssVar(cssVar.colorBgElevated, host),
-    border: `1px solid ${resolveCssVar(cssVar.colorBorderSecondary, host)}`,
+    background: resolveCssVar('var(--ant-color-bg-elevated)', host),
+    border: `1px solid ${resolveCssVar('var(--ant-color-border-secondary)', host)}`,
     borderRadius: '10px',
-    color: resolveCssVar(cssVar.colorText, host),
+    color: resolveCssVar('var(--ant-color-text)', host),
     display: 'inline-flex',
     fontSize: '13px',
     gap: '8px',
@@ -110,7 +109,7 @@ const setSkillDragImage = (event: React.DragEvent, label: string): void => {
   if (iconSvg) {
     const iconClone = iconSvg.cloneNode(true) as SVGElement;
     iconClone.style.flexShrink = '0';
-    iconClone.style.color = resolveCssVar(cssVar.colorTextTertiary, host);
+    iconClone.style.color = resolveCssVar('var(--ant-color-text-tertiary)', host);
     preview.append(iconClone);
   }
 

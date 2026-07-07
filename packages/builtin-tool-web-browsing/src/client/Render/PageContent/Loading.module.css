@@ -1,0 +1,25 @@
+.cardBody {
+padding-block-start: 12px;
+  padding-inline: 12px;
+}
+
+.container {
+overflow: hidden;
+  justify-content: space-between;
+
+  min-width: 360px;
+  max-width: 360px;
+  height: 136px;
+  border: 1px solid var(--ant-color-border-secondary);
+  border-radius: 12px;
+}
+
+.footer {
+padding-block: 8px;
+  padding-inline: 12px;
+
+  font-size: var(--ant-font-size-sm);
+  color: var(--ant-color-text-tertiary);
+
+  background-color: var(--ant-color-fill-quaternary);
+}

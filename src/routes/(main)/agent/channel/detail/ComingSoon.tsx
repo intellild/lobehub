@@ -1,59 +1,12 @@
 'use client';
 
 import { Flexbox, Tag } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { ChannelPlatformDefinition } from '../const';
 import { getPlatformIcon } from '../const';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  desc: css`
-    max-width: 360px;
-
-    font-size: 14px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-    text-align: center;
-  `,
-  header: css`
-    width: 100%;
-    max-width: 1024px;
-    padding-block: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorder};
-  `,
-  main: css`
-    position: relative;
-
-    overflow-y: auto;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-
-    padding: 24px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  placeholder: css`
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    max-width: 1024px;
-    padding-block: 48px;
-  `,
-  title: css`
-    font-size: 18px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './ComingSoon.module.css';
 
 interface ComingSoonDetailProps {
   platformDef: ChannelPlatformDefinition;

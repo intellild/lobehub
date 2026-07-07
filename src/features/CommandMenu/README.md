@@ -23,7 +23,7 @@ CommandMenu/
 ├── index.tsx                    # Main component & orchestration
 ├── useCommandMenu.ts            # Core hook with business logic
 ├── types.ts                     # TypeScript type definitions
-├── styles.ts                    # antd-style CSS-in-JS styles
+├── styles.module.css            # CSS Modules styles
 │
 ├── components/
 │   ├── CommandInput.tsx         # Search input with context/back navigation
@@ -303,21 +303,21 @@ if (isLoading) {
 
 ## Styling
 
-Uses `antd-style` for theme-aware CSS-in-JS:
+Uses CSS Modules with Ant Design CSS variables for theme-aware styling:
 
 **Key Patterns**:
-1. Uses `token.*` for colors/spacing to support dark mode
+1. Uses `var(--ant-*)` CSS variables for colors/spacing to support dark mode
 2. CSS animations for smooth transitions
 3. Responsive sizing with viewport units
 4. Flexbox for layouts
 
 **Example**:
-```typescript
-commandRoot: css`
+```css
+.commandRoot {
   width: min(640px, 90vw);
   max-height: min(500px, 70vh);
-  background: ${token.colorBgElevated};
-  box-shadow: ${token.boxShadowSecondary};
+  background: var(--ant-color-bg-elevated);
+  box-shadow: var(--ant-box-shadow-secondary);
 
   animation: slide-down 0.12s ease-out;
 
@@ -331,7 +331,7 @@ commandRoot: css`
       opacity: 1;
     }
   }
-`,
+}
 ```
 
 ## Integration Points
@@ -638,7 +638,7 @@ Potential areas for enhancement:
 - `react-router-dom` - Navigation
 - `zustand` - Global state
 - `swr` - Data fetching
-- `antd-style` - Styling
+- CSS Modules - Styling
 - `lucide-react` - Icons
 
 **Related Documentation**:

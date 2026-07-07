@@ -3,7 +3,6 @@
 import { useAnalytics } from '@lobehub/analytics/react';
 import { ActionIcon, Button, Flexbox, Tooltip } from '@lobehub/ui';
 import { Carousel as AntCarousel } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { X } from 'lucide-react';
 import { motion } from 'motion/react';
 import {
@@ -20,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 
 import type { GlobalBillboard, GlobalBillboardItem } from '@/types/serverConfig';
 
+import styles from './Carousel.module.css';
 import { resolveBillboardItem } from './locale';
 
 type BillboardItem = GlobalBillboardItem;
@@ -32,92 +32,6 @@ interface BillboardCarouselProps {
   onClose: () => void;
   set: GlobalBillboard;
 }
-
-const styles = createStaticStyles(({ css }) => ({
-  action: css`
-    display: block;
-    width: 100%;
-    margin-block-start: 8px;
-  `,
-  card: css`
-    position: fixed;
-    z-index: 1000;
-    inset-block-end: 56px;
-    inset-inline-start: 8px;
-    transform-origin: bottom left;
-
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-
-    width: 300px;
-    max-width: calc(100vw - 32px);
-    padding: 0;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 12px;
-
-    background: ${cssVar.colorBgContainer};
-    box-shadow: 0 4px 24px rgb(0 0 0 / 12%);
-  `,
-  closeButton: css`
-    position: absolute;
-    z-index: 2;
-    inset-block-start: 8px;
-    inset-inline-end: 8px;
-  `,
-  description: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-
-    font-size: 14px;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-  `,
-  dot: css`
-    cursor: pointer;
-
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-
-    background: ${cssVar.colorFillSecondary};
-
-    transition: all 0.2s;
-  `,
-  dotActive: css`
-    width: 18px;
-    border-radius: 3px;
-    background: ${cssVar.colorPrimary};
-  `,
-  dots: css`
-    padding-block-end: 10px;
-  `,
-  image: css`
-    display: block;
-
-    width: 100%;
-    height: 140px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    object-fit: cover;
-  `,
-  itemBody: css`
-    padding: 12px;
-  `,
-  title: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-
-    font-size: 16px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-  `,
-}));
 
 const ItemContent = memo<{ billboardSlug: string; item: BillboardItem; position: number }>(
   ({ item, billboardSlug, position }) => {

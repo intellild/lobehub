@@ -1,5 +1,4 @@
 import { Icon, Tooltip } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { startCase } from 'es-toolkit/compat';
 import { type LucideIcon } from 'lucide-react';
 import {
@@ -29,7 +28,7 @@ const icons: Record<AiModelType, LucideIcon> = {
 const ModelTypeIcon = memo<{ size?: number; type: AiModelType }>(({ type, size = 20 }) => {
   return (
     <Tooltip title={`${startCase(type)} Model`}>
-      <Icon color={cssVar.colorTextDescription} icon={icons?.[type]} size={size} />
+      <Icon color={'var(--ant-color-text-description)'} icon={icons?.[type]} size={size} />
     </Tooltip>
   );
 });

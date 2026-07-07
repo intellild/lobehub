@@ -3,7 +3,6 @@
 import type { ReplaceTextArgs } from '@lobechat/editor-runtime';
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { ArrowRight } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,21 +10,20 @@ import { useTranslation } from 'react-i18next';
 import { highlightTextStyles, inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { ReplaceTextState } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  arrow: css`
-    margin-inline: 4px;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  from: css`
-    color: ${cssVar.colorTextSecondary};
-    text-decoration: line-through;
-  `,
-  title: css`
-    margin-inline-end: 8px;
-    color: ${cssVar.colorText};
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const ReplaceTextInspector = memo<BuiltinInspectorProps<ReplaceTextArgs, ReplaceTextState>>(
   ({ args, partialArgs, isArgumentsStreaming, pluginState }) => {

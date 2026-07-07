@@ -4,74 +4,11 @@ import type { EvalRubricScore } from '@lobechat/types';
 import { formatCost, formatShortenNumber } from '@lobechat/utils';
 import { Flexbox, Tag, Text } from '@lobehub/ui';
 import { Collapse } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import SegmentBar from '../../../../../../../../features/SegmentBar';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    border-inline-start: 1px solid ${cssVar.colorBorderSecondary};
-    background: ${cssVar.colorBgContainer};
-  `,
-  // Reading block for free-text values (input / expected).
-  copyBlock: css`
-    font-size: ${cssVar.fontSize};
-    line-height: 1.5;
-    color: ${cssVar.colorText};
-  `,
-  infoItem: css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 4px;
-    padding-inline: 0;
-  `,
-  infoLabel: css`
-    font-size: ${cssVar.fontSize};
-    color: ${cssVar.colorTextSecondary};
-  `,
-  infoValue: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSize};
-    color: ${cssVar.colorText};
-  `,
-  // The headline score for the panel — large mono number on a tonal surface.
-  scoreCard: css`
-    padding: 12px;
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  scoreValue: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeHeading3};
-    font-weight: 600;
-    line-height: 1;
-    color: ${cssVar.colorText};
-  `,
-  // Divider between titled sections — tonal hairline, not a heavy rule.
-  section: css`
-    padding-block-end: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  rubricName: css`
-    font-size: ${cssVar.fontSize};
-    font-weight: 500;
-  `,
-  rubricReason: css`
-    font-size: ${cssVar.fontSizeSM};
-    line-height: 1.5;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  rubricScore: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+import styles from './index.module.css';
 
 /**
  * Common eval result data used for display.
@@ -221,8 +158,8 @@ const InfoSidebar = memo<InfoSidebarProps>(({ testCase, evalResult, passed, scor
                   </Flexbox>
                   <SegmentBar
                     segments={[
-                      { color: passed ? cssVar.colorSuccess : cssVar.colorError, value: scorePct },
-                      { color: cssVar.colorFillSecondary, value: 100 - scorePct },
+                      { color: passed ? 'var(--ant-color-success)' : 'var(--ant-color-error)', value: scorePct },
+                      { color: 'var(--ant-color-fill-secondary)', value: 100 - scorePct },
                     ]}
                   />
                 </Flexbox>

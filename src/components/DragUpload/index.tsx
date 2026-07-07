@@ -1,77 +1,15 @@
  
 import { Center, Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { FileImage, FileText, FileUpIcon } from 'lucide-react';
 import { memo } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
+import styles from './index.module.css';
 import { getContainer, useDragUpload } from './useDragUpload';
 
 const BLOCK_SIZE = 64;
 const ICON_SIZE = { size: 36, strokeWidth: 1.5 };
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    container: css`
-      width: 320px;
-      height: 200px;
-      padding: calc(${cssVar.borderRadiusLG} + 4px);
-      border-radius: 16px;
-
-      background: ${cssVar.geekblue};
-    `,
-    content: css`
-      width: 100%;
-      height: 100%;
-      padding: 16px;
-      border: 1.5px dashed #fff;
-      border-radius: ${cssVar.borderRadiusLG};
-    `,
-    desc: css`
-      font-size: 14px;
-      line-height: 22px;
-      color: #fff;
-    `,
-    icon: css`
-      border-radius: ${cssVar.borderRadiusLG};
-      color: color-mix(in srgb, ${cssVar.geekblue} 95%, black);
-      background: color-mix(in srgb, ${cssVar.geekblue} 38%, white);
-    `,
-    iconGroup: css`
-      margin-block-start: -44px;
-    `,
-    iconLeft: css`
-      transform: rotateZ(-20deg) translateX(10px);
-      border-radius: ${cssVar.borderRadiusLG};
-      color: color-mix(in srgb, ${cssVar.geekblue} 95%, black);
-      background: color-mix(in srgb, ${cssVar.geekblue} 68%, white);
-    `,
-    iconRight: css`
-      transform: rotateZ(20deg) translateX(-10px);
-      border-radius: ${cssVar.borderRadiusLG};
-      color: color-mix(in srgb, ${cssVar.geekblue} 95%, black);
-      background: color-mix(in srgb, ${cssVar.geekblue} 68%, white);
-    `,
-    title: css`
-      font-size: 20px;
-      font-weight: bold;
-      color: #fff;
-    `,
-    wrapper: css`
-      position: fixed;
-      z-index: 9999;
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-
-      background: ${cssVar.colorBgMask};
-
-      transition: all 0.3s ease-in-out;
-    `,
-  };
-});
 
 interface DragUploadProps {
   enabledFiles?: boolean;

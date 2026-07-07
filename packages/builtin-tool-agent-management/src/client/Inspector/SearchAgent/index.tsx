@@ -2,27 +2,26 @@
 
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { highlightTextStyles, shinyTextStyles } from '@/styles';
 
 import type { SearchAgentParams, SearchAgentSource } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  root: css`
-    overflow: hidden;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  `,
-  title: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextSecondary};
-    white-space: nowrap;
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const getSourceTitleKey = (source: SearchAgentSource = 'all') => {
   switch (source) {

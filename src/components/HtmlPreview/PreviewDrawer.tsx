@@ -3,18 +3,13 @@ import { exportFile } from '@lobechat/utils/client';
 import { Block, Button, Flexbox, Highlighter, HtmlPreview } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
 import { Drawer } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { Code2, Download, Eye } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { isDesktop } from '@/const/version';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    height: 100%;
-  `,
-}));
+import styles from './PreviewDrawer.module.css';
 
 const hideHtmlPreviewActions = () => null;
 

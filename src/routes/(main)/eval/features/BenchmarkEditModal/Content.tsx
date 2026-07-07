@@ -3,7 +3,6 @@
 import { Input, Select, TextArea } from '@lobehub/ui';
 import { useModalContext } from '@lobehub/ui/base-ui';
 import { App, Form } from 'antd';
-import { cssVar } from 'antd-style';
 import { type FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -99,7 +98,7 @@ const BenchmarkEditContent: FC<BenchmarkEditContentProps> = ({
       >
         <Input
           placeholder={t('benchmark.create.identifier.placeholder')}
-          style={{ fontFamily: cssVar.fontFamilyCode }}
+          style={{ fontFamily: 'var(--ant-font-family-code)' }}
           onChange={() => setIdentifierTouched(true)}
         />
       </Form.Item>

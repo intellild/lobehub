@@ -1,27 +1,11 @@
 'use client';
-
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { Trans } from 'react-i18next';
 
 import { type LobeLinkKind } from '@/features/Conversation/Markdown/plugins/Link/parse';
 import LinkRender from '@/features/Conversation/Markdown/plugins/Link/Render';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  bubble: css`
-    align-self: flex-start;
-
-    padding-block: 10px;
-    padding-inline: 14px;
-    border-radius: 12px;
-
-    font-size: 14px;
-    line-height: 1.8;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
+import styles from './LinkIconPreview.module.css';
 
 interface SampleLinkProps {
   domain?: string;

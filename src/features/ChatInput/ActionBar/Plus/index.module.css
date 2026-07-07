@@ -1,0 +1,132 @@
+.hotArea::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+}
+
+.activeLabel {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  color: inherit;
+}
+
+.activeLabel span {
+  overflow: hidden;
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.searchOptionRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  width: 100%;
+  min-width: 220px;
+  max-width: 320px;
+}
+
+.searchTitle {
+  line-height: 1.25;
+}
+
+.searchDesc {
+  margin-block-start: 3px;
+
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--ant-color-text-description);
+  white-space: normal;
+}
+
+.searchIconBox {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--ant-color-border-secondary);
+  border-radius: 8px;
+
+  background: var(--ant-color-bg-container);
+}
+
+.labelWithChip {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.countChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 18px;
+  height: 18px;
+  padding-block: 0;
+  padding-inline: 6px;
+  border-radius: 9px;
+
+  font-size: 11px;
+  line-height: 18px;
+  color: var(--ant-color-text-secondary);
+
+  background: var(--ant-color-fill-secondary);
+}
+
+.gatewayModeLabel {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+
+.gatewayModeTitle {
+  overflow: hidden;
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gatewayModeInfoCard {
+  overflow: hidden;
+  width: 280px;
+  border-radius: 8px;
+}
+
+.gatewayModeCover {
+  display: block;
+
+  width: 100%;
+  height: 148px;
+
+  object-fit: cover;
+  background: var(--ant-color-fill-tertiary);
+}
+
+.gatewayModeBody {
+  padding: 12px;
+}
+
+.gatewayModeCardTitle {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.gatewayModeDesc {
+  margin-block-start: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ant-color-text-secondary);
+}

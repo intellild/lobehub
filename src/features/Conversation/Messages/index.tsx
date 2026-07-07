@@ -2,7 +2,6 @@
 
 import { isDesktop } from '@lobechat/const';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { type MouseEvent, type ReactNode } from 'react';
 import { memo, Suspense, useCallback } from 'react';
@@ -20,6 +19,7 @@ import AssistantGroupMessage from './AssistantGroup';
 import type { WorkflowExpandLevelDefault } from './AssistantGroup/components/WorkflowCollapse';
 import CompressedGroupMessage from './CompressedGroup';
 import GroupTasksMessage from './GroupTasks';
+import stylesModule from './index.module.css';
 import TaskMessage from './Task';
 import TaskCallbackMessage from './TaskCallback';
 import TasksMessage from './Tasks';
@@ -27,20 +27,21 @@ import ToolMessage from './Tool';
 import UserMessage from './User';
 import VerifyMessage from './Verify';
 
-const prefixCls = 'ant';
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-const styles = createStaticStyles(({ css }) => ({
-  loading: css`
-    opacity: 0.6;
-  `,
-  message: css`
-    position: relative;
-    // prevent the textarea too long
-    .${prefixCls}-input {
-      max-height: 900px;
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
+const prefixCls = 'ant';
+const styles = stylesModule;
 
 export interface MessageItemProps {
   className?: string;

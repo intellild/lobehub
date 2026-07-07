@@ -1,0 +1,9 @@
+.description {
+font-size: 14px;
+color: var(--ant-color-text-secondary);
+}
+
+.title {
+font-size: 28px;
+font-weight: 600;
+}

@@ -1,9 +1,5 @@
-import { createStaticStyles } from 'antd-style';
 
-export const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    code: css`
-      font-family: ${cssVar.fontFamilyCode};
-    `,
-  };
-});
+import styles from './style.module.css';
+
+export { styles };
+

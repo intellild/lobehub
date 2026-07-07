@@ -1,5 +1,4 @@
 import { Block, Flexbox, Icon, Skeleton, Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { SearchIcon } from 'lucide-react';
 import { memo } from 'react';
 
@@ -7,15 +6,20 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { shinyTextStyles } from '@/styles';
 
 import { EngineAvatarGroup } from '../../../components/EngineAvatar';
+import styles from './SearchView.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  query: css`
-    padding-block: 4px;
-    padding-inline: 8px;
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface SearchBarProps {
   defaultEngines: string[];

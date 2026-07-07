@@ -1,6 +1,5 @@
 import { AGENT_CHAT_TOPIC_URL } from '@lobechat/const';
 import { Button, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Link2 } from 'lucide-react';
 import { memo } from 'react';
 
@@ -32,7 +31,7 @@ const SourceLink = memo<{ source?: MemorySource | null }>(({ source }) => {
           overflow: 'hidden',
         }}
       >
-        <Text ellipsis color={cssVar.colorTextSecondary}>
+        <Text ellipsis color={'var(--ant-color-text-secondary)'}>
           {title}
         </Text>
       </Button>

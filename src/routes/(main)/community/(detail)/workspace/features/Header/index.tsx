@@ -10,7 +10,6 @@ import {
   Tooltip,
   TooltipGroup,
 } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { ExternalLink, Globe, Settings } from 'lucide-react';
 import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -52,7 +51,7 @@ const WorkspaceHeader = memo(() => {
           avatar={avatarUrl}
           shape={'square'}
           size={64}
-          style={{ boxShadow: `0 0 0 4px ${cssVar.colorBgContainer}`, flexShrink: 0 }}
+          style={{ boxShadow: `0 0 0 4px ${'var(--ant-color-bg-container)'}`, flexShrink: 0 }}
         />
         <Flexbox horizontal align={'flex-start'} gap={16} justify={'space-between'}>
           <Flexbox gap={4} style={{ overflow: 'hidden' }}>

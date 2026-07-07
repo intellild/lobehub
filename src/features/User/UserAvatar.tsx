@@ -3,7 +3,6 @@
 import { BRANDING_NAME } from '@lobechat/business-const';
 import { type AvatarProps } from '@lobehub/ui';
 import { Avatar } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { useMemo } from 'react';
 
 import { DEFAULT_USER_AVATAR_URL } from '@/const/meta';
@@ -13,37 +12,7 @@ import { electronSyncSelectors } from '@/store/electron/selectors';
 import { useUserStore } from '@/store/user';
 import { authSelectors, userProfileSelectors } from '@/store/user/selectors';
 
-const styles = createStaticStyles(({ css }) => ({
-  clickable: css`
-    position: relative;
-    transition: all 200ms ease-out 0s;
-
-    &::before {
-      content: '';
-
-      position: absolute;
-      transform: skewX(-45deg) translateX(-400%);
-
-      overflow: hidden;
-
-      box-sizing: border-box;
-      width: 25%;
-      height: 100%;
-
-      background: rgb(255 255 255 / 50%);
-
-      transition: all 200ms ease-out 0s;
-    }
-
-    &:hover {
-      box-shadow: 0 0 0 2px ${cssVar.colorPrimary};
-
-      &::before {
-        transform: skewX(-45deg) translateX(400%);
-      }
-    }
-  `,
-}));
+import styles from './UserAvatar.module.css';
 
 export interface UserAvatarProps extends AvatarProps {
   /**
@@ -108,7 +77,7 @@ const UserAvatar = ({
       ref={ref}
       shape={'square'}
       size={size}
-      style={{ color: cssVar.colorText, flex: 'none', ...style }}
+      style={{ color: 'var(--ant-color-text)', flex: 'none', ...style }}
       {...rest}
     />
   );

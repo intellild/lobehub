@@ -1,0 +1,43 @@
+.assignee {
+display: flex;
+flex-shrink: 0;
+gap: 6px;
+align-items: center;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+}
+
+.container {
+padding-block: 12px;
+border-radius: var(--ant-border-radius);
+}
+
+.deleteButton {
+cursor: pointer;
+color: var(--ant-color-text-tertiary);
+transition: color 0.2s;
+
+&:hover {
+  color: var(--ant-color-error);
+}
+}
+
+.index {
+flex-shrink: 0;
+font-size: 12px;
+color: var(--ant-color-text-quaternary);
+}
+
+.taskTitle {
+overflow: hidden;
+
+font-size: 14px;
+font-weight: 500;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.timeoutInput {
+width: 100px;
+}

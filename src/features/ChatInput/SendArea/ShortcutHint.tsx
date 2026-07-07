@@ -1,6 +1,5 @@
 import { KeyEnum } from '@lobechat/const/hotkeys';
 import { combineKeys, Flexbox, Hotkey, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -23,7 +22,7 @@ const ShortcutHint = memo(() => {
   return (
     <Text
       fontSize={12}
-      style={{ color: cssVar.colorTextQuaternary, userSelect: 'none', zIndex: 1 }}
+      style={{ color: 'var(--ant-color-text-quaternary)', userSelect: 'none', zIndex: 1 }}
     >
       <Flexbox horizontal align={'center'} gap={4} justify={'flex-end'} paddingBlock={4}>
         <Hotkey

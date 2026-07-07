@@ -1,25 +1,20 @@
 import { lobeStaticStylish } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: cx(
-    lobeStaticStylish.blur,
-    css`
-      pointer-events: none;
+import stylesModule from './style.module.css';
 
-      position: absolute;
-      z-index: 50;
-      inset-block-end: 16px;
-      inset-inline-end: 16px;
-      transform: translateY(16px);
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-      opacity: 0;
-      background: color-mix(in srgb, ${cssVar.colorBgElevated} 50%, transparent) !important;
-    `,
-  ),
-  visible: css`
-    pointer-events: all;
-    transform: translateY(0);
-    opacity: 1;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+export const styles: typeof stylesModule & { container: string } = {
+  ...stylesModule,
+  container: [stylesModule.container, lobeStaticStylish.blur].join(' '),
+};

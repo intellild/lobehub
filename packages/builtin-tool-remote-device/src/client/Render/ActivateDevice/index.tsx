@@ -2,30 +2,12 @@
 
 import { type BuiltinRenderProps } from '@lobechat/types';
 import { Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { AlertTriangleIcon } from 'lucide-react';
 import { memo } from 'react';
 
 import type { ActivateDeviceParams, ActivateDeviceState } from '../../../types';
 import DeviceCard from '../DeviceCard';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  failure: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    padding-block: 12px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorWarningBorder};
-    border-radius: 10px;
-
-    font-size: 13px;
-    color: ${cssVar.colorWarningText};
-
-    background: ${cssVar.colorWarningBg};
-  `,
-}));
+import styles from './index.module.css';
 
 const ActivateDevice = memo<BuiltinRenderProps<ActivateDeviceParams, ActivateDeviceState, string>>(
   ({ pluginState, content }) => {

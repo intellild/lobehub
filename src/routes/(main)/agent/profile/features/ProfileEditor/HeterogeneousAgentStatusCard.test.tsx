@@ -82,15 +82,6 @@ vi.mock('@lobehub/ui', () => ({
   Tooltip: ({ children }: { children?: ReactNode }) => <div>{children}</div>,
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({
-    card: 'card',
-    label: 'label',
-    path: 'path',
-  }),
-  cssVar: new Proxy({}, { get: (_, key) => `var(--${String(key)})` }),
-}));
-
 vi.mock('lucide-react', () => ({
   CheckCircle2: () => null,
   Loader2Icon: () => null,

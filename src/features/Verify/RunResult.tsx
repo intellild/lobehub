@@ -1,77 +1,13 @@
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStyles } from 'antd-style';
 import { Check, Info, RefreshCw, Shield, ShieldCheck, X } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useTheme } from '@/hooks/useTheme';
+
 import { useVerifyResults, useVerifyState } from './hooks';
+import styles from './RunResult.module.css';
 import { countResults, type DockPhase, phaseFromStatus } from './utils';
-
-const useStyles = createStyles(({ css, token }) => ({
-  badge: css`
-    display: inline-flex;
-    flex: none;
-    gap: 5px;
-    align-items: center;
-
-    padding-block: 4px;
-    padding-inline: 10px;
-    border-radius: 999px;
-
-    font-size: 12px;
-    font-weight: 600;
-  `,
-  body: css`
-    padding-block: 12px;
-    padding-inline: 16px;
-
-    font-size: 13px;
-    line-height: 1.7;
-    color: ${token.colorTextSecondary};
-  `,
-  card: css`
-    overflow: hidden;
-    border: 1px solid ${token.colorBorderSecondary};
-    border-radius: 16px;
-    background: ${token.colorBgContainer};
-  `,
-  cardFailed: css`
-    border-color: ${token.colorErrorBorder};
-  `,
-  foot: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    padding-block: 10px;
-    padding-inline: 16px;
-    border-block-start: 1px solid ${token.colorBorderSecondary};
-
-    font-size: 12px;
-    color: ${token.colorTextTertiary};
-  `,
-  head: css`
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    padding-block: 14px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${token.colorBorderSecondary};
-  `,
-  sub: css`
-    margin-block-start: 4px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${token.colorTextTertiary};
-  `,
-  title: css`
-    font-size: 15px;
-    font-weight: 700;
-    color: ${token.colorText};
-  `,
-}));
 
 interface BadgeMeta {
   color: 'default' | 'success' | 'error' | 'warning';
@@ -126,7 +62,7 @@ interface RunResultProps {
  * result snapshot, so failures are never overwritten by later success.
  */
 const RunResult = memo<RunResultProps>(({ operationId, round = 1, embedded }) => {
-  const { styles, cx, theme } = useStyles();
+  const theme = useTheme();
   const { t } = useTranslation('verify');
   const { data: state } = useVerifyState(operationId);
   const { data: results } = useVerifyResults(operationId);
@@ -178,7 +114,7 @@ const RunResult = memo<RunResultProps>(({ operationId, round = 1, embedded }) =>
   if (embedded) return header;
 
   return (
-    <div className={cx(styles.card, phase === 'failed' && styles.cardFailed)}>
+    <div className={[styles.card, phase === 'failed' && styles.cardFailed].filter(Boolean).join(' ')}>
       {header}
       <div className={styles.body}>
         <Flexbox gap={4}>

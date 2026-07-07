@@ -1,5 +1,4 @@
 import { type DropdownItem, DropdownMenu, Icon, type MenuInfo, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Loader2Icon, LockIcon, UsersIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { memo, useCallback, useMemo, useState } from 'react';
@@ -11,32 +10,7 @@ import { useTaskStore } from '@/store/task';
 
 import { renderMenuExtra } from './menuExtra';
 import { getTaskVisibilityDefaultLabel, getTaskVisibilityLabelKey } from './taskVisibilityLabel';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  trigger: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    align-items: center;
-
-    color: ${cssVar.colorTextDescription};
-
-    transition: color ${cssVar.motionDurationMid};
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-  `,
-  triggerDisabled: css`
-    cursor: not-allowed;
-    opacity: 0.5;
-
-    &:hover {
-      color: ${cssVar.colorTextDescription};
-      filter: none;
-    }
-  `,
-}));
+import styles from './TaskVisibilityTag.module.css';
 
 const VISIBILITY_OPTIONS: Array<'private' | 'public'> = ['private', 'public'];
 
@@ -106,7 +80,7 @@ const TaskVisibilityTag = memo<TaskVisibilityTagProps>(
           const isCurrent = option === visibility;
           return {
             extra: renderMenuExtra(String(index + 1), isCurrent),
-            icon: <Icon color={cssVar.colorTextSecondary} icon={OptionIcon} size={16} />,
+            icon: <Icon color={'var(--ant-color-text-secondary)'} icon={OptionIcon} size={16} />,
             key: option,
             label: t(getTaskVisibilityLabelKey(option) as never, {
               defaultValue: getTaskVisibilityDefaultLabel(option),
@@ -128,7 +102,7 @@ const TaskVisibilityTag = memo<TaskVisibilityTagProps>(
     const triggerNode = children ? (
       children
     ) : loading ? (
-      <Icon spin color={cssVar.colorTextDescription} icon={Loader2Icon} size={size} />
+      <Icon spin color={'var(--ant-color-text-description)'} icon={Loader2Icon} size={size} />
     ) : (
       <Tooltip title={label}>
         <span className={styles.trigger} onClick={(e) => e.stopPropagation()}>

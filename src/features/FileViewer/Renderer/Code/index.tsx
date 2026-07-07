@@ -1,21 +1,13 @@
 'use client';
 
 import { Center, Flexbox, Highlighter } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import NeuralNetworkLoading from '@/components/NeuralNetworkLoading';
 import { getLanguageFromFilename } from '@/utils/fileLanguage';
 
 import { useTextFileLoader } from '../../hooks/useTextFileLoader';
-
-const styles = createStaticStyles(({ css }) => ({
-  page: css`
-    width: 100%;
-    height: 100%;
-    padding-inline: 24px 4px;
-  `,
-}));
+import styles from './index.module.css';
 
 interface CodeViewerProps {
   fileId: string;

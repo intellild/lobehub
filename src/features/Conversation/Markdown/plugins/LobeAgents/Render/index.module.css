@@ -1,0 +1,44 @@
+.arrowIcon {
+flex-shrink: 0;
+color: var(--ant-color-text-tertiary);
+}
+
+.card {
+cursor: pointer;
+
+padding-block: 14px;
+padding-inline: 14px;
+border-radius: 10px;
+
+background: var(--ant-color-fill-quaternary);
+
+transition: background 0.15s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.description {
+overflow: hidden;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.content {
+/* Allow the text column to shrink below its content width so the
+   nowrap title/description ellipsize instead of overflowing the card. */
+min-width: 0;
+}
+
+.title {
+overflow: hidden;
+
+font-size: 14px;
+font-weight: 500;
+text-overflow: ellipsis;
+white-space: nowrap;
+}

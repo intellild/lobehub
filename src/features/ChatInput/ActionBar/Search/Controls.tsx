@@ -1,7 +1,6 @@
 import { Center, Flexbox, Icon } from '@lobehub/ui';
 import { GlobeOffIcon } from '@lobehub/ui/icons';
 import { Divider } from 'antd';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { type LucideIcon } from 'lucide-react';
 import { SparkleIcon } from 'lucide-react';
 import { memo, useEffect } from 'react';
@@ -15,47 +14,22 @@ import { type SearchMode } from '@/types/search';
 
 import { useAgentId } from '../../hooks/useAgentId';
 import { useUpdateAgentConfig } from '../../hooks/useUpdateAgentConfig';
+import styles from './Controls.module.css';
 import FCSearchModel from './FCSearchModel';
 import ModelBuiltinSearch from './ModelBuiltinSearch';
 
-const styles = createStaticStyles(({ css }) => ({
-  active: css`
-    background: ${cssVar.colorFillTertiary};
-  `,
-  check: css`
-    margin-inline-start: 12px;
-    font-size: 16px;
-    color: ${cssVar.colorPrimary};
-  `,
-  description: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  icon: css`
-    border: 1px solid ${cssVar.colorFillTertiary};
-    border-radius: ${cssVar.borderRadius};
-    background: ${cssVar.colorBgElevated};
-  `,
-  option: css`
-    cursor: pointer;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    width: 100%;
-    padding-block: 8px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  title: css`
-    font-size: 14px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface NetworkOption {
   description: string;

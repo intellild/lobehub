@@ -3,48 +3,14 @@
 import { DEFAULT_AVATAR } from '@lobechat/const';
 import type { AgentGroupMember, BuiltinRenderProps } from '@lobechat/types';
 import { Accordion, AccordionItem, Avatar, Block, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, useTheme } from 'antd-style';
 import { memo, useMemo } from 'react';
 
+import { useTheme } from '@/hooks/useTheme';
 import { useAgentGroupStore } from '@/store/agentGroup';
 import { agentGroupSelectors } from '@/store/agentGroup/selectors';
 
 import type { ExecuteTasksParams } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  assignee: css`
-    display: flex;
-    flex-shrink: 0;
-    gap: 6px;
-    align-items: center;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  container: css`
-    .accordion-action {
-      margin-inline-end: 8px;
-      opacity: 1 !important;
-    }
-  `,
-  index: css`
-    flex-shrink: 0;
-    font-size: 12px;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  instruction: css`
-    font-size: 13px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-  `,
-
-  taskTitle: css`
-    overflow: hidden;
-    font-size: 14px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+import styles from './index.module.css';
 
 /**
  * ExecuteTasks Render component for Group Management tool

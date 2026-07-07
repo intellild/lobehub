@@ -1,0 +1,28 @@
+.chip {
+cursor: pointer;
+
+flex-shrink: 0;
+
+padding-block: 6px;
+padding-inline: 10px;
+border: 1px solid var(--ant-color-border);
+border-radius: 999px;
+
+background: var(--ant-color-bg-container);
+
+transition: background 0.15s;
+
+&:hover {
+  background: var(--ant-color-bg-text-hover);
+}
+}
+
+.chipRow {
+scrollbar-width: none;
+overflow-x: auto;
+flex-wrap: nowrap;
+
+&::-webkit-scrollbar {
+  display: none;
+}
+}

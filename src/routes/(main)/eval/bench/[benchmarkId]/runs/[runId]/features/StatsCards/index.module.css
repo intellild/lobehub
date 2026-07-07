@@ -1,0 +1,82 @@
+.card {
+padding: 16px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius);
+}
+
+.grid {
+display: grid;
+gap: 16px;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.hero {
+padding: 20px;
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.heroValue {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-heading-1);
+font-weight: 600;
+line-height: 1;
+color: var(--ant-color-text);
+}
+
+.iconBox {
+display: flex;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+
+width: 36px;
+height: 36px;
+border-radius: var(--ant-border-radius);
+}
+
+.label {
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+}
+
+.progressFill {
+height: 100%;
+border-radius: 999px;
+
+background: var(--ant-color-success);
+
+transition: width 0.3s ease;
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+}
+
+.progressTrack {
+overflow: hidden;
+
+width: 100%;
+height: 8px;
+border-radius: 999px;
+
+background: var(--ant-color-fill-secondary);
+}
+
+.subtitle {
+font-size: var(--ant-font-size);
+color: var(--ant-color-text-secondary);
+}
+
+.subtitleUnit {
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+}
+
+.value {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-heading-3);
+font-weight: 600;
+color: var(--ant-color-text);
+}

@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, Block, Flexbox, Skeleton as LobeSkeleton, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { RefreshCw } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -39,7 +38,7 @@ const ChipItem = memo<ChipItemProps>(({ title, prompt, index, tracingId, disable
       clickable={!disabled}
       variant={'outlined'}
       style={{
-        borderRadius: cssVar.borderRadiusLG,
+        borderRadius: 'var(--ant-border-radius-lg)',
         cursor: disabled ? 'not-allowed' : 'pointer',
         opacity: disabled ? 0.65 : undefined,
       }}
@@ -49,7 +48,7 @@ const ChipItem = memo<ChipItemProps>(({ title, prompt, index, tracingId, disable
         <Text ellipsis fontSize={14} style={{ fontWeight: 500 }}>
           {title}
         </Text>
-        <Text color={cssVar.colorTextTertiary} ellipsis={{ rows: 2 }} fontSize={12}>
+        <Text color={'var(--ant-color-text-tertiary)'} ellipsis={{ rows: 2 }} fontSize={12}>
           {prompt}
         </Text>
       </Flexbox>
@@ -63,7 +62,7 @@ const ChipItem = memo<ChipItemProps>(({ title, prompt, index, tracingId, disable
  * skeleton lines — minimising layout shift (CLS) when real chips arrive.
  */
 const ChipSkeleton = memo(() => (
-  <Block style={{ borderRadius: cssVar.borderRadiusLG }} variant={'outlined'}>
+  <Block style={{ borderRadius: 'var(--ant-border-radius-lg)' }} variant={'outlined'}>
     <Flexbox gap={8} paddingBlock={12} paddingInline={14}>
       <LobeSkeleton.Button
         active
@@ -165,7 +164,7 @@ const SuggestionChips = memo<SuggestionChipsProps>(
             }}
           >
             <ActionIcon disabled={disabled} icon={RefreshCw} size={'small'} />
-            <Text color={cssVar.colorTextSecondary} fontSize={12}>
+            <Text color={'var(--ant-color-text-secondary)'} fontSize={12}>
               {tCommon('switch')}
             </Text>
           </Flexbox>

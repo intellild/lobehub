@@ -1,0 +1,21 @@
+.separator {
+width: 3px;
+height: 3px;
+border-radius: 50%;
+background: var(--ant-color-text-quaternary);
+}
+
+.statusIcon {
+display: flex;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+
+width: 16px;
+height: 16px;
+border-radius: 50%;
+
+color: var(--ant-color-error-text);
+
+background: var(--ant-color-error-bg);
+}

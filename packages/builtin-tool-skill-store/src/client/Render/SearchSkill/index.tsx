@@ -2,56 +2,11 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, Tag, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { MarketSkillItem, SearchSkillParams, SearchSkillState } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-
-    width: 100%;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  description: css`
-    font-size: 13px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  empty: css`
-    padding: 24px;
-    color: ${cssVar.colorTextTertiary};
-    text-align: center;
-  `,
-  identifier: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  item: css`
-    padding-block: 12px;
-    padding-inline: 14px;
-    border-block-end: 1px dashed ${cssVar.colorBorderSecondary};
-
-    &:last-child {
-      border-block-end: none;
-    }
-  `,
-  meta: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  title: css`
-    font-size: 14px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './index.module.css';
 
 interface SkillItemProps {
   skill: MarketSkillItem;

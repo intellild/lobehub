@@ -1,0 +1,26 @@
+.tree {
+.ant-tree-node-content-wrapper {
+  overflow: hidden;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+
+  color: var(--ant-color-text-secondary);
+}
+
+.ant-tree-title {
+  overflow: hidden;
+  display: block;
+  line-height: 1.2;
+}
+
+.ant-tree-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-inline-end: 0;
+
+  color: var(--ant-color-text-description);
+}
+}

@@ -2,7 +2,6 @@
 
 import { Flexbox, Skeleton } from '@lobehub/ui';
 import { EditableMessage } from '@lobehub/ui/chat';
-import { createStaticStyles } from 'antd-style';
 import { type MouseEvent } from 'react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,16 +13,9 @@ import { useAgentStore } from '@/store/agent';
 import { agentSelectors } from '@/store/agent/selectors';
 import { ChatSettingsTabs } from '@/store/global/initialState';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  prompt: css`
-    opacity: 0.75;
-    transition: opacity 200ms ${cssVar.motionEaseOut};
+import styles from './SystemRole.module.css';
 
-    &:hover {
-      opacity: 1;
-    }
-  `,
-}));
+export { styles };
 
 interface SystemRoleProps {
   editing: boolean;

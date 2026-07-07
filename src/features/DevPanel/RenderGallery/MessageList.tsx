@@ -3,7 +3,6 @@
 import { LOADING_FLAT } from '@lobechat/const';
 import type { ChatToolPayload, UIChatMessage } from '@lobechat/types';
 import { Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo, useMemo } from 'react';
 
 import {
@@ -16,25 +15,8 @@ import { dataSelectors, useConversationStore } from '@/features/Conversation/sto
 
 import { DEVTOOLS_AGENT_ID } from './fixtures';
 import { deriveFixtureProps, type LifecycleMode } from './lifecycleMode';
+import styles from './MessageList.module.css';
 import type { ApiEntry } from './useDevtoolsEntries';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  empty: css`
-    padding-block: 48px;
-    color: ${cssVar.colorTextTertiary};
-    text-align: center;
-  `,
-  thread: css`
-    width: 100%;
-    max-width: 820px;
-    margin-inline: auto;
-    padding-block: 8px 48px;
-    padding-inline: 12px;
-    border-radius: 14px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
 
 const coerceContent = (value: unknown): string => {
   if (value === null || value === undefined) return '';

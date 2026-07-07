@@ -1,0 +1,16 @@
+.agentTitle {
+font-size: 14px;
+font-weight: 500;
+color: var(--ant-color-text);
+}
+
+.container {
+padding: 12px;
+border-radius: 8px;
+background: var(--ant-color-fill-quaternary);
+}
+
+.task {
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+}

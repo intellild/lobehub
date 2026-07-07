@@ -1,6 +1,5 @@
 import { type LobehubSkillProviderType } from '@lobechat/const';
 import { Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 export const SKILL_ICON_SIZE = 20;
@@ -20,7 +19,7 @@ const LobehubSkillIcon = memo<Pick<LobehubSkillProviderType, 'icon' | 'label'> &
       );
     }
 
-    return <Icon fill={cssVar.colorText} icon={icon} size={size} />;
+    return <Icon fill={'var(--ant-color-text)'} icon={icon} size={size} />;
   },
 );
 

@@ -1,0 +1,80 @@
+.meta {
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+}
+
+.mono {
+font-family: var(--ant-font-family-code);
+}
+
+.name {
+overflow: hidden;
+
+font-weight: 500;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.passRate {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size);
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.progressFill {
+height: 100%;
+border-radius: 999px;
+
+background: var(--ant-color-primary);
+
+transition: width 0.3s ease;
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+}
+
+.progressTrack {
+overflow: hidden;
+
+width: 100%;
+height: 4px;
+border-radius: 999px;
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.row {
+cursor: pointer;
+
+padding-block: 8px;
+padding-inline: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius);
+
+transition:
+  border-color 0.15s ease,
+  background 0.15s ease;
+
+&:hover {
+  border-color: var(--ant-color-border);
+  background: var(--ant-color-fill-tertiary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+}
+
+.separator {
+color: var(--ant-color-border-secondary);
+}
+
+.stat {
+display: inline-flex;
+gap: 4px;
+align-items: center;
+font-size: var(--ant-font-size-sm);
+}

@@ -2,33 +2,11 @@
 
 import { type UISignalCallbacksBlock } from '@lobechat/types';
 import { Accordion, AccordionItem, Block, Flexbox, Icon, Markdown, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Radio } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css }) => ({
-  callbackBody: css`
-    overflow: auto;
-    max-height: 360px;
-  `,
-  callbackItem: css`
-    padding-block: 4px;
-
-    &:not(:last-child) {
-      border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-    }
-  `,
-  sequence: css`
-    flex: none;
-
-    min-width: 20px;
-
-    font-size: 11px;
-    font-feature-settings: 'tnum';
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
+import styles from './index.module.css';
 
 const SignalCallbacks = memo<{ block: UISignalCallbacksBlock }>(({ block }) => {
   const { t } = useTranslation('chat');
@@ -57,7 +35,7 @@ const SignalCallbacks = memo<{ block: UISignalCallbacksBlock }>(({ block }) => {
               variant="outlined"
               width={24}
             >
-              <Icon color={cssVar.colorTextSecondary} icon={Radio} />
+              <Icon color={'var(--ant-color-text-secondary)'} icon={Radio} />
             </Block>
             <Text as="span" type="secondary">
               {t('signalCallbacks.title', {

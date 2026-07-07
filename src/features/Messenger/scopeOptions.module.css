@@ -1,0 +1,30 @@
+.personalTag {
+cursor: default;
+flex: none;
+margin-block: 0;
+margin-inline: auto 0;
+}
+
+.scopeName {
+flex: 0 1 auto;
+min-width: 0;
+}
+
+.scopeOption {
+flex: 1 1 auto;
+width: 100%;
+min-width: 0;
+}
+
+.scopeTitle {
+flex: 1;
+min-width: 0;
+}
+
+.scopeValue {
+> span {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+}
+}

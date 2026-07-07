@@ -1,0 +1,42 @@
+.anchor {
+position: fixed;
+z-index: 10;
+inset-block-end: 24px;
+inset-inline-end: 24px;
+
+display: flex;
+flex-direction: column;
+gap: 8px;
+align-items: flex-end;
+
+@media (max-width: 479.98px) {
+  inset-block-end: calc(env(safe-area-inset-bottom, 0px) + 96px);
+  inset-inline-end: 12px;
+}
+}
+
+.anchorWithLabel {
+align-items: stretch;
+}
+
+.pill {
+display: flex;
+flex-flow: row wrap;
+gap: 8px;
+align-items: center;
+justify-content: flex-end;
+
+padding-block: 8px;
+padding-inline: 12px;
+border: 1px solid color-mix(in srgb, var(--ant-color-border-secondary) 60%, transparent);
+border-radius: 999px;
+
+background: color-mix(in srgb, var(--ant-color-bg-elevated) 75%, transparent);
+backdrop-filter: blur(16px) saturate(1.2);
+box-shadow: var(--ant-box-shadow-secondary);
+}
+
+.pillCollapsed {
+padding-block: 4px;
+padding-inline: 4px;
+}

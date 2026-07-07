@@ -1,0 +1,37 @@
+.chartCard {
+padding: 16px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-bg-container);
+}
+
+.chartTitle {
+margin-block-end: 12px;
+font-size: var(--ant-font-size-sm);
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}
+
+.legendDot {
+width: 8px;
+height: 8px;
+border-radius: 999px;
+}
+
+.legendText {
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-secondary);
+}
+
+.totalCount {
+padding-block: 1px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius-xs);
+
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-sm);
+font-weight: 600;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-secondary);
+}

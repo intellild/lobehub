@@ -1,7 +1,6 @@
 'use client';
 
 import { Button, Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { Trash2Icon } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,13 +12,7 @@ import { useMarketAuth } from '@/layout/AuthProvider/MarketAuth';
 import { useToolStore } from '@/store/tool';
 import { pluginSelectors } from '@/store/tool/slices/plugin/selectors';
 
-const styles = createStaticStyles(({ css }) => ({
-  button: css`
-    button {
-      width: 100%;
-    }
-  `,
-}));
+import styles from './index.module.css';
 
 const ActionButton = memo(() => {
   const { t } = useTranslation(['discover', 'plugin']);

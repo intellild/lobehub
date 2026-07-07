@@ -1,5 +1,7 @@
-import { useResponsive } from 'antd-style';
+
 import { useMemo } from 'react';
+
+import { useResponsive } from './useResponsive';
 
 export const useIsMobile = (): boolean => {
   const { mobile } = useResponsive();

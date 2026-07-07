@@ -1,0 +1,60 @@
+.agentItem {
+padding-block: 8px;
+padding-inline: 12px;
+border-radius: 6px;
+background: var(--ant-color-fill-quaternary);
+}
+
+.agentTitle {
+font-size: 13px;
+font-weight: 500;
+}
+
+.container {
+display: flex;
+flex-direction: column;
+gap: 8px;
+
+padding: 12px;
+border-radius: 8px;
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.description {
+overflow: hidden;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.heteroBadge {
+padding-block: 2px;
+padding-inline: 6px;
+border-radius: 4px;
+
+font-size: 10px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-secondary);
+}
+
+.marketBadge {
+padding-block: 2px;
+padding-inline: 6px;
+border-radius: 4px;
+
+font-size: 10px;
+color: var(--ant-color-primary);
+
+background: var(--ant-color-primary-bg);
+}
+
+.noResults {
+padding: 12px;
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+text-align: center;
+}

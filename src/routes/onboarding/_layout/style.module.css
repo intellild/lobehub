@@ -1,0 +1,35 @@
+.divider {
+height: 24px;
+}
+
+.innerContainerDark {
+position: relative;
+
+overflow: hidden auto;
+
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius);
+
+background: var(--ant-color-bg-container);
+}
+
+.innerContainerLight {
+position: relative;
+
+overflow: hidden auto;
+
+border: 1px solid var(--ant-color-border);
+border-radius: var(--ant-border-radius);
+
+background: var(--ant-color-bg-container);
+}
+
+.innerContainerMobile {
+position: relative;
+overflow: hidden auto;
+background: var(--ant-color-bg-container);
+}
+
+.outerContainer {
+position: relative;
+}

@@ -2,7 +2,6 @@
 
 import { type UIChatMessage } from '@lobechat/types';
 import { Block, Flexbox, GroupAvatar, Icon, Tag } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { ListTodo } from 'lucide-react';
 import { memo, useMemo } from 'react';
@@ -52,7 +51,7 @@ const GroupTasksAvatar = memo<{ avatars: { avatar?: string; background?: string 
             top: -4,
           }}
         >
-          <Icon color={cssVar.colorTextDescription} icon={ListTodo} size={10} />
+          <Icon color={'var(--ant-color-text-description)'} icon={ListTodo} size={10} />
         </Block>
       </Flexbox>
     );

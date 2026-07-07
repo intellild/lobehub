@@ -1,0 +1,9 @@
+.container {
+position: relative;
+border-radius: 0;
+font-size: 15px;
+
+&:active {
+  background: var(--ant-color-fill-tertiary);
+}
+}

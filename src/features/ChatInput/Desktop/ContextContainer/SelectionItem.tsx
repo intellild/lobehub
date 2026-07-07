@@ -1,76 +1,11 @@
 import type { ChatContextContent } from '@lobechat/types';
 import { Tag, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Code2Icon, TextIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
 
 import { useFileStore } from '@/store/file';
 
-const styles = createStaticStyles(({ css }) => ({
-  codeLine: css`
-    display: grid;
-    grid-template-columns: 36px minmax(0, 1fr);
-    gap: 10px;
-  `,
-  codePreview: css`
-    overflow: auto;
-
-    max-width: min(560px, 80vw);
-    max-height: 220px;
-    margin: 0;
-    padding-block: 8px;
-    padding-inline: 0;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    line-height: 1.55;
-  `,
-  content: css`
-    overflow: hidden;
-
-    min-width: 0;
-
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: pre;
-  `,
-  lineNumber: css`
-    user-select: none;
-    color: ${cssVar.colorTextQuaternary};
-    text-align: end;
-  `,
-  meta: css`
-    overflow: hidden;
-
-    max-width: min(560px, 80vw);
-    padding-block-end: 6px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  name: css`
-    overflow: hidden;
-    flex: 1;
-
-    min-width: 0;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  textPreview: css`
-    max-width: min(420px, 70vw);
-    color: ${cssVar.colorText};
-    white-space: pre-wrap;
-  `,
-  truncated: css`
-    padding-block-start: 4px;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-}));
+import styles from './SelectionItem.module.css';
 
 const MAX_PREVIEW_LENGTH = 8;
 const MAX_CODE_PREVIEW_LINES = 8;

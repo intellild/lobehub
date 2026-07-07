@@ -1,7 +1,6 @@
 'use client';
 
 import { Block, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ChevronDownIcon } from 'lucide-react';
 import { memo } from 'react';
 
@@ -12,18 +11,9 @@ import UserPanel from '@/features/User/UserPanel';
 import { useUserStore } from '@/store/user';
 import { authSelectors, userProfileSelectors } from '@/store/user/selectors';
 
-export const USER_DROPDOWN_ICON_ID = 'user-dropdown-icon';
+import styles from './User.module.css';
 
-// The dropdown is a button surface, not selectable text. Without
-// `user-select: none` a triple-click (or click-drag through the avatar /
-// name) paints the system text-selection highlight across the whole row;
-// that bright blue is heavier than the Sidebar's active-route fill below
-// and inverts the visual hierarchy.
-const styles = createStaticStyles(({ css }) => ({
-  trigger: css`
-    user-select: none;
-  `,
-}));
+export const USER_DROPDOWN_ICON_ID = 'user-dropdown-icon';
 
 const User = memo<{ lite?: boolean }>(({ lite }) => {
   const [nickname, username, isSignedIn] = useUserStore((s) => [
@@ -65,14 +55,14 @@ const User = memo<{ lite?: boolean }>(({ lite }) => {
         {!lite && (
           <Flexbox horizontal align={'center'} gap={4} style={{ overflow: 'hidden' }}>
             {!isSignedIn && !activeIdentity ? (
-              <ProductLogo color={cssVar.colorText} size={28} type={'text'} />
+              <ProductLogo color={'var(--ant-color-text)'} size={28} type={'text'} />
             ) : (
               <Text ellipsis style={{ flex: 1 }} weight={500}>
                 {displayName}
               </Text>
             )}
             <Icon
-              color={cssVar.colorTextDescription}
+              color={'var(--ant-color-text-description)'}
               icon={ChevronDownIcon}
               id={USER_DROPDOWN_ICON_ID}
             />

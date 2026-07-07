@@ -1,0 +1,227 @@
+@keyframes pulse {
+0%,
+  100% {
+opacity: 1;
+  }
+
+  50% {
+opacity: 0.5;
+  }
+}
+
+.card {
+cursor: pointer;
+
+display: flex;
+gap: 12px;
+align-items: flex-start;
+
+padding-block: 12px;
+padding-inline: 14px;
+border: 1px solid var(--ant-color-fill-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-container);
+
+transition:
+  border-color var(--ant-motion-duration-mid),
+  background var(--ant-motion-duration-mid);
+
+&:hover {
+  border-color: var(--ant-color-primary-hover);
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: 2px;
+}
+}
+
+.cardBody {
+overflow: hidden;
+display: flex;
+flex: 1;
+flex-direction: column;
+gap: 2px;
+
+min-width: 0;
+}
+
+.cardCheck {
+flex: none;
+color: var(--ant-color-primary);
+}
+
+.cardCheckHidden {
+visibility: hidden;
+}
+
+.cardDescription {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+
+font-size: 12px;
+line-height: 1.5;
+color: var(--ant-color-text-secondary);
+}
+
+.cardSelected {
+border-color: var(--ant-color-primary);
+background: var(--ant-color-primary-bg);
+
+&:hover {
+  border-color: var(--ant-color-primary);
+}
+}
+
+.cardTitle {
+overflow: hidden;
+
+font-size: 14px;
+font-weight: 600;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.empty {
+display: flex;
+align-items: center;
+justify-content: center;
+
+min-height: 160px;
+padding: 24px;
+
+font-size: 13px;
+color: var(--ant-color-text-tertiary);
+text-align: center;
+}
+
+.filterBar {
+display: flex;
+flex-wrap: wrap;
+gap: 6px;
+}
+
+.footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-block-start: 8px;
+}
+
+.footerActions {
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+gap: 10px;
+align-content: start;
+}
+
+.pill {
+cursor: pointer;
+
+padding-block: 4px;
+padding-inline: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 999px;
+
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+white-space: nowrap;
+
+background: transparent;
+
+transition:
+  border-color var(--ant-motion-duration-mid),
+  background var(--ant-motion-duration-mid),
+  color var(--ant-motion-duration-mid);
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-tertiary);
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: 2px;
+}
+}
+
+.pillActive {
+border-color: var(--ant-color-fill-secondary);
+font-weight: 500;
+color: var(--ant-color-text);
+background: var(--ant-color-fill-secondary);
+
+&:hover {
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.scrollArea {
+overflow-y: auto;
+overscroll-behavior: contain;
+
+max-height: min(46vh, 360px);
+margin-inline: -4px;
+padding-inline: 4px;
+}
+
+.skeletonAvatar {
+flex: none;
+
+width: 36px;
+height: 36px;
+border-radius: var(--ant-border-radius);
+
+background: var(--ant-color-fill-tertiary);
+
+animation: pulse 1.5s ease-in-out infinite;
+
+@media (prefers-reduced-motion: reduce) {
+  animation: none;
+}
+}
+
+.skeletonCard {
+display: flex;
+gap: 12px;
+
+padding-block: 12px;
+padding-inline: 14px;
+border: 1px solid var(--ant-color-fill-secondary);
+border-radius: var(--ant-border-radius-lg);
+}
+
+.skeletonLine {
+height: 10px;
+border-radius: var(--ant-border-radius);
+background: var(--ant-color-fill-tertiary);
+animation: pulse 1.5s ease-in-out infinite;
+
+@media (prefers-reduced-motion: reduce) {
+  animation: none;
+}
+}
+
+.skeletonPill {
+width: 72px;
+height: 28px;
+border-radius: 999px;
+
+background: var(--ant-color-fill-tertiary);
+
+animation: pulse 1.5s ease-in-out infinite;
+
+@media (prefers-reduced-motion: reduce) {
+  animation: none;
+}
+}

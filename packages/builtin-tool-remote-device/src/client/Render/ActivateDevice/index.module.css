@@ -1,0 +1,15 @@
+.failure {
+display: flex;
+gap: 8px;
+align-items: center;
+
+padding-block: 12px;
+padding-inline: 12px;
+border: 1px solid var(--ant-color-warning-border);
+border-radius: 10px;
+
+font-size: 13px;
+color: var(--ant-color-warning-text);
+
+background: var(--ant-color-warning-bg);
+}

@@ -1,0 +1,73 @@
+.card {
+display: flex;
+gap: 12px;
+align-items: center;
+
+padding: 12px;
+border: 1px solid var(--ant-color-fill-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-elevated);
+}
+
+.cardSkipped {
+opacity: 0.65;
+}
+
+.description {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+
+font-size: 12px;
+line-height: 1.5;
+color: var(--ant-color-text-secondary);
+}
+
+.list {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+gap: 8px;
+width: 100%;
+}
+
+.meta {
+flex-shrink: 0;
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.skippedTag {
+flex-shrink: 0;
+
+margin-inline-start: 4px;
+padding-block: 1px;
+padding-inline: 6px;
+border-radius: 999px;
+
+font-size: 11px;
+color: var(--ant-color-text-tertiary);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.title {
+overflow: hidden;
+flex: 1;
+
+min-width: 0;
+
+font-size: 14px;
+font-weight: 600;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.titleRow {
+display: flex;
+gap: 6px;
+align-items: center;
+width: 100%;
+}

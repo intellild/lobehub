@@ -1,0 +1,10 @@
+.container {
+overflow-x: scroll;
+width: 100%;
+}
+
+.uploadingContainer {
+overflow-x: auto;
+width: 100%;
+padding-block: 8px;
+}

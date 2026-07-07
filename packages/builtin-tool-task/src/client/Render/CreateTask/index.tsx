@@ -2,7 +2,6 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { ActionIcon, Block, Markdown, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { PanelRight, PanelRightClose } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,66 +12,7 @@ import { useChatStore } from '@/store/chat';
 import { chatPortalSelectors } from '@/store/chat/selectors';
 
 import type { CreateTaskParams, CreateTaskState } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  description: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  identifier: css`
-    flex-shrink: 0;
-
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-radius: 4px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  instruction: css`
-    /* The instruction is model-facing markdown; render it as a faded preview
-       rather than flattening it to plain text. Full content lives in the
-       expanded detail panel. */
-    overflow: hidden;
-    max-height: 132px;
-
-    mask-image: linear-gradient(to bottom, black 78%, transparent);
-  `,
-  row: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  `,
-  taskItem: css`
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-
-    padding-block: 10px;
-    padding-inline: 12px;
-  `,
-  title: css`
-    overflow: hidden;
-    flex: 1;
-
-    min-width: 0;
-
-    font-size: 13px;
-    line-height: 1.4;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+import styles from './index.module.css';
 
 export const CreateTaskRender = memo<BuiltinRenderProps<CreateTaskParams, CreateTaskState>>(
   ({ args, pluginState }) => {
@@ -146,7 +86,7 @@ export const CreateTaskRender = memo<BuiltinRenderProps<CreateTaskParams, Create
             </div>
           ) : null}
           {parent && (
-            <Text as={'span'} color={cssVar.colorTextTertiary} fontSize={11}>
+            <Text as={'span'} color={'var(--ant-color-text-tertiary)'} fontSize={11}>
               {`Subtask of ${parent}`}
             </Text>
           )}

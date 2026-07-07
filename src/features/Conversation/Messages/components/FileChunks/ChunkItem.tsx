@@ -1,6 +1,5 @@
 import { type ChatFileChunk } from '@lobechat/types';
 import { Center, Flexbox, Text, Tooltip } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import { memo } from 'react';
 
 import FileIcon from '@/components/FileIcon';
@@ -8,6 +7,19 @@ import { useIsDark } from '@/hooks/useIsDark';
 import { useChatStore } from '@/store/chat';
 
 import { styles } from './style';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface ChunkItemProps extends ChatFileChunk {
   index: number;

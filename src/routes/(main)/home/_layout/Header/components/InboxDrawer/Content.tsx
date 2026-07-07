@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { BellOffIcon } from 'lucide-react';
 import { memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -83,7 +82,7 @@ const Content = memo<ContentProps>(({ open, unreadOnly, onMarkAsRead, onArchive 
   if (notifications.length === 0) {
     return (
       <Flexbox align="center" gap={12} justify="center" paddingBlock={48}>
-        <Icon color={cssVar.colorTextQuaternary} icon={BellOffIcon} size={40} />
+        <Icon color={'var(--ant-color-text-quaternary)'} icon={BellOffIcon} size={40} />
         <Text type="secondary">{t(unreadOnly ? 'inbox.emptyUnread' : 'inbox.empty')}</Text>
       </Flexbox>
     );

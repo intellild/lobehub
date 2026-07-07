@@ -1,0 +1,12 @@
+.desc {
+height: 20px;
+font-size: 12px;
+line-height: 20px;
+color: var(--ant-color-text-tertiary);
+}
+
+.title {
+font-size: 15px;
+font-weight: bold;
+color: var(--ant-color-text-secondary);
+}

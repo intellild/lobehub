@@ -2,7 +2,6 @@
 
 import { AGENT_CHAT_TOPIC_URL } from '@lobechat/const';
 import { Block, Flexbox, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { BotMessageSquareIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -49,7 +48,7 @@ const AgentRecentTopics = memo(() => {
               variant={'outlined'}
               width={180}
               style={{
-                borderRadius: cssVar.borderRadiusLG,
+                borderRadius: 'var(--ant-border-radius-lg)',
                 overflow: 'hidden',
               }}
             >

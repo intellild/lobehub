@@ -1,0 +1,61 @@
+.badge {
+pointer-events: none;
+
+position: absolute;
+inset-block-start: -4px;
+inset-inline-end: -4px;
+
+min-width: 16px;
+height: 16px;
+padding-inline: 4px;
+border: 1.5px solid var(--ant-color-bg-container);
+border-radius: 8px;
+
+font-size: 10px;
+font-weight: 600;
+line-height: 13px;
+color: var(--ant-color-bg-container);
+text-align: center;
+
+background: var(--ant-color-warning);
+}
+
+.fab {
+cursor: pointer;
+user-select: none;
+
+position: fixed;
+z-index: 1100;
+inset-block-end: 64px;
+inset-inline-end: 16px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 36px;
+height: 36px;
+border: 1px solid transparent;
+border-radius: 50%;
+
+color: var(--ant-color-bg-container);
+
+background: var(--ant-color-text);
+box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+
+transition:
+  transform 160ms ease,
+  background 160ms ease,
+  color 160ms ease,
+  border-color 160ms ease;
+
+&:hover {
+  transform: scale(1.04);
+}
+}
+
+.fabActive {
+border-color: var(--ant-color-border);
+color: var(--ant-color-text);
+background: var(--ant-color-fill-secondary);
+}

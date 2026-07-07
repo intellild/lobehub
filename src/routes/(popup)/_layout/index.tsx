@@ -2,7 +2,6 @@
 
 import { HotkeyScopeEnum } from '@lobechat/const/hotkeys';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { type FC } from 'react';
 import { HotkeysProvider } from 'react-hotkeys-hook';
 import { Outlet } from 'react-router';
@@ -11,13 +10,8 @@ import ProtocolUrlHandler from '@/features/ProtocolUrlHandler';
 import { useChatStore } from '@/store/chat';
 import { topicSelectors } from '@/store/chat/selectors';
 
+import styles from './index.module.css';
 import PopupTitleBar from './TitleBar';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
 
 const PopupLayout: FC = () => {
   const topicTitle = useChatStore((s) => topicSelectors.currentActiveTopic(s)?.title);

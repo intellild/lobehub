@@ -1,0 +1,5 @@
+.icon {
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 8px;
+background: var(--ant-color-bg-elevated);
+}

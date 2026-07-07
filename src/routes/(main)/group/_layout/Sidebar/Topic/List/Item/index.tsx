@@ -1,7 +1,6 @@
 import { GROUP_CHAT_TOPIC_URL } from '@lobechat/const';
 import type { ChatTopicStatus } from '@lobechat/types';
 import { Flexbox, Icon, Skeleton, Tag, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import {
   CheckCircle2,
   Hand,
@@ -31,43 +30,8 @@ import { useGlobalStore } from '@/store/global';
 import ThreadList from '../../TopicListContent/ThreadList';
 import Actions from './Actions';
 import Editing from './Editing';
+import styles from './index.module.css';
 import { useTopicItemDropdownMenu } from './useDropdownMenu';
-
-const styles = createStaticStyles(({ css }) => ({
-  neonDotWrapper: css`
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 18px;
-    height: 18px;
-  `,
-  dotContainer: css`
-    will-change: width;
-
-    position: relative;
-
-    width: 18px;
-    height: 18px;
-    margin-inline-start: -6px;
-
-    transition: width 0.2s ${cssVar.motionEaseOut};
-  `,
-  neonDot: css`
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-
-    background: ${cssVar.colorInfo};
-    box-shadow:
-      0 0 3px ${cssVar.colorInfo},
-      0 0 6px ${cssVar.colorInfo};
-  `,
-}));
 
 // Module-scoped so a click on any topic cancels a pending click on another.
 // Per-item refs can't do that, which lets rapid clicks across items all
@@ -174,7 +138,7 @@ const TopicItem = memo<TopicItemProps>(({ id, title, fav, active, threadId, stat
   const isWaitingForHuman = status === 'waitingForHuman';
 
   const hasUnread = id && isUnreadCompleted;
-  const infoColor = cssVar.colorInfo;
+  const infoColor = 'var(--ant-color-info)';
   const unreadNode = (
     <span className={styles.dotContainer} style={{ width: hasUnread ? 18 : 0 }}>
       <AnimatePresence mode="popLayout">
@@ -227,7 +191,7 @@ const TopicItem = memo<TopicItemProps>(({ id, title, fav, active, threadId, stat
   );
   const hasDraft = useHasDraft(draftKey);
   const draftPrefix = hasDraft ? (
-    <Text fontSize={12} style={{ color: cssVar.colorError, flex: 'none' }}>
+    <Text fontSize={12} style={{ color: 'var(--ant-color-error)', flex: 'none' }}>
       {t('draft')}
     </Text>
   ) : undefined;
@@ -238,12 +202,12 @@ const TopicItem = memo<TopicItemProps>(({ id, title, fav, active, threadId, stat
       <NavItem
         active={active}
         slots={{ titlePrefix: draftPrefix }}
-        titleColor={cssVar.colorText}
+        titleColor={'var(--ant-color-text)'}
         icon={
           isLoading ? (
-            <Icon spin color={cssVar.colorWarning} icon={Loader2Icon} size={'small'} />
+            <Icon spin color={'var(--ant-color-warning)'} icon={Loader2Icon} size={'small'} />
           ) : (
-            <Icon color={cssVar.colorTextDescription} icon={MessageSquareDashed} size={'small'} />
+            <Icon color={'var(--ant-color-text-description)'} icon={MessageSquareDashed} size={'small'} />
           )
         }
         title={
@@ -252,7 +216,7 @@ const TopicItem = memo<TopicItemProps>(({ id, title, fav, active, threadId, stat
             <Tag
               size={'small'}
               style={{
-                color: cssVar.colorTextDescription,
+                color: 'var(--ant-color-text-description)',
                 fontSize: 10,
               }}
             >
@@ -274,20 +238,20 @@ const TopicItem = memo<TopicItemProps>(({ id, title, fav, active, threadId, stat
         disabled={editing}
         href={!editing ? href : undefined}
         title={title === '...' ? <DotsLoading gap={3} size={4} /> : title}
-        titleColor={cssVar.colorText}
+        titleColor={'var(--ant-color-text)'}
         icon={(() => {
           if (isWaitingForHuman) {
-            return <Icon icon={Hand} size={'small'} style={{ color: cssVar.colorInfo }} />;
+            return <Icon icon={Hand} size={'small'} style={{ color: 'var(--ant-color-info)' }} />;
           }
           if (isLoading || isRunning) {
             return (
-              <Icon spin icon={Loader2Icon} size={'small'} style={{ color: cssVar.colorWarning }} />
+              <Icon spin icon={Loader2Icon} size={'small'} style={{ color: 'var(--ant-color-warning)' }} />
             );
           }
           if (isFailed) {
             return (
               <Tooltip title={t('failedStatusTip')}>
-                <Icon icon={TriangleAlert} size={'small'} style={{ color: cssVar.colorError }} />
+                <Icon icon={TriangleAlert} size={'small'} style={{ color: 'var(--ant-color-error)' }} />
               </Tooltip>
             );
           }
@@ -296,12 +260,12 @@ const TopicItem = memo<TopicItemProps>(({ id, title, fav, active, threadId, stat
               <Icon
                 icon={CheckCircle2}
                 size={'small'}
-                style={{ color: cssVar.colorTextDescription }}
+                style={{ color: 'var(--ant-color-text-description)' }}
               />
             );
           }
           return (
-            <Icon icon={HashIcon} size={'small'} style={{ color: cssVar.colorTextDescription }} />
+            <Icon icon={HashIcon} size={'small'} style={{ color: 'var(--ant-color-text-description)' }} />
           );
         })()}
         slots={{

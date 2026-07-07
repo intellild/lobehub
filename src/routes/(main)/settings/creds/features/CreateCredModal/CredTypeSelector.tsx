@@ -3,51 +3,11 @@
 import { type CredType } from '@lobechat/types';
 import { Flexbox } from '@lobehub/ui';
 import { Card } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { File, Globe, Key, TerminalSquare } from 'lucide-react';
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    cursor: pointer;
-    transition: all 0.2s;
-
-    &:hover {
-      border-color: ${cssVar.colorPrimary};
-      box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
-    }
-  `,
-  cardDisabled: css`
-    cursor: not-allowed;
-    opacity: 0.5;
-  `,
-  description: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  grid: css`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  `,
-  icon: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 48px;
-    height: 48px;
-    margin-block-end: 12px;
-    border-radius: 12px;
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  title: css`
-    margin-block-end: 4px;
-    font-weight: 500;
-  `,
-}));
+import styles from './CredTypeSelector.module.css';
 
 interface CredTypeSelectorProps {
   disabled?: boolean;

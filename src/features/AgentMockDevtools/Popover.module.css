@@ -1,0 +1,129 @@
+.body {
+padding: 12px;
+padding-block-start: 0;
+}
+
+.closeBtn {
+cursor: pointer;
+
+width: 22px;
+height: 22px;
+border-radius: 4px;
+
+color: var(--ant-color-text-tertiary);
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.counter {
+font-size: 11px;
+font-feature-settings: 'tnum';
+color: var(--ant-color-text-secondary);
+}
+
+.footer {
+padding-block: 8px;
+padding-inline: 12px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+background: var(--ant-color-fill-tertiary);
+}
+
+.grip {
+cursor: grab;
+user-select: none;
+
+display: inline-flex;
+align-items: center;
+justify-content: center;
+
+width: 20px;
+height: 22px;
+border-radius: 4px;
+
+color: var(--ant-color-text-quaternary);
+
+transition: color 120ms ease;
+
+&:hover {
+  color: var(--ant-color-text-secondary);
+  background: var(--ant-color-fill-tertiary);
+}
+
+&:active {
+  cursor: grabbing;
+}
+}
+
+.gripDragging {
+cursor: grabbing;
+color: var(--ant-color-text);
+}
+
+.header {
+padding-block: 8px;
+padding-inline: 10px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.panel {
+position: fixed;
+z-index: 1099;
+
+overflow: hidden;
+
+width: 320px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 10px;
+
+background: var(--ant-color-bg-elevated);
+box-shadow: 0 12px 32px rgb(0 0 0 / 12%);
+}
+
+.progress {
+touch-action: none;
+cursor: pointer;
+
+display: flex;
+align-items: center;
+
+height: 14px;
+margin-block-end: 8px;
+
+&:hover .agent-mock-progress-track {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.progressFill {
+pointer-events: none;
+
+position: absolute;
+inset-block: 0;
+inset-inline-start: 0;
+
+height: 100%;
+border-radius: inherit;
+
+background: var(--ant-color-text);
+
+transition: width 0.16s linear;
+}
+
+.progressTrack {
+position: relative;
+
+overflow: hidden;
+flex: 1;
+
+height: 4px;
+border-radius: 2px;
+
+background: var(--ant-color-fill-secondary);
+}
+
+.progressTrackScrubbing {
+background: var(--ant-color-fill-tertiary) !important;
+}

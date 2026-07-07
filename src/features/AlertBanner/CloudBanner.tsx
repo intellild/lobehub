@@ -3,7 +3,6 @@
 import { LOBE_CHAT_CLOUD, UTM_SOURCE } from '@lobechat/business-const';
 import { Button, Center, Flexbox, Icon, lobeStaticStylish } from '@lobehub/ui';
 import { useSize } from 'ahooks';
-import { createStaticStyles, cx } from 'antd-style';
 import { ArrowRightIcon } from 'lucide-react';
 import { memo, useEffect, useRef, useState } from 'react';
 import Marquee from 'react-fast-marquee';
@@ -13,37 +12,26 @@ import { OFFICIAL_URL } from '@/const/url';
 import { useIsDark } from '@/hooks/useIsDark';
 import { isOnServerSide } from '@/utils/env';
 
+import stylesModule from './CloudBanner.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 export const BANNER_HEIGHT = 40;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  background: cx(
-    lobeStaticStylish.gradientAnimation,
-    css`
-      position: absolute;
-
-      width: max(64%, 1280px);
-      height: 100%;
-
-      opacity: 0.8;
-      filter: blur(60px);
-    `,
-  ),
-  containerDark: css`
-    position: relative;
-    overflow: hidden;
-    background-color: ${cssVar.colorFill};
-  `,
-  containerLight: css`
-    position: relative;
-    overflow: hidden;
-    background-color: ${cssVar.colorFillSecondary};
-  `,
-  wrapper: css`
-    z-index: 1;
-    overflow: hidden;
-    max-width: 100%;
-  `,
-}));
+const styles: typeof stylesModule & { background: string } = {
+  ...stylesModule,
+  background: [stylesModule.background, lobeStaticStylish.gradientAnimation].join(' '),
+};
 
 const CloudBanner = memo<{ mobile?: boolean }>(({ mobile }) => {
   const ref = useRef(null);

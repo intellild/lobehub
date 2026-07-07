@@ -1,5 +1,4 @@
 import { Block, Empty, Highlighter, Tag } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Database } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -37,7 +36,7 @@ const Resources = memo<{ mode?: ModeType }>(({ mode }) => {
             dataIndex: 'name',
             key: 'name',
             render: (text) => (
-              <span className={styles.code} style={{ color: cssVar.gold }}>
+              <span className={styles.code} style={{ color: 'var(--ant-gold)' }}>
                 {text}
               </span>
             ),

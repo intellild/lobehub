@@ -1,0 +1,204 @@
+.card {
+padding-block: 16px 4px;
+padding-inline: 16px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-container);
+}
+
+.cardHeader {
+display: flex;
+gap: 12px;
+align-items: flex-start;
+justify-content: space-between;
+}
+
+.cardTitleWrap {
+display: flex;
+flex: 1;
+flex-direction: column;
+gap: 8px;
+
+min-width: 0;
+}
+
+.cardTitle {
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.metaRow {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+align-items: center;
+
+min-width: 0;
+}
+
+.metaText {
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+}
+
+.pathWrap {
+display: flex;
+gap: 4px;
+align-items: center;
+
+min-width: 0;
+max-width: 100%;
+}
+
+.detailList {
+margin-block-start: 4px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+}
+
+.detailRow {
+display: flex;
+gap: 16px;
+align-items: center;
+
+min-height: 48px;
+padding-block: 8px;
+
+& + & {
+  border-block-start: 1px solid var(--ant-color-border-secondary);
+}
+}
+
+.detailLabel {
+flex-shrink: 0;
+
+width: 96px;
+
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+text-transform: uppercase;
+letter-spacing: 0.04em;
+}
+
+.detailContent {
+display: flex;
+flex: 1;
+flex-wrap: wrap;
+gap: 8px;
+align-items: center;
+
+min-width: 0;
+height: 28px;
+}
+
+.commandField {
+&:hover .command-edit-button {
+  pointer-events: auto;
+  opacity: 1;
+}
+}
+
+.commandInput {
+width: 100%;
+font-family: var(--ant-font-family-code);
+
+&,
+&.ant-input,
+&.ant-input-affix-wrapper,
+&.ant-input-outlined,
+& input,
+& .ant-input,
+& .ant-input-affix-wrapper,
+& .ant-input-outlined {
+  box-sizing: border-box;
+  height: 28px;
+  min-height: 28px;
+  max-height: 28px;
+  border-radius: 999px !important;
+
+  font-family: var(--ant-font-family-code);
+  font-size: 14px;
+  line-height: 26px;
+}
+
+&,
+&.ant-input,
+&.ant-input-outlined,
+& input,
+& .ant-input,
+& .ant-input-outlined {
+  padding-block: 0;
+  padding-inline: 12px;
+}
+
+&.ant-input-affix-wrapper,
+& .ant-input-affix-wrapper {
+  overflow: hidden;
+  padding-block: 0;
+  padding-inline: 12px;
+}
+
+&.ant-input-affix-wrapper input,
+& .ant-input-affix-wrapper input {
+  height: 26px;
+  padding: 0;
+  border-radius: 999px !important;
+  line-height: 26px;
+}
+}
+
+.commandInputWrap {
+display: flex;
+align-items: center;
+
+width: min(320px, 100%);
+max-width: 100%;
+height: 28px;
+}
+
+.commandDisplay {
+display: inline-flex;
+align-items: center;
+
+box-sizing: border-box;
+max-width: 100%;
+height: 28px;
+padding-block: 0;
+padding-inline: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 999px;
+
+background: var(--ant-color-fill-secondary);
+}
+
+.commandEditButton {
+pointer-events: none;
+opacity: 0;
+transition: opacity 0.2s ease;
+}
+
+.commandText {
+min-width: 0;
+
+font-family: var(--ant-font-family-code);
+font-size: 14px;
+line-height: 20px;
+color: var(--ant-color-text);
+}
+
+.accountValue {
+font-size: 15px;
+color: var(--ant-color-text);
+}
+
+.path {
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.unavailableText {
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+}

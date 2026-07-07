@@ -1,0 +1,15 @@
+.container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.content {
+  position: absolute;
+  inset-block: -1px;
+  inset-inline-start: -1px;
+
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  border: 0;
+}

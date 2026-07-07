@@ -1,0 +1,3 @@
+.mentionFilled :global(.editor_mention) {
+  border: none;
+}

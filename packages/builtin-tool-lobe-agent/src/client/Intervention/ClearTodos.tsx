@@ -4,34 +4,12 @@ import type { BuiltinInterventionProps } from '@lobechat/types';
 import { Flexbox } from '@lobehub/ui';
 import type { RadioChangeEvent } from 'antd';
 import { Radio } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { Trash2 } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { ClearTodosParams } from '../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding: 12px;
-    border-radius: ${cssVar.borderRadius};
-    background: ${cssVar.colorFillTertiary};
-  `,
-  dangerText: css`
-    font-size: 13px;
-    color: ${cssVar.colorError};
-  `,
-  header: css`
-    color: ${cssVar.colorWarning};
-  `,
-  label: css`
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  normalText: css`
-    font-size: 13px;
-  `,
-}));
+import styles from './ClearTodos.module.css';
 
 /**
  * ClearTodos Intervention component

@@ -5,7 +5,6 @@ import { getHotkeyById, HotkeyEnum, INSERT_HEADING_COMMAND } from '@lobehub/edit
 import { type ChatInputActionsProps, type EditorState } from '@lobehub/editor/react';
 import { ChatInputActions, FloatActions } from '@lobehub/editor/react';
 import { Block } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import {
   BoldIcon,
   CodeXmlIcon,
@@ -217,7 +216,7 @@ const InlineToolbar = memo<InlineToolbarProps>(
         padding={4}
         variant={'outlined'}
         style={{
-          background: cssVar.colorBgElevated,
+          background: 'var(--ant-color-bg-elevated)',
           borderRadius: 8,
           marginBottom: 16,
           marginTop: 16,

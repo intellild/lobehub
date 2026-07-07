@@ -2,7 +2,6 @@
 
 import { Button, Center, Checkbox, Flexbox } from '@lobehub/ui';
 import { VirtuosoMasonry } from '@virtuoso.dev/masonry';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { type UIEvent } from 'react';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,37 +17,10 @@ import {
   useExplorerSelectionSummary,
 } from '../hooks/useExplorerSelection';
 import { useMasonryColumnCount } from '../useMasonryColumnCount';
+import styles from './index.module.css';
 import MasonryItemWrapper from './MasonryItem/MasonryItemWrapper';
 import MasonryViewSkeleton from './Skeleton';
 import { useMasonryViewState } from './useMasonryViewState';
-
-const styles = createStaticStyles(({ css }) => ({
-  selectAllHint: css`
-    position: sticky;
-    z-index: 1;
-    inset-block-start: 53px;
-
-    padding-block: 8px;
-    padding-inline: 4px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  toolbar: css`
-    position: sticky;
-    z-index: 1;
-    inset-block-start: 0;
-
-    padding-block: 12px;
-    padding-inline: 4px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
 
 interface MasonryViewProps {
   isLoading?: boolean;
@@ -278,7 +250,7 @@ const MasonryView = memo(function MasonryView({
         {isLoadingMore && (
           <Center
             style={{
-              color: cssVar.colorTextDescription,
+              color: 'var(--ant-color-text-description)',
               fontSize: 14,
               marginBlockStart: 16,
               minHeight: 40,

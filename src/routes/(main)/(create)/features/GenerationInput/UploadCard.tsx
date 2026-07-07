@@ -2,7 +2,6 @@
 
 import { ActionIcon, Block } from '@lobehub/ui';
 import { Spin } from 'antd';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Plus, X } from 'lucide-react';
 import type { ChangeEvent, CSSProperties } from 'react';
 import { memo, useCallback, useRef, useState } from 'react';
@@ -10,124 +9,26 @@ import { memo, useCallback, useRef, useState } from 'react';
 import Image from '@/libs/next/Image';
 import { useFileStore } from '@/store/file';
 
+import uploadCardStylesModule from './UploadCard.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 export const UPLOAD_CARD_SIZE = 64;
 const ADD_CIRCLE_SIZE = 28;
 
 export type UploadData = string | { dimensions?: { height: number; width: number }; url: string };
-
-export const uploadCardStyles = createStaticStyles(({ css }) => ({
-  addCircle: css`
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: ${ADD_CIRCLE_SIZE}px;
-    height: ${ADD_CIRCLE_SIZE}px;
-    border-radius: 50%;
-
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorBgElevated};
-    box-shadow:
-      0 2px 8px rgb(0 0 0 / 15%),
-      0 0 0 1px ${cssVar.colorBorderSecondary};
-
-    transition: all ${cssVar.motionDurationMid} ease;
-
-    &:hover {
-      color: ${cssVar.colorPrimary};
-      background: ${cssVar.colorPrimaryBg};
-      box-shadow:
-        0 2px 8px rgb(0 0 0 / 15%),
-        0 0 0 1px ${cssVar.colorPrimary};
-    }
-  `,
-  closeButton: css`
-    position: absolute;
-    z-index: 10;
-    inset-block-start: -6px;
-    inset-inline-end: -6px;
-
-    border-radius: 50% !important;
-  `,
-  filledCard: css`
-    cursor: pointer;
-
-    position: relative;
-
-    flex-shrink: 0;
-
-    width: ${UPLOAD_CARD_SIZE}px;
-    height: ${UPLOAD_CARD_SIZE}px;
-    padding: 2px;
-    border-radius: 6px;
-
-    transition: all ${cssVar.motionDurationMid} ease;
-
-    .upload-card-close {
-      opacity: 0 !important;
-    }
-
-    &:hover {
-      z-index: 99 !important;
-
-      .upload-card-close {
-        opacity: 1 !important;
-      }
-    }
-  `,
-  filledCardInner: css`
-    position: relative;
-
-    overflow: hidden;
-
-    width: 100%;
-    height: 100%;
-    border-radius: 3px;
-  `,
-  label: css`
-    padding-inline: 4px;
-
-    font-size: 10px;
-    line-height: 1;
-    color: ${cssVar.colorTextQuaternary};
-    text-align: center;
-  `,
-  placeholderCard: css`
-    cursor: pointer;
-
-    flex-shrink: 0;
-
-    width: ${UPLOAD_CARD_SIZE}px;
-    height: ${UPLOAD_CARD_SIZE}px;
-    border-radius: 6px;
-
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  uploadOverlay: css`
-    position: absolute;
-    z-index: 5;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 3px;
-
-    background: ${cssVar.colorBgMask};
-
-    /* antd resets the Spin's own color to colorText (near-black in the light
-       theme) and the percent ring's stroke is \`currentcolor\`, so it smears into
-       the dark mask. The mask is a dark scrim in both themes — override the Spin
-       color to white for contrast. */
-    .ant-spin {
-      color: ${cssVar.colorWhite};
-    }
-  `,
-}));
+export const uploadCardStyles = uploadCardStylesModule;
 
 interface UploadCardProps {
   className?: string;

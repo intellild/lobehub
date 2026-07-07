@@ -2,7 +2,6 @@
 
 import { ModelIcon } from '@lobehub/icons';
 import { ActionIcon, Block, Flexbox, Tooltip, TooltipGroup } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { ChevronRightIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -41,7 +40,7 @@ const ModelList = memo(() => {
                       <ModelIcon model={record.id} size={24} type={'avatar'} />
                       <Flexbox style={{ overflow: 'hidden' }}>
                         <div style={{ fontWeight: 500 }}>{record.displayName}</div>
-                        <div style={{ color: cssVar.colorTextSecondary, fontSize: 12 }}>
+                        <div style={{ color: 'var(--ant-color-text-secondary)', fontSize: 12 }}>
                           {record.id}
                         </div>
                       </Flexbox>
@@ -143,7 +142,7 @@ const ModelList = memo(() => {
                       to={urlJoin('/community/model', record.id)}
                     >
                       <ActionIcon
-                        color={cssVar.colorTextDescription}
+                        color={'var(--ant-color-text-description)'}
                         icon={ChevronRightIcon}
                         size={'small'}
                         variant={'filled'}

@@ -1,7 +1,6 @@
 'use client';
 
 import { Center, Grid, Icon, Skeleton, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { InboxIcon, ServerCrash } from 'lucide-react';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -83,7 +82,7 @@ const Agents = memo(() => {
   if (error) {
     return (
       <Center gap={12} padding={40}>
-        <Icon color={cssVar.colorTextDescription} icon={ServerCrash} size={80} />
+        <Icon color={'var(--ant-color-text-description)'} icon={ServerCrash} size={80} />
         <Text type={'secondary'}>{t('skillDetail.networkError')}</Text>
       </Center>
     );
@@ -93,7 +92,7 @@ const Agents = memo(() => {
   if (isInitialized && items.length === 0) {
     return (
       <Center gap={12} padding={40}>
-        <Icon color={cssVar.colorTextDescription} icon={InboxIcon} size={80} />
+        <Icon color={'var(--ant-color-text-description)'} icon={InboxIcon} size={80} />
         <Text type={'secondary'}>{t('skillDetail.noAgents')}</Text>
       </Center>
     );

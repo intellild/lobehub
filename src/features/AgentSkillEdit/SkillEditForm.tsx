@@ -12,25 +12,10 @@ import {
 import { Editor, useEditor } from '@lobehub/editor/react';
 import { Form, type FormItemProps } from '@lobehub/ui';
 import { Form as AForm, type FormInstance, Input } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css }) => ({
-  editorWrapper: css`
-    min-height: 200px;
-    padding-block: 8px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 8px;
-  `,
-  wrapper: css`
-    max-width: 798px;
-    margin-inline: auto;
-    padding-block: 0;
-    padding-inline: 24px;
-  `,
-}));
+import styles from './SkillEditForm.module.css';
 
 const PLUGINS = [
   ReactListPlugin,

@@ -1,5 +1,4 @@
 import { ActionIcon, DropdownMenu, Flexbox, Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { FileTextIcon, HashIcon, MoreHorizontalIcon } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 
@@ -64,14 +63,14 @@ const RecentListItem = memo<RecentItem>((item) => {
           if (type === 'topic' && metadata?.bot?.platform) {
             const ProviderIcon = getPlatformIcon(metadata.bot.platform);
             if (ProviderIcon) {
-              return <ProviderIcon color={cssVar.colorTextDescription} size={16} />;
+              return <ProviderIcon color={'var(--ant-color-text-description)'} size={16} />;
             }
           }
           return (
             <Icon
               icon={IconComponent}
               size={'small'}
-              style={{ color: cssVar.colorTextDescription }}
+              style={{ color: 'var(--ant-color-text-description)' }}
             />
           );
         })()}

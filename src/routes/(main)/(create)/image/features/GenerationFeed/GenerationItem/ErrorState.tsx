@@ -1,7 +1,6 @@
 'use client';
 
 import { Block, Center, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { ImageOffIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -98,7 +97,7 @@ export const ErrorState = memo<ErrorStateProps>(
         onClick={onCopyError}
       >
         <Center gap={8}>
-          <Icon color={cssVar.colorTextDescription} icon={ImageOffIcon} size={24} />
+          <Icon color={'var(--ant-color-text-description)'} icon={ImageOffIcon} size={24} />
           <Text strong align={'center'} type={'secondary'}>
             {isProviderContentModerationError
               ? errorMessage || tError('response.ProviderContentModeration')

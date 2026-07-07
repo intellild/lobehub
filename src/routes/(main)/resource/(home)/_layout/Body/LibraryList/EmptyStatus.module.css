@@ -1,0 +1,16 @@
+.container {
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.paragraph {
+justify-content: center;
+width: 100%;
+
+kbd {
+  margin-inline: 2px;
+  padding-inline: 6px;
+  border-radius: 4px;
+  background: var(--ant-color-fill-tertiary);
+}
+}

@@ -1,7 +1,6 @@
 'use client';
 
 import { Button } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { Upload, X } from 'lucide-react';
 import { type FC } from 'react';
 import React, { memo, useEffect, useRef, useState } from 'react';
@@ -10,6 +9,21 @@ import { useTranslation } from 'react-i18next';
 import ImperativeModal from '@/components/ImperativeModal';
 import Image from '@/libs/next/Image';
 import { useUploadFilesValidation } from '@/routes/(main)/(create)/image/features/ConfigPanel/hooks/useUploadFilesValidation';
+
+import stylesModule from './ImageManageModal.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 // ======== Types ======== //
 
@@ -55,148 +69,7 @@ const generateId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 11
 // ======== Styles ======== //
 
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  content: css`
-    display: flex;
-    height: 480px;
-    background: ${cssVar.colorBgContainer};
-  `,
-  fileName: css`
-    margin-block-start: 16px;
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadius};
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  footer: css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 16px;
-    padding-inline: 24px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  modal: css`
-    .${prefixCls}-modal-container {
-      overflow: hidden;
-      padding: 0;
-    }
-  `,
-  newFileIndicator: css`
-    position: absolute;
-    z-index: 5;
-    inset-block-start: 4px;
-    inset-inline-start: 4px;
-
-    padding-block: 2px;
-    padding-inline: 6px;
-    border-radius: ${cssVar.borderRadiusSM};
-
-    font-size: 10px;
-    font-weight: 500;
-    color: ${cssVar.colorWhite};
-
-    background: ${cssVar.colorSuccess};
-  `,
-  previewArea: css`
-    position: relative;
-
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    padding: 24px;
-  `,
-  previewEmpty: css`
-    font-size: 16px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  previewImage: css`
-    max-width: 100%;
-    max-height: 320px;
-    border-radius: ${cssVar.borderRadiusLG};
-    box-shadow: ${cssVar.boxShadowSecondary};
-  `,
-  sidebar: css`
-    overflow-y: auto;
-
-    width: 200px;
-    padding: 16px;
-    border-inline-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    background: ${cssVar.colorBgLayout};
-  `,
-  thumbnail: css`
-    cursor: pointer;
-
-    position: relative;
-
-    overflow: hidden;
-
-    width: 100%;
-    height: 120px;
-    border: 2px solid transparent;
-    border-radius: ${cssVar.borderRadius};
-
-    transition: border-color 0.2s ease;
-
-    &:hover {
-      border-color: ${cssVar.colorPrimary};
-    }
-
-    &:hover .thumbnail-delete {
-      opacity: 1;
-    }
-
-    &.selected {
-      border-color: ${cssVar.colorPrimary};
-    }
-  `,
-  thumbnailDelete: css`
-    cursor: pointer;
-
-    position: absolute;
-    z-index: 10;
-    inset-block-start: 4px;
-    inset-inline-end: 4px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-
-    color: ${cssVar.colorTextLightSolid};
-
-    opacity: 0;
-    background: ${cssVar.colorBgMask};
-
-    transition: opacity 0.2s ease;
-
-    &:hover {
-      color: ${cssVar.colorError};
-      background: ${cssVar.colorErrorBg};
-    }
-  `,
-  thumbnailList: css`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  `,
-}));
+const styles = stylesModule;
 
 // ======== Main Component ======== //
 

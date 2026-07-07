@@ -1,0 +1,27 @@
+.chip {
+overflow: hidden;
+display: inline-flex;
+flex: none;
+gap: 4px;
+align-items: center;
+
+max-width: 260px;
+margin-inline-start: 6px;
+padding-block: 1px;
+padding-inline: 6px 8px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 12px;
+
+color: var(--ant-color-text);
+}
+
+.chipIcon {
+flex: none;
+color: var(--ant-color-text-secondary);
+}
+
+.chipLabel {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}

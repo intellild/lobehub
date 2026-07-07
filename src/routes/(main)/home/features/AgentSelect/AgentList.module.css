@@ -1,0 +1,18 @@
+.active {
+background: var(--ant-color-fill-tertiary);
+}
+
+.item {
+cursor: pointer;
+padding-block: 6px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius);
+
+&:hover {
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.list {
+padding: 8px;
+}

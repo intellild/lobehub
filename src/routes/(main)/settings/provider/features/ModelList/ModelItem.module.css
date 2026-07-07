@@ -1,0 +1,29 @@
+.config {
+opacity: 0;
+    transition: all 100ms ease-in-out;
+}
+
+.container {
+position: relative;
+  border-radius: var(--ant-border-radius-lg)px;
+  transition: all 200ms ease-in-out;
+
+  &:hover {
+    background-color: var(--ant-color-fill-tertiary);
+
+    .model-item-config {
+      opacity: 1;
+    }
+  }
+}
+
+.desc {
+flex: 1;
+  min-width: 0;
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

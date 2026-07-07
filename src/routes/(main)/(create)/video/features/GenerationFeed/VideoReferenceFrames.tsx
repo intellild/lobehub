@@ -1,38 +1,10 @@
 'use client';
 
 import { ActionIcon, Flexbox, Image } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { QuoteIcon } from 'lucide-react';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    margin-inline-start: -16px;
-  `,
-  image: css`
-    padding: 2px;
-    box-shadow: ${cssVar.boxShadowTertiary};
-
-    img {
-      border-radius: 6px;
-    }
-  `,
-  icon: css`
-    pointer-events: none;
-
-    z-index: 10;
-
-    border-radius: 50% !important;
-
-    color: ${cssVar.colorBgLayout};
-
-    background: ${cssVar.colorFill};
-    box-shadow: ${cssVar.boxShadowTertiary};
-  `,
-}));
+import styles from './VideoReferenceFrames.module.css';
 
 interface VideoReferenceFramesProps {
   endImageUrl?: string | null;

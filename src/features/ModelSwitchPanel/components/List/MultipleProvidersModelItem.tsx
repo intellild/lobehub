@@ -13,7 +13,6 @@ import {
   menuSharedStyles,
   Tag,
 } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import { Check } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -24,6 +23,19 @@ import { styles } from '../../styles';
 import { type ModelWithProviders } from '../../types';
 import { menuKey } from '../../utils';
 import ModelDetailPanel from '../ModelDetailPanel';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface MultipleProvidersModelItemProps {
   activeKey: string;

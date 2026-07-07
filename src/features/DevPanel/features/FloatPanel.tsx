@@ -2,7 +2,6 @@
 
 import { BRANDING_NAME } from '@lobechat/business-const';
 import { ActionIcon, Flexbox, FluentEmoji, SideNav } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { XIcon } from 'lucide-react';
 import { memo, type ReactNode, useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
@@ -10,65 +9,20 @@ import { Rnd } from 'react-rnd';
 import { isDesktop } from '@/const/version';
 import { usePathname } from '@/libs/next/navigation';
 
-// Define styles
-const styles = createStaticStyles(({ css }) => {
-  return {
-    collapsed: css`
-      pointer-events: none;
-      transform: scale(0.8);
-      opacity: 0;
-    `,
-    expanded: css`
-      pointer-events: auto;
-      transform: scale(1);
-      opacity: 1;
-    `,
-    debugButton: css`
-      cursor: default;
-      user-select: none;
+import styles from './FloatPanel.module.css';
 
-      position: fixed;
-      inset-block-end: 9px;
-      inset-inline-end: 9px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-      padding-block: 1px;
-      padding-inline: 8px;
-      border-radius: 12px;
-
-      font-size: 8px;
-      color: ${cssVar.colorBgContainer};
-
-      background-color: ${cssVar.colorText};
-    `,
-    header: css`
-      cursor: move;
-      user-select: none;
-
-      padding-block: 8px;
-      padding-inline: 16px;
-      border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-      color: ${cssVar.colorText};
-
-      background: ${cssVar.colorFillAlter};
-    `,
-    panel: css`
-      position: fixed;
-      z-index: 1000;
-
-      overflow: hidden;
-      display: flex;
-
-      border: 1px solid ${cssVar.colorBorderSecondary};
-      border-radius: 12px;
-
-      background: ${cssVar.colorBgContainer};
-      box-shadow: ${cssVar.boxShadow};
-
-      transition: opacity ${cssVar.motionDurationMid} ${cssVar.motionEaseInOut};
-    `,
-  };
-});
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const minWidth = 800;
 const minHeight = 600;
@@ -186,8 +140,8 @@ const CollapsibleFloatPanel = memo<CollapsibleFloatPanelProps>(({ items }) => {
               >
                 <Flexbox horizontal align={'baseline'} gap={6}>
                   <b>{BRANDING_NAME} Dev Tools</b>
-                  <span style={{ color: cssVar.colorTextDescription }}>/</span>
-                  <span style={{ color: cssVar.colorTextDescription }}>{tab}</span>
+                  <span style={{ color: 'var(--ant-color-text-description)' }}>/</span>
+                  <span style={{ color: 'var(--ant-color-text-description)' }}>{tab}</span>
                 </Flexbox>
                 <ActionIcon icon={XIcon} onClick={() => setIsExpanded(false)} />
               </Flexbox>

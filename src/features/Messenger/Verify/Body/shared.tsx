@@ -3,7 +3,6 @@
 import { Block, Button, Flexbox, Icon, Text } from '@lobehub/ui';
 import { Select } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { AlertTriangleIcon, CheckCircle2Icon, LinkIcon } from 'lucide-react';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -25,79 +24,9 @@ import {
   PERSONAL_SCOPE,
   resolvePersonalScopeLabel,
 } from '../../scopeOptions';
+import styles from './shared.module.css';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  bubble: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 64px;
-    height: 64px;
-    border-radius: 14px;
-
-    background: ${cssVar.colorBgContainer};
-    box-shadow:
-      0 1px 2px rgb(0 0 0 / 6%),
-      0 4px 12px rgb(0 0 0 / 4%);
-  `,
-  card: css`
-    width: 100%;
-    max-width: 440px;
-  `,
-  chainBubble: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 24px;
-    height: 24px;
-    border-radius: 999px;
-
-    color: ${cssVar.colorBgContainer};
-
-    background: ${cssVar.colorTextBase};
-  `,
-  iconRow: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: center;
-
-    margin-block-end: 8px;
-  `,
-  infoRow: css`
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 10px;
-
-    & + & {
-      border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-    }
-  `,
-  infoValue: css`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  successBubble: css`
-    color: #fff;
-    background: #22c55e;
-  `,
-  warningBlock: css`
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-color: ${cssVar.colorWarningBorder};
-    background: ${cssVar.colorWarningBg};
-  `,
-  warningIcon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorWarning};
-  `,
-}));
+export { styles };
 
 const ChainBubble = () => (
   <div className={styles.chainBubble}>

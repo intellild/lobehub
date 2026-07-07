@@ -13,7 +13,6 @@ import {
   Text,
 } from '@lobehub/ui';
 import { Button, confirmModal } from '@lobehub/ui/base-ui';
-import { cssVar } from 'antd-style';
 import { MessageCircle, MoreHorizontal, Pencil, Trash } from 'lucide-react';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -137,7 +136,7 @@ const CommentCard = memo<CommentCardProps>(({ activity }) => {
       gap={8}
       paddingBlock={12}
       paddingInline={8}
-      style={{ borderRadius: cssVar.borderRadiusLG }}
+      style={{ borderRadius: 'var(--ant-border-radius-lg)' }}
       variant={'outlined'}
     >
       <Flexbox horizontal align={'center'} gap={8}>

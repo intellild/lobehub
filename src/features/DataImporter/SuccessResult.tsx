@@ -2,18 +2,11 @@
 
 import { Button, Flexbox, Icon } from '@lobehub/ui';
 import { Result, Table } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { CheckCircle } from 'lucide-react';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    zeroCell: css`
-      color: ${cssVar.colorTextQuaternary};
-    `,
-  };
-});
+import styles from './SuccessResult.module.css';
 
 interface SuccessResultProps {
   dataSource?: {

@@ -1,6 +1,5 @@
 import { type SidebarAgentItem } from '@lobechat/types';
 import { ActionIcon, Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Loader2, PinIcon } from 'lucide-react';
 import { type CSSProperties, type DragEvent } from 'react';
 import { memo, useCallback, useMemo, useState } from 'react';
@@ -18,58 +17,8 @@ import { useAgentModal } from '../../ModalProvider';
 import Actions from '../Item/Actions';
 import { usePreservedAgentUrl } from '../usePreservedAgentUrl';
 import Avatar from './Avatar';
+import styles from './index.module.css';
 import { useAgentDropdownMenu } from './useDropdownMenu';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  badge: css`
-    pointer-events: none;
-
-    position: absolute;
-    inset-block-end: -3px;
-    inset-inline-end: -3px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    min-width: 14px;
-    height: 14px;
-    padding-inline: 3px;
-    border: 1.5px solid ${cssVar.colorBgContainer};
-    border-radius: 999px;
-
-    font-size: 9px;
-    font-weight: 600;
-    line-height: 1;
-    color: #fff;
-
-    background: ${cssVar.colorError};
-  `,
-  runningBadge: css`
-    pointer-events: none;
-
-    position: absolute;
-    inset-block-end: -3px;
-    inset-inline-end: -3px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 14px;
-    height: 14px;
-    border: 1.5px solid ${cssVar.colorBgContainer};
-    border-radius: 999px;
-
-    color: ${cssVar.colorWarning};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  wrapper: css`
-    position: relative;
-    display: inline-flex;
-  `,
-}));
 
 interface AgentItemProps {
   className?: string;
@@ -141,7 +90,7 @@ const AgentItem = memo<AgentItemProps>(({ item, style, className, onNavigate }) 
   // Memoize avatar icon (show loader when updating, running spinner or unread badge at bottom-right)
   const avatarIcon = useMemo(() => {
     if (isUpdating) {
-      return <Icon spin color={cssVar.colorTextDescription} icon={Loader2} size={18} />;
+      return <Icon spin color={'var(--ant-color-text-description)'} icon={Loader2} size={18} />;
     }
 
     const avatarNode = (

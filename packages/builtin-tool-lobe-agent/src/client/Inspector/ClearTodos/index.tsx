@@ -1,21 +1,26 @@
 'use client';
 
 import type { BuiltinInspectorProps } from '@lobechat/types';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { ClearTodosParams, ClearTodosState } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  mode: css`
-    padding-block-end: 1px;
-    color: ${cssVar.colorText};
-    background: linear-gradient(to top, ${cssVar.colorWarningBg} 40%, transparent 40%);
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const ClearTodosInspector = memo<BuiltinInspectorProps<ClearTodosParams, ClearTodosState>>(
   ({ args, partialArgs, isArgumentsStreaming }) => {

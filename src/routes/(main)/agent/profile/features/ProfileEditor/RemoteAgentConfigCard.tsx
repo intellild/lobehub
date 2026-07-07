@@ -8,7 +8,6 @@ import type { HeterogeneousProviderConfig } from '@lobechat/types';
 import { ActionIcon, Flexbox, Icon, Text, Tooltip } from '@lobehub/ui';
 import { Button as BaseButton, createModal, Select, useModalContext } from '@lobehub/ui/base-ui';
 import { Button, Tag } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { t as i18nT } from 'i18next';
 import { BotIcon, CheckCircle2, MonitorSmartphone, RefreshCw, XCircle } from 'lucide-react';
 import { memo, useCallback, useEffect, useState } from 'react';
@@ -18,67 +17,7 @@ import { lambdaQuery } from '@/libs/trpc/client';
 import { deviceService } from '@/services/device';
 import { useAgentStore } from '@/store/agent';
 
-const styles = createStaticStyles(({ css }) => ({
-  card: css`
-    padding-block: 16px 4px;
-    padding-inline: 16px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  cardHeader: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block-end: 12px;
-  `,
-  title: css`
-    font-size: 14px;
-    font-weight: 500;
-  `,
-  detailList: css`
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  detailRow: css`
-    display: flex;
-    gap: 16px;
-    align-items: center;
-
-    min-height: 44px;
-    padding-block: 6px;
-
-    & + & {
-      border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-    }
-  `,
-  detailLabel: css`
-    flex-shrink: 0;
-
-    width: 96px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  `,
-  detailContent: css`
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
-
-    min-width: 0;
-  `,
-  deviceItem: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  `,
-}));
+import styles from './RemoteAgentConfigCard.module.css';
 
 interface ChangeDeviceContentProps {
   currentDeviceId?: string;

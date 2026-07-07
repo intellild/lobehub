@@ -1,5 +1,4 @@
 import { Flexbox, Skeleton } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 const DetailsLoading = memo(() => {
@@ -17,7 +16,7 @@ const DetailsLoading = memo(() => {
         gap={12}
         height={54}
         style={{
-          borderBottom: `1px solid ${cssVar.colorBorder}`,
+          borderBottom: `1px solid ${'var(--ant-color-border)'}`,
         }}
       >
         <Skeleton.Button />

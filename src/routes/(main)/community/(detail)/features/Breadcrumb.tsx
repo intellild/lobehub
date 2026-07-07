@@ -3,7 +3,6 @@
 import { CopyButton, Flexbox } from '@lobehub/ui';
 import { type BreadcrumbProps } from 'antd';
 import { Breadcrumb as AntdBreadcrumb } from 'antd';
-import { cssVar } from 'antd-style';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -33,7 +32,7 @@ const Breadcrumb = memo<{ identifier: string; tab: DiscoverTab }>(({ tab, identi
               align="center"
               gap={4}
               style={{
-                color: cssVar.colorTextSecondary,
+                color: 'var(--ant-color-text-secondary)',
               }}
             >
               @{identifier}
@@ -57,7 +56,7 @@ const Breadcrumb = memo<{ identifier: string; tab: DiscoverTab }>(({ tab, identi
             align="center"
             gap={4}
             style={{
-              color: cssVar.colorTextSecondary,
+              color: 'var(--ant-color-text-secondary)',
             }}
           >
             {identifier}

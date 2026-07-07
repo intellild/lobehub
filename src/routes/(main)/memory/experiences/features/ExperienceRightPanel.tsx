@@ -2,7 +2,6 @@
 
 import { Avatar, Flexbox, Text } from '@lobehub/ui';
 import { Steps } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -22,24 +21,7 @@ import { useUserMemoryStore } from '@/store/userMemory';
 import { LayersEnum } from '@/types/userMemory';
 
 import ExperienceDropdown from './ExperienceDropdown';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  content: css`
-    font-size: 14px;
-    line-height: 1.8;
-    color: ${cssVar.colorText};
-    white-space: pre-wrap;
-  `,
-  stepsContainer: css`
-    .ant-steps-item-content {
-      min-height: auto;
-    }
-
-    .ant-steps-item-description {
-      padding-block-end: 16px !important;
-    }
-  `,
-}));
+import styles from './ExperienceRightPanel.module.css';
 
 const ExperienceRightPanel = memo(() => {
   const { t } = useTranslation('memory');
@@ -98,7 +80,7 @@ const ExperienceRightPanel = memo(() => {
                 shape={'square'}
                 size={24}
                 style={{
-                  border: `1px solid ${cssVar.colorBorderSecondary}`,
+                  border: `1px solid ${'var(--ant-color-border-secondary)'}`,
                 }}
               />
             ),
@@ -117,7 +99,7 @@ const ExperienceRightPanel = memo(() => {
                 shape={'square'}
                 size={24}
                 style={{
-                  border: `1px solid ${cssVar.colorBorderSecondary}`,
+                  border: `1px solid ${'var(--ant-color-border-secondary)'}`,
                 }}
               />
             ),
@@ -136,7 +118,7 @@ const ExperienceRightPanel = memo(() => {
                 shape={'square'}
                 size={24}
                 style={{
-                  border: `1px solid ${cssVar.colorBorderSecondary}`,
+                  border: `1px solid ${'var(--ant-color-border-secondary)'}`,
                 }}
               />
             ),
@@ -155,7 +137,7 @@ const ExperienceRightPanel = memo(() => {
                 shape={'square'}
                 size={24}
                 style={{
-                  border: `1px solid ${cssVar.colorBorderSecondary}`,
+                  border: `1px solid ${'var(--ant-color-border-secondary)'}`,
                 }}
               />
             ),

@@ -1,0 +1,9 @@
+.container {
+* {
+  font-family: var(--ant-font-family-code);
+  font-size: 12px;
+}
+.ant-form-item {
+  padding-block: 4px !important;
+}
+}

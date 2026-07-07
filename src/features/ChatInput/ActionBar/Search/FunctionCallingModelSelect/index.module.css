@@ -1,0 +1,5 @@
+.select {
+&.ant-select-dropdown .ant-select-item-option-grouped {
+  padding-inline-start: 12px;
+}
+}

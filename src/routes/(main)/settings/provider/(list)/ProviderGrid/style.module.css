@@ -1,0 +1,74 @@
+.bannerDark {
+opacity: 0.9;
+}
+
+.bannerLight {
+opacity: 0.4;
+}
+
+.containerDark {
+position: relative;
+
+overflow: hidden;
+
+height: 100%;
+border-radius: 12px;
+
+background: var(--ant-color-bg-container);
+box-shadow: 0 0 1px 1px var(--ant-color-fill-quaternary) inset;
+
+transition: box-shadow 0.2s var(--ant-motion-ease-in-out);
+
+&:hover {
+  box-shadow: 0 0 1px 1px var(--ant-color-fill-secondary) inset;
+}
+}
+
+.containerLight {
+position: relative;
+
+overflow: hidden;
+
+height: 100%;
+border-radius: 12px;
+
+background: var(--ant-color-bg-container);
+box-shadow: 0 0 1px 1px var(--ant-color-fill-secondary) inset;
+
+transition: box-shadow 0.2s var(--ant-motion-ease-in-out);
+
+&:hover {
+  box-shadow: 0 0 1px 1px var(--ant-color-fill) inset;
+}
+}
+
+.desc {
+min-height: 44px;
+margin-block-end: 0 !important;
+color: var(--ant-color-text-description);
+}
+
+.tagBlue {
+color: var(--ant-geekblue);
+background: var(--ant-geekblue-1);
+}
+
+.tagGreen {
+color: var(--ant-green);
+background: var(--ant-green-1);
+}
+
+.time {
+color: var(--ant-color-text-description);
+}
+
+.title {
+zoom: 1.2;
+margin-block-end: 0 !important;
+font-size: 18px !important;
+font-weight: bold;
+}
+
+.token {
+font-family: var(--ant-font-family-code);
+}

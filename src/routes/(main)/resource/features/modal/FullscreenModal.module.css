@@ -1,0 +1,45 @@
+.body {
+  height: 100%;
+  max-height: calc(100dvh - 56px) !important;
+}
+
+.content {
+  height: 100%;
+  border: none !important;
+  background: transparent !important;
+}
+
+.extra {
+  position: fixed;
+  z-index: calc(var(--ant-z-index-popup-base) + 10);
+  inset-block: 0;
+  inset-inline-end: 0;
+
+  width: 0;
+  border-inline-start: 1px solid var(--ant-color-split);
+
+  background: var(--ant-color-bg-layout);
+}
+
+.header {
+  background: transparent !important;
+}
+
+.modal {
+  position: relative;
+  inset-block-start: 0;
+
+  width: 100vw !important;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+  padding-block-end: 0;
+}
+
+.modal > div {
+  height: 100%;
+}
+
+.modal_withDetail {
+  width: calc(100vw) !important;
+}

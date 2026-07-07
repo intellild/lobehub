@@ -1,0 +1,33 @@
+.modalTitleDark {
+&.ant-modal-header {
+  height: 80px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ant-color-bg-elevated) 0%, transparent),
+      var(--ant-color-bg-container) 80px
+    ),
+    fixed 0 0 /10px 10px radial-gradient(var(--ant-color-fill) 1px, transparent 0);
+}
+
+& .ant-modal-title {
+  font-size: 24px;
+}
+}
+
+.modalTitleLight {
+&.ant-modal-header {
+  height: 80px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ant-color-bg-elevated) 0%, transparent),
+      var(--ant-color-bg-container) 140px
+    ),
+    fixed 0 0 /10px 10px radial-gradient(var(--ant-color-fill) 1px, transparent 0);
+}
+
+& .ant-modal-title {
+  font-size: 24px;
+}
+}

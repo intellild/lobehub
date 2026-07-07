@@ -3,7 +3,6 @@
 import { Flexbox, Input, Text } from '@lobehub/ui';
 import { Button, createModal, type ModalInstance, useModalContext } from '@lobehub/ui/base-ui';
 import { type InputRef } from 'antd';
-import { cssVar } from 'antd-style';
 import { t } from 'i18next';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -66,11 +65,19 @@ const CreateWorktreeContent = memo<CreateWorktreeContentProps>(({ onSubmit, reso
           }}
         />
         {previewPath ? (
-          <Text style={{ color: cssVar.colorTextTertiary, fontSize: 12, wordBreak: 'break-all' }}>
+          <Text
+            style={{
+              color: 'var(--ant-color-text-tertiary)',
+              fontSize: 12,
+              wordBreak: 'break-all',
+            }}
+          >
             {tDevice('workingDirectory.newWorktreeLocation', { path: previewPath })}
           </Text>
         ) : null}
-        {error ? <Text style={{ color: cssVar.colorError, fontSize: 12 }}>{error}</Text> : null}
+        {error ? (
+          <Text style={{ color: 'var(--ant-color-error)', fontSize: 12 }}>{error}</Text>
+        ) : null}
       </Flexbox>
       <Flexbox horizontal gap={8} justify={'flex-end'}>
         <Button disabled={loading} onClick={close}>

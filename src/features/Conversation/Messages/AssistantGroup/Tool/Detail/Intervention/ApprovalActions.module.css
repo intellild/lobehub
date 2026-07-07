@@ -1,0 +1,105 @@
+.container {
+width: 100%;
+}
+
+.footer {
+display: flex;
+justify-content: flex-end;
+margin-block-start: 8px;
+}
+
+.number {
+flex-shrink: 0;
+width: 18px;
+font-variant-numeric: tabular-nums;
+color: var(--ant-color-text-tertiary);
+}
+
+.option {
+cursor: pointer;
+
+display: flex;
+gap: 8px;
+align-items: center;
+
+min-height: 40px;
+padding-block: 7px;
+padding-inline: 16px;
+border-radius: calc(var(--ant-border-radius-lg) - 2px);
+
+color: var(--ant-color-text-secondary);
+
+transition:
+  background 120ms,
+  color 120ms;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.optionLabel {
+flex: 1;
+line-height: 1.4;
+}
+
+.optionList {
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
+
+.optionSelected {
+color: var(--ant-color-text);
+background: var(--ant-color-fill-secondary);
+
+&:hover {
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.rejectInput {
+flex: 1;
+
+width: 100%;
+padding: 0;
+border: none;
+border-radius: 0;
+
+font-family: inherit;
+font-size: 14px;
+line-height: 1.4;
+color: var(--ant-color-text);
+
+background: transparent;
+
+&::placeholder {
+  color: var(--ant-color-text-secondary);
+}
+
+&:focus,
+&:focus-visible {
+  outline: none;
+}
+
+&:disabled {
+  cursor: pointer;
+  color: var(--ant-color-text-secondary);
+}
+}
+
+.shortcutHint {
+display: inline-flex;
+align-items: center;
+margin-inline-start: 6px;
+color: var(--ant-color-text-tertiary);
+}
+
+.submitButton {
+&.ant-btn {
+  min-width: 88px;
+  height: 36px;
+  border-radius: calc(var(--ant-border-radius-lg) - 2px);
+}
+}

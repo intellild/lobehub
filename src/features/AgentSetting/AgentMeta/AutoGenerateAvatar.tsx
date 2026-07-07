@@ -1,5 +1,4 @@
 import { ActionIcon, Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Wand2 } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -31,21 +30,21 @@ const AutoGenerateAvatar = memo<AutoGenerateAvatarProps>(
         gap={2}
         padding={2}
         style={{
-          background: cssVar.colorBgContainer,
-          border: `1px solid ${cssVar.colorBorderSecondary}`,
+          background: 'var(--ant-color-bg-container)',
+          border: `1px solid ${'var(--ant-color-border-secondary)'}`,
           borderRadius: 32,
           paddingRight: 8,
           width: 'fit-content',
         }}
       >
         <EmojiPicker
-          background={background || cssVar.colorFillTertiary}
+          background={background || 'var(--ant-color-fill-tertiary)'}
           loading={loading}
           locale={locale}
           size={48}
           value={value}
           style={{
-            background: cssVar.colorFillTertiary,
+            background: 'var(--ant-color-fill-tertiary)',
             opacity: disabled ? 0.5 : 1,
           }}
           onChange={(next) => {

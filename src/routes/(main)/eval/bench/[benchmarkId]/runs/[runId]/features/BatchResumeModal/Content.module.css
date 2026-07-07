@@ -1,0 +1,5 @@
+.indexCell {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+}

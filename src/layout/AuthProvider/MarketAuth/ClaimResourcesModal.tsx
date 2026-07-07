@@ -2,7 +2,6 @@
 
 import { Flexbox, Text } from '@lobehub/ui';
 import { App, Checkbox, List } from 'antd';
-import { cssVar } from 'antd-style';
 import { Package, Wrench } from 'lucide-react';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -169,13 +168,13 @@ export const ClaimResourcesModal = memo<ClaimResourcesModalProps>(
               bordered
               dataSource={resources.plugins}
               size="small"
-              style={{ borderRadius: cssVar.borderRadiusLG }}
+              style={{ borderRadius: 'var(--ant-border-radius-lg)' }}
               renderItem={(item) =>
                 renderItem(
                   item,
                   selectedPlugins.has(String(item.id)),
                   () => togglePlugin(String(item.id)),
-                  <Package size={18} style={{ color: cssVar.colorTextSecondary }} />,
+                  <Package size={18} style={{ color: 'var(--ant-color-text-secondary)' }} />,
                 )
               }
             />
@@ -191,13 +190,13 @@ export const ClaimResourcesModal = memo<ClaimResourcesModalProps>(
               bordered
               dataSource={resources.skills}
               size="small"
-              style={{ borderRadius: cssVar.borderRadiusLG }}
+              style={{ borderRadius: 'var(--ant-border-radius-lg)' }}
               renderItem={(item) =>
                 renderItem(
                   item,
                   selectedSkills.has(String(item.id)),
                   () => toggleSkill(String(item.id)),
-                  <Wrench size={18} style={{ color: cssVar.colorTextSecondary }} />,
+                  <Wrench size={18} style={{ color: 'var(--ant-color-text-secondary)' }} />,
                 )
               }
             />

@@ -1,7 +1,6 @@
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
 import type { TaskStatus } from '@lobechat/types';
 import { ActionIcon, type DropdownItem, DropdownMenu, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { EyeOff, MoreHorizontal, Plus } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,36 +10,23 @@ import type { TaskListItem } from '@/store/task/slices/list/initialState';
 import type { TaskItemRouteScope } from '../features/AgentTaskItem';
 import AgentTaskItem from '../features/AgentTaskItem';
 import TaskStatusIcon from '../features/TaskStatusIcon';
+import cardStyles from './KanbanColumn.module.css';
 import TaskItemSkeleton from './TaskItemSkeleton';
 
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 export const COLUMN_WIDTH = 300;
-
-const cardStyles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorBgElevated};
-    box-shadow:
-      0 1px 2px rgb(0 0 0 / 4%),
-      0 2px 6px rgb(0 0 0 / 3%);
-
-    &,
-    & * {
-      cursor: default;
-    }
-
-    &:active,
-    &:active * {
-      cursor: grabbing;
-    }
-
-    &:hover > * {
-      background: ${cssVar.colorFillQuaternary};
-    }
-  `,
-  dragging: css`
-    visibility: hidden;
-  `,
-}));
 
 const DraggableTaskCard = memo<{ routeScope?: TaskItemRouteScope; task: TaskListItem }>(
   ({ routeScope, task }) => {
@@ -61,97 +47,7 @@ const DraggableTaskCard = memo<{ routeScope?: TaskItemRouteScope; task: TaskList
     );
   },
 );
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  action: css`
-    opacity: 0;
-    transition: opacity 0.2s;
-  `,
-  addPill: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    justify-content: center;
-
-    height: 36px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 999px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    transition:
-      border-color 0.2s,
-      color 0.2s,
-      background 0.2s;
-
-    &:hover {
-      border-color: ${cssVar.colorPrimaryBorder};
-      color: ${cssVar.colorPrimary};
-      background: ${cssVar.colorBgContainer};
-    }
-  `,
-  body: css`
-    overflow-y: auto;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 6px;
-
-    padding-block: 4px 12px;
-    padding-inline: 8px;
-  `,
-  column: css`
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-
-    width: ${COLUMN_WIDTH}px;
-    max-height: 100%;
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorFillQuaternary};
-
-    transition:
-      background 0.2s,
-      box-shadow 0.2s;
-
-    &:hover .kanban-col-action {
-      opacity: 1;
-    }
-  `,
-  dropActive: css`
-    background: ${cssVar.colorFillTertiary};
-    box-shadow: inset 0 0 0 1px ${cssVar.colorPrimaryBorderHover};
-  `,
-  emptyText: css`
-    padding-block: 24px;
-    padding-inline: 16px;
-
-    font-size: 13px;
-    color: ${cssVar.colorTextQuaternary};
-    text-align: center;
-  `,
-  header: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-
-    padding-block: 10px 8px;
-    padding-inline: 10px 6px;
-  `,
-  headerActions: css`
-    display: flex;
-    gap: 2px;
-    align-items: center;
-    margin-inline-start: auto;
-  `,
-  notDroppable: css`
-    pointer-events: none;
-    opacity: 0.4;
-  `,
-}));
+const styles = cardStyles;
 
 export const COLUMN_I18N_KEYS: Record<string, string> = {
   backlog: 'taskList.kanban.backlog',

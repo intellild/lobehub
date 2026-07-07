@@ -1,5 +1,4 @@
 import { Button, Flexbox, Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { type LucideIcon } from 'lucide-react';
 import { ChevronDownIcon } from 'lucide-react';
 import { type ComponentProps } from 'react';
@@ -21,8 +20,8 @@ const ActionIconWithChevron = memo<ActionIconWithChevronProps>(
         type={'text'}
       >
         <Flexbox horizontal align={'center'} gap={4}>
-          <Icon color={cssVar.colorIcon} icon={icon} size={18} />
-          <Icon color={cssVar.colorIcon} icon={ChevronDownIcon} size={14} />
+          <Icon color={'var(--ant-color-icon)'} icon={icon} size={18} />
+          <Icon color={'var(--ant-color-icon)'} icon={ChevronDownIcon} size={14} />
         </Flexbox>
       </Button>
     );

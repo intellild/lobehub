@@ -2,7 +2,6 @@
 
 import { useWatchBroadcast } from '@lobechat/electron-client-ipc';
 import { Block, Button, Flexbox, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import {
   Bell,
   Check,
@@ -172,22 +171,22 @@ const PermissionsStep = memo<PermissionsStepProps>(({ onBack, onNext }) => {
             paddingInline={'12px 12px'}
             variant={'borderless'}
             style={{
-              background: permission.granted ? cssVar.colorFillSecondary : undefined,
-              borderColor: permission.granted ? cssVar.colorSuccess : undefined,
+              background: permission.granted ? 'var(--ant-color-fill-secondary)' : undefined,
+              borderColor: permission.granted ? 'var(--ant-color-success)' : undefined,
             }}
             onClick={() => !permission.granted && handlePermissionRequest(permission.id)}
           >
             <Block align={'center'} height={40} justify={'center'} variant={'outlined'} width={40}>
-              <Icon color={cssVar.colorTextDescription} icon={permission.icon} size={20} />
+              <Icon color={'var(--ant-color-text-description)'} icon={permission.icon} size={20} />
             </Block>
             <Flexbox gap={2} style={{ flex: 1 }}>
               <Text weight={500}>{t(permission.titleKey as any)}</Text>
-              <Text color={cssVar.colorTextSecondary} fontSize={12}>
+              <Text color={'var(--ant-color-text-secondary)'} fontSize={12}>
                 {t(permission.descriptionKey as any)}
               </Text>
             </Flexbox>
             {permission.granted ? (
-              <Icon color={cssVar.colorSuccess} icon={Check} size={20} />
+              <Icon color={'var(--ant-color-success)'} icon={Check} size={20} />
             ) : (
               <Button
                 icon={SquareArrowOutUpRight}
@@ -195,7 +194,7 @@ const PermissionsStep = memo<PermissionsStepProps>(({ onBack, onNext }) => {
                 size={'small'}
                 type={'text'}
                 style={{
-                  color: cssVar.colorTextSecondary,
+                  color: 'var(--ant-color-text-secondary)',
                 }}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -212,7 +211,7 @@ const PermissionsStep = memo<PermissionsStepProps>(({ onBack, onNext }) => {
         left={
           <Button
             icon={Undo2Icon}
-            style={{ color: cssVar.colorTextDescription }}
+            style={{ color: 'var(--ant-color-text-description)' }}
             type={'text'}
             onClick={onBack}
           >

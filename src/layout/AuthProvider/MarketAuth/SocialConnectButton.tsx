@@ -3,7 +3,6 @@
 import { SiGithub, SiX } from '@icons-pack/react-simple-icons';
 import { ActionIcon, Flexbox, Text, Tooltip } from '@lobehub/ui';
 import { Button, Spin } from 'antd';
-import { cssVar } from 'antd-style';
 import { ArrowRight, Link2Off, Loader2 } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -48,8 +47,8 @@ export const SocialConnectButton = memo<SocialConnectButtonProps>(
           gap={12}
           justify="space-between"
           style={{
-            background: cssVar.colorFillQuaternary,
-            borderRadius: cssVar.borderRadiusLG,
+            background: 'var(--ant-color-fill-quaternary)',
+            borderRadius: 'var(--ant-border-radius-lg)',
             padding: '8px 12px',
           }}
         >

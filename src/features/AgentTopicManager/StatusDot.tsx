@@ -1,21 +1,21 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { cssVar, useTheme } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import RingLoadingIcon from '@/components/RingLoading';
+import { useTheme } from '@/hooks/useTheme';
 
 const STATUS_COLOR: Record<string, string> = {
-  active: cssVar.colorSuccess,
-  archived: cssVar.colorWarning,
-  completed: cssVar.colorTextQuaternary,
-  failed: cssVar.colorError,
-  idle: cssVar.colorTextQuaternary,
-  paused: cssVar.colorInfo,
-  running: cssVar.colorWarning,
-  waitingForHuman: cssVar.colorInfo,
+  active: 'var(--ant-color-success)',
+  archived: 'var(--ant-color-warning)',
+  completed: 'var(--ant-color-text-quaternary)',
+  failed: 'var(--ant-color-error)',
+  idle: 'var(--ant-color-text-quaternary)',
+  paused: 'var(--ant-color-info)',
+  running: 'var(--ant-color-warning)',
+  waitingForHuman: 'var(--ant-color-info)',
 };
 
 interface StatusDotProps {
@@ -27,7 +27,7 @@ const StatusDot = memo<StatusDotProps>(({ status: rawStatus }) => {
   const { isDarkMode } = useTheme();
   // No status (e.g. a topic that dropped out of the running set) reads as idle.
   const status = rawStatus || 'idle';
-  const color = STATUS_COLOR[status] ?? cssVar.colorTextQuaternary;
+  const color = STATUS_COLOR[status] ?? 'var(--ant-color-text-quaternary)';
   const labelKey = `management.status.${status}` as const;
 
   // Match the sidebar Topic row: running shows the same spinning ring icon
@@ -35,13 +35,13 @@ const StatusDot = memo<StatusDotProps>(({ status: rawStatus }) => {
   // visual signal for "this topic is currently running".
   const isRunning = status === 'running';
   const ringColor = isDarkMode
-    ? cssVar.colorWarningBorder
-    : `color-mix(in srgb, ${cssVar.colorWarning} 45%, transparent)`;
+    ? 'var(--ant-color-warning-border)'
+    : `color-mix(in srgb, ${'var(--ant-color-warning)'} 45%, transparent)`;
 
   return (
     <Flexbox horizontal align={'center'} gap={6}>
       {isRunning ? (
-        <RingLoadingIcon ringColor={ringColor} size={10} style={{ color: cssVar.colorWarning }} />
+        <RingLoadingIcon ringColor={ringColor} size={10} style={{ color: 'var(--ant-color-warning)' }} />
       ) : (
         <span
           style={{
@@ -53,7 +53,7 @@ const StatusDot = memo<StatusDotProps>(({ status: rawStatus }) => {
           }}
         />
       )}
-      <span style={{ color: cssVar.colorTextSecondary, fontSize: 11 }}>{t(labelKey as any)}</span>
+      <span style={{ color: 'var(--ant-color-text-secondary)', fontSize: 11 }}>{t(labelKey as any)}</span>
     </Flexbox>
   );
 });

@@ -1,5 +1,4 @@
 import { Checkbox, Flexbox, Icon, Tag } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { ChevronDown, ChevronUp, CircleArrowRight } from 'lucide-react';
 import { type KeyboardEvent, memo, useCallback, useId, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,118 +8,26 @@ import { selectCurrentTurnTodosFromMessages } from '@/store/chat/slices/message/
 import { messageMapKey } from '@/store/chat/utils/messageMapKey';
 
 import { useAgentContext } from '../../useAgentContext';
+import styles from './index.module.css';
 import { normalizeTaskProgress } from './taskProgressAdapter';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const RING_SIZE = 14;
 const RING_STROKE = 2;
 const RING_RADIUS = (RING_SIZE - RING_STROKE) / 2;
 const RING_CIRCUM = 2 * Math.PI * RING_RADIUS;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  collapsed: css`
-    grid-template-rows: 0fr;
-
-    margin-block-start: 0 !important;
-    padding-block: 0 !important;
-    border-block-start: none !important;
-
-    opacity: 0;
-  `,
-  container: css`
-    margin-block-start: 4px;
-    margin-inline: 8px 12px;
-    padding-block: 8px 10px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-
-    background: ${cssVar.colorBgElevated};
-
-    transition: all 0.2s ${cssVar.motionEaseInOut};
-  `,
-  count: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  expanded: css`
-    grid-template-rows: 1fr;
-    opacity: 1;
-  `,
-  header: css`
-    overflow: hidden;
-
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  headerRow: css`
-    cursor: pointer;
-    user-select: none;
-    border-radius: 4px;
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimaryBorder};
-      outline-offset: 2px;
-    }
-  `,
-  itemRow: css`
-    padding-block: 6px;
-    padding-inline: 4px;
-    border-block-end: 1px dashed ${cssVar.colorBorderSecondary};
-    font-size: 13px;
-
-    &:last-child {
-      border-block-end: none;
-    }
-  `,
-  listContainer: css`
-    display: grid;
-
-    margin-block-start: 8px;
-    padding-block: 4px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-
-    transition:
-      grid-template-rows 0.25s ${cssVar.motionEaseInOut},
-      opacity 0.2s ${cssVar.motionEaseInOut},
-      margin-block-start 0.2s ${cssVar.motionEaseInOut},
-      padding 0.2s ${cssVar.motionEaseInOut};
-  `,
-  listInner: css`
-    overflow: hidden;
-    min-height: 0;
-  `,
-  processingRow: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  `,
-  ring: css`
-    transform: rotate(-90deg);
-    flex-shrink: 0;
-  `,
-  ringProgress: css`
-    transition:
-      stroke-dashoffset 240ms ease,
-      stroke 240ms ease;
-  `,
-  ringTrack: css`
-    stroke: ${cssVar.colorFillSecondary};
-  `,
-  textCompleted: css`
-    color: ${cssVar.colorTextQuaternary};
-    text-decoration: line-through;
-  `,
-  textProcessing: css`
-    color: ${cssVar.colorText};
-  `,
-  textTodo: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
 
 const ProgressSection = memo(() => {
   const { t } = useTranslation('chat');
@@ -153,7 +60,7 @@ const ProgressSection = memo(() => {
   if (total === 0) return null;
 
   const allDone = completed === total;
-  const ringColor = allDone ? cssVar.colorSuccess : cssVar.colorInfo;
+  const ringColor = allDone ? 'var(--ant-color-success)' : 'var(--ant-color-info)';
   const ringOffset = RING_CIRCUM * (1 - progress.completionPercent / 100);
 
   return (
@@ -204,7 +111,7 @@ const ProgressSection = memo(() => {
         <Icon
           icon={expanded ? ChevronUp : ChevronDown}
           size={16}
-          style={{ color: cssVar.colorTextTertiary, flexShrink: 0 }}
+          style={{ color: 'var(--ant-color-text-tertiary)', flexShrink: 0 }}
         />
       </Flexbox>
 
@@ -223,7 +130,7 @@ const ProgressSection = memo(() => {
                   <Icon
                     icon={CircleArrowRight}
                     size={17}
-                    style={{ color: cssVar.colorTextSecondary }}
+                    style={{ color: 'var(--ant-color-text-secondary)' }}
                   />
                   <span className={styles.textProcessing}>{item.text}</span>
                 </div>
@@ -232,7 +139,7 @@ const ProgressSection = memo(() => {
 
             return (
               <Checkbox
-                backgroundColor={cssVar.colorSuccess}
+                backgroundColor={'var(--ant-color-success)'}
                 checked={isCompleted}
                 key={item.id ?? index}
                 shape="circle"

@@ -1,0 +1,131 @@
+.container {
+cursor: pointer;
+position: relative;
+min-width: 800px;
+
+&::after {
+  pointer-events: none;
+  content: '';
+
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+
+  opacity: 0;
+  background-color: var(--ant-color-fill-tertiary);
+
+  transition:
+    opacity var(--ant-motion-duration-mid) var(--ant-motion-ease-in-out),
+    background-color var(--ant-motion-duration-mid) var(--ant-motion-ease-in-out);
+}
+
+> * {
+  position: relative;
+  z-index: 1;
+}
+
+&:hover {
+  &::after {
+    opacity: 1;
+  }
+}
+}
+
+.dragOver {
+outline: 1px dashed var(--ant-color-primary-border);
+outline-offset: -2px;
+
+&::before {
+  opacity: 0;
+}
+
+&,
+&:hover {
+  &::after {
+    opacity: 1;
+    background-color: var(--ant-color-primary-bg);
+  }
+}
+}
+
+.dragging {
+will-change: transform;
+opacity: 0.5;
+}
+
+.evenRow {
+&::before {
+  pointer-events: none;
+  content: '';
+
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+
+  opacity: 1;
+  background-color: var(--ant-color-fill-quaternary);
+
+  transition: opacity 300ms var(--ant-motion-ease-in-out);
+}
+
+&:hover {
+  &::before {
+    opacity: 0;
+  }
+}
+
+.list-view-drop-zone:hover & {
+  &::before {
+    opacity: 0;
+  }
+}
+}
+
+.hover {
+opacity: 0;
+
+&[data-popup-open],
+.file-list-item-group:hover & {
+  opacity: 1;
+}
+}
+
+.item {
+padding-block: 0;
+padding-inline: 0 24px;
+color: var(--ant-color-text-secondary);
+}
+
+.name {
+overflow: hidden;
+flex: 1;
+
+min-width: 0;
+margin-inline-start: 12px;
+
+color: var(--ant-color-text);
+white-space: nowrap;
+}
+
+.nameContainer {
+overflow: hidden;
+flex: 1;
+min-width: 0;
+}
+
+.selected {
+&::before {
+  opacity: 0;
+}
+
+&::after {
+  opacity: 1;
+  background-color: var(--ant-color-fill-tertiary);
+}
+
+&:hover {
+  &::after {
+    background-color: var(--ant-color-fill-secondary);
+  }
+}
+}

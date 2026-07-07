@@ -1,15 +1,9 @@
 'use client';
 
 import { Block, Flexbox, Grid, Skeleton } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  footer: css`
-    border-block-start: 1px dashed ${cssVar.colorBorder};
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
+import styles from './GridLoadingCard.module.css';
 
 const Card = memo<{ banner?: boolean }>(({ banner }) => {
   return (

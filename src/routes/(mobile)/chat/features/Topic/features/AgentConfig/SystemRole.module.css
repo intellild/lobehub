@@ -1,0 +1,8 @@
+.prompt {
+opacity: 0.75;
+transition: opacity 200ms var(--ant-motion-ease-out);
+
+&:hover {
+  opacity: 1;
+}
+}

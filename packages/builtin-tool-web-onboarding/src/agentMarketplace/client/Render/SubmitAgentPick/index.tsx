@@ -2,12 +2,25 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Avatar, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { InstallMarketplaceAgentSummary } from '../../../pickResult';
 import type { SubmitAgentPickArgs } from '../../../types';
+import styles from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface SubmitAgentPickState {
   installedAgentIds?: string[];
@@ -15,75 +28,6 @@ interface SubmitAgentPickState {
   skippedAgentIds?: string[];
   summaries?: InstallMarketplaceAgentSummary[];
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-
-    padding: 12px;
-    border: 1px solid ${cssVar.colorFillSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgElevated};
-  `,
-  cardSkipped: css`
-    opacity: 0.65;
-  `,
-  description: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  list: css`
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 8px;
-    width: 100%;
-  `,
-  meta: css`
-    flex-shrink: 0;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  skippedTag: css`
-    flex-shrink: 0;
-
-    margin-inline-start: 4px;
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-radius: 999px;
-
-    font-size: 11px;
-    color: ${cssVar.colorTextTertiary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  title: css`
-    overflow: hidden;
-    flex: 1;
-
-    min-width: 0;
-
-    font-size: 14px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  titleRow: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    width: 100%;
-  `,
-}));
 
 export type SubmitAgentPickRenderProps = Pick<
   BuiltinRenderProps<SubmitAgentPickArgs, SubmitAgentPickState>,

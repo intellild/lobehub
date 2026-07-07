@@ -2,7 +2,6 @@
 
 import { Avatar, Flexbox, Icon, Text, Tooltip, useModalContext } from '@lobehub/ui';
 import { Button } from 'antd';
-import { cssVar } from 'antd-style';
 import { Loader2, Plus, SquareArrowOutUpRight } from 'lucide-react';
 import { memo, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -91,7 +90,7 @@ const Header = memo<HeaderProps>(({ type }) => {
         />
       );
     }
-    return <Icon fill={cssVar.colorText} icon={icon as any} size={ICON_SIZE} />;
+    return <Icon fill={'var(--ant-color-text)'} icon={icon as any} size={ICON_SIZE} />;
   };
 
   const renderConnectButton = () => {

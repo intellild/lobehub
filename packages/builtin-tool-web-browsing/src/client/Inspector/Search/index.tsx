@@ -2,11 +2,23 @@
 
 import type { BuiltinInspectorProps, SearchQuery, UniformSearchResponse } from '@lobechat/types';
 import { Text } from '@lobehub/ui';
-import { cssVar, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { highlightTextStyles, inspectorTextStyles, shinyTextStyles } from '@/styles';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const SearchInspector = memo<BuiltinInspectorProps<SearchQuery, UniformSearchResponse>>(
   ({ args, partialArgs, isArgumentsStreaming, isLoading, pluginState }) => {
@@ -43,7 +55,7 @@ export const SearchInspector = memo<BuiltinInspectorProps<SearchQuery, UniformSe
           ) : (
             <Text
               as={'span'}
-              color={cssVar.colorTextDescription}
+              color={'var(--ant-color-text-description)'}
               fontSize={12}
               style={{ marginInlineStart: 4 }}
             >

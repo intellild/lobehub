@@ -1,0 +1,145 @@
+.badge {
+padding-block: 1px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-size: var(--ant-font-size-sm);
+font-weight: 500;
+color: var(--ant-color-primary);
+
+background: var(--ant-color-primary-bg);
+}
+
+.capabilityCard {
+padding: 16px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-bg-container);
+}
+
+.capabilityIcon {
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 36px;
+height: 36px;
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.emptyCard {
+overflow: hidden;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-bg-container);
+}
+
+.emptyHero {
+padding-block: 40px;
+padding-inline: 32px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+
+text-align: center;
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.heroIcon {
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 56px;
+height: 56px;
+border-radius: var(--ant-border-radius-lg);
+
+color: var(--ant-color-text);
+
+background: var(--ant-color-fill-secondary);
+}
+
+.option {
+cursor: pointer;
+padding: 20px;
+background: var(--ant-color-bg-container);
+transition: background 0.15s ease;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+}
+
+.optionGrid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1px;
+background: var(--ant-color-border-secondary);
+}
+
+.optionIcon {
+display: flex;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+
+width: 40px;
+height: 40px;
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.detailCol {
+align-self: stretch;
+
+min-width: 0;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-container);
+}
+
+.listCol {
+overflow: hidden;
+
+min-width: 0;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-container);
+}
+
+.listHeader {
+min-height: 44px;
+padding-block: 8px;
+padding-inline: 12px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.listScroll {
+overflow-y: auto;
+
+/* Cap the list so long fleets (servers / CLI agents) stay scrollable instead
+   of pushing the page — pairs with the detail panel sitting beside it. */
+max-height: 480px;
+}
+
+.selectAll {
+cursor: pointer;
+user-select: none;
+}

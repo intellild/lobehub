@@ -1,0 +1,19 @@
+.configLabel {
+font-size: 12px;
+line-height: 1;
+color: var(--ant-color-text-tertiary);
+}
+
+.configPanel {
+padding-block: 12px;
+padding-inline: 14px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.topArea {
+cursor: default;
+margin-block-end: 28px;
+}

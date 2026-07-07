@@ -1,0 +1,33 @@
+.banner {
+overflow: hidden;
+
+  border: 1px solid var(--ant-color-border-secondary);
+  border-radius: var(--ant-border-radius-lg);
+
+  background: var(--ant-color-bg-container);
+  box-shadow: var(--ant-box-shadow-tertiary);
+}
+
+.copy {
+background: var(--ant-color-primary);
+
+  &:hover {
+    background: var(--ant-color-primary-hover);
+  }
+}
+
+.icon {
+border: 1px solid var(--ant-color-fill-secondary);
+
+  svg {
+    fill: var(--ant-color-text-secondary);
+  }
+
+  &:hover {
+    border: 1px solid var(--ant-color-border-secondary);
+
+    svg {
+      fill: var(--ant-color-text);
+    }
+  }
+}

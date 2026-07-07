@@ -1,0 +1,43 @@
+.backButton {
+cursor: pointer;
+
+display: inline-flex;
+gap: 6px;
+align-items: center;
+
+color: var(--ant-color-text-secondary);
+
+&:hover {
+  color: var(--ant-color-text);
+}
+}
+
+.card {
+padding: 16px;
+border: 1px solid var(--ant-color-border);
+border-radius: var(--ant-border-radius);
+}
+
+.emptyRow {
+padding-block: 32px;
+padding-inline: 16px;
+border: 1px dashed var(--ant-color-border);
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-text-secondary);
+text-align: center;
+}
+
+.rowIcon {
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 36px;
+height: 36px;
+border-radius: 8px;
+
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-tertiary);
+}

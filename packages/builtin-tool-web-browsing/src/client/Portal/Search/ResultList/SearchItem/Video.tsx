@@ -1,63 +1,10 @@
 import type { UniformSearchResult } from '@lobechat/types';
 import { Avatar, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useState } from 'react';
 
 import { ENGINE_ICON_MAP } from '../../../../../const';
 import TitleExtra from './TitleExtra';
-
-const styles = createStaticStyles(({ css }) => {
-  return {
-    container: css`
-      display: flex;
-      flex: 1;
-
-      padding: 8px;
-      border-radius: 8px;
-
-      color: initial;
-
-      &:hover {
-        background: ${cssVar.colorFillTertiary};
-      }
-    `,
-    desc: css`
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-
-      color: ${cssVar.colorTextTertiary};
-      text-overflow: ellipsis;
-    `,
-    displayLink: css`
-      color: ${cssVar.colorTextQuaternary};
-    `,
-    iframe: css`
-      border: 1px solid ${cssVar.colorBorder};
-      border-radius: 8px;
-    `,
-    title: css`
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-
-      font-size: 16px;
-      color: ${cssVar.colorLink};
-      text-overflow: ellipsis;
-    `,
-    url: css`
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-
-      color: ${cssVar.colorTextDescription};
-      text-overflow: ellipsis;
-    `,
-  };
-});
+import styles from './Video.module.css';
 
 interface SearchResultProps extends UniformSearchResult {
   highlight?: boolean;
@@ -100,7 +47,7 @@ const VideoItem = memo<SearchResultProps>(
                     size={20}
                     items={engines.map((engine) => ({
                       avatar: ENGINE_ICON_MAP[engine],
-                      background: cssVar.colorBgLayout,
+                      background: 'var(--ant-color-bg-layout)',
                       key: engine,
                       title: engine,
                     }))}

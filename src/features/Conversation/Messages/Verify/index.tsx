@@ -1,24 +1,16 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { createStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo } from 'react';
 
 import { CheckerDock, RunResult } from '@/features/Verify';
 import { useVerifyState } from '@/features/Verify/hooks';
 import { phaseCardBackground, phaseFromStatus } from '@/features/Verify/utils';
+import { useTheme } from '@/hooks/useTheme';
 
 import { dataSelectors, useConversationStore } from '../../store';
-
-const useStyles = createStyles(({ css, token }) => ({
-  card: css`
-    overflow: hidden;
-    border: 1px solid ${token.colorBorderSecondary};
-    border-radius: 16px;
-    background: ${token.colorBgElevated};
-  `,
-}));
+import styles from './index.module.css';
 
 interface VerifyMessageProps {
   id: string;
@@ -33,7 +25,7 @@ interface VerifyMessageProps {
  * group (no avatar bubble).
  */
 const VerifyMessage = memo<VerifyMessageProps>(({ id }) => {
-  const { styles, theme } = useStyles();
+  const theme = useTheme();
   const item = useConversationStore(dataSelectors.getDisplayMessageById(id), isEqual);
   const operationId = item?.metadata?.verifyOperationId;
   // Sequence number among all verify messages in the thread (not the repair round).

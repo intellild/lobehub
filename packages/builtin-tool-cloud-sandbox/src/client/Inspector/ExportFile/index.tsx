@@ -4,12 +4,24 @@ import { FilePathDisplay } from '@lobechat/shared-tool-ui/components';
 import { inspectorTextStyles, shinyTextStyles } from '@lobechat/shared-tool-ui/styles';
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Icon } from '@lobehub/ui';
-import { cssVar, cx } from 'antd-style';
 import { Check, X } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { ExportFileState } from '../../../types';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ExportFileArgs {
   path?: string;
@@ -31,9 +43,9 @@ export const ExportFileInspector = memo<BuiltinInspectorProps<ExportFileArgs, Ex
         {!isLoading && pluginState !== undefined && (
           <span style={{ marginInlineStart: 4 }}>
             {pluginState.success ? (
-              <Icon color={cssVar.colorSuccess} icon={Check} size={14} />
+              <Icon color={'var(--ant-color-success)'} icon={Check} size={14} />
             ) : (
-              <Icon color={cssVar.colorError} icon={X} size={14} />
+              <Icon color={'var(--ant-color-error)'} icon={X} size={14} />
             )}
           </span>
         )}

@@ -1,69 +1,23 @@
 'use client';
 
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { Check } from 'lucide-react';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  // Card sits inline with the chat — no surrounding panel chrome. Hover
-  // tints the row so the stack reads as clickable; selection swaps to a
-  // neutral filled row so the pick is visually weighty. We use `colorFill*`
-  // rather than `colorPrimaryBg` because LobeHub's default primary is a
-  // near-black neutral, which makes `colorPrimaryBg` render as a muddy black
-  // block; the selection signal instead rides the filled row + the checkmark.
-  option: css`
-    cursor: pointer;
+import styles from './OptionCard.module.css';
 
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-radius: 8px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    transition: background 0.12s ease;
-
-    &:hover {
-      background: ${cssVar.colorFillQuaternary};
-    }
-  `,
-  optionCheck: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorPrimary};
-  `,
-  optionDescription: css`
-    font-size: 12px;
-    line-height: 1.45;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  // Neutral 1/2/3/4 chip — stays the same colour whether selected or not so
-  // the selection signal lives on the filled background + checkmark.
-  optionIndex: css`
-    flex-shrink: 0;
-
-    box-sizing: border-box;
-    width: 22px;
-    height: 22px;
-    border-radius: 6px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 22px;
-    color: ${cssVar.colorTextSecondary};
-    text-align: center;
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  optionLabel: css`
-    font-weight: 500;
-  `,
-  optionSelected: css`
-    background: ${cssVar.colorFillSecondary};
-
-    &:hover {
-      background: ${cssVar.colorFill};
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface OptionCardProps {
   description?: string;

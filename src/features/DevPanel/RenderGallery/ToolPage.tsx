@@ -2,13 +2,13 @@
 
 import { Flexbox, Tag, Text } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 
 import ApiList from './ApiList';
 import { LIFECYCLE_MODE_LABEL, LIFECYCLE_MODES, type LifecycleMode } from './lifecycleMode';
 import MessageList from './MessageList';
+import styles from './ToolPage.module.css';
 import ToolPreview from './ToolPreview';
 import { toApiAnchor, useDevtoolsEntries } from './useDevtoolsEntries';
 
@@ -22,56 +22,6 @@ const isLifecycleMode = (value: string | null): value is LifecycleMode =>
 
 const isGalleryView = (value: string | null): value is GalleryView =>
   value === 'api' || value === 'aggregate';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  body: css`
-    gap: 24px;
-    max-width: 1200px;
-    padding: 28px;
-  `,
-  content: css`
-    position: relative;
-    overflow: auto;
-    flex: 1;
-
-    /* keep a jumped-to card clear of the sticky lifecycle bar */
-    & [id^='api-'] {
-      scroll-margin-block-start: 80px;
-    }
-  `,
-  controlGroup: css`
-    gap: 8px;
-    align-items: center;
-  `,
-  empty: css`
-    flex: 1;
-    gap: 6px;
-    align-items: center;
-    justify-content: center;
-
-    color: ${cssVar.colorTextTertiary};
-  `,
-  header: css`
-    gap: 8px;
-    padding-block-end: 4px;
-  `,
-  modeBar: css`
-    position: sticky;
-    z-index: 2;
-    inset-block-start: 0;
-
-    gap: 16px;
-    align-items: center;
-
-    padding-block: 10px;
-    padding-inline: 14px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 14px;
-
-    background: ${cssVar.colorBgContainer};
-    box-shadow: ${cssVar.boxShadowTertiary};
-  `,
-}));
 
 const DevtoolsToolPage = () => {
   const { toolsetMap } = useDevtoolsEntries();

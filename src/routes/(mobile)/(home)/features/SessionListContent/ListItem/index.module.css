@@ -1,0 +1,16 @@
+.container {
+position: relative;
+  margin-block: 2px;
+  padding-inline: 12px 16px;
+  border-radius: var(--ant-border-radius);
+}
+
+.mobile {
+margin-block: 0;
+  padding-inline-start: 12px;
+  border-radius: 0;
+}
+
+.title {
+line-height: 1.2;
+}

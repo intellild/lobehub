@@ -1,0 +1,12 @@
+.dropZoneActive {
+color: var(--ant-color-bg-elevated) !important;
+background-color: var(--ant-color-text) !important;
+
+* {
+  color: var(--ant-color-bg-elevated) !important;
+}
+}
+
+.menuIcon {
+color: var(--ant-color-text-tertiary);
+}

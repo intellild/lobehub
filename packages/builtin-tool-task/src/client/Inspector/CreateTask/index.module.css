@@ -1,0 +1,52 @@
+.chip {
+overflow: hidden;
+display: inline-flex;
+flex-shrink: 1;
+align-items: center;
+
+min-width: 0;
+max-width: 240px;
+margin-inline-start: 6px;
+padding-block: 2px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-size: 12px;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.identifierChip {
+flex-shrink: 0;
+
+padding-block: 2px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.subtaskTag {
+display: inline-flex;
+flex-shrink: 0;
+gap: 4px;
+align-items: center;
+
+padding-block: 1px;
+padding-inline: 6px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 999px;
+
+font-family: var(--ant-font-family-code);
+font-size: 11px;
+color: var(--ant-color-text-tertiary);
+
+background: transparent;
+}

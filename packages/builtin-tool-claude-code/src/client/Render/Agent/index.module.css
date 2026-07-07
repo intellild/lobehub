@@ -1,0 +1,33 @@
+.container {
+padding-block: 4px;
+}
+
+.label {
+padding-inline-start: 4px;
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.labelRow {
+margin-block-end: 4px;
+}
+
+.openThread {
+height: 22px;
+padding-inline: 6px;
+font-size: 12px;
+}
+
+.promptBox {
+padding-block: 8px;
+padding-inline: 12px;
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-fill-tertiary);
+}
+
+.resultBox {
+padding-block: 8px;
+padding-inline: 12px;
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-bg-container);
+}

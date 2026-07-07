@@ -1,0 +1,12 @@
+.markdown {
+border: unset;
+}
+
+.wrapper {
+width: 100%;
+padding: 8px;
+border: 1px solid var(--ant-color-border);
+border-radius: calc(var(--ant-border-radius-lg) - 1px);
+
+background: var(--ant-color-bg-container);
+}

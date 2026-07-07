@@ -2,64 +2,14 @@
 
 import { useWatchBroadcast } from '@lobechat/electron-client-ipc';
 import { Button, Flexbox, Highlighter, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ShieldX } from 'lucide-react';
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useElectronStore } from '@/store/electron';
 
+import styles from './Waiting.module.css';
 import WaitingAnim from './WaitingAnim';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 100vh;
-
-    color: ${cssVar.colorTextBase};
-
-    background-color: ${cssVar.colorBgContainer};
-  `,
-
-  content: css`
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `,
-
-  description: css`
-    margin-block-end: ${cssVar.marginXL} !important;
-    color: ${cssVar.colorTextSecondary} !important;
-  `,
-
-  errorIcon: css`
-    margin-block-end: ${cssVar.marginXL};
-    color: ${cssVar.colorError};
-  `,
-
-  errorMessage: css`
-    margin-block-end: ${cssVar.marginXL} !important;
-    color: ${cssVar.colorError} !important;
-    text-align: center;
-  `,
-
-  helpText: css`
-    margin-block-start: ${cssVar.marginLG};
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-
-  title: css`
-    margin-block-end: ${cssVar.marginSM} !important;
-    color: ${cssVar.colorText} !important;
-  `,
-}));
 
 interface WaitingOAuthProps {
   setIsOpen: (open: boolean) => void;

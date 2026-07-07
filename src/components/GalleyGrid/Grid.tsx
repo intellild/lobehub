@@ -1,9 +1,21 @@
 import { Flexbox } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import { type CSSProperties, type ReactNode } from 'react';
 import { memo, useMemo } from 'react';
 
 import { MAX_SIZE_DESKTOP, MIN_IMAGE_SIZE, styles } from './style';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface GridProps {
   children: ReactNode;

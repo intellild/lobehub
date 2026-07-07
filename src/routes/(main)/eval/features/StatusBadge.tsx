@@ -1,10 +1,11 @@
 'use client';
 
 import { Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { Activity, CheckCircle2, Clock, Hourglass, Pause, XCircle } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import styles from './StatusBadge.module.css';
 
 const statusConfig: Record<string, { cls: string; icon: any }> = {
   aborted: { cls: 'default', icon: Pause },
@@ -15,33 +16,6 @@ const statusConfig: Record<string, { cls: string; icon: any }> = {
   pending: { cls: 'warning', icon: Clock },
   running: { cls: 'primary', icon: Activity },
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  default: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-  error: css`
-    color: ${cssVar.colorError};
-  `,
-  primary: css`
-    color: ${cssVar.colorPrimary};
-  `,
-  success: css`
-    color: ${cssVar.colorSuccess};
-  `,
-  warning: css`
-    color: ${cssVar.colorWarning};
-  `,
-  wrapper: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 500;
-    line-height: 1;
-  `,
-}));
 
 interface StatusBadgeProps {
   status: string;

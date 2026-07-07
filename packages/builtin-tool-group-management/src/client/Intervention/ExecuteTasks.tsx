@@ -12,58 +12,18 @@ import {
   Tooltip,
 } from '@lobehub/ui';
 import { Input, InputNumber } from 'antd';
-import { createStaticStyles, useTheme } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { Clock, Trash2 } from 'lucide-react';
 import type { ChangeEvent } from 'react';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useTheme } from '@/hooks/useTheme';
 import { useAgentGroupStore } from '@/store/agentGroup';
 import { agentGroupSelectors } from '@/store/agentGroup/selectors';
 
 import type { ExecuteTasksParams, TaskItem } from '../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  assignee: css`
-    display: flex;
-    flex-shrink: 0;
-    gap: 6px;
-    align-items: center;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  container: css`
-    padding-block: 12px;
-    border-radius: ${cssVar.borderRadius};
-  `,
-  deleteButton: css`
-    cursor: pointer;
-    color: ${cssVar.colorTextTertiary};
-    transition: color 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorError};
-    }
-  `,
-  index: css`
-    flex-shrink: 0;
-    font-size: 12px;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  taskTitle: css`
-    overflow: hidden;
-
-    font-size: 14px;
-    font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  timeoutInput: css`
-    width: 100px;
-  `,
-}));
+import styles from './ExecuteTasks.module.css';
 
 const DEFAULT_TIMEOUT = 1_800_000; // 30 minutes
 

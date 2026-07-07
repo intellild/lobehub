@@ -3,7 +3,6 @@
 import { Alert, Flexbox, Tag } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
 import { Form as AntdForm, type FormInstance } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { RefreshCw, Save, Trash2 } from 'lucide-react';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
@@ -11,42 +10,8 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useAppOrigin } from '@/hooks/useAppOrigin';
 import type { SerializedPlatformDefinition } from '@/server/services/bot/platforms/types';
 
+import styles from './Footer.module.css';
 import type { ChannelFormValues, CurrentConfig, TestResult } from './index';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  actionBar: css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-block-start: 16px;
-  `,
-  bottom: css`
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    width: 100%;
-    max-width: 1024px;
-  `,
-  webhookBox: css`
-    overflow: hidden;
-    flex: 1;
-
-    height: ${cssVar.controlHeight};
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: ${cssVar.borderRadius};
-
-    font-family: monospace;
-    font-size: 13px;
-    line-height: ${cssVar.controlHeight};
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-}));
 
 interface FooterProps {
   connecting: boolean;

@@ -1,0 +1,98 @@
+.divider {
+inline-size: 100%;
+block-size: 1px;
+background: var(--ant-color-split);
+}
+
+.fallback {
+overflow: auto;
+
+padding-block: 12px;
+padding-inline: 14px;
+border: 1px dashed var(--ant-color-border-secondary);
+border-radius: 8px;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+white-space: pre-wrap;
+}
+
+.fieldKey {
+flex: none;
+min-inline-size: 64px;
+color: var(--ant-color-text-tertiary);
+}
+
+.fieldRow {
+font-size: 13px;
+line-height: 1.6;
+}
+
+.fieldValue {
+color: var(--ant-color-text-secondary);
+word-break: break-word;
+}
+
+.headerIcon {
+display: flex;
+flex: none;
+align-items: center;
+justify-content: center;
+
+inline-size: 32px;
+block-size: 32px;
+
+color: var(--ant-color-text-secondary);
+}
+
+.identifier {
+flex: none;
+
+padding-block: 1px;
+padding-inline: 6px;
+border-radius: 4px;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.instruction {
+font-size: 13px;
+line-height: 1.7;
+color: var(--ant-color-text);
+white-space: pre-wrap;
+}
+
+.rawList {
+margin: 0;
+padding: 0;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+line-height: 1.6;
+color: var(--ant-color-text-secondary);
+list-style: none;
+
+li {
+  white-space: pre-wrap;
+}
+}
+
+.section {
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+
+summary {
+  cursor: pointer;
+  padding-block: 4px;
+  color: var(--ant-color-text-secondary);
+
+  &:hover {
+    color: var(--ant-color-text);
+  }
+}
+}

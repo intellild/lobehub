@@ -1,0 +1,11 @@
+.detail {
+overflow-y: auto;
+flex: 1;
+}
+
+.root {
+overflow: hidden;
+display: flex;
+flex: 1;
+height: 100%;
+}

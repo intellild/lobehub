@@ -1,0 +1,50 @@
+.container {
+padding-block: 16px;
+padding-inline: 20px;
+}
+
+.dot {
+flex: none;
+
+width: 8px;
+height: 8px;
+border-radius: 50%;
+}
+
+.header {
+padding-block-end: 16px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.iconTile {
+display: flex;
+flex: none;
+align-items: center;
+justify-content: center;
+
+width: 32px;
+height: 32px;
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.path {
+overflow: hidden;
+flex: 1;
+
+min-width: 0;
+
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-secondary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.recentItem {
+padding-block: 8px;
+padding-inline: 8px;
+}

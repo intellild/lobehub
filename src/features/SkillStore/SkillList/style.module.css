@@ -1,0 +1,55 @@
+.grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 12px;
+
+padding-block-end: 16px;
+padding-inline: 16px;
+
+@media (max-width: 575.98px) {
+  grid-template-columns: 1fr;
+}
+}
+
+.item {
+width: calc(50% - 6px);
+
+@media (max-width: 575.98px) {
+  width: 100%;
+}
+}
+
+.list {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+
+padding-block-end: 16px;
+padding-inline: 16px;
+}
+
+.container {
+position: relative;
+overflow: hidden;
+flex: 1;
+min-width: 0;
+}
+
+.description {
+overflow: hidden;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.title {
+overflow: hidden;
+
+font-size: 14px;
+font-weight: 500;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}

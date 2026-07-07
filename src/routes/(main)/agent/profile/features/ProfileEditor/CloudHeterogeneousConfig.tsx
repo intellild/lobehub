@@ -4,7 +4,6 @@ import { type HeterogeneousProviderConfig, type UserCredSummary } from '@lobecha
 import { Github } from '@lobehub/icons';
 import { Flexbox } from '@lobehub/ui';
 import { Avatar, Button, Input, Select, Spin, Tag, Typography } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { CheckCircle2, KeyRound, X } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,100 +12,10 @@ import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwar
 import { usePermission } from '@/hooks/usePermission';
 import { lambdaClient, lambdaQuery } from '@/libs/trpc/client';
 
+import styles from './CloudHeterogeneousConfig.module.css';
+
 // Fixed cred key for Claude Code OAuth token — never changes
 const CLAUDE_TOKEN_CRED_KEY = 'CLAUDE_CODE_OAUTH_TOKEN';
-
-const styles = createStaticStyles(({ css }) => ({
-  card: css`
-    padding-block: 16px 12px;
-    padding-inline: 16px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  credOption: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  `,
-  manageLink: css`
-    cursor: pointer;
-    font-size: 12px;
-    color: ${cssVar.colorPrimary};
-
-    &:hover {
-      text-decoration: underline;
-    }
-  `,
-  repoItem: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    min-height: 36px;
-    padding-block: 6px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadiusSM};
-
-    transition: background 0.15s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-
-      .repo-delete-btn {
-        opacity: 1;
-      }
-    }
-  `,
-  repoItemActive: css`
-    background: ${cssVar.colorFillSecondary};
-  `,
-  repoDeleteBtn: css`
-    cursor: pointer;
-
-    flex-shrink: 0;
-
-    margin-inline-start: auto;
-    padding: 2px;
-    border: none;
-    border-radius: 4px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    opacity: 0;
-    background: transparent;
-
-    transition:
-      opacity 0.15s,
-      color 0.15s;
-
-    &:hover {
-      color: ${cssVar.colorError};
-    }
-  `,
-  repoList: css`
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  `,
-  sectionDesc: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  sectionDivider: css`
-    margin-block: 12px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  sectionLabel: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  `,
-}));
 
 interface CloudHeterogeneousConfigProps {
   onEnvChange: (env: Record<string, string>) => Promise<void> | void;

@@ -1,7 +1,6 @@
 'use client';
 
 import { Markdown, Select } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { VertexAIProviderCard } from 'model-bank/modelProviders';
 import { useTranslation } from 'react-i18next';
 
@@ -13,18 +12,7 @@ import { type GlobalLLMProviderKey } from '@/types/user/settings';
 import { KeyVaultsConfigKey, LLMProviderApiTokenKey } from '../../const';
 import { type ProviderItem } from '../../type';
 import ProviderDetail from '../default';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  markdown: css`
-    p {
-      color: ${cssVar.colorTextDescription} !important;
-    }
-  `,
-  tip: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-  `,
-}));
+import styles from './index.module.css';
 
 const providerKey: GlobalLLMProviderKey = 'vertexai';
 

@@ -2,7 +2,6 @@
 
 import { DEFAULT_MAX_REPAIR_ROUNDS } from '@lobechat/types';
 import { Flexbox, Icon, Input, InputNumber } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { RefreshCw, Type } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,30 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useRubric } from '@/features/Verify/hooks';
 import { useVerifyStore, verifySelectors } from '@/store/verify';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  desc: css`
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  fieldIcon: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-  fieldLabel: css`
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  row: css`
-    padding: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-  `,
-  rowTitle: css`
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './RubricConfig.module.css';
 
 interface RubricConfigProps {
   rubricId: string;

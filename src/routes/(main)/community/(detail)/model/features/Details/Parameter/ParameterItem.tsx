@@ -1,6 +1,5 @@
 import { Flexbox } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -26,7 +25,7 @@ const ParameterItem = memo<ParameterItemProps>(
 
     return (
       <Flexbox align={'flex-start'} gap={16}>
-        <p style={{ color: cssVar.colorTextSecondary, margin: 0 }}>
+        <p style={{ color: 'var(--ant-color-text-secondary)', margin: 0 }}>
           {desc}{' '}
           <a href={docUrl} rel="noreferrer" target="_blank">
             {t('models.parameterList.docs')}

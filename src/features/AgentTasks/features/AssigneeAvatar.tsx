@@ -1,5 +1,4 @@
 import { Avatar, Center, Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { CircleUser } from 'lucide-react';
 import { memo } from 'react';
 
@@ -21,7 +20,7 @@ const AssigneeAvatar = memo<AssigneeAvatarProps>(({ agentId, fallbackToDefault, 
         width={size}
         style={{
           borderRadius: '50%',
-          color: cssVar.colorTextQuaternary,
+          color: 'var(--ant-color-text-quaternary)',
           flexShrink: 0,
         }}
       >
@@ -33,7 +32,7 @@ const AssigneeAvatar = memo<AssigneeAvatarProps>(({ agentId, fallbackToDefault, 
   return (
     <Avatar
       avatar={displayMeta.avatar}
-      background={displayMeta.backgroundColor || cssVar.colorBgContainer}
+      background={displayMeta.backgroundColor || 'var(--ant-color-bg-container)'}
       shape={'circle'}
       size={size}
       title={displayMeta.title}

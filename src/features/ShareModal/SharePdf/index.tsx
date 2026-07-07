@@ -2,7 +2,6 @@ import { type UIChatMessage } from '@lobechat/types';
 import { type FormItemProps } from '@lobehub/ui';
 import { Button, Flexbox, Form } from '@lobehub/ui';
 import { App, Switch } from 'antd';
-import { cx } from 'antd-style';
 import { DownloadIcon, FileText } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +18,19 @@ import { type FieldType } from '../ShareText/type';
 import { containerStyles, styles } from '../style';
 import PdfPreview from './PdfPreview';
 import { usePdfGeneration } from './usePdfGeneration';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const DEFAULT_FIELD_VALUE: FieldType = {
   includeTool: true,

@@ -1,7 +1,6 @@
 import { Icon } from '@lobehub/ui';
 import { type TabBarProps } from '@lobehub/ui/mobile';
 import { TabBar } from '@lobehub/ui/mobile';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Bot, MessageSquare, User } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,13 +9,7 @@ import { useRouter } from '@/libs/router/navigation';
 import { SidebarTabKey } from '@/store/global/initialState';
 import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 
-const styles = createStaticStyles(({ css }) => ({
-  active: css`
-    svg {
-      fill: color-mix(in srgb, ${cssVar.colorPrimary} 25%, transparent);
-    }
-  `,
-}));
+import styles from './index.module.css';
 
 interface Props {
   className?: string;

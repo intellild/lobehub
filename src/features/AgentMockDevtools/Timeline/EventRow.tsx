@@ -1,6 +1,7 @@
 import type { MockEvent } from '@lobechat/agent-mock';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo } from 'react';
+
+import styles from './EventRow.module.css';
 
 type EventTone = 'info' | 'neutral' | 'muted' | 'error';
 
@@ -17,50 +18,11 @@ const TONE_BY_TYPE: Record<string, EventTone> = {
 };
 
 const toneVar: Record<EventTone, string> = {
-  error: cssVar.colorError,
-  info: cssVar.colorText,
-  muted: cssVar.colorTextQuaternary,
-  neutral: cssVar.colorTextTertiary,
+  error: 'var(--ant-color-error)',
+  info: 'var(--ant-color-text)',
+  muted: 'var(--ant-color-text-quaternary)',
+  neutral: 'var(--ant-color-text-tertiary)',
 };
-
-const styles = createStaticStyles(({ css }) => ({
-  active: css`
-    background: ${cssVar.colorFillSecondary};
-  `,
-  dot: css`
-    width: 6px;
-    height: 6px;
-    margin-block-start: 5px;
-    border-radius: 50%;
-  `,
-  preview: css`
-    overflow: hidden;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  row: css`
-    cursor: pointer;
-
-    display: grid;
-    grid-template-columns: 64px 16px 140px 1fr;
-    gap: 8px;
-
-    padding-block: 4px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 11px;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  type: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
 
 interface Props {
   cumulativeMs: number;

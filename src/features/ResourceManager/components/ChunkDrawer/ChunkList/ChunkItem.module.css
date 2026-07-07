@@ -1,0 +1,19 @@
+.container {
+padding-block: 12px;
+padding-inline: 8px;
+border-block-end: 1px dashed var(--ant-color-border-secondary);
+border-radius: 4px;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.text {
+font-size: 14px;
+line-height: 24px;
+}
+
+.title {
+font-size: 18px;
+}

@@ -1,22 +1,11 @@
 import { Flexbox } from '@lobehub/ui';
 import { Progress } from 'antd';
-import { createStaticStyles, cssVar, useResponsive } from 'antd-style';
 import { type CSSProperties } from 'react';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css }) => ({
-  desc: css`
-    height: 20px;
-    font-size: 12px;
-    line-height: 20px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  title: css`
-    font-size: 15px;
-    font-weight: bold;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+import { useResponsive } from '@/hooks/useResponsive';
+
+import styles from './index.module.css';
 
 interface ProgressItemProps {
   className?: string;
@@ -45,7 +34,7 @@ const ProgressItem = memo<ProgressItemProps>(
                 height={8}
                 width={8}
                 style={{
-                  background: cssVar.geekblue,
+                  background: 'var(--ant-geekblue)',
                   borderRadius: '50%',
                   flex: 'none',
                 }}
@@ -65,7 +54,7 @@ const ProgressItem = memo<ProgressItemProps>(
           percent={percent}
           showInfo={false}
           size={'small'}
-          strokeColor={cssVar.colorPrimary}
+          strokeColor={'var(--ant-color-primary)'}
         />
       </Flexbox>
     );

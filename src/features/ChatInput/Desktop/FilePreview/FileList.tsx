@@ -1,21 +1,11 @@
 import { Flexbox, ScrollShadow } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import { useChatInputStore } from '@/features/ChatInput/store';
 import { fileChatSelectors, useFileStore } from '@/store/file';
 
 import FileItem from './FileItem';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    overflow-x: scroll;
-
-    /* A swipe past the strip's edge must not fire the browser back gesture. */
-    overscroll-behavior-x: none;
-    width: 100%;
-  `,
-}));
+import styles from './FileList.module.css';
 
 const FileList = memo(() => {
   const expand = useChatInputStore((s) => s.expand);

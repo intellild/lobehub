@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, Avatar, Block, Flexbox, Popover, Skeleton, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ChevronsUpDownIcon } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,24 +15,8 @@ import { useHomeStore } from '@/store/home';
 import { homeAgentListSelectors } from '@/store/home/selectors';
 
 import AgentList from './AgentList';
+import styles from './index.module.css';
 import { useResolvedHomeAgentId } from './useResolvedHomeAgentId';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  chevron: css`
-    opacity: 0;
-    transition: opacity 0.2s ${cssVar.motionEaseOut};
-  `,
-  trigger: css`
-    &:hover .agent-select-chevron,
-    &[data-popup-open] .agent-select-chevron {
-      opacity: 1;
-    }
-
-    &[data-popup-open] {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
 
 const AgentSelect = memo(() => {
   const { t } = useTranslation(['chat', 'common']);
@@ -95,12 +78,12 @@ const AgentSelect = memo(() => {
         <Skeleton.Button
           active
           size={'small'}
-          style={{ borderRadius: cssVar.borderRadius, height: 32, minWidth: 32, width: 32 }}
+          style={{ borderRadius: 'var(--ant-border-radius)', height: 32, minWidth: 32, width: 32 }}
         />
         <Skeleton.Button
           active
           size={'small'}
-          style={{ borderRadius: cssVar.borderRadius, height: 16, minWidth: 96, opacity: 0.5 }}
+          style={{ borderRadius: 'var(--ant-border-radius)', height: 16, minWidth: 96, opacity: 0.5 }}
         />
       </Flexbox>
     );
@@ -138,7 +121,7 @@ const AgentSelect = memo(() => {
         </Text>
         <ActionIcon
           className={`${styles.chevron} agent-select-chevron`}
-          color={cssVar.colorTextDescription}
+          color={'var(--ant-color-text-description)'}
           icon={ChevronsUpDownIcon}
           size={{ blockSize: 24, size: 14 }}
         />

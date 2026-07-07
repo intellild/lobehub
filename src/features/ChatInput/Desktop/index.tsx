@@ -3,7 +3,6 @@
 import { type ChatInputProps } from '@lobehub/editor/react';
 import { ChatInput, ChatInputActionBar } from '@lobehub/editor/react';
 import { Center, Flexbox, Skeleton, Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { type ReactNode, use } from 'react';
 import { memo, useEffect } from 'react';
 import { createPortal } from 'react-dom';
@@ -28,38 +27,20 @@ import { useWorkspaceFileDrop } from '../InputEditor/useWorkspaceFileDrop';
 import SendArea from '../SendArea';
 import TypoBar from '../TypoBar';
 import ContextContainer from './ContextContainer';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    .show-on-hover {
-      opacity: 0;
-    }
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    &:hover {
-      .show-on-hover {
-        opacity: 1;
-      }
-    }
-  `,
-  footnote: css`
-    font-size: 10px;
-  `,
-  fullscreen: css`
-    position: absolute;
-    z-index: 100;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-    margin-block-start: 0;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  inputFullscreen: css`
-    border: none;
-    border-radius: 0 !important;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface DesktopChatInputProps extends ActionToolbarProps {
   actionBarStyle?: React.CSSProperties;

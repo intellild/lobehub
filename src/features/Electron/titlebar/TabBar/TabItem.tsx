@@ -10,7 +10,6 @@ import {
   type GenericItemType,
   Icon,
 } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import { X } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +20,19 @@ import { type ResolvedTab } from './hooks/useResolvedTabs';
 import { useTabRunning } from './hooks/useTabRunning';
 import { useTabUnread } from './hooks/useTabUnread';
 import { useStyles } from './styles';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface TabItemProps {
   index: number;

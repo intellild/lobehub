@@ -1,14 +1,27 @@
 'use client';
 
 import { Center, Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { FileImage, FileText, FileUpIcon, FolderIcon } from 'lucide-react';
 import { type CSSProperties, type ReactNode } from 'react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useDragUploadContext } from './DragUploadProvider';
+import stylesModule from './index.module.css';
 import { type DroppedLocalPath, useLocalDragUpload } from './useLocalDragUpload';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const BLOCK_SIZE = 48;
 const ICON_SIZE = { size: 28, strokeWidth: 1.5 };
@@ -16,89 +29,17 @@ const OVERLAY_INSET = 28;
 const OVERLAY_BORDER_INSET = 10;
 
 const DEFAULT_TONE = {
-  iconColor: `color-mix(in srgb, ${cssVar.geekblue} 95%, black)`,
-  iconStrongBg: `color-mix(in srgb, ${cssVar.geekblue} 38%, white)`,
-  iconSoftBg: `color-mix(in srgb, ${cssVar.geekblue} 68%, white)`,
+  iconColor: `color-mix(in srgb, ${'var(--ant-geekblue)'} 95%, black)`,
+  iconStrongBg: `color-mix(in srgb, ${'var(--ant-geekblue)'} 38%, white)`,
+  iconSoftBg: `color-mix(in srgb, ${'var(--ant-geekblue)'} 68%, white)`,
 };
 
 const LOCAL_PATH_TONE = {
-  iconColor: `color-mix(in srgb, ${cssVar.purple} 82%, black)`,
-  iconStrongBg: `color-mix(in srgb, ${cssVar.purple} 36%, white)`,
-  iconSoftBg: `color-mix(in srgb, ${cssVar.purple} 64%, white)`,
+  iconColor: `color-mix(in srgb, ${'var(--ant-purple)'} 82%, black)`,
+  iconStrongBg: `color-mix(in srgb, ${'var(--ant-purple)'} 36%, white)`,
+  iconSoftBg: `color-mix(in srgb, ${'var(--ant-purple)'} 64%, white)`,
 };
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    position: relative;
-  `,
-  content: css`
-    position: relative;
-    z-index: 1;
-
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    padding-block: 24px;
-    padding-inline: 28px;
-  `,
-  desc: css`
-    font-size: 12px;
-    line-height: 18px;
-    color: #fff;
-  `,
-  icon: css`
-    border-radius: ${cssVar.borderRadiusSM};
-  `,
-  iconGroup: css`
-    margin-block-start: 0;
-  `,
-  overlay: css`
-    pointer-events: none;
-
-    position: absolute;
-    z-index: 100;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: ${cssVar.colorBgMask};
-
-    transition: all 0.2s ease-in-out;
-  `,
-  overlayContent: css`
-    position: relative;
-
-    box-sizing: border-box;
-    width: min(460px, 72vw);
-    padding: ${OVERLAY_INSET}px;
-    border-radius: 16px;
-
-    background: ${cssVar.geekblue};
-    box-shadow: 0 16px 48px color-mix(in srgb, ${cssVar.geekblue} 32%, transparent);
-
-    &::before {
-      pointer-events: none;
-      content: '';
-
-      position: absolute;
-      inset: ${OVERLAY_BORDER_INSET}px;
-
-      border: 1.5px dashed #fff;
-      border-radius: ${cssVar.borderRadiusLG};
-    }
-  `,
-  overlayContentLocalPath: css`
-    background: color-mix(in srgb, ${cssVar.purple} 82%, ${cssVar.geekblue});
-    box-shadow: 0 16px 48px color-mix(in srgb, ${cssVar.purple} 32%, transparent);
-  `,
-  title: css`
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-  `,
-}));
+const styles = stylesModule;
 
 export interface DragUploadZoneProps {
   /**

@@ -1,5 +1,4 @@
 import { Center, Empty, Flexbox } from '@lobehub/ui';
-import { useTheme } from 'antd-style';
 import { Boxes } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +11,7 @@ import Nav from '@/features/MCPPluginDetail/Nav';
 import Overview from '@/features/MCPPluginDetail/Overview';
 import Schema from '@/features/MCPPluginDetail/Schema';
 import Score from '@/features/MCPPluginDetail/Score';
+import { useTheme } from '@/hooks/useTheme';
 import { useDiscoverStore } from '@/store/discover';
 import { useToolStore } from '@/store/tool';
 import { McpNavKey } from '@/types/discover';
@@ -28,7 +28,7 @@ const Detail = memo<DetailProps>(({ identifier: defaultIdentifier, defaultTab, n
   const [activeTab, setActiveTab] = useState(defaultTab ?? McpNavKey.Overview);
   const { t } = useTranslation('plugin');
 
-  const theme = useTheme(); // Keep for colorBgContainerSecondary (not in cssVar)
+  const theme = useTheme(); // Keep for colorBgContainerSecondary, which is applied dynamically.
   const [activeMCPIdentifier, isMcpListInit] = useToolStore((s) => [
     s.activeMCPIdentifier,
     s.isMcpListInit,

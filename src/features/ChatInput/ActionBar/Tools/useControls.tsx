@@ -9,7 +9,6 @@ import { Avatar, Icon, Popover, SearchBar, stopPropagation, Tag, Tooltip } from 
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { McpIcon, SkillsIcon } from '@lobehub/ui/icons';
 import { Switch } from 'antd';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import {
   BadgeCheck,
@@ -61,6 +60,20 @@ import MarketAgentSkillPopoverContent from './MarketAgentSkillPopoverContent';
 import MarketSkillIcon from './MarketSkillIcon';
 import ToolItem from './ToolItem';
 import ToolItemDetailPopover from './ToolItemDetailPopover';
+import styles from './useControls.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const SKILL_ICON_SIZE = 18;
 const CLOSE_TOOL_DETAIL_POPOVER_EVENT = 'lobe-chat-tool-detail-popover-close';
@@ -87,317 +100,6 @@ type SkillMenuItem = NonNullable<ItemType> & {
   popoverContent?: ReactNode;
   searchText?: string;
 };
-
-const styles = createStaticStyles(({ css }) => ({
-  activationGroupHeader: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
-
-    width: 100%;
-    min-width: 0;
-    padding-block: 4px;
-  `,
-  activationGroupChevron: css`
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 24px;
-    height: 24px;
-
-    color: ${cssVar.colorTextTertiary};
-  `,
-  activationGroupTitle: css`
-    display: flex;
-    gap: 7px;
-    align-items: center;
-
-    min-width: 0;
-    min-height: 18px;
-  `,
-  activationGroupTitleBlock: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    min-width: 0;
-  `,
-  activationGroupTitleText: css`
-    overflow: hidden;
-
-    min-width: 0;
-
-    font-size: 14px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  count: css`
-    flex: none;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  activationGroupActions: css`
-    display: flex;
-    flex: none;
-    gap: 8px;
-    align-items: center;
-  `,
-  switchWrap: css`
-    display: inline-flex;
-    flex: none;
-    align-items: center;
-  `,
-  iconAuto: css`
-    color: ${cssVar.colorInfo};
-  `,
-  iconDefault: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-  iconPinned: css`
-    color: ${cssVar.colorInfo};
-  `,
-  fixedIndicator: css`
-    display: inline-flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 24px;
-    height: 24px;
-
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  policyButton: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    border: 0;
-    border-radius: 6px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    background: transparent;
-
-    transition:
-      color 0.2s,
-      background 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorTextSecondary};
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      opacity: 0.45;
-      background: transparent;
-    }
-  `,
-  deleteButton: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 10px;
-    align-items: center;
-
-    width: 100%;
-    min-height: 36px;
-    padding-block: 8px;
-    padding-inline: 10px;
-    border: 0;
-    border-radius: 6px;
-
-    font-size: 14px;
-    line-height: 20px;
-    color: ${cssVar.colorError};
-
-    background: transparent;
-
-    transition: background 150ms ${cssVar.motionEaseOut};
-
-    &:hover {
-      background: ${cssVar.colorErrorBg};
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      opacity: 0.45;
-      background: transparent;
-    }
-  `,
-  deleteDivider: css`
-    height: 1px;
-    margin-block: 2px;
-    margin-inline: 4px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  deleteIcon: css`
-    color: ${cssVar.colorError};
-  `,
-  policyCheck: css`
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 16px;
-    height: 16px;
-
-    color: ${cssVar.colorInfo};
-  `,
-  policyItem: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 10px;
-    align-items: center;
-
-    width: 100%;
-    min-height: 36px;
-    padding-block: 8px;
-    padding-inline: 10px;
-    border: 0;
-    border-radius: 6px;
-
-    font-size: 14px;
-    line-height: 20px;
-    color: ${cssVar.colorText};
-
-    background: transparent;
-
-    transition: background 150ms ${cssVar.motionEaseOut};
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      opacity: 0.45;
-      background: transparent;
-    }
-  `,
-  policyItemIcon: css`
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 16px;
-    height: 16px;
-  `,
-  policyPanel: css`
-    min-width: 132px;
-    padding: 4px;
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorBgElevated};
-    box-shadow:
-      0 0 15px 0 #00000008,
-      0 2px 30px 0 #00000014;
-  `,
-  policyText: css`
-    flex: 1;
-    text-align: start;
-  `,
-  toolLabel: css`
-    display: flex;
-    flex: 1;
-    gap: 6px;
-    align-items: center;
-
-    min-width: 0;
-  `,
-  toolLabelText: css`
-    overflow: hidden;
-    flex: 0 1 auto;
-
-    min-width: 0;
-
-    line-height: 1.4;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  toolRow: css`
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    justify-content: space-between;
-
-    width: 100%;
-    min-width: 0;
-  `,
-  toolTrailing: css`
-    display: inline-flex;
-    flex: none;
-    gap: 8px;
-    align-items: center;
-  `,
-  typeTag: css`
-    display: inline-flex;
-    flex: none;
-    align-items: center;
-
-    padding-block: 1px;
-    padding-inline: 4px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 4px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  addSkillRow: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    /* width: 320px + margin-inline: -12px anchors the submenu to 320px so it
-       matches the attachment submenu, and lets the row break out of the footer's
-       12px inline padding to span full width; padding-inline: 12px then re-aligns
-       the icon/text to the same column as the menu rows above. */
-    width: 320px;
-    min-height: 32px;
-    margin-inline: -12px;
-    padding-inline: 12px;
-    border: 0;
-    border-radius: 6px;
-
-    font-size: 14px;
-    color: ${cssVar.colorText};
-
-    background: transparent;
-
-    transition: background 150ms ${cssVar.motionEaseOut};
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    /* The footer adds 8px block padding; cancel it on the last action row so the
-       bottom row sits flush against the popup edge instead of leaving a gap. */
-    &:last-child {
-      margin-block-end: -8px;
-    }
-  `,
-  addSkillLabel: css`
-    flex: 1;
-    text-align: start;
-  `,
-}));
 
 export const useControls = ({ closeDropdown }: { closeDropdown?: () => void } = {}) => {
   const { t } = useTranslation('setting');

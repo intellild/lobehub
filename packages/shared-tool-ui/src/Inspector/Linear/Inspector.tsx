@@ -1,104 +1,25 @@
 'use client';
 
 import type { BuiltinInspector, BuiltinInspectorProps } from '@lobechat/types';
-import { createStaticStyles, cx } from 'antd-style';
 import { CornerLeftUp } from 'lucide-react';
 import { memo } from 'react';
 
 import { inspectorTextStyles, shinyTextStyles } from '../../styles';
+import styles from './Inspector.module.css';
 import { capitalize, type ParsedTool, parseToolName } from './labels';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  chip: css`
-    overflow: hidden;
-    display: inline-flex;
-    flex-shrink: 1;
-    align-items: stretch;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    min-width: 0;
-    margin-inline-start: 6px;
-    border-radius: 999px;
-
-    font-size: 12px;
-    line-height: 18px;
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  chipAction: css`
-    flex-shrink: 0;
-    padding-block: 2px;
-    padding-inline: 10px;
-    color: ${cssVar.colorText};
-  `,
-  chipDivider: css`
-    flex-shrink: 0;
-    align-self: stretch;
-    width: 1px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  chipIcon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextDescription};
-  `,
-  chipKey: css`
-    color: ${cssVar.colorTextDescription};
-  `,
-  chipValue: css`
-    overflow: hidden;
-    display: inline-flex;
-    flex-shrink: 1;
-    gap: 4px;
-    align-items: center;
-
-    min-width: 0;
-    padding-block: 2px;
-    padding-inline: 10px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    color: ${cssVar.colorText};
-  `,
-  chipValueText: css`
-    overflow: hidden;
-    min-width: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  icon: css`
-    flex-shrink: 0;
-    margin-inline-end: 6px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  parentBadge: css`
-    display: inline-flex;
-    flex-shrink: 0;
-    gap: 4px;
-    align-items: center;
-
-    margin-inline-start: 6px;
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  parentBadgeIcon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextDescription};
-  `,
-  productPrefix: css`
-    flex-shrink: 0;
-
-    margin-inline-end: 2px;
-
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const LinearLogomark = memo<{ size?: number }>(({ size = 14 }) => (
   <svg

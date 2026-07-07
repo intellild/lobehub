@@ -1,7 +1,6 @@
 'use client';
 
 import { Block, Button, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Undo2Icon } from 'lucide-react';
 import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,63 +12,20 @@ import { useUserStore } from '@/store/user';
 import { isDev } from '@/utils/env';
 import { consumeOnboardingCallbackUrl } from '@/utils/onboardingRedirect';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  base: css`
-    position: relative;
-    padding-inline-end: 160px;
-    transition: all 0.25s ease-in-out;
+import styles from './ModeSelectionStep.module.css';
 
-    &::before {
-      content: '';
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-      position: absolute;
-      z-index: 0;
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-
-      opacity: 0.5;
-      background-repeat: no-repeat;
-      background-position: 100% 100%;
-      background-size: auto 120px;
-
-      transition: all 0.25s ease-in-out;
-    }
-
-    &:hover {
-      border-inline-end-width: 3px;
-
-      &::before {
-        opacity: 1;
-      }
-    }
-  `,
-  disabled: css`
-    transform: scale(1) !important;
-    opacity: 1 !important;
-  `,
-  lite: css`
-    &:hover {
-      border-inline-end-color: ${cssVar.purple};
-    }
-
-    &::before {
-      z-index: 0;
-      background-image: var(--lite-img);
-    }
-  `,
-  pro: css`
-    &:hover {
-      border-inline-end-color: ${cssVar.gold};
-    }
-
-    &::before {
-      z-index: 0;
-      background-image: var(--pro-img);
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ModeSelectionStepProps {
   onBack: () => void;
@@ -171,7 +127,7 @@ const ModeSelectionStep = memo<ModeSelectionStepProps>(({ onBack, onNext }) => {
           icon={Undo2Icon}
           type={'text'}
           style={{
-            color: cssVar.colorTextDescription,
+            color: 'var(--ant-color-text-description)',
           }}
           onClick={onBack}
         >

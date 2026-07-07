@@ -1,6 +1,5 @@
 import { type ItemType } from '@lobehub/ui';
 import { Flexbox, Icon, SearchBar, stopPropagation } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ChevronRight, ExternalLink, Settings, Store } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +9,7 @@ import ToolsList, { toolsListStyles } from '@/features/ChatInput/ActionBar/Tools
 import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwareNavigate';
 
 import Empty from './Empty';
+import styles from './PopoverContent.module.css';
 
 const SKILL_ICON_SIZE = 20;
 
@@ -37,25 +37,6 @@ const filterItems = (items: ItemType[], keyword: string): ItemType[] => {
     })
     .filter(Boolean) as ItemType[];
 };
-
-const styles = createStaticStyles(({ css }) => ({
-  footer: css`
-    padding: 4px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  header: css`
-    padding-block: 8px;
-    padding-inline: 8px;
-    border-block-end: 1px solid ${cssVar.colorFill};
-    background: transparent;
-  `,
-  scroller: css`
-    overflow: hidden auto;
-  `,
-  trailingIcon: css`
-    opacity: 0.5;
-  `,
-}));
 
 interface PopoverContentProps {
   items: ItemType[];

@@ -1,39 +1,8 @@
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import { useAgentMockStore } from '../store/agentMockStore';
-
-const styles = createStaticStyles(({ css }) => ({
-  card: css`
-    flex: 1;
-
-    padding: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 8px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  empty: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-  label: css`
-    margin-block-end: 4px;
-    font-size: 11px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  sub: css`
-    margin-block-start: 2px;
-    font-size: 11px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  value: css`
-    font-size: 18px;
-    font-feature-settings: 'tnum';
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './StatsStrip.module.css';
 
 const placeholder = '—';
 

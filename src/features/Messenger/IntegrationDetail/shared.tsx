@@ -3,7 +3,6 @@
 import { Block, Button, Flexbox, Icon, Skeleton, Tag, Text } from '@lobehub/ui';
 import { confirmModal, Select } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { ArrowLeftIcon, CheckCircle2Icon, Trash2Icon, UserIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { memo, useEffect, useMemo, useState } from 'react';
@@ -26,49 +25,9 @@ import {
   PERSONAL_SCOPE,
   resolvePersonalScopeLabel,
 } from '../scopeOptions';
+import styles from './shared.module.css';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  backButton: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
-
-    color: ${cssVar.colorTextSecondary};
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-  `,
-  card: css`
-    padding: 16px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: ${cssVar.borderRadius};
-  `,
-  emptyRow: css`
-    padding-block: 32px;
-    padding-inline: 16px;
-    border: 1px dashed ${cssVar.colorBorder};
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorTextSecondary};
-    text-align: center;
-  `,
-  rowIcon: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
+export { styles };
 
 export interface ConnectionRowProps {
   action?: ReactNode;

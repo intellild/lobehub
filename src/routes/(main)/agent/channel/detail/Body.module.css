@@ -1,0 +1,6 @@
+.form {
+.ant-form-item-control {
+  flex: 0 0 50% !important;
+  width: 50%;
+}
+}

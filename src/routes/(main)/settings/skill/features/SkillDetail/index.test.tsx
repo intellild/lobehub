@@ -98,24 +98,6 @@ vi.mock('antd', () => ({
   ),
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: (
-    creator: (tokens: {
-      css: () => string;
-      cssVar: Record<string, string>;
-    }) => Record<string, string>,
-  ) =>
-    creator({
-      css: () => '',
-      cssVar: {
-        colorBorderSecondary: 'colorBorderSecondary',
-        colorText: 'colorText',
-        colorTextSecondary: 'colorTextSecondary',
-        colorTextTertiary: 'colorTextTertiary',
-      },
-    }),
-}));
-
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string, options?: { defaultValue?: string; name?: string } | string) => {

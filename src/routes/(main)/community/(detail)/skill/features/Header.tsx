@@ -2,7 +2,6 @@
 
 import { Github } from '@lobehub/icons';
 import { ActionIcon, Avatar, Button, Flexbox, Icon, stopPropagation, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import {
   DotIcon,
   DownloadIcon,
@@ -19,36 +18,9 @@ import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
 import { useSkillCategoryItem } from '@/hooks/useSkillCategory';
 
 import { useDetailContext } from './DetailProvider';
+import styles from './Header.module.css';
 
-export const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    desc: css`
-      color: ${cssVar.colorTextSecondary};
-    `,
-    extraTag: css`
-      padding-block: 4px;
-      padding-inline: 10px 12px;
-      border-radius: 16px;
-
-      color: ${cssVar.colorTextSecondary};
-
-      background: ${cssVar.colorFillTertiary};
-    `,
-    extraTagActive: css`
-      &:hover {
-        color: ${cssVar.colorText};
-      }
-    `,
-    time: css`
-      font-size: 12px;
-      color: ${cssVar.colorTextDescription};
-    `,
-    version: css`
-      font-family: ${cssVar.fontFamilyCode};
-      font-size: 13px;
-    `,
-  };
-});
+export { styles };
 
 const formatCompactNumber = (num?: number): string => {
   if (!num) return '0';
@@ -150,7 +122,7 @@ const Header = memo<{ mobile?: boolean }>(({ mobile }) => {
                   target={'_blank'}
                   onClick={stopPropagation}
                 >
-                  <ActionIcon fill={cssVar.colorTextDescription} icon={Github} />
+                  <ActionIcon fill={'var(--ant-color-text-description)'} icon={Github} />
                 </a>
               )}
             </Flexbox>
@@ -158,7 +130,7 @@ const Header = memo<{ mobile?: boolean }>(({ mobile }) => {
           <Flexbox horizontal align={'center'} gap={4}>
             {Boolean(ratingAverage) ? (
               <Flexbox horizontal align={'center'} gap={8}>
-                <Icon fill={cssVar.colorWarning} icon={StarIcon} size={14} />
+                <Icon fill={'var(--ant-color-warning)'} icon={StarIcon} size={14} />
                 <Text weight={500}>{ratingAverage?.toFixed(1)}</Text>
               </Flexbox>
             ) : (
@@ -187,7 +159,7 @@ const Header = memo<{ mobile?: boolean }>(({ mobile }) => {
         gap={mobile ? 12 : 24}
         wrap={'wrap'}
         style={{
-          color: cssVar.colorTextSecondary,
+          color: 'var(--ant-color-text-secondary)',
         }}
       >
         {mobile && scores}

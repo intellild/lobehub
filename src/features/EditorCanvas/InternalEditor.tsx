@@ -10,7 +10,6 @@ import {
   ReactToolbarPlugin,
 } from '@lobehub/editor';
 import { Editor, useEditorState } from '@lobehub/editor/react';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import type { CSSProperties, RefObject } from 'react';
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
@@ -20,6 +19,7 @@ import { createChatInputRichPlugins } from '@/features/ChatInput/InputEditor/plu
 
 import { type EditorCanvasProps } from './EditorCanvas';
 import InlineToolbar from './InlineToolbar';
+import fileNodeStyles from './InternalEditor.module.css';
 import LinearFilePlugin from './LinearFilePlugin';
 import { registerAttachmentClickOpen } from './registerAttachmentClickOpen';
 import { useFileUpload, useImageUpload } from './useImageUpload';
@@ -27,17 +27,6 @@ import { useFileUpload, useImageUpload } from './useImageUpload';
 const IMAGE_FILTERS = [
   { extensions: ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg', 'avif'], name: 'Images' },
 ];
-
-// Force the Lexical FileNode's outer `<span>` to render as its own block-
-// level row inside the paragraph. The inner card visuals (icon + name + size
-// + download button) live in `LinearFilePlugin`.
-const fileNodeStyles = createStaticStyles(({ css }) => ({
-  fileWrapper: css`
-    display: block !important;
-    width: 100% !important;
-    margin-block: 8px !important;
-  `,
-}));
 
 /**
  * Base plugins for the editor (without image and toolbar, which need dynamic config)

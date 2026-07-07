@@ -1,5 +1,4 @@
 import { Flexbox, Popover, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { type PropsWithChildren } from 'react';
 import { memo, Suspense, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,18 +12,7 @@ import { AgentModalProvider } from '@/routes/(main)/home/_layout/Body/Agent/Moda
 import PrivateList from '@/routes/(main)/home/_layout/Body/Private/List';
 import { useHomeStore } from '@/store/home';
 
-const styles = createStaticStyles(({ cssVar, css }) => ({
-  sectionHeader: css`
-    padding-block: 4px;
-    padding-inline: 8px;
-    line-height: 20px;
-  `,
-  trigger: css`
-    &[data-popup-open] {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
+import styles from './SwitchPanel.module.css';
 
 interface SectionHeaderProps {
   children: React.ReactNode;

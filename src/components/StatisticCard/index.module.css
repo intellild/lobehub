@@ -1,0 +1,123 @@
+.card {
+border-radius: var(--ant-border-radius-lg);
+
+@media (max-width: 575.98px) {
+  border: none;
+  border-radius: 0;
+  background: var(--ant-color-bg-container);
+}
+}
+
+.cardDark {
+border: 1px solid var(--ant-color-fill-tertiary);
+}
+
+.cardLight {
+border: 1px solid var(--ant-color-fill-secondary);
+}
+
+.container {
+@media (max-width: 575.98px) {
+  border: none;
+  border-radius: 0;
+  background: var(--ant-color-bg-container);
+}
+
+.ant-pro-card-title {
+  overflow: hidden;
+
+  @media (max-width: 575.98px) {
+    margin: 0;
+    font-size: 14px;
+    line-height: 16px !important;
+  }
+}
+
+.ant-pro-card-body {
+  padding: 0;
+  .ant-pro-statistic-card-content {
+    position: relative;
+    width: 100%;
+    padding-block-end: 16px;
+    padding-inline: 16px;
+    .ant-pro-statistic-card-chart {
+      position: relative;
+      width: 100%;
+    }
+  }
+
+  .ant-pro-statistic-card-footer {
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+    border-end-start-radius: var(--ant-border-radius-lg);
+    border-end-end-radius: var(--ant-border-radius-lg);
+  }
+}
+
+.ant-pro-card-loading-content {
+  padding-block: 16px;
+  padding-inline: 16px;
+}
+
+.ant-pro-card-header {
+  padding-block-start: 0;
+  padding-inline: 0;
+
+  .ant-pro-card-title {
+    line-height: 32px;
+  }
+
+  + .ant-pro-card-body {
+    padding-block-start: 0;
+  }
+
+  @media (max-width: 575.98px) {
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-block-end: 8px;
+    padding-block-start: 0;
+    padding-inline: 0;
+  }
+}
+
+.ant-statistic-content-value-int, .ant-statistic-content-value-decimal {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.ant-pro-statistic-card-chart {
+  margin: 0;
+}
+
+.ant-pro-statistic-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  padding-block-end: 0 !important;
+  padding-inline: 0 !important;
+}
+
+.ant-pro-statistic-card-content-horizontal {
+  flex-direction: row;
+  align-items: center;
+
+  .ant-pro-statistic-card-chart {
+    align-self: center;
+  }
+}
+}
+
+.icon {
+border-radius: var(--ant-border-radius);
+background: var(--ant-color-fill-secondary);
+}
+
+.raw {
+border: none !important;
+background: transparent !important;
+}

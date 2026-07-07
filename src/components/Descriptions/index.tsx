@@ -1,32 +1,23 @@
 import { type GridProps, type IconProps } from '@lobehub/ui';
 import { Flexbox, Grid, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx, responsive } from 'antd-style';
 import { type CSSProperties, type ReactNode } from 'react';
 import { memo } from 'react';
 
 import CopyableLabel from '../CopyableLabel';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    bordered: css`
-      overflow: hidden;
-      border: 1px solid ${cssVar.colorBorderSecondary};
-      border-radius: ${cssVar.borderRadiusLG};
-      ${responsive.sm} {
-        background: ${cssVar.colorBgContainer};
-      }
-    `,
-    cell: css`
-      overflow: hidden;
-      box-shadow: 0 0 0 0.5px ${cssVar.colorBorderSecondary};
-    `,
-    label: css`
-      overflow: hidden;
-      border-inline-end: 1px solid ${cssVar.colorBorderSecondary};
-      background: ${cssVar.colorFillQuaternary};
-    `,
-  };
-});
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface DescriptionItem {
   className?: string;
@@ -109,12 +100,12 @@ const Descriptions = memo<DescriptionsProps>(
                 style={{ height: '100%', position: 'relative' }}
                 width={labelWidth}
               >
-                {item.icon && <Icon color={cssVar.colorTextSecondary} icon={item.icon} />}
+                {item.icon && <Icon color={'var(--ant-color-text-secondary)'} icon={item.icon} />}
                 <Text
                   ellipsis
                   className={cx(classNames?.label, item.classNames?.label)}
                   style={{
-                    color: cssVar.colorTextSecondary,
+                    color: 'var(--ant-color-text-secondary)',
                     ...customStyles?.label,
                     ...item.styles?.label,
                   }}

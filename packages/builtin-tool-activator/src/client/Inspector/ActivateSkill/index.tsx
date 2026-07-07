@@ -2,7 +2,6 @@
 
 import { type BuiltinInspectorProps } from '@lobechat/types';
 import { SkillsIcon } from '@lobehub/ui/icons';
-import { createStaticStyles, cx } from 'antd-style';
 import { type TFunction } from 'i18next';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +9,20 @@ import { useTranslation } from 'react-i18next';
 import { inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { ActivateSkillParams, ActivateSkillSource, ActivateSkillState } from '../../../types';
+import styles from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 /**
  * `t` is invoked with literal keys per branch so i18next's typed-key map can
@@ -31,40 +44,6 @@ const resolveLabel = (t: TFunction<'plugin'>, source: ActivateSkillSource | unde
     }
   }
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  chip: css`
-    overflow: hidden;
-    display: inline-flex;
-    flex-shrink: 1;
-    gap: 6px;
-    align-items: center;
-
-    min-width: 0;
-    max-width: 100%;
-    margin-inline-start: 6px;
-    padding-block: 3px;
-    padding-inline: 10px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 999px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  skillIcon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextDescription};
-  `,
-  skillName: css`
-    overflow: hidden;
-
-    min-width: 0;
-
-    font-size: 12px;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
 
 export const ActivateSkillInspector = memo<
   BuiltinInspectorProps<ActivateSkillParams, ActivateSkillState>

@@ -6,7 +6,6 @@ import { isRemoteHeterogeneousType } from '@lobechat/heterogeneous-agents';
 import type { DeviceExecutionTarget } from '@lobechat/types';
 import { Microsoft } from '@lobehub/icons';
 import { Flexbox, Icon, Popover, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import {
   BoxIcon,
   CheckIcon,
@@ -31,252 +30,20 @@ import { useAgentStore } from '@/store/agent';
 import { agentByIdSelectors } from '@/store/agent/selectors';
 import { useElectronStore } from '@/store/electron';
 
-const styles = createStaticStyles(({ css }) => ({
-  button: css`
-    cursor: pointer;
+import styles from './HeteroDeviceSwitcher.module.css';
 
-    display: flex;
-    flex: none;
-    gap: 6px;
-    align-items: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    height: 28px;
-    padding-inline: 8px;
-    border-radius: 6px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    white-space: nowrap;
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  buttonLabel: css`
-    overflow: hidden;
-    max-width: 120px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  check: css`
-    flex: none;
-    margin-inline-start: auto;
-    color: ${cssVar.colorPrimary};
-  `,
-  desc: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-
-    font-size: 11px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  dotOffline: css`
-    flex: none;
-
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-
-    background: ${cssVar.colorTextQuaternary};
-  `,
-  dotOnline: css`
-    flex: none;
-
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-
-    background: ${cssVar.colorSuccess};
-    box-shadow: 0 0 0 2px ${cssVar.colorSuccessBg};
-  `,
-  deviceList: css`
-    overflow-y: auto;
-
-    /* Cap the device section so a long list (servers/CLI fleets) stays scrollable
-       inside the popover instead of growing past the viewport. */
-    max-height: 240px;
-
-    /* Room for the scrollbar so rows don't sit flush against it. */
-    margin-inline-end: -4px;
-    padding-inline-end: 4px;
-  `,
-  empty: css`
-    padding-block: 8px;
-    padding-inline: 8px;
-    font-size: 12px;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  downloadCard: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 10px;
-    align-items: center;
-
-    padding-block: 8px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-
-    text-decoration: none;
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  downloadCardArrow: css`
-    flex: none;
-    margin-inline-start: auto;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  option: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 10px;
-    align-items: center;
-
-    padding-block: 8px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  optionActive: css`
-    background: ${cssVar.colorFillSecondary};
-  `,
-  optionDisabled: css`
-    cursor: not-allowed;
-    opacity: 0.55;
-
-    &:hover {
-      background: transparent;
-    }
-  `,
-  optionIcon: css`
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 28px;
-    height: 28px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorBgElevated};
-  `,
-  optionMeta: css`
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 1px;
-
-    min-width: 0;
-  `,
-  optionTitle: css`
-    overflow: hidden;
-
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  tag: css`
-    flex: none;
-
-    padding-block: 0;
-    padding-inline: 5px;
-    border-radius: 4px;
-
-    font-size: 10px;
-    line-height: 16px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  header: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 6px 4px;
-    padding-inline: 8px;
-  `,
-  headerInfo: css`
-    cursor: help;
-    color: ${cssVar.colorTextQuaternary};
-    transition: color 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorTextSecondary};
-    }
-  `,
-  headerLink: css`
-    display: flex;
-    gap: 3px;
-    align-items: center;
-
-    font-size: 11px;
-    color: ${cssVar.colorTextQuaternary};
-    text-decoration: none;
-
-    transition: color 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorPrimary};
-    }
-  `,
-  headerTitle: css`
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  manageButton: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 3px;
-    align-items: center;
-
-    padding: 0;
-    border: none;
-
-    font-size: 11px;
-    color: ${cssVar.colorTextQuaternary};
-
-    background: none;
-
-    transition: color 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorPrimary};
-    }
-  `,
-  groupLabel: css`
-    padding-block: 4px;
-    padding-inline: 8px;
-
-    font-size: 11px;
-    font-weight: 500;
-    color: ${cssVar.colorTextQuaternary};
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface OptionRowProps {
   active: boolean;

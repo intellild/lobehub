@@ -10,7 +10,6 @@ import {
   useSensors,
 } from '@dnd-kit/core';
 import { Center, Empty, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ClipboardCheckIcon } from 'lucide-react';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -29,19 +28,8 @@ import type { TaskItemRouteScope } from '../features/AgentTaskItem';
 import AgentTaskItem from '../features/AgentTaskItem';
 import { taskDetailPath } from '../shared/taskDetailPath';
 import HiddenColumnsPanel from './HiddenColumnsPanel';
+import styles from './KanbanBoard.module.css';
 import KanbanColumn, { COLUMN_I18N_KEYS, COLUMN_STATUS_ICON, COLUMN_WIDTH } from './KanbanColumn';
-
-const styles = createStaticStyles(({ css }) => ({
-  board: css`
-    overflow-x: auto;
-    display: flex;
-    flex: 1;
-    gap: 8px;
-
-    padding-block: 0 16px;
-    padding-inline: 12px;
-  `,
-}));
 
 interface ColumnDef {
   droppable: boolean;

@@ -4,12 +4,10 @@ import {
   Checkbox,
   Flexbox,
   SearchBar as Search,
-  Segmented,
-  Select,
   Text,
   Tooltip,
 } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
+import { Segmented, Select } from '@lobehub/ui/base-ui';
 import type { ReactNode } from 'react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,13 +19,7 @@ import { chatToolSelectors } from '@/store/chat/selectors';
 import { CATEGORY_ICON_MAP, ENGINE_ICON_MAP } from '../../const';
 import { CategoryAvatar } from './CategoryAvatar';
 import { EngineAvatar } from './EngineAvatar';
-
-const styles = createStaticStyles(({ css }) => ({
-  textHeader: css`
-    flex: none;
-    width: 120px;
-  `,
-}));
+import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
   aiSummary?: boolean;

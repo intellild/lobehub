@@ -17,7 +17,6 @@ import {
 import { Tabs } from '@lobehub/ui/base-ui';
 import type { TableColumnsType, UploadProps } from 'antd';
 import { App, Input as AntInput, Table, Upload } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import {
   ArrowLeft,
   CircleHelp,
@@ -54,6 +53,8 @@ import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwar
 import { usePermission } from '@/hooks/usePermission';
 import { useFileStore } from '@/store/file';
 
+import styles from './index.module.css';
+
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
 const NAMESPACE_MAX = 32;
 const NAMESPACE_MIN = 3;
@@ -61,26 +62,6 @@ const DESCRIPTION_MAX = 200;
 const DISPLAY_NAME_MAX = 50;
 const ORGANIZATION_URL_PREFIX = `${OFFICIAL_URL.replace(/^https?:\/\//, '')}/community/org/`;
 const NAMESPACE_PATTERN = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  footer: css`
-    padding-block: 12px;
-    padding-inline: 20px;
-    border-block-start: 1px solid ${cssVar.colorFillTertiary};
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  hint: css`
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  memberNameLink: css`
-    color: inherit;
-
-    &:hover {
-      color: ${cssVar.colorPrimary};
-    }
-  `,
-}));
 
 /**
  * The default Market namespace equals the raw cloud userId (e.g.
@@ -595,7 +576,7 @@ const CommunityWorkspaceSettings = memo(() => {
               style={{ maxWidth: 560 }}
               value={websiteUrl}
               prefix={
-                <Icon color={cssVar.colorTextSecondary} icon={Globe} style={{ marginRight: 8 }} />
+                <Icon color={'var(--ant-color-text-secondary)'} icon={Globe} style={{ marginRight: 8 }} />
               }
               onChange={(e) => {
                 const next = e.target.value;
@@ -660,11 +641,11 @@ const CommunityWorkspaceSettings = memo(() => {
               >
                 <div
                   style={{
-                    backgroundColor: bannerUrl ? undefined : cssVar.colorFillTertiary,
+                    backgroundColor: bannerUrl ? undefined : 'var(--ant-color-fill-tertiary)',
                     backgroundImage: bannerUrl ? `url(${bannerUrl})` : undefined,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
-                    borderRadius: cssVar.borderRadiusLG,
+                    borderRadius: 'var(--ant-border-radius-lg)',
                     cursor: canEdit ? 'pointer' : 'not-allowed',
                     height: 160,
                     maxWidth: 560,
@@ -691,11 +672,11 @@ const CommunityWorkspaceSettings = memo(() => {
                     <Flexbox align="center" gap={8}>
                       <ImagePlus
                         size={24}
-                        style={{ color: bannerUrl ? '#fff' : cssVar.colorTextSecondary }}
+                        style={{ color: bannerUrl ? '#fff' : 'var(--ant-color-text-secondary)' }}
                       />
                       <Text
                         style={{
-                          color: bannerUrl ? '#fff' : cssVar.colorTextSecondary,
+                          color: bannerUrl ? '#fff' : 'var(--ant-color-text-secondary)',
                           fontSize: 12,
                         }}
                       >

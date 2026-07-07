@@ -2,7 +2,6 @@
 
 import { isDesktop } from '@lobechat/const';
 import { A, Tooltip } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import type { MouseEvent } from 'react';
 import { memo, useCallback } from 'react';
 
@@ -13,57 +12,12 @@ import { topicSelectors } from '@/store/chat/selectors';
 import type { MarkdownElementProps } from '../type';
 import type { ParsedLocalFileHref } from './parse';
 import { parseLocalFileHref } from './parse';
+import styles from './Render.module.css';
 
 interface LocalFileLinkProperties {
   linkHref?: string;
   linkLabel?: string;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  icon: css`
-    display: inline-flex;
-    flex-shrink: 0;
-    align-items: center;
-  `,
-  link: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    margin-inline: -2px;
-    padding-inline: 2px;
-    border-radius: ${cssVar.borderRadiusSM};
-
-    text-decoration: none;
-    vertical-align: -0.16em;
-
-    transition:
-      color 0.2s ${cssVar.motionEaseOut},
-      background 0.2s ${cssVar.motionEaseOut},
-      box-shadow 0.2s ${cssVar.motionEaseOut};
-
-    &:hover {
-      color: ${cssVar.colorLinkHover};
-      text-decoration: underline;
-      text-underline-offset: 2px;
-
-      background: ${cssVar.colorFillSecondary};
-      box-shadow: inset 0 0 0 1px ${cssVar.colorPrimaryBorder};
-    }
-
-    &:active {
-      color: ${cssVar.colorLinkActive};
-      background: ${cssVar.colorFill};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimaryBorder};
-      outline-offset: 2px;
-    }
-  `,
-}));
 
 const getFileName = (filePath: string) => filePath.split(/[\\/]/).at(-1) || filePath;
 

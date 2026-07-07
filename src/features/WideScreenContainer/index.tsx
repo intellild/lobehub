@@ -2,7 +2,6 @@
 
 import { type FlexboxProps } from '@lobehub/ui';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { type CSSProperties } from 'react';
 import { memo, useEffect } from 'react';
@@ -11,13 +10,20 @@ import { CONVERSATION_MIN_WIDTH } from '@/const/layoutTokens';
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    flex-grow: 1;
-    align-self: center;
-    transition: width 0.25s ${cssVar.motionEaseInOut};
-  `,
-}));
+import styles from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface WideScreenContainerProps extends FlexboxProps {
   /**

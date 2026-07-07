@@ -1,5 +1,4 @@
 import { Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -40,7 +39,7 @@ const TitleTags = memo(() => {
         <>
           <span
             style={{
-              color: cssVar.colorTextSecondary,
+              color: 'var(--ant-color-text-secondary)',
               flexShrink: 0,
               fontSize: 14,
               fontWeight: 500,
@@ -54,7 +53,7 @@ const TitleTags = memo(() => {
           </span>
           <span
             style={{
-              color: cssVar.colorTextQuaternary,
+              color: 'var(--ant-color-text-quaternary)',
               flexShrink: 0,
               fontSize: 14,
             }}
@@ -67,7 +66,7 @@ const TitleTags = memo(() => {
         <>
           <span
             style={{
-              color: cssVar.colorText,
+              color: 'var(--ant-color-text)',
               fontSize: 14,
               fontWeight: 600,
               minWidth: 0,

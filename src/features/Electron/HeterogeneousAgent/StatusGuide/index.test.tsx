@@ -33,13 +33,6 @@ vi.mock('@lobehub/ui', () => ({
   Text: ({ children }: { children?: ReactNode }) => <span>{children}</span>,
 }));
 
-vi.mock('antd-style', () => ({
-  cssVar: {
-    colorBgElevated: 'transparent',
-    colorFillQuaternary: 'transparent',
-  },
-}));
-
 vi.mock('lucide-react', () => ({
   Ban: () => <span>Ban Icon</span>,
   ExternalLink: () => <span>ExternalLink Icon</span>,

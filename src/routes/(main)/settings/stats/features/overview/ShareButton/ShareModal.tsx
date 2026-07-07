@@ -3,12 +3,13 @@
 import { type FormItemProps, type FormModalProps } from '@lobehub/ui';
 import { FormModal, Skeleton } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ImageType, imageTypeOptions, useScreenshot } from '@/hooks/useScreenshot';
 import dynamic from '@/libs/next/dynamic';
+
+import stylesModule from './ShareModal.module.css';
 
 const Preview = dynamic(() => import('./Preview'), {
   loading: () => (
@@ -25,14 +26,7 @@ const Preview = dynamic(() => import('./Preview'), {
 });
 
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css }) => ({
-  preview: css`
-    .${prefixCls}-form-item-label {
-      display: none;
-    }
-  `,
-}));
+const styles = stylesModule;
 
 type FieldType = {
   imageType: ImageType;

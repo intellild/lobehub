@@ -1,0 +1,107 @@
+.empty {
+padding: 16px;
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+text-align: center;
+}
+
+.group {
+padding-block: 8px 4px;
+padding-inline: 12px;
+
+font-size: 11px;
+font-weight: 500;
+color: var(--ant-color-text-tertiary);
+}
+
+.item {
+cursor: pointer;
+
+display: flex;
+gap: 8px;
+align-items: center;
+justify-content: space-between;
+
+padding-block: 6px;
+padding-inline: 12px;
+border-inline-start: 1px solid transparent;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.itemActive {
+border-inline-start-color: var(--ant-color-text);
+font-weight: 500;
+color: var(--ant-color-text);
+background: var(--ant-color-fill-secondary);
+}
+
+.itemMeta {
+flex-shrink: 0;
+font-size: 11px;
+font-feature-settings: 'tnum';
+color: var(--ant-color-text-tertiary);
+}
+
+.itemName {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.list {
+overflow-y: auto;
+max-height: 360px;
+padding-block: 4px;
+}
+
+.panel {
+width: 320px;
+}
+
+.search {
+padding-block: 8px 4px;
+padding-inline: 8px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.trigger {
+cursor: pointer;
+user-select: none;
+
+display: inline-flex;
+gap: 6px;
+align-items: center;
+
+max-width: 240px;
+padding-block: 4px;
+padding-inline: 8px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 6px;
+
+font-size: 12px;
+font-weight: 500;
+color: var(--ant-color-text);
+
+background: var(--ant-color-bg-container);
+
+&:hover {
+  border-color: var(--ant-color-border);
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.triggerName {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.triggerPlaceholder {
+color: var(--ant-color-text-tertiary);
+}

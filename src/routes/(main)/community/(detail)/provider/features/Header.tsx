@@ -2,11 +2,12 @@
 
 import { Github, ProviderCombine } from '@lobehub/icons';
 import { ActionIcon, Flexbox, stopPropagation } from '@lobehub/ui';
-import { cssVar, useResponsive } from 'antd-style';
 import { GlobeIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import urlJoin from 'url-join';
+
+import { useResponsive } from '@/hooks/useResponsive';
 
 import { useDetailContext } from './DetailProvider';
 
@@ -47,7 +48,7 @@ const Header = memo<{ mobile?: boolean }>(({ mobile: isMobile }) => {
               target="_blank"
               onClick={stopPropagation}
             >
-              <ActionIcon color={cssVar.colorTextDescription} icon={GlobeIcon} />
+              <ActionIcon color={'var(--ant-color-text-description)'} icon={GlobeIcon} />
             </a>
           )}
 
@@ -60,7 +61,7 @@ const Header = memo<{ mobile?: boolean }>(({ mobile: isMobile }) => {
             )}
             onClick={stopPropagation}
           >
-            <ActionIcon fill={cssVar.colorTextDescription} icon={Github} />
+            <ActionIcon fill={'var(--ant-color-text-description)'} icon={Github} />
           </a>
         </Flexbox>
       </Flexbox>
@@ -70,7 +71,7 @@ const Header = memo<{ mobile?: boolean }>(({ mobile: isMobile }) => {
         align={'center'}
         gap={mobile ? 12 : 24}
         style={{
-          color: cssVar.colorTextSecondary,
+          color: 'var(--ant-color-text-secondary)',
         }}
       >
         {t(`${identifier}.description`, { defaultValue: description })}

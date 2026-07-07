@@ -2,50 +2,25 @@
 
 import type { EmojiReaction } from '@lobechat/types';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 
 import { usePermission } from '@/hooks/usePermission';
 
+import styles from './ReactionDisplay.module.css';
 import ReactionPicker from './ReactionPicker';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  active: css`
-    background: ${cssVar.colorFillTertiary};
-  `,
-  container: css`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-  `,
-  count: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  reactionTag: css`
-    cursor: pointer;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    height: 28px;
-    padding-block: 0;
-    padding-inline: 10px;
-    border-radius: 14px;
-
-    font-size: 14px;
-    line-height: 1;
-
-    background: ${cssVar.colorFillSecondary};
-
-    transition: all 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ReactionDisplayProps {
   /**

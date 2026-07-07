@@ -3,18 +3,11 @@
 import type { RunCommandState } from '@lobechat/tool-runtime';
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Block, Flexbox, Highlighter } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import { getRunCommandDisplayCommand } from '../../utils/runCommand';
 import AnsiOutput from './AnsiOutput';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    overflow: hidden;
-    padding-inline: 8px 0;
-  `,
-}));
+import styles from './index.module.css';
 
 interface RunCommandArgs {
   background?: boolean;

@@ -2,7 +2,6 @@
 
 import { TITLE_BAR_HEIGHT } from '@lobechat/desktop-bridge';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 
 import { useWatchThemeUpdate } from '@/features/Electron/system/useWatchThemeUpdate';
@@ -12,26 +11,23 @@ import { electronStylish } from '@/styles/electron';
 import { getPlatform, isMacOS } from '@/utils/platform';
 
 import PinOnTopButton from './PinOnTopButton';
+import styles from './TitleBar.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 // Reserve space for macOS traffic lights when titleBarStyle is hidden.
 const MAC_TRAFFIC_LIGHT_WIDTH = 80;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    user-select: none;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-    background: ${cssVar.colorBgLayout};
-  `,
-  title: css`
-    overflow: hidden;
-
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
 
 interface PopupTitleBarProps {
   title?: string;

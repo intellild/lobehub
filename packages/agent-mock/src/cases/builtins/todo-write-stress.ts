@@ -570,30 +570,30 @@ export const todoWriteStress = defineCase({
     ),
 
     // =====================================================================
-    // Phase 6 — Component rewrites with createStaticStyles (26 tools)
+    // Phase 6 — Component rewrites with CSS Modules (26 tools)
     // =====================================================================
     llmStep({
-      text: '第六阶段：将 8 个核心组件从 createStyles 迁移到 createStaticStyles。',
-      reasoning: 'createStaticStyles 使用 cssVar，零运行时开销。先迁移高频使用的核心组件。',
+      text: '第六阶段：将 8 个核心组件迁移到 CSS Modules。',
+      reasoning: 'CSS Modules 使用 CSS 变量，避免样式运行时开销。先迁移高频使用的核心组件。',
       durationMs: 900,
     }),
     createPlan(
       '组件样式迁移计划',
-      '将 8 个核心组件从 createStyles 迁移到 createStaticStyles',
+      '将 8 个核心组件迁移到 CSS Modules',
       '组件: ChatInput, Conversation, AgentSettings, KnowledgeBase, PluginStore, FileExplorer, ShareModal, UserSettings',
       'plan-styles-001',
     ),
     createTodos([
-      '迁移 ChatInput 到 createStaticStyles',
-      '迁移 Conversation 到 createStaticStyles',
-      '迁移 AgentSettings 到 createStaticStyles',
-      '迁移 KnowledgeBase 到 createStaticStyles',
+      '迁移 ChatInput 到 CSS Modules',
+      '迁移 Conversation 到 CSS Modules',
+      '迁移 AgentSettings 到 CSS Modules',
+      '迁移 KnowledgeBase 到 CSS Modules',
     ]),
     createTodos([
-      '迁移 PluginStore 到 createStaticStyles',
-      '迁移 FileExplorer 到 createStaticStyles',
-      '迁移 ShareModal 到 createStaticStyles',
-      '迁移 UserSettings 到 createStaticStyles',
+      '迁移 PluginStore 到 CSS Modules',
+      '迁移 FileExplorer 到 CSS Modules',
+      '迁移 ShareModal 到 CSS Modules',
+      '迁移 UserSettings 到 CSS Modules',
     ]),
     ...[
       'ChatInput',
@@ -612,16 +612,16 @@ export const todoWriteStress = defineCase({
           Array.from({ length: 4 }, (_, k) => ({
             text: [
               [
-                '迁移 ChatInput 到 createStaticStyles',
-                '迁移 Conversation 到 createStaticStyles',
-                '迁移 AgentSettings 到 createStaticStyles',
-                '迁移 KnowledgeBase 到 createStaticStyles',
+                '迁移 ChatInput 到 CSS Modules',
+                '迁移 Conversation 到 CSS Modules',
+                '迁移 AgentSettings 到 CSS Modules',
+                '迁移 KnowledgeBase 到 CSS Modules',
               ],
               [
-                '迁移 PluginStore 到 createStaticStyles',
-                '迁移 FileExplorer 到 createStaticStyles',
-                '迁移 ShareModal 到 createStaticStyles',
-                '迁移 UserSettings 到 createStaticStyles',
+                '迁移 PluginStore 到 CSS Modules',
+                '迁移 FileExplorer 到 CSS Modules',
+                '迁移 ShareModal 到 CSS Modules',
+                '迁移 UserSettings 到 CSS Modules',
               ],
             ][Math.floor(i / 4)][k],
             status: k === localIdx ? 'processing' : k < localIdx ? 'completed' : 'todo',
@@ -629,23 +629,23 @@ export const todoWriteStress = defineCase({
         ),
         callSubAgent(
           `迁移 ${comp} 样式`,
-          `将 src/features/${comp}/index.tsx 中的 createStyles 替换为 createStaticStyles，使用 cssVar`,
+          `将 src/features/${comp}/index.tsx 中的样式迁移到 CSS Modules，使用 CSS 变量`,
         ),
         updateTodos(
           [{ type: 'complete', index: localIdx }],
           Array.from({ length: 4 }, (_, k) => ({
             text: [
               [
-                '迁移 ChatInput 到 createStaticStyles',
-                '迁移 Conversation 到 createStaticStyles',
-                '迁移 AgentSettings 到 createStaticStyles',
-                '迁移 KnowledgeBase 到 createStaticStyles',
+                '迁移 ChatInput 到 CSS Modules',
+                '迁移 Conversation 到 CSS Modules',
+                '迁移 AgentSettings 到 CSS Modules',
+                '迁移 KnowledgeBase 到 CSS Modules',
               ],
               [
-                '迁移 PluginStore 到 createStaticStyles',
-                '迁移 FileExplorer 到 createStaticStyles',
-                '迁移 ShareModal 到 createStaticStyles',
-                '迁移 UserSettings 到 createStaticStyles',
+                '迁移 PluginStore 到 CSS Modules',
+                '迁移 FileExplorer 到 CSS Modules',
+                '迁移 ShareModal 到 CSS Modules',
+                '迁移 UserSettings 到 CSS Modules',
               ],
             ][Math.floor(i / 4)][k],
             status: k <= localIdx ? 'completed' : 'todo',

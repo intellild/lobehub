@@ -2,11 +2,23 @@
 
 import type { FileSearchResult } from '@lobechat/types';
 import { Center, Flexbox, MaterialFileTypeIcon, Text, Tooltip } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import { useTheme } from 'next-themes';
 import { memo } from 'react';
 
 import { styles } from './style';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface FileItemProps extends FileSearchResult {
   index: number;

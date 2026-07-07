@@ -1,0 +1,48 @@
+.bar {
+padding-block: 12px;
+padding-inline: 16px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+}
+
+.loopOn {
+color: var(--ant-color-bg-container);
+background: var(--ant-color-text);
+
+&:hover {
+  color: var(--ant-color-bg-container);
+  background: var(--ant-color-text);
+}
+}
+
+.progress {
+cursor: pointer;
+
+flex: 1;
+
+height: 6px;
+border-radius: 3px;
+
+background: var(--ant-color-fill-secondary);
+}
+
+.progressFill {
+height: 100%;
+border-radius: inherit;
+background: var(--ant-color-text);
+transition: width 0.16s linear;
+}
+
+.progressTrack {
+position: relative;
+overflow: hidden;
+height: 100%;
+}
+
+.time {
+min-width: 64px;
+
+font-size: 11px;
+font-feature-settings: 'tnum';
+color: var(--ant-color-text-secondary);
+text-align: end;
+}

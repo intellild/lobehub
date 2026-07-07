@@ -1,0 +1,30 @@
+.link {
+display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  color: var(--ant-color-text-description);
+
+  &:hover {
+    color: var(--ant-color-info);
+  }
+}
+
+.nav {
+border-block-end: 1px solid var(--ant-color-border);
+}
+
+.tabsWrapper {
+scrollbar-width: none;
+
+  overflow-x: auto;
+
+  /* A swipe past the tabs' edge must not fire the browser back gesture. */
+  overscroll-behavior-x: none;
+  flex: 1;
+
+  min-width: 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

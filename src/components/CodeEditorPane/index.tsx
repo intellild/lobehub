@@ -1,22 +1,11 @@
 'use client';
 
 import { type ICodeMirrorInstance, loadCodeMirror, lobeTheme } from '@lobehub/editor/codemirror';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { type CSSProperties, memo, useEffect, useRef } from 'react';
 
-const styles = createStaticStyles(
-  ({ css }) => css`
-    overflow: auto;
-    width: 100%;
-    height: 100%;
-    background: ${cssVar.colorFillQuaternary};
+import stylesModule from './index.module.css';
 
-    .cm-textarea {
-      height: 0;
-      opacity: 0;
-    }
-  `,
-);
+const styles = stylesModule.root;
 
 export interface CodeEditorPaneProps {
   className?: string;

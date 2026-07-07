@@ -2,32 +2,17 @@
 
 import { ModelIcon } from '@lobehub/icons';
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, useResponsive } from 'antd-style';
 import { DotIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ModelInfoTags } from '@/components/ModelSelect';
 import PublishedTime from '@/components/PublishedTime';
+import { useResponsive } from '@/hooks/useResponsive';
 import ModelTypeIcon from '@/routes/(main)/community/(list)/model/features/List/ModelTypeIcon';
 
 import { useDetailContext } from './DetailProvider';
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    desc: css`
-      color: ${cssVar.colorTextSecondary};
-    `,
-    time: css`
-      font-size: 12px;
-      color: ${cssVar.colorTextDescription};
-    `,
-    version: css`
-      font-family: ${cssVar.fontFamilyCode};
-      font-size: 13px;
-    `,
-  };
-});
+import styles from './Header.module.css';
 
 const Header = memo<{ mobile?: boolean }>(({ mobile: isMobile }) => {
   const { description, identifier, releasedAt, displayName, type, abilities, contextWindowTokens } =
@@ -94,7 +79,7 @@ const Header = memo<{ mobile?: boolean }>(({ mobile: isMobile }) => {
       </Flexbox>
       <div
         style={{
-          color: cssVar.colorTextSecondary,
+          color: 'var(--ant-color-text-secondary)',
         }}
       >
         {t(`${identifier}.description`, { defaultValue: description })}

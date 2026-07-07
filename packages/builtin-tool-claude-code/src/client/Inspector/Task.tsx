@@ -2,7 +2,6 @@
 
 import { inspectorTextStyles, shinyTextStyles } from '@lobechat/shared-tool-ui/styles';
 import type { BuiltinInspectorProps } from '@lobechat/types';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -12,56 +11,25 @@ import {
   type TaskListArgs,
   type TaskUpdateArgs,
 } from '../../types';
+import styles from './Task.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const RING_SIZE = 14;
 const RING_STROKE = 2;
 const RING_RADIUS = (RING_SIZE - RING_STROKE) / 2;
 const RING_CIRCUM = 2 * Math.PI * RING_RADIUS;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  chip: css`
-    overflow: hidden;
-    flex-shrink: 1;
-
-    min-width: 0;
-    margin-inline-start: 4px;
-    padding-block: 1px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  countChip: css`
-    flex-shrink: 0;
-
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-radius: 999px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  ring: css`
-    transform: rotate(-90deg);
-    flex-shrink: 0;
-    margin-inline-end: 6px;
-  `,
-  ringProgress: css`
-    transition:
-      stroke-dashoffset 240ms ease,
-      stroke 240ms ease;
-  `,
-  ringTrack: css`
-    stroke: ${cssVar.colorFillSecondary};
-  `,
-}));
 
 /**
  * Items shape the CC adapter emits on `pluginState.todos` — normalized
@@ -106,7 +74,7 @@ const ProgressRing = memo<ProgressRingProps>(({ stats }) => {
   const { completed, total } = stats;
   const ratio = total > 0 ? completed / total : 0;
   const allDone = total > 0 && completed === total;
-  const color = allDone ? cssVar.colorSuccess : cssVar.colorInfo;
+  const color = allDone ? 'var(--ant-color-success)' : 'var(--ant-color-info)';
 
   return (
     <svg className={styles.ring} height={RING_SIZE} width={RING_SIZE}>

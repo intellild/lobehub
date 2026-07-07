@@ -1,0 +1,29 @@
+.default {
+color: var(--ant-color-text-tertiary);
+}
+
+.error {
+color: var(--ant-color-error);
+}
+
+.primary {
+color: var(--ant-color-primary);
+}
+
+.success {
+color: var(--ant-color-success);
+}
+
+.warning {
+color: var(--ant-color-warning);
+}
+
+.wrapper {
+display: inline-flex;
+gap: 4px;
+align-items: center;
+
+font-size: var(--ant-font-size-sm);
+font-weight: 500;
+line-height: 1;
+}

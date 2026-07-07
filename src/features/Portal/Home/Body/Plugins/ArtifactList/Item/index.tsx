@@ -1,6 +1,5 @@
 import { type ChatPluginPayload } from '@lobechat/types';
 import { Flexbox, Icon, Tag, Text } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { CircuitBoard } from 'lucide-react';
 import { memo } from 'react';
@@ -13,6 +12,19 @@ import { pluginHelpers, useToolStore } from '@/store/tool';
 import { toolSelectors } from '@/store/tool/selectors';
 
 import { styles } from './style';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface ArtifactItemProps {
   identifier?: string;

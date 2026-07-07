@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Skeleton } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import ListLoading from '@/routes/(main)/community/components/ListLoading';
@@ -16,7 +15,7 @@ const Loading = memo(() => {
         <Skeleton.Avatar
           shape={'square'}
           size={64}
-          style={{ boxShadow: `0 0 0 4px ${cssVar.colorBgContainer}`, flexShrink: 0 }}
+          style={{ boxShadow: `0 0 0 4px ${'var(--ant-color-bg-container)'}`, flexShrink: 0 }}
         />
         <Skeleton paragraph={{ rows: 1 }} />
       </Flexbox>

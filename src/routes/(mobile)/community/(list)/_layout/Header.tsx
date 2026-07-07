@@ -2,7 +2,6 @@
 
 import { ActionIcon, Flexbox } from '@lobehub/ui';
 import { ChatHeader } from '@lobehub/ui/mobile';
-import { createStaticStyles } from 'antd-style';
 import { SearchIcon } from 'lucide-react';
 import { memo, useState } from 'react';
 
@@ -10,18 +9,8 @@ import { MOBILE_HEADER_ICON_SIZE } from '@/const/layoutTokens';
 import { mobileHeaderSticky } from '@/styles/mobileHeader';
 
 import StoreSearchBar from '../../../../(main)/community/features/Search';
+import styles from './Header.module.css';
 import Nav from './Nav';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  search: css`
-    position: absolute;
-    z-index: 10;
-    inset-block-start: 0;
-    inset-inline: 0;
-
-    background: ${cssVar.colorBgLayout};
-  `,
-}));
 
 const Header = memo(() => {
   const [showSearch, setShowSearch] = useState(false);

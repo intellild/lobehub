@@ -1,7 +1,6 @@
 'use client';
 
 import { Center, Flexbox, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { FolderPlusIcon } from 'lucide-react';
 import { memo, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -91,7 +90,7 @@ const LibraryHierarchy = memo(() => {
 
   const emptyState = (
     <Center gap={16} padding={24} style={{ height: '100%', textAlign: 'center' }}>
-      <Icon color={cssVar.colorTextQuaternary} icon={FolderPlusIcon} size={36} />
+      <Icon color={'var(--ant-color-text-quaternary)'} icon={FolderPlusIcon} size={36} />
       <Flexbox align={'center'} gap={4}>
         <Text strong>{t('library.hierarchy.empty.title')}</Text>
         <Text style={{ fontSize: 12 }} type={'secondary'}>

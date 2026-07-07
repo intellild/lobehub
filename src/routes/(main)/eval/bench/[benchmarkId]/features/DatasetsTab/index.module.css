@@ -1,0 +1,22 @@
+.card {
+.ant-card-body {
+  padding: 0;
+}
+}
+
+.header {
+display: flex;
+gap: 12px;
+align-items: center;
+padding: 16px;
+}
+
+.icon {
+flex-shrink: 0;
+
+width: 32px;
+height: 32px;
+border-radius: var(--ant-border-radius);
+
+background: var(--ant-color-fill-quaternary);
+}

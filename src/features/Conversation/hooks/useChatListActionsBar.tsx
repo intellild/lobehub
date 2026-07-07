@@ -1,5 +1,4 @@
 import { type ActionIconGroupItemType } from '@lobehub/ui';
-import { css, cx } from 'antd-style';
 import {
   ArrowDownFromLine,
   Copy,
@@ -20,12 +19,7 @@ import { useTranslation } from 'react-i18next';
 
 import { localeOptions } from '@/locales/resources';
 
-const translateStyle = css`
-  .ant-dropdown-menu-sub {
-    overflow-y: scroll;
-    max-height: 400px;
-  }
-`;
+import styles from './useChatListActionsBar.module.css';
 
 interface ChatListActionsBar {
   branching: ActionIconGroupItemType;
@@ -132,7 +126,7 @@ export const useChatListActionsBar = ({
         icon: LanguagesIcon,
         key: 'translate',
         label: t('translate.action', { ns: 'chat' }),
-        popupClassName: cx(translateStyle),
+        popupClassName: styles.translatePopup,
       },
       tts: {
         icon: Play,

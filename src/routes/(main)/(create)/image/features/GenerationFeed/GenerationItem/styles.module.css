@@ -1,0 +1,60 @@
+@keyframes shimmer {
+0% {
+opacity: 1;
+  }
+  50% {
+opacity: 0;
+  }
+  100% {
+opacity: 1;
+  }
+}
+
+.generationActionButton {
+position: absolute;
+  z-index: 10;
+  inset-block-start: 8px;
+  inset-inline-end: 8px;
+
+  opacity: 0;
+
+  transition: opacity 0.1s var(--ant-motion-ease-in-out);
+}
+
+.imageContainer {
+position: relative;
+overflow: hidden;
+width: 100%;
+
+&:hover .generation-actions {
+  opacity: 1;
+}
+}
+
+.placeholderContainer {
+position: relative;
+overflow: hidden;
+width: 100%;
+
+&:hover .generation-actions {
+  opacity: 1;
+}
+}
+
+.placeholderContainerLoading {
+&::before {
+  content: '';
+
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+
+  background: var(--ant-color-fill-secondary);
+
+  animation: shimmer 2s linear infinite;
+}
+}
+
+.spinIcon {
+color: var(--ant-color-primary);
+}

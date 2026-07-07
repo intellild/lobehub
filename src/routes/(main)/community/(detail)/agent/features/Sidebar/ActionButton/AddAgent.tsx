@@ -4,7 +4,6 @@ import { AGENT_CHAT_URL } from '@lobechat/const';
 import { Button, DropdownMenu, Flexbox, Icon } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { ChevronDownIcon } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,21 +17,7 @@ import { useAgentStore } from '@/store/agent';
 import { useHomeStore } from '@/store/home';
 
 import { useDetailContext } from '../../DetailProvider';
-
-const styles = createStaticStyles(({ css }) => ({
-  buttonGroup: css`
-    width: 100%;
-  `,
-  menuButton: css`
-    padding-inline: 8px;
-    border-start-start-radius: 0 !important;
-    border-end-start-radius: 0 !important;
-  `,
-  primaryButton: css`
-    border-start-end-radius: 0 !important;
-    border-end-end-radius: 0 !important;
-  `,
-}));
+import styles from './AddAgent.module.css';
 
 const AddAgent = memo<{ mobile?: boolean }>(({ mobile }) => {
   const { avatar, description, tags, title, config, backgroundColor, identifier, editorData } =

@@ -3,7 +3,6 @@
 import { Flexbox, Icon, MaterialFileTypeIcon, Text } from '@lobehub/ui';
 import { type GetProps, Tree } from 'antd';
 import type { DataNode } from 'antd/es/tree';
-import { createStaticStyles } from 'antd-style';
 import { ChevronDown } from 'lucide-react';
 import qs from 'query-string';
 import { type Key, memo, useMemo, useState } from 'react';
@@ -12,6 +11,7 @@ import { useLocation } from 'react-router';
 
 import Title from '../../../../components/Title';
 import { useDetailContext } from '../DetailProvider';
+import styles from './FileTree.module.css';
 
 type DirectoryTreeProps = GetProps<typeof Tree.DirectoryTree>;
 
@@ -26,35 +26,7 @@ const createNode = (name: string, key: string): TreeNode => ({
   key: key || '/',
   name,
 });
-
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  tree: css`
-    .ant-tree-node-content-wrapper {
-      overflow: hidden;
-      display: flex;
-      gap: 4px;
-      align-items: center;
-
-      color: ${cssVar.colorTextSecondary};
-    }
-
-    .ant-tree-title {
-      overflow: hidden;
-      display: block;
-      line-height: 1.2;
-    }
-
-    .ant-tree-switcher {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      margin-inline-end: 0;
-
-      color: ${cssVar.colorTextDescription};
-    }
-  `,
-}));
+export { styles };
 
 const sortNodes = (nodes: TreeNode[]) =>
   [...nodes].sort((a, b) => {

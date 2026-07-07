@@ -2,7 +2,6 @@
 
 import { BRANDING_NAME } from '@lobechat/business-const';
 import { Center, Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { MessageSquareHeart } from 'lucide-react';
 import { type PropsWithChildren } from 'react';
 import { memo } from 'react';
@@ -14,12 +13,9 @@ import { GITHUB, GITHUB_ISSUES } from '@/const/url';
 import { useServerConfigStore } from '@/store/serverConfig';
 import { isOnServerSide } from '@/utils/env';
 
-const styles = createStaticStyles(
-  ({ css, cssVar }) => css`
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-);
+import stylesModule from './Footer.module.css';
+
+const styles = stylesModule.root;
 
 export const LayoutSettingsFooterClassName = 'settings-layout-footer';
 

@@ -2,7 +2,6 @@
 
 import { EDITOR_DEBOUNCE_TIME, EDITOR_MAX_WAIT } from '@lobechat/const';
 import { ActionIcon, Button, Flexbox, Text, TextArea } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { debounce } from 'es-toolkit/compat';
 import { CheckIcon, PencilIcon, XIcon } from 'lucide-react';
 import type { ChangeEvent } from 'react';
@@ -27,6 +26,7 @@ import {
   parseSkillMarkdownMetadata,
 } from '@/utils/skillMarkdown';
 
+import styles from './Body.module.css';
 import {
   useDocumentViewFullPage,
   useResolvedAgentDocumentId,
@@ -34,51 +34,6 @@ import {
 } from './documentViewContext';
 import EditorCanvas from './EditorCanvas';
 import TodoList from './TodoList';
-
-const styles = createStaticStyles(({ css }) => ({
-  content: css`
-    overflow: auto;
-    flex: 1;
-    padding-inline: 16px;
-  `,
-  contentFull: css`
-    /* Width is handled by WideScreenContainer; keep only the scroll host. */
-    overflow: auto;
-    flex: 1;
-  `,
-  frontmatter: css`
-    margin-block: 16px 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 8px;
-    background: ${cssVar.colorBgContainer};
-  `,
-  metadataKey: css`
-    flex-shrink: 0;
-    width: 112px;
-    font-family: ${cssVar.fontFamilyCode};
-    color: ${cssVar.colorTextSecondary};
-  `,
-  metadataRow: css`
-    padding-block: 10px;
-    padding-inline: 12px;
-
-    &:not(:last-child) {
-      border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-    }
-  `,
-  metadataValue: css`
-    min-width: 0;
-    white-space: pre-wrap;
-  `,
-  sectionHeader: css`
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  textArea: css`
-    font-family: ${cssVar.fontFamilyCode};
-  `,
-}));
 
 interface SkillFrontmatterBlockProps {
   documentId: string;

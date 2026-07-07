@@ -1,5 +1,4 @@
 import { Alert, Flexbox, Icon, SliderWithInput } from '@lobehub/ui';
-import { css, cssVar, cx } from 'antd-style';
 import { Sparkle, Sparkles } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -7,16 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useAgentStore } from '@/store/agent';
 import { agentSelectors } from '@/store/agent/selectors';
 
-const alertCls = css`
-  .ant-alert-message {
-    font-size: 12px;
-    line-height: 18px !important;
-  }
-
-  .ant-alert-icon {
-    height: 18px !important;
-  }
-`;
+import styles from './Temperature.module.css';
 
 const Warning = memo(() => {
   const { t } = useTranslation('setting');
@@ -29,7 +19,7 @@ const Warning = memo(() => {
     typeof temperature === 'number' &&
     temperature >= 1.5 && (
       <Alert
-        classNames={{ alert: cx(alertCls) }}
+        classNames={{ alert: styles.alert }}
         style={{ fontSize: 12 }}
         title={t('settingModel.temperature.warning')}
         type={'warning'}
@@ -58,9 +48,9 @@ const Temperature = memo<TemperatureProps>(({ value, onChange, disabled }) => {
         style={{ height: 42 }}
         value={value}
         marks={{
-          0: <Icon icon={Sparkle} size={'small'} style={{ color: cssVar.colorTextQuaternary }} />,
+          0: <Icon icon={Sparkle} size={'small'} style={{ color: 'var(--ant-color-text-quaternary)' }} />,
           1: <div />,
-          2: <Icon icon={Sparkles} size={'small'} style={{ color: cssVar.colorTextQuaternary }} />,
+          2: <Icon icon={Sparkles} size={'small'} style={{ color: 'var(--ant-color-text-quaternary)' }} />,
         }}
         styles={{
           input: {

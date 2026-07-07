@@ -1,28 +1,14 @@
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStyles } from 'antd-style';
 import { CheckCircle2, Circle, CircleAlert, LoaderCircle, XCircle } from 'lucide-react';
 
 import type { VerifyCheckResultItem } from '@/database/schemas/verify';
 import { useVerifyResults, useVerifyState } from '@/features/Verify/hooks';
+import { useTheme } from '@/hooks/useTheme';
 import { useChatStore } from '@/store/chat';
 import { chatPortalSelectors } from '@/store/chat/selectors';
 import { oneLineEllipsis } from '@/styles';
 
-const useStyles = createStyles(({ css }) => ({
-  badge: css`
-    display: inline-flex;
-    flex: none;
-    gap: 4px;
-    align-items: center;
-
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    font-size: 12px;
-    font-weight: 600;
-  `,
-}));
+import styles from './Title.module.css';
 
 const statusMeta = (status: VerifyCheckResultItem['status'] | undefined) => {
   switch (status) {
@@ -45,7 +31,7 @@ const statusMeta = (status: VerifyCheckResultItem['status'] | undefined) => {
 };
 
 const Title = () => {
-  const { styles, theme } = useStyles();
+  const theme = useTheme();
   const operationId = useChatStore(chatPortalSelectors.verifyResultOperationId);
   const checkItemId = useChatStore(chatPortalSelectors.verifyResultCheckItemId);
   const { data: state } = useVerifyState(operationId ?? null);

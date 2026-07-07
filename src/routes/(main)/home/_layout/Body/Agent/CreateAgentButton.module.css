@@ -1,0 +1,20 @@
+.container {
+.create-agent-actions {
+  width: 0;
+  margin-inline-end: 2px;
+  opacity: 0;
+  transition: opacity 0.2s var(--ant-motion-ease-out);
+
+  &:has([data-popup-open]) {
+    width: unset;
+    opacity: 1;
+  }
+}
+
+&:hover {
+  .create-agent-actions {
+    width: unset;
+    opacity: 1;
+  }
+}
+}

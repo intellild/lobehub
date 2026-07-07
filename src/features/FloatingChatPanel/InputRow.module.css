@@ -1,0 +1,8 @@
+.row {
+position: relative;
+flex-shrink: 0;
+}
+
+.surface {
+view-transition-name: floating-chat-panel-input;
+}

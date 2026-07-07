@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, Block, Center, DropdownMenu, Flexbox, Icon, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { ChevronDownIcon, PlusIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,31 +9,23 @@ import NeuralNetworkLoading from '@/components/NeuralNetworkLoading';
 import { usePermission } from '@/hooks/usePermission';
 
 import { useCreateMenuItems } from '../../hooks';
+import stylesModule from './CreatePrivateButton.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const ACTION_CLASS_NAME = 'create-private-actions';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    .${ACTION_CLASS_NAME} {
-      width: 0;
-      margin-inline-end: 2px;
-      opacity: 0;
-      transition: opacity 0.2s ${cssVar.motionEaseOut};
-
-      &:has([data-popup-open]) {
-        width: unset;
-        opacity: 1;
-      }
-    }
-
-    &:hover {
-      .${ACTION_CLASS_NAME} {
-        width: unset;
-        opacity: 1;
-      }
-    }
-  `,
-}));
+const styles = stylesModule;
 
 interface CreatePrivateButtonProps {
   className?: string;
@@ -112,7 +103,7 @@ const CreatePrivateButton = memo<CreatePrivateButtonProps>(({ className }) => {
         >
           <DropdownMenu items={dropdownItems} nativeButton={false}>
             <ActionIcon
-              color={cssVar.colorTextQuaternary}
+              color={'var(--ant-color-text-quaternary)'}
               icon={ChevronDownIcon}
               size={'small'}
               style={{ flex: 'none' }}

@@ -1,0 +1,35 @@
+.assignee {
+display: flex;
+flex-shrink: 0;
+gap: 6px;
+align-items: center;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+}
+
+.container {
+.accordion-action {
+  margin-inline-end: 8px;
+  opacity: 1 !important;
+}
+}
+
+.index {
+flex-shrink: 0;
+font-size: 12px;
+color: var(--ant-color-text-quaternary);
+}
+
+.instruction {
+font-size: 13px;
+line-height: 1.6;
+color: var(--ant-color-text-secondary);
+}
+
+.taskTitle {
+overflow: hidden;
+font-size: 14px;
+text-overflow: ellipsis;
+white-space: nowrap;
+}

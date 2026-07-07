@@ -1,0 +1,27 @@
+.container {
+padding: 12px;
+border-radius: 8px;
+background: var(--ant-color-fill-quaternary);
+}
+
+.label {
+font-size: 12px;
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}
+
+.statusFail {
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-error);
+}
+
+.statusSuccess {
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-success);
+}
+
+.value {
+font-size: 13px;
+}

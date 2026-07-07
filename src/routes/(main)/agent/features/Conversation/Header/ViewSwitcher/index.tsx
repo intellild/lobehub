@@ -3,7 +3,6 @@
 import { AGENT_CHAT_TOPIC_PAGE_URL, AGENT_CHAT_TOPIC_URL } from '@lobechat/const';
 import { Flexbox } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import { FileText, MessageSquareText } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,31 +13,9 @@ import { useAgentStore } from '@/store/agent';
 import { agentSelectors } from '@/store/agent/selectors';
 import { useChatStore } from '@/store/chat';
 
+import styles from './index.module.css';
+
 type ViewTab = 'chat' | 'page' | 'task';
-
-const styles = createStaticStyles(({ css }) => ({
-  label: css`
-    justify-content: center;
-    width: 100%;
-    min-width: 0;
-  `,
-  icon: css`
-    display: none;
-
-    @container agent-conv-header (max-width: 860px) {
-      display: block;
-    }
-  `,
-  text: css`
-    display: block;
-    text-align: center;
-    white-space: nowrap;
-
-    @container agent-conv-header (max-width: 860px) {
-      display: none;
-    }
-  `,
-}));
 
 const ViewSwitcher = memo(() => {
   const { t } = useTranslation('chat');

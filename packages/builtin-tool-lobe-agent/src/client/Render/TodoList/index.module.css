@@ -1,0 +1,29 @@
+.itemRow {
+width: 100%;
+padding-block: 10px;
+padding-inline: 12px;
+border-block-end: 1px dashed var(--ant-color-border-secondary);
+
+&:last-child {
+  border-block-end: none;
+}
+}
+
+.processingRow {
+display: flex;
+gap: 7px;
+align-items: center;
+}
+
+.textCompleted {
+color: var(--ant-color-text-quaternary);
+text-decoration: line-through;
+}
+
+.textProcessing {
+color: var(--ant-color-text);
+}
+
+.textTodo {
+color: var(--ant-color-text-secondary);
+}

@@ -2,7 +2,6 @@ import type { TaskAutomationMode } from '@lobechat/types';
 import { ActionIcon, Avatar, Button, Flexbox, Icon, InputNumber, Popover, Text } from '@lobehub/ui';
 import { Select, Tabs } from '@lobehub/ui/base-ui';
 import { Switch } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import dayjs from 'dayjs';
 import { CalendarClockIcon, CalendarDays, Clock, RefreshCw, TimerIcon, Zap } from 'lucide-react';
 import type { ReactNode } from 'react';
@@ -21,28 +20,11 @@ import {
   nextScheduleFiring,
 } from './scheduler/helpers';
 import SchedulerForm, { type SchedulerFormChange } from './scheduler/SchedulerForm';
+import styles from './TaskScheduleConfig.module.css';
 
 type IntervalUnit = 'hours' | 'minutes';
 
 const MIN_MINUTES = 10;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  fieldLabel: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  popover: css`
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-    background: ${cssVar.colorBgContainer};
-  `,
-  preview: css`
-    padding-block: 12px;
-    padding-inline: 14px;
-    border-radius: 12px;
-    background: ${cssVar.colorFillQuaternary};
-  `,
-}));
 
 interface IntervalTabProps {
   currentInterval: number;
@@ -295,18 +277,18 @@ const TaskScheduleConfig = memo(function TaskScheduleConfig({
     <Flexbox gap={16} style={{ padding: 4, width: 440 }} onClick={(e) => e.stopPropagation()}>
       <Flexbox horizontal align="center" gap={12}>
         <Avatar
-          avatar={<Icon color={cssVar.colorSuccess} icon={Zap} size={20} />}
-          background={cssVar.colorSuccessBg}
+          avatar={<Icon color={'var(--ant-color-success)'} icon={Zap} size={20} />}
+          background={'var(--ant-color-success-bg)'}
           shape="square"
           size={40}
         />
         <Flexbox flex={1} gap={2}>
           <Text weight={500}>{t('taskSchedule.heading')}</Text>
-          <Text style={{ color: cssVar.colorTextSecondary, fontSize: 12 }}>
+          <Text style={{ color: 'var(--ant-color-text-secondary)', fontSize: 12 }}>
             {summary?.primary ?? t('taskSchedule.summary.disabled')}
           </Text>
           {summary?.secondary && (
-            <Text style={{ color: cssVar.colorTextDescription, fontSize: 11 }}>
+            <Text style={{ color: 'var(--ant-color-text-description)', fontSize: 11 }}>
               {summary.secondary}
             </Text>
           )}
@@ -316,8 +298,8 @@ const TaskScheduleConfig = memo(function TaskScheduleConfig({
 
       {enabled && nextRunText && (
         <Flexbox horizontal align="center" className={styles.preview} gap={10}>
-          <Icon color={cssVar.colorTextDescription} icon={Clock} size={16} />
-          <Text style={{ color: cssVar.colorTextSecondary }}>{t('taskSchedule.nextRun')}</Text>
+          <Icon color={'var(--ant-color-text-description)'} icon={Clock} size={16} />
+          <Text style={{ color: 'var(--ant-color-text-secondary)' }}>{t('taskSchedule.nextRun')}</Text>
           <Text style={{ flex: 1, textAlign: 'right' }} weight={500}>
             {nextRunText}
           </Text>

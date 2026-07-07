@@ -1,0 +1,13 @@
+.chevron {
+transition: transform 0.2s var(--ant-motion-ease-in-out);
+}
+
+.chevronExpanded {
+transform: rotate(90deg);
+}
+
+.container {
+position: relative;
+overflow: hidden auto;
+transition: all 0.2s var(--ant-motion-ease-in-out);
+}

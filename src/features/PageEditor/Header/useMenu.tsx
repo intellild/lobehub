@@ -3,7 +3,6 @@ import { type DropdownItem } from '@lobehub/ui';
 import { Icon } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { cssVar, useResponsive } from 'antd-style';
 import {
   Clock3Icon,
   CopyPlus,
@@ -23,6 +22,7 @@ import { useAuthorInfo } from '@/business/client/hooks/useAuthorInfo';
 import { useDocumentTransferMenuItem } from '@/business/client/hooks/useDocumentTransferMenuItem';
 import VisibilityConfirmContent from '@/features/VisibilityConfirmContent';
 import { usePermission } from '@/hooks/usePermission';
+import { useResponsive } from '@/hooks/useResponsive';
 import { useDocumentStore } from '@/store/document';
 import { editorSelectors } from '@/store/document/slices/editor';
 import { useFileStore } from '@/store/file';
@@ -274,7 +274,7 @@ export const useMenu = (): { menuItems: any[] } => {
           icon: authorName ? <Icon icon={UserRound} /> : undefined,
           key: 'page-info',
           label: (
-            <span style={{ color: cssVar.colorTextTertiary, fontSize: 12, lineHeight: 1.6 }}>
+            <span style={{ color: 'var(--ant-color-text-tertiary)', fontSize: 12, lineHeight: 1.6 }}>
               {[
                 authorName,
                 lastUpdatedTime

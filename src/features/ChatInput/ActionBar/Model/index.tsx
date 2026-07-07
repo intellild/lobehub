@@ -1,6 +1,5 @@
 import { ModelIcon } from '@lobehub/icons';
 import { Center, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo, useCallback } from 'react';
 
 import { useBusinessModelModeConfig } from '@/business/client/hooks/useBusinessAgentMode';
@@ -11,40 +10,20 @@ import { agentByIdSelectors } from '@/store/agent/selectors';
 
 import { useAgentId } from '../../hooks/useAgentId';
 import { useActionBarContext } from '../context';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  icon: css`
-    transition: scale 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
-  `,
-  modelDisabled: css`
-    cursor: not-allowed;
-    opacity: 0.5;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    :hover {
-      background: transparent;
-    }
-
-    :active {
-      div {
-        scale: 1;
-      }
-    }
-  `,
-  model: css`
-    cursor: pointer;
-    border-radius: 24px;
-
-    :hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-
-    :active {
-      div {
-        scale: 0.8;
-      }
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const ModelSwitch = memo(() => {
   const { actionSize, dropdownPlacement } = useActionBarContext();

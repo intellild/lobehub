@@ -1,0 +1,44 @@
+.description {
+margin-block-start: 8px;
+font-size: 13px;
+line-height: 1.6;
+color: var(--ant-color-text-secondary);
+}
+
+.header {
+display: flex;
+gap: 12px;
+align-items: flex-start;
+justify-content: space-between;
+
+padding-block: 20px 16px;
+padding-inline: 24px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.name {
+font-size: 16px;
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.noPermissions {
+padding: 24px;
+font-size: 14px;
+color: var(--ant-color-text-tertiary);
+}
+
+.noPermissionsHeader {
+display: flex;
+gap: 12px;
+align-items: center;
+justify-content: space-between;
+
+margin-block-end: 8px;
+}
+
+.noPermissionsTitle {
+font-size: 16px;
+font-weight: 600;
+color: var(--ant-color-text);
+}

@@ -3,7 +3,6 @@
 import { Flexbox, Text } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { Button, Progress } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Play, RotateCcw } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,46 +20,9 @@ import { getResumeTarget } from './features/resumeTarget';
 import RunHeader from './features/RunHeader';
 import RunningState from './features/RunningState';
 import StatsCards from './features/StatsCards';
+import styles from './index.module.css';
 
 const POLLING_INTERVAL = 3000;
-
-const styles = createStaticStyles(({ css }) => ({
-  panel: css`
-    overflow: hidden;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorBgContainer};
-  `,
-  panelBody: css`
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-  `,
-  panelHeader: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 12px;
-    padding-inline: 20px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  panelLabel: css`
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  stateBody: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 430px;
-    padding: 20px;
-  `,
-}));
 
 const RunDetail = memo(() => {
   const { t } = useTranslation('eval');

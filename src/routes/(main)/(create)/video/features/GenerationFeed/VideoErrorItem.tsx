@@ -1,7 +1,6 @@
 'use client';
 
 import { Block, Center, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { VideoOffIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -64,7 +63,7 @@ const VideoErrorItem = memo<VideoErrorItemProps>(
         onClick={onCopyError}
       >
         <Center gap={8}>
-          <Icon color={cssVar.colorTextDescription} icon={VideoOffIcon} size={24} />
+          <Icon color={'var(--ant-color-text-description)'} icon={VideoOffIcon} size={24} />
           <Text strong type={'secondary'}>
             {isProviderContentModerationError
               ? tError('response.ProviderContentModeration')

@@ -1,0 +1,31 @@
+.descriptionText {
+color: var(--ant-color-text-secondary);
+}
+
+.descriptionText_dark {
+color: var(--ant-color-text);
+}
+
+.popover {
+.ant-popover-inner {
+  background: var(--ant-color-bg-elevated);
+}
+}
+
+.popover_dark {
+.ant-popover-inner {
+  background: var(--ant-color-bg-spotlight);
+}
+}
+
+.priceText {
+font-weight: 500;
+color: var(--ant-color-text-tertiary);
+word-break: keep-all;
+white-space: nowrap;
+}
+
+.priceText_dark {
+font-weight: 500;
+color: var(--ant-color-text-light-solid);
+}

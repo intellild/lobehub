@@ -4,20 +4,11 @@ import { InboxOutlined } from '@ant-design/icons';
 import { Button } from '@lobehub/ui';
 import { useMutation } from '@tanstack/react-query';
 import { Form, Input, message, Upload } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { type FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useCredsApi } from '../useCredsApi';
-
-const styles = createStaticStyles(({ css }) => ({
-  footer: css`
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-    margin-block-start: 24px;
-  `,
-}));
+import styles from './FileCredForm.module.css';
 
 interface FileCredFormProps {
   disabled?: boolean;

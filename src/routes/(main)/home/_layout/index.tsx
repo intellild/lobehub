@@ -1,10 +1,10 @@
 import { Flexbox } from '@lobehub/ui';
-import { useTheme } from 'antd-style';
 import { Activity, type FC, type ReactNode, useEffect, useMemo, useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 
 import { useActiveWorkspaceSlug } from '@/business/client/hooks/useActiveWorkspaceSlug';
 import { useIsDark } from '@/hooks/useIsDark';
+import { useTheme } from '@/hooks/useTheme';
 
 import HomeAgentIdSync from './HomeAgentIdSync';
 import RecentHydration from './RecentHydration';
@@ -17,7 +17,7 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   const isDarkMode = useIsDark();
-  const theme = useTheme(); // Keep for colorBgContainerSecondary (not in cssVar)
+  const theme = useTheme(); // Keep for colorBgContainerSecondary, which is set dynamically below.
   const { pathname } = useLocation();
   const activeSlug = useActiveWorkspaceSlug();
   const isHomeRoute =
@@ -30,7 +30,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     if (isHomeRoute) setHasActivated(true);
   }, [isHomeRoute]);
 
-  // CSS variable for dynamic background color (colorBgContainerSecondary is not in cssVar)
+  // CSS variable for dynamic background color.
   const cssVariables = useMemo<Record<string, string>>(
     () => ({
       '--content-bg-secondary': theme.colorBgContainerSecondary,

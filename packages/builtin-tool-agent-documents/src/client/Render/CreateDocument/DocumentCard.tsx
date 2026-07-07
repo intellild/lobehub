@@ -2,7 +2,6 @@
 
 import { ActionIcon, CopyButton, Flexbox, Markdown, ScrollShadow, TooltipGroup } from '@lobehub/ui';
 import { Button } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { FileTextIcon, Maximize2, Minimize2, PencilLine } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,48 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useChatStore } from '@/store/chat';
 import { chatPortalSelectors } from '@/store/chat/slices/portal/selectors';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    position: relative;
-
-    overflow: hidden;
-
-    width: 100%;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 16px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  content: css`
-    padding-inline: 16px;
-    font-size: 14px;
-  `,
-  expandButton: css`
-    position: absolute;
-    inset-block-end: 16px;
-    inset-inline-start: 50%;
-    transform: translateX(-50%);
-
-    box-shadow: ${cssVar.boxShadow};
-  `,
-  header: css`
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  icon: css`
-    color: ${cssVar.colorPrimary};
-  `,
-  title: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './DocumentCard.module.css';
 
 interface DocumentCardProps {
   content: string;

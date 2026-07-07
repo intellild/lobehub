@@ -5,7 +5,6 @@ import type { IconProps } from '@lobehub/ui';
 import { Icon, Popover, Tag } from '@lobehub/ui';
 import { GlobeOffIcon, SkillsIcon } from '@lobehub/ui/icons';
 import { Upload } from 'antd';
-import { css, cssVar, cx } from 'antd-style';
 import {
   Brain,
   CheckIcon,
@@ -55,144 +54,10 @@ import { type ActionDropdownMenuItems } from '../components/ActionDropdown';
 import { useControls as useKnowledgeControls } from '../Knowledge/useControls';
 import { useMemoryEnabled } from '../Memory/useMemoryEnabled';
 import { useControls as useToolsControls } from '../Tools/useControls';
-
-const hotArea = css`
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: transparent;
-  }
-`;
-
-const activeLabel = css`
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 100%;
-
-  color: inherit;
-
-  span {
-    overflow: hidden;
-    min-width: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-`;
-
-const searchOptionRow = css`
-  display: flex;
-  gap: 10px;
-  align-items: center;
-
-  width: 100%;
-  min-width: 220px;
-  max-width: 320px;
-
-  .title {
-    line-height: 1.25;
-  }
-
-  .desc {
-    margin-block-start: 3px;
-
-    font-size: 12px;
-    line-height: 1.35;
-    color: ${cssVar.colorTextDescription};
-    white-space: normal;
-  }
-`;
-
-const searchIconBox = css`
-  display: flex;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-
-  width: 36px;
-  height: 36px;
-  border: 1px solid ${cssVar.colorBorderSecondary};
-  border-radius: 8px;
-
-  background: ${cssVar.colorBgContainer};
-`;
-
-const labelWithChip = css`
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-`;
-
-const countChip = css`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-width: 18px;
-  height: 18px;
-  padding-block: 0;
-  padding-inline: 6px;
-  border-radius: 9px;
-
-  font-size: 11px;
-  line-height: 18px;
-  color: ${cssVar.colorTextSecondary};
-
-  background: ${cssVar.colorFillSecondary};
-`;
-
-const gatewayModeLabel = css`
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  min-width: 0;
-
-  .title {
-    overflow: hidden;
-    min-width: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-`;
-
-const gatewayModeInfoCard = css`
-  overflow: hidden;
-  width: 280px;
-  border-radius: 8px;
-
-  .cover {
-    display: block;
-
-    width: 100%;
-    height: 148px;
-
-    object-fit: cover;
-    background: ${cssVar.colorFillTertiary};
-  }
-
-  .body {
-    padding: 12px;
-  }
-
-  .title {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.35;
-  }
-
-  .desc {
-    margin-block-start: 6px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextSecondary};
-  }
-`;
+import styles from './index.module.css';
 
 const activeIcon = (icon: IconProps['icon'], active?: boolean): IconProps['icon'] =>
-  active ? <Icon color={cssVar.colorInfo} icon={icon} size={16} /> : icon;
+  active ? <Icon color={'var(--ant-color-info)'} icon={icon} size={16} /> : icon;
 
 type DropdownItemWithPopover = NonNullable<ActionDropdownMenuItems>[number] & {
   label?: ReactNode;
@@ -404,7 +269,7 @@ const PlusAction = memo(() => {
   const items: ActionDropdownMenuItems = useMemo(() => {
     const renderActive = (label: string, active: boolean) =>
       active ? (
-        <div className={cx(activeLabel)}>
+        <div className={styles.activeLabel}>
           <span>{label}</span>
           <Icon icon={CheckIcon} size={14} />
         </div>
@@ -418,11 +283,11 @@ const PlusAction = memo(() => {
       description: string,
       active: boolean,
     ) => (
-      <div className={cx(searchOptionRow)}>
-        <div className={cx(searchIconBox)}>{icon}</div>
+      <div className={styles.searchOptionRow}>
+        <div className={styles.searchIconBox}>{icon}</div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="title">{title}</div>
-          {description && <div className="desc">{description}</div>}
+          <div className={styles.searchTitle}>{title}</div>
+          {description && <div className={styles.searchDesc}>{description}</div>}
         </div>
         {active && <Icon icon={CheckIcon} size={14} />}
       </div>
@@ -430,18 +295,18 @@ const PlusAction = memo(() => {
 
     const renderLabelWithCount = (label: string, count: number, prefix?: string) =>
       count > 0 || prefix ? (
-        <span className={cx(labelWithChip)}>
+        <span className={styles.labelWithChip}>
           <span>{label}</span>
-          <span className={cx(countChip)}>{prefix ? `${prefix} | ${count}` : count}</span>
+          <span className={styles.countChip}>{prefix ? `${prefix} | ${count}` : count}</span>
         </span>
       ) : (
         label
       );
 
     const renderGatewayModeLabel = () => (
-      <span className={cx(gatewayModeLabel)}>
+      <span className={styles.gatewayModeLabel}>
         {/* Brand name — same in every language, so no i18n. */}
-        <span className="title">Agent Gateway</span>
+        <span className={styles.gatewayModeTitle}>Agent Gateway</span>
         <Tag color={'info'} size={'small'} variant={'filled'}>
           {t('gatewayMode.beta')}
         </Tag>
@@ -449,15 +314,15 @@ const PlusAction = memo(() => {
     );
 
     const gatewayModeInfo = (
-      <div className={cx(gatewayModeInfoCard)}>
+      <div className={styles.gatewayModeInfoCard}>
         <img
           alt=""
-          className="cover"
+          className={styles.gatewayModeCover}
           src={isDark ? '/images/agent_gateway_dark.webp' : '/images/agent_gateway_light.webp'}
         />
-        <div className="body">
-          <div className="title">{t('gatewayMode.cardTitle')}</div>
-          <div className="desc">{t('gatewayMode.desc')}</div>
+        <div className={styles.gatewayModeBody}>
+          <div className={styles.gatewayModeCardTitle}>{t('gatewayMode.cardTitle')}</div>
+          <div className={styles.gatewayModeDesc}>{t('gatewayMode.desc')}</div>
         </div>
       </div>
     );
@@ -494,7 +359,7 @@ const PlusAction = memo(() => {
               return false;
             }}
           >
-            <div className={cx(hotArea)}>{t('upload.action.fileOrImageUpload')}</div>
+            <div className={styles.hotArea}>{t('upload.action.fileOrImageUpload')}</div>
           </Upload>
         ),
       },
@@ -560,7 +425,7 @@ const PlusAction = memo(() => {
                   key: 'search-app',
                   label: renderSearchOption(
                     <Icon
-                      color={activeSearchOption === 'app' ? cssVar.colorInfo : undefined}
+                      color={activeSearchOption === 'app' ? 'var(--ant-color-info)' : undefined}
                       icon={SearchCheck}
                       size={18}
                     />,
@@ -574,7 +439,7 @@ const PlusAction = memo(() => {
                   key: 'search-provider',
                   label: renderSearchOption(
                     <Icon
-                      color={activeSearchOption === 'provider' ? cssVar.colorInfo : undefined}
+                      color={activeSearchOption === 'provider' ? 'var(--ant-color-info)' : undefined}
                       icon={CloudCog}
                       size={18}
                     />,

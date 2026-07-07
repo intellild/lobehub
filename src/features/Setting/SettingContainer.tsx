@@ -2,9 +2,10 @@
 
 import { type FlexboxProps } from '@lobehub/ui';
 import { Flexbox } from '@lobehub/ui';
-import { cssVar, useTheme } from 'antd-style';
 import { type PropsWithChildren, type ReactNode } from 'react';
 import { memo } from 'react';
+
+import { useTheme } from '@/hooks/useTheme';
 
 interface SettingContainerProps extends FlexboxProps {
   addonAfter?: ReactNode;
@@ -14,7 +15,7 @@ interface SettingContainerProps extends FlexboxProps {
 }
 const SettingContainer = memo<PropsWithChildren<SettingContainerProps>>(
   ({ variant, maxWidth = 1024, children, addonAfter, addonBefore, style, ...rest }) => {
-    const theme = useTheme(); // Keep for colorBgContainerSecondary (not in cssVar)
+    const theme = useTheme(); // Keep for colorBgContainerSecondary, which is applied dynamically.
     return (
       <Flexbox
         align={'center'}
@@ -22,7 +23,7 @@ const SettingContainer = memo<PropsWithChildren<SettingContainerProps>>(
         width={'100%'}
         style={{
           background:
-            variant === 'secondary' ? theme.colorBgContainerSecondary : cssVar.colorBgContainer,
+            variant === 'secondary' ? theme.colorBgContainerSecondary : 'var(--ant-color-bg-container)',
           overflowX: 'hidden',
           overflowY: 'auto',
           ...style,

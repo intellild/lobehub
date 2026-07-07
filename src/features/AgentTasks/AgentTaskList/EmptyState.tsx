@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, responsive } from 'antd-style';
 import { RefreshCw } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,21 +11,10 @@ import { useDailyBriefRecommendationsUI } from '@/features/RecommendTaskTemplate
 import WideScreenContainer from '@/features/WideScreenContainer';
 
 import CreateTaskInlineEntry from './CreateTaskInlineEntry';
+import styles from './EmptyState.module.css';
 
 const HERO_MAX_WIDTH = 960;
 const EMPTY_STATE_RECOMMEND_COUNT = 10;
-
-const styles = createStaticStyles(({ css }) => ({
-  grid: css`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-
-    ${responsive.md} {
-      grid-template-columns: 1fr;
-    }
-  `,
-}));
 
 interface EmptyStateProps {
   /** When set, scopes task creation to this agent and locks the assignee. */
@@ -67,7 +55,7 @@ const EmptyState = memo<EmptyStateProps>(({ agentId }) => {
                 horizontal
                 align={'center'}
                 gap={4}
-                style={{ color: cssVar.colorTextDescription, cursor: 'pointer' }}
+                style={{ color: 'var(--ant-color-text-description)', cursor: 'pointer' }}
                 onClick={templatesState.onRefresh}
               >
                 <Icon icon={RefreshCw} size={12} />

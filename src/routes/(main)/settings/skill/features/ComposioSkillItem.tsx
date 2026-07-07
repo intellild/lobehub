@@ -12,7 +12,6 @@ import {
 } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { Button } from 'antd';
-import { cssVar } from 'antd-style';
 import {
   CircleCheck,
   Loader2,
@@ -221,7 +220,7 @@ const ComposioSkillItem = memo<ComposioSkillItemProps>(
       if (typeof icon === 'string') {
         return <Avatar alt={label} avatar={icon} size={16} />;
       }
-      return <Icon fill={cssVar.colorText} icon={icon} size={16} />;
+      return <Icon fill={'var(--ant-color-text)'} icon={icon} size={16} />;
     };
 
     const renderStatus = () => {
@@ -353,7 +352,7 @@ const ComposioSkillItem = memo<ComposioSkillItemProps>(
         return (
           <Tooltip title={t('tools.composio.connected')}>
             <Center width={20}>
-              <Icon icon={CircleCheck} size={16} style={{ color: cssVar.colorSuccess }} />
+              <Icon icon={CircleCheck} size={16} style={{ color: 'var(--ant-color-success)' }} />
             </Center>
           </Tooltip>
         );
@@ -392,7 +391,7 @@ const ComposioSkillItem = memo<ComposioSkillItemProps>(
       const renderNavIcon = () => {
         const { icon, label } = serverType;
         if (typeof icon === 'string') return <Avatar alt={label} avatar={icon} size={18} />;
-        return <Icon fill={cssVar.colorText} icon={icon} size={18} />;
+        return <Icon fill={'var(--ant-color-text)'} icon={icon} size={18} />;
       };
       return (
         <NavItem
@@ -400,7 +399,7 @@ const ComposioSkillItem = memo<ComposioSkillItemProps>(
           extra={renderNavExtra()}
           icon={renderNavIcon}
           title={serverType.label}
-          titleColor={!isConnected ? cssVar.colorTextDescription : undefined}
+          titleColor={!isConnected ? 'var(--ant-color-text-description)' : undefined}
           // Only connected connectors open the detail panel. When not active
           // (disconnected / pending / error) the row is inert and the only
           // affordance is the inline Connect / Re-authorize button — otherwise

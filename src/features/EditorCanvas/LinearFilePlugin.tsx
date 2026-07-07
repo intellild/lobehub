@@ -3,7 +3,6 @@
 import { downloadFile } from '@lobechat/utils/client';
 import { FilePlugin, UploadPlugin, useLexicalComposerContext } from '@lobehub/editor';
 import { ActionIcon } from '@lobehub/ui';
-import { createStyles } from 'antd-style';
 import { DownloadIcon } from 'lucide-react';
 import { type FC, memo, useLayoutEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,76 +10,7 @@ import { useTranslation } from 'react-i18next';
 import FileIcon from '@/components/FileIcon';
 import { formatSize } from '@/utils/format';
 
-const useStyles = createStyles(({ css, cssVar, token }) => ({
-  card: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 12px;
-    align-items: center;
-
-    box-sizing: border-box;
-    width: 100%;
-    padding-block: 10px;
-    padding-inline: 12px;
-    border: 1px solid ${token.colorBorderSecondary};
-    border-radius: ${token.borderRadiusLG}px;
-
-    color: ${token.colorText};
-
-    background: ${token.colorBgContainer};
-
-    transition: background ${cssVar.motionDurationMid};
-
-    &:hover {
-      background: ${token.colorFillTertiary};
-    }
-
-    &:hover [data-lobehub-file-download] {
-      opacity: 1;
-    }
-  `,
-  download: css`
-    flex-shrink: 0;
-    opacity: 0;
-    transition: opacity ${cssVar.motionDurationMid};
-  `,
-  info: css`
-    overflow: hidden;
-    flex: 1;
-    min-width: 0;
-  `,
-  name: css`
-    overflow: hidden;
-
-    font-size: ${token.fontSize}px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: ${token.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  size: css`
-    margin-block-start: 2px;
-    font-size: ${token.fontSizeSM}px;
-    line-height: 1.4;
-    color: ${token.colorTextTertiary};
-  `,
-  state: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    padding-block: 10px;
-    padding-inline: 12px;
-    border: 1px solid ${token.colorBorderSecondary};
-    border-radius: ${token.borderRadiusLG}px;
-
-    color: ${token.colorTextSecondary};
-
-    background: ${token.colorBgContainer};
-  `,
-}));
+import styles from './LinearFilePlugin.module.css';
 
 interface FileNodeLike {
   fileUrl?: string;
@@ -95,7 +25,6 @@ interface LinearFileCardProps {
 }
 
 export const LinearFileCard = memo<LinearFileCardProps>(({ node }) => {
-  const { styles } = useStyles();
   const { t } = useTranslation('editor');
 
   const { fileUrl, message, name, size, status } = node;

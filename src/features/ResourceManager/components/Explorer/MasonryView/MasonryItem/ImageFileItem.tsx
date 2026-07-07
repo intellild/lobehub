@@ -1,6 +1,5 @@
 import { Button, Flexbox, stopPropagation, Tooltip } from '@lobehub/ui';
 import { Image } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import { isNull } from 'es-toolkit/compat';
 import { FileBoxIcon } from 'lucide-react';
 import { memo, useState } from 'react';
@@ -13,93 +12,20 @@ import { formatSize } from '@/utils/format';
 import { isChunkingUnsupported } from '@/utils/isChunkingUnsupported';
 
 import ChunksBadge from '../../ListView/ListItem/ChunkTag';
+import styles from './ImageFileItem.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  floatingChunkBadge: css`
-    position: absolute;
-    z-index: 3;
-    inset-block-end: 8px;
-    inset-inline-end: 8px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    border-radius: ${cssVar.borderRadius};
-
-    opacity: 0;
-    background: ${cssVar.colorBgContainer};
-    box-shadow: ${cssVar.boxShadow};
-
-    transition: opacity ${cssVar.motionDurationMid};
-  `,
-  hoverOverlay: css`
-    position: absolute;
-    z-index: 1;
-    inset: 0;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    padding: 16px;
-
-    opacity: 0;
-    background: ${cssVar.colorBgMask};
-
-    transition: opacity ${cssVar.motionDurationMid};
-
-    &:hover {
-      opacity: 1;
-    }
-  `,
-  imageWrapper: css`
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    min-height: 120px;
-
-    background: ${cssVar.colorFillQuaternary};
-
-    img {
-      display: block;
-      height: auto;
-    }
-  `,
-  name: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-
-    margin-block-end: 12px;
-
-    font-weight: ${cssVar.fontWeightStrong};
-    color: ${cssVar.colorText};
-    word-break: break-word;
-  `,
-  overlaySize: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextLightSolid};
-    opacity: 0.9;
-  `,
-  overlayTitle: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-
-    max-width: 100%;
-    margin-block-end: 8px;
-
-    font-size: 14px;
-    font-weight: ${cssVar.fontWeightStrong};
-    color: ${cssVar.colorTextLightSolid};
-    text-align: center;
-    word-break: break-word;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ImageFileItemProps {
   chunkCount?: number | null;

@@ -1,6 +1,5 @@
 import { Button, Flexbox, Form, Markdown } from '@lobehub/ui';
 import { Form as AForm } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import * as m from 'motion/react-m';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,37 +8,14 @@ import ItemRender from '@/components/JSONSchemaConfig/ItemRender';
 import { transformPluginSettings } from '@/features/PluginSettings';
 import { useToolStore } from '@/store/tool';
 
+import styles from './MCPConfigForm.module.css';
+
 interface MCPConfigFormProps {
   configSchema: any;
   identifier: string;
   onCancel?: () => void;
   onSubmit?: (config: Record<string, any>) => Promise<void>;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    margin-block-start: ${cssVar.marginXS};
-    padding: ${cssVar.padding};
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: ${cssVar.borderRadius};
-
-    background-color: ${cssVar.colorBgContainer};
-  `,
-  footer: css`
-    display: flex;
-    gap: ${cssVar.marginXS};
-    justify-content: flex-end;
-
-    margin-block-start: ${cssVar.margin};
-    padding-block-start: ${cssVar.paddingXS};
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  markdown: css`
-    p {
-      color: ${cssVar.colorTextDescription};
-    }
-  `,
-}));
 
 const MCPConfigForm = memo<MCPConfigFormProps>(({ configSchema, identifier, onCancel }) => {
   const { t } = useTranslation(['plugin', 'common']);

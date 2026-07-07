@@ -2,7 +2,6 @@
 
 import { ActionIcon, Flexbox } from '@lobehub/ui';
 import { Drawer } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { MenuIcon } from 'lucide-react';
 import { memo, useState } from 'react';
 
@@ -11,6 +10,7 @@ import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwar
 import { DiscoverTab } from '@/types/discover';
 
 import { useNav } from '../../../../(main)/community/features/useNav';
+import styles from './Nav.module.css';
 
 const SCROLL_CONTAINER_ID = 'lobe-mobile-scroll-container';
 
@@ -20,25 +20,7 @@ const scrollToTop = () => {
   if (!scrollableElement) return;
   scrollableElement.scrollTo({ behavior: 'smooth', top: 0 });
 };
-
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  activeNavItem: css`
-    background: ${cssVar.colorFillTertiary};
-  `,
-  container: css`
-    height: auto;
-    padding-block: 4px;
-    background: ${cssVar.colorBgLayout};
-  `,
-  navItem: css`
-    font-weight: 500;
-  `,
-  title: css`
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.2;
-  `,
-}));
+export { styles };
 
 const Nav = memo(() => {
   const [open, setOpen] = useState(false);
@@ -49,7 +31,7 @@ const Nav = memo(() => {
     <>
       <Flexbox horizontal align={'center'} className={styles.title} gap={4}>
         <ActionIcon
-          color={cssVar.colorText}
+          color={'var(--ant-color-text)'}
           icon={MenuIcon}
           size={{ blockSize: 32, size: 18 }}
           onClick={() => {
@@ -74,8 +56,8 @@ const Nav = memo(() => {
           padding: 16,
         }}
         style={{
-          background: cssVar.colorBgLayout,
-          borderRight: `1px solid ${cssVar.colorSplit}`,
+          background: 'var(--ant-color-bg-layout)',
+          borderRight: `1px solid ${'var(--ant-color-split)'}`,
           paddingTop: 44,
         }}
         onClick={() => setOpen(false)}

@@ -1,7 +1,6 @@
 'use client';
 
 import { Block, Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { LockIcon, UsersIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,34 +11,13 @@ import {
 } from '@/features/AgentTasks/features/taskVisibilityLabel';
 import TaskVisibilityTag from '@/features/AgentTasks/features/TaskVisibilityTag';
 
+import styles from './GenerationVisibilitySelector.module.css';
+
 interface GenerationVisibilitySelectorProps {
   disabledReason?: string;
   onChange: (visibility: 'private' | 'public') => void;
   visibility: 'private' | 'public';
 }
-
-const styles = createStaticStyles(({ css }) => ({
-  chip: css`
-    flex-shrink: 0;
-
-    min-width: 76px;
-    max-width: 128px;
-    height: 36px;
-
-    white-space: nowrap;
-  `,
-  label: css`
-    overflow: hidden;
-
-    min-width: 0;
-
-    font-size: 14px;
-    line-height: 1;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
 
 const GenerationVisibilitySelector = memo<GenerationVisibilitySelectorProps>(
   ({ disabledReason, onChange, visibility }) => {
@@ -61,7 +39,7 @@ const GenerationVisibilitySelector = memo<GenerationVisibilitySelectorProps>(
           paddingInline={10}
           variant={'borderless'}
         >
-          <Icon color={cssVar.colorTextDescription} icon={IconComp} size={14} />
+          <Icon color={'var(--ant-color-text-description)'} icon={IconComp} size={14} />
           <span className={styles.label}>{label}</span>
         </Block>
       </TaskVisibilityTag>

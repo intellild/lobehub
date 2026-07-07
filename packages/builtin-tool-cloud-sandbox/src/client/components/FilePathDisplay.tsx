@@ -1,19 +1,10 @@
 'use client';
 
 import { MaterialFileTypeIcon } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import path from 'path-browserify-esm';
 import { memo, useMemo } from 'react';
 
-const styles = createStaticStyles(({ css }) => ({
-  icon: css`
-    flex-shrink: 0;
-    margin-inline-end: 4px;
-  `,
-  text: css`
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './FilePathDisplay.module.css';
 
 interface FilePathDisplayProps {
   filePath: string;

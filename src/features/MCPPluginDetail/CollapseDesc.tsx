@@ -1,36 +1,21 @@
 import { Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { type PropsWithChildren } from 'react';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    desc: css`
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
+import styles from './CollapseDesc.module.css';
 
-      height: 28px;
-      margin-block: 4px 0 !important;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-      font-size: 14px;
-      line-height: 28px;
-      color: ${cssVar.colorTextSecondary};
-      text-overflow: ellipsis;
-
-      transition:
-        margin-block-start 0.3s ${cssVar.motionEaseInOut},
-        height 0.3s ${cssVar.motionEaseInOut},
-        opacity 0.2s ${cssVar.motionEaseInOut};
-    `,
-    hideDesc: css`
-      height: 0;
-      margin-block-start: 0;
-      opacity: 0;
-    `,
-  };
-});
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const CollapseDesc = memo<PropsWithChildren<{ hide?: boolean }>>(({ children, hide }) => {
   return (

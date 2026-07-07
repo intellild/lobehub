@@ -1,0 +1,19 @@
+.timelineContainer {
+position: relative;
+height: 100%;
+}
+
+.timelineLine {
+position: absolute;
+inset-block: 0;
+inset-inline-start: 8px;
+
+width: 1px;
+height: 100%;
+
+background: var(--ant-color-fill-secondary);
+}
+
+.timelineLine_dark {
+background: var(--ant-color-fill-quaternary);
+}

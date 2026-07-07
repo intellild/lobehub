@@ -1,41 +1,22 @@
 import { type FlexboxProps } from '@lobehub/ui';
 import { Button, Flexbox, ScrollShadow } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  button: css`
-    position: absolute;
-    z-index: 10;
-    inset-block-start: 50%;
-    transform: translateY(-50%);
+import styles from './index.module.css';
 
-    color: ${cssVar.colorTextSecondary};
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    opacity: 0;
-
-    transition: opacity ${cssVar.motionDurationMid} ${cssVar.motionEaseInOut};
-
-    &:hover {
-      border-color: ${cssVar.colorBorder} !important;
-      box-shadow: ${cssVar.boxShadowTertiary} !important;
-    }
-  `,
-  container: css`
-    position: relative;
-
-    &:hover .scroll-button {
-      opacity: 1;
-    }
-  `,
-  leftButton: css`
-    inset-inline-start: 0;
-  `,
-  rightButton: css`
-    inset-inline-end: 0;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const ScrollShadowWithButton = memo<FlexboxProps>(({ children, ...rest }) => {
   const scrollRef = useRef<HTMLDivElement>(null);

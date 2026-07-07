@@ -1,0 +1,6 @@
+.query {
+padding-block: 4px;
+padding-inline: 8px;
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+}

@@ -4,7 +4,6 @@ import { type UserCredSummary } from '@lobechat/types';
 import { Button, Flexbox } from '@lobehub/ui';
 import { useMutation } from '@tanstack/react-query';
 import { Empty, Spin } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { LogIn } from 'lucide-react';
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,30 +13,10 @@ import { usePermission } from '@/hooks/usePermission';
 import { useMarketAuth } from '@/layout/AuthProvider/MarketAuth';
 
 import CredItem from './CredItem';
+import styles from './CredsList.module.css';
 import { createEditCredModal } from './EditCredModal';
 import { useCredsApi } from './useCredsApi';
 import { createViewCredModal } from './ViewCredModal';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  `,
-  empty: css`
-    padding-block: 48px;
-    padding-inline: 0;
-  `,
-  signInPrompt: css`
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
-
-    padding: 48px;
-  `,
-}));
 
 const CredsList: FC = () => {
   const { t } = useTranslation('setting');

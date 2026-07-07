@@ -14,7 +14,6 @@ import {
 } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
 import { Switch } from 'antd';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { omit } from 'es-toolkit/compat';
 import { Users } from 'lucide-react';
 import { type ChangeEvent } from 'react';
@@ -30,8 +29,22 @@ import { useSessionStore } from '@/store/session';
 import { type LobeAgentSession } from '@/types/session';
 import { LobeSessionType } from '@/types/session';
 
+import styles from './ChatGroupWizard.module.css';
 import { type GroupTemplate } from './templates';
 import { useGroupTemplates } from './templates';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const TemplateItem = memo<{
   cx: (..._args: any[]) => string;
@@ -116,78 +129,6 @@ const ExistingMemberItem = memo<{
     </div>
   );
 });
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    display: flex;
-    flex-direction: row;
-
-    height: 500px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-  `,
-  description: css`
-    font-size: 12px;
-    line-height: 1.2;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  hostCard: css`
-    margin-block-start: ${cssVar.paddingSM};
-    margin-inline: ${cssVar.paddingSM};
-    padding: ${cssVar.padding};
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  leftColumn: css`
-    user-select: none;
-
-    overflow-y: auto;
-    flex: 1;
-
-    padding: 0;
-    border-inline-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  listHeader: css`
-    padding: 0;
-    color: ${cssVar.colorTextDescription};
-  `,
-  listItem: css`
-    cursor: pointer;
-
-    position: relative;
-
-    margin-block: 2px;
-    padding: ${cssVar.paddingSM} !important;
-    border-radius: ${cssVar.borderRadius};
-
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  memberDescription: css`
-    display: block;
-    padding-inline-end: 48px;
-  `,
-  modelSelectDisabled: css`
-    pointer-events: none;
-  `,
-  rightColumn: css`
-    overflow-y: auto;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-
-    padding: 0;
-  `,
-  title: css`
-    font-size: 14px;
-    font-weight: 500;
-  `,
-}));
 
 export interface ChatGroupWizardProps {
   /**
@@ -563,12 +504,12 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
             <SearchBar
               allowClear
               placeholder={t('memberSelection.searchAgents')}
-              style={{ margin: `${cssVar.paddingSM} ${cssVar.paddingSM} 0 ${cssVar.paddingSM}` }}
+              style={{ margin: `${'var(--ant-padding-sm)'} ${'var(--ant-padding-sm)'} 0 ${'var(--ant-padding-sm)'}` }}
               value={inputValue}
               variant="filled"
               onChange={handleSearchChange}
             />
-            <Flexbox flex={1} style={{ overflowY: 'auto', padding: `0 ${cssVar.paddingSM}` }}>
+            <Flexbox flex={1} style={{ overflowY: 'auto', padding: `0 ${'var(--ant-padding-sm)'}` }}>
               <Collapse
                 accordion
                 collapsible
@@ -641,8 +582,8 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
                 ]}
                 styles={{
                   header: {
-                    color: cssVar.colorTextDescription,
-                    fontSize: cssVar.fontSize,
+                    color: 'var(--ant-color-text-description)',
+                    fontSize: 'var(--ant-font-size)',
                     padding: 0,
                   },
                 }}
@@ -689,7 +630,7 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
                 </Flexbox>
               </Flexbox>
 
-              <Flexbox style={{ padding: `0 ${cssVar.paddingSM}` }}>
+              <Flexbox style={{ padding: `0 ${'var(--ant-padding-sm)'}` }}>
                 {selectedTemplate ? (
                   templateMemberItems.length > 0 ? (
                     <List

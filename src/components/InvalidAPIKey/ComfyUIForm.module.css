@@ -1,0 +1,19 @@
+.comfyuiFormWide {
+max-width: 900px !important;
+
+/* Hide the avatar - target the first child which is the Avatar component */
+> *:first-child {
+  display: none !important;
+}
+}
+
+.container {
+width: 100%;
+max-width: 900px;
+border: 1px solid var(--ant-color-split);
+border-radius: 8px;
+
+color: var(--ant-color-text);
+
+background: var(--ant-color-bg-container);
+}

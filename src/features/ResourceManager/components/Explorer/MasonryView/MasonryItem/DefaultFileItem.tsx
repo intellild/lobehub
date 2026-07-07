@@ -1,6 +1,5 @@
 import { CUSTOM_FOLDER_FILE_TYPE } from '@lobechat/const';
 import { Button, Flexbox, stopPropagation, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { isNull } from 'es-toolkit/compat';
 import { FileBoxIcon, Folder } from 'lucide-react';
 import { memo } from 'react';
@@ -13,35 +12,20 @@ import { formatSize } from '@/utils/format';
 import { isChunkingUnsupported } from '@/utils/isChunkingUnsupported';
 
 import ChunksBadge from '../../ListView/ListItem/ChunkTag';
+import styles from './DefaultFileItem.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  floatingChunkBadge: css`
-    position: absolute;
-    z-index: 3;
-    inset-block-end: 8px;
-    inset-inline-end: 8px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    border-radius: ${cssVar.borderRadius};
-
-    opacity: 0;
-    background: ${cssVar.colorBgContainer};
-    box-shadow: ${cssVar.boxShadow};
-
-    transition: opacity ${cssVar.motionDurationMid};
-  `,
-  name: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-
-    margin-block-end: 12px;
-
-    font-weight: ${cssVar.fontWeightStrong};
-    color: ${cssVar.colorText};
-    word-break: break-word;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface DefaultFileItemProps {
   chunkCount?: number | null;

@@ -1,110 +1,11 @@
 import type { MockCase } from '@lobechat/agent-mock';
 import { Flexbox, Input, Popover, Text, usePopoverContext } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ChevronDown } from 'lucide-react';
 import { memo, type ReactNode, useMemo, useState } from 'react';
 
+import styles from './CaseTrigger.module.css';
 import { useMockCases } from './hooks/useMockCases';
 import { useAgentMockStore } from './store/agentMockStore';
-
-const styles = createStaticStyles(({ css }) => ({
-  empty: css`
-    padding: 16px;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-    text-align: center;
-  `,
-  group: css`
-    padding-block: 8px 4px;
-    padding-inline: 12px;
-
-    font-size: 11px;
-    font-weight: 500;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  item: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 6px;
-    padding-inline: 12px;
-    border-inline-start: 1px solid transparent;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  itemActive: css`
-    border-inline-start-color: ${cssVar.colorText};
-    font-weight: 500;
-    color: ${cssVar.colorText};
-    background: ${cssVar.colorFillSecondary};
-  `,
-  itemMeta: css`
-    flex-shrink: 0;
-    font-size: 11px;
-    font-feature-settings: 'tnum';
-    color: ${cssVar.colorTextTertiary};
-  `,
-  itemName: css`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  list: css`
-    overflow-y: auto;
-    max-height: 360px;
-    padding-block: 4px;
-  `,
-  panel: css`
-    width: 320px;
-  `,
-  search: css`
-    padding-block: 8px 4px;
-    padding-inline: 8px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  trigger: css`
-    cursor: pointer;
-    user-select: none;
-
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
-
-    max-width: 240px;
-    padding-block: 4px;
-    padding-inline: 8px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 6px;
-
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorBgContainer};
-
-    &:hover {
-      border-color: ${cssVar.colorBorder};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  triggerName: css`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  triggerPlaceholder: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
 
 const countTools = (c: MockCase): number => {
   if (typeof c.meta?.toolCount === 'number') return c.meta.toolCount;

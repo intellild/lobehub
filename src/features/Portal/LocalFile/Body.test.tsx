@@ -13,21 +13,6 @@ vi.mock('@lobechat/const', async (importOriginal) => ({
   isDesktop: true,
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({
-    card: 'card',
-    key: 'key',
-    row: 'row',
-    value: 'value',
-  }),
-  cssVar: {
-    colorBgContainer: 'var(--color-bg-container)',
-    colorBorderSecondary: 'var(--color-border-secondary)',
-    colorTextSecondary: 'var(--color-text-secondary)',
-    fontFamilyCode: 'monospace',
-  },
-}));
-
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,

@@ -1,31 +1,17 @@
 import { BRANDING_NAME } from '@lobechat/business-const';
 import { Avatar, Block, Collapse, Flexbox, Grid, Text } from '@lobehub/ui';
 import { ChatList } from '@lobehub/ui/chat';
-import { createStaticStyles, useTheme } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { DEFAULT_USER_AVATAR_URL } from '@/const/meta';
+import { useTheme } from '@/hooks/useTheme';
 import { useUserStore } from '@/store/user';
 import { authSelectors, userProfileSelectors } from '@/store/user/selectors';
 
 import Title from '../../../../../features/Title';
 import { useDetailContext } from '../../DetailProvider';
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    desc: css`
-      flex: 1;
-      margin: 0 !important;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    title: css`
-      margin: 0 !important;
-      font-size: 14px !important;
-      font-weight: 500 !important;
-    `,
-  };
-});
+import styles from './index.module.css';
 
 const MemberCard = memo(
   ({

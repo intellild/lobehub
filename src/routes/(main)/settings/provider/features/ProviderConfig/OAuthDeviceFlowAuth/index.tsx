@@ -5,7 +5,6 @@ import { ProviderIcon } from '@lobehub/icons';
 import { CopyButton, Flexbox, Icon } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { Avatar, Button, Typography } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ExternalLinkIcon, Loader2Icon, LogOutIcon, UnplugIcon } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
@@ -14,112 +13,10 @@ import { useTranslation } from 'react-i18next';
 import { usePermission } from '@/hooks/usePermission';
 import { lambdaQuery } from '@/libs/trpc/client';
 
+import styles from './index.module.css';
 import { useOAuthDeviceFlow } from './useOAuthDeviceFlow';
 
 const { Text, Link } = Typography;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    overflow: hidden;
-
-    width: 100%;
-    margin-block-end: 24px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-  `,
-  codeBox: css`
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-
-    padding-block: 16px;
-    padding-inline: 24px;
-    border-radius: 12px;
-
-    font-family: monospace;
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: 6px;
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  content: css`
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-
-    margin-block: 0 40px;
-    padding-inline: 48px;
-  `,
-  errorText: css`
-    color: ${cssVar.colorError};
-  `,
-  header: css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 16px;
-    padding-inline: 24px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  hero: css`
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
-
-    padding-block: 48px 32px;
-    padding-inline: 24px;
-    border-radius: 16px 16px 0 0;
-  `,
-  pollingHint: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-radius: 8px;
-
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  serviceNote: css`
-    font-size: 13px;
-    color: ${cssVar.colorTextDescription};
-    text-align: center;
-  `,
-  successBadge: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-
-    font-size: 13px;
-    color: ${cssVar.colorSuccess};
-  `,
-  userAvatar: css`
-    border: 2px solid ${cssVar.colorBorderSecondary};
-    box-shadow: 0 4px 12px ${cssVar.colorFillSecondary};
-  `,
-  userInfo: css`
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: center;
-  `,
-  username: css`
-    font-size: 16px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 export interface OAuthDeviceFlowAuthProps {
   extra?: ReactNode;
@@ -263,7 +160,7 @@ const OAuthDeviceFlowAuth = memo<OAuthDeviceFlowAuthProps>(
           return (
             <div className={styles.content}>
               <Flexbox horizontal align="center" gap={8}>
-                <Icon color={cssVar.colorError} icon={UnplugIcon} size={20} />
+                <Icon color={'var(--ant-color-error)'} icon={UnplugIcon} size={20} />
                 <Text className={styles.errorText}>{t(errorKey as any)}</Text>
               </Flexbox>
               <Flexbox gap={12} style={{ width: '100%' }} width={280}>
@@ -333,7 +230,7 @@ const OAuthDeviceFlowAuth = memo<OAuthDeviceFlowAuthProps>(
         return (
           <div className={styles.content}>
             <Flexbox horizontal align="center" gap={8}>
-              <Icon color={cssVar.colorError} icon={UnplugIcon} size={18} />
+              <Icon color={'var(--ant-color-error)'} icon={UnplugIcon} size={18} />
               <Text className={styles.errorText}>{t(errorKey as any)}</Text>
             </Flexbox>
             <Button

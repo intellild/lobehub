@@ -1,0 +1,52 @@
+.container {
+width: 100vw;
+min-height: 100vh;
+background: var(--ant-color-bg-layout);
+}
+
+.content {
+flex: 1;
+width: 100%;
+}
+
+.divider {
+height: 24px;
+}
+
+.footer {
+padding-block: 16px;
+padding-inline: 24px;
+color: var(--ant-color-text-tertiary);
+text-align: center;
+}
+
+.header {
+height: 52px;
+padding: 8px;
+}
+
+.innerContainerDark {
+position: relative;
+
+overflow: hidden;
+
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius);
+
+background: var(--ant-color-bg-container);
+}
+
+.innerContainerLight {
+position: relative;
+
+overflow: hidden;
+
+border: 1px solid var(--ant-color-border);
+border-radius: var(--ant-border-radius);
+
+background: var(--ant-color-bg-container);
+}
+
+.outerContainer {
+position: relative;
+}

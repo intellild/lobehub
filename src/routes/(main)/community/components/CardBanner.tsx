@@ -1,25 +1,24 @@
 import { type DivProps } from '@lobehub/ui';
 import { Avatar, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  banner: css`
-    position: relative;
+import styles from './CardBanner.module.css';
 
-    overflow: hidden;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    height: 64px;
-    margin-block-end: -56px;
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
-    background: ${cssVar.colorFillSecondary};
-  `,
-  bannerImg: css`
-    position: absolute;
-    filter: blur(40px) saturate(1.5);
-  `,
-}));
+export { styles };
 
 interface CardBannerProps extends DivProps {
   avatar?: string | ReactNode;
@@ -36,7 +35,7 @@ const CardBanner = memo<CardBannerProps>(
         align={'center'}
         className={cx(styles.banner, className)}
         justify={'center'}
-        style={avatar ? {} : { backgroundColor: cssVar.colorFillTertiary }}
+        style={avatar ? {} : { backgroundColor: 'var(--ant-color-fill-tertiary)' }}
         width={'100%'}
         {...props}
       >

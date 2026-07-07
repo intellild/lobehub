@@ -2,14 +2,12 @@
 
 // Removed Image import - using img tags instead
 import { Center } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Image as ImageIcon, X } from 'lucide-react';
 import { type FC } from 'react';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Image from '@/libs/next/Image';
-import { CONFIG_PANEL_WIDTH } from '@/routes/(main)/(create)/image/features/ConfigPanel/constants';
 import { useDragAndDrop } from '@/routes/(main)/(create)/image/features/ConfigPanel/hooks/useDragAndDrop';
 import { useUploadFilesValidation } from '@/routes/(main)/(create)/image/features/ConfigPanel/hooks/useUploadFilesValidation';
 import { configPanelStyles } from '@/routes/(main)/(create)/image/features/ConfigPanel/style';
@@ -18,6 +16,20 @@ import { type FileUploadStatus } from '@/types/files/upload';
 
 import { type ImageItem } from './ImageManageModal';
 import ImageManageModal from './ImageManageModal';
+import styles from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 // ======== Business Types ======== //
 
@@ -53,232 +65,6 @@ export interface MultiImagesUploadProps {
 }
 
 // ======== Styles ======== //
-
-const styles = createStaticStyles(({ css }) => {
-  // Calculate available width for thumbnails
-  // Panel width - outer padding (16px * 2) - gaps (8px * 3 for 4 items)
-  const availableWidth = CONFIG_PANEL_WIDTH - 32 - 24;
-  const thumbnailSize = availableWidth / 4;
-
-  return {
-    deleteIcon: css`
-      cursor: pointer;
-
-      position: absolute;
-      z-index: 10;
-      inset-block-start: 4px;
-      inset-inline-end: 4px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-
-      color: ${cssVar.colorTextLightSolid};
-
-      opacity: 0;
-      background: ${cssVar.colorBgMask};
-
-      transition: opacity 0.2s ease;
-
-      &:hover {
-        color: ${cssVar.colorError};
-        background: ${cssVar.colorErrorBg};
-      }
-    `,
-
-    imageItem: css`
-      position: relative;
-
-      overflow: hidden;
-
-      width: ${thumbnailSize}px;
-      height: ${thumbnailSize}px;
-      border-radius: ${cssVar.borderRadius};
-
-      background: ${cssVar.colorBgContainer};
-
-      &:hover .delete-icon {
-        opacity: 1;
-      }
-    `,
-
-    // Image thumbnails styles
-    imageThumbnails: css`
-      cursor: pointer;
-
-      display: flex;
-      gap: 8px;
-
-      width: 100%;
-      height: ${thumbnailSize}px;
-      padding: 0;
-      border-radius: ${cssVar.borderRadiusLG};
-
-      transition: all 0.2s ease;
-
-      &.drag-over {
-        transform: scale(1.02);
-        background: ${cssVar.colorPrimaryBg};
-      }
-    `,
-
-    moreOverlay: css`
-      position: absolute;
-      inset-block: 0;
-      inset-inline: 0;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 16px;
-      font-weight: 600;
-      color: ${cssVar.colorTextLightSolid};
-
-      background: ${cssVar.colorBgMask};
-    `,
-
-    placeholder: css`
-      cursor: pointer;
-
-      width: 100%;
-      height: 120px;
-      border: 1px solid ${cssVar.colorBorder};
-      border-radius: ${cssVar.borderRadiusLG};
-
-      background: ${cssVar.colorFillTertiary};
-
-      transition: all 0.2s ease;
-
-      &:hover {
-        background: ${cssVar.colorFillSecondary};
-      }
-
-      &.drag-over {
-        transform: scale(1.02);
-        border-color: ${cssVar.colorPrimary};
-        background: ${cssVar.colorPrimaryBg};
-      }
-    `,
-
-    placeholderIcon: css`
-      color: ${cssVar.colorTextTertiary};
-    `,
-
-    placeholderText: css`
-      font-size: 12px; /* Made smaller than default token.fontSize (14px) */
-      line-height: 1.4;
-      color: ${cssVar.colorTextSecondary};
-      text-align: center;
-    `,
-
-    progress: css`
-      cursor: pointer;
-
-      position: relative;
-
-      overflow: hidden;
-
-      width: 100%;
-      height: 120px;
-      border: 2px solid ${cssVar.colorPrimary};
-      border-radius: ${cssVar.borderRadiusLG};
-
-      background: ${cssVar.colorFillSecondary};
-
-      transition: all 0.2s ease;
-
-      &.drag-over {
-        transform: scale(1.02);
-        background: ${cssVar.colorPrimaryBg};
-      }
-    `,
-
-    progressPrimary: css`
-      margin-block-end: 4px;
-      font-size: 14px;
-      font-weight: 600;
-      color: ${cssVar.colorPrimary};
-    `,
-
-    progressText: css`
-      font-size: 12px;
-      font-weight: 500;
-      line-height: 1.4;
-      color: ${cssVar.colorText};
-      text-align: center;
-    `,
-    // Single image display styles
-    singleImageDisplay: css`
-      cursor: pointer;
-
-      position: relative;
-
-      overflow: hidden;
-
-      width: 100%;
-      height: 160px;
-      border-radius: ${cssVar.borderRadiusLG};
-
-      background: ${cssVar.colorBgContainer};
-
-      transition: all 0.2s ease;
-
-      &:hover .upload-more-overlay {
-        opacity: 1;
-      }
-
-      &:hover .delete-icon {
-        opacity: 1;
-      }
-
-      &.drag-over {
-        transform: scale(1.02);
-        background: ${cssVar.colorPrimaryBg};
-      }
-    `,
-    uploadMoreButton: css`
-      cursor: pointer;
-
-      padding-block: 8px;
-      padding-inline: 16px;
-      border: 1px solid ${cssVar.colorBorder};
-      border-radius: ${cssVar.borderRadius};
-
-      font-size: 12px;
-      font-weight: 500;
-      color: ${cssVar.colorText};
-
-      background: ${cssVar.colorBgContainer};
-      box-shadow: ${cssVar.boxShadowSecondary};
-
-      &:hover {
-        border-color: ${cssVar.colorPrimary};
-        color: ${cssVar.colorPrimary};
-        background: ${cssVar.colorBgElevated};
-      }
-    `,
-    uploadMoreOverlay: css`
-      position: absolute;
-      z-index: 5;
-      inset-block: 0;
-      inset-inline: 0;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      opacity: 0;
-      background: ${cssVar.colorBgMask};
-
-      transition: opacity 0.2s ease;
-    `,
-  };
-});
 
 // ======== Utils ======== //
 
@@ -362,7 +148,7 @@ const CircularProgress: FC<CircularProgressProps> = memo(
             cy={size / 2}
             fill="none"
             r={radius}
-            stroke={cssVar.colorBorder}
+            stroke={'var(--ant-color-border)'}
             strokeWidth={strokeWidth}
           />
         </svg>
@@ -378,7 +164,7 @@ const CircularProgress: FC<CircularProgressProps> = memo(
             cy={size / 2}
             fill="none"
             r={radius}
-            stroke={cssVar.colorPrimary}
+            stroke={'var(--ant-color-primary)'}
             strokeDasharray={circumference}
             strokeDashoffset={offset}
             strokeLinecap="round"
@@ -393,7 +179,7 @@ const CircularProgress: FC<CircularProgressProps> = memo(
         {showText && (
           <span
             style={{
-              color: cssVar.colorPrimary,
+              color: 'var(--ant-color-primary)',
               fontSize: '12px',
               fontWeight: 600,
               position: 'relative',

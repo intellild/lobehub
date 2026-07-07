@@ -1,0 +1,24 @@
+.emptyCard {
+.ant-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding-block: 64px;
+  padding-inline: 24px;
+}
+}
+
+.iconBox {
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 56px;
+height: 56px;
+margin-block-end: 16px;
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-primary-bg);
+}

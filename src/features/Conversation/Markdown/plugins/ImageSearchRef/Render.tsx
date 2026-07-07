@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Popover } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo } from 'react';
 
@@ -9,80 +8,7 @@ import Image from '@/libs/next/Image';
 
 import { dataSelectors, useConversationStore } from '../../../store';
 import { type MarkdownElementProps } from '../type';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  imageCardLink: css`
-    color: inherit;
-    text-decoration: none;
-    transition: opacity 0.2s;
-
-    &:hover {
-      opacity: 0.75;
-    }
-  `,
-  imageDomain: css`
-    overflow: hidden;
-
-    font-size: 0.8em;
-    line-height: 1;
-    color: ${cssVar.colorTextQuaternary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  imageThumb: css`
-    display: block;
-
-    width: 100%;
-    height: 160px;
-    border-radius: 6px;
-
-    object-fit: cover;
-  `,
-  imageTitle: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-
-    font-size: 0.95em;
-    line-height: 1.4;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-  `,
-  refChip: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-radius: 4px;
-
-    font-size: 0.8em;
-    color: ${cssVar.colorTextSecondary};
-    text-decoration: none;
-    vertical-align: -1px;
-
-    background: ${cssVar.colorFillSecondary};
-
-    transition: background 0.15s;
-
-    &:hover {
-      background: ${cssVar.colorFill};
-    }
-  `,
-  thumbWrap: css`
-    overflow: hidden;
-    display: inline-flex;
-    flex-shrink: 0;
-
-    width: 16px;
-    height: 16px;
-    border-radius: 3px;
-  `,
-}));
+import styles from './Render.module.css';
 
 interface ImageSearchRefProperties {
   imageIndex: number;

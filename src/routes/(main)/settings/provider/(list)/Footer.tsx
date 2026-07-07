@@ -1,7 +1,6 @@
 'use client';
 
 import { Center } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -13,13 +12,13 @@ const Footer = memo(() => {
     <Center
       width={'100%'}
       style={{
-        background: cssVar.colorFillQuaternary,
-        border: `1px dashed ${cssVar.colorFillSecondary}`,
-        borderRadius: cssVar.borderRadiusLG,
+        background: 'var(--ant-color-fill-quaternary)',
+        border: `1px dashed ${'var(--ant-color-fill-secondary)'}`,
+        borderRadius: 'var(--ant-border-radius-lg)',
         padding: 12,
       }}
     >
-      <div style={{ color: cssVar.colorTextSecondary, fontSize: 12, textAlign: 'center' }}>
+      <div style={{ color: 'var(--ant-color-text-secondary)', fontSize: 12, textAlign: 'center' }}>
         <Trans
           i18nKey="llm.waitingForMore"
           ns={'setting'}

@@ -1,0 +1,11 @@
+.contentContainer {
+min-height: 100%;
+}
+
+.mainContainer {
+overflow-y: auto;
+}
+
+.spacer {
+flex: 1;
+}

@@ -3,7 +3,6 @@
 import { Button, Flexbox, Text } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App, Card, Skeleton } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Plus } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,29 +17,7 @@ import { createTestCaseCreateModal } from '../../../../features/TestCaseCreateMo
 import { createRunCreateModal } from '../RunCreateModal';
 import DatasetCard from './DatasetCard';
 import EmptyState from './EmptyState';
-
-const loadingStyles = createStaticStyles(({ css }) => ({
-  card: css`
-    .ant-card-body {
-      padding: 0;
-    }
-  `,
-  header: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    padding: 16px;
-  `,
-  icon: css`
-    flex-shrink: 0;
-
-    width: 32px;
-    height: 32px;
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-}));
+import loadingStyles from './index.module.css';
 
 interface DatasetsTabProps {
   benchmarkId: string;
@@ -178,7 +155,7 @@ const DatasetsTab = memo<DatasetsTabProps>(
         <Flexbox gap={16}>
           {datasets.length > 0 && (
             <Flexbox horizontal align="center" justify="space-between">
-              <Text color={cssVar.colorTextTertiary}>
+              <Text color={'var(--ant-color-text-tertiary)'}>
                 {t('benchmark.detail.datasetCount', { count: datasets.length })}
               </Text>
               <Button icon={Plus} size="small" type="primary" onClick={handleCreateDataset}>
@@ -223,6 +200,7 @@ const DatasetsTab = memo<DatasetsTabProps>(
                     total={isExpanded ? total : 0}
                     onDeleteCase={handleDeleteCase}
                     onDiffFilterChange={handleDiffFilterChange}
+                    onEdit={(dataset) => createDatasetEditModal({ dataset, onSuccess: onRefresh })}
                     onExpand={() => handleExpand(ds.id)}
                     onImport={() => handleImportDataset(ds)}
                     onPageChange={(page, pageSize) => setPagination({ current: page, pageSize })}
@@ -235,7 +213,6 @@ const DatasetsTab = memo<DatasetsTabProps>(
                         onSuccess: handleRefreshTestCases,
                       })
                     }
-                    onEdit={(dataset) => createDatasetEditModal({ dataset, onSuccess: onRefresh })}
                   />
                 );
               })}

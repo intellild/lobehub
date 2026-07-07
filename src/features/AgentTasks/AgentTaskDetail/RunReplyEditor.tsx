@@ -1,7 +1,6 @@
 import { ChatInput, Editor, SendButton, useEditor } from '@lobehub/editor/react';
 import { Flexbox } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
-import { cssVar } from 'antd-style';
 import { ChevronLeft } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -48,7 +47,7 @@ const RunReplyEditor = memo<RunReplyEditorProps>(({ onSubmit, onCancel, placehol
             disabled={submitting}
             icon={<ChevronLeft size={14} />}
             size={'small'}
-            style={{ color: cssVar.colorTextDescription }}
+            style={{ color: 'var(--ant-color-text-description)' }}
             type={'text'}
             onClick={onCancel}
           >

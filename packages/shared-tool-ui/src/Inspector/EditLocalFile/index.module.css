@@ -1,0 +1,4 @@
+.separator {
+margin-inline: 2px;
+color: var(--ant-color-text-quaternary);
+}

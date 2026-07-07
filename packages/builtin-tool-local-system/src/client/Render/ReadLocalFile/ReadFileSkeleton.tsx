@@ -1,18 +1,7 @@
 import { Flexbox, Skeleton } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import React, { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding: 8px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-  `,
-
-  meta: css`
-    font-size: 12px;
-  `,
-}));
+import styles from './ReadFileSkeleton.module.css';
 
 const ReadFileSkeleton = memo(() => {
   return (

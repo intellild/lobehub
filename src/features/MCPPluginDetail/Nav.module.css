@@ -1,0 +1,22 @@
+.link {
+color: var(--ant-color-text-description);
+
+  &:hover {
+    color: var(--ant-color-info);
+  }
+}
+
+.nav {
+border-block-end: 1px solid var(--ant-color-border);
+}
+
+.tabs {
+scrollbar-width: none;
+  overflow-x: auto;
+  flex: 1;
+  min-width: 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

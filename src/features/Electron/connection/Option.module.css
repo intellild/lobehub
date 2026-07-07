@@ -1,0 +1,54 @@
+.checked {
+position: relative;
+border: 1px solid var(--ant-color-primary);
+}
+
+.description {
+margin-block-start: 4px; /* Adjust spacing */
+font-size: 13px; /* Slightly larger description */
+color: var(--ant-color-text-secondary);
+}
+
+.iconWrapper {
+margin-block-start: 2px;
+padding: 0;
+color: var(--ant-color-text-secondary);
+
+svg {
+  display: block;
+  font-size: 24px; /* Increased icon size */
+  stroke-width: 2; /* Ensure lucide icons look bolder */
+}
+}
+
+.label {
+font-size: 16px;
+font-weight: 600; /* Bolder label */
+color: var(--ant-color-text);
+}
+
+.optionCard {
+cursor: pointer;
+
+width: 100%;
+padding: 16px;
+border: 1px solid var(--ant-color-border-secondary); /* Use secondary border */
+border-radius: var(--ant-border-radius-lg);
+
+color: var(--ant-color-text);
+
+background-color: var(--ant-color-bg-container);
+
+transition: all 0.2s var(--ant-motion-ease-in-out);
+
+:hover {
+  border-color: var(--ant-color-primary);
+}
+}
+
+.optionInner {
+display: flex;
+gap: 16px;
+align-items: flex-start;
+justify-content: space-between;
+}

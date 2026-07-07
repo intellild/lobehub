@@ -8,7 +8,6 @@ import {
   Text,
 } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
-import { cssVar } from 'antd-style';
 import { Check, ChevronDownIcon, ChevronUpIcon, MoreHorizontal, Trash } from 'lucide-react';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -69,7 +68,7 @@ const TaskBriefCard = memo<TaskBriefCardProps>(
         gap={12}
         paddingBlock={12}
         paddingInline={8}
-        style={{ borderRadius: cssVar.borderRadiusLG }}
+        style={{ borderRadius: 'var(--ant-border-radius-lg)' }}
         variant={'outlined'}
       >
         <Flexbox horizontal align={'center'} gap={8} style={{ overflow: 'hidden' }}>
@@ -79,7 +78,7 @@ const TaskBriefCard = memo<TaskBriefCardProps>(
           </Text>
           {isResolved && !expanded && (
             <Flexbox horizontal align={'center'} gap={4}>
-              <Icon color={cssVar.colorTextQuaternary} icon={Check} size={14} />
+              <Icon color={'var(--ant-color-text-quaternary)'} icon={Check} size={14} />
               <Text className={briefStyles.resolvedTag}>{t('brief.resolved')}</Text>
             </Flexbox>
           )}

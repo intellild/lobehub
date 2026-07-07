@@ -1,0 +1,11 @@
+.loading {
+opacity: 0.6;
+}
+
+.message {
+position: relative;
+// prevent the textarea too long
+.ant-input {
+  max-height: 900px;
+}
+}

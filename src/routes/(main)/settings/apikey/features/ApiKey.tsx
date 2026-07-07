@@ -5,7 +5,6 @@ import { ProTable } from '@ant-design/pro-components';
 import { Button } from '@lobehub/ui';
 import { useMutation } from '@tanstack/react-query';
 import { Popconfirm, Switch } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { Trash } from 'lucide-react';
 import { type FC } from 'react';
 import { useRef } from 'react';
@@ -15,28 +14,8 @@ import { usePermission } from '@/hooks/usePermission';
 import { lambdaClient } from '@/libs/trpc/client';
 import { type ApiKeyItem, type CreateApiKeyParams, type UpdateApiKeyParams } from '@/types/apiKey';
 
+import styles from './ApiKey.module.css';
 import { ApiKeyDisplay, createApiKeyModal, EditableCell } from './index';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    .ant-pro-card-body {
-      padding-inline: 0;
-
-      .ant-pro-table-list-toolbar-container {
-        padding-block-start: 0;
-      }
-    }
-  `,
-  header: css`
-    display: flex;
-    justify-content: flex-end;
-    margin-block-end: ${cssVar.margin};
-  `,
-  table: css`
-    border-radius: ${cssVar.borderRadius};
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
 
 const ApiKey: FC = () => {
   const { t } = useTranslation('auth');

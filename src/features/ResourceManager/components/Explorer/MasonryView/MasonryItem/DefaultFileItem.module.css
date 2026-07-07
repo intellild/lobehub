@@ -1,0 +1,27 @@
+.floatingChunkBadge {
+position: absolute;
+z-index: 3;
+inset-block-end: 8px;
+inset-inline-end: 8px;
+
+border-radius: var(--ant-border-radius);
+
+opacity: 0;
+background: var(--ant-color-bg-container);
+box-shadow: var(--ant-box-shadow);
+
+transition: opacity var(--ant-motion-duration-mid);
+}
+
+.name {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+
+margin-block-end: 12px;
+
+font-weight: var(--ant-font-weight-strong);
+color: var(--ant-color-text);
+word-break: break-word;
+}

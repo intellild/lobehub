@@ -1,0 +1,97 @@
+@keyframes airdropPulse {
+0% {
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0.5;
+}
+100% {
+  transform: translate(-50%, -50%) scale(2.5);
+  opacity: 0;
+}
+}
+
+.container {
+position: relative;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 160px;
+height: 160px;
+margin-block-end: var(--ant-margin-xl);
+}
+
+.pulse1 {
+animation: airdropPulse 3s ease-out infinite;
+
+@media (prefers-reduced-motion: reduce) {
+  animation: none;
+}
+}
+
+.pulse2 {
+animation: airdropPulse 3s ease-out 1.2s infinite;
+
+@media (prefers-reduced-motion: reduce) {
+  animation: none;
+}
+}
+
+.pulse3 {
+animation: airdropPulse 3s ease-out 1.8s infinite;
+
+@media (prefers-reduced-motion: reduce) {
+  animation: none;
+}
+}
+
+.pulseBase {
+pointer-events: none;
+content: '';
+
+position: absolute;
+inset-block-start: 50%;
+inset-inline-start: 50%;
+transform: translate(-50%, -50%);
+
+width: 100px;
+height: 100px;
+border-radius: 50%;
+
+opacity: 0;
+background-color: var(--ant-color-primary-bg-hover);
+}
+
+.radarIcon {
+z-index: 1;
+color: var(--ant-color-primary);
+}
+
+.ring1 {
+width: 80px;
+height: 80px;
+border: 1px solid var(--ant-color-text);
+}
+
+.ring2 {
+width: 120px;
+height: 120px;
+border: 1px solid var(--ant-color-text-quaternary);
+}
+
+.ring3 {
+width: 160px;
+height: 160px;
+border: 1px solid var(--ant-color-fill-secondary);
+}
+
+.ringBase {
+pointer-events: none;
+
+position: absolute;
+inset-block-start: 50%;
+inset-inline-start: 50%;
+transform: translate(-50%, -50%);
+
+border-radius: 50%;
+}

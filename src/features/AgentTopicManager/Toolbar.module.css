@@ -1,0 +1,108 @@
+.addPill {
+cursor: pointer;
+user-select: none;
+
+display: inline-flex;
+gap: 6px;
+align-items: center;
+
+height: 32px;
+padding-inline: 12px;
+border: 1px dashed var(--ant-color-border);
+border-radius: 16px;
+
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+
+transition: all 0.15s;
+
+&:hover {
+  border-color: var(--ant-color-primary);
+  color: var(--ant-color-text);
+}
+}
+
+.chip {
+display: inline-flex;
+align-items: stretch;
+
+height: 32px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 16px;
+
+background: var(--ant-color-fill-tertiary);
+
+transition: border-color 0.15s;
+
+&:hover {
+  border-color: var(--ant-color-border);
+}
+}
+
+.chipClose {
+all: unset;
+
+cursor: pointer;
+
+display: inline-flex;
+align-items: center;
+
+padding-inline: 8px 12px;
+border-start-end-radius: 16px;
+border-end-end-radius: 16px;
+
+color: var(--ant-color-text-tertiary);
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.chipMain {
+cursor: pointer;
+
+display: inline-flex;
+gap: 6px;
+align-items: center;
+
+padding-block: 0;
+padding-inline: 12px 6px;
+
+font-size: 13px;
+color: var(--ant-color-text);
+}
+
+.chipValue {
+font-weight: 500;
+color: var(--ant-color-text);
+}
+
+.divider {
+width: 1px;
+height: 16px;
+margin-inline: 4px;
+background: var(--ant-color-border-secondary);
+}
+
+.sortPill {
+cursor: pointer;
+user-select: none;
+
+display: inline-flex;
+gap: 6px;
+align-items: center;
+
+height: 32px;
+padding-inline: 12px;
+border-radius: 16px;
+
+font-size: 13px;
+color: var(--ant-color-text);
+
+background: var(--ant-color-fill-tertiary);
+
+&:hover {
+  background: var(--ant-color-fill-secondary);
+}
+}

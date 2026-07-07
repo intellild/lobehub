@@ -1,0 +1,99 @@
+.cardActive {
+border-color: var(--ant-color-primary);
+}
+
+.cardDesc {
+font-size: 12px;
+line-height: 1.5;
+color: var(--ant-color-text-tertiary);
+}
+
+.cardTitle {
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.description {
+resize: none;
+padding: 0;
+color: var(--ant-color-text-secondary);
+}
+
+.divider {
+height: 1px;
+margin-block: 4px;
+background: var(--ant-color-border-secondary);
+}
+
+.editorBlock {
+overflow: auto;
+
+max-height: 320px;
+padding-block: 8px;
+padding-inline: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+font-size: 14px;
+line-height: 1.6;
+}
+
+.fieldIcon {
+color: var(--ant-color-text-tertiary);
+}
+
+.fieldLabel {
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}
+
+.title {
+resize: none;
+
+padding: 0;
+
+font-size: 18px;
+font-weight: 600;
+line-height: 1.4;
+color: var(--ant-color-text);
+}
+
+.verifierCard {
+cursor: pointer;
+
+flex: 1;
+
+padding: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+transition:
+  border-color 150ms var(--ant-motion-ease-out),
+  background 150ms var(--ant-motion-ease-out);
+
+&:hover {
+  border-color: var(--ant-color-border);
+}
+}
+
+.verifierIcon {
+color: var(--ant-color-text-secondary);
+}
+
+.switchCard {
+padding: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+}
+
+.switchDesc {
+font-size: 12px;
+line-height: 1.5;
+color: var(--ant-color-text-tertiary);
+}
+
+.switchTitle {
+font-weight: 600;
+color: var(--ant-color-text);
+}

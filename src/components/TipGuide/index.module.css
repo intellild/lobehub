@@ -1,0 +1,25 @@
+.close {
+color: white;
+}
+
+.container {
+position: relative;
+}
+
+.footer {
+display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.overlay {
+.ant-popover-inner {
+    border: none;
+  }
+}
+
+.tip {
+position: absolute;
+  inset-inline-start: 50%;
+  transform: translate(-50%);
+}

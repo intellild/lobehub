@@ -1,0 +1,23 @@
+.container {
+padding: 12px;
+border-radius: var(--ant-border-radius);
+background: var(--ant-color-fill-tertiary);
+}
+
+.dangerText {
+font-size: 13px;
+color: var(--ant-color-error);
+}
+
+.header {
+color: var(--ant-color-warning);
+}
+
+.label {
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+}
+
+.normalText {
+font-size: 13px;
+}

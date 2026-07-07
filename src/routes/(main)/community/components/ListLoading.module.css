@@ -1,0 +1,4 @@
+.footer {
+border-block-start: 1px dashed var(--ant-color-border);
+background: var(--ant-color-bg-container);
+}

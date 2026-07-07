@@ -18,7 +18,6 @@ import {
   SortableContext,
 } from '@dnd-kit/sortable';
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { LayersIcon } from 'lucide-react';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -27,38 +26,9 @@ import { type ChatTopicStatus } from '@/types/topic';
 
 import AddColumnButton from './AddColumnButton';
 import AgentColumn, { ColumnDragPreview } from './AgentColumn';
+import styles from './ColumnsBoard.module.css';
 import { useFleetStore } from './store';
 import { type FleetColumn } from './types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  band: css`
-    overflow: auto hidden;
-    display: flex;
-    flex: 1 1 0;
-    align-items: stretch;
-
-    /* each band scrolls horizontally on its own; min-height:0 lets it shrink */
-    min-height: 0;
-
-    &:not(:last-child) {
-      border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-    }
-  `,
-  board: css`
-    overflow-x: auto;
-    display: flex;
-    flex: 1;
-    align-items: stretch;
-
-    height: 100%;
-  `,
-  boardVertical: css`
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    height: 100%;
-  `,
-}));
 
 // Single-row reorder is horizontal-only — lock the drag transform to the X axis.
 // Multi-band mode must allow vertical movement so a column can cross bands.

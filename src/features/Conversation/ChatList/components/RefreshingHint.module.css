@@ -1,0 +1,14 @@
+.container {
+pointer-events: none;
+
+min-height: 16px;
+padding-block: 0 24px;
+
+font-size: 12px;
+line-height: 16px;
+color: var(--ant-color-text-tertiary);
+}
+
+.loader {
+opacity: 0.58;
+}

@@ -3,7 +3,6 @@
 import type { InterestAreaKey } from '@lobechat/const';
 import { normalizeInterestsForStorage, resolveInterestAreaKey } from '@lobechat/const';
 import { Block, Flexbox, Icon, Input, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { BriefcaseIcon } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -95,14 +94,14 @@ const InterestsRow = () => {
                 style={
                   isSelected
                     ? {
-                        background: cssVar.colorFillSecondary,
-                        borderColor: cssVar.colorFillSecondary,
+                        background: 'var(--ant-color-fill-secondary)',
+                        borderColor: 'var(--ant-color-fill-secondary)',
                       }
                     : undefined
                 }
                 onClick={() => toggleInterest(item.key)}
               >
-                <Icon color={cssVar.colorTextSecondary} icon={item.icon} size={14} />
+                <Icon color={'var(--ant-color-text-secondary)'} icon={item.icon} size={14} />
                 <Text fontSize={13} weight={500}>
                   {item.label}
                 </Text>
@@ -118,8 +117,8 @@ const InterestsRow = () => {
                 padding={8}
                 variant="outlined"
                 style={{
-                  background: cssVar.colorFillSecondary,
-                  borderColor: cssVar.colorFillSecondary,
+                  background: 'var(--ant-color-fill-secondary)',
+                  borderColor: 'var(--ant-color-fill-secondary)',
                 }}
                 onClick={() => removeCustomInterest(interest)}
               >
@@ -136,12 +135,12 @@ const InterestsRow = () => {
             variant="outlined"
             style={
               showCustomInput
-                ? { background: cssVar.colorFillSecondary, borderColor: cssVar.colorFillSecondary }
+                ? { background: 'var(--ant-color-fill-secondary)', borderColor: 'var(--ant-color-fill-secondary)' }
                 : {}
             }
             onClick={() => setShowCustomInput(!showCustomInput)}
           >
-            <Icon color={cssVar.colorTextSecondary} icon={BriefcaseIcon} size={14} />
+            <Icon color={'var(--ant-color-text-secondary)'} icon={BriefcaseIcon} size={14} />
             <Text fontSize={13} weight={500}>
               {tOnboarding('interests.area.other')}
             </Text>

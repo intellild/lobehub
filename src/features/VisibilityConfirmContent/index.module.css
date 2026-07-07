@@ -1,0 +1,49 @@
+.list {
+display: flex;
+flex-direction: column;
+gap: 8px;
+
+margin: 0;
+padding: 12px;
+border-radius: 8px;
+
+list-style: none;
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.row {
+display: flex;
+gap: 10px;
+align-items: flex-start;
+
+font-size: 13px;
+line-height: 1.55;
+color: var(--ant-color-text);
+}
+
+.rowIcon {
+flex: none;
+margin-block-start: 3px;
+color: var(--ant-color-text-tertiary);
+}
+
+.rowIconDanger {
+color: var(--ant-color-error);
+}
+
+.rowIconOk {
+color: var(--ant-color-success);
+}
+
+.rowIconInfo {
+color: var(--ant-color-info);
+}
+
+.emphasis {
+font-weight: 500;
+}
+
+.suffix {
+color: var(--ant-color-text-tertiary);
+}

@@ -12,7 +12,6 @@ import {
 import { Editor, useEditor } from '@lobehub/editor/react';
 import { Flexbox, Icon, TextArea } from '@lobehub/ui';
 import { Switch } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cx } from 'antd-style';
 import type { LucideIcon } from 'lucide-react';
 import { Bot, Hand, ListChecks, RefreshCw, RotateCcw, Scale, ShieldCheck } from 'lucide-react';
 import { memo, useEffect } from 'react';
@@ -21,6 +20,20 @@ import { useTranslation } from 'react-i18next';
 import { useVerifyStore, verifySelectors } from '@/store/verify';
 
 import type { VerifyOnFailStrategy, VerifyVerifierType } from '../../types';
+import styles from './CriterionDetail.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 /** The shape this panel needs — assembled from the tool args / state. */
 export interface CriterionView {
@@ -46,95 +59,6 @@ const ON_FAILS: { icon: LucideIcon; type: VerifyOnFailStrategy }[] = [
   { icon: RefreshCw, type: 'auto_repair' },
   { icon: Hand, type: 'manual' },
 ];
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  cardActive: css`
-    border-color: ${cssVar.colorPrimary};
-  `,
-  cardDesc: css`
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  cardTitle: css`
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-  description: css`
-    resize: none;
-    padding: 0;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  divider: css`
-    height: 1px;
-    margin-block: 4px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  editorBlock: css`
-    overflow: auto;
-
-    max-height: 320px;
-    padding-block: 8px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    font-size: 14px;
-    line-height: 1.6;
-  `,
-  fieldIcon: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-  fieldLabel: css`
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  title: css`
-    resize: none;
-
-    padding: 0;
-
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.4;
-    color: ${cssVar.colorText};
-  `,
-  verifierCard: css`
-    cursor: pointer;
-
-    flex: 1;
-
-    padding: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    transition:
-      border-color 150ms ${cssVar.motionEaseOut},
-      background 150ms ${cssVar.motionEaseOut};
-
-    &:hover {
-      border-color: ${cssVar.colorBorder};
-    }
-  `,
-  verifierIcon: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-  switchCard: css`
-    padding: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-  `,
-  switchDesc: css`
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  switchTitle: css`
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 const EDITOR_PLUGINS = [
   ReactListPlugin,

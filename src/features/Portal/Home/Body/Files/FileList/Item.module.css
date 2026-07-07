@@ -1,0 +1,16 @@
+.container {
+cursor: pointer;
+
+overflow: hidden;
+
+max-width: 420px;
+padding-block: 8px;
+padding-inline: 12px;
+border-radius: 8px;
+
+background: var(--ant-color-fill-tertiary);
+
+&:hover {
+  background: var(--ant-color-fill-secondary);
+}
+}

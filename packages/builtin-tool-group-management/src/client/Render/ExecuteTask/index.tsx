@@ -2,32 +2,12 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { Clock } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { ExecuteTaskParams, ExecuteTaskState } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  agentTitle: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-  container: css`
-    padding-block: 12px;
-    border-radius: ${cssVar.borderRadius};
-  `,
-  taskContent: css`
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadius};
-    background: ${cssVar.colorFillTertiary};
-  `,
-  timeout: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
+import styles from './index.module.css';
 
 /**
  * ExecuteTask Render component for Group Management tool

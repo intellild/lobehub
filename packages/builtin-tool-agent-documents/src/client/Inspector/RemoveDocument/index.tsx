@@ -1,7 +1,6 @@
 'use client';
 
 import type { BuiltinInspectorProps } from '@lobechat/types';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -9,24 +8,20 @@ import { inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { RemoveDocumentArgs, RemoveDocumentState } from '../../../types';
 import { formatDocumentId } from '../_styles';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  removeChip: css`
-    flex-shrink: 0;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    padding-block: 2px;
-    padding-inline: 8px;
-    border: 1px dashed ${cssVar.colorErrorBorder};
-    border-radius: 999px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorError};
-    text-decoration: line-through;
-
-    background: transparent;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const RemoveDocumentInspector = memo<
   BuiltinInspectorProps<RemoveDocumentArgs, RemoveDocumentState>
@@ -43,7 +38,7 @@ export const RemoveDocumentInspector = memo<
         (isArgumentsStreaming || isLoading) && shinyTextStyles.shinyText,
       )}
     >
-      <span style={{ color: cssVar.colorError }}>
+      <span style={{ color: 'var(--ant-color-error)' }}>
         {t('builtins.lobe-agent-documents.apiName.removeDocument')}
       </span>
       {id && <span className={styles.removeChip}>{formatDocumentId(id)}</span>}

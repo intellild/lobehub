@@ -1,55 +1,12 @@
 import type { UniformSearchResult } from '@lobechat/types';
 import { Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import WebFavicon from '@/components/WebFavicon';
 
+import styles from './index.module.css';
 import TitleExtra from './TitleExtra';
 import Video from './Video';
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    container: css`
-      display: flex;
-      flex: 1;
-
-      padding: 8px;
-      border-radius: 8px;
-
-      color: initial;
-
-      &:hover {
-        background: ${cssVar.colorFillTertiary};
-      }
-    `,
-    desc: css`
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-
-      color: ${cssVar.colorTextTertiary};
-      text-overflow: ellipsis;
-    `,
-    displayLink: css`
-      color: ${cssVar.colorTextQuaternary};
-    `,
-    title: css`
-      font-size: 16px;
-      color: ${cssVar.colorLink};
-    `,
-    url: css`
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-
-      color: ${cssVar.colorTextDescription};
-      text-overflow: ellipsis;
-    `,
-  };
-});
 
 interface SearchResultProps extends UniformSearchResult {
   highlight?: boolean;

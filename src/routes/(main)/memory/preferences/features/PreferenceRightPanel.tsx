@@ -1,7 +1,6 @@
 'use client';
 
 import { Block, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { BotIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -22,14 +21,7 @@ import { useUserMemoryStore } from '@/store/userMemory';
 import { LayersEnum } from '@/types/userMemory';
 
 import PreferenceDropdown from './PreferenceDropdown';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  suggestionsTitle: css`
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+import styles from './PreferenceRightPanel.module.css';
 
 const PreferenceRightPanel = memo(() => {
   const { t } = useTranslation('memory');

@@ -1,6 +1,5 @@
 import { Button, Flexbox, Popover } from '@lobehub/ui';
 import { Space } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ExternalLink, FolderOpen } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,31 +7,7 @@ import { useTranslation } from 'react-i18next';
 import FileIcon from '@/components/FileIcon';
 import { localFileService } from '@/services/electron/localFileService';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    cursor: pointer;
-
-    padding-block: 2px;
-    padding-inline: 4px 8px;
-    border-radius: 4px;
-
-    color: ${cssVar.colorText};
-
-    :hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  title: css`
-    overflow: hidden;
-    display: block;
-
-    line-height: 20px;
-    color: inherit;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+import styles from './LocalFile.module.css';
 
 interface LocalFileProps {
   isDirectory?: boolean;

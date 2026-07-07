@@ -1,5 +1,4 @@
 import { Flexbox, Skeleton } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import { useAgentStore } from '@/store/agent';
@@ -10,34 +9,9 @@ import { useAgentId } from '../hooks/useAgentId';
 import { useEffectiveAgentMode } from '../hooks/useEffectiveAgentMode';
 import { useChatInputStore } from '../store';
 import ApprovalMode from './ApprovalMode';
+import styles from './index.module.css';
 import ModeSelector from './ModeSelector';
 import WorkspaceControls from './WorkspaceControls';
-
-const styles = createStaticStyles(({ css }) => ({
-  bar: css`
-    height: 28px;
-    padding-block: 0;
-    padding-inline: 4px;
-  `,
-  // Left cluster (mode + device + working directory + git) is the variable-width
-  // part. It shrinks first and, once its long labels have truncated as far as
-  // they can, scrolls horizontally instead of wrapping each chip's text. The
-  // scrollbar is hidden — trackpad / wheel still works.
-  leftGroup: css`
-    scrollbar-width: none;
-    overflow: auto hidden;
-    flex: 1;
-    min-width: 0;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  `,
-  // Right cluster (approval mode + context window) stays pinned and intact.
-  rightGroup: css`
-    flex: none;
-  `,
-}));
 
 const ControlBar = memo(() => {
   const agentId = useAgentId();

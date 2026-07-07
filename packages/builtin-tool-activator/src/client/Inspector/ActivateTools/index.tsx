@@ -2,7 +2,6 @@
 
 import { type BuiltinInspectorProps } from '@lobechat/types';
 import { Avatar, Flexbox, Icon, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { AlertTriangle } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,47 +9,20 @@ import { useTranslation } from 'react-i18next';
 import { inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { ActivatedToolInfo, ActivateToolsParams, ActivateToolsState } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css }) => ({
-  notFoundHint: css`
-    flex-shrink: 0;
-    max-width: 100%;
-    font-size: 12px;
-    color: ${cssVar.colorWarning};
-  `,
-  tool: css`
-    overflow: hidden;
-    display: inline-flex;
-    flex-shrink: 1;
-    gap: 6px;
-    align-items: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    min-width: 0;
-    padding-block: 2px;
-    padding-inline: 10px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 999px;
-
-    font-size: 12px;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  toolName: css`
-    overflow: hidden;
-    min-width: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  tools: css`
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    align-items: center;
-
-    margin-inline-start: 4px;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const ActivateToolsInspector = memo<
   BuiltinInspectorProps<ActivateToolsParams, ActivateToolsState>
@@ -99,7 +71,7 @@ export const ActivateToolsInspector = memo<
       {hasNotFound && (
         <Tooltip title={notFoundTitle}>
           <Flexbox horizontal className={styles.notFoundHint} gap={4}>
-            <Icon color={cssVar.colorWarning} icon={AlertTriangle} />
+            <Icon color={'var(--ant-color-warning)'} icon={AlertTriangle} />
             <span>
               {t('builtins.lobe-activator.inspector.activateTools.notFoundCount', {
                 count: notFoundList.length,

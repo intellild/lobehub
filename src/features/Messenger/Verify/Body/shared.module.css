@@ -1,0 +1,78 @@
+.bubble {
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 64px;
+height: 64px;
+border-radius: 14px;
+
+background: var(--ant-color-bg-container);
+box-shadow:
+  0 1px 2px rgb(0 0 0 / 6%),
+  0 4px 12px rgb(0 0 0 / 4%);
+}
+
+.card {
+width: 100%;
+max-width: 440px;
+}
+
+.chainBubble {
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 24px;
+height: 24px;
+border-radius: 999px;
+
+color: var(--ant-color-bg-container);
+
+background: var(--ant-color-text-base);
+}
+
+.iconRow {
+display: flex;
+gap: 12px;
+align-items: center;
+justify-content: center;
+
+margin-block-end: 8px;
+}
+
+.infoRow {
+display: flex;
+gap: 16px;
+align-items: center;
+justify-content: space-between;
+
+padding-block: 10px;
+
+& + & {
+  border-block-start: 1px solid var(--ant-color-border-secondary);
+}
+}
+
+.infoValue {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.successBubble {
+color: #fff;
+background: #22c55e;
+}
+
+.warningBlock {
+padding-block: 12px;
+padding-inline: 16px;
+border-color: var(--ant-color-warning-border);
+background: var(--ant-color-warning-bg);
+}
+
+.warningIcon {
+flex-shrink: 0;
+color: var(--ant-color-warning);
+}

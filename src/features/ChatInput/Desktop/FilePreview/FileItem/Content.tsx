@@ -1,24 +1,10 @@
 import { Image } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import FileIcon from '@/components/FileIcon';
 import { type UploadFileItem } from '@/types/files/upload';
 
-const styles = createStaticStyles(({ css }) => ({
-  image: css`
-    margin-block: 0 !important;
-    box-shadow: none;
-
-    img {
-      object-fit: contain;
-    }
-  `,
-  video: css`
-    overflow: hidden;
-    border-radius: 8px;
-  `,
-}));
+import styles from './Content.module.css';
 
 const Content = memo<UploadFileItem>(({ file, previewUrl }) => {
   if (file.type.startsWith('image')) {

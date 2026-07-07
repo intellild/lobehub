@@ -6,7 +6,6 @@ import { type IEditor } from '@lobehub/editor';
 import { HIDE_TOOLBAR_COMMAND } from '@lobehub/editor';
 import { type ChatInputActionsProps } from '@lobehub/editor/react';
 import { Avatar, Block } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -14,17 +13,7 @@ import { useFileStore } from '@/store/file';
 
 import { usePageAgentPanelControl } from '../RightPanel/OverrideContext';
 import { usePageEditorStore } from '../store';
-
-const styles = createStaticStyles(({ css }) => ({
-  askCopilot: css`
-    border-radius: 6px;
-    color: ${cssVar.colorTextDescription};
-
-    &:hover {
-      color: ${cssVar.colorTextSecondary};
-    }
-  `,
-}));
+import styles from './useAskCopilotItem.module.css';
 
 export const useAskCopilotItem = (editor: IEditor | undefined): ChatInputActionsProps['items'] => {
   const { t } = useTranslation('common');

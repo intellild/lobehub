@@ -1,7 +1,6 @@
 import { ActionIcon, EditableText, SortableList } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { PencilLine, Trash } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,19 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useSessionStore } from '@/store/session';
 import { type SessionGroupItem } from '@/types/session';
 
-const styles = createStaticStyles(({ css }) => ({
-  content: css`
-    position: relative;
-    overflow: hidden;
-    flex: 1;
-  `,
-  title: css`
-    flex: 1;
-    height: 28px;
-    line-height: 28px;
-    text-align: start;
-  `,
-}));
+import styles from './GroupItem.module.css';
 
 interface GroupItemProps extends SessionGroupItem {
   disabled?: boolean;

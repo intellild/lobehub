@@ -1,7 +1,6 @@
 import { type ChatTranslate } from '@lobechat/types';
 import { ActionIcon, copyToClipboard, Flexbox, Icon, Markdown, Tag } from '@lobehub/ui';
 import { App } from 'antd';
-import { cssVar } from 'antd-style';
 import { ChevronDown, ChevronsRight, ChevronUp, CopyIcon, TrashIcon } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -27,7 +26,7 @@ const Translate = memo<TranslateProps>(({ content = '', from, to, id, loading })
         <div>
           <Flexbox horizontal gap={4}>
             <Tag style={{ margin: 0 }}>{from ? t(`lang.${from}` as any) : '...'}</Tag>
-            <Icon color={cssVar.colorTextTertiary} icon={ChevronsRight} />
+            <Icon color={'var(--ant-color-text-tertiary)'} icon={ChevronsRight} />
             <Tag>{t(`lang.${to}` as any)}</Tag>
           </Flexbox>
         </div>

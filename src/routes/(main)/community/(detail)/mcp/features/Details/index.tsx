@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { useResponsive } from 'antd-style';
 import { memo } from 'react';
 
 import Agents from '@/features/MCPPluginDetail/Agents';
@@ -11,6 +10,7 @@ import Overview from '@/features/MCPPluginDetail/Overview';
 import Schema from '@/features/MCPPluginDetail/Schema';
 import Score from '@/features/MCPPluginDetail/Score';
 import { useQueryState } from '@/hooks/useQueryParam';
+import { useResponsive } from '@/hooks/useResponsive';
 import { McpNavKey } from '@/types/discover';
 
 import Sidebar from '../Sidebar';

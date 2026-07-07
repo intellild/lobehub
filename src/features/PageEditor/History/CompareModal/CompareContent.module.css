@@ -1,0 +1,81 @@
+.arrow {
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.badgeNew {
+display: inline-flex;
+gap: 4px;
+align-items: center;
+
+padding-block: 2px;
+padding-inline: 8px;
+border-radius: 4px;
+
+font-size: 11px;
+font-weight: 600;
+line-height: 1.2;
+color: var(--ant-color-success);
+
+background: var(--ant-color-success-bg);
+}
+
+.badgeOld {
+display: inline-flex;
+align-items: center;
+
+padding-block: 2px;
+padding-inline: 8px;
+border-radius: 4px;
+
+font-size: 11px;
+font-weight: 600;
+line-height: 1.2;
+color: var(--ant-color-error);
+
+background: var(--ant-color-error-bg);
+}
+
+.cmpbar {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+padding-block: 10px;
+padding-inline: 16px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+
+background: var(--ant-color-bg-layout);
+}
+
+.diffArea {
+overflow: hidden;
+display: flex;
+flex: 1;
+flex-direction: column;
+
+min-width: 0;
+min-height: 0;
+}
+
+.diffBody {
+overflow: auto;
+flex: 1;
+min-height: 0;
+}
+
+.meta {
+margin-inline-start: 8px;
+font-size: 11px;
+line-height: 1.2;
+}
+
+.root {
+overflow: hidden;
+display: flex;
+
+width: 100%;
+height: 100%;
+
+background: var(--ant-color-bg-container);
+}

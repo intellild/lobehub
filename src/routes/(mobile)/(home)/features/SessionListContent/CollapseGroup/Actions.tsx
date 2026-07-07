@@ -2,7 +2,6 @@ import { type DropdownMenuProps, type MenuProps } from '@lobehub/ui';
 import { ActionIcon, DropdownMenu, Icon } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { MoreVertical, PencilLine, Plus, Settings2, Trash, UsersRound } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,11 +11,6 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { useAgentGroupStore } from '@/store/agentGroup';
 import { useSessionStore } from '@/store/session';
 
-const styles = createStaticStyles(({ css }) => ({
-  modalRoot: css`
-    z-index: 2000;
-  `,
-}));
 interface ActionsProps extends Pick<DropdownMenuProps, 'onOpenChange'> {
   id?: string;
   isCustomGroup?: boolean;

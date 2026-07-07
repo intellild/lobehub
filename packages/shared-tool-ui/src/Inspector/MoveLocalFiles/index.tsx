@@ -3,12 +3,24 @@
 import type { MoveFilesState } from '@lobechat/tool-runtime';
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Icon, Text } from '@lobehub/ui';
-import { cssVar, cx } from 'antd-style';
 import { Check, X } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { inspectorTextStyles, shinyTextStyles } from '../../styles';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface MoveFilesArgs {
   items?: Array<{ newPath?: string; oldPath?: string }>;
@@ -41,9 +53,9 @@ export const createMoveLocalFilesInspector = (translationKey: string) => {
           {!isLoading && successCount !== undefined && (
             <span style={{ marginInlineStart: 4 }}>
               {allSucceeded ? (
-                <Icon color={cssVar.colorSuccess} icon={Check} size={14} />
+                <Icon color={'var(--ant-color-success)'} icon={Check} size={14} />
               ) : (
-                <Icon color={cssVar.colorError} icon={X} size={14} />
+                <Icon color={'var(--ant-color-error)'} icon={X} size={14} />
               )}
             </span>
           )}

@@ -1,5 +1,4 @@
 import { Avatar, Block, Flexbox, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import MetaInfo from '@/routes/(main)/community/(list)/mcp/features/List/MetaInfo';
@@ -17,7 +16,7 @@ const FeaturedPluginItem = memo<DiscoverMcpItem>(({ name, icon, github, installC
       padding={12}
       variant={'outlined'}
       style={{
-        borderRadius: cssVar.borderRadiusLG,
+        borderRadius: 'var(--ant-border-radius-lg)',
         overflow: 'hidden',
         width: '100%',
       }}
@@ -46,7 +45,7 @@ const FeaturedPluginItem = memo<DiscoverMcpItem>(({ name, icon, github, installC
           installCount={installCount}
           stars={github?.stars}
           style={{
-            color: cssVar.colorTextDescription,
+            color: 'var(--ant-color-text-description)',
             fontSize: 12,
           }}
         />

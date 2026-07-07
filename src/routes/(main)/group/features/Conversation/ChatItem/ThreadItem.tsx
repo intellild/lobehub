@@ -1,5 +1,4 @@
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import dayjs from 'dayjs';
 import { ChevronRight } from 'lucide-react';
 import { memo } from 'react';
@@ -10,27 +9,20 @@ import { useChatStore } from '@/store/chat';
 import { chatSelectors } from '@/store/chat/selectors';
 import { type ThreadItem } from '@/types/topic';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  active: css`
-    background: ${cssVar.colorFillTertiary};
-  `,
-  container: css`
-    cursor: pointer;
+import styles from './ThreadItem.module.css';
 
-    padding-block: 4px;
-    padding-inline: 6px;
-    border-radius: 6px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    font-size: 12px;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  extra: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const Item = memo<ThreadItem>(({ id, title, lastActiveAt, sourceMessageId }) => {
   const { t } = useTranslation('chat');

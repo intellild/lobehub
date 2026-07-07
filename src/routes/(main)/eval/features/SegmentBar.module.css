@@ -1,0 +1,19 @@
+.segment {
+height: 100%;
+
+transition: width 0.3s ease;
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+}
+
+.track {
+display: flex;
+overflow: hidden;
+
+width: 100%;
+border-radius: 999px;
+
+background: var(--ant-color-fill-secondary);
+}

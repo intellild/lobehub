@@ -3,7 +3,6 @@
 import type { EvalRunTopicResult } from '@lobechat/types';
 import { formatCost, formatShortenNumber } from '@lobechat/utils';
 import { ActionIcon, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import {
   ArrowLeft,
   CheckCircle2,
@@ -19,102 +18,7 @@ import {
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css }) => ({
-  backLink: css`
-    align-self: flex-start;
-
-    cursor: pointer;
-    border-radius: ${cssVar.borderRadiusSM};
-    color: ${cssVar.colorTextTertiary};
-
-    transition: color 0.15s ease;
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: 2px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  // Tonal outcome hero band — leads with the case result.
-  hero: css`
-    padding: 16px;
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  header: css`
-    padding-block: 16px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  metricCard: css`
-    gap: 8px;
-
-    padding-block: 8px;
-    padding-inline: 8px 16px;
-    border-radius: ${cssVar.borderRadiusSM};
-
-    font-size: ${cssVar.fontSizeSM};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  metricIcon: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 28px;
-    height: 28px;
-    border-radius: ${cssVar.borderRadiusSM};
-
-    color: ${cssVar.colorTextTertiary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  metricLabel: css`
-    font-size: ${cssVar.fontSizeSM};
-    line-height: 1;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  metricValue: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSize};
-    font-weight: 500;
-    line-height: 1.4;
-    color: ${cssVar.colorText};
-  `,
-  // Large mono score in the hero.
-  scoreValue: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeHeading2};
-    font-weight: 600;
-    line-height: 1;
-    color: ${cssVar.colorText};
-  `,
-  // The result word, color-coded — always paired with an icon.
-  statusLabel: css`
-    font-size: ${cssVar.fontSizeLG};
-    font-weight: 600;
-    line-height: 1;
-  `,
-  statusTile: css`
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 44px;
-    height: 44px;
-    border-radius: ${cssVar.borderRadius};
-  `,
-}));
+import styles from './index.module.css';
 
 interface CaseHeaderProps {
   caseNumber: number;
@@ -136,22 +40,22 @@ const CaseHeader = memo<CaseHeaderProps>(
     const hasError = !!evalResult?.error;
     const outcome = hasError
       ? {
-          bg: cssVar.colorErrorBg,
-          color: cssVar.colorError,
+          bg: 'var(--ant-color-error-bg)',
+          color: 'var(--ant-color-error)',
           icon: TriangleAlert,
           label: t('table.filter.error'),
         }
       : passed === true
         ? {
-            bg: cssVar.colorSuccessBg,
-            color: cssVar.colorSuccess,
+            bg: 'var(--ant-color-success-bg)',
+            color: 'var(--ant-color-success)',
             icon: CheckCircle2,
             label: t('table.filter.passed'),
           }
         : passed === false
           ? {
-              bg: cssVar.colorErrorBg,
-              color: cssVar.colorError,
+              bg: 'var(--ant-color-error-bg)',
+              color: 'var(--ant-color-error)',
               icon: XCircle,
               label: t('table.filter.failed'),
             }

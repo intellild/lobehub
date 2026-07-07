@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { type LucideIcon } from 'lucide-react';
 import { memo } from 'react';
 
@@ -18,8 +17,8 @@ const SectionHeader = memo<SectionHeaderProps>(({ icon, title, actionLabel, acti
   return (
     <Flexbox horizontal align={'center'} justify={'space-between'}>
       <Flexbox horizontal align={'center'} gap={8}>
-        <Icon color={cssVar.colorTextDescription} icon={icon} size={18} />
-        <Text color={cssVar.colorTextSecondary}>{title}</Text>
+        <Icon color={'var(--ant-color-text-description)'} icon={icon} size={18} />
+        <Text color={'var(--ant-color-text-secondary)'}>{title}</Text>
       </Flexbox>
       {actionLabel && actionUrl && (
         <WorkspaceLink style={{ color: 'inherit', textDecoration: 'none' }} to={actionUrl}>

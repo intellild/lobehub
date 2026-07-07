@@ -1,0 +1,15 @@
+.popup {
+&.ant-select-dropdown .ant-select-item-option {
+  margin-block: 1px;
+  margin-inline: 4px;
+  padding-block: 8px;
+  padding-inline: 8px;
+  border-radius: var(--ant-border-radius-sm);
+}
+&.ant-select-dropdown .ant-select-item-option-selected {
+  background: var(--ant-color-fill-tertiary);
+}
+&.ant-select-dropdown .ant-select-item-option-grouped {
+  padding-inline-start: 12px;
+}
+}

@@ -1,0 +1,10 @@
+.dropdownMenu {
+&.ant-dropdown-menu {
+  .ant-dropdown-menu-item-group-list {
+    margin: 0;
+  }
+  .ant-avatar {
+    margin-inline-end: var(--ant-margin-xs);
+  }
+}
+}

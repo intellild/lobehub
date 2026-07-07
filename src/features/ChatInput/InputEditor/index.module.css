@@ -1,0 +1,10 @@
+.editor p {
+  margin-block-end: 0;
+}
+
+.ghost {
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

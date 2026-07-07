@@ -4,7 +4,6 @@ import { AGENT_ONBOARDING_ENABLED } from '@lobechat/business-const';
 import { isDesktop } from '@lobechat/const';
 import { ActionIcon, Flexbox, Text } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { CSSProperties, ReactNode } from 'react';
 import { memo, useEffect, useMemo, useState } from 'react';
@@ -14,49 +13,22 @@ import { useLocation } from 'react-router';
 import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwareNavigate';
 import { useServerConfigStore } from '@/store/serverConfig';
 
+import styles from './ModeSwitch.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const COLLAPSED_STORAGE_KEY = 'LOBE_ONBOARDING_MODE_SWITCH_COLLAPSED';
-
-const styles = createStaticStyles(({ css, cssVar, responsive }) => ({
-  anchor: css`
-    position: fixed;
-    z-index: 10;
-    inset-block-end: 24px;
-    inset-inline-end: 24px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-end;
-
-    ${responsive.mobile} {
-      inset-block-end: calc(env(safe-area-inset-bottom, 0px) + 96px);
-      inset-inline-end: 12px;
-    }
-  `,
-  anchorWithLabel: css`
-    align-items: stretch;
-  `,
-  pill: css`
-    display: flex;
-    flex-flow: row wrap;
-    gap: 8px;
-    align-items: center;
-    justify-content: flex-end;
-
-    padding-block: 8px;
-    padding-inline: 12px;
-    border: 1px solid color-mix(in srgb, ${cssVar.colorBorderSecondary} 60%, transparent);
-    border-radius: 999px;
-
-    background: color-mix(in srgb, ${cssVar.colorBgElevated} 75%, transparent);
-    backdrop-filter: blur(16px) saturate(1.2);
-    box-shadow: ${cssVar.boxShadowSecondary};
-  `,
-  pillCollapsed: css`
-    padding-block: 4px;
-    padding-inline: 4px;
-  `,
-}));
 
 interface ModeSwitchProps {
   actions?: ReactNode;

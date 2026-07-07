@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Skeleton } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 const PanelContentSkeleton = memo(() => {
@@ -13,7 +12,7 @@ const PanelContentSkeleton = memo(() => {
           <Skeleton.Button
             size="small"
             style={{
-              borderRadius: cssVar.borderRadius,
+              borderRadius: 'var(--ant-border-radius)',
               height: 40,
               minWidth: 40,
               width: 40,
@@ -25,7 +24,7 @@ const PanelContentSkeleton = memo(() => {
               block
               size="small"
               style={{
-                borderRadius: cssVar.borderRadius,
+                borderRadius: 'var(--ant-border-radius)',
                 height: 16,
                 maxWidth: 120,
                 opacity: 0.6,
@@ -36,7 +35,7 @@ const PanelContentSkeleton = memo(() => {
               block
               size="small"
               style={{
-                borderRadius: cssVar.borderRadius,
+                borderRadius: 'var(--ant-border-radius)',
                 height: 12,
                 maxWidth: 80,
                 opacity: 0.4,
@@ -51,7 +50,7 @@ const PanelContentSkeleton = memo(() => {
               key={i}
               size="small"
               style={{
-                borderRadius: cssVar.borderRadius,
+                borderRadius: 'var(--ant-border-radius)',
                 flex: 1,
                 height: 36,
                 opacity: 0.5,
@@ -69,7 +68,7 @@ const PanelContentSkeleton = memo(() => {
               <Skeleton.Button
                 size="small"
                 style={{
-                  borderRadius: cssVar.borderRadius,
+                  borderRadius: 'var(--ant-border-radius)',
                   height: 20,
                   minWidth: 20,
                   width: 20,
@@ -80,7 +79,7 @@ const PanelContentSkeleton = memo(() => {
                 block
                 size="small"
                 style={{
-                  borderRadius: cssVar.borderRadius,
+                  borderRadius: 'var(--ant-border-radius)',
                   height: 14,
                   opacity: 0.5,
                 }}
@@ -102,7 +101,7 @@ const PanelContentSkeleton = memo(() => {
           active
           size="small"
           style={{
-            borderRadius: cssVar.borderRadius,
+            borderRadius: 'var(--ant-border-radius)',
             height: 20,
             width: 80,
             opacity: 0.4,
@@ -111,7 +110,7 @@ const PanelContentSkeleton = memo(() => {
         <Skeleton.Button
           size="small"
           style={{
-            borderRadius: cssVar.borderRadius,
+            borderRadius: 'var(--ant-border-radius)',
             height: 28,
             minWidth: 28,
             width: 28,

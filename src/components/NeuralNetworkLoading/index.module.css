@@ -1,0 +1,82 @@
+@keyframes pulseAnim {
+0%, 100% {
+opacity: 0.3;
+  }
+  50% {
+opacity: 1;
+  }
+}
+
+@keyframes flowAnim {
+0% {
+transform: translateX(0);
+opacity: 0.5;
+  }
+  50% {
+opacity: 1;
+  }
+  100% {
+transform: translateX(var(--flow-distance));
+opacity: 0.5;
+  }
+}
+
+@keyframes rotateAnim {
+100% {
+transform: rotate(360deg);
+  }
+}
+
+@keyframes scaleAnim {
+0%, 100% {
+transform: scale(0.8);
+opacity: 0.5;
+  }
+  50% {
+transform: scale(1);
+opacity: 1;
+  }
+}
+
+.center {
+fill: var(--ant-color-text-secondary);
+animation: scaleAnim 2s infinite;
+}
+
+.connection {
+opacity: 0.3;
+stroke: var(--ant-color-text-secondary);
+stroke-width: 0.5;
+}
+
+.container {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.node {
+fill: var(--ant-color-text-secondary);
+animation: pulseAnim 2s infinite;
+}
+
+.particle {
+fill: var(--ant-color-text-secondary);
+animation: flowAnim 2s infinite;
+}
+
+.ring {
+transform-origin: center;
+
+fill: none;
+stroke: var(--ant-color-fill);
+stroke-dasharray: 0 8;
+stroke-width: 1;
+
+animation: rotateAnim 20s infinite linear;
+}
+
+.svg {
+width: 100%;
+height: 100%;
+}

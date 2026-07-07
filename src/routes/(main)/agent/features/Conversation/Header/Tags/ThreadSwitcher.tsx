@@ -1,86 +1,26 @@
 'use client';
 
 import { Flexbox, Popover } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useChatStore } from '@/store/chat';
 import { threadSelectors } from '@/store/chat/selectors';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  item: css`
-    cursor: pointer;
+import styles from './ThreadSwitcher.module.css';
 
-    overflow: hidden;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    padding-block: 6px;
-    padding-inline: 10px;
-    border-radius: 6px;
-
-    font-size: 13px;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    transition: background 0.15s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  itemActive: css`
-    font-weight: 600;
-    background: ${cssVar.colorFillSecondary};
-
-    &:hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  trigger: css`
-    cursor: pointer;
-
-    overflow: hidden;
-    display: inline-block;
-
-    min-width: 0;
-    padding-block: 2px;
-    padding-inline: 6px;
-    border: none;
-    border-radius: 6px;
-
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.5;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    background: transparent;
-    outline: none;
-
-    transition: background 0.15s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: none;
-    }
-
-    /* Keep a visible landmark for keyboard focus (mirrors DeviceItem). */
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: -1px;
-    }
-
-    &[data-popup-open] {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ThreadSwitcherProps {
   title: string;

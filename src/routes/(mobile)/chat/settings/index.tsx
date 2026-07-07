@@ -1,7 +1,6 @@
 'use client';
 
 import { Tabs } from '@lobehub/ui/base-ui';
-import { cssVar } from 'antd-style';
 import { memo, useState } from 'react';
 
 import MobileContentLayout from '@/components/server/MobileNavLayout';
@@ -36,7 +35,7 @@ export default memo(() => {
         activeKey={tab}
         items={cateItems as any}
         style={{
-          borderBottom: `1px solid ${cssVar.colorBorderSecondary}`,
+          borderBottom: `1px solid ${'var(--ant-color-border-secondary)'}`,
         }}
         onChange={(value) => setTab(value as ChatSettingsTabs)}
       />

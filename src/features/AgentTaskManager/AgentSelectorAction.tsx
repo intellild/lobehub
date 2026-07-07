@@ -1,5 +1,4 @@
 import { Center, Flexbox, Popover } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { ChevronsUpDownIcon } from 'lucide-react';
 import { memo, Suspense, useCallback, useMemo, useState } from 'react';
@@ -17,32 +16,20 @@ import { builtinAgentSelectors } from '@/store/agent/selectors';
 import { useHomeStore } from '@/store/home';
 import { homeAgentListSelectors } from '@/store/home/selectors';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  chevron: css`
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  container: css`
-    cursor: pointer;
+import styles from './AgentSelectorAction.module.css';
 
-    border-radius: 12px;
-    border-start-start-radius: 8px;
-    border-end-start-radius: 8px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    background: ${cssVar.colorFillTertiary};
-
-    :hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  sectionHeader: css`
-    padding-block: 4px;
-    padding-inline: 8px;
-
-    font-size: 12px;
-    line-height: 1.4;
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface AgentSelectorActionProps {
   onAgentChange: (id: string) => void;

@@ -4,7 +4,6 @@ import type { GitFileDiffStatus } from '@lobechat/electron-client-ipc';
 import { nanoid } from '@lobechat/utils';
 import { ActionIcon, copyToClipboard, Flexbox, PatchDiff } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar as themeCssVar } from 'antd-style';
 import { CopyIcon, LocateFixedIcon, Undo2Icon } from 'lucide-react';
 import path from 'path-browserify-esm';
 import { memo, type MouseEvent, useCallback, useMemo } from 'react';
@@ -16,118 +15,20 @@ import { useFileStore } from '@/store/file';
 import { useGlobalStore } from '@/store/global';
 
 import type { DiffSelectedLineRange } from './selection';
+import styles from './FileItem.module.css';
 import { buildCodeContextSelection } from './selection';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  additions: css`
-    color: ${cssVar.colorSuccess};
-  `,
-  // Hover-revealed row actions, anchored to the right edge with a gradient
-  // mask that fades in from transparent → row hover-bg so any path/stats
-  // text behind the icons softly disappears instead of being abruptly
-  // overlapped.
-  actions: css`
-    pointer-events: none;
-
-    position: absolute;
-    inset-block: 0;
-    inset-inline-end: -8px;
-
-    align-items: center;
-
-    padding-inline: 28px 0;
-
-    opacity: 0;
-    background:
-      linear-gradient(to right, transparent 0, ${cssVar.colorFillTertiary} 28px),
-      linear-gradient(to right, transparent 0, ${cssVar.colorBgContainer} 28px);
-
-    transition: opacity 0.15s;
-
-    [data-review-row]:hover & {
-      pointer-events: auto;
-      opacity: 1;
-    }
-  `,
-  rowAction: css`
-    flex: none;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  revertDanger: css`
-    &:hover {
-      color: ${cssVar.colorError};
-    }
-  `,
-  deletions: css`
-    color: ${cssVar.colorError};
-  `,
-  empty: css`
-    padding-block: 12px;
-    color: ${cssVar.colorTextTertiary};
-    text-align: center;
-  `,
-  dir: css`
-    direction: rtl;
-
-    /* Only the directory portion shrinks + head-truncates. Short dirs
-       sit naturally next to the filename (no awkward right-alignment);
-       long dirs collapse leading segments into "…" via the RTL trick. */
-    overflow: hidden;
-    flex: 0 1 auto;
-
-    min-width: 0;
-
-    color: ${cssVar.colorTextTertiary};
-    text-align: start;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  fileName: css`
-    flex: none;
-    color: ${cssVar.colorText};
-    white-space: nowrap;
-  `,
-  header: css`
-    position: relative;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    width: 100%;
-    min-width: 0;
-
-    font-size: 12px;
-  `,
-  pathWrapper: css`
-    overflow: hidden;
-
-    /* Shrink-only (no grow): short paths stay content-sized so stats sit
-       right after the filename; long paths still shrink so the dir part
-       can head-truncate. */
-    display: flex;
-    flex: 0 1 auto;
-    min-width: 0;
-  `,
-  stats: css`
-    flex: none;
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    font-variant-numeric: tabular-nums;
-  `,
-}));
 
 const reviewDiffUnsafeCSS = `
   :host {
     --diffs-dark-bg: transparent !important;
     --diffs-light-bg: transparent !important;
     --diffs-gap-fallback: 8px;
-    --diffs-added-light: ${themeCssVar.colorSuccessHover};
-    --diffs-added-dark: ${themeCssVar.colorSuccessBorderHover};
-    --diffs-modified-light: ${themeCssVar.colorInfoHover};
-    --diffs-modified-dark: ${themeCssVar.colorInfoBorderHover};
-    --diffs-deleted-light: ${themeCssVar.colorErrorHover};
-    --diffs-deleted-dark: ${themeCssVar.colorErrorBorderHover};
+    --diffs-added-light: var(--ant-color-success-hover);
+    --diffs-added-dark: var(--ant-color-success-border-hover);
+    --diffs-modified-light: var(--ant-color-info-hover);
+    --diffs-modified-dark: var(--ant-color-info-border-hover);
+    --diffs-deleted-light: var(--ant-color-error-hover);
+    --diffs-deleted-dark: var(--ant-color-error-border-hover);
   }
 
   [data-gutter-buffer] {
@@ -148,17 +49,17 @@ const reviewDiffUnsafeCSS = `
     min-width: 16px !important;
     height: 16px !important;
     margin-right: calc(1ch - 8px) !important;
-    border: 1px solid ${themeCssVar.colorBorderSecondary} !important;
+    border: 1px solid var(--ant-color-border-secondary) !important;
     border-radius: 50% !important;
-    background: ${themeCssVar.colorBgContainer} !important;
-    color: ${themeCssVar.colorTextSecondary} !important;
-    box-shadow: 0 2px 8px ${themeCssVar.colorFillSecondary} !important;
+    background: var(--ant-color-bg-container) !important;
+    color: var(--ant-color-text-secondary) !important;
+    box-shadow: 0 2px 8px var(--ant-color-fill-secondary) !important;
   }
 
   [data-utility-button]:hover {
-    border-color: ${themeCssVar.colorPrimary} !important;
-    background: ${themeCssVar.colorPrimaryBg} !important;
-    color: ${themeCssVar.colorPrimary} !important;
+    border-color: var(--ant-color-primary) !important;
+    background: var(--ant-color-primary-bg) !important;
+    color: var(--ant-color-primary) !important;
   }
 
   [data-utility-button] [data-icon] {

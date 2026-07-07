@@ -3,10 +3,10 @@
 import { FilePathDisplay } from '@lobechat/shared-tool-ui/components';
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, PatchDiff, Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './FileChangeRender.module.css';
 import {
   type CodexFileChangeArgs,
   type CodexFileChangeKind,
@@ -16,82 +16,18 @@ import {
   getFileChangeStats,
 } from './utils';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  emptyState: css`
-    padding: 4px;
-    font-size: 13px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  kindAdded: css`
-    background: ${cssVar.colorSuccess};
-  `,
-  kindDeleted: css`
-    background: ${cssVar.colorError};
-  `,
-  kindDot: css`
-    flex-shrink: 0;
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-  `,
-  kindModified: css`
-    background: ${cssVar.colorInfo};
-  `,
-  kindRenamed: css`
-    background: ${cssVar.colorWarning};
-  `,
-  lineAdded: css`
-    color: ${cssVar.colorSuccess};
-  `,
-  lineDeleted: css`
-    color: ${cssVar.colorError};
-  `,
-  lineStats: css`
-    display: inline-flex;
-    flex-shrink: 0;
-    gap: 6px;
-    align-items: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    font-size: 12px;
-  `,
-  list: css`
-    gap: 2px;
-    min-width: 0;
-    padding-block: 2px;
-    padding-inline: 4px;
-  `,
-  patch: css`
-    overflow: hidden;
-    padding-block-end: 8px;
-    padding-inline-start: 16px;
-  `,
-  rowMain: css`
-    display: flex;
-    flex: 1;
-    gap: 10px;
-    align-items: center;
-
-    min-width: 0;
-  `,
-  path: css`
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    min-width: 0;
-  `,
-  row: css`
-    gap: 8px;
-    align-items: center;
-
-    min-height: 26px;
-    padding-block: 3px;
-    padding-inline: 0;
-  `,
-  unknownPath: css`
-    font-size: 13px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const getFileName = (filePath: string): string => {
   if (!filePath) return '';

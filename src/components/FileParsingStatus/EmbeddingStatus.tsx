@@ -1,5 +1,4 @@
 import { Flexbox, Icon, Tag, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { BoltIcon, RotateCwIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -7,17 +6,20 @@ import { useTranslation } from 'react-i18next';
 import { type FileParsingTask } from '@/types/asyncTask';
 import { AsyncTaskStatus } from '@/types/asyncTask';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  errorReason: css`
-    padding: 4px;
-    border-radius: 4px;
+import styles from './EmbeddingStatus.module.css';
 
-    font-family: monospace;
-    font-size: 12px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface EmbeddingStatusProps extends FileParsingTask {
   className?: string;

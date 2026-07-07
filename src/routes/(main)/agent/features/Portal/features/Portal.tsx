@@ -2,7 +2,6 @@
 
 import { type DraggablePanelProps } from '@lobehub/ui';
 import { DraggablePanel } from '@lobehub/ui';
-import { createStaticStyles, useResponsive } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { type PropsWithChildren } from 'react';
 import { Activity, memo, useState } from 'react';
@@ -12,31 +11,13 @@ import {
   CHAT_PORTAL_TOOL_UI_WIDTH,
   CHAT_PORTAL_WIDTH,
 } from '@/const/layoutTokens';
+import { useResponsive } from '@/hooks/useResponsive';
 import { useChatStore } from '@/store/chat';
 import { chatPortalSelectors, portalThreadSelectors } from '@/store/chat/selectors';
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  content: css`
-    position: relative;
-
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-
-    height: 100%;
-    min-height: 100%;
-    max-height: 100%;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  drawer: css`
-    z-index: 10;
-    height: 100%;
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
+import styles from './Portal.module.css';
 
 const PortalPanel = memo(({ children }: PropsWithChildren) => {
   const [showPortal, showToolUI, showArtifactUI, showThread, showTaskDetail] = useChatStore((s) => [

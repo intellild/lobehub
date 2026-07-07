@@ -1,7 +1,6 @@
 'use client';
 
 import { Button, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import dayjs from 'dayjs';
 import { RotateCcwIcon } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
@@ -15,84 +14,8 @@ import type {
 
 import DocumentHistoryDiff from '../DocumentHistoryDiff';
 import { formatHistoryAbsoluteTime } from '../formatHistoryDate';
+import styles from './CompareContent.module.css';
 import HistorySidebar from './HistorySidebar';
-
-const styles = createStaticStyles(({ css }) => ({
-  arrow: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  badgeNew: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 4px;
-
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1.2;
-    color: ${cssVar.colorSuccess};
-
-    background: ${cssVar.colorSuccessBg};
-  `,
-  badgeOld: css`
-    display: inline-flex;
-    align-items: center;
-
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 4px;
-
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1.2;
-    color: ${cssVar.colorError};
-
-    background: ${cssVar.colorErrorBg};
-  `,
-  cmpbar: css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 10px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    background: ${cssVar.colorBgLayout};
-  `,
-  diffArea: css`
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-
-    min-width: 0;
-    min-height: 0;
-  `,
-  diffBody: css`
-    overflow: auto;
-    flex: 1;
-    min-height: 0;
-  `,
-  meta: css`
-    margin-inline-start: 8px;
-    font-size: 11px;
-    line-height: 1.2;
-  `,
-  root: css`
-    overflow: hidden;
-    display: flex;
-
-    width: 100%;
-    height: 100%;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
 
 export interface CompareContentProps {
   documentId: string;

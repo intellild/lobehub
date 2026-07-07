@@ -3,32 +3,24 @@
 import { FilePathDisplay } from '@lobechat/shared-tool-ui/components';
 import { inspectorTextStyles, shinyTextStyles } from '@lobechat/shared-tool-ui/styles';
 import type { BuiltinInspectorProps } from '@lobechat/types';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './FileChangeInspector.module.css';
 import { type CodexFileChangeArgs, type CodexFileChangeState, getFileChangeStats } from './utils';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  count: css`
-    margin-inline-start: 4px;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  lineAdded: css`
-    margin-inline-start: 6px;
-    font-size: 12px;
-    color: ${cssVar.colorSuccess};
-  `,
-  lineDeleted: css`
-    margin-inline-start: 4px;
-    font-size: 12px;
-    color: ${cssVar.colorError};
-  `,
-  summary: css`
-    margin-inline-end: 6px;
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const FileChangeInspector = memo<BuiltinInspectorProps<CodexFileChangeArgs, CodexFileChangeState>>(
   ({ args, partialArgs, isArgumentsStreaming, isLoading, pluginState }) => {

@@ -1,6 +1,5 @@
 import { DropdownMenu } from '@lobehub/ui/base-ui';
 import { Button } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { ChevronDownIcon, ChevronRightIcon, MoreHorizontalIcon } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,49 +7,8 @@ import { useTranslation } from 'react-i18next';
 import { ConnectorToolPermission } from '@/database/schemas';
 import type { ConnectorTool } from '@/store/tool/slices/connector';
 
+import styles from './ToolPermissionGroup.module.css';
 import ToolPermissionRow from './ToolPermissionRow';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  badge: css`
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-radius: 4px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  groupHeader: css`
-    cursor: pointer;
-    user-select: none;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    padding-block: 10px;
-    padding-inline: 0;
-
-    &:hover span {
-      color: ${cssVar.colorText};
-    }
-  `,
-  groupLabel: css`
-    display: flex;
-    flex: 1;
-    gap: 6px;
-    align-items: center;
-
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 interface ToolPermissionGroupProps {
   label: string;

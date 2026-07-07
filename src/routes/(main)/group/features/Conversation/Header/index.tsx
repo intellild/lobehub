@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo,Suspense } from 'react';
 
 import NavHeader from '@/features/NavHeader';
@@ -13,7 +12,7 @@ const Header = memo(() => {
   return (
     <NavHeader
       right={
-        <Flexbox horizontal style={{ backgroundColor: cssVar.colorBgContainer }}>
+        <Flexbox horizontal style={{ backgroundColor: 'var(--ant-color-bg-container)' }}>
           <WideScreenButton />
           <Suspense>
             <ShareButton />

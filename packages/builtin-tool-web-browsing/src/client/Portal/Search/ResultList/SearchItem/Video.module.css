@@ -1,0 +1,53 @@
+.container {
+display: flex;
+  flex: 1;
+
+  padding: 8px;
+  border-radius: 8px;
+
+  color: initial;
+
+  &:hover {
+    background: var(--ant-color-fill-tertiary);
+  }
+}
+
+.desc {
+overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  color: var(--ant-color-text-tertiary);
+  text-overflow: ellipsis;
+}
+
+.displayLink {
+color: var(--ant-color-text-quaternary);
+}
+
+.iframe {
+border: 1px solid var(--ant-color-border);
+  border-radius: 8px;
+}
+
+.title {
+overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+
+  font-size: 16px;
+  color: var(--ant-color-link);
+  text-overflow: ellipsis;
+}
+
+.url {
+overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+
+  color: var(--ant-color-text-description);
+  text-overflow: ellipsis;
+}

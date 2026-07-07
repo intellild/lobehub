@@ -4,11 +4,11 @@ import { LINEAR_TOOL_NAMES } from '@lobechat/shared-tool-ui/inspectors';
 import { GitHubRender, LinearRender } from '@lobechat/shared-tool-ui/renders';
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, Highlighter, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import type { ComponentType } from 'react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './McpToolRender.module.css';
 import type { CodexMcpToolArgs, CodexMcpToolState } from './mcpToolUtils';
 import {
   formatMcpInput,
@@ -22,14 +22,6 @@ import {
   getMcpServer,
   getMcpToolName,
 } from './mcpToolUtils';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  sectionLabel: css`
-    margin-block-end: 4px;
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
 
 const LINEAR_TOOL_NAME_SET = new Set<string>([...LINEAR_TOOL_NAMES, 'fetch', 'search']);
 const SharedLinearRender = LinearRender as ComponentType<
@@ -128,7 +120,7 @@ const McpToolRender = memo<BuiltinRenderProps<CodexMcpToolArgs, CodexMcpToolStat
         )}
         {error && (
           <div>
-            <Text className={styles.sectionLabel} style={{ color: cssVar.colorError }}>
+            <Text className={styles.sectionLabel} style={{ color: 'var(--ant-color-error)' }}>
               {t('builtins.codex.mcpTool.error', { defaultValue: 'Error' })}
             </Text>
             <Highlighter

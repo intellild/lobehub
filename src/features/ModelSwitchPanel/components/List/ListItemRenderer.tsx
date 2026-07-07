@@ -10,7 +10,6 @@ import {
   Icon,
   menuSharedStyles,
 } from '@lobehub/ui';
-import { cssVar, cx } from 'antd-style';
 import { LucideArrowRight, LucideBolt } from 'lucide-react';
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -29,6 +28,19 @@ import { menuKey } from '../../utils';
 import ModelDetailPanel from '../ModelDetailPanel';
 import { MultipleProvidersModelItem } from './MultipleProvidersModelItem';
 import { SingleProviderModelItem } from './SingleProviderModelItem';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ListItemRendererProps {
   activeKey: string;
@@ -73,7 +85,7 @@ export const ListItemRenderer = memo<ListItemRendererProps>(
             className={styles.menuItem}
             gap={8}
             key="no-provider"
-            style={{ color: cssVar.colorTextTertiary }}
+            style={{ color: 'var(--ant-color-text-tertiary)' }}
             variant={'borderless'}
             onClick={() => {
               onClose();
@@ -130,7 +142,7 @@ export const ListItemRenderer = memo<ListItemRendererProps>(
             className={styles.menuItem}
             gap={8}
             key={`empty-${item.provider.id}`}
-            style={{ color: cssVar.colorTextTertiary }}
+            style={{ color: 'var(--ant-color-text-tertiary)' }}
             onClick={() => {
               onClose();
               navigate(`/settings/provider/${item.provider.id}`);

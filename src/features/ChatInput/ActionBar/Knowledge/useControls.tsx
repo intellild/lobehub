@@ -1,6 +1,5 @@
 import { type ItemType } from '@lobehub/ui';
 import { Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { LibraryBig } from 'lucide-react';
 import type { ReactNode } from 'react';
@@ -13,50 +12,25 @@ import { agentByIdSelectors } from '@/store/agent/selectors';
 
 import { useAgentId } from '../../hooks/useAgentId';
 import CheckboxItem from '../components/CheckboxWithLoading';
+import styles from './useControls.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 // Cap so the widest library/file row (icon + label + checkbox + paddings) stays within the
 // submenu's 320px footer-driven width, keeping it level with the skill submenu instead of
 // growing past it.
 const labelMaxWidth = 'min(210px, 45vw)';
-
-const styles = createStaticStyles(({ css }) => ({
-  viewMore: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    /* width 320 + margin-inline -12 anchors the submenu to 320px (matching the skill
-       submenu) and lets the row span full width; padding-inline 12 lines its icon/text
-       up with the menu items above. */
-    width: 320px;
-    min-height: 32px;
-
-    /* The footer wrapper adds padding-block: 8px top & bottom; the top keeps it separated
-       from the list, but the bottom leaves a dead gap against the popup edge — cancel it. */
-    margin-block-end: -8px;
-    margin-inline: -12px;
-    padding-inline: 12px;
-    border: 0;
-    border-radius: 6px;
-
-    font-size: 14px;
-    color: ${cssVar.colorText};
-
-    background: transparent;
-
-    transition: background 150ms ${cssVar.motionEaseOut};
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  viewMoreLabel: css`
-    flex: 1;
-    text-align: start;
-  `,
-}));
 
 export interface KnowledgeControls {
   enabledCount: number;

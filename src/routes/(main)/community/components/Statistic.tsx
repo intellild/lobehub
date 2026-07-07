@@ -1,32 +1,25 @@
 import { type FlexboxProps } from '@lobehub/ui';
 import { Flexbox, Icon, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { HelpCircleIcon } from 'lucide-react';
 import { type CSSProperties, type ReactNode } from 'react';
 import { memo } from 'react';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-    min-width: 64px;
-  `,
-  number: css`
-    margin: 0 !important;
+import styles from './Statistic.module.css';
 
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.4;
-    text-align: center;
-  `,
-  title: css`
-    margin: 0 !important;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    font-size: 12px;
-    line-height: 1.2;
-    color: ${cssVar.colorTextSecondary};
-    text-align: center;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
+export { styles };
 
 export interface StatisticProps extends Omit<FlexboxProps, 'children' | 'title'> {
   title: ReactNode;

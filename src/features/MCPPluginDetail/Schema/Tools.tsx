@@ -1,5 +1,4 @@
 import { Block, Collapse, Empty, Highlighter, Icon, Markdown, Tag } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { CheckIcon, MinusIcon, Wrench } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -82,7 +81,7 @@ const Tools = memo<ToolsProps>(({ mode, activeKey = [], setActiveKey }) => {
                               <span
                                 className={styles.code}
                                 style={{
-                                  color: cssVar.gold,
+                                  color: 'var(--ant-gold)',
                                 }}
                               >
                                 {record.name}
@@ -102,8 +101,8 @@ const Tools = memo<ToolsProps>(({ mode, activeKey = [], setActiveKey }) => {
                                 icon={record.required ? CheckIcon : MinusIcon}
                                 color={
                                   record.required
-                                    ? cssVar.colorSuccess
-                                    : cssVar.colorTextDescription
+                                    ? 'var(--ant-color-success)'
+                                    : 'var(--ant-color-text-description)'
                                 }
                               />
                             ),

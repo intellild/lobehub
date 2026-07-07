@@ -1,5 +1,4 @@
 import { Accordion, AccordionItem, Flexbox, Icon, Tag, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ArrowDownToDot, ArrowUpFromDot, CircleFadingArrowUp } from 'lucide-react';
 import type { FC } from 'react';
 import { memo } from 'react';
@@ -10,48 +9,9 @@ import type { EnabledProviderWithModels } from '@/types/aiProvider';
 import type { FormattedUnitPrice } from '../hooks/useModelDetailPanel';
 import { UNIT_ICON_MAP, useModelDetailPanel } from '../hooks/useModelDetailPanel';
 import type { PricingMode } from '../types';
+import styles from './ModelDetailPanel.module.css';
 
 export type { PricingMode } from '../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  actionText: css`
-    font-size: 14px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-  container: css`
-    padding-block-end: 8px;
-  `,
-  description: css`
-    margin: 0;
-    padding-block: 8px;
-    padding-inline: 8px;
-
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-    white-space: pre-wrap;
-  `,
-  row: css`
-    padding-block: 4px;
-    padding-inline: 8px;
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  originalPriceText: css`
-    color: ${cssVar.colorTextTertiary};
-    text-decoration: line-through;
-  `,
-  priceValue: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: baseline;
-  `,
-  titleText: css`
-    font-size: 14px;
-    font-weight: 400;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
 
 interface PriceValueProps {
   prefix?: string;

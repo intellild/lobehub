@@ -1,0 +1,54 @@
+.connected {
+font-size: 12px;
+color: var(--ant-color-success);
+}
+
+.container {
+padding-block: 6px;
+padding-inline: 4px;
+}
+
+.disconnected {
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.disconnectedIcon {
+opacity: 0.4;
+}
+
+.disconnectedTitle {
+opacity: 0.5;
+}
+
+.error {
+font-size: 12px;
+color: var(--ant-color-error);
+}
+
+.icon {
+overflow: hidden;
+display: flex;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+
+width: 20px;
+height: 20px;
+border-radius: 4px;
+}
+
+.pending {
+font-size: 12px;
+color: var(--ant-color-warning);
+}
+
+.title {
+cursor: pointer;
+font-size: 14px;
+color: var(--ant-color-text);
+
+&:hover {
+  color: var(--ant-color-primary);
+}
+}

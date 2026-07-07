@@ -1,0 +1,66 @@
+.body {
+padding-block-start: 12px;
+padding-inline-start: 44px;
+}
+
+.comment {
+font-size: 13px;
+line-height: 1.6;
+color: var(--ant-color-text);
+word-break: break-word;
+white-space: pre-wrap;
+}
+
+.countBadge {
+flex: none;
+
+padding-block: 1px;
+padding-inline: 6px;
+border-radius: 4px;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.headerIcon {
+display: flex;
+flex: none;
+align-items: center;
+justify-content: center;
+
+inline-size: 32px;
+block-size: 32px;
+
+color: var(--ant-color-text-secondary);
+}
+
+.root {
+/* Override @lobehub/ui Markdown's default <details> card chrome (bg + padding + box-shadow).
+   Need !important because the lib targets via .parent details (higher specificity).
+   padding-bottom puts a 12px gap above the divider; margin-bottom puts a 12px gap below it,
+   matching the symmetric 12px the task card uses around its own internal divider. */
+margin-block: 0 12px !important;
+padding-block: 0 12px !important;
+padding-inline: 0 !important;
+border-block-end: 1px solid var(--ant-color-split) !important;
+border-radius: 0 !important;
+
+background: transparent !important;
+box-shadow: none !important;
+}
+
+.summary {
+cursor: pointer;
+list-style: none;
+
+&::-webkit-details-marker {
+  display: none;
+}
+}
+
+.time {
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}

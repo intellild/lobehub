@@ -1,0 +1,7 @@
+.header {
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.title {
+font-weight: 550;
+}

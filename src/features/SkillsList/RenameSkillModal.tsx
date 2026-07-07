@@ -3,7 +3,6 @@
 import { Button, Flexbox, Input, Text } from '@lobehub/ui';
 import { createModal, type ModalInstance, useModalContext } from '@lobehub/ui/base-ui';
 import { type InputRef } from 'antd';
-import { cssVar } from 'antd-style';
 import { t } from 'i18next';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -63,7 +62,7 @@ const RenameSkillContent = memo<RenameSkillContentProps>(({ currentName, onSubmi
             setError(undefined);
           }}
         />
-        {error ? <Text style={{ color: cssVar.colorError, fontSize: 12 }}>{error}</Text> : null}
+        {error ? <Text style={{ color: 'var(--ant-color-error)', fontSize: 12 }}>{error}</Text> : null}
       </Flexbox>
       <Flexbox horizontal gap={8} justify={'flex-end'}>
         <Button disabled={loading} onClick={close}>

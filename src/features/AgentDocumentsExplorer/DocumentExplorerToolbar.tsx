@@ -1,22 +1,9 @@
 import { ActionIcon, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { FilePlusIcon, FolderPlusIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  toolbar: css`
-    padding-block: 4px;
-    padding-inline: 12px 4px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  title: css`
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  `,
-}));
+import styles from './DocumentExplorerToolbar.module.css';
 
 interface Props {
   onCreateDocument: () => void;

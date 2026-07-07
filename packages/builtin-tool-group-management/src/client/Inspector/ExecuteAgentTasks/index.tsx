@@ -4,29 +4,29 @@ import { DEFAULT_AVATAR } from '@lobechat/const';
 import type { AgentGroupMember, BuiltinInspectorProps } from '@lobechat/types';
 import { safeParsePartialJSON } from '@lobechat/utils';
 import { Avatar, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cx, useTheme } from 'antd-style';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useTheme } from '@/hooks/useTheme';
 import { useAgentGroupStore } from '@/store/agentGroup';
 import { agentGroupSelectors } from '@/store/agentGroup/selectors';
 import { shinyTextStyles } from '@/styles';
 
 import type { ExecuteTasksParams, TaskItem } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  root: css`
-    overflow: hidden;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  `,
-  title: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextSecondary};
-    white-space: nowrap;
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const ExecuteAgentTasksInspector = memo<BuiltinInspectorProps<ExecuteTasksParams>>(
   ({ args, partialArgs, isArgumentsStreaming }) => {

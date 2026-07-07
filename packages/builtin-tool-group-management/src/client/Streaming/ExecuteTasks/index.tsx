@@ -3,35 +3,14 @@
 import { DEFAULT_AVATAR } from '@lobechat/const';
 import type { AgentGroupMember, BuiltinStreamingProps } from '@lobechat/types';
 import { Avatar, Flexbox, Markdown } from '@lobehub/ui';
-import { createStaticStyles, useTheme } from 'antd-style';
 import { memo, useMemo } from 'react';
 
+import { useTheme } from '@/hooks/useTheme';
 import { useAgentGroupStore } from '@/store/agentGroup';
 import { agentGroupSelectors } from '@/store/agentGroup/selectors';
 
 import type { ExecuteTasksParams } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  `,
-  instruction: css`
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  taskCard: css`
-    padding: 12px;
-    border-radius: 8px;
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  taskTitle: css`
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './index.module.css';
 
 export const ExecuteTasksStreaming = memo<BuiltinStreamingProps<ExecuteTasksParams>>(({ args }) => {
   const { tasks } = args || {};

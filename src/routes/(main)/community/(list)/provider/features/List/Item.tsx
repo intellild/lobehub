@@ -1,6 +1,5 @@
 import { Github, ModelTag, ProviderCombine } from '@lobehub/icons';
 import { ActionIcon, Block, Flexbox, MaskShadow, stopPropagation, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { GlobeIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,39 +9,7 @@ import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwar
 import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
 import { type DiscoverProviderItem } from '@/types/discover';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    author: css`
-      color: ${cssVar.colorTextDescription};
-    `,
-    code: css`
-      font-family: ${cssVar.fontFamilyCode};
-    `,
-    desc: css`
-      flex: none;
-      margin: 0 !important;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    footer: css`
-      margin-block-start: 16px;
-      border-block-start: 1px dashed ${cssVar.colorBorder};
-      background: ${cssVar.colorBgContainer};
-    `,
-    secondaryDesc: css`
-      font-size: 12px;
-      color: ${cssVar.colorTextDescription};
-    `,
-    title: css`
-      margin: 0 !important;
-      font-size: 16px !important;
-      font-weight: 500 !important;
-
-      &:hover {
-        color: ${cssVar.colorLink};
-      }
-    `,
-  };
-});
+import styles from './Item.module.css';
 
 const ProviderItem = memo<DiscoverProviderItem>(
   ({ url, name, description, identifier, models }) => {
@@ -86,7 +53,7 @@ const ProviderItem = memo<DiscoverProviderItem>(
           </Flexbox>
           <Flexbox horizontal align={'center'}>
             <a href={url} rel="noopener noreferrer" target={'_blank'} onClick={stopPropagation}>
-              <ActionIcon color={cssVar.colorTextDescription} icon={GlobeIcon} />
+              <ActionIcon color={'var(--ant-color-text-description)'} icon={GlobeIcon} />
             </a>
             <a
               href={`https://github.com/lobehub/lobe-chat/blob/main/src/config/modelProviders/${identifier}.ts`}
@@ -94,7 +61,7 @@ const ProviderItem = memo<DiscoverProviderItem>(
               target={'_blank'}
               onClick={stopPropagation}
             >
-              <ActionIcon fill={cssVar.colorTextDescription} icon={Github} />
+              <ActionIcon fill={'var(--ant-color-text-description)'} icon={Github} />
             </a>
           </Flexbox>
         </Flexbox>

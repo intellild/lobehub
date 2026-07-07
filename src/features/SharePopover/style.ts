@@ -1,10 +1,5 @@
-import { createStaticStyles } from 'antd-style';
 
-export const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    padding: 16px;
-  `,
-  hint: css`
-    font-size: 12px;
-  `,
-}));
+import styles from './style.module.css';
+
+export { styles };
+

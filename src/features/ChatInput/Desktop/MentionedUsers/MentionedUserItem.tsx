@@ -1,51 +1,10 @@
 import { Avatar, Center, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { X } from 'lucide-react';
 import { memo } from 'react';
 
 import { useMentionStore } from '@/store/mention';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    position: relative;
-
-    width: 180px;
-    height: 64px;
-    border-radius: 8px;
-
-    background: ${cssVar.colorBgContainer};
-
-    :hover {
-      background: ${cssVar.colorBgElevated};
-    }
-  `,
-  removeButton: css`
-    cursor: pointer;
-
-    position: absolute;
-    z-index: 10;
-    inset-block-start: -4px;
-    inset-inline-end: -4px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 20px;
-    height: 20px;
-    border-radius: 5px;
-
-    background: ${cssVar.colorBgElevated};
-    box-shadow:
-      0 0 0 0.5px ${cssVar.colorFillSecondary} inset,
-      ${cssVar.boxShadowTertiary};
-
-    :hover {
-      color: ${cssVar.colorError};
-      background: ${cssVar.colorErrorBg};
-    }
-  `,
-}));
+import styles from './MentionedUserItem.module.css';
 
 interface MentionedUserItemProps {
   agent: any; // The actual agent data from the group

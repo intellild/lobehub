@@ -1,7 +1,6 @@
 import { ProviderIcon } from '@lobehub/icons';
 import { Flexbox, Tag, Text, Tooltip } from '@lobehub/ui';
 import { type TableColumnType } from 'antd';
-import { cssVar } from 'antd-style';
 import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -49,7 +48,7 @@ const UsageTable = memo<UsageChartProps>(({ dateStrings }) => {
             provider={record.provider}
             size={18}
             style={{
-              border: `2px solid ${cssVar.colorBgContainer}`,
+              border: `2px solid ${'var(--ant-color-bg-container)'}`,
               boxSizing: 'content-box',
               marginRight: -8,
             }}

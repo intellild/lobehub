@@ -1,0 +1,22 @@
+.container {
+position: relative;
+container-name: agent-conv-header;
+container-type: inline-size;
+}
+
+.leftContent {
+overflow: hidden;
+flex: 1 1 auto;
+min-width: 0;
+}
+
+.slotLeft {
+overflow: hidden;
+flex: 1 1 auto;
+min-width: 0;
+}
+
+.slotRight {
+flex: 0 0 auto;
+min-width: 0;
+}

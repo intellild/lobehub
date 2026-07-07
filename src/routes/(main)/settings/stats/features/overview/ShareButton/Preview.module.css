@@ -1,0 +1,75 @@
+.avatar {
+  box-sizing: content-box;
+  border: 4px solid var(--ant-color-bg-layout);
+  background: var(--ant-color-text);
+}
+
+.background {
+  position: relative;
+
+  width: 100%;
+  padding: 24px;
+
+  background-color: var(--ant-color-bg-layout);
+  background-image: url('/images/screenshot_background.webp');
+  background-position: center;
+  background-size: 120% 120%;
+}
+
+.container {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  border: 1px solid var(--ant-color-border);
+  border-radius: calc(var(--ant-border-radius-lg) * 2);
+
+  background: var(--ant-color-bg-layout);
+  box-shadow: var(--ant-box-shadow);
+}
+
+.decs,
+.footer {
+  font-size: 12px;
+  color: var(--ant-color-text-description);
+}
+
+.heatmaps :global(.legend-month),
+.heatmaps footer {
+  display: none;
+}
+
+.preview {
+  overflow: hidden scroll;
+
+  width: 100%;
+  max-height: 70dvh;
+  border: 1px solid var(--ant-color-border);
+  border-radius: var(--ant-border-radius-lg);
+
+  scrollbar-width: none;
+  background: var(--ant-color-bg-layout);
+}
+
+.preview::-webkit-scrollbar,
+.preview *::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.preview * {
+  pointer-events: none;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (max-width: 575.98px) {
+  .preview {
+    max-height: 40dvh;
+  }
+}

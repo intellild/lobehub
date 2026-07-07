@@ -1,32 +1,27 @@
 import { type ListItemProps } from '@lobehub/ui';
 import { Avatar, List } from '@lobehub/ui';
 import { useHover } from 'ahooks';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo, useMemo, useRef } from 'react';
 
 import GroupAvatar from '@/features/GroupAvatar';
 import { useServerConfigStore } from '@/store/serverConfig';
 
-const { Item } = List;
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    container: css`
-      position: relative;
-      margin-block: 2px;
-      padding-inline: 12px 16px;
-      border-radius: ${cssVar.borderRadius};
-    `,
-    mobile: css`
-      margin-block: 0;
-      padding-inline-start: 12px;
-      border-radius: 0;
-    `,
-    title: css`
-      line-height: 1.2;
-    `,
-  };
-});
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
+const { Item } = List;
 
 const ListItem = memo<
   ListItemProps & {

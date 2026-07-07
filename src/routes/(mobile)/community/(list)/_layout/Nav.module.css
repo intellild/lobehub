@@ -1,0 +1,19 @@
+.activeNavItem {
+background: var(--ant-color-fill-tertiary);
+}
+
+.container {
+height: auto;
+padding-block: 4px;
+background: var(--ant-color-bg-layout);
+}
+
+.navItem {
+font-weight: 500;
+}
+
+.title {
+font-size: 18px;
+font-weight: 700;
+line-height: 1.2;
+}

@@ -3,7 +3,6 @@
 import { Alert, Flexbox } from '@lobehub/ui';
 import { Button, confirmModal } from '@lobehub/ui/base-ui';
 import { App, Form } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { ExternalLink } from 'lucide-react';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -24,23 +23,8 @@ import Body from './Body';
 import Footer from './Footer';
 import { getChannelFormValues, mergeSettingsWithDefaults } from './formState';
 import Header from './Header';
+import styles from './index.module.css';
 import { type ChannelPostSave, ChannelPostSaveContext } from './postSaveContext';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  main: css`
-    position: relative;
-
-    overflow-y: auto;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-
-    padding: 24px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
 
 const omitUndefinedValues = <T extends Record<string, unknown>>(record: T) =>
   Object.fromEntries(Object.entries(record).filter(([, value]) => value !== undefined)) as T;

@@ -1,0 +1,44 @@
+.countBadge {
+flex-shrink: 0;
+
+padding-block: 1px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-size: 12px;
+font-weight: 500;
+color: var(--ant-color-success);
+
+background: var(--ant-color-success-bg);
+}
+
+.moreBadge {
+flex-shrink: 0;
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.previewChip {
+overflow: hidden;
+display: inline-flex;
+flex-shrink: 1;
+align-items: center;
+
+min-width: 0;
+max-width: 280px;
+padding-block: 1px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-size: 12px;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.separator {
+flex-shrink: 0;
+color: var(--ant-color-text-quaternary);
+}

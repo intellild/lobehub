@@ -2,7 +2,6 @@
 
 import { ActionIcon, Flexbox, Skeleton } from '@lobehub/ui';
 import { createModal } from '@lobehub/ui/base-ui';
-import { cssVar, useTheme } from 'antd-style';
 import { t as i18nT } from 'i18next';
 import { ArrowLeftIcon, DownloadIcon, InfoIcon } from 'lucide-react';
 import { memo } from 'react';
@@ -10,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 import NavHeader from '@/features/NavHeader';
 import { PageAgentProvider } from '@/features/PageEditor/PageAgentProvider';
+import { useTheme } from '@/hooks/useTheme';
 import { lambdaQuery } from '@/libs/trpc/client';
 import FileDetailComponent from '@/routes/(main)/resource/features/FileDetail';
 import { useResourceManagerStore } from '@/routes/(main)/resource/features/store';
@@ -115,7 +115,7 @@ const FileEditorCanvas = memo<FileEditorProps>(({ onBack }) => {
             </Flexbox>
           }
           style={{
-            borderBottom: `1px solid ${cssVar.colorBorderSecondary}`,
+            borderBottom: `1px solid ${'var(--ant-color-border-secondary)'}`,
           }}
           styles={{
             left: { flex: 1, minWidth: 0, overflow: 'hidden', padding: 0 },

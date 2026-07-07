@@ -3,21 +3,12 @@
 import { Accordion, AccordionItem, Flexbox, Input, Text, TextArea } from '@lobehub/ui';
 import { Select, useModalContext } from '@lobehub/ui/base-ui';
 import { App, Form } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { agentEvalService } from '@/services/agentEval';
 
-const styles = createStaticStyles(({ css }) => ({
-  sectionLabel: css`
-    margin-block-end: 12px;
-
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+import styles from './Content.module.css';
 
 export interface TestCaseCreateContentProps {
   datasetId: string;

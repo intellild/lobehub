@@ -1,59 +1,13 @@
 'use client';
 
 import type { GitWorkingTreePatch } from '@lobechat/electron-client-ipc';
-import { createStaticStyles } from 'antd-style';
 import { ChevronRightIcon } from 'lucide-react';
 import { AnimatePresence, m } from 'motion/react';
 import { type KeyboardEvent, memo, useCallback } from 'react';
 
 import FileItemBody, { FileItemHeader } from './FileItem';
+import styles from './FileRow.module.css';
 import type { ReviewMode } from './useReviewPatches';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  item: css`
-    /* Skip layout/paint of off-screen rows. Preserved from the previous
-       implementation. */
-    content-visibility: auto;
-    contain-intrinsic-size: auto 32px;
-    flex: none;
-
-    /* Every row carries its own top border — separates file-from-file AND
-       file-from-header without doubling up when a group is collapsed. */
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  row: css`
-    cursor: pointer;
-    user-select: none;
-
-    display: flex;
-    gap: 6px;
-    align-items: center;
-
-    width: 100%;
-    padding-block: 5px;
-    padding-inline: 10px;
-
-    transition: background 0.12s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: -2px;
-    }
-  `,
-  chevron: css`
-    flex: none;
-    color: ${cssVar.colorTextTertiary};
-    transition: transform 0.2s;
-
-    &[data-expanded='true'] {
-      transform: rotate(90deg);
-    }
-  `,
-}));
 
 interface FileRowProps {
   /** Scroll anchor — the tree-nav rail scrolls to `[data-file-key]` on select. */

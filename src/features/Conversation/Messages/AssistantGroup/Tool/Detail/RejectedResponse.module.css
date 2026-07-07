@@ -1,0 +1,14 @@
+.container {
+padding-block: 8px;
+padding-inline: 6px;
+}
+
+.reason {
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.title {
+font-size: 14px;
+color: var(--ant-color-text-secondary);
+}

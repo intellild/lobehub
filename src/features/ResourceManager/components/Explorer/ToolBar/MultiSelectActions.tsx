@@ -1,19 +1,13 @@
 import { Button, Checkbox, Flexbox, Icon, Skeleton } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { BookMinusIcon, BookPlusIcon, FileBoxIcon, Trash2Icon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useResourceManagerStore } from '@/routes/(main)/resource/features/store';
 
-const styles = createStaticStyles(({ css }) => ({
-  total: css`
-    cursor: pointer;
-    height: 27px;
-  `,
-}));
+import styles from './MultiSelectActions.module.css';
 
 export type MultiSelectActionType =
   | 'addToKnowledgeBase'
@@ -45,7 +39,7 @@ const MultiSelectActions = memo<MultiSelectActionsProps>(
         align={'center'}
         gap={12}
         style={{
-          borderBlockEnd: `1px solid ${cssVar.colorBorderSecondary}`,
+          borderBlockEnd: `1px solid ${'var(--ant-color-border-secondary)'}`,
           height: 40,
           paddingBlockEnd: 12,
         }}

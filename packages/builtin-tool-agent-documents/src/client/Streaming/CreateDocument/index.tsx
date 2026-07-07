@@ -2,7 +2,6 @@
 
 import type { BuiltinStreamingProps } from '@lobechat/types';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { FileTextIcon } from 'lucide-react';
 import { memo } from 'react';
 
@@ -11,35 +10,7 @@ import NeuralNetworkLoading from '@/components/NeuralNetworkLoading';
 import StreamingMarkdown from '@/components/StreamingMarkdown';
 
 import type { CreateDocumentArgs } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-
-    width: 100%;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 16px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  header: css`
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  icon: css`
-    color: ${cssVar.colorPrimary};
-  `,
-  title: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './index.module.css';
 
 export const CreateDocumentStreaming = memo<BuiltinStreamingProps<CreateDocumentArgs>>(
   ({ args }) => {

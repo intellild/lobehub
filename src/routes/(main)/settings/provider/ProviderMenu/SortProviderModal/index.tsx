@@ -1,7 +1,6 @@
 import { Flexbox, SortableList } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -11,19 +10,7 @@ import { useAiInfraStore } from '@/store/aiInfra';
 import { type AiProviderListItem } from '@/types/aiProvider';
 
 import GroupItem from './GroupItem';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    height: 36px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-    transition: background 0.2s ease-in-out;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
+import styles from './index.module.css';
 
 interface ConfigGroupModalProps {
   defaultItems: AiProviderListItem[];

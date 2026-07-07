@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, Flexbox, Icon } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import { Pin, PinOff } from 'lucide-react';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +12,19 @@ import { useElectronStore } from '@/store/electron';
 import { type ResolvedTab } from '../TabBar/hooks/useResolvedTabs';
 import { isSameTabTarget } from '../TabBar/scope';
 import { useStyles } from './styles';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface PageItemProps {
   isPinned: boolean;

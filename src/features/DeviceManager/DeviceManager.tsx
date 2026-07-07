@@ -4,7 +4,6 @@ import { isDesktop } from '@lobechat/const';
 import type { DeviceScope } from '@lobechat/types';
 import { Button, Checkbox, Flexbox, Icon, Skeleton, Text } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import {
   ChevronRightIcon,
   FolderCogIcon,
@@ -29,144 +28,8 @@ import { authSelectors } from '@/store/user/selectors';
 import { DEVICE_LIST_SWR_KEY, refreshDeviceList } from './const';
 import DeviceDetailPanel from './DeviceDetailPanel';
 import DeviceItem from './DeviceItem';
+import styles from './DeviceManager.module.css';
 import { useCanEditDevice } from './useCanEditDevice';
-
-const styles = createStaticStyles(({ css }) => ({
-  // ─── Onboarding empty state ───
-  badge: css`
-    padding-block: 1px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 500;
-    color: ${cssVar.colorPrimary};
-
-    background: ${cssVar.colorPrimaryBg};
-  `,
-  capabilityCard: css`
-    padding: 16px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorBgContainer};
-  `,
-  capabilityIcon: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 36px;
-    height: 36px;
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  emptyCard: css`
-    overflow: hidden;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorBgContainer};
-  `,
-  emptyHero: css`
-    padding-block: 40px;
-    padding-inline: 32px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    text-align: center;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  heroIcon: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 56px;
-    height: 56px;
-    border-radius: ${cssVar.borderRadiusLG};
-
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  option: css`
-    cursor: pointer;
-    padding: 20px;
-    background: ${cssVar.colorBgContainer};
-    transition: background 0.15s ease;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: -2px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  optionGrid: css`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  optionIcon: css`
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 40px;
-    height: 40px;
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  // ─── Master-detail surfaces ───
-  detailCol: css`
-    align-self: stretch;
-
-    min-width: 0;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  listCol: css`
-    overflow: hidden;
-
-    min-width: 0;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  listHeader: css`
-    min-height: 44px;
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  listScroll: css`
-    overflow-y: auto;
-
-    /* Cap the list so long fleets (servers / CLI agents) stay scrollable instead
-       of pushing the page — pairs with the detail panel sitting beside it. */
-    max-height: 480px;
-  `,
-  selectAll: css`
-    cursor: pointer;
-    user-select: none;
-  `,
-}));
 
 interface ConnectOptionProps {
   badge?: string;
@@ -200,11 +63,11 @@ const ConnectOption = memo<ConnectOptionProps>(({ icon, title, desc, badge, onCl
         <Text weight={500}>{title}</Text>
         {badge && <span className={styles.badge}>{badge}</span>}
       </Flexbox>
-      <Text color={cssVar.colorTextTertiary} fontSize={12}>
+      <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
         {desc}
       </Text>
     </Flexbox>
-    <Icon icon={ChevronRightIcon} size={16} style={{ color: cssVar.colorTextQuaternary }} />
+    <Icon icon={ChevronRightIcon} size={16} style={{ color: 'var(--ant-color-text-quaternary)' }} />
   </Flexbox>
 ));
 
@@ -240,7 +103,7 @@ const Capabilities = memo(() => {
             </span>
             <Flexbox gap={4}>
               <Text weight={500}>{cap.title}</Text>
-              <Text color={cssVar.colorTextTertiary} fontSize={12}>
+              <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
                 {cap.desc}
               </Text>
             </Flexbox>

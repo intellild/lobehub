@@ -1,28 +1,9 @@
 import { Center, Collapse, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { CheckCircle, Circle, ListCheck } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  collapse: css`
-    padding-block: 0;
-    padding-inline: ${cssVar.paddingXS};
-
-    .ant-collapse-content-box {
-      padding: 0;
-    }
-
-    .ant-collapse-header {
-      padding: 0 !important;
-      color: ${cssVar.colorTextTertiary};
-    }
-
-    .ant-collapse-expand-icon {
-      color: ${cssVar.colorTextTertiary} !important;
-    }
-  `,
-}));
+import styles from './TodoList.module.css';
 
 export interface TodoItem {
   assignee?: string;
@@ -50,9 +31,9 @@ const TodoList = memo<TodoListProps>(({ todos, resolveAssigneeName }) => {
   // Create the header with progress indicator
   const headerContent = (
     <Flexbox horizontal align="center" gap={8} style={{ maxWidth: '100%', overflow: 'hidden' }}>
-      <Icon color={cssVar.colorTextTertiary} icon={ListCheck} size={16} style={{ flexShrink: 0 }} />
+      <Icon color={'var(--ant-color-text-tertiary)'} icon={ListCheck} size={16} style={{ flexShrink: 0 }} />
       <Text
-        color={cssVar.colorTextTertiary}
+        color={'var(--ant-color-text-tertiary)'}
         ellipsis={{ tooltip: true }}
         style={{ flex: 1 }}
         weight={400}
@@ -66,11 +47,11 @@ const TodoList = memo<TodoListProps>(({ todos, resolveAssigneeName }) => {
   const todoItems =
     todos.length === 0 ? (
       <Flexbox horizontal align="center" gap={8} padding="8px 0">
-        <CheckCircle color={cssVar.colorSuccess} size={16} />
+        <CheckCircle color={'var(--ant-color-success)'} size={16} />
         <span
           style={{
-            color: cssVar.colorTextSecondary,
-            fontSize: cssVar.fontSizeSM,
+            color: 'var(--ant-color-text-secondary)',
+            fontSize: 'var(--ant-font-size-sm)',
           }}
         >
           {t('supervisor.todoList.allComplete')}
@@ -86,14 +67,14 @@ const TodoList = memo<TodoListProps>(({ todos, resolveAssigneeName }) => {
             key={index}
             style={{
               borderBottom:
-                index < todos.length - 1 ? `1px solid ${cssVar.colorBorderSecondary}` : 'none',
+                index < todos.length - 1 ? `1px solid ${'var(--ant-color-border-secondary)'}` : 'none',
               padding: '8px 0',
               width: '100%',
             }}
           >
             <Center
               style={{
-                color: todo.finished ? cssVar.colorSuccess : cssVar.colorTextTertiary,
+                color: todo.finished ? 'var(--ant-color-success)' : 'var(--ant-color-text-tertiary)',
                 flexShrink: 0,
               }}
             >
@@ -101,8 +82,8 @@ const TodoList = memo<TodoListProps>(({ todos, resolveAssigneeName }) => {
             </Center>
             <span
               style={{
-                color: todo.finished ? cssVar.colorTextTertiary : cssVar.colorText,
-                fontSize: cssVar.fontSize,
+                color: todo.finished ? 'var(--ant-color-text-tertiary)' : 'var(--ant-color-text)',
+                fontSize: 'var(--ant-font-size)',
                 textDecoration: todo.finished ? 'line-through' : 'none',
               }}
             >
@@ -111,8 +92,8 @@ const TodoList = memo<TodoListProps>(({ todos, resolveAssigneeName }) => {
             {todo.assignee && (
               <span
                 style={{
-                  color: cssVar.colorTextTertiary,
-                  fontSize: cssVar.fontSizeSM,
+                  color: 'var(--ant-color-text-tertiary)',
+                  fontSize: 'var(--ant-font-size-sm)',
                   marginLeft: 6,
                 }}
               >
@@ -139,7 +120,7 @@ const TodoList = memo<TodoListProps>(({ todos, resolveAssigneeName }) => {
       ]}
       styles={{
         header: {
-          fontSize: cssVar.fontSize,
+          fontSize: 'var(--ant-font-size)',
         },
       }}
     />

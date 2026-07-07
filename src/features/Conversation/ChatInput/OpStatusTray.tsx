@@ -2,7 +2,6 @@
 
 import { formatElapsedClockTime } from '@lobechat/utils';
 import { Flexbox, Icon, Popover, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import type { LucideIcon } from 'lucide-react';
 import { CircleDollarSignIcon, CoinsIcon, FootprintsIcon } from 'lucide-react';
 import { Fragment, memo, useEffect, useMemo, useState } from 'react';
@@ -16,187 +15,25 @@ import { calculateOperationUsageMetrics } from '@/utils/operationUsageMetrics';
 
 import { contextSelectors, dataSelectors, useConversationStore } from '../store';
 import { type ActivityKey, resolveOperationActivity } from '../utils/operationActivity';
+import styles from './OpStatusTray.module.css';
 import { parseStatusPhrases, pickRotatingStatusPhrase } from './OpStatusTray/logic';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 // Cycle the generating phrase like a carousel so a long-running task doesn't
 // stare back with the same line the whole time.
 const STATUS_PHRASE_ROTATION_MS = 4000;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    container-type: inline-size;
-
-    padding-block: 8px;
-    padding-inline: 14px;
-    border: 1px solid ${cssVar.colorFillSecondary};
-    border-block-end: none;
-    border-start-start-radius: 12px;
-    border-start-end-radius: 12px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorBgElevated};
-  `,
-  containerTopAttached: css`
-    border-start-start-radius: 0;
-    border-start-end-radius: 0;
-  `,
-  containerSeamless: css`
-    border: none;
-
-    /* keep a hairline divider on top so the tray still reads as separated from
-       the conversation above, even without the full card chrome */
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 0;
-    background: transparent;
-  `,
-  divider: css`
-    width: 1px;
-    height: 12px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  metric: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  `,
-  metricGroup: css`
-    display: inline-flex;
-    flex: none;
-    gap: 10px;
-    align-items: center;
-  `,
-  metricGroupFull: css`
-    @container (max-width: 360px) {
-      display: none;
-    }
-  `,
-  metricIcon: css`
-    flex: none;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  metricPopover: css`
-    min-width: 150px;
-    padding: 2px;
-  `,
-  metricPopoverLabel: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-  metricPopoverRow: css`
-    font-size: 12px;
-  `,
-  metricPopoverValue: css`
-    font-variant-numeric: tabular-nums;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  metricValue: css`
-    overflow: hidden;
-    max-width: 56px;
-    text-overflow: ellipsis;
-  `,
-  compactMetric: css`
-    cursor: default;
-    display: none;
-    flex: none;
-
-    @container (max-width: 360px) {
-      display: inline-flex;
-    }
-  `,
-  statusMetric: css`
-    overflow: hidden;
-    flex: 1 1 auto;
-    min-width: 0;
-  `,
-  statusText: css`
-    overflow: hidden;
-    font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  statusPhrase: css`
-    @keyframes op-status-tray-phrase-enter {
-      from {
-        transform: translateY(3px);
-        opacity: 0;
-      }
-
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    display: inline-block;
-    animation: op-status-tray-phrase-enter 0.4s ease;
-  `,
-  timerValue: css`
-    flex: none;
-    color: ${cssVar.colorTextTertiary};
-
-    @container (max-width: 260px) {
-      display: none;
-    }
-  `,
-  activityGlyph: css`
-    overflow: visible;
-    flex: none;
-
-    width: 16px;
-    height: 16px;
-
-    color: ${cssVar.colorPrimary};
-
-    @keyframes op-status-tray-glyph-spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes op-status-tray-glyph-core {
-      0%,
-      100% {
-        transform: scale(0.86);
-        opacity: 0.9;
-      }
-
-      50% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-  `,
-  glyphCore: css`
-    transform-origin: center;
-    transform-box: fill-box;
-    fill: ${cssVar.colorPrimary};
-    animation: op-status-tray-glyph-core 1.5s ease-in-out infinite;
-
-    @media (prefers-reduced-motion: reduce) {
-      animation: none;
-    }
-  `,
-  glyphOrbit: css`
-    transform-origin: center;
-    transform-box: fill-box;
-
-    fill: none;
-    stroke: color-mix(in srgb, ${cssVar.colorPrimary} 76%, transparent);
-    stroke-dasharray: 9 18;
-    stroke-linecap: round;
-    stroke-width: 1.5;
-
-    animation: op-status-tray-glyph-spin 2s linear infinite;
-
-    @media (prefers-reduced-motion: reduce) {
-      animation: none;
-    }
-  `,
-}));
 
 const ActivityGlyph = memo(() => (
   <svg aria-hidden className={styles.activityGlyph} viewBox="0 0 16 16">

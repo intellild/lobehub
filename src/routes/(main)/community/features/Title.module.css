@@ -1,0 +1,19 @@
+.more {
+display: flex;
+align-items: center;
+color: var(--ant-color-text-secondary);
+}
+
+.title {
+margin-block: 0.2em;
+font-weight: bold;
+line-height: 1.5;
+}
+
+.title2 {
+font-size: 18px;
+}
+
+.title3 {
+font-size: 16px;
+}

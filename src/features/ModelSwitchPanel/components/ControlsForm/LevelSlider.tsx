@@ -1,88 +1,24 @@
 import { Flexbox } from '@lobehub/ui';
 import { Slider } from 'antd';
 import type { SliderSingleProps } from 'antd/es/slider';
-import { createStaticStyles, cx } from 'antd-style';
 import type { CSSProperties, ReactNode } from 'react';
 import { memo, useMemo } from 'react';
 import useMergeState from 'use-merge-value';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  label: css`
-    cursor: pointer;
+import styles from './LevelSlider.module.css';
 
-    padding: 0;
-    border: none;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    font: inherit;
-    font-size: 12px;
-    line-height: 16px;
-    color: ${cssVar.colorTextTertiary};
-    text-align: center;
-    overflow-wrap: anywhere;
-
-    background: transparent;
-
-    transition: color 0.2s ease;
-
-    &:hover {
-      color: ${cssVar.colorTextSecondary};
-    }
-
-    &:focus-visible {
-      border-radius: 6px;
-      outline: 1px solid ${cssVar.colorBorder};
-      outline-offset: 2px;
-    }
-  `,
-  labels: css`
-    display: grid;
-    gap: 8px;
-    width: 100%;
-  `,
-  root: css`
-    width: 100%;
-  `,
-  selectedLabel: css`
-    color: ${cssVar.colorText};
-  `,
-  slider: css`
-    width: 100%;
-    padding-inline: 6px;
-
-    .ant-slider {
-      margin-block: 2px 0;
-      margin-inline: 0;
-    }
-
-    .ant-slider-rail {
-      background: ${cssVar.colorFillQuaternary};
-    }
-
-    .ant-slider-track {
-      background: ${cssVar.colorTextSecondary};
-    }
-
-    .ant-slider-dot {
-      border-color: ${cssVar.colorTextTertiary};
-      background: ${cssVar.colorBgElevated};
-    }
-
-    .ant-slider-dot-active {
-      border-color: ${cssVar.colorTextSecondary};
-    }
-
-    .ant-slider-handle::after {
-      background: ${cssVar.colorBgElevated};
-      box-shadow: 0 0 0 2px ${cssVar.colorTextSecondary};
-    }
-
-    .ant-slider-handle:hover::after,
-    .ant-slider-handle:focus::after,
-    .ant-slider-handle:active::after {
-      box-shadow: 0 0 0 3px ${cssVar.colorTextSecondary};
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface LevelSliderProps<T extends string = string> {
   /**

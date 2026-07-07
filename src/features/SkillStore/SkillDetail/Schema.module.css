@@ -1,0 +1,18 @@
+.divider {
+flex-shrink: 0;
+width: 1px;
+background: var(--ant-color-border-secondary);
+}
+
+.left {
+overflow-y: auto;
+flex-shrink: 0;
+width: 240px;
+padding: 8px;
+}
+
+.right {
+container-type: size;
+overflow: auto;
+flex: 1;
+}

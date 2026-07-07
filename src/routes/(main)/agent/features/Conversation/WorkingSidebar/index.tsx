@@ -1,5 +1,4 @@
 import { ActionIcon, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { PanelRightCloseIcon } from 'lucide-react';
 import { lazy, memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -22,60 +21,12 @@ import { useElectronStore } from '@/store/electron';
 import { useGlobalStore } from '@/store/global';
 
 import Files from './Files';
+import styles from './index.module.css';
 import ProgressSection from './ProgressSection';
 import ResourcesSection from './ResourcesSection';
 import Review from './Review';
 
 const ParamsSection = lazy(() => import('./ParamsSection'));
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  body: css`
-    overflow-y: auto;
-    flex: 1;
-    min-height: 0;
-  `,
-  header: css`
-    flex-shrink: 0;
-  `,
-  pane: css`
-    overflow-y: auto;
-    flex: 1;
-    min-height: 0;
-  `,
-  paneHidden: css`
-    display: none;
-  `,
-  tab: css`
-    cursor: pointer;
-
-    padding-block: 4px;
-    padding-inline: 10px;
-    border: none;
-    border-radius: 6px;
-
-    font-size: 13px;
-    color: ${cssVar.colorTextTertiary};
-
-    background: transparent;
-
-    transition:
-      color 0.15s,
-      background 0.15s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-  `,
-  tabActive: css`
-    color: ${cssVar.colorText};
-    background: ${cssVar.colorFillTertiary};
-  `,
-  tabs: css`
-    display: flex;
-    gap: 4px;
-    align-items: center;
-  `,
-}));
 
 type Tab = 'files' | 'params' | 'review' | 'resources';
 

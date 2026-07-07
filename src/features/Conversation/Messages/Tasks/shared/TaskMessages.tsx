@@ -2,7 +2,6 @@
 
 import { type AssistantContentBlock, type UIChatMessage } from '@lobechat/types';
 import { Accordion, AccordionItem, Block, Flexbox, Icon, Markdown, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ScrollText, Workflow } from 'lucide-react';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,14 +16,8 @@ import ContentBlocksScroll from '../../AssistantGroup/components/ContentBlocksSc
 import { resolveAssistantGroupFromMessages } from '../../AssistantGroup/utils/resolveAssistantGroupFromMessages';
 import Usage from '../../components/Extras/Usage';
 import AnimatedNumber from '../../components/Extras/Usage/UsageDetail/AnimatedNumber';
+import styles from './TaskMessages.module.css';
 import { accumulateUsage, formatDuration, formatElapsedTime } from './utils';
-
-const styles = createStaticStyles(({ css }) => ({
-  instructionContent: css`
-    overflow: auto;
-    max-height: 300px;
-  `,
-}));
 
 /**
  * InstructionAccordion - Shows the task instruction in a collapsible accordion
@@ -65,7 +58,7 @@ const InstructionAccordion = memo<{ childrenCount: number; instruction: string }
                 variant="outlined"
                 width={24}
               >
-                <Icon color={cssVar.colorTextSecondary} icon={ScrollText} />
+                <Icon color={'var(--ant-color-text-secondary)'} icon={ScrollText} />
               </Block>
               <Text as="span" type="secondary">
                 {t('task.instruction')}
@@ -252,7 +245,7 @@ const CompletedView = memo<{
         variant="outlined"
         width={24}
       >
-        <Icon color={cssVar.colorTextSecondary} icon={Workflow} />
+        <Icon color={'var(--ant-color-text-secondary)'} icon={Workflow} />
       </Block>
       <Flexbox horizontal align="center" gap={4}>
         <Text as="span" type="secondary" weight={500}>

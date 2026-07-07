@@ -1,7 +1,6 @@
 import { Aws } from '@lobehub/icons';
 import { Button, Icon, InputPassword, Select } from '@lobehub/ui';
 import { Tabs, type TabsItem } from '@lobehub/ui/base-ui';
-import { cssVar } from 'antd-style';
 import { Network, ShieldPlus } from 'lucide-react';
 import { ModelProvider } from 'model-bank';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
@@ -72,7 +71,7 @@ const BedrockForm = memo<{ description: string }>(({ description }) => {
 
   return (
     <FormAction
-      avatar={<Aws.Color color={cssVar.colorText} size={56} />}
+      avatar={<Aws.Color color={'var(--ant-color-text)'} size={56} />}
       description={description}
       title={t('bedrock.unlock.title')}
     >

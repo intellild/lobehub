@@ -2,24 +2,10 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Block, Markdown } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import type { UpdatePromptParams } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding: 12px;
-    border-radius: 8px;
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  label: css`
-    margin-block-end: 4px;
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+import styles from './index.module.css';
 
 export const UpdatePromptRender = memo<BuiltinRenderProps<UpdatePromptParams>>(({ args }) => {
   const prompt = args?.prompt;

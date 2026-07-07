@@ -1,18 +1,12 @@
 import { type ChatMessageError, type ChatPluginPayload } from '@lobechat/types';
 import { Alert, Flexbox, Highlighter } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { getRuntimeErrorMessage } from '@/utils/locale/runtimeErrorMessage';
 
+import styles from './ErrorResponse.module.css';
 import PluginSettings from './PluginSettings';
-
-const styles = createStaticStyles(({ css }) => ({
-  errorResponseExtra: css`
-    padding-inline-start: 12px;
-  `,
-}));
 
 interface ErrorResponseProps extends ChatMessageError {
   id: string;

@@ -1,6 +1,5 @@
 import { type FlexboxProps } from '@lobehub/ui';
 import { Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
 
@@ -17,7 +16,7 @@ const OnboardingFooterActions = memo<OnboardingFooterActionsProps>(
         align={'center'}
         justify={'space-between'}
         style={{
-          background: cssVar.colorBgContainer,
+          background: 'var(--ant-color-bg-container)',
           bottom: 0,
           marginTop: 'auto',
           paddingTop: 16,

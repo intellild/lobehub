@@ -2,7 +2,6 @@
 
 import { normalizeInterestsForStorage } from '@lobechat/const';
 import { Block, Button, Flexbox, Icon, Input, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { BriefcaseIcon, Undo2Icon } from 'lucide-react';
 import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -99,14 +98,14 @@ const InterestsStep = memo<InterestsStepProps>(({ onBack, onNext }) => {
               style={
                 isSelected
                   ? {
-                      background: cssVar.colorFillSecondary,
-                      borderColor: cssVar.colorFillSecondary,
+                      background: 'var(--ant-color-fill-secondary)',
+                      borderColor: 'var(--ant-color-fill-secondary)',
                     }
                   : {}
               }
               onClick={() => toggleInterest(item.key)}
             >
-              <Icon color={cssVar.colorTextSecondary} icon={item.icon} size={16} />
+              <Icon color={'var(--ant-color-text-secondary)'} icon={item.icon} size={16} />
               <Text fontSize={15} weight={500}>
                 {item.label}
               </Text>
@@ -121,12 +120,12 @@ const InterestsStep = memo<InterestsStepProps>(({ onBack, onNext }) => {
           variant={'outlined'}
           style={
             showCustomInput
-              ? { background: cssVar.colorFillSecondary, borderColor: cssVar.colorFillSecondary }
+              ? { background: 'var(--ant-color-fill-secondary)', borderColor: 'var(--ant-color-fill-secondary)' }
               : {}
           }
           onClick={() => setShowCustomInput(!showCustomInput)}
         >
-          <Icon color={cssVar.colorTextSecondary} icon={BriefcaseIcon} size={16} />
+          <Icon color={'var(--ant-color-text-secondary)'} icon={BriefcaseIcon} size={16} />
           <Text fontSize={15} weight={500}>
             {t('interests.area.other')}
           </Text>
@@ -141,7 +140,7 @@ const InterestsStep = memo<InterestsStepProps>(({ onBack, onNext }) => {
           value={customInput}
           prefix={
             <Icon
-              color={cssVar.colorTextDescription}
+              color={'var(--ant-color-text-description)'}
               icon={BriefcaseIcon}
               style={{ marginInline: 8 }}
             />
@@ -154,7 +153,7 @@ const InterestsStep = memo<InterestsStepProps>(({ onBack, onNext }) => {
         <Button
           disabled={isNavigating}
           icon={Undo2Icon}
-          style={{ color: cssVar.colorTextDescription }}
+          style={{ color: 'var(--ant-color-text-description)' }}
           type={'text'}
           onClick={handleBack}
         >

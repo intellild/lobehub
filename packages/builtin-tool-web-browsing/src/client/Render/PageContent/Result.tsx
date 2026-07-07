@@ -3,7 +3,6 @@
 import type { CrawlErrorResult, CrawlSuccessResult } from '@lobechat/web-crawler';
 import { ActionIcon, Alert, Block, Flexbox, stopPropagation, Text } from '@lobehub/ui';
 import { Descriptions } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { ExternalLink } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,52 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useChatStore } from '@/store/chat';
 
 import { WebBrowsingManifest } from '../../../manifest';
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    container: css`
-      overflow: hidden;
-      min-width: 360px;
-      max-width: 360px;
-    `,
-
-    detailsSection: css`
-      padding-block: ${cssVar.paddingSM};
-    `,
-    externalLink: css`
-      color: ${cssVar.colorTextQuaternary};
-
-      :hover {
-        color: ${cssVar.colorText};
-      }
-    `,
-    footer: css`
-      padding-block: 4px;
-      padding-inline: 12px;
-      background-color: ${cssVar.colorFillQuaternary};
-    `,
-    footerText: css`
-      font-size: 12px !important;
-      color: ${cssVar.colorTextTertiary} !important;
-    `,
-    metaInfo: css`
-      display: flex;
-      align-items: center;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    title: css`
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-
-      margin-block-end: 0;
-    `,
-    titleRow: css`
-      overflow: hidden;
-    `,
-  };
-});
+import styles from './Result.module.css';
 
 interface CrawlerData {
   crawler: string;

@@ -1,0 +1,79 @@
+.label {
+cursor: pointer;
+
+padding: 0;
+border: none;
+
+font: inherit;
+font-size: 12px;
+line-height: 16px;
+color: var(--ant-color-text-tertiary);
+text-align: center;
+overflow-wrap: anywhere;
+
+background: transparent;
+
+transition: color 0.2s ease;
+
+&:hover {
+  color: var(--ant-color-text-secondary);
+}
+
+&:focus-visible {
+  border-radius: 6px;
+  outline: 1px solid var(--ant-color-border);
+  outline-offset: 2px;
+}
+}
+
+.labels {
+display: grid;
+gap: 8px;
+width: 100%;
+}
+
+.root {
+width: 100%;
+}
+
+.selectedLabel {
+color: var(--ant-color-text);
+}
+
+.slider {
+width: 100%;
+padding-inline: 6px;
+
+.ant-slider {
+  margin-block: 2px 0;
+  margin-inline: 0;
+}
+
+.ant-slider-rail {
+  background: var(--ant-color-fill-quaternary);
+}
+
+.ant-slider-track {
+  background: var(--ant-color-text-secondary);
+}
+
+.ant-slider-dot {
+  border-color: var(--ant-color-text-tertiary);
+  background: var(--ant-color-bg-elevated);
+}
+
+.ant-slider-dot-active {
+  border-color: var(--ant-color-text-secondary);
+}
+
+.ant-slider-handle::after {
+  background: var(--ant-color-bg-elevated);
+  box-shadow: 0 0 0 2px var(--ant-color-text-secondary);
+}
+
+.ant-slider-handle:hover::after,
+.ant-slider-handle:focus::after,
+.ant-slider-handle:active::after {
+  box-shadow: 0 0 0 3px var(--ant-color-text-secondary);
+}
+}

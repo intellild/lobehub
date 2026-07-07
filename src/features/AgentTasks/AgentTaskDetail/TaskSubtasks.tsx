@@ -3,7 +3,6 @@ import { ActionIcon, Block, Flexbox, Icon, showContextMenu, Text } from '@lobehu
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App, ConfigProvider, Tree } from 'antd';
 import type { DataNode } from 'antd/es/tree';
-import { cssVar } from 'antd-style';
 import { ChevronDown, ListTodoIcon, PlayCircle, Plus } from 'lucide-react';
 import type { Key, MouseEvent } from 'react';
 import { memo, useCallback, useMemo, useState } from 'react';
@@ -275,13 +274,13 @@ const TaskSubtasks = memo(() => {
                 variant="borderless"
                 onClick={() => setIsExpanded((prev) => !prev)}
               >
-                <Icon color={cssVar.colorTextDescription} icon={ListTodoIcon} size={16} />
-                <Text color={cssVar.colorTextSecondary} fontSize={13} weight={500}>
+                <Icon color={'var(--ant-color-text-description)'} icon={ListTodoIcon} size={16} />
+                <Text color={'var(--ant-color-text-secondary)'} fontSize={13} weight={500}>
                   {t('taskDetail.subtasks')}
                 </Text>
                 <AccordionArrowIcon
                   isOpen={isExpanded}
-                  style={{ color: cssVar.colorTextDescription }}
+                  style={{ color: 'var(--ant-color-text-description)' }}
                 />
               </Block>
               <TaskSubtaskProgressTag
@@ -353,8 +352,8 @@ const TaskSubtasks = memo(() => {
             variant="borderless"
             onClick={toggleCreating}
           >
-            <Icon color={cssVar.colorTextDescription} icon={Plus} size={16} />
-            <Text color={cssVar.colorTextSecondary} fontSize={13} weight={500}>
+            <Icon color={'var(--ant-color-text-description)'} icon={Plus} size={16} />
+            <Text color={'var(--ant-color-text-secondary)'} fontSize={13} weight={500}>
               {t('taskDetail.addSubtask')}
             </Text>
           </Block>

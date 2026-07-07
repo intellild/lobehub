@@ -2,7 +2,6 @@
 
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Icon } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { ListChecks } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,34 +9,20 @@ import { useTranslation } from 'react-i18next';
 import { inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { GenerateVerifyPlanParams, GenerateVerifyPlanState } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  chip: css`
-    overflow: hidden;
-    display: inline-flex;
-    flex: none;
-    gap: 4px;
-    align-items: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    max-width: 260px;
-    margin-inline-start: 6px;
-    padding-block: 1px;
-    padding-inline: 6px 8px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-
-    color: ${cssVar.colorText};
-  `,
-  chipIcon: css`
-    flex: none;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  chipLabel: css`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const GenerateVerifyPlanInspector = memo<
   BuiltinInspectorProps<GenerateVerifyPlanParams, GenerateVerifyPlanState>

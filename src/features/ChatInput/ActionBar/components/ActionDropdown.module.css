@@ -1,0 +1,16 @@
+.dropdownMenu {
+.ant-avatar {
+  margin-inline-end: var(--ant-margin-xs);
+}
+}
+
+.trigger {
+outline: none;
+
+/* Keyboard users still need a landmark for where Enter will land. */
+&:focus-visible {
+  border-radius: var(--ant-border-radius);
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: 2px;
+}
+}

@@ -4,7 +4,6 @@ import { type AgentItem } from '@lobechat/types';
 import { ModelIcon } from '@lobehub/icons';
 import { ActionIcon, Flexbox, Icon, Popover, Skeleton, Text } from '@lobehub/ui';
 import { SkillsIcon } from '@lobehub/ui/icons';
-import { createStaticStyles } from 'antd-style';
 import { BookOpen, FileText, Settings } from 'lucide-react';
 import { memo, type PropsWithChildren, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,36 +16,7 @@ import { agentService } from '@/services/agent';
 import { useAgentGroupStore } from '@/store/agentGroup';
 
 import AgentProfileCard from '.';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  footer: css`
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  section: css`
-    padding-block: 12px;
-    padding-inline: 16px;
-  `,
-  sectionTitle: css`
-    margin-block-end: 8px;
-
-    font-size: 11px;
-    font-weight: 600;
-    color: ${cssVar.colorTextTertiary};
-    text-transform: uppercase;
-  `,
-  statItem: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-  trigger: css`
-    border-radius: ${cssVar.borderRadius};
-
-    &[data-popup-open] {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
+import styles from './AgentProfilePopup.module.css';
 
 type AgentPreview = Pick<
   AgentItem,

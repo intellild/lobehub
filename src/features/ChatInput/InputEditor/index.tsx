@@ -11,7 +11,6 @@ import type { IEditor, ISlashMenuOption, ISlashSectionOption } from '@lobehub/ed
 import { INSERT_MENTION_COMMAND, ReactAutoCompletePlugin } from '@lobehub/editor';
 import { Editor, useEditorState } from '@lobehub/editor/react';
 import { combineKeys } from '@lobehub/ui';
-import { css, cx } from 'antd-style';
 import Fuse from 'fuse.js';
 import { KEY_ESCAPE_COMMAND } from 'lexical';
 import { memo, type ReactNode, useCallback, useEffect, useMemo, useRef } from 'react';
@@ -43,6 +42,7 @@ import {
   type InsertActionTagPayload,
   useSlashActionItems,
 } from './ActionTag';
+import styles from './index.module.css';
 import { createInputCompletionError, isInputCompletionAbortError } from './inputCompletionError';
 import InputHistoryPopup, { getHistoryPreviewText } from './InputHistoryPopup';
 import { INSERT_LOCAL_FILE_TAG_COMMAND } from './LocalFileTag';
@@ -53,23 +53,27 @@ import { INSERT_REFER_TOPIC_COMMAND } from './ReferTopic';
 import { useLocalFileTag } from './useLocalFileTag';
 import { useMentionCategories } from './useMentionCategories';
 
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const className = cx(
-  css`
-    p {
-      margin-block-end: 0;
-    }
-  `,
+  styles.editor,
   mentionFilledClassName,
 );
 
 // Single-line dimmed preview of the highlighted history entry, shown through the
 // editor's placeholder slot while the input is empty (history popup open).
-const ghostClassName = cx(css`
-  overflow: hidden;
-  display: block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`);
+const ghostClassName = styles.ghost;
 
 type MentionOption = ISlashMenuOption | ISlashSectionOption;
 

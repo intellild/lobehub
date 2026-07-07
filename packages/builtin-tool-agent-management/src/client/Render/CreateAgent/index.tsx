@@ -3,64 +3,12 @@
 import { AGENT_CHAT_URL } from '@lobechat/const';
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Avatar, Block, Flexbox, Markdown, Tag } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ArrowRight } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useNavigate } from 'react-router';
 
 import type { CreateAgentParams, CreateAgentState } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  agentCard: css`
-    cursor: pointer;
-
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-radius: 8px;
-
-    background: ${cssVar.colorFillQuaternary};
-
-    transition: background 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  agentDescription: css`
-    overflow: hidden;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  agentTitle: css`
-    font-size: 13px;
-    font-weight: 500;
-  `,
-  arrowIcon: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-  container: css`
-    padding-block: 4px;
-  `,
-  field: css`
-    margin-block-end: 8px;
-
-    &:last-child {
-      margin-block-end: 0;
-    }
-  `,
-  label: css`
-    margin-block-end: 4px;
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  value: css`
-    font-size: 13px;
-  `,
-}));
+import styles from './index.module.css';
 
 export const CreateAgentRender = memo<BuiltinRenderProps<CreateAgentParams, CreateAgentState>>(
   ({ args, pluginState }) => {

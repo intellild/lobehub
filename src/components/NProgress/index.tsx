@@ -1,6 +1,4 @@
 'use client';
-
-import { cssVar } from 'antd-style';
 import NextTopLoader from 'nextjs-toploader';
 import { memo } from 'react';
 
@@ -10,7 +8,7 @@ const NProgress = memo(() => {
   return (
     !isDesktop && (
       <NextTopLoader
-        color={cssVar.colorText}
+        color={'var(--ant-color-text)'}
         height={2}
         shadow={false}
         showSpinner={false}

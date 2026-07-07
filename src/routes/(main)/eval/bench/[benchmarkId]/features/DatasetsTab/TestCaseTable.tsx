@@ -1,122 +1,12 @@
 import { ActionIcon, Button, DropdownMenu, Flexbox, Input, Text } from '@lobehub/ui';
 import { Pagination, Table } from 'antd';
 import { type ColumnsType } from 'antd/es/table';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Ellipsis, FileUp, Pencil, Plus, Search, Trash2 } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import SegmentBar from '../../../../features/SegmentBar';
-
-const styles = createStaticStyles(({ css }) => ({
-  filterButton: css`
-    cursor: pointer;
-
-    padding-block: 4px;
-    padding-inline: 8px;
-    border: none;
-
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 500;
-    text-transform: capitalize;
-
-    background: transparent;
-
-    transition:
-      color 0.15s ease,
-      background 0.15s ease;
-
-    &[data-active='true'] {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-
-    &[data-active='false'] {
-      color: ${cssVar.colorTextTertiary};
-
-      &:hover {
-        color: ${cssVar.colorText};
-      }
-    }
-
-    &:not(:first-child) {
-      border-inline-start: 1px solid ${cssVar.colorBorderSecondary};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: -1px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  filterContainer: css`
-    overflow: hidden;
-    display: flex;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusSM};
-  `,
-  filtersRow: css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  // Summary strip — leads the table with the case total as a mono figure plus a
-  // proportional read of the difficulty mix across the loaded cases.
-  summaryDot: css`
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-  `,
-  summaryRow: css`
-    display: flex;
-    gap: 16px;
-    align-items: center;
-
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  summaryValue: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeLG};
-    font-weight: 600;
-    line-height: 1;
-    color: ${cssVar.colorText};
-  `,
-  table: css`
-    .ant-table {
-      font-size: ${cssVar.fontSize};
-    }
-
-    .ant-table-thead > tr > th {
-      font-size: ${cssVar.fontSizeSM};
-      font-weight: 500;
-      color: ${cssVar.colorTextTertiary};
-      background: ${cssVar.colorFillQuaternary};
-    }
-
-    .ant-table-tbody > tr {
-      &.row-clickable {
-        cursor: pointer;
-      }
-
-      &:hover {
-        background: ${cssVar.colorFillQuaternary};
-      }
-
-      &.row-selected {
-        background: ${cssVar.colorPrimaryBg};
-      }
-    }
-  `,
-}));
+import styles from './TestCaseTable.module.css';
 
 interface TestCaseTableProps {
   datasetEvalMode?: string | null;
@@ -170,9 +60,9 @@ const TestCaseTable = memo<TestCaseTableProps>(
       return {
         counts,
         segments: [
-          { color: cssVar.colorSuccess, value: counts.easy },
-          { color: cssVar.colorWarning, value: counts.medium },
-          { color: cssVar.colorError, value: counts.hard },
+          { color: 'var(--ant-color-success)', value: counts.easy },
+          { color: 'var(--ant-color-warning)', value: counts.medium },
+          { color: 'var(--ant-color-error)', value: counts.hard },
         ],
         tagged,
       };
@@ -186,8 +76,8 @@ const TestCaseTable = memo<TestCaseTableProps>(
           render: (_: any, __: any, index: number) => (
             <span
               style={{
-                color: cssVar.colorTextTertiary,
-                fontFamily: cssVar.fontFamilyCode,
+                color: 'var(--ant-color-text-tertiary)',
+                fontFamily: 'var(--ant-font-family-code)',
                 fontSize: 12,
               }}
             >
@@ -203,7 +93,7 @@ const TestCaseTable = memo<TestCaseTableProps>(
           render: (text: string) => (
             <p
               style={{
-                color: cssVar.colorText,
+                color: 'var(--ant-color-text)',
                 margin: 0,
                 whiteSpace: 'pre-wrap',
                 wordBreak: 'break-word',
@@ -219,7 +109,7 @@ const TestCaseTable = memo<TestCaseTableProps>(
           ellipsis: true,
           key: 'expected',
           render: (text: string) => (
-            <span style={{ color: cssVar.colorTextSecondary }}>{text || '-'}</span>
+            <span style={{ color: 'var(--ant-color-text-secondary)' }}>{text || '-'}</span>
           ),
           title: t('table.columns.expected'),
           width: 200,
@@ -229,12 +119,12 @@ const TestCaseTable = memo<TestCaseTableProps>(
           key: 'evalMode',
           render: (text: string) => {
             const effective = text ?? datasetEvalMode;
-            if (!effective) return <span style={{ color: cssVar.colorTextQuaternary }}>-</span>;
+            if (!effective) return <span style={{ color: 'var(--ant-color-text-quaternary)' }}>-</span>;
             const isInherited = !text && !!datasetEvalMode;
             return (
               <span
                 style={{
-                  color: isInherited ? cssVar.colorTextQuaternary : cssVar.colorTextSecondary,
+                  color: isInherited ? 'var(--ant-color-text-quaternary)' : 'var(--ant-color-text-secondary)',
                   fontSize: 12,
                   fontStyle: isInherited ? 'italic' : 'normal',
                 }}
@@ -250,7 +140,7 @@ const TestCaseTable = memo<TestCaseTableProps>(
           dataIndex: ['content', 'category'],
           key: 'category',
           render: (text: string) => (
-            <span style={{ color: cssVar.colorTextTertiary, fontSize: 12 }}>{text || '-'}</span>
+            <span style={{ color: 'var(--ant-color-text-tertiary)', fontSize: 12 }}>{text || '-'}</span>
           ),
           title: t('table.columns.category'),
           width: 120,
@@ -297,7 +187,7 @@ const TestCaseTable = memo<TestCaseTableProps>(
         <div className={styles.summaryRow}>
           <Flexbox gap={2}>
             <span className={styles.summaryValue}>{total}</span>
-            <Text color={cssVar.colorTextTertiary} fontSize={12}>
+            <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
               {t('benchmark.detail.stats.cases')}
             </Text>
           </Flexbox>
@@ -312,13 +202,13 @@ const TestCaseTable = memo<TestCaseTableProps>(
                       style={{
                         background:
                           d === 'easy'
-                            ? cssVar.colorSuccess
+                            ? 'var(--ant-color-success)'
                             : d === 'medium'
-                              ? cssVar.colorWarning
-                              : cssVar.colorError,
+                              ? 'var(--ant-color-warning)'
+                              : 'var(--ant-color-error)',
                       }}
                     />
-                    <Text color={cssVar.colorTextTertiary} fontSize={12}>
+                    <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
                       {t(`difficulty.${d}`)} {difficulty.counts[d]}
                     </Text>
                   </Flexbox>
@@ -333,7 +223,7 @@ const TestCaseTable = memo<TestCaseTableProps>(
               <Search
                 size={14}
                 style={{
-                  color: cssVar.colorTextTertiary,
+                  color: 'var(--ant-color-text-tertiary)',
                   left: 12,
                   position: 'absolute',
                   top: '50%',

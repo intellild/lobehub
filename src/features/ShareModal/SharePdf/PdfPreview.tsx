@@ -4,7 +4,6 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { Button, Flexbox } from '@lobehub/ui';
 import { createModal } from '@lobehub/ui/base-ui';
 import { Input, Spin } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import { ChevronLeft, ChevronRight, Expand, FileText } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,116 +12,20 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { Document, Page } from '@/libs/pdfjs';
 
 import { containerStyles } from '../style';
+import styles from './PdfPreview.module.css';
 
-const styles = createStaticStyles(({ css }) => ({
-  containerWrapper: css`
-    position: relative;
-    width: 100%;
-    height: 100%;
-  `,
-  documentLoading: css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    height: 100%;
-    padding: 20px;
-  `,
-  emptyState: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    height: 100%;
-
-    color: #666;
-  `,
-  expandButton: css`
-    position: absolute;
-    z-index: 1000;
-    inset-block-start: 20px;
-    inset-inline-end: 20px;
-  `,
-  footerNavigation: css`
-    position: absolute;
-    z-index: 10;
-    inset-block-end: 0;
-    inset-inline: 0;
-
-    padding: 12px;
-    border-block-start: 1px solid color-mix(in srgb, black 10%, transparent);
-
-    background: color-mix(in srgb, white 90%, transparent);
-    backdrop-filter: blur(8px);
-  `,
-  fullscreenButton: css`
-    border-color: white;
-    color: white;
-  `,
-  fullscreenContent: css`
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-
-    min-height: 100%;
-    padding: 20px;
-  `,
-  fullscreenModal: css`
-    position: relative;
-    overflow: auto;
-    height: 90vh;
-  `,
-  fullscreenNavigation: css`
-    position: fixed;
-    z-index: 1001;
-    inset-block-end: 20px;
-    inset-inline-start: 50%;
-    transform: translateX(-50%);
-
-    padding-block: 12px;
-    padding-inline: 20px;
-    border-radius: 8px;
-
-    background: color-mix(in srgb, black 70%, transparent);
-    backdrop-filter: blur(8px);
-  `,
-  fullscreenPageInput: css`
-    width: 60px;
-    text-align: center;
-  `,
-  fullscreenPageText: css`
-    min-width: 20px;
-    font-size: 14px;
-    color: white;
-  `,
-  loadingState: css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    height: 100%;
-  `,
-  loadingText: css`
-    margin-block-start: 8px;
-    color: #666;
-  `,
-  pageInput: css`
-    width: 50px;
-    text-align: center;
-  `,
-  pageNumberText: css`
-    font-size: 12px;
-    color: #666;
-  `,
-  previewContainer: css`
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 12px;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface FullscreenContentProps {
   initialPage: number;

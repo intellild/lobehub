@@ -2,7 +2,6 @@
 
 import { type FlexboxProps } from '@lobehub/ui';
 import { Flexbox, Skeleton } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 export const SkeletonItem = memo<{ avatarSize?: number } & Omit<FlexboxProps, 'children'>>(
@@ -21,7 +20,7 @@ export const SkeletonItem = memo<{ avatarSize?: number } & Omit<FlexboxProps, 'c
         <Skeleton.Button
           size={'small'}
           style={{
-            borderRadius: cssVar.borderRadius,
+            borderRadius: 'var(--ant-border-radius)',
             height: avatarSize,
             maxHeight: avatarSize,
             maxWidth: avatarSize,
@@ -34,7 +33,7 @@ export const SkeletonItem = memo<{ avatarSize?: number } & Omit<FlexboxProps, 'c
             block
             size={'small'}
             style={{
-              borderRadius: cssVar.borderRadius,
+              borderRadius: 'var(--ant-border-radius)',
               height: 16,
               margin: 0,
               maxHeight: 16,

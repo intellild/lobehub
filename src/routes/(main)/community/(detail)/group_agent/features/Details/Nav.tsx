@@ -3,25 +3,11 @@
 import { SOCIAL_URL } from '@lobechat/business-const';
 import { Flexbox, Icon } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import { BookOpenIcon, HistoryIcon, SquareUserIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    link: css`
-      color: ${cssVar.colorTextDescription};
-
-      &:hover {
-        color: ${cssVar.colorInfo};
-      }
-    `,
-    nav: css`
-      border-block-end: 1px solid ${cssVar.colorBorder};
-    `,
-  };
-});
+import styles from './Nav.module.css';
 
 export enum GroupAgentNavKey {
   Overview = 'overview',

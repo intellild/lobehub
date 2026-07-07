@@ -1,0 +1,36 @@
+.container {
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
+
+.description {
+margin-block-end: 8px;
+color: var(--ant-color-text-secondary);
+}
+
+.empty {
+padding: 24px;
+color: var(--ant-color-text-tertiary);
+text-align: center;
+}
+
+.sectionHeader {
+cursor: pointer;
+user-select: none;
+
+display: flex;
+gap: 4px;
+align-items: center;
+
+padding-block: 12px 4px;
+padding-inline: 4px;
+
+font-size: 12px;
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+
+&:hover {
+  color: var(--ant-color-text);
+}
+}

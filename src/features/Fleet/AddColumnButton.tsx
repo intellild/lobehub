@@ -1,37 +1,15 @@
 'use client';
 
 import { Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { PlusIcon } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import AssigneeAgentSelector from '@/features/AgentTasks/features/AssigneeAgentSelector';
 
+import styles from './AddColumnButton.module.css';
 import { useFleetStore } from './store';
 import { fleetColumnKey } from './types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  trigger: css`
-    cursor: pointer;
-
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 52px;
-    height: 100%;
-
-    color: ${cssVar.colorTextTertiary};
-
-    transition: color 0.15s;
-
-    &:hover {
-      color: ${cssVar.colorPrimary};
-    }
-  `,
-}));
 
 interface AddColumnButtonProps {
   /** Splice the new column right after this key (a band's "+" adds to its row). */

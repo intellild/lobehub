@@ -1,0 +1,32 @@
+.ring {
+transform: rotate(-90deg);
+flex-shrink: 0;
+margin-inline-end: 6px;
+}
+
+.ringTrack {
+stroke: var(--ant-color-fill-secondary);
+}
+
+.ringProgress {
+transition:
+  stroke-dashoffset 240ms ease,
+  stroke 240ms ease;
+}
+
+.chip {
+overflow: hidden;
+flex-shrink: 1;
+
+min-width: 0;
+margin-inline-start: 4px;
+padding-block: 1px;
+padding-inline: 8px;
+border-radius: 999px;
+
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+
+background: var(--ant-color-fill-secondary);
+}

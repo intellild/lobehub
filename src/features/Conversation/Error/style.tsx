@@ -1,29 +1,24 @@
 import { type CenterProps } from '@lobehub/ui';
 import { Avatar, Center, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    border: 1px solid ${cssVar.colorSplit};
-    border-radius: 8px;
-    color: ${cssVar.colorText};
-    background: ${cssVar.colorBgContainer};
-  `,
-  desc: css`
-    color: ${cssVar.colorTextTertiary};
-    text-align: center;
-  `,
-  form: css`
-    width: 100%;
-    max-width: 360px;
+import styles from './style.module.css';
 
-    @media (width <= 768px) {
-      max-width: 90%;
-    }
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
+export { styles };
 
 export const ErrorActionContainer = memo<CenterProps>(
   ({ children, className, gap = 24, padding = 24, ...rest }) => {
@@ -60,7 +55,7 @@ export const FormAction = memo<
         <Avatar
           animation={animation}
           avatar={avatar}
-          background={background ?? cssVar.colorFillContent}
+          background={background ?? 'var(--ant-color-fill-content)'}
           gap={12}
           shape={'square'}
           size={80}

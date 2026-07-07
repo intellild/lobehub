@@ -1,7 +1,6 @@
 'use client';
 
 import { Center, Flexbox } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import NextLink from 'next/link';
 import { type PropsWithChildren } from 'react';
 import { memo, Suspense } from 'react';
@@ -19,6 +18,19 @@ import SharePortal from '../features/Portal';
 import HeaderMenu from './HeaderMenu';
 import { styles } from './style';
 import Title from './Title';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const ShareTopicLayout = memo<PropsWithChildren>(({ children }) => {
   const isDarkMode = useIsDark();

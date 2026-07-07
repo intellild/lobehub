@@ -1,7 +1,6 @@
 'use client';
 
 import { Block, Flexbox, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Footprints, ListChecksIcon, Wrench, XIcon } from 'lucide-react';
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -40,9 +39,9 @@ const TaskStatusIndicator = memo<{ status?: ThreadStatus }>(({ status }) => {
   let icon;
 
   if (isCompleted) {
-    icon = <Icon color={cssVar.colorSuccess} icon={ListChecksIcon} />;
+    icon = <Icon color={'var(--ant-color-success)'} icon={ListChecksIcon} />;
   } else if (isError) {
-    icon = <Icon color={cssVar.colorError} icon={XIcon} />;
+    icon = <Icon color={'var(--ant-color-error)'} icon={XIcon} />;
   } else if (isProcessing || isInitializing) {
     icon = <NeuralNetworkLoading size={16} />;
   } else {
@@ -115,7 +114,7 @@ const MetricsDisplay = memo<MetricsDisplayProps>(({ metrics, status }) => {
       {/* Steps */}
       {hasSteps && (
         <Flexbox horizontal align="center" gap={2}>
-          <Icon color={cssVar.colorTextTertiary} icon={Footprints} size={12} />
+          <Icon color={'var(--ant-color-text-tertiary)'} icon={Footprints} size={12} />
           <Text fontSize={12} type="secondary">
             {steps}
           </Text>
@@ -124,7 +123,7 @@ const MetricsDisplay = memo<MetricsDisplayProps>(({ metrics, status }) => {
       {/* Tool calls */}
       {hasToolCalls && (
         <Flexbox horizontal align="center" gap={2}>
-          <Icon color={cssVar.colorTextTertiary} icon={Wrench} size={12} />
+          <Icon color={'var(--ant-color-text-tertiary)'} icon={Wrench} size={12} />
           <Text fontSize={12} type="secondary">
             {toolCalls}
           </Text>

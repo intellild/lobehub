@@ -1,5 +1,4 @@
 import { Center, Checkbox, Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { useTranslation } from 'react-i18next';
 
 import { useGlobalStore } from '@/store/global';
@@ -58,7 +57,7 @@ const ListViewHeader = ({
         className={styles.header}
         paddingInline={8}
         style={{
-          borderBlockEnd: `1px solid ${cssVar.colorBorderSecondary}`,
+          borderBlockEnd: `1px solid ${'var(--ant-color-border-secondary)'}`,
           fontSize: 12,
           minWidth: getListViewMinWidth(showUploader),
         }}

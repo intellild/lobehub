@@ -1,6 +1,5 @@
 import { type MenuProps } from '@lobehub/ui';
 import { Button, Center, DropdownMenu, Flexbox, Icon, Tooltip } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { Check, ChevronDown, Hand, ListChecks, Zap } from 'lucide-react';
 import { type LucideIcon } from 'lucide-react';
 import { memo, useCallback, useMemo, useState } from 'react';
@@ -11,36 +10,7 @@ import { useUserStore } from '@/store/user';
 import { toolInterventionSelectors } from '@/store/user/selectors';
 import { type ApprovalMode } from '@/store/user/slices/settings/selectors';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  desc: css`
-    font-size: 12px;
-    line-height: 1.4;
-    color: ${cssVar.colorTextDescription};
-  `,
-  icon: css`
-    border: 1px solid ${cssVar.colorFillTertiary};
-    border-radius: ${cssVar.borderRadius};
-    background: ${cssVar.colorBgElevated};
-  `,
-  modeButton: css`
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextSecondary};
-  `,
-  modeButtonDisabled: css`
-    cursor: not-allowed;
-    opacity: 0.5;
-  `,
-  title: css`
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: ${cssVar.colorText};
-  `,
-  trigger: css`
-    overflow: hidden;
-    border-radius: ${cssVar.borderRadius};
-  `,
-}));
+import styles from './ApprovalMode.module.css';
 
 const ModeItemLabel = memo<{ desc: string; icon: LucideIcon; title: string }>(
   ({ desc, icon, title }) => (

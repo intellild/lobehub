@@ -1,0 +1,21 @@
+.active {
+background: var(--ant-color-fill-secondary);
+}
+
+.item {
+cursor: pointer;
+
+display: flex;
+gap: 8px;
+align-items: center;
+
+margin-block: 0;
+margin-inline: 4px;
+padding-block: 6px;
+padding-inline: 12px;
+border-radius: 6px;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}

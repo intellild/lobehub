@@ -2,7 +2,6 @@ import { type FormItemProps } from '@lobehub/ui';
 import { ActionIcon, Flexbox, Form, Icon, Popover, Select } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
 import { Switch } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import {
   ArrowDownWideNarrow,
   ArrowUpNarrowWide,
@@ -18,22 +17,12 @@ import { useTaskStore } from '@/store/task';
 import { taskListSelectors } from '@/store/task/selectors';
 
 import type { TaskGroupBy, TaskListViewOptions, TaskOrderBy } from './listViewOptions';
+import styles from './TasksGroupConfig.module.css';
 
 interface TasksHeaderProps {
   options: TaskListViewOptions;
   setOptions: (updater: (prev: TaskListViewOptions) => TaskListViewOptions) => void;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    form: css`
-      label {
-        font-size: 13px !important;
-        color: ${cssVar.colorTextSecondary} !important;
-      }
-    `,
-  };
-});
 
 const TasksGroupConfig = memo<TasksHeaderProps>(({ options, setOptions }) => {
   const [isViewConfigOpen, setIsViewConfigOpen] = useState(false);

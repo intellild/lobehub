@@ -1,0 +1,21 @@
+.container {
+overflow: hidden;
+padding-inline: 8px 0;
+}
+
+.header {
+.action-icon {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+&:hover {
+  .action-icon {
+    opacity: 1;
+  }
+}
+}
+
+.statusIcon {
+font-size: 12px;
+}

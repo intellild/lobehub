@@ -1,6 +1,5 @@
 import { type ChatToolPayloadWithResult } from '@lobechat/types';
 import { Accordion, AccordionItem, ActionIcon, Block, Flexbox, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { AlertTriangle, Check, HandIcon, Maximize2, Minimize2, X } from 'lucide-react';
 import { AnimatePresence, m as motion } from 'motion/react';
 import { type Key, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -350,7 +349,7 @@ const WorkflowCollapse = memo<WorkflowCollapseProps>(
       if (streaming) {
         return wrapInBlock(
           pendingInterventionPresent ? (
-            <Icon color={cssVar.colorInfo} icon={HandIcon} />
+            <Icon color={'var(--ant-color-info)'} icon={HandIcon} />
           ) : (
             <NeuralNetworkLoading size={16} />
           ),
@@ -359,7 +358,7 @@ const WorkflowCollapse = memo<WorkflowCollapseProps>(
 
       switch (completionStatus) {
         case 'error': {
-          return wrapInBlock(<Icon color={cssVar.colorError} icon={X} />);
+          return wrapInBlock(<Icon color={'var(--ant-color-error)'} icon={X} />);
         }
         case 'partial': {
           // Mix of success + failure: show success as the primary state and
@@ -367,11 +366,11 @@ const WorkflowCollapse = memo<WorkflowCollapseProps>(
           // so the overall turn still reads as "done" rather than "broken".
           return (
             <div style={{ flex: 'none', position: 'relative' }}>
-              {wrapInBlock(<Icon color={cssVar.colorSuccess} icon={Check} />)}
+              {wrapInBlock(<Icon color={'var(--ant-color-success)'} icon={Check} />)}
               <div
                 style={{
                   alignItems: 'center',
-                  background: cssVar.colorBgContainer,
+                  background: 'var(--ant-color-bg-container)',
                   borderRadius: '50%',
                   bottom: 2,
                   display: 'flex',
@@ -382,13 +381,13 @@ const WorkflowCollapse = memo<WorkflowCollapseProps>(
                   width: 10,
                 }}
               >
-                <Icon color={cssVar.colorWarning} icon={AlertTriangle} size={8} />
+                <Icon color={'var(--ant-color-warning)'} icon={AlertTriangle} size={8} />
               </div>
             </div>
           );
         }
         default: {
-          return wrapInBlock(<Icon color={cssVar.colorSuccess} icon={Check} />);
+          return wrapInBlock(<Icon color={'var(--ant-color-success)'} icon={Check} />);
         }
       }
     };
@@ -460,7 +459,7 @@ const WorkflowCollapse = memo<WorkflowCollapseProps>(
                   <span
                     className={pendingInterventionPresent ? undefined : shinyTextStyles.shinyText}
                     style={{
-                      color: pendingInterventionPresent ? cssVar.colorInfo : undefined,
+                      color: pendingInterventionPresent ? 'var(--ant-color-info)' : undefined,
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap',
@@ -473,7 +472,7 @@ const WorkflowCollapse = memo<WorkflowCollapseProps>(
               </AnimatePresence>
             </div>
             {showWorkingElapsed && (
-              <span style={{ color: cssVar.colorTextQuaternary, flexShrink: 0 }}>
+              <span style={{ color: 'var(--ant-color-text-quaternary)', flexShrink: 0 }}>
                 ({formatReasoningDuration(workingElapsedSeconds * TIME_MS_PER_SECOND)})
               </span>
             )}
@@ -492,7 +491,7 @@ const WorkflowCollapse = memo<WorkflowCollapseProps>(
               {summaryText}
             </Text>
             {durationText && (
-              <span style={{ color: cssVar.colorTextQuaternary, flexShrink: 0 }}>
+              <span style={{ color: 'var(--ant-color-text-quaternary)', flexShrink: 0 }}>
                 {durationText}
               </span>
             )}

@@ -1,0 +1,57 @@
+.agent {
+padding: 4px;
+  border-radius: 2px;
+}
+
+.agentActive {
+background: var(--ant-color-fill-secondary);
+}
+
+.bubble {
+padding: 6px;
+  border: 1px solid color-mix(in srgb, var(--ant-color-border-secondary) 66%, transparent);
+  border-radius: 3px;
+  background-color: var(--ant-color-bg-container);
+}
+
+.container {
+overflow: hidden;
+  justify-self: flex-end;
+
+  width: 332px;
+  height: 200px;
+  border: 1px solid var(--ant-color-border);
+  border-radius: var(--ant-border-radius-lg);
+
+  background: var(--ant-color-bg-layout);
+}
+
+.conversation {
+background: var(--ant-color-bg-container);
+}
+
+.header {
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.icon {
+flex: none;
+  border-radius: 2px;
+  background: var(--ant-color-fill-secondary);
+}
+
+.input {
+border-block-start: 1px solid var(--ant-color-border-secondary);
+}
+
+.nav {
+padding: 4px;
+  border-inline-end: 1px solid var(--ant-color-border-secondary);
+  background: var(--ant-color-bg-layout);
+}
+
+.sidebar {
+padding: 4px;
+  border-inline-end: 1px solid var(--ant-color-border-secondary);
+  background: var(--ant-color-bg-layout);
+}

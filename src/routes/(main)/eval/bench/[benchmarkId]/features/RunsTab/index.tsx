@@ -2,7 +2,6 @@
 
 import { Button, Flexbox, Text } from '@lobehub/ui';
 import { Select } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Plus } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,32 +11,8 @@ import { runSelectors, useEvalStore } from '@/store/eval';
 import { createRunCreateModal } from '../RunCreateModal';
 import { createRunEditModal } from '../RunEditModal';
 import EmptyState from './EmptyState';
+import styles from './index.module.css';
 import RunCard from './RunCard';
-
-const styles = createStaticStyles(({ css }) => ({
-  // Results-led run cards sit on a responsive grid; they collapse to a single
-  // column on narrow viewports.
-  grid: css`
-    display: grid;
-    gap: 12px;
-    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-
-    @media (max-width: 640px) {
-      grid-template-columns: 1fr;
-    }
-  `,
-  filterEmpty: css`
-    align-items: center;
-    justify-content: center;
-
-    padding-block: 48px;
-    padding-inline: 24px;
-    border: 1px dashed ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-}));
 
 interface RunsTabProps {
   benchmarkId: string;
@@ -81,7 +56,7 @@ const RunsTab = memo<RunsTabProps>(({ benchmarkId }) => {
       {sortedRuns.length > 0 && (
         <Flexbox horizontal align="center" justify="space-between">
           <Flexbox horizontal align="center" gap={8}>
-            <Text color={cssVar.colorTextTertiary}>
+            <Text color={'var(--ant-color-text-tertiary)'}>
               {t('benchmark.detail.runCount', { count: filteredRuns.length })}
             </Text>
             <Select
@@ -107,7 +82,7 @@ const RunsTab = memo<RunsTabProps>(({ benchmarkId }) => {
         <EmptyState onCreate={() => createRunCreateModal({ benchmarkId })} />
       ) : filteredRuns.length === 0 ? (
         <Flexbox className={styles.filterEmpty}>
-          <Text color={cssVar.colorTextTertiary}>{t('run.filter.empty')}</Text>
+          <Text color={'var(--ant-color-text-tertiary)'}>{t('run.filter.empty')}</Text>
         </Flexbox>
       ) : (
         <div className={styles.grid}>

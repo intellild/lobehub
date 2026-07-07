@@ -2,7 +2,6 @@
 
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { CheckCircle, DiffIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,13 +9,20 @@ import { useTranslation } from 'react-i18next';
 import { oneLineEllipsis, shinyTextStyles } from '@/styles';
 
 import type { UpdatePlanParams, UpdatePlanState } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  title: css`
-    margin-inline-end: 8px;
-    color: ${cssVar.colorText};
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const UpdatePlanInspector = memo<BuiltinInspectorProps<UpdatePlanParams, UpdatePlanState>>(
   ({ args, partialArgs, isArgumentsStreaming }) => {
@@ -38,13 +44,13 @@ export const UpdatePlanInspector = memo<BuiltinInspectorProps<UpdatePlanParams, 
       <div className={cx(oneLineEllipsis, isArgumentsStreaming && shinyTextStyles.shinyText)}>
         <span className={styles.title}>{t('builtins.lobe-agent.apiName.updatePlan')}</span>
         {completed && (
-          <Text code as={'span'} color={cssVar.colorSuccess} fontSize={12}>
+          <Text code as={'span'} color={'var(--ant-color-success)'} fontSize={12}>
             <Icon icon={CheckCircle} size={12} />
             {t('builtins.lobe-agent.apiName.updatePlan.completed')}
           </Text>
         )}
         {hasUpdates && !completed && (
-          <Text code as={'span'} color={cssVar.colorWarning} fontSize={12}>
+          <Text code as={'span'} color={'var(--ant-color-warning)'} fontSize={12}>
             <Icon icon={DiffIcon} size={12} />
             {t('builtins.lobe-agent.apiName.updatePlan.modified')}
           </Text>

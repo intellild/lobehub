@@ -1,0 +1,20 @@
+.container {
+cursor: pointer;
+padding: 12px;
+border-radius: 8px;
+background: var(--ant-color-fill-tertiary);
+
+&:hover {
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.description {
+font-size: 12px;
+line-height: 1.5;
+color: var(--ant-color-text-secondary);
+}
+
+.title {
+font-weight: 500;
+}

@@ -1,7 +1,6 @@
 import { Flexbox, SortableList } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { type AiProviderModelListItem } from 'model-bank';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,20 +9,8 @@ import ImperativeModal from '@/components/ImperativeModal';
 import { usePermission } from '@/hooks/usePermission';
 import { useAiInfraStore } from '@/store/aiInfra';
 
+import styles from './index.module.css';
 import ListItem from './ListItem';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    height: 36px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-    transition: background 0.2s ease-in-out;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
 
 interface SortModelModalProps {
   defaultItems: AiProviderModelListItem[];

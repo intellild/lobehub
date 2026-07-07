@@ -2,7 +2,6 @@
 
 import { INBOX_SESSION_ID } from '@lobechat/const';
 import { Avatar, Flexbox, Icon, Input, Popover, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { MoreHorizontalIcon } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
@@ -17,6 +16,21 @@ import { agentSelectors, builtinAgentSelectors } from '@/store/agent/selectors';
 import { useHomeStore } from '@/store/home';
 import { homeAgentListSelectors } from '@/store/home/selectors';
 
+import stylesModule from './QuickChatAgentSwitcher.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const VISIBLE_LIMIT = 5;
 const AVATAR_SIZE = 30;
 
@@ -28,86 +42,7 @@ interface SwitchItem {
   navId: string;
   title: string;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  active: css`
-    border-color: ${cssVar.colorPrimary};
-    box-shadow: 0 0 0 2px ${cssVar.colorPrimaryBgHover};
-  `,
-  itemBtn: css`
-    cursor: pointer;
-
-    box-sizing: content-box;
-    padding: 0;
-    border: 1.5px solid transparent;
-    border-radius: 8px;
-
-    opacity: 0.65;
-    background: transparent;
-
-    transition:
-      opacity 0.15s,
-      border-color 0.15s,
-      box-shadow 0.15s;
-
-    &:hover {
-      opacity: 1;
-    }
-  `,
-  more: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: ${AVATAR_SIZE}px;
-    height: ${AVATAR_SIZE}px;
-    border: 1.5px solid transparent;
-    border-radius: 8px;
-
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  popover: css`
-    padding: 0;
-  `,
-  popoverContent: css`
-    width: 240px;
-    padding: 8px;
-  `,
-  popoverEmpty: css`
-    padding-block: 16px;
-    padding-inline: 8px;
-    color: ${cssVar.colorTextTertiary};
-    text-align: center;
-  `,
-  popoverList: css`
-    overflow: auto;
-    max-height: 240px;
-  `,
-  popoverRow: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    padding-block: 6px;
-    padding-inline: 8px;
-    border-radius: 6px;
-
-    color: ${cssVar.colorText};
-
-    &:hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-}));
+const styles = stylesModule;
 
 const useSwitchItems = (): SwitchItem[] => {
   const inboxAgentId = useAgentStore(builtinAgentSelectors.inboxAgentId);

@@ -2,7 +2,6 @@
 
 import { ComfyUI } from '@lobehub/icons';
 import { Button, Center, Flexbox, Icon, Select } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Loader2Icon, Network } from 'lucide-react';
 import { memo, use, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,32 +13,12 @@ import { usePermission } from '@/hooks/usePermission';
 import { useAiInfraStore } from '@/store/aiInfra';
 import { type ComfyUIKeyVault } from '@/types/user/settings';
 
+import styles from './ComfyUIForm.module.css';
 import { LoadingContext } from './LoadingContext';
 
 interface ComfyUIFormProps {
   description: string;
 }
-
-const styles = createStaticStyles(({ css }) => ({
-  comfyuiFormWide: css`
-    max-width: 900px !important;
-
-    /* Hide the avatar - target the first child which is the Avatar component */
-    > *:first-child {
-      display: none !important;
-    }
-  `,
-  container: css`
-    width: 100%;
-    max-width: 900px;
-    border: 1px solid ${cssVar.colorSplit};
-    border-radius: 8px;
-
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
 
 const ComfyUIForm = memo<ComfyUIFormProps>(({ description }) => {
   const { t } = useTranslation('error');
@@ -232,7 +211,7 @@ const ComfyUIForm = memo<ComfyUIFormProps>(({ description }) => {
                 <div style={{ fontSize: 14, fontWeight: 500 }}>
                   {s('comfyui.customHeaders.title')}
                 </div>
-                <div style={{ color: cssVar.colorTextSecondary, fontSize: 12, marginBottom: 4 }}>
+                <div style={{ color: 'var(--ant-color-text-secondary)', fontSize: 12, marginBottom: 4 }}>
                   {s('comfyui.customHeaders.desc')}
                 </div>
                 <KeyValueEditor

@@ -1,5 +1,4 @@
 import { Center, Checkbox, Flexbox, Skeleton } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 
 import { FILE_DATE_WIDTH, FILE_SIZE_WIDTH, getListViewMinWidth } from './ListItem/constants';
 
@@ -32,8 +31,8 @@ const ListViewSkeleton = ({
           key={index}
           paddingInline={8}
           style={{
-            background: index % 2 === 0 ? cssVar.colorFillQuaternary : 'transparent',
-            borderBlockEnd: `1px solid ${cssVar.colorBorderSecondary}`,
+            background: index % 2 === 0 ? 'var(--ant-color-fill-quaternary)' : 'transparent',
+            borderBlockEnd: `1px solid ${'var(--ant-color-border-secondary)'}`,
             minWidth: getListViewMinWidth(showUploader),
             opacity: getOpacity(index),
           }}

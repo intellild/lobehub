@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -9,22 +8,7 @@ import { ChatList, ConversationProvider } from '@/features/Conversation';
 import MessageItem from '@/features/Conversation/Messages';
 import { useInitAgentConfig } from '@/hooks/useInitAgentConfig';
 
-const styles = createStaticStyles(({ css }) => ({
-  header: css`
-    flex: none;
-
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  scroll: css`
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    position: relative;
-    flex: 1;
-  `,
-}));
+import styles from './index.module.css';
 
 interface ChatAreaProps {
   agentId: string;

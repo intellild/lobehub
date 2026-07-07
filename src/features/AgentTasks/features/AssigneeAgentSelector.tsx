@@ -1,6 +1,5 @@
 import { DEFAULT_INBOX_AVATAR } from '@lobechat/const';
 import { Flexbox, Popover, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import type { CSSProperties, KeyboardEvent, ReactNode } from 'react';
 import { memo, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -17,6 +16,8 @@ import { useHomeStore } from '@/store/home';
 import { homeAgentListSelectors } from '@/store/home/selectors';
 import { useTaskStore } from '@/store/task';
 
+import styles from './AssigneeAgentSelector.module.css';
+
 interface AssigneeAgentSelectorProps {
   children: ReactNode;
   currentAgentId?: string | null;
@@ -24,35 +25,6 @@ interface AssigneeAgentSelectorProps {
   onChange?: (agentId: string) => void;
   taskIdentifier?: string;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  searchInput: css`
-    width: 100%;
-    padding-block: 6px;
-    padding-inline: 10px;
-    border: none;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    font-family: inherit;
-    font-size: 13px;
-    color: ${cssVar.colorText};
-
-    background: transparent;
-    outline: none;
-
-    &::placeholder {
-      color: ${cssVar.colorTextPlaceholder};
-    }
-  `,
-  sectionHeader: css`
-    padding-block: 4px;
-    padding-inline: 8px;
-
-    font-size: 12px;
-    line-height: 1.4;
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
 
 const triggerStyle: CSSProperties = {
   alignItems: 'center',

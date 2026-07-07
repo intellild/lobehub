@@ -1,0 +1,57 @@
+.active {
+background: var(--ant-color-success-bg-hover);
+}
+
+.disable {
+color: var(--ant-color-text-description);
+}
+
+.extraTag {
+padding-block: 4px;
+  padding-inline: 10px 12px;
+  border-radius: 16px;
+
+  color: var(--ant-color-text-secondary);
+
+  background: var(--ant-color-fill-tertiary);
+}
+
+.extraTagActive {
+&:hover {
+    color: var(--ant-color-text);
+  }
+}
+
+.gradeA {
+color: var(--ant-color-success);
+  background: var(--ant-color-success-bg);
+}
+
+.gradeB {
+color: var(--ant-color-warning);
+  background: var(--ant-color-warning-bg);
+}
+
+.gradeF {
+color: var(--ant-color-error);
+  background: var(--ant-color-error-bg);
+}
+
+.gradeIcon {
+flex: none;
+
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid;
+  border-radius: 50%;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tag {
+padding-block: 4px;
+  padding-inline: 8px 12px;
+  border-radius: 16px;
+  background: var(--ant-color-fill-tertiary);
+}

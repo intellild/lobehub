@@ -2,7 +2,6 @@
 
 import { Flexbox, Tag, Text } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import { useMemo, useState } from 'react';
 
 import {
@@ -11,67 +10,10 @@ import {
   type LifecycleMode,
   type ToolRenderFixtureVariant,
 } from './lifecycleMode';
+import styles from './ToolPreview.module.css';
 import { ToolBodySlot, ToolInspectorSlot } from './toolSurfaces';
 import type { ApiEntry } from './useDevtoolsEntries';
 import { toApiAnchor } from './useDevtoolsEntries';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    scroll-margin-block-start: 16px;
-
-    overflow: hidden;
-
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 20px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  cardBody: css`
-    padding: 20px;
-  `,
-  cardHeader: css`
-    gap: 10px;
-
-    padding-block: 20px;
-    padding-inline: 24px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    background: linear-gradient(
-      180deg,
-      ${cssVar.colorFillQuaternary} 0%,
-      ${cssVar.colorBgContainer} 100%
-    );
-  `,
-  code: css`
-    overflow: auto;
-
-    max-height: 320px;
-    margin: 0;
-    padding: 12px;
-    border-radius: 12px;
-
-    font-size: 12px;
-    line-height: 1.55;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  fixtureSummary: css`
-    cursor: pointer;
-    user-select: none;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  previewShell: css`
-    padding: 16px;
-    border-radius: 16px;
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  sectionLabel: css`
-    gap: 8px;
-    align-items: center;
-  `,
-}));
 
 interface ToolPreviewProps {
   api: ApiEntry;

@@ -13,7 +13,6 @@ import {
   Tooltip,
 } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import dayjs from 'dayjs';
 import { FolderIcon, MoreVerticalIcon, Trash2Icon, TriangleAlertIcon } from 'lucide-react';
 import { memo } from 'react';
@@ -22,129 +21,22 @@ import { useTranslation } from 'react-i18next';
 import { lambdaQuery } from '@/libs/trpc/client';
 
 import { refreshDeviceList } from './const';
+import styles from './DeviceItem.module.css';
 import { getDeviceIcon } from './getDeviceIcon';
 import { useCanEditDevice } from './useCanEditDevice';
 
-const styles = createStaticStyles(({ css }) => ({
-  // Code-font cwd line; truncates rather than wrapping so a deep path keeps the
-  // row at one line.
-  cwd: css`
-    overflow: hidden;
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  // The icon tile doubles as the bulk-select target: the platform glyph by
-  // default, a checkbox layered over the same 36px box on hover / when ticked /
-  // when any row is ticked — so toggling selection never shifts the layout.
-  iconGlyph: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    width: 100%;
-    height: 100%;
-
-    color: ${cssVar.colorTextSecondary};
-
-    transition: opacity 0.15s ease;
-  `,
-  iconTile: css`
-    position: relative;
-
-    flex: none;
-
-    width: 36px;
-    height: 36px;
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  selectOverlay: css`
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-
-    transition: opacity 0.15s ease;
-  `,
-  row: css`
-    cursor: pointer;
-
-    padding-block: 12px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadius};
-
-    transition: background 0.15s ease;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: -1px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-
-      .deviceGlyph,
-      .deviceSelect {
-        transition: none;
-      }
-    }
-  `,
-  // Only rows the user can bulk-select swap the glyph for a checkbox. Scoping
-  // the swap here (not on `.row`) keeps the platform icon visible on hover for
-  // non-editable rows, which have no checkbox to reveal.
-  selectable: css`
-    &:hover .deviceGlyph {
-      opacity: 0;
-    }
-
-    &:hover .deviceSelect {
-      opacity: 1;
-    }
-  `,
-  // When selection is active (this row ticked, or any sibling ticked) the
-  // checkbox stays shown and the glyph stays hidden, independent of hover.
-  selectOn: css`
-    .deviceGlyph {
-      opacity: 0;
-    }
-
-    .deviceSelect {
-      opacity: 1;
-    }
-  `,
-  rowActive: css`
-    background: ${cssVar.colorFillSecondary};
-
-    &:hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  statusOffline: css`
-    width: 8px;
-    height: 8px;
-    border: 1.5px solid ${cssVar.colorTextQuaternary};
-    border-radius: 50%;
-  `,
-  statusOnline: css`
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-
-    background: ${cssVar.colorSuccess};
-    box-shadow: 0 0 0 3px ${cssVar.colorSuccessBg};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface DeviceItemProps {
   /** Whether this row is ticked for bulk actions. */
@@ -207,15 +99,15 @@ const DeviceItem = memo<DeviceItemProps>(
         horizontal
         align={'center'}
         aria-pressed={selected}
+        gap={12}
+        role={'button'}
+        tabIndex={0}
         className={cx(
           styles.row,
           selected && styles.rowActive,
           onCheckChange && styles.selectable,
           pinSelect && styles.selectOn,
         )}
-        gap={12}
-        role={'button'}
-        tabIndex={0}
         onClick={onSelect}
         onKeyDown={(e) => {
           // Mirror native button keyboard semantics for the div-as-button row.
@@ -260,7 +152,7 @@ const DeviceItem = memo<DeviceItemProps>(
           </Flexbox>
           {device.defaultCwd && (
             <Flexbox horizontal align={'center'} gap={8} style={{ minWidth: 0 }}>
-              <Icon icon={FolderIcon} size={12} style={{ color: cssVar.colorTextQuaternary }} />
+              <Icon icon={FolderIcon} size={12} style={{ color: 'var(--ant-color-text-quaternary)' }} />
               <Text className={styles.cwd} type={'secondary'}>
                 {device.defaultCwd}
               </Text>

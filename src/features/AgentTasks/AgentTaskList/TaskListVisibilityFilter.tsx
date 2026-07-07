@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, type DropdownItem, DropdownMenu, Icon, type MenuInfo } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Globe, LockIcon, UsersIcon } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -51,7 +50,7 @@ const TaskListVisibilityFilter = memo(() => {
       FILTER_OPTIONS.map((option) => {
         const OptionIcon = option.icon;
         return {
-          icon: <Icon color={cssVar.colorTextSecondary} icon={OptionIcon} size={16} />,
+          icon: <Icon color={'var(--ant-color-text-secondary)'} icon={OptionIcon} size={16} />,
           key: option.key,
           label: t(option.labelKey as never),
           onClick: ({ domEvent }: MenuInfo) => {

@@ -1,5 +1,4 @@
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { LockIcon } from 'lucide-react';
 import { memo } from 'react';
 
@@ -7,24 +6,7 @@ import KnowledgeIcon from '@/components/KnowledgeIcon';
 import { type KnowledgeItem } from '@/types/knowledgeBase';
 
 import Actions from './Action';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  desc: css`
-    margin: 0 !important;
-    font-size: 12px;
-    line-height: 1;
-    color: ${cssVar.colorTextDescription};
-  `,
-  link: css`
-    overflow: hidden;
-    color: ${cssVar.colorText};
-  `,
-  title: css`
-    margin: 0 !important;
-    font-size: 14px;
-    line-height: 1;
-  `,
-}));
+import styles from './index.module.css';
 
 const PluginItem = memo<KnowledgeItem>(
   ({ id, fileType, name, type, description, enabled, visibility }) => {
@@ -54,7 +36,7 @@ const PluginItem = memo<KnowledgeItem>(
           <Flexbox flex={1} gap={4} style={{ overflow: 'hidden', position: 'relative' }}>
             <Flexbox horizontal align={'center'} gap={6}>
               {visibility === 'private' && (
-                <Icon color={cssVar.colorTextDescription} icon={LockIcon} size={12} />
+                <Icon color={'var(--ant-color-text-description)'} icon={LockIcon} size={12} />
               )}
               <Text ellipsis className={styles.title}>
                 {name}

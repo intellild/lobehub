@@ -2,7 +2,6 @@
 
 import { SendButton } from '@lobehub/editor/react';
 import { Button, Flexbox, Select, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Undo2Icon } from 'lucide-react';
 import { memo, useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -115,7 +114,7 @@ const ResponseLanguageStep = memo<ResponseLanguageStepProps>(({ onBack, onNext }
         {t('responseLanguage.hint')}
       </Text>
       {hasError && (
-        <Text style={{ color: cssVar.colorError, fontSize: 12 }}>
+        <Text style={{ color: 'var(--ant-color-error)', fontSize: 12 }}>
           {t('responseLanguage.saveFailed')}
         </Text>
       )}
@@ -125,7 +124,7 @@ const ResponseLanguageStep = memo<ResponseLanguageStepProps>(({ onBack, onNext }
           icon={Undo2Icon}
           type={'text'}
           style={{
-            color: cssVar.colorTextDescription,
+            color: 'var(--ant-color-text-description)',
           }}
           onClick={handleBack}
         >

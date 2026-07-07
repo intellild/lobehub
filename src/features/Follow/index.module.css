@@ -1,0 +1,11 @@
+.icon {
+svg {
+    fill: var(--ant-color-text-description);
+  }
+
+  &:hover {
+    svg {
+      fill: var(--ant-color-text);
+    }
+  }
+}

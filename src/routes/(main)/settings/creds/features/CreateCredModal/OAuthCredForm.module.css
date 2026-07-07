@@ -1,0 +1,20 @@
+.connectionOption {
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.footer {
+display: flex;
+gap: 8px;
+justify-content: flex-end;
+margin-block-start: 24px;
+}
+
+.provider {
+font-weight: 500;
+}
+
+.username {
+color: var(--ant-color-text-secondary);
+}

@@ -1,0 +1,24 @@
+.container {
+overflow-y: auto;
+padding-block: 24px;
+padding-inline: 32px;
+}
+
+.sectionTitle {
+margin: 0;
+font-size: var(--ant-font-size-lg);
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.tag {
+padding-block: 2px;
+padding-inline: 8px;
+border: 1px solid var(--ant-color-border);
+border-radius: var(--ant-border-radius-xs);
+
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+
+background: transparent;
+}

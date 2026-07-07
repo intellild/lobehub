@@ -1,5 +1,4 @@
 import { Avatar, Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import {
   LucideAtom,
   LucideClapperboard,
@@ -58,8 +57,8 @@ const CategoryAvatar = memo<CategoryAvatarProps>(({ category, size = 24 }) => {
 
   return (
     <Avatar
-      avatar={<Icon icon={categoryIcon} style={{ color: cssVar.colorTextSecondary }} />}
-      background={cssVar.colorFillTertiary}
+      avatar={<Icon icon={categoryIcon} style={{ color: 'var(--ant-color-text-secondary)' }} />}
+      background={'var(--ant-color-fill-tertiary)'}
       size={size}
     />
   );

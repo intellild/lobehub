@@ -3,7 +3,6 @@
 import { SOCIAL_URL } from '@lobechat/business-const';
 import { Flexbox, Icon, Tag } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import {
   BookOpenIcon,
   HistoryIcon,
@@ -18,39 +17,8 @@ import { useTranslation } from 'react-i18next';
 import { AssistantNavKey } from '@/types/discover';
 
 import { useDetailContext } from '../DetailProvider';
+import styles from './Nav.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    link: css`
-      display: inline-flex;
-      gap: 4px;
-      align-items: center;
-      color: ${cssVar.colorTextDescription};
-
-      &:hover {
-        color: ${cssVar.colorInfo};
-      }
-    `,
-    nav: css`
-      border-block-end: 1px solid ${cssVar.colorBorder};
-    `,
-    tabsWrapper: css`
-      scrollbar-width: none;
-
-      overflow-x: auto;
-
-      /* A swipe past the tabs' edge must not fire the browser back gesture. */
-      overscroll-behavior-x: none;
-      flex: 1;
-
-      min-width: 0;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    `,
-  };
-});
 interface NavProps {
   activeTab?: AssistantNavKey;
   mobile?: boolean;

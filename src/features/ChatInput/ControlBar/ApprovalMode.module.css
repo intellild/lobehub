@@ -1,0 +1,33 @@
+.desc {
+font-size: 12px;
+line-height: 1.4;
+color: var(--ant-color-text-description);
+}
+
+.icon {
+border: 1px solid var(--ant-color-fill-tertiary);
+border-radius: var(--ant-border-radius);
+background: var(--ant-color-bg-elevated);
+}
+
+.modeButton {
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-secondary);
+}
+
+.modeButtonDisabled {
+cursor: not-allowed;
+opacity: 0.5;
+}
+
+.title {
+font-size: 14px;
+font-weight: 500;
+line-height: 1.4;
+color: var(--ant-color-text);
+}
+
+.trigger {
+overflow: hidden;
+border-radius: var(--ant-border-radius);
+}

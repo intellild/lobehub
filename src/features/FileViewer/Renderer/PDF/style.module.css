@@ -1,0 +1,20 @@
+.container {
+height: 100%;
+}
+
+.document {
+position: relative;
+}
+
+.documentContainer {
+flex: 1;
+padding-block: 10px;
+background-color: var(--ant-color-bg-layout);
+}
+
+.page {
+overflow: hidden;
+margin-block-end: 12px;
+border-radius: 4px;
+box-shadow: var(--ant-box-shadow-tertiary);
+}

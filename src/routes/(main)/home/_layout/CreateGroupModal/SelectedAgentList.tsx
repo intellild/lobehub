@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Input } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -9,20 +8,8 @@ import AgentSelectionEmpty from '@/features/AgentSelectionEmpty';
 
 import { type AgentItemData } from './AgentItem';
 import AgentItem from './AgentItem';
+import styles from './SelectedAgentList.module.css';
 import { useAgentSelectionStore } from './store';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow-y: auto;
-    flex: 1;
-    padding: ${cssVar.paddingSM}px;
-  `,
-  title: css`
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
 
 interface SelectedAgentListProps {
   agents: AgentItemData[];

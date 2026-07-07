@@ -1,6 +1,4 @@
 'use client';
-
-import { createStaticStyles, cx } from 'antd-style';
 import dayjs from 'dayjs';
 import { type ReactNode } from 'react';
 import { memo, useMemo } from 'react';
@@ -9,27 +7,21 @@ import { GroupedVirtuoso } from 'react-virtuoso';
 import { useIsDark } from '@/hooks/useIsDark';
 import Loading from '@/routes/(main)/memory/features/Loading';
 
+import styles from './index.module.css';
 import { useScrollParent } from './useScrollParent';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  timelineContainer: css`
-    position: relative;
-    height: 100%;
-  `,
-  timelineLine: css`
-    position: absolute;
-    inset-block: 0;
-    inset-inline-start: 8px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    width: 1px;
-    height: 100%;
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  timelineLine_dark: css`
-    background: ${cssVar.colorFillQuaternary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export type GroupBy = 'day' | 'month';
 

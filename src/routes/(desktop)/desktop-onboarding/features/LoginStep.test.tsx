@@ -53,14 +53,6 @@ vi.mock('antd', () => ({
   Divider: ({ children }: { children: ReactNode }) => <div>{children}</div>,
 }));
 
-vi.mock('antd-style', () => ({
-  cssVar: {
-    colorFillSecondary: '#eee',
-    colorTextDescription: '#888',
-    colorTextSecondary: '#666',
-  },
-}));
-
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string, fallback?: string) =>

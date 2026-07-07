@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Skeleton } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 interface FileTreeSkeletonProps {
@@ -22,7 +21,7 @@ const FileTreeSkeleton = memo<FileTreeSkeletonProps>(({ rows = 8, showRootFile =
             active
             size={'small'}
             style={{
-              borderRadius: cssVar.borderRadius,
+              borderRadius: 'var(--ant-border-radius)',
               height: 14,
               minWidth: 14,
               width: 14,
@@ -32,7 +31,7 @@ const FileTreeSkeleton = memo<FileTreeSkeletonProps>(({ rows = 8, showRootFile =
             active
             size={'small'}
             style={{
-              borderRadius: cssVar.borderRadius,
+              borderRadius: 'var(--ant-border-radius)',
               height: 16,
               minWidth: 80,
               opacity: 0.6,
@@ -59,7 +58,7 @@ const FileTreeSkeleton = memo<FileTreeSkeletonProps>(({ rows = 8, showRootFile =
               active
               size={'small'}
               style={{
-                borderRadius: cssVar.borderRadius,
+                borderRadius: 'var(--ant-border-radius)',
                 height: 14,
                 minWidth: 14,
                 width: 14,
@@ -69,7 +68,7 @@ const FileTreeSkeleton = memo<FileTreeSkeletonProps>(({ rows = 8, showRootFile =
               active
               size={'small'}
               style={{
-                borderRadius: cssVar.borderRadius,
+                borderRadius: 'var(--ant-border-radius)',
                 height: 16,
                 minWidth: 70,
                 opacity: 0.55,

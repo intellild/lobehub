@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { AlertTriangle, ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,81 +8,7 @@ import { useTranslation } from 'react-i18next';
 import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
 
 import StatusBadge from '../StatusBadge';
-
-const styles = createStaticStyles(({ css }) => ({
-  meta: css`
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-  mono: css`
-    font-family: ${cssVar.fontFamilyCode};
-  `,
-  name: css`
-    overflow: hidden;
-
-    font-weight: 500;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  passRate: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSize};
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-  progressFill: css`
-    height: 100%;
-    border-radius: 999px;
-
-    background: ${cssVar.colorPrimary};
-
-    transition: width 0.3s ease;
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  progressTrack: css`
-    overflow: hidden;
-
-    width: 100%;
-    height: 4px;
-    border-radius: 999px;
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  row: css`
-    cursor: pointer;
-
-    padding-block: 8px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-
-    transition:
-      border-color 0.15s ease,
-      background 0.15s ease;
-
-    &:hover {
-      border-color: ${cssVar.colorBorder};
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  separator: css`
-    color: ${cssVar.colorBorderSecondary};
-  `,
-  stat: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-    font-size: ${cssVar.fontSizeSM};
-  `,
-}));
+import styles from './RunRow.module.css';
 
 interface RunRowProps {
   agentName?: string;
@@ -166,10 +91,10 @@ const RunRow = memo<RunRowProps>(
                 justify={'space-between'}
                 style={{ width: '100%' }}
               >
-                <Text color={cssVar.colorTextTertiary} fontSize={12}>
+                <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
                   {completedCases}/{totalCases}
                 </Text>
-                <Text color={cssVar.colorTextTertiary} fontSize={12}>
+                <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
                   {progress}%
                 </Text>
               </Flexbox>
@@ -179,16 +104,16 @@ const RunRow = memo<RunRowProps>(
             </Flexbox>
           ) : hasStats ? (
             <Flexbox horizontal align={'center'} gap={12}>
-              <span className={styles.stat} style={{ color: cssVar.colorSuccess }}>
+              <span className={styles.stat} style={{ color: 'var(--ant-color-success)' }}>
                 <Icon icon={CheckCircle2} size={12} />
                 {passCount}
               </span>
-              <span className={styles.stat} style={{ color: cssVar.colorError }}>
+              <span className={styles.stat} style={{ color: 'var(--ant-color-error)' }}>
                 <Icon icon={XCircle} size={12} />
                 {failCount}
               </span>
               {errorCount > 0 && (
-                <span className={styles.stat} style={{ color: cssVar.colorWarning }}>
+                <span className={styles.stat} style={{ color: 'var(--ant-color-warning)' }}>
                   <Icon icon={AlertTriangle} size={12} />
                   {errorCount}
                 </span>
@@ -208,7 +133,7 @@ const RunRow = memo<RunRowProps>(
           <Icon
             icon={ArrowRight}
             size={14}
-            style={{ color: cssVar.colorTextTertiary, flexShrink: 0 }}
+            style={{ color: 'var(--ant-color-text-tertiary)', flexShrink: 0 }}
           />
         </Flexbox>
       </WorkspaceLink>

@@ -1,6 +1,7 @@
 'use client';
 
-import { createGlobalStyle, createStaticStyles } from 'antd-style';
+import './InputRow.global.module.css';
+
 import { type FocusEvent, memo, useCallback, useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
@@ -8,24 +9,7 @@ import { ChatInput } from '@/features/Conversation';
 import { inputSelectors, useConversationStore } from '@/features/Conversation/store';
 
 import HoverExpandBar from './HoverExpandBar';
-
-const styles = createStaticStyles(({ css }) => ({
-  row: css`
-    position: relative;
-    flex-shrink: 0;
-  `,
-  surface: css`
-    view-transition-name: floating-chat-panel-input;
-  `,
-}));
-
-const InputRowViewTransitionStyle = createGlobalStyle`
-  ::view-transition-old(floating-chat-panel-input),
-  ::view-transition-new(floating-chat-panel-input) {
-    animation-duration: 240ms;
-    animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
-  }
-`;
+import styles from './InputRow.module.css';
 
 interface ViewTransitionLike {
   finished: Promise<void>;
@@ -107,7 +91,6 @@ const InputRow = memo<InputRowProps>(({ isCollapsed, onExpand }) => {
 
   return (
     <>
-      <InputRowViewTransitionStyle />
       <div
         className={s.row}
         data-collapsed={isCollapsed}

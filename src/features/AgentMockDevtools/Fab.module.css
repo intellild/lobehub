@@ -1,0 +1,64 @@
+.fab {
+cursor: pointer;
+user-select: none;
+
+position: fixed;
+z-index: 1100;
+inset-block-end: 16px;
+inset-inline-end: 16px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 36px;
+height: 36px;
+border: 1px solid transparent;
+border-radius: 50%;
+
+color: var(--ant-color-bg-container);
+
+background: var(--ant-color-text);
+box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+
+transition:
+  transform 160ms ease,
+  background 160ms ease,
+  color 160ms ease,
+  border-color 160ms ease;
+
+&:hover {
+  transform: scale(1.04);
+}
+}
+
+.fabActive {
+border-color: var(--ant-color-border);
+color: var(--ant-color-text);
+background: var(--ant-color-fill-secondary);
+}
+
+.ring {
+pointer-events: none;
+
+position: absolute;
+inset: -3px;
+
+border: 1.5px solid var(--ant-color-text);
+border-radius: 50%;
+
+opacity: 0.4;
+
+animation: agent-mock-pulse 2.4s ease-in-out infinite;
+
+@keyframes agent-mock-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+}

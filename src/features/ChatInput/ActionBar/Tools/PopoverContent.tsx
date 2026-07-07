@@ -1,94 +1,15 @@
 import { type ItemType } from '@lobehub/ui';
 import { Flexbox, Icon, SearchBar, stopPropagation, usePopoverContext } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Pin, Settings, Store, Zap } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwareNavigate';
 
+import styles from './PopoverContent.module.css';
 import { ScrollSignalProvider } from './ScrollSignalContext';
 import SkillActivateMode from './SkillActivateMode';
 import ToolsList from './ToolsList';
-
-const styles = createStaticStyles(({ css }) => ({
-  footer: css`
-    display: flex;
-    gap: 14px;
-    align-items: center;
-
-    padding-block: 6px;
-    padding-inline: 12px;
-    border-block-start: 1px solid ${cssVar.colorFill};
-  `,
-  header: css`
-    padding-block: 8px;
-    padding-inline: 8px;
-    border-block-end: 1px solid ${cssVar.colorFill};
-  `,
-  iconButton: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 28px;
-    height: 28px;
-    border: 0;
-    border-radius: 6px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    background: transparent;
-
-    transition:
-      color 0.2s,
-      background 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorTextSecondary};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  statsItem: css`
-    display: inline-flex;
-    gap: 5px;
-    align-items: center;
-
-    font-size: 12px;
-    line-height: 18px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  storeButton: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    flex: none;
-    gap: 4px;
-    align-items: center;
-
-    height: 28px;
-    padding-inline: 8px;
-    border: 0;
-    border-radius: 6px;
-
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: transparent;
-
-    transition:
-      color 0.2s,
-      background 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
 
 const filterItems = (items: ItemType[], keyword: string): ItemType[] => {
   const lower = keyword.toLowerCase();

@@ -15,7 +15,6 @@ import {
 import type { DropdownItem } from '@lobehub/ui/base-ui';
 import { confirmModal, DropdownMenu } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles, cssVar, useResponsive } from 'antd-style';
 import dayjs from 'dayjs';
 import isEqual from 'fast-deep-equal';
 import {
@@ -37,6 +36,7 @@ import { useNavigate, useParams } from 'react-router';
 
 import NavItem from '@/features/NavPanel/components/NavItem';
 import { SkeletonList } from '@/features/NavPanel/components/SkeletonList';
+import { useResponsive } from '@/hooks/useResponsive';
 import { mutate } from '@/libs/swr';
 import { verifyKeys } from '@/libs/swr/keys';
 import type { VerifyReportSummary } from '@/services/verify';
@@ -45,197 +45,10 @@ import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
 
 import { useVerifyReportSummariesInfinite } from '../hooks';
+import styles from './ReportListPanel.module.css';
 
 const PANEL_MIN = 260;
 const PANEL_MAX = 420;
-
-const styles = createStaticStyles(({ css }) => ({
-  panel: css`
-    height: 100%;
-    background: ${cssVar.colorBgLayout};
-  `,
-  head: css`
-    flex: none;
-    padding-block: 14px 6px;
-    padding-inline: 12px;
-  `,
-  titleRow: css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-inline: 4px;
-  `,
-  collapseBtn: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 26px;
-    height: 26px;
-    border: none;
-    border-radius: 4px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    background: none;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  search: css`
-    display: flex;
-    gap: 7px;
-    align-items: center;
-
-    height: 32px;
-    margin-block: 8px 4px;
-    margin-inline: 4px;
-    padding-inline: 10px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorBgContainer};
-
-    svg {
-      flex: none;
-      color: ${cssVar.colorTextQuaternary};
-    }
-
-    input {
-      width: 100%;
-      min-width: 0;
-      border: none;
-
-      font-size: 13px;
-      color: ${cssVar.colorText};
-
-      background: none;
-      outline: none;
-
-      &::placeholder {
-        color: ${cssVar.colorTextQuaternary};
-      }
-    }
-  `,
-  list: css`
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-
-    padding-block: 6px 16px;
-    padding-inline: 8px;
-  `,
-  editRow: css`
-    padding-block: 4px;
-    padding-inline: 4px;
-  `,
-  spin: css`
-    animation: verify-spin 1.1s linear infinite;
-
-    @keyframes verify-spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  `,
-  itemSub: css`
-    display: flex;
-    gap: 8px;
-
-    margin-block-start: 2px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  itemTitleInput: css`
-    width: 100%;
-    min-width: 0;
-    height: 24px;
-    padding-inline: 6px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 4px;
-
-    font-size: 13px;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorBgContainer};
-    outline: none;
-
-    &:focus {
-      border-color: ${cssVar.colorPrimary};
-      box-shadow: 0 0 0 2px ${cssVar.colorPrimaryBg};
-    }
-  `,
-  counts: css`
-    font-variant-numeric: tabular-nums;
-
-    em {
-      font-style: normal;
-      color: ${cssVar.colorError};
-    }
-  `,
-  empty: css`
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-
-    padding-block: 24px;
-    padding-inline: 12px;
-  `,
-  emptyState: css`
-    height: 100%;
-    min-height: 240px;
-    padding-block: 24px;
-    padding-inline: 16px;
-  `,
-  emptyMsg: css`
-    font-size: 12px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextTertiary};
-    word-break: break-word;
-  `,
-  queryHl: css`
-    font-weight: 600;
-    color: ${cssVar.colorTextSecondary};
-    word-break: break-all;
-  `,
-  clearBtn: css`
-    cursor: pointer;
-
-    padding-block: 4px;
-    padding-inline: 10px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 4px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorBgContainer};
-
-    &:hover {
-      border-color: ${cssVar.colorTextTertiary};
-      color: ${cssVar.colorText};
-    }
-  `,
-  loadMoreError: css`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-
-    padding-block: 10px;
-    padding-inline: 12px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
 
 type Glyph = 'ok' | 'bad' | 'unsure' | 'running';
 
@@ -252,10 +65,10 @@ const glyphOf = (
 };
 
 const glyphMeta: Record<Glyph, { color: string; icon: typeof CircleCheck }> = {
-  bad: { color: cssVar.colorError, icon: CircleX },
-  ok: { color: cssVar.colorSuccess, icon: CircleCheck },
-  running: { color: cssVar.colorInfo, icon: LoaderCircle },
-  unsure: { color: cssVar.colorWarning, icon: CircleHelp },
+  bad: { color: 'var(--ant-color-error)', icon: CircleX },
+  ok: { color: 'var(--ant-color-success)', icon: CircleCheck },
+  running: { color: 'var(--ant-color-info)', icon: LoaderCircle },
+  unsure: { color: 'var(--ant-color-warning)', icon: CircleHelp },
 };
 
 const relativeTime = (value?: Date | string | null) => {
@@ -432,7 +245,7 @@ const ReportListItem = memo<{
       description={description}
       style={mutating ? { opacity: 0.62, pointerEvents: 'none' } : undefined}
       title={title}
-      titleColor={cssVar.colorText}
+      titleColor={'var(--ant-color-text)'}
       actions={
         <DropdownMenu
           iconSpaceMode={'group'}

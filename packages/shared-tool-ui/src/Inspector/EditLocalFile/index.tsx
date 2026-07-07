@@ -3,7 +3,6 @@
 import type { EditFileState } from '@lobechat/tool-runtime';
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Minus, Plus } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { memo } from 'react';
@@ -11,13 +10,20 @@ import { useTranslation } from 'react-i18next';
 
 import { FilePathDisplay } from '../../components/FilePathDisplay';
 import { inspectorTextStyles, shinyTextStyles } from '../../styles';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  separator: css`
-    margin-inline: 2px;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface EditFileArgs {
   all?: boolean;
@@ -63,7 +69,7 @@ export const EditLocalFileInspector = memo<EditLocalFileInspectorProps>(
     const statsParts: ReactNode[] = [];
     if (linesAdded > 0) {
       statsParts.push(
-        <Text code as={'span'} color={cssVar.colorSuccess} fontSize={12} key="added">
+        <Text code as={'span'} color={'var(--ant-color-success)'} fontSize={12} key="added">
           <Icon icon={Plus} size={12} />
           {linesAdded}
         </Text>,
@@ -71,7 +77,7 @@ export const EditLocalFileInspector = memo<EditLocalFileInspectorProps>(
     }
     if (linesDeleted > 0) {
       statsParts.push(
-        <Text code as={'span'} color={cssVar.colorError} fontSize={12} key="deleted">
+        <Text code as={'span'} color={'var(--ant-color-error)'} fontSize={12} key="deleted">
           <Icon icon={Minus} size={12} />
           {linesDeleted}
         </Text>,

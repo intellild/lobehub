@@ -1,6 +1,5 @@
 import { BUILTIN_AGENT_SLUGS } from '@lobechat/builtin-agents';
 import { DraggablePanel } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import Loading from '@/components/Loading/BrandTextLoading';
@@ -28,7 +27,7 @@ const AgentBuilder = memo(() => {
 
   return (
     <DraggablePanel
-      backgroundColor={cssVar.colorBgContainer}
+      backgroundColor={'var(--ant-color-bg-container)'}
       expand={chatPanelExpanded}
       expandable={false}
       maxWidth={600}

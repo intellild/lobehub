@@ -1,5 +1,4 @@
 import { GlobeOffIcon } from '@lobehub/ui/icons';
-import { cssVar } from 'antd-style';
 import { Globe } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +28,7 @@ const Search = memo(() => {
 
   return (
     <Action
-      color={isAgentEnableSearch ? cssVar.colorInfo : undefined}
+      color={isAgentEnableSearch ? 'var(--ant-color-info)' : undefined}
       icon={isAgentEnableSearch ? Globe : GlobeOffIcon}
       showTooltip={false}
       title={t('search.title')}

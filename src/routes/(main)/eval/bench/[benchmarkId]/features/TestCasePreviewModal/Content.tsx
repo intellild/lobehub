@@ -2,45 +2,24 @@
 
 import { Flexbox } from '@lobehub/ui';
 import { Badge } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css }) => ({
-  previewBlock: css`
-    padding: 12px;
-    border-radius: ${cssVar.borderRadius};
-
-    font-size: ${cssVar.fontSize};
-    line-height: 1.6;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  previewLabel: css`
-    margin: 0;
-
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 600;
-    color: ${cssVar.colorTextTertiary};
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  `,
-}));
+import styles from './Content.module.css';
 
 const getDifficultyBadge = (difficulty: string) => {
   const config: Record<string, { bg: string; color: string }> = {
     easy: {
-      bg: cssVar.colorSuccessBg,
-      color: cssVar.colorSuccess,
+      bg: 'var(--ant-color-success-bg)',
+      color: 'var(--ant-color-success)',
     },
     hard: {
-      bg: cssVar.colorErrorBg,
-      color: cssVar.colorError,
+      bg: 'var(--ant-color-error-bg)',
+      color: 'var(--ant-color-error)',
     },
     medium: {
-      bg: cssVar.colorWarningBg,
-      color: cssVar.colorWarning,
+      bg: 'var(--ant-color-warning-bg)',
+      color: 'var(--ant-color-warning)',
     },
   };
 
@@ -86,8 +65,8 @@ const TestCasePreviewContent: FC<TestCasePreviewContentProps> = ({ testCase }) =
             key={tag}
             style={{
               backgroundColor: 'transparent',
-              borderColor: cssVar.colorBorder,
-              color: cssVar.colorTextTertiary,
+              borderColor: 'var(--ant-color-border)',
+              color: 'var(--ant-color-text-tertiary)',
               fontSize: 12,
             }}
           >

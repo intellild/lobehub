@@ -3,7 +3,6 @@
 import type { ModifyNodesArgs } from '@lobechat/editor-runtime';
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { DiffIcon, Minus, Plus } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { memo, useMemo } from 'react';
@@ -12,17 +11,20 @@ import { useTranslation } from 'react-i18next';
 import { oneLineEllipsis, shinyTextStyles } from '@/styles';
 
 import type { ModifyNodesState } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  separator: css`
-    margin-inline: 2px;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  title: css`
-    margin-inline-end: 8px;
-    color: ${cssVar.colorText};
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const ModifyNodesInspector = memo<BuiltinInspectorProps<ModifyNodesArgs, ModifyNodesState>>(
   ({ args, partialArgs, isArgumentsStreaming }) => {
@@ -74,7 +76,7 @@ export const ModifyNodesInspector = memo<BuiltinInspectorProps<ModifyNodesArgs, 
     const statsParts: ReactNode[] = [];
     if (counts.insert > 0) {
       statsParts.push(
-        <Text code as={'span'} color={cssVar.colorSuccess} fontSize={12} key="insert">
+        <Text code as={'span'} color={'var(--ant-color-success)'} fontSize={12} key="insert">
           <Icon icon={Plus} size={12} />
           {counts.insert}
         </Text>,
@@ -82,7 +84,7 @@ export const ModifyNodesInspector = memo<BuiltinInspectorProps<ModifyNodesArgs, 
     }
     if (counts.modify > 0) {
       statsParts.push(
-        <Text code as={'span'} color={cssVar.colorWarning} fontSize={12} key="modify">
+        <Text code as={'span'} color={'var(--ant-color-warning)'} fontSize={12} key="modify">
           <Icon icon={DiffIcon} size={12} />
           {counts.modify}
         </Text>,
@@ -90,7 +92,7 @@ export const ModifyNodesInspector = memo<BuiltinInspectorProps<ModifyNodesArgs, 
     }
     if (counts.remove > 0) {
       statsParts.push(
-        <Text code as={'span'} color={cssVar.colorError} fontSize={12} key="remove">
+        <Text code as={'span'} color={'var(--ant-color-error)'} fontSize={12} key="remove">
           <Icon icon={Minus} size={12} />
           {counts.remove}
         </Text>,

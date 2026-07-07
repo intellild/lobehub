@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -9,53 +8,7 @@ import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
 import SegmentBar from '@/routes/(main)/eval/features/SegmentBar';
 import StatusBadge from '@/routes/(main)/eval/features/StatusBadge';
 
-const styles = createStaticStyles(({ css }) => ({
-  card: css`
-    padding-block: 12px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorBgContainer};
-
-    transition:
-      border-color 0.15s ease,
-      background 0.15s ease;
-
-    &:hover {
-      border-color: ${cssVar.colorBorder};
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  name: css`
-    overflow: hidden;
-
-    font-weight: 600;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  passRate: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeHeading3};
-    font-weight: 600;
-    line-height: 1;
-    color: ${cssVar.colorText};
-  `,
-  score: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-  unit: css`
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
+import styles from './RunSummaryCard.module.css';
 
 interface RunSummaryCardProps {
   benchmarkId: string;
@@ -103,8 +56,8 @@ const RunSummaryCard = memo<RunSummaryCardProps>(({ id, name, status, metrics, b
             {totalCases > 0 && (
               <SegmentBar
                 segments={[
-                  { color: cssVar.colorSuccess, value: passedCases },
-                  { color: cssVar.colorError, value: failedCases },
+                  { color: 'var(--ant-color-success)', value: passedCases },
+                  { color: 'var(--ant-color-error)', value: failedCases },
                 ]}
               />
             )}

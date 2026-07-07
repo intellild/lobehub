@@ -13,7 +13,6 @@ import {
   TooltipGroup,
 } from '@lobehub/ui';
 import { App } from 'antd';
-import { createStaticStyles, cssVar, useResponsive } from 'antd-style';
 import {
   BookmarkCheckIcon,
   BookmarkIcon,
@@ -29,6 +28,7 @@ import useSWR from 'swr';
 
 import PublishedTime from '@/components/PublishedTime';
 import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
+import { useResponsive } from '@/hooks/useResponsive';
 import { useMarketAuth } from '@/layout/AuthProvider/MarketAuth';
 import { favoriteKeys } from '@/libs/swr/keys';
 import { socialService } from '@/services/social';
@@ -38,13 +38,7 @@ import { useCategory } from '../../../(list)/agent/features/Category/useCategory
 import { resolveCommunityProfileLink } from '../../utils/profileLink';
 import AgentForkTag from './AgentForkTag';
 import { useDetailContext } from './DetailProvider';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  time: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-  `,
-}));
+import styles from './Header.module.css';
 
 const Header = memo<{ mobile?: boolean }>(({ mobile: isMobile }) => {
   const { t } = useTranslation('discover');
@@ -200,7 +194,7 @@ const Header = memo<{ mobile?: boolean }>(({ mobile: isMobile }) => {
           align={'center'}
           gap={mobile ? 12 : 24}
           style={{
-            color: cssVar.colorTextSecondary,
+            color: 'var(--ant-color-text-secondary)',
           }}
         >
           {!mobile && cateButton}
@@ -221,7 +215,7 @@ const Header = memo<{ mobile?: boolean }>(({ mobile: isMobile }) => {
               title={t('assistants.withPlugin')}
             >
               <Flexbox horizontal align={'center'} gap={6}>
-                <Icon fill={cssVar.colorTextSecondary} icon={MCP} />
+                <Icon fill={'var(--ant-color-text-secondary)'} icon={MCP} />
                 {pluginCount}
               </Flexbox>
             </Tooltip>

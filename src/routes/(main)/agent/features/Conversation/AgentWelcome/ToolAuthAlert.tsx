@@ -4,7 +4,6 @@ import { type ComposioAppType } from '@lobechat/const';
 import { COMPOSIO_APP_TYPES } from '@lobechat/const';
 import { ActionIcon, Alert, Avatar, Button, Flexbox, Icon, Text } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { createStyles, cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { PlusIcon, XIcon } from 'lucide-react';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -20,18 +19,7 @@ import { ComposioServerStatus, composioStoreSelectors } from '@/store/tool/slice
 import { useUserStore } from '@/store/user';
 import { userProfileSelectors } from '@/store/user/selectors';
 
-const useStyles = createStyles(({ css }) => ({
-  // Reveal the remove icon only when the row is hovered.
-  row: css`
-    &:hover .tool-auth-remove {
-      opacity: 1;
-    }
-  `,
-  removeIcon: css`
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  `,
-}));
+import styles from './ToolAuthAlert.module.css';
 
 // Tools that require Market authentication
 const MARKET_AUTH_TOOLS = [
@@ -66,7 +54,6 @@ interface ComposioToolAuthItemProps {
 
 const ComposioToolAuthItem = memo<ComposioToolAuthItemProps>(({ tool, onAuthComplete }) => {
   const { t } = useTranslation('chat');
-  const { styles, cx } = useStyles();
   const [isConnecting, setIsConnecting] = useState(false);
   const [isWaitingAuth, setIsWaitingAuth] = useState(false);
 
@@ -221,7 +208,7 @@ const ComposioToolAuthItem = memo<ComposioToolAuthItemProps>(({ tool, onAuthComp
     if (typeof tool.icon === 'string') {
       return <Avatar alt={tool.label} avatar={tool.icon} size={20} style={{ flex: 'none' }} />;
     }
-    return <Icon fill={cssVar.colorText} icon={tool.icon} size={20} />;
+    return <Icon fill={'var(--ant-color-text)'} icon={tool.icon} size={20} />;
   };
 
   const isLoading = isConnecting || isWaitingAuth;
@@ -230,7 +217,7 @@ const ComposioToolAuthItem = memo<ComposioToolAuthItemProps>(({ tool, onAuthComp
     <Flexbox
       horizontal
       align="center"
-      className={cx(styles.row)}
+      className={styles.row}
       gap={12}
       justify="space-between"
       style={{
@@ -242,7 +229,7 @@ const ComposioToolAuthItem = memo<ComposioToolAuthItemProps>(({ tool, onAuthComp
         {renderIcon()}
         <Text>{tool.label}</Text>
         <ActionIcon
-          className={cx('tool-auth-remove', styles.removeIcon)}
+          className={`tool-auth-remove ${styles.removeIcon}`}
           icon={XIcon}
           size="small"
           title={t('toolAuth.remove')}
@@ -274,7 +261,6 @@ interface MarketToolAuthItemProps {
 
 const MarketToolAuthItem = memo<MarketToolAuthItemProps>(({ tool }) => {
   const { t } = useTranslation('chat');
-  const { styles, cx } = useStyles();
   const { signIn, isLoading } = useMarketAuth();
   const removePlugin = useAgentStore((s) => s.removePlugin);
 
@@ -298,7 +284,7 @@ const MarketToolAuthItem = memo<MarketToolAuthItemProps>(({ tool }) => {
     <Flexbox
       horizontal
       align="center"
-      className={cx(styles.row)}
+      className={styles.row}
       gap={12}
       justify="space-between"
       style={{
@@ -310,7 +296,7 @@ const MarketToolAuthItem = memo<MarketToolAuthItemProps>(({ tool }) => {
         <Avatar alt={tool.label} avatar={tool.avatar} size={20} style={{ flex: 'none' }} />
         <Text>{tool.label}</Text>
         <ActionIcon
-          className={cx('tool-auth-remove', styles.removeIcon)}
+          className={`tool-auth-remove ${styles.removeIcon}`}
           icon={XIcon}
           size="small"
           title={t('toolAuth.remove')}

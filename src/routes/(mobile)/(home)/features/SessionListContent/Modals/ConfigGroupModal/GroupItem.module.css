@@ -1,0 +1,12 @@
+.content {
+position: relative;
+overflow: hidden;
+flex: 1;
+}
+
+.title {
+flex: 1;
+height: 28px;
+line-height: 28px;
+text-align: start;
+}

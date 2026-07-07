@@ -7,13 +7,27 @@ import {
 } from '@lobechat/const';
 import { type DiscoverPluginDetail, type PluginSource } from '@lobechat/types';
 import { Avatar, Block, Flexbox, Icon, Image, Skeleton, Tag, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import urlJoin from 'url-join';
 
 import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
 import { useDiscoverStore } from '@/store/discover';
+
+import styles from './PluginItem.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 /**
  * Icon component for built-in tools (Composio & LobehubSkill)
@@ -27,47 +41,11 @@ const BuiltinToolIcon = memo<Pick<ComposioAppType | LobehubSkillProviderType, 'i
     }
 
     // Use theme color fill, automatically adapts in dark mode
-    return <Icon fill={cssVar.colorText} icon={icon} size={40} />;
+    return <Icon fill={'var(--ant-color-text)'} icon={icon} size={40} />;
   },
 );
 
 BuiltinToolIcon.displayName = 'BuiltinToolIcon';
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    clickable: css`
-      cursor: pointer;
-
-      &:hover {
-        .plugin-title {
-          color: ${cssVar.colorLink};
-        }
-      }
-    `,
-    desc: css`
-      flex: 1;
-      margin: 0 !important;
-      font-size: 14px !important;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    noLink: css`
-      cursor: default;
-    `,
-    tag: css`
-      flex-shrink: 0;
-    `,
-    title: css`
-      margin: 0 !important;
-      font-size: 14px !important;
-      font-weight: 500 !important;
-    `,
-    titleRow: css`
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    `,
-  };
-});
 
 interface PluginItemProps {
   identifier: string;

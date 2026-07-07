@@ -1,0 +1,28 @@
+.block {
+width: 100%;
+min-height: 180px;
+padding: 32px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-container);
+}
+
+.icon {
+color: var(--ant-color-text-tertiary);
+}
+
+.inline {
+padding-block: 8px;
+}
+
+.metric {
+color: var(--ant-color-text-quaternary);
+}
+
+.page {
+flex: 1;
+width: 100%;
+min-height: 320px;
+padding: 48px;
+}

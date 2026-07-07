@@ -1,5 +1,4 @@
 import { Avatar, Block, Flexbox, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import type { ReactNode } from 'react';
 
 import type { HeterogeneousAgentStatusGuideVariant } from './types';
@@ -39,7 +38,7 @@ const GuideShell = ({
           <Flexbox horizontal align="center" gap={compact ? 10 : 12} style={{ minWidth: 0 }}>
             <Avatar
               avatar={icon}
-              background={cssVar.colorFillQuaternary}
+              background={'var(--ant-color-fill-quaternary)'}
               gap={compact ? 8 : 12}
               shape={'square'}
               size={compact ? 32 : 48}
@@ -70,7 +69,7 @@ const GuideShell = ({
       padding={compact ? 12 : 16}
       variant={'outlined'}
       style={{
-        background: cssVar.colorBgElevated,
+        background: 'var(--ant-color-bg-elevated)',
         overflow: 'hidden',
         width: '100%',
       }}

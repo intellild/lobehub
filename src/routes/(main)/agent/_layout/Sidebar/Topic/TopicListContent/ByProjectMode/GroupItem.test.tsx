@@ -56,28 +56,6 @@ vi.mock('@lobehub/ui', () => ({
   Tooltip: ({ children }: { children?: ReactNode }) => <>{children}</>,
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({
-    addTopicAction: 'addTopicAction',
-    statusBadge: 'statusBadge',
-    statusBadgeError: 'statusBadgeError',
-    statusBadgeLoading: 'statusBadgeLoading',
-    statusBadgeWaiting: 'statusBadgeWaiting',
-    unreadDot: 'unreadDot',
-    unreadRipple: 'unreadRipple',
-    unreadWrapper: 'unreadWrapper',
-  }),
-  cssVar: {
-    colorError: '#f00',
-    colorInfo: '#00f',
-    colorTextSecondary: '#666',
-    colorTextTertiary: '#999',
-    colorWarning: '#fa0',
-  },
-  cx: (...classes: Array<string | undefined>) => classes.filter(Boolean).join(' '),
-  keyframes: () => 'keyframes',
-}));
-
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string, options?: { directory?: string }) =>

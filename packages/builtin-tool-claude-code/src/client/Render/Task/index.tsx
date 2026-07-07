@@ -2,83 +2,25 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Block, Checkbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { CircleArrowRight, CircleCheckBig, CircleX, ListTodo, RotateCcw } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ClaudeCodeApiName, type TaskUpdateArgs } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  header: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  headerCount: css`
-    flex-shrink: 0;
-
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  headerDetail: css`
-    overflow: hidden;
-    min-width: 0;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-  `,
-  headerLabel: css`
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-    gap: 0;
-    align-items: center;
-
-    min-width: 0;
-
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  itemRow: css`
-    width: 100%;
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px dashed ${cssVar.colorBorderSecondary};
-
-    &:last-child {
-      border-block-end: none;
-    }
-  `,
-  processingRow: css`
-    display: flex;
-    gap: 7px;
-    align-items: center;
-  `,
-  textCompleted: css`
-    color: ${cssVar.colorTextQuaternary};
-    text-decoration: line-through;
-  `,
-  textPending: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-  textProcessing: css`
-    color: ${cssVar.colorText};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface TaskPluginStateItem {
   id?: string;
@@ -103,7 +45,7 @@ const TaskRow = memo<TaskRowProps>(({ item }) => {
   if (status === 'processing') {
     return (
       <div className={cx(styles.itemRow, styles.processingRow)}>
-        <Icon icon={CircleArrowRight} size={17} style={{ color: cssVar.colorInfo }} />
+        <Icon icon={CircleArrowRight} size={17} style={{ color: 'var(--ant-color-info)' }} />
         <span className={styles.textProcessing}>{text}</span>
       </div>
     );
@@ -113,7 +55,7 @@ const TaskRow = memo<TaskRowProps>(({ item }) => {
 
   return (
     <Checkbox
-      backgroundColor={cssVar.colorSuccess}
+      backgroundColor={'var(--ant-color-success)'}
       checked={isCompleted}
       shape={'circle'}
       style={{ borderWidth: 1.5, cursor: 'default' }}
@@ -163,7 +105,7 @@ const TaskHeader = memo<TaskHeaderProps>(({ completed, total, inProgress, overri
     override?.icon ?? (inProgress ? CircleArrowRight : allDone ? CircleCheckBig : ListTodo);
   const color =
     override?.color ??
-    (inProgress ? cssVar.colorInfo : allDone ? cssVar.colorSuccess : cssVar.colorTextSecondary);
+    (inProgress ? 'var(--ant-color-info)' : allDone ? 'var(--ant-color-success)' : 'var(--ant-color-text-secondary)');
 
   const label =
     override?.label ??
@@ -239,22 +181,22 @@ const Task = memo<BuiltinRenderProps<TaskUpdateArgs | undefined, TaskPluginState
       if (status) {
         const map = {
           completed: {
-            color: cssVar.colorSuccess,
+            color: 'var(--ant-color-success)',
             icon: CircleCheckBig,
             label: t('builtins.lobe-claude-code.task.updateCompleted'),
           },
           deleted: {
-            color: cssVar.colorError,
+            color: 'var(--ant-color-error)',
             icon: CircleX,
             label: t('builtins.lobe-claude-code.task.updateDeleted'),
           },
           in_progress: {
-            color: cssVar.colorInfo,
+            color: 'var(--ant-color-info)',
             icon: CircleArrowRight,
             label: t('builtins.lobe-claude-code.task.updateInProgress'),
           },
           pending: {
-            color: cssVar.colorTextSecondary,
+            color: 'var(--ant-color-text-secondary)',
             icon: RotateCcw,
             label: t('builtins.lobe-claude-code.task.updatePending'),
           },
@@ -267,7 +209,7 @@ const Task = memo<BuiltinRenderProps<TaskUpdateArgs | undefined, TaskPluginState
       // generic todo aggregate.
       if (argsSubject) {
         return {
-          color: cssVar.colorTextSecondary,
+          color: 'var(--ant-color-text-secondary)',
           detail: resolvedSubject,
           icon: ListTodo,
           label: t('builtins.lobe-claude-code.task.updateSubject.completed'),

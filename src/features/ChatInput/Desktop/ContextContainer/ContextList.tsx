@@ -1,5 +1,4 @@
 import { Flexbox, ScrollShadow } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo, useEffect, useMemo, useRef } from 'react';
 
 import { fileChatSelectors, useFileStore } from '@/store/file';
@@ -8,19 +7,8 @@ import { UPLOAD_STATUS_SET } from '@/types/files/upload';
 import { useAgentId } from '../../hooks/useAgentId';
 import FileItem from '../FilePreview/FileItem';
 import ContextItem from './ContextItem';
+import styles from './ContextList.module.css';
 import SelectionItem from './SelectionItem';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    overflow-x: scroll;
-    width: 100%;
-  `,
-  uploadingContainer: css`
-    overflow-x: auto;
-    width: 100%;
-    padding-block: 8px;
-  `,
-}));
 
 const ContextList = memo(() => {
   const agentId = useAgentId();
@@ -30,7 +18,6 @@ const ContextList = memo(() => {
   const rawSelectionList = useFileStore(fileChatSelectors.chatContextSelections);
   const showSelectionList = useFileStore(fileChatSelectors.chatContextSelectionHasItem);
   const clearChatContextSelections = useFileStore((s) => s.clearChatContextSelections);
-
 
   // Clear selections only when agentId changes (not on initial mount)
   useEffect(() => {

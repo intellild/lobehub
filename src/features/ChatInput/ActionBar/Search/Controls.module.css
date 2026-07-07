@@ -1,0 +1,41 @@
+.active {
+background: var(--ant-color-fill-tertiary);
+}
+
+.check {
+margin-inline-start: 12px;
+font-size: 16px;
+color: var(--ant-color-primary);
+}
+
+.description {
+font-size: 12px;
+color: var(--ant-color-text-description);
+}
+
+.icon {
+border: 1px solid var(--ant-color-fill-tertiary);
+border-radius: var(--ant-border-radius);
+background: var(--ant-color-bg-elevated);
+}
+
+.option {
+cursor: pointer;
+
+width: 100%;
+padding-block: 8px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius);
+
+transition: background-color 0.2s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.title {
+font-size: 14px;
+font-weight: 500;
+color: var(--ant-color-text);
+}

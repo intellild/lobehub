@@ -1,0 +1,176 @@
+.badge {
+flex: none;
+
+padding-inline: 5px;
+border-radius: 999px;
+
+font-size: 10px;
+line-height: 15px;
+color: var(--ant-color-text-tertiary);
+
+background: var(--ant-color-fill-secondary);
+}
+
+.button {
+cursor: pointer;
+
+display: flex;
+flex: none;
+gap: 6px;
+align-items: center;
+
+padding-block: 2px;
+padding-inline: 4px;
+border-radius: 4px;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+white-space: nowrap;
+
+transition: background 0.2s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.buttonLabel {
+overflow: hidden;
+max-width: 140px;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.chooseFolderItem {
+cursor: pointer;
+
+padding-block: 8px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius);
+
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+
+transition: background-color 0.2s;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.clearText {
+cursor: pointer;
+
+padding-block: 6px 2px;
+padding-inline: 8px;
+
+font-size: 11px;
+font-weight: 500;
+color: var(--ant-color-text-tertiary);
+
+transition: color 0.2s;
+
+&:hover {
+  color: var(--ant-color-text);
+}
+}
+
+.dirItem {
+cursor: pointer;
+
+padding-block: 6px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius);
+
+transition: background-color 0.2s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+
+/* Reveal the row actions (set-default / remove) only on hover. */
+&:hover .wd-row-actions {
+  display: flex;
+}
+}
+
+.dirItemActive {
+background: var(--ant-color-fill-tertiary);
+}
+
+.dirName {
+overflow: hidden;
+
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.dirPath {
+overflow: hidden;
+
+font-size: 11px;
+color: var(--ant-color-text-description);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.rowAction {
+cursor: pointer;
+
+display: flex;
+flex: none;
+align-items: center;
+justify-content: center;
+
+width: 20px;
+height: 20px;
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-text-quaternary);
+
+transition: all 0.2s;
+
+&:hover {
+  color: var(--ant-color-text-secondary);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.rowActions {
+display: none;
+flex: none;
+gap: 2px;
+align-items: center;
+}
+
+.scrollContainer {
+overflow-y: auto;
+max-height: 320px;
+}
+
+.searchBar {
+padding-block: 2px;
+padding-inline: 8px;
+border-block-end: 1px solid var(--ant-color-split);
+
+.ant-input-affix-wrapper {
+  padding-inline: 0;
+}
+
+.ant-input-prefix {
+  margin-inline-end: 8px;
+}
+}
+
+.sectionTitle {
+padding-block: 6px 2px;
+padding-inline: 8px;
+
+font-size: 11px;
+font-weight: 500;
+color: var(--ant-color-text-quaternary);
+}

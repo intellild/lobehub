@@ -1,0 +1,14 @@
+.emptyState {
+padding-block: 48px;
+padding-inline: 24px;
+border: 1px dashed var(--ant-color-border);
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-text-secondary);
+text-align: center;
+}
+
+.page {
+overflow-y: auto;
+flex: 1;
+}

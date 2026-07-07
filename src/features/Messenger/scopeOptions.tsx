@@ -1,36 +1,8 @@
 import { Avatar, Flexbox, Tag, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
+
+import styles from './scopeOptions.module.css';
 
 export const PERSONAL_SCOPE = 'personal';
-
-const styles = createStaticStyles(({ css }) => ({
-  personalTag: css`
-    cursor: default;
-    flex: none;
-    margin-block: 0;
-    margin-inline: auto 0;
-  `,
-  scopeName: css`
-    flex: 0 1 auto;
-    min-width: 0;
-  `,
-  scopeOption: css`
-    flex: 1 1 auto;
-    width: 100%;
-    min-width: 0;
-  `,
-  scopeTitle: css`
-    flex: 1;
-    min-width: 0;
-  `,
-  scopeValue: css`
-    > span {
-      display: flex;
-      width: 100%;
-      min-width: 0;
-    }
-  `,
-}));
 
 export const messengerScopeSelectClassNames = { value: styles.scopeValue };
 

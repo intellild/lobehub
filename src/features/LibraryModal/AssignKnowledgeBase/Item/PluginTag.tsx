@@ -1,37 +1,24 @@
 import { Icon, Tag } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { BadgeCheck, CircleUser, Package } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { type InstallPluginMeta } from '@/types/tool/plugin';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  community: css`
-    color: color-mix(in srgb, ${cssVar.colorInfo} 75%, transparent);
-    background: ${cssVar.colorInfoBg};
+import styles from './PluginTag.module.css';
 
-    &:hover {
-      color: ${cssVar.colorInfo};
-    }
-  `,
-  custom: css`
-    color: color-mix(in srgb, ${cssVar.colorWarning} 75%, transparent);
-    background: ${cssVar.colorWarningBg};
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    &:hover {
-      color: ${cssVar.colorWarning};
-    }
-  `,
-  official: css`
-    color: color-mix(in srgb, ${cssVar.colorSuccess} 75%, transparent);
-    background: ${cssVar.colorSuccessBg};
-
-    &:hover {
-      color: ${cssVar.colorSuccess};
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface PluginTagProps extends Pick<InstallPluginMeta, 'author' | 'type'> {
   showIcon?: boolean;

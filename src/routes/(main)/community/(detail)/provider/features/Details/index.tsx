@@ -1,10 +1,10 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { useResponsive } from 'antd-style';
 import { memo } from 'react';
 
 import { useQueryState } from '@/hooks/useQueryParam';
+import { useResponsive } from '@/hooks/useResponsive';
 import { ProviderNavKey } from '@/types/discover';
 
 import Sidebar from '../Sidebar';

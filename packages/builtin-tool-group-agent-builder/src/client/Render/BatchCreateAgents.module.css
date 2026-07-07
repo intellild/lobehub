@@ -1,0 +1,40 @@
+.container {
+padding-block: 4px;
+padding-inline: 16px;
+border-radius: 8px;
+background: var(--ant-color-fill-quaternary);
+}
+
+.description {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+
+font-size: 12px;
+line-height: 1.5;
+color: var(--ant-color-text-description);
+text-overflow: ellipsis;
+}
+
+.empty {
+padding: 16px;
+color: var(--ant-color-text-tertiary);
+}
+
+.item {
+padding-block: 12px;
+
+&:not(:last-child) {
+  border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+}
+
+.title {
+overflow: hidden;
+
+font-size: 13px;
+font-weight: 500;
+text-overflow: ellipsis;
+white-space: nowrap;
+}

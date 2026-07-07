@@ -1,0 +1,23 @@
+.container {
+overflow: hidden;
+padding-inline: 8px 0;
+}
+
+.fileIcon {
+color: var(--ant-color-text-secondary);
+}
+
+.fileItem {
+cursor: default;
+padding-block: 4px;
+padding-inline: 8px;
+border-radius: 4px;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.folderIcon {
+color: var(--ant-color-warning);
+}

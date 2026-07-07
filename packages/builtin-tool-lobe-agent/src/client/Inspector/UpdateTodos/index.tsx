@@ -2,7 +2,6 @@
 
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { CheckCircle, DiffIcon, Minus, Plus } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { memo, useMemo } from 'react';
@@ -11,17 +10,20 @@ import { useTranslation } from 'react-i18next';
 import { oneLineEllipsis, shinyTextStyles } from '@/styles';
 
 import type { UpdateTodosParams, UpdateTodosState } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  separator: css`
-    margin-inline: 2px;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  title: css`
-    margin-inline-end: 8px;
-    color: ${cssVar.colorText};
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const UpdateTodosInspector = memo<
   BuiltinInspectorProps<UpdateTodosParams, UpdateTodosState>
@@ -70,7 +72,7 @@ export const UpdateTodosInspector = memo<
   const statsParts: ReactNode[] = [];
   if (counts.add > 0) {
     statsParts.push(
-      <Text code as={'span'} color={cssVar.colorSuccess} fontSize={12} key="add">
+      <Text code as={'span'} color={'var(--ant-color-success)'} fontSize={12} key="add">
         <Icon icon={Plus} size={12} />
         {counts.add}
       </Text>,
@@ -78,7 +80,7 @@ export const UpdateTodosInspector = memo<
   }
   if (counts.update > 0) {
     statsParts.push(
-      <Text code as={'span'} color={cssVar.colorWarning} fontSize={12} key="update">
+      <Text code as={'span'} color={'var(--ant-color-warning)'} fontSize={12} key="update">
         <Icon icon={DiffIcon} size={12} />
         {counts.update}
       </Text>,
@@ -86,7 +88,7 @@ export const UpdateTodosInspector = memo<
   }
   if (counts.complete > 0) {
     statsParts.push(
-      <Text code as={'span'} color={cssVar.colorPrimary} fontSize={12} key="complete">
+      <Text code as={'span'} color={'var(--ant-color-primary)'} fontSize={12} key="complete">
         <Icon icon={CheckCircle} size={12} />
         {counts.complete}
       </Text>,
@@ -94,7 +96,7 @@ export const UpdateTodosInspector = memo<
   }
   if (counts.remove > 0) {
     statsParts.push(
-      <Text code as={'span'} color={cssVar.colorError} fontSize={12} key="remove">
+      <Text code as={'span'} color={'var(--ant-color-error)'} fontSize={12} key="remove">
         <Icon icon={Minus} size={12} />
         {counts.remove}
       </Text>,

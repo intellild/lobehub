@@ -1,0 +1,21 @@
+.count {
+margin-inline-start: 4px;
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.lineAdded {
+margin-inline-start: 6px;
+font-size: 12px;
+color: var(--ant-color-success);
+}
+
+.lineDeleted {
+margin-inline-start: 4px;
+font-size: 12px;
+color: var(--ant-color-error);
+}
+
+.summary {
+margin-inline-end: 6px;
+}

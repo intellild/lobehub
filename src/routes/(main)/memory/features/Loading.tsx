@@ -1,22 +1,8 @@
 import { Flexbox, Grid, Skeleton } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
+import styles from './Loading.module.css';
 import { type ViewMode } from './ViewModeSwitcher';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    padding: 16px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
 
 const Loading = memo<{ rows?: number; viewMode?: ViewMode }>(({ viewMode, rows = 3 }) => {
   if (viewMode === 'timeline') {

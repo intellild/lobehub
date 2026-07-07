@@ -2,34 +2,25 @@
 
 import type { GlobFilesState } from '@lobechat/tool-runtime';
 import type { BuiltinInspectorProps } from '@lobechat/types';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Check, X } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { inspectorTextStyles, shinyTextStyles } from '../../styles';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  baseline: css`
-    align-items: baseline;
-  `,
-  statusIcon: css`
-    align-self: center;
-    margin-inline-start: 4px;
-  `,
-  tag: css`
-    margin-inline-start: 6px;
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-radius: 4px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface GlobFilesArgs {
   directory?: string;
@@ -73,9 +64,9 @@ export const createGlobLocalFilesInspector = (translationKey: string) => {
           {pattern && <span className={styles.tag}>{pattern}</span>}
           {isLoading ? null : pluginState ? (
             hasFiles ? (
-              <Check className={styles.statusIcon} color={cssVar.colorSuccess} size={14} />
+              <Check className={styles.statusIcon} color={'var(--ant-color-success)'} size={14} />
             ) : (
-              <X className={styles.statusIcon} color={cssVar.colorError} size={14} />
+              <X className={styles.statusIcon} color={'var(--ant-color-error)'} size={14} />
             )
           ) : null}
         </div>

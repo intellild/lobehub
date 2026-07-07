@@ -2,7 +2,6 @@
 
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Avatar, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Check } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,24 +9,22 @@ import { useTranslation } from 'react-i18next';
 import { shinyTextStyles } from '@/styles';
 
 import type { CreateGroupParams, CreateGroupState } from '../../../types';
+import stylesModule from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar: cv }) => ({
-  root: css`
-    overflow: hidden;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  `,
-  statusIcon: css`
-    flex-shrink: 0;
-    margin-block-end: -2px;
-  `,
-  title: css`
-    flex-shrink: 0;
-    color: ${cv.colorTextSecondary};
-    white-space: nowrap;
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
+const styles = stylesModule;
 
 export const CreateGroupInspector = memo<
   BuiltinInspectorProps<CreateGroupParams, CreateGroupState>
@@ -60,7 +57,7 @@ export const CreateGroupInspector = memo<
       {avatar && <Avatar avatar={avatar} shape={'square'} size={20} title={title || undefined} />}
       {title && <span>{title}</span>}
       {!isLoading && isSuccess && (
-        <Check className={styles.statusIcon} color={cssVar.colorSuccess} size={14} />
+        <Check className={styles.statusIcon} color={'var(--ant-color-success)'} size={14} />
       )}
     </Flexbox>
   );

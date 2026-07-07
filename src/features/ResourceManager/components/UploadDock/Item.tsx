@@ -1,5 +1,4 @@
 import { ActionIcon, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { XIcon } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { memo, useMemo } from 'react';
@@ -10,38 +9,7 @@ import { useFileStore } from '@/store/file';
 import { type UploadFileItem } from '@/types/files/upload';
 import { formatSize, formatSpeed, formatTime } from '@/utils/format';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    cancelButton: css`
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    `,
-    container: css`
-      &:hover .cancel-button {
-        opacity: 1;
-      }
-    `,
-    progress: css`
-      position: absolute;
-      inset-block: 0;
-      inset-inline: 0 1%;
-
-      height: 100%;
-      border-block-end: 3px solid ${cssVar.geekblue};
-
-      background: ${cssVar.colorFillTertiary};
-    `,
-    title: css`
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-
-      font-size: 15px;
-      text-overflow: ellipsis;
-    `,
-  };
-});
+import styles from './Item.module.css';
 
 type UploadItemProps = UploadFileItem;
 

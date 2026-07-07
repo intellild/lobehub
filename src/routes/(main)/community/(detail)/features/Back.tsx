@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ArrowLeft } from 'lucide-react';
 import { type CSSProperties } from 'react';
 import { memo } from 'react';
@@ -9,17 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    back: css`
-      color: ${cssVar.colorTextDescription};
-
-      &:hover {
-        color: ${cssVar.colorText};
-      }
-    `,
-  };
-});
+import styles from './Back.module.css';
 
 const Back = memo<{ href: string; style?: CSSProperties }>(({ href, style }) => {
   const { t } = useTranslation('discover');

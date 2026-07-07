@@ -1,6 +1,5 @@
 import { Block, Flexbox, Text } from '@lobehub/ui';
 import { Tag } from 'antd';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -23,7 +22,7 @@ const RunSubtasksPreview = memo<Props>(({ plan }) => {
 
   return (
     <Flexbox gap={12} style={{ paddingBlock: 8 }}>
-      <Text fontSize={13} style={{ color: cssVar.colorTextSecondary }}>
+      <Text fontSize={13} style={{ color: 'var(--ant-color-text-secondary)' }}>
         {t('taskDetail.runAll.description')}
       </Text>
 
@@ -45,7 +44,7 @@ const RunSubtasksPreview = memo<Props>(({ plan }) => {
                 <Text fontSize={13} weight={600}>
                   {t('taskDetail.runAll.layer', { index: index + 1 })}
                 </Text>
-                <Text fontSize={12} style={{ color: cssVar.colorTextDescription }}>
+                <Text fontSize={12} style={{ color: 'var(--ant-color-text-description)' }}>
                   {hint}
                 </Text>
               </Flexbox>
@@ -66,17 +65,17 @@ const RunSubtasksPreview = memo<Props>(({ plan }) => {
         plan.blockedExternally.length > 0) && (
         <Flexbox gap={4}>
           {plan.alreadyDone.length > 0 && (
-            <Text fontSize={12} style={{ color: cssVar.colorTextDescription }}>
+            <Text fontSize={12} style={{ color: 'var(--ant-color-text-description)' }}>
               {t('taskDetail.runAll.skipped.alreadyDone', { count: plan.alreadyDone.length })}
             </Text>
           )}
           {plan.ineligible.length > 0 && (
-            <Text fontSize={12} style={{ color: cssVar.colorTextDescription }}>
+            <Text fontSize={12} style={{ color: 'var(--ant-color-text-description)' }}>
               {t('taskDetail.runAll.skipped.ineligible', { count: plan.ineligible.length })}
             </Text>
           )}
           {plan.blockedExternally.length > 0 && (
-            <Text fontSize={12} style={{ color: cssVar.colorTextDescription }}>
+            <Text fontSize={12} style={{ color: 'var(--ant-color-text-description)' }}>
               {t('taskDetail.runAll.skipped.blockedExternally', {
                 count: plan.blockedExternally.length,
               })}
@@ -87,7 +86,7 @@ const RunSubtasksPreview = memo<Props>(({ plan }) => {
 
       {plan.cycles.length > 0 && (
         <Block paddingBlock={8} paddingInline={12} variant={'outlined'}>
-          <Text fontSize={12} style={{ color: cssVar.colorWarning }}>
+          <Text fontSize={12} style={{ color: 'var(--ant-color-warning)' }}>
             {t('taskDetail.runAll.cycleWarning', {
               members: [...plan.cycles, ...plan.blockedByCycle].join(', '),
             })}

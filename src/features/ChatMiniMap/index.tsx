@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import { memo, useRef, useState } from 'react';
 
 import { MinimapIndicator } from './MinimapIndicator';
@@ -9,6 +8,19 @@ import { MinimapPreview } from './MinimapPreview';
 import { minimapStyles } from './styles';
 import { useMinimapData } from './useMinimapData';
 import { MIN_MESSAGES_THRESHOLD } from './utils';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const CLOSE_DELAY_MS = 120;
 

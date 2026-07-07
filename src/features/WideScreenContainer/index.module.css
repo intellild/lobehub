@@ -1,0 +1,5 @@
+.container {
+flex-grow: 1;
+align-self: center;
+transition: width 0.25s var(--ant-motion-ease-in-out);
+}

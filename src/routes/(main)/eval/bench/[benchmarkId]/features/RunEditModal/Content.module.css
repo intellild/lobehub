@@ -1,0 +1,12 @@
+.agentSelect {
+.ant-select-content-value {
+  height: 22px !important;
+}
+}
+
+.hint {
+display: inline-block;
+margin-block-start: 4px;
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-quaternary);
+}

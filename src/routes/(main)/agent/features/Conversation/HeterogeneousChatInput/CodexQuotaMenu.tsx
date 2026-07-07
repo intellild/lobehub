@@ -2,22 +2,15 @@
 
 import type { CodexQuotaSnapshot } from '@lobechat/electron-client-ipc';
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { RotateCcwIcon } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { heterogeneousAgentService } from '@/services/electron/heterogeneousAgent';
 
+import styles from './CodexQuotaMenu.module.css';
 import type { QuotaMenuHelpers, QuotaWindowItem } from './QuotaMenu';
 import QuotaMenu, { createQuotaSourceKey } from './QuotaMenu';
-
-const styles = createStaticStyles(({ css }) => ({
-  resetCredits: css`
-    padding-block-start: 8px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-}));
 
 const createErrorSnapshot = (error: unknown): CodexQuotaSnapshot => ({
   error: error instanceof Error ? error.message : String(error),

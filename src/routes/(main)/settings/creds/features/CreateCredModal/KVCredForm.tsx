@@ -3,26 +3,12 @@
 import { Button, Flexbox } from '@lobehub/ui';
 import { useMutation } from '@tanstack/react-query';
 import { Form, Input } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { Minus, Plus } from 'lucide-react';
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useCredsApi } from '../useCredsApi';
-
-const styles = createStaticStyles(({ css }) => ({
-  footer: css`
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-    margin-block-start: 24px;
-  `,
-  kvPair: css`
-    display: flex;
-    gap: 8px;
-    align-items: flex-start;
-  `,
-}));
+import styles from './KVCredForm.module.css';
 
 interface KVCredFormProps {
   disabled?: boolean;

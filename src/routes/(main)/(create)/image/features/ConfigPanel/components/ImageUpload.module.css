@@ -1,0 +1,159 @@
+.changeButton {
+cursor: pointer;
+
+  padding-block: 8px;
+  padding-inline: 16px;
+  border: 1px solid var(--ant-color-border);
+  border-radius: var(--ant-border-radius);
+
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ant-color-text);
+
+  background: var(--ant-color-bg-container);
+  box-shadow: var(--ant-box-shadow-secondary);
+
+  &:hover {
+    border-color: var(--ant-color-primary);
+    color: var(--ant-color-primary);
+    background: var(--ant-color-bg-elevated);
+  }
+}
+
+.changeOverlay {
+position: absolute;
+  z-index: 5;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  background: var(--ant-color-bg-mask);
+
+  transition: opacity var(--ant-motion-duration-mid) ease;
+}
+
+.container {
+width: 100%;
+}
+
+.deleteIcon {
+cursor: pointer;
+
+  position: absolute;
+  z-index: 10;
+  inset-block-start: 8px;
+  inset-inline-end: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+
+  color: var(--ant-color-text-light-solid);
+
+  opacity: 0;
+  background: var(--ant-color-bg-mask);
+
+  transition: opacity var(--ant-motion-duration-mid) ease;
+
+  &:hover {
+    color: var(--ant-color-error);
+    background: var(--ant-color-error-bg);
+  }
+}
+
+.placeholder {
+cursor: pointer;
+
+  width: 100%;
+  height: 160px;
+  border: 1px solid var(--ant-color-border);
+  border-radius: var(--ant-border-radius-lg);
+
+  background: var(--ant-color-fill-tertiary);
+
+  transition: all var(--ant-motion-duration-mid) ease;
+
+  &:hover {
+    background: var(--ant-color-fill-secondary);
+  }
+
+  &.drag-over {
+    transform: scale(1.02);
+    border-color: var(--ant-color-primary);
+    background: var(--ant-color-primary-bg);
+  }
+}
+
+.placeholderIcon {
+color: var(--ant-color-text-tertiary);
+}
+
+.placeholderText {
+font-size: 12px;
+  line-height: 1.4;
+  color: var(--ant-color-text-secondary);
+  text-align: center;
+}
+
+.successDisplay {
+cursor: pointer;
+
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: 160px;
+  border: 2px solid transparent;
+  border-radius: var(--ant-border-radius-lg);
+
+  background: var(--ant-color-bg-container);
+
+  transition: all var(--ant-motion-duration-mid) ease;
+
+  &:hover .change-overlay {
+    opacity: 1;
+  }
+
+  &:hover .delete-icon {
+    opacity: 1;
+  }
+
+  &.drag-over {
+    transform: scale(1.02);
+    border-color: var(--ant-color-primary);
+    background: var(--ant-color-primary-bg);
+  }
+}
+
+.uploadingDisplay {
+position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: 160px;
+  border: 2px solid var(--ant-color-primary);
+  border-radius: var(--ant-border-radius-lg);
+
+  background: var(--ant-color-fill-secondary);
+}
+
+.uploadingOverlay {
+position: absolute;
+  z-index: 5;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--ant-color-bg-mask);
+}

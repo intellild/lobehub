@@ -2,51 +2,9 @@
 
 import { type SkillItem } from '@lobechat/types';
 import { CopyButton, Highlighter, Markdown } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  codeWrapper: css`
-    position: relative;
-    overflow-x: auto;
-    margin-block-start: 16px;
-    padding-block-end: calc(100cqb - 1lh);
-
-    pre {
-      margin: 0;
-    }
-
-    code {
-      counter-reset: line;
-    }
-
-    .line {
-      width: 100% !important;
-      margin-inline: 0 !important;
-      padding-inline: 0 !important;
-    }
-
-    .line::before {
-      content: counter(line);
-      counter-increment: line;
-      user-select: none;
-
-      display: inline-block;
-
-      width: 4ch;
-      margin-inline-end: 2ch;
-
-      color: ${cssVar.colorTextQuaternary};
-      text-align: end;
-    }
-  `,
-  docWrapper: css`
-    max-width: 798px;
-    margin-inline: auto;
-    padding-block: 8px;
-    padding-inline: 24px;
-  `,
-}));
+import styles from './ContentViewer.module.css';
 
 const getLanguage = (fileName: string): string => {
   const ext = fileName.toLowerCase().split('.').pop();

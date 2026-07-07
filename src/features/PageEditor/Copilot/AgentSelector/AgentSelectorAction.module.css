@@ -1,0 +1,17 @@
+.chevron {
+color: var(--ant-color-text-quaternary);
+}
+
+.container {
+cursor: pointer;
+
+border-radius: 12px;
+border-start-start-radius: 8px;
+border-end-start-radius: 8px;
+
+background: var(--ant-color-fill-tertiary);
+
+:hover {
+  background: var(--ant-color-fill-secondary);
+}
+}

@@ -3,7 +3,6 @@
 import { LoadingOutlined } from '@ant-design/icons';
 import { Icon } from '@lobehub/ui';
 import { Spin, Upload } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { PencilIcon } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,38 +14,8 @@ import { authSelectors } from '@/store/user/selectors';
 import { imageToBase64 } from '@/utils/imageToBase64';
 import { createUploadImageHandler } from '@/utils/uploadFIle';
 
+import styles from './AvatarRow.module.css';
 import ProfileRow from './ProfileRow';
-
-const styles = createStaticStyles(({ css }) => ({
-  overlay: css`
-    cursor: pointer;
-
-    position: absolute;
-    z-index: 1;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 8px;
-
-    opacity: 0;
-    background: ${cssVar.colorBgMask};
-
-    transition: opacity ${cssVar.motionDurationMid} ease;
-  `,
-  wrapper: css`
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-
-    &:hover .avatar-edit-overlay {
-      opacity: 1;
-    }
-  `,
-}));
 
 const AvatarRow = () => {
   const { t } = useTranslation('auth');
@@ -91,7 +60,7 @@ const AvatarRow = () => {
         <div className={styles.wrapper}>
           <UserAvatar size={40} />
           <div className={`${styles.overlay} avatar-edit-overlay`}>
-            <Icon color={cssVar.colorTextLightSolid} icon={PencilIcon} size={16} />
+            <Icon color={'var(--ant-color-text-light-solid)'} icon={PencilIcon} size={16} />
           </div>
         </div>
       </Spin>

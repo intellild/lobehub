@@ -2,94 +2,13 @@
 
 import { type McpInstallSchema } from '@lobechat/electron-client-ipc';
 import { Block, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { LinkIcon, Settings2Icon } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import KeyValueEditor from '@/components/KeyValueEditor';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  configEditor: css`
-    margin-block-start: ${cssVar.marginSM};
-  `,
-  configSection: css`
-    margin-block-end: ${cssVar.marginLG};
-    padding: ${cssVar.paddingSM};
-    border-radius: ${cssVar.borderRadius};
-  `,
-  configTitle: css`
-    display: flex;
-    gap: ${cssVar.marginXS};
-    align-items: center;
-
-    height: 24px;
-
-    font-weight: 600;
-    color: ${cssVar.colorTextHeading};
-  `,
-
-  previewContainer: css`
-    padding-inline: ${cssVar.paddingXS};
-  `,
-
-  previewItem: css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: ${cssVar.paddingXS};
-    padding-inline: 0;
-
-    &:not(:last-child) {
-      border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-    }
-  `,
-
-  previewLabel: css`
-    display: flex;
-    gap: ${cssVar.marginXS};
-    align-items: center;
-
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-
-  previewValue: css`
-    padding-block: ${cssVar.paddingXXS};
-    padding-inline: ${cssVar.paddingXS};
-    border-radius: ${cssVar.borderRadiusSM};
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 600;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-
-  typeValue: css`
-    display: flex;
-    gap: ${cssVar.marginXS};
-    align-items: center;
-  `,
-
-  urlValue: css`
-    max-width: 300px;
-    padding-block: ${cssVar.paddingXS};
-    padding-inline: ${cssVar.paddingSM};
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: ${cssVar.borderRadius};
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 500;
-    word-break: auto-phrase;
-
-    background: ${cssVar.colorBgElevated};
-  `,
-}));
+import styles from './ConfigDisplay.module.css';
 
 interface ConfigDisplayProps {
   onConfigUpdate?: (updatedConfig: {

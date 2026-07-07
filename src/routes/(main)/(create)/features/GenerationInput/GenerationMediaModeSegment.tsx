@@ -2,34 +2,19 @@
 
 import { Flexbox, Icon } from '@lobehub/ui';
 import { Select, type SelectProps } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import { ImageIcon, Video } from 'lucide-react';
 import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwareNavigate';
 
+import styles from './GenerationMediaModeSegment.module.css';
+
 export interface GenerationMediaModeSegmentProps {
   /** `hero`: large inline headline select (cyan, borderless). `toolbar`: compact control in the input bar. */
   layout?: 'hero' | 'toolbar';
   mode: 'image' | 'video';
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  lite: css`
-    height: 36px;
-  `,
-  heroSelect: css`
-    width: auto;
-    font-size: inherit;
-    line-height: 1.2;
-  `,
-  heroText: css`
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.2;
-  `,
-}));
 
 const GenerationMediaModeSegment = memo<GenerationMediaModeSegmentProps>(
   ({ mode, layout = 'toolbar' }) => {

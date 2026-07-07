@@ -16,7 +16,6 @@ import {
 import { useModalContext } from '@lobehub/ui/base-ui';
 import type { UploadProps } from 'antd';
 import { App, Form, Input as AntInput, Upload } from 'antd';
-import { cssVar } from 'antd-style';
 import { CircleHelp, Globe, ImagePlus, Loader2, Trash2 } from 'lucide-react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -114,9 +113,9 @@ export const Content = memo<ContentProps>(({ user, onSuccess }) => {
   const namespaceStatusNode = useMemo(() => {
     if (!isSetup || namespaceAvailability === 'idle') return null;
     const color = {
-      available: cssVar.colorSuccess,
-      checking: cssVar.colorTextSecondary,
-      taken: cssVar.colorError,
+      available: 'var(--ant-color-success)',
+      checking: 'var(--ant-color-text-secondary)',
+      taken: 'var(--ant-color-error)',
     }[namespaceAvailability];
     return (
       <Flexbox horizontal align="center" gap={6} style={{ color, fontSize: 12 }}>
@@ -262,7 +261,7 @@ export const Content = memo<ContentProps>(({ user, onSuccess }) => {
               <Input
                 placeholder={t('user.workspaceProfile.fields.websiteUrl.placeholder')}
                 prefix={
-                  <Icon color={cssVar.colorTextSecondary} icon={Globe} style={{ marginRight: 8 }} />
+                  <Icon color={'var(--ant-color-text-secondary)'} icon={Globe} style={{ marginRight: 8 }} />
                 }
               />
             </Form.Item>
@@ -287,11 +286,11 @@ export const Content = memo<ContentProps>(({ user, onSuccess }) => {
                 >
                   <div
                     style={{
-                      backgroundColor: bannerUrl ? undefined : cssVar.colorFillTertiary,
+                      backgroundColor: bannerUrl ? undefined : 'var(--ant-color-fill-tertiary)',
                       backgroundImage: bannerUrl ? `url(${bannerUrl})` : undefined,
                       backgroundPosition: 'center',
                       backgroundSize: 'cover',
-                      borderRadius: cssVar.borderRadiusLG,
+                      borderRadius: 'var(--ant-border-radius-lg)',
                       cursor: 'pointer',
                       height: 160,
                       overflow: 'hidden',
@@ -317,11 +316,11 @@ export const Content = memo<ContentProps>(({ user, onSuccess }) => {
                       <Flexbox align="center" gap={8}>
                         <ImagePlus
                           size={24}
-                          style={{ color: bannerUrl ? '#fff' : cssVar.colorTextSecondary }}
+                          style={{ color: bannerUrl ? '#fff' : 'var(--ant-color-text-secondary)' }}
                         />
                         <Text
                           style={{
-                            color: bannerUrl ? '#fff' : cssVar.colorTextSecondary,
+                            color: bannerUrl ? '#fff' : 'var(--ant-color-text-secondary)',
                             fontSize: 12,
                           }}
                         >
@@ -337,7 +336,7 @@ export const Content = memo<ContentProps>(({ user, onSuccess }) => {
                   <Flexbox horizontal align="center" gap={8} justify="flex-end">
                     <Text
                       style={{
-                        color: cssVar.colorError,
+                        color: 'var(--ant-color-error)',
                         cursor: 'pointer',
                         fontSize: 12,
                       }}

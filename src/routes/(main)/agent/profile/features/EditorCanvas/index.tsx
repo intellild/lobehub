@@ -3,7 +3,6 @@
 import { ReactMentionPlugin, ReactTablePlugin, ReactToolbarPlugin } from '@lobehub/editor';
 import { Editor } from '@lobehub/editor/react';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,36 +17,9 @@ import { agentSelectors } from '@/store/agent/selectors';
 import { useMentionOptions } from '../ProfileEditor/MentionList';
 import { useProfileStore } from '../store';
 import { selectors as profileSelectors } from '../store/selectors';
+import styles from './index.module.css';
 import TypoBar from './TypoBar';
 import { useSlashItems } from './useSlashItems';
-
-const styles = createStaticStyles(({ css }) => ({
-  desc: css`
-    font-size: 13px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  editorShell: css`
-    min-height: 300px;
-    padding-block: 18px;
-    padding-inline: 18px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  header: css`
-    max-width: 820px;
-  `,
-  root: css`
-    padding-block-end: 16px;
-  `,
-  title: css`
-    font-size: 16px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 const EditorCanvas = memo(() => {
   const { t } = useTranslation('setting');

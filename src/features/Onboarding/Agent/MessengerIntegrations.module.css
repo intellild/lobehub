@@ -1,0 +1,50 @@
+.divider {
+width: 100%;
+min-width: 320px;
+margin-block: 0 6px;
+
+&::before,
+&::after {
+  border-block-start: 1px dashed var(--ant-color-border) !important;
+}
+}
+
+.group {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+justify-content: center;
+
+@media (width <= 540px) {
+  flex-direction: column;
+  width: 100%;
+}
+}
+
+.qrIconOverlay {
+pointer-events: none;
+
+position: absolute;
+z-index: 1;
+inset-block-start: 50%;
+inset-inline-start: 50%;
+transform: translate(-50%, -50%);
+
+border: 3px solid var(--ant-color-bg-container);
+border-radius: 50%;
+
+line-height: 0;
+}
+
+.qrWrap {
+position: relative;
+padding: 12px;
+border-radius: 12px;
+background: var(--ant-color-bg-container);
+}
+
+.wrapper {
+gap: 14px;
+align-items: center;
+margin-block-start: 48px;
+}

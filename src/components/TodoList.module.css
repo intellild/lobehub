@@ -1,0 +1,17 @@
+.collapse {
+padding-block: 0;
+padding-inline: var(--ant-padding-xs);
+
+.ant-collapse-content-box {
+  padding: 0;
+}
+
+.ant-collapse-header {
+  padding: 0 !important;
+  color: var(--ant-color-text-tertiary);
+}
+
+.ant-collapse-expand-icon {
+  color: var(--ant-color-text-tertiary) !important;
+}
+}

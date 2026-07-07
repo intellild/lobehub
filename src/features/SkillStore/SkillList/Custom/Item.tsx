@@ -2,7 +2,6 @@
 
 import { ActionIcon, Block, DropdownMenu, Flexbox, Icon } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { MoreVerticalIcon, PackageSearch, Trash2 } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,24 +17,7 @@ import { useToolStore } from '@/store/tool';
 import { pluginSelectors } from '@/store/tool/selectors';
 
 import { itemStyles } from '../style';
-
-const styles = createStaticStyles(({ css }) => ({
-  title: css`
-    cursor: pointer;
-
-    overflow: hidden;
-
-    font-size: 14px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &:hover {
-      color: ${cssVar.colorPrimary};
-    }
-  `,
-}));
+import styles from './Item.module.css';
 
 interface ItemProps {
   avatar?: string;

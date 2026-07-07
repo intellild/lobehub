@@ -1,32 +1,16 @@
 'use client';
 
 import { Button, Flexbox, Icon, Markdown, Text } from '@lobehub/ui';
-import { createStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { CircleAlert, CircleCheck, CircleSlash, SquareArrowOutUpRight } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useTheme } from '@/hooks/useTheme';
 import { useChatStore } from '@/store/chat';
 
 import { dataSelectors, useConversationStore } from '../../store';
-
-const useStyles = createStyles(({ css, token }) => ({
-  card: css`
-    overflow: hidden;
-
-    padding-block: 12px;
-    padding-inline: 16px;
-    border: 1px solid ${token.colorBorderSecondary};
-    border-radius: 16px;
-
-    background: ${token.colorBgElevated};
-  `,
-  identifier: css`
-    font-family: ${token.fontFamilyCode};
-    color: ${token.colorTextSecondary};
-  `,
-}));
+import styles from './index.module.css';
 
 interface TaskCallbackMessageProps {
   id: string;
@@ -56,7 +40,7 @@ const reasonMeta: Record<
  * Renders as a standalone card (no avatar bubble), like the verify card.
  */
 const TaskCallbackMessage = memo<TaskCallbackMessageProps>(({ id }) => {
-  const { styles, theme } = useStyles();
+  const theme = useTheme();
   const { t } = useTranslation('chat');
   // Open the task in the right-side detail portal (in-context), instead of
   // navigating away from the conversation to the full task page.

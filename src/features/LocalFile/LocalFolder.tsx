@@ -1,36 +1,11 @@
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import path from 'path-browserify-esm';
 import React from 'react';
 
 import FileIcon from '@/components/FileIcon';
 import { localFileService } from '@/services/electron/localFileService';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    cursor: pointer;
-
-    padding-block: 2px;
-    padding-inline: 4px 8px;
-    border-radius: 4px;
-
-    color: ${cssVar.colorTextSecondary};
-
-    :hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  title: css`
-    overflow: hidden;
-    display: block;
-
-    line-height: 20px;
-    color: inherit;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+import styles from './LocalFolder.module.css';
 
 interface LocalFolderProps {
   path: string;

@@ -1,0 +1,67 @@
+.avatarPreview {
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 48px;
+height: 48px;
+border-radius: var(--ant-border-radius-lg);
+
+font-size: 28px;
+line-height: 1;
+
+background: var(--ant-color-fill-secondary);
+}
+
+.deviceItem {
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.platformCard {
+cursor: pointer;
+
+display: flex;
+flex-direction: column;
+gap: 4px;
+align-items: flex-start;
+
+padding-block: 12px;
+padding-inline: 16px;
+border: 1.5px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-container);
+
+transition: border-color 0.2s;
+
+&:hover {
+  border-color: var(--ant-color-primary);
+}
+
+&[data-selected='true'] {
+  border-color: var(--ant-color-primary);
+  background: var(--ant-color-primary-bg);
+}
+
+&[data-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.5;
+
+  &:hover {
+    border-color: var(--ant-color-border-secondary);
+  }
+}
+}
+
+.platformDesc {
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+}
+
+.platformName {
+font-size: 15px;
+font-weight: 500;
+color: var(--ant-color-text);
+}

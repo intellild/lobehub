@@ -1,8 +1,22 @@
 import { type FlexboxProps, type IconProps } from '@lobehub/ui';
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo, Suspense, useState } from 'react';
+
+import styles from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface GroupBlockProps extends Omit<FlexboxProps, 'title'> {
   action?: ReactNode;
@@ -10,20 +24,6 @@ interface GroupBlockProps extends Omit<FlexboxProps, 'title'> {
   icon?: IconProps['icon'];
   title?: ReactNode;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  action: css`
-    opacity: 0;
-    transition: opacity ${cssVar.motionDurationMid} ${cssVar.motionEaseInOut};
-
-    button {
-      color: ${cssVar.colorTextSecondary};
-    }
-  `,
-  actionVisible: css`
-    opacity: 1;
-  `,
-}));
 
 const GroupBlock = memo<GroupBlockProps>(
   ({ title, action, actionAlwaysVisible, children, icon, ...rest }) => {
@@ -45,8 +45,8 @@ const GroupBlock = memo<GroupBlockProps>(
             justify={'flex-start'}
             style={{ overflow: 'hidden' }}
           >
-            <Icon color={cssVar.colorTextDescription} icon={icon} size={18} />
-            <Text ellipsis color={cssVar.colorTextSecondary}>
+            <Icon color={'var(--ant-color-text-description)'} icon={icon} size={18} />
+            <Text ellipsis color={'var(--ant-color-text-secondary)'}>
               {title}
             </Text>
           </Flexbox>

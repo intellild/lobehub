@@ -2,26 +2,16 @@
 
 import { Flexbox } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import { memo, useState } from 'react';
 
 import Header from '../features/Header';
+import stylesModule from './index.module.css';
 import Ld from './Ld';
 import MetaData from './MetaData';
 import Og from './Og';
 
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    * {
-      font-size: 12px;
-    }
-    .${prefixCls}-form-item {
-      padding-block: 8px;
-    }
-  `,
-}));
+const styles = stylesModule;
 
 enum Tab {
   Ld = 'ld',

@@ -3,7 +3,6 @@
 import { ActionIcon, Input } from '@lobehub/ui';
 import { type InputRef } from 'antd';
 import { App } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import { type Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import { Check, Edit, X } from 'lucide-react';
@@ -11,6 +10,20 @@ import React, { memo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import ApiKeyDatePicker from '../ApiKeyDatePicker';
+import styles from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 // Content type definition
 export type ContentType = 'text' | 'date';
@@ -28,54 +41,6 @@ export interface EditableCellProps {
   /** Value retrieved from the database; regardless of type, it is stored as a string */
   value: string | null;
 }
-
-// Style definitions
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  actionButtons: css`
-    display: flex;
-    flex-shrink: 0;
-    gap: 4px;
-  `,
-  container: css`
-    position: relative;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    min-height: 32px;
-
-    &:hover .edit-button {
-      opacity: 1;
-    }
-  `,
-  content: css`
-    min-width: 0;
-    line-height: 1.5;
-    color: ${cssVar.colorText};
-    word-break: break-all;
-  `,
-  editButton: css`
-    opacity: 0;
-    transition: opacity 0.2s ease;
-
-    &.edit-button {
-      opacity: 0;
-    }
-  `,
-  editingContainer: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    width: 100%;
-  `,
-  inputWrapper: css`
-    flex: 1;
-  `,
-  textareaWrapper: css`
-    flex: 1;
-  `,
-}));
 
 // Main component implementation
 const EditableCell = memo<EditableCellProps>(

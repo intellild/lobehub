@@ -1,6 +1,5 @@
 import { type DraggablePanelProps } from '@lobehub/ui';
 import { DraggablePanel } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo, Suspense, useState } from 'react';
 
 import Loading from '@/components/Loading/BrandTextLoading';
@@ -58,7 +57,7 @@ const RightPanel = memo<RightPanelProps>(
 
     return (
       <DraggablePanel
-        backgroundColor={cssVar.colorBgContainer}
+        backgroundColor={'var(--ant-color-bg-container)'}
         expand={expand}
         expandable={false}
         maxWidth={maxWidth}

@@ -3,20 +3,9 @@
 import { type UserCredSummary } from '@lobechat/types';
 import { Flexbox } from '@lobehub/ui';
 import { Typography } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { type FC } from 'react';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-  `,
-  value: css`
-    font-family: monospace;
-    font-size: 12px;
-  `,
-}));
+import styles from './CredDisplay.module.css';
 
 interface CredDisplayProps {
   cred: UserCredSummary;

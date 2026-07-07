@@ -2,7 +2,6 @@
 
 import { type GridProps } from '@lobehub/ui';
 import { Block, Center, Grid, Select, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
 import useMergeState from 'use-merge-value';
@@ -57,7 +56,7 @@ const SizeSelect = memo<SizeSelectProps>(({ options, onChange, value, defaultVal
             content = (
               <div
                 style={{
-                  border: `2px dashed ${isActive ? cssVar.colorText : cssVar.colorTextDescription}`,
+                  border: `2px dashed ${isActive ? 'var(--ant-color-text)' : 'var(--ant-color-text-description)'}`,
                   borderRadius: 3,
                   height: 16,
                   width: 16,
@@ -71,7 +70,7 @@ const SizeSelect = memo<SizeSelectProps>(({ options, onChange, value, defaultVal
               <div
                 style={{
                   aspectRatio: `${width} / ${height}`,
-                  border: `2px solid ${isActive ? cssVar.colorText : cssVar.colorTextDescription}`,
+                  border: `2px solid ${isActive ? 'var(--ant-color-text)' : 'var(--ant-color-text-description)'}`,
                   borderRadius: 3,
                   height: isWidthGreater ? undefined : 16,
                   width: isWidthGreater ? 16 : undefined,
@@ -91,7 +90,7 @@ const SizeSelect = memo<SizeSelectProps>(({ options, onChange, value, defaultVal
               shadow={isActive && !isDarkMode}
               variant={'filled'}
               style={{
-                backgroundColor: isActive ? cssVar.colorBgElevated : 'transparent',
+                backgroundColor: isActive ? 'var(--ant-color-bg-elevated)' : 'transparent',
               }}
               onClick={() => {
                 setActive(item.value);

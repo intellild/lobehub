@@ -1,0 +1,19 @@
+.menu {
+padding: 0 !important;
+  .ant-menu-item {
+    display: flex;
+    gap: 4px;
+
+    width: 100%;
+    height: 36px;
+    margin-inline: 0;
+    padding-inline-start: 12px !important;
+
+    font-size: 14px;
+
+    .ant-menu-title-content > a {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

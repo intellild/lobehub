@@ -1,0 +1,27 @@
+.searchInput {
+width: 100%;
+padding-block: 6px;
+padding-inline: 10px;
+border: none;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+
+font-family: inherit;
+font-size: 13px;
+color: var(--ant-color-text);
+
+background: transparent;
+outline: none;
+
+&::placeholder {
+  color: var(--ant-color-text-placeholder);
+}
+}
+
+.sectionHeader {
+padding-block: 4px;
+padding-inline: 8px;
+
+font-size: 12px;
+line-height: 1.4;
+color: var(--ant-color-text-tertiary);
+}

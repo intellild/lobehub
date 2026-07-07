@@ -2,10 +2,11 @@
 
 import { HeartFilled } from '@ant-design/icons';
 import { ActionIcon, Button, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { X } from 'lucide-react';
 import type { HTMLAttributeAnchorTarget, ReactNode } from 'react';
 import { memo } from 'react';
+
+import styles from './index.module.css';
 
 export interface HighlightNotificationProps {
   actionHref?: string;
@@ -20,58 +21,6 @@ export interface HighlightNotificationProps {
   open?: boolean;
   title?: ReactNode;
 }
-
-const styles = createStaticStyles(({ css }) => ({
-  action: css`
-    display: block;
-    width: 100%;
-    margin-block-start: 8px;
-  `,
-  actionContent: css`
-    display: inline-flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-  `,
-  card: css`
-    position: fixed;
-    z-index: 1000;
-    inset-block-end: 56px;
-    inset-inline-start: 8px;
-
-    overflow: hidden;
-
-    width: 300px;
-    max-width: calc(100vw - 32px);
-    padding: 0;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 12px;
-
-    background: ${cssVar.colorBgContainer};
-    box-shadow: 0 4px 24px rgb(0 0 0 / 12%);
-  `,
-  closeButton: css`
-    position: absolute;
-    inset-block-start: 8px;
-    inset-inline-end: 8px;
-  `,
-  description: css`
-    font-size: 14px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  image: css`
-    width: 100%;
-    height: auto;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  title: css`
-    font-size: 16px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 const HighlightNotification = memo<HighlightNotificationProps>(
   ({

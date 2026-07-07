@@ -13,7 +13,6 @@ import {
   Text,
 } from '@lobehub/ui';
 import { Button, Modal } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import type { TFunction } from 'i18next';
 import {
   AlertTriangle,
@@ -37,6 +36,7 @@ import type { VerifyEvidenceWithUrl, VerifyResultWithEvidence } from '@/services
 import { getLanguageFromFilename } from '@/utils/fileLanguage';
 
 import { useVerifyReportBundle } from './hooks';
+import styles from './ReportViewer.module.css';
 
 type Verdict = 'passed' | 'failed' | 'uncertain';
 type Filter = 'all' | Verdict;
@@ -50,417 +50,28 @@ const filenameFromUrl = (url: string): string => {
   }
 };
 
-const styles = createStaticStyles(({ css }) => ({
-  scroll: css`
-    overflow: auto;
-    width: 100%;
-    height: 100%;
-  `,
-  page: css`
-    width: 100%;
-    max-width: 840px;
-    margin-inline: auto;
-    padding-block: 32px 64px;
-    padding-inline: 32px;
-  `,
-
-  /* hero */
-  heroLine: css`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-  `,
-  pill: css`
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
-
-    padding-block: 5px;
-    padding-inline: 13px;
-    border-radius: 999px;
-
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1;
-  `,
-  summary: css`
-    max-width: 100%;
-    color: ${cssVar.colorText};
-  `,
-  meta: css`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-    margin-block-start: 4px;
-  `,
-  metaItem: css`
-    display: inline-flex;
-    gap: 6px;
-    align-items: baseline;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-
-    code {
-      font-family: ${cssVar.fontFamilyCode};
-      font-size: 12px;
-      color: ${cssVar.colorTextSecondary};
-      word-break: break-word;
-    }
-  `,
-  liveBanner: css`
-    display: inline-flex;
-    gap: 8px;
-    align-items: center;
-
-    width: fit-content;
-    margin-block-start: 4px;
-    padding-block: 6px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorInfoBorder};
-    border-radius: 999px;
-
-    font-size: 12px;
-    color: ${cssVar.colorInfoText};
-
-    background: ${cssVar.colorInfoBg};
-  `,
-
-  /* sticky filter chips */
-  stats: css`
-    position: sticky;
-    z-index: 10;
-    inset-block-start: 0;
-
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-
-    margin-block: 20px 12px;
-    padding-block: 12px;
-
-    background: color-mix(in srgb, ${cssVar.colorBgContainer} 88%, transparent);
-    backdrop-filter: blur(8px);
-  `,
-  chip: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    gap: 7px;
-    align-items: center;
-
-    height: 28px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 999px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: transparent;
-
-    transition: background 0.12s ease;
-
-    b {
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      color: ${cssVar.colorText};
-    }
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &[data-active='true'] {
-      border-color: ${cssVar.colorBorder};
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  dot: css`
-    width: 7px;
-    height: 7px;
-    border-radius: 999px;
-  `,
-  score: css`
-    cursor: default;
-    margin-inline-start: auto;
-    border-color: transparent;
-    color: ${cssVar.colorTextTertiary};
-
-    b {
-      color: ${cssVar.colorTextSecondary};
-    }
-  `,
-
-  /* checks */
-  checks: css`
-    overflow: hidden;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-    background: ${cssVar.colorBgContainer};
-  `,
-  row: css`
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    &:last-child {
-      border-block-end: none;
-    }
-  `,
-  rowHead: css`
-    cursor: pointer;
-
-    display: grid;
-    grid-template-columns: 20px minmax(0, 1fr) auto;
-    gap: 10px;
-    align-items: center;
-
-    width: 100%;
-    padding-block: 11px;
-    padding-inline: 16px;
-    border: none;
-
-    text-align: start;
-
-    background: none;
-
-    &:hover {
-      background: ${cssVar.colorFillQuaternary};
-    }
-  `,
-  rowTitle: css`
-    overflow: hidden;
-
-    font-size: 14px;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &[data-failed='true'] {
-      font-weight: 600;
-    }
-  `,
-  rowSide: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  `,
-  softTag: css`
-    padding-block: 1px;
-    padding-inline: 7px;
-    border-radius: 4px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  chev: css`
-    color: ${cssVar.colorTextQuaternary};
-    transition: transform 0.15s ease;
-
-    &[data-open='true'] {
-      transform: rotate(90deg);
-    }
-  `,
-  rowBody: css`
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    padding-block: 2px 16px;
-    padding-inline: 46px 16px;
-  `,
-  reasoning: css`
-    max-width: 70ch;
-    font-size: 13px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  suggestion: css`
-    max-width: 70ch;
-    padding-inline-start: 10px;
-    border-inline-start: 2px solid ${cssVar.colorBorder};
-
-    font-size: 13px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-  `,
-
-  /* narrative */
-  narrative: css`
-    margin-block-start: 24px;
-  `,
-  narrativeSummary: css`
-    cursor: pointer;
-    user-select: none;
-
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-    list-style: none;
-
-    &::-webkit-details-marker {
-      display: none;
-    }
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-  `,
-  narrativeBody: css`
-    margin-block-start: 12px;
-    padding: 16px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-
-  /* evidence */
-  evidenceList: css`
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: flex-start;
-
-    max-width: 70ch;
-  `,
-  evidenceFile: css`
-    cursor: pointer;
-
-    display: grid;
-    grid-template-columns: 18px minmax(0, 1fr);
-    gap: 8px;
-    align-items: center;
-
-    width: min(100%, 520px);
-    padding-block: 7px;
-    padding-inline: 10px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-
-    text-align: start;
-
-    background: ${cssVar.colorFillQuaternary};
-
-    &:hover {
-      border-color: ${cssVar.colorLink};
-      color: ${cssVar.colorLink};
-    }
-  `,
-  evidenceFileIcon: css`
-    display: flex;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  evidenceFileBody: css`
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-  `,
-  evidenceFileName: css`
-    overflow: hidden;
-
-    font-size: 13px;
-    line-height: 1.35;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  evidenceFileDesc: css`
-    overflow: hidden;
-
-    margin-block-start: 2px;
-
-    font-size: 12px;
-    line-height: 1.35;
-    color: ${cssVar.colorTextTertiary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  evidenceText: css`
-    overflow: auto;
-
-    max-height: 200px;
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadius};
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    white-space: pre-wrap;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  evidenceVideo: css`
-    align-self: flex-start;
-
-    width: auto;
-    max-width: 100%;
-    max-height: 360px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    object-fit: contain;
-  `,
-  evChip: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-radius: 999px;
-
-    font-size: 12px;
-    font-variant-numeric: tabular-nums;
-    color: ${cssVar.colorTextTertiary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  evidenceDoc: css`
-    overflow: hidden;
-
-    width: 100%;
-    height: 320px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-  `,
-  docViewer: css`
-    overflow: auto;
-    height: 100%;
-    padding-block: 12px;
-    padding-inline: 16px;
-  `,
-}));
-
 const VERDICT_META: Record<
   Verdict,
   { bg: string; color: string; dot: string; icon: typeof Check; labelKey: string }
 > = {
   failed: {
-    bg: cssVar.colorErrorBg,
-    color: cssVar.colorErrorText,
-    dot: cssVar.colorError,
+    bg: 'var(--ant-color-error-bg)',
+    color: 'var(--ant-color-error-text)',
+    dot: 'var(--ant-color-error)',
     icon: X,
     labelKey: 'report.verdict.failed',
   },
   passed: {
-    bg: cssVar.colorSuccessBg,
-    color: cssVar.colorSuccessText,
-    dot: cssVar.colorSuccess,
+    bg: 'var(--ant-color-success-bg)',
+    color: 'var(--ant-color-success-text)',
+    dot: 'var(--ant-color-success)',
     icon: Check,
     labelKey: 'report.verdict.passed',
   },
   uncertain: {
-    bg: cssVar.colorWarningBg,
-    color: cssVar.colorWarningText,
-    dot: cssVar.colorWarning,
+    bg: 'var(--ant-color-warning-bg)',
+    color: 'var(--ant-color-warning-text)',
+    dot: 'var(--ant-color-warning)',
     icon: CircleHelp,
     labelKey: 'report.verdict.uncertain',
   },
@@ -867,14 +478,14 @@ const ReportViewer = memo(() => {
 
   const chips: { count: number; dot?: string; key: Filter; label: string }[] = [
     { count: total, key: 'all', label: t('report.filter.all') },
-    { count: failed, dot: cssVar.colorError, key: 'failed', label: t('report.filter.failed') },
+    { count: failed, dot: 'var(--ant-color-error)', key: 'failed', label: t('report.filter.failed') },
     {
       count: uncertain,
-      dot: cssVar.colorWarning,
+      dot: 'var(--ant-color-warning)',
       key: 'uncertain',
       label: t('report.filter.uncertain'),
     },
-    { count: passed, dot: cssVar.colorSuccess, key: 'passed', label: t('report.filter.passed') },
+    { count: passed, dot: 'var(--ant-color-success)', key: 'passed', label: t('report.filter.passed') },
   ];
 
   return (

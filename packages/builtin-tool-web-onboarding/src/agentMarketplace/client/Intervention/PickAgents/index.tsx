@@ -1,8 +1,8 @@
 'use client';
 
 import type { BuiltinInterventionProps } from '@lobechat/types';
-import { Avatar, Button, Flexbox, Text } from '@lobehub/ui';
-import { cx } from 'antd-style';
+import { Avatar, Flexbox, Text } from '@lobehub/ui';
+import { Button } from '@lobehub/ui/base-ui';
 import type { KeyboardEvent } from 'react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +17,19 @@ import type { AgentTemplate, MarketplaceCategory, ShowAgentMarketplaceArgs } fro
 import { CATEGORY_LABEL_I18N_KEYS } from './constants';
 import PickAgentsSkeleton from './Skeleton';
 import { styles } from './style';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const EMPTY_TEMPLATES: AgentTemplate[] = [];
 

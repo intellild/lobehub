@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Icon, type MenuProps } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { Crown, Sparkles, Users, UsersRound } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,34 +18,7 @@ import { systemStatusSelectors } from '@/store/global/selectors';
 import AgentBuilderToggle from './AgentBuilderToggle';
 import { type ChromeTabItem } from './ChromeTabs';
 import ChromeTabs from './ChromeTabs';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  header: css`
-    overflow: hidden;
-    flex: none;
-
-    width: 100%;
-    height: 44px;
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  tabsWrapper: css`
-    scrollbar-width: none;
-
-    overflow-x: auto;
-
-    /* A swipe past the tabs' edge must not fire the browser back gesture. */
-    overscroll-behavior-x: none;
-    flex: 1;
-
-    min-width: 0;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  `,
-}));
+import styles from './index.module.css';
 
 const Header = memo(() => {
   const { t } = useTranslation('chat');

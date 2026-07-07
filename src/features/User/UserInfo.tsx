@@ -2,7 +2,6 @@
 
 import { type FlexboxProps } from '@lobehub/ui';
 import { Flexbox, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import ThemeButton from '@/features/User/UserPanel/ThemeButton';
@@ -35,7 +34,7 @@ const UserInfo = memo<UserInfoProps>(({ avatarProps, onClick, ...rest }) => {
       {...rest}
     >
       <Flexbox horizontal align={'center'} gap={10} onClick={onClick}>
-        <UserAvatar background={cssVar.colorFill} size={36} {...(avatarProps as any)} />
+        <UserAvatar background={'var(--ant-color-fill)'} size={36} {...(avatarProps as any)} />
         <Flexbox flex={1}>
           <Text style={{ lineHeight: 1.4 }} weight={'bold'}>
             {nickname}

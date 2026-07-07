@@ -1,5 +1,4 @@
 import { ActionIcon, Block } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { MaximizeIcon, MinimizeIcon } from 'lucide-react';
 import { memo, useEffect, useState } from 'react';
 
@@ -8,47 +7,25 @@ import { DESKTOP_HEADER_ICON_SIZE } from '@/const/layoutTokens';
 import { type QueryTagsResult } from '@/database/models/userMemory';
 import dynamic from '@/libs/next/dynamic';
 
+import styles from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const TagCloudCanvas = dynamic(() => import('./TagCloudCanvas'), {
   loading: () => <Loading debugId={'TagCloud'} />,
   ssr: false,
 });
-
-const styles = createStaticStyles(({ css }) => ({
-  fullscreen: css`
-    position: absolute;
-    z-index: 10;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-  `,
-  fullscreenAnimation: css`
-    opacity: 0;
-  `,
-  icon: css`
-    position: absolute;
-    z-index: 10;
-    inset-block-start: 6px;
-    inset-inline-end: 6px;
-  `,
-  root: css`
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 400px;
-
-    .fullscreen-icon {
-      opacity: 0;
-    }
-
-    &:hover {
-      .fullscreen-icon {
-        opacity: 1;
-      }
-    }
-  `,
-}));
 
 interface RoleTagCloudProps {
   tags: QueryTagsResult[];

@@ -1,0 +1,55 @@
+.action {
+display: block;
+width: 100%;
+margin-block-start: 8px;
+}
+
+.actionContent {
+display: inline-flex;
+gap: 8px;
+align-items: center;
+justify-content: center;
+
+width: 100%;
+}
+
+.card {
+position: fixed;
+z-index: 1000;
+inset-block-end: 56px;
+inset-inline-start: 8px;
+
+overflow: hidden;
+
+width: 300px;
+max-width: calc(100vw - 32px);
+padding: 0;
+border: 1px solid var(--ant-color-border);
+border-radius: 12px;
+
+background: var(--ant-color-bg-container);
+box-shadow: 0 4px 24px rgb(0 0 0 / 12%);
+}
+
+.closeButton {
+position: absolute;
+inset-block-start: 8px;
+inset-inline-end: 8px;
+}
+
+.description {
+font-size: 14px;
+color: var(--ant-color-text-secondary);
+}
+
+.image {
+width: 100%;
+height: auto;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.title {
+font-size: 16px;
+font-weight: 600;
+color: var(--ant-color-text);
+}

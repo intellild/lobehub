@@ -1,5 +1,4 @@
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo, Suspense, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +12,20 @@ import { usePermission } from '@/hooks/usePermission';
 import dynamic from '@/libs/next/dynamic';
 
 import { type ChatItemProps } from '../../type';
+import styles from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const EditorModal = dynamic(
   () => import('@/features/EditorModal').then((mode) => mode.EditorModal),
@@ -20,26 +33,7 @@ const EditorModal = dynamic(
 );
 
 export const MSG_CONTENT_CLASSNAME = 'msg_content_flag';
-
-export const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    bubble: css`
-      padding-block: 8px;
-      padding-inline: 12px;
-      border-radius: ${cssVar.borderRadiusLG};
-      background-color: ${cssVar.colorFillTertiary};
-    `,
-    disabled: css`
-      user-select: ${'none'};
-      color: ${cssVar.colorTextSecondary};
-    `,
-    message: css`
-      position: relative;
-      overflow: hidden;
-      max-width: 100%;
-    `,
-  };
-});
+export { styles };
 
 export interface MessageContentProps {
   children?: ReactNode;

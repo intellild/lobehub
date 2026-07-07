@@ -4,7 +4,6 @@ import { isDesktop } from '@lobechat/const';
 import type { ImessageBridgeConfig, ImessageBridgeStatus } from '@lobechat/electron-client-ipc';
 import { Flexbox, FormItem, Tag, Text } from '@lobehub/ui';
 import { App, Button, Form as AntdForm, Switch } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { Info, Wrench } from 'lucide-react';
 import { memo, use, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,51 +15,7 @@ import { gatewayConnectionService } from '@/services/electron/gatewayConnection'
 import { imessageBridgeService } from '@/services/electron/imessageBridge';
 
 import { ChannelPostSaveContext } from '../../detail/postSaveContext';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    margin-block: 8px;
-    padding: 20px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  headerIcon: css`
-    overflow: hidden;
-    flex: none;
-
-    width: 44px;
-    height: 44px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-  `,
-  infoBox: css`
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadius};
-
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  statusCard: css`
-    padding: 12px;
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  title: css`
-    font-size: 15px;
-    font-weight: 600;
-  `,
-}));
+import styles from './CredentialExtras.module.css';
 
 type TestStatus = 'idle' | 'success' | 'failed';
 

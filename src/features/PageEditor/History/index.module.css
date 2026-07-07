@@ -1,0 +1,44 @@
+.empty {
+height: 100%;
+padding: 24px;
+}
+
+.groupHeader {
+position: sticky;
+z-index: 1;
+inset-block-start: 0;
+
+display: flex;
+gap: 8px;
+align-items: baseline;
+
+padding-block: 14px 6px;
+padding-inline: 16px;
+border-block-end: 1px solid var(--ant-color-split);
+
+background: var(--ant-color-bg-container);
+}
+
+.groupTitle {
+font-size: 12px;
+font-weight: 700;
+line-height: 1;
+color: var(--ant-color-text);
+}
+
+.groupCount {
+font-size: 11px;
+line-height: 1;
+color: var(--ant-color-text-tertiary);
+}
+
+.headerButton {
+padding-inline: 8px;
+}
+
+.list {
+overflow-y: auto;
+flex: 1;
+min-height: 0;
+padding-block: 0 20px;
+}

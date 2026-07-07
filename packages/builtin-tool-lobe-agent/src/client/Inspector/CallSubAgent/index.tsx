@@ -2,7 +2,6 @@
 
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { GroupBotIcon } from '@lobehub/ui/icons';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -10,38 +9,20 @@ import { inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { CallSubAgentParams, CallSubAgentState } from '../../../types';
 import { SubAgentStats } from '../../components/SubAgentStats';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  chip: css`
-    overflow: hidden;
-    display: inline-flex;
-    flex-shrink: 1;
-    align-items: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    min-width: 0;
-    padding-block: 2px;
-    padding-inline: 10px;
-    border-radius: 999px;
-
-    font-size: 12px;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  icon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextDescription};
-  `,
-  label: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorText};
-  `,
-  root: css`
-    gap: 6px;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 /**
  * Collapsed row for lobe-agent's `callSubAgent`. Mirrors the Claude Code Agent

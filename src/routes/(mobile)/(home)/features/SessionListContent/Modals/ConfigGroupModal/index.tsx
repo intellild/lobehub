@@ -1,7 +1,6 @@
 import { type ModalProps } from '@lobehub/ui';
 import { Flexbox, Icon, SortableList } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { Plus } from 'lucide-react';
 import { memo, useState } from 'react';
@@ -14,19 +13,7 @@ import { sessionGroupSelectors } from '@/store/session/selectors';
 import { type SessionGroupItem } from '@/types/session';
 
 import GroupItem from './GroupItem';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    height: 36px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-    transition: background 0.2s ease-in-out;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
+import styles from './index.module.css';
 
 const ConfigGroupModal = memo<ModalProps>(({ open, onCancel }) => {
   const { t } = useTranslation('chat');

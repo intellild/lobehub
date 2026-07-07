@@ -1,29 +1,24 @@
 'use client';
 
 import { Popover } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { type PropsWithChildren } from 'react';
 import { memo, Suspense, useState } from 'react';
 
 import { isDesktop } from '@/const/version';
 
+import stylesModule from './index.module.css';
 import PanelContent from './PanelContent';
 import PanelContentSkeleton from './PanelContentSkeleton';
 import UpgradeBadge from './UpgradeBadge';
 import { useNewVersion } from './useNewVersion';
 
-const styles = createStaticStyles(({ css }) => {
-  return {
-    popover: css`
-      inset-block-start: ${isDesktop ? 32 : 8}px !important;
-      inset-inline-start: 8px !important;
-      border-radius: 10px;
-    `,
-    popoverContent: css`
-      padding: 0;
-    `,
-  };
-});
+const styles: typeof stylesModule & { popover: string } = {
+  ...stylesModule,
+  popover: [
+    stylesModule.popover,
+    isDesktop ? stylesModule.popoverDesktop : stylesModule.popoverWeb,
+  ].join(' '),
+};
 
 const UserPanel = memo<PropsWithChildren>(({ children }) => {
   const hasNewVersion = useNewVersion();

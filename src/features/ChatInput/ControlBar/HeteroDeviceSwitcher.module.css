@@ -1,0 +1,266 @@
+.button {
+cursor: pointer;
+
+display: flex;
+flex: none;
+gap: 6px;
+align-items: center;
+
+height: 28px;
+padding-inline: 8px;
+border-radius: 6px;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+white-space: nowrap;
+
+transition: all 0.2s;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.buttonLabel {
+overflow: hidden;
+max-width: 120px;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.check {
+flex: none;
+margin-inline-start: auto;
+color: var(--ant-color-primary);
+}
+
+.desc {
+display: flex;
+gap: 6px;
+align-items: center;
+
+font-size: 11px;
+color: var(--ant-color-text-description);
+}
+
+.dotOffline {
+flex: none;
+
+width: 6px;
+height: 6px;
+border-radius: 50%;
+
+background: var(--ant-color-text-quaternary);
+}
+
+.dotOnline {
+flex: none;
+
+width: 6px;
+height: 6px;
+border-radius: 50%;
+
+background: var(--ant-color-success);
+box-shadow: 0 0 0 2px var(--ant-color-success-bg);
+}
+
+.deviceList {
+overflow-y: auto;
+
+/* Cap the device section so a long list (servers/CLI fleets) stays scrollable
+   inside the popover instead of growing past the viewport. */
+max-height: 240px;
+
+/* Room for the scrollbar so rows don't sit flush against it. */
+margin-inline-end: -4px;
+padding-inline-end: 4px;
+}
+
+.empty {
+padding-block: 8px;
+padding-inline: 8px;
+font-size: 12px;
+color: var(--ant-color-text-quaternary);
+}
+
+.downloadCard {
+cursor: pointer;
+
+display: flex;
+gap: 10px;
+align-items: center;
+
+padding-block: 8px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius);
+
+text-decoration: none;
+
+transition: background-color 0.2s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.downloadCardArrow {
+flex: none;
+margin-inline-start: auto;
+color: var(--ant-color-text-quaternary);
+}
+
+.option {
+cursor: pointer;
+
+display: flex;
+gap: 10px;
+align-items: center;
+
+padding-block: 8px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius);
+
+transition: background-color 0.2s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.optionActive {
+background: var(--ant-color-fill-secondary);
+}
+
+.optionDisabled {
+cursor: not-allowed;
+opacity: 0.55;
+
+&:hover {
+  background: transparent;
+}
+}
+
+.optionIcon {
+display: flex;
+flex: none;
+align-items: center;
+justify-content: center;
+
+width: 28px;
+height: 28px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-text);
+
+background: var(--ant-color-bg-elevated);
+}
+
+.optionMeta {
+display: flex;
+flex: 1;
+flex-direction: column;
+gap: 1px;
+
+min-width: 0;
+}
+
+.optionTitle {
+overflow: hidden;
+
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.tag {
+flex: none;
+
+padding-block: 0;
+padding-inline: 5px;
+border-radius: 4px;
+
+font-size: 10px;
+line-height: 16px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-secondary);
+}
+
+.header {
+display: flex;
+gap: 6px;
+align-items: center;
+justify-content: space-between;
+
+padding-block: 6px 4px;
+padding-inline: 8px;
+}
+
+.headerInfo {
+cursor: help;
+color: var(--ant-color-text-quaternary);
+transition: color 0.2s;
+
+&:hover {
+  color: var(--ant-color-text-secondary);
+}
+}
+
+.headerLink {
+display: flex;
+gap: 3px;
+align-items: center;
+
+font-size: 11px;
+color: var(--ant-color-text-quaternary);
+text-decoration: none;
+
+transition: color 0.2s;
+
+&:hover {
+  color: var(--ant-color-primary);
+}
+}
+
+.headerTitle {
+font-size: 12px;
+font-weight: 500;
+color: var(--ant-color-text-tertiary);
+}
+
+.manageButton {
+cursor: pointer;
+
+display: flex;
+gap: 3px;
+align-items: center;
+
+padding: 0;
+border: none;
+
+font-size: 11px;
+color: var(--ant-color-text-quaternary);
+
+background: none;
+
+transition: color 0.2s;
+
+&:hover {
+  color: var(--ant-color-primary);
+}
+}
+
+.groupLabel {
+padding-block: 4px;
+padding-inline: 8px;
+
+font-size: 11px;
+font-weight: 500;
+color: var(--ant-color-text-quaternary);
+text-transform: uppercase;
+letter-spacing: 0.04em;
+}

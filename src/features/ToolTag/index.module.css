@@ -1,0 +1,11 @@
+.compact {
+height: auto !important;
+padding: 0 !important;
+border: none !important;
+background: transparent !important;
+}
+
+.tag {
+height: 24px !important;
+border-radius: var(--ant-border-radius-sm) !important;
+}

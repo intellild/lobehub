@@ -1,5 +1,4 @@
 import { Button, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -7,24 +6,20 @@ import DefaultFooter from '@/features/Setting/Footer';
 import { useIsDark } from '@/hooks/useIsDark';
 import { useMarketAuth } from '@/layout/AuthProvider/MarketAuth';
 
-const styles = createStaticStyles(({ css }) => ({
-  footer: css`
-    min-height: 320px;
-    padding-block-start: 32px;
+import styles from './Footer.module.css';
 
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: 512px auto;
-  `,
-  footer_dark: css`
-    background-image: url('/images/community_footer_dark.webp');
-    background-blend-mode: screen;
-  `,
-  footer_light: css`
-    background-image: url('/images/community_footer_light.webp');
-    background-blend-mode: multiply;
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const Footer = memo(() => {
   const { t } = useTranslation('discover');

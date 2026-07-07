@@ -6,7 +6,6 @@ import { TraceNameMap } from '@lobechat/types';
 import { ModelIcon } from '@lobehub/icons';
 import { Alert, Button, Flexbox, Highlighter, Icon } from '@lobehub/ui';
 import { Select } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Loader2Icon } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { memo, useEffect, useMemo, useState } from 'react';
@@ -18,11 +17,21 @@ import { chatService } from '@/services/chat';
 import { aiProviderSelectors, useAiInfraStore } from '@/store/aiInfra';
 import { getRuntimeErrorMessage } from '@/utils/locale/runtimeErrorMessage';
 
-const styles = createStaticStyles(({ css }) => ({
-  popup: css`
-    width: 380px;
-  `,
-}));
+import styles from './Checker.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const Error = memo<{ error: ChatMessageError }>(({ error }) => {
   const { t } = useTranslation(['error', 'modelRuntime']);
   const providerName = useProviderName(error.body?.provider);
@@ -214,7 +223,7 @@ const Checker = memo<ConnectionCheckerProps>(
               pass ? (
                 <CheckCircleFilled
                   style={{
-                    color: cssVar.colorSuccess,
+                    color: 'var(--ant-color-success)',
                   }}
                 />
               ) : undefined
@@ -222,8 +231,8 @@ const Checker = memo<ConnectionCheckerProps>(
             style={
               pass
                 ? {
-                    borderColor: cssVar.colorSuccess,
-                    color: cssVar.colorSuccess,
+                    borderColor: 'var(--ant-color-success)',
+                    color: 'var(--ant-color-success)',
                   }
                 : undefined
             }

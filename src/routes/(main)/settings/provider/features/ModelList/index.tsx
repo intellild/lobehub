@@ -2,7 +2,6 @@
 
 import { Flexbox, Icon } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import {
   AudioLines,
@@ -171,7 +170,7 @@ const ModelList = memo<ModelListProps>(
           gap={16}
           paddingInline={mobile ? 12 : 0}
           style={{
-            background: mobile ? cssVar.colorBgContainer : undefined,
+            background: mobile ? 'var(--ant-color-bg-container)' : undefined,
             paddingBottom: 16,
             paddingTop: 8,
           }}

@@ -1,6 +1,5 @@
 import { type DropdownMenuCheckboxItem, type DropdownMenuProps } from '@lobehub/ui';
 import { ActionIcon, DropdownMenu, Flexbox, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { ChevronRight, Languages } from 'lucide-react';
 import { memo, type ReactNode, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -83,15 +82,15 @@ const LangButton = memo<{ placement?: DropdownMenuProps['placement']; size?: num
             paddingInline: 12,
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = cssVar.colorFillTertiary as string;
+            e.currentTarget.style.background = 'var(--ant-color-fill-tertiary)' as string;
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'transparent';
           }}
         >
-          <Icon icon={Languages} size={'small'} style={{ color: cssVar.colorTextSecondary }} />
+          <Icon icon={Languages} size={'small'} style={{ color: 'var(--ant-color-text-secondary)' }} />
           <Flexbox flex={1}>{t('settingCommon.lang.title')}</Flexbox>
-          <Icon icon={ChevronRight} size={'small'} style={{ color: cssVar.colorTextSecondary }} />
+          <Icon icon={ChevronRight} size={'small'} style={{ color: 'var(--ant-color-text-secondary)' }} />
         </Flexbox>
       );
     }

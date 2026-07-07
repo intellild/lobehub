@@ -1,7 +1,6 @@
 'use client';
 
 import { Alert, Flexbox, Highlighter } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { MessageSquare, Timer, Wrench } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,30 +9,8 @@ import { type TaskDetail } from '@/types/index';
 import { ThreadStatus } from '@/types/index';
 
 import { MetricItem } from './CompletedState';
+import styles from './ErrorState.module.css';
 import { formatCost, formatDuration } from './utils';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  separator: css`
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: ${cssVar.colorTextQuaternary};
-  `,
-  statusIcon: css`
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-
-    color: ${cssVar.colorErrorText};
-
-    background: ${cssVar.colorErrorBg};
-  `,
-}));
 
 interface ErrorStateProps {
   taskDetail: TaskDetail;

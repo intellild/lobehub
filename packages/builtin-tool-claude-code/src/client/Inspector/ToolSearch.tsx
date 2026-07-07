@@ -6,41 +6,26 @@ import {
   shinyTextStyles,
 } from '@lobechat/shared-tool-ui/styles';
 import type { BuiltinInspectorProps } from '@lobechat/types';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ClaudeCodeApiName, type ToolSearchArgs } from '../../types';
+import styles from './ToolSearch.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const SELECT_PREFIX = 'select:';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  baseline: css`
-    align-items: baseline;
-  `,
-  tag: css`
-    padding-block: 2px;
-    padding-inline: 10px;
-    border-radius: 999px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  tagsList: css`
-    display: inline-flex;
-    flex-shrink: 1;
-    gap: 4px;
-    align-items: center;
-
-    min-width: 0;
-    margin-inline-start: 6px;
-
-    white-space: nowrap;
-  `,
-}));
 
 interface ParsedQuery {
   names: string[] | null;

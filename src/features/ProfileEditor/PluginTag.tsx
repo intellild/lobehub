@@ -4,7 +4,6 @@ import { type ComposioAppType, type LobehubSkillProviderType } from '@lobechat/c
 import { COMPOSIO_APP_TYPES, LOBEHUB_SKILL_PROVIDERS } from '@lobechat/const';
 import { Avatar, Icon, Tag } from '@lobehub/ui';
 import { McpIcon } from '@lobehub/ui/icons';
-import { createStaticStyles, cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { AlertCircle, Loader2, X } from 'lucide-react';
 import React, { memo, useMemo } from 'react';
@@ -24,6 +23,8 @@ import {
 import { type LobeToolMetaWithAvailability } from '@/store/tool/slices/builtin/selectors';
 import { connectorSelectors } from '@/store/tool/slices/connector/selectors';
 
+import styles from './PluginTag.module.css';
+
 /**
  * Composio server icon component
  */
@@ -32,7 +33,7 @@ const ComposioIcon = memo<Pick<ComposioAppType, 'icon' | 'label'>>(({ icon, labe
     return <img alt={label} height={16} src={icon} style={{ flexShrink: 0 }} width={16} />;
   }
 
-  return <Icon fill={cssVar.colorText} icon={icon} size={16} />;
+  return <Icon fill={'var(--ant-color-text)'} icon={icon} size={16} />;
 });
 
 /**
@@ -44,39 +45,9 @@ const LobehubSkillIcon = memo<Pick<LobehubSkillProviderType, 'icon' | 'label'>>(
       return <img alt={label} height={16} src={icon} style={{ flexShrink: 0 }} width={16} />;
     }
 
-    return <Icon fill={cssVar.colorText} icon={icon} size={16} />;
+    return <Icon fill={'var(--ant-color-text)'} icon={icon} size={16} />;
   },
 );
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  loadingIcon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextSecondary};
-    animation: spin 1s linear infinite;
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  `,
-  notInstalledTag: css`
-    border-color: ${cssVar.colorWarningBorder};
-    background: ${cssVar.colorWarningBg};
-  `,
-  tag: css`
-    height: 28px !important;
-    border-radius: ${cssVar.borderRadiusSM} !important;
-  `,
-  warningIcon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorWarning};
-  `,
-}));
 
 export interface PluginTagProps {
   disabled?: boolean;
@@ -255,7 +226,7 @@ const PluginTag = memo<PluginTagProps>(
 
       // Custom connector type
       if (meta.type === 'custom-connector') {
-        return <Icon fill={cssVar.colorText} icon={McpIcon} size={16} />;
+        return <Icon fill={'var(--ant-color-text)'} icon={McpIcon} size={16} />;
       }
 
       // Builtin type has avatar

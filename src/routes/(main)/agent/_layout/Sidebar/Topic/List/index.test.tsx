@@ -104,9 +104,8 @@ vi.mock('../TopicListContent/FlatMode', () => ({
   default: () => <div data-testid="flat-mode" />,
 }));
 
-// Partial mock: keep every real export (e.g. `lobeStaticStylish`, which
-// `createStaticStyles` reads at import time in transitively-loaded modules like
-// ShareModal/useContainerStyles) and override only Flexbox. A full mock returning
+// Partial mock: keep every real export used by transitively-loaded modules like
+// ShareModal/useContainerStyles and override only Flexbox. A full mock returning
 // just Flexbox drops those exports and crashes collection whenever the suite's
 // module graph evaluates one of them.
 vi.mock('@lobehub/ui', async (importOriginal) => ({

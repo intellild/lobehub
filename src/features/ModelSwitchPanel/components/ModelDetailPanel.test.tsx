@@ -9,18 +9,6 @@ import type { EnabledProviderWithModels } from '@/types/aiProvider';
 
 import ModelDetailPanel from './ModelDetailPanel';
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({
-    actionText: 'actionText',
-    container: 'container',
-    description: 'description',
-    originalPriceText: 'originalPriceText',
-    priceValue: 'priceValue',
-    row: 'row',
-    titleText: 'titleText',
-  }),
-}));
-
 vi.mock('@lobehub/ui', () => ({
   Accordion: ({ children }: { children: ReactNode }) => <div>{children}</div>,
   AccordionItem: ({

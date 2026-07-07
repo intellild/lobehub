@@ -1,35 +1,23 @@
 import { ActionIcon, Flexbox, Popover } from '@lobehub/ui';
 import { type TooltipProps } from 'antd';
 import { ConfigProvider } from 'antd';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { XIcon } from 'lucide-react';
 import { type CSSProperties, type FC, type ReactNode } from 'react';
 
-const styles = createStaticStyles(({ css }) => {
-  return {
-    close: css`
-      color: white;
-    `,
-    container: css`
-      position: relative;
-    `,
-    footer: css`
-      display: flex;
-      justify-content: end;
-      width: 100%;
-    `,
-    overlay: css`
-      .ant-popover-inner {
-        border: none;
-      }
-    `,
-    tip: css`
-      position: absolute;
-      inset-inline-start: 50%;
-      transform: translate(-50%);
-    `,
-  };
-});
+import styles from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface TipGuideProps {
   /**
@@ -95,12 +83,12 @@ const TipGuide: FC<TipGuideProps> = ({
       theme={{
         components: {
           Badge: { fontSize: 12, lineHeight: 1 },
-          Button: { colorPrimary: cssVar.blue7 },
+          Button: { colorPrimary: 'var(--ant-blue-7)' },
           Checkbox: {
-            colorPrimary: cssVar.blue7,
-            colorText: cssVar.colorTextLightSolid,
+            colorPrimary: 'var(--ant-blue-7)',
+            colorText: 'var(--ant-color-text-light-solid)',
           },
-          Popover: { colorText: cssVar.colorTextLightSolid },
+          Popover: { colorText: 'var(--ant-color-text-light-solid)' },
         },
       }}
     >

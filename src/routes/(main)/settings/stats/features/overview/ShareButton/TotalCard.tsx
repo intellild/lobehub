@@ -1,5 +1,4 @@
 import { Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import { useIsDark } from '@/hooks/useIsDark';
@@ -15,8 +14,8 @@ const TotalCard = memo<TotalCardProps>(({ title, count }) => {
     <Flexbox
       padding={12}
       style={{
-        background: isDarkMode ? cssVar.colorFillTertiary : cssVar.colorFillQuaternary,
-        borderRadius: cssVar.borderRadiusLG,
+        background: isDarkMode ? 'var(--ant-color-fill-tertiary)' : 'var(--ant-color-fill-quaternary)',
+        borderRadius: 'var(--ant-border-radius-lg)',
       }}
     >
       <div

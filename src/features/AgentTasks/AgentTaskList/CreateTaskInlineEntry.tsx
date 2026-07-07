@@ -3,7 +3,6 @@
 import { useEditor } from '@lobehub/editor/react';
 import { ActionIcon, Block, Flexbox, Icon, Text } from '@lobehub/ui';
 import { Button } from 'antd';
-import { cssVar } from 'antd-style';
 import { $getRoot } from 'lexical';
 import { ChevronUp, Paperclip, UserCircle2 } from 'lucide-react';
 import { type KeyboardEvent, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -327,7 +326,7 @@ const CreateTaskInlineEntry = memo<CreateTaskInlineEntryProps>((props) => {
         align={'center'}
         justify={'space-between'}
         style={{
-          borderTop: `1px solid ${cssVar.colorBorderSecondary}`,
+          borderTop: `1px solid ${'var(--ant-color-border-secondary)'}`,
           paddingBlock: 8,
           paddingInline: '8px 16px',
         }}
@@ -372,8 +371,8 @@ const CreateTaskInlineEntry = memo<CreateTaskInlineEntryProps>((props) => {
                   </>
                 ) : (
                   <>
-                    <Icon color={cssVar.colorTextDescription} icon={UserCircle2} size={14} />
-                    <Text color={cssVar.colorTextDescription} fontSize={12}>
+                    <Icon color={'var(--ant-color-text-description)'} icon={UserCircle2} size={14} />
+                    <Text color={'var(--ant-color-text-description)'} fontSize={12}>
                       {t('createTask.assignee')}
                     </Text>
                   </>

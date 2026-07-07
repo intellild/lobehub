@@ -1,0 +1,23 @@
+.breadcrumb {
+font-size: 14px;
+color: var(--ant-color-text-secondary);
+}
+
+.breadcrumbItem {
+cursor: pointer;
+transition: color var(--ant-motion-duration-slow);
+
+&:hover {
+  color: var(--ant-color-text);
+}
+}
+
+.currentItem {
+font-weight: 500;
+color: var(--ant-color-text);
+}
+
+.separator {
+margin-inline: 8px;
+color: var(--ant-color-text-quaternary);
+}

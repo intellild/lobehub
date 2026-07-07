@@ -1,7 +1,6 @@
 import type { WriteLocalFileParams } from '@lobechat/electron-client-ipc';
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, Icon, Markdown, PatchDiff, Skeleton } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ChevronRight } from 'lucide-react';
 import path from 'path-browserify-esm';
 import { memo } from 'react';
@@ -9,16 +8,7 @@ import { memo } from 'react';
 import { InlineHtmlPreview, isHtmlFile } from '@/components/HtmlPreview';
 import { LocalFile, LocalFolder } from '@/features/LocalFile';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding-block: 4px;
-  `,
-  previewBox: css`
-    overflow: hidden;
-    border-radius: 8px;
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
+import styles from './index.module.css';
 
 const buildNewFilePatch = (filePath: string, content: string) => {
   const hasTrailingNewline = content.endsWith('\n');

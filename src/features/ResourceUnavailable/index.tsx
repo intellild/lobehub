@@ -1,10 +1,11 @@
 'use client';
 
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { EyeOffIcon } from 'lucide-react';
 import { type CSSProperties, memo } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import styles from './index.module.css';
 
 export type ResourceUnavailableVariant = 'card' | 'inline' | 'attachment';
 
@@ -23,46 +24,6 @@ export interface ResourceUnavailableProps {
    */
   variant?: ResourceUnavailableVariant;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  attachment: css`
-    padding-block: 8px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 8px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  card: css`
-    padding-block: 12px;
-    padding-inline: 16px;
-    border: 1px dashed ${cssVar.colorBorderSecondary};
-    border-radius: 8px;
-
-    color: ${cssVar.colorTextDescription};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  icon: css`
-    flex: none;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  inline: css`
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 4px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  small: css`
-    font-size: 12px;
-  `,
-}));
 
 /**
  * `ResourceUnavailable`

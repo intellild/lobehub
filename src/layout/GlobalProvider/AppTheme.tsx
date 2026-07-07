@@ -7,7 +7,6 @@ import { type NeutralColors, type PrimaryColors } from '@lobehub/ui';
 import { ConfigProvider, FontLoader, ThemeProvider } from '@lobehub/ui';
 import { message as antdMessage } from 'antd';
 import { AppConfigContext } from 'antd/es/app/context';
-import { createStaticStyles, cx, useTheme } from 'antd-style';
 import * as m from 'motion/react-m';
 import { type ReactNode } from 'react';
 import { memo, useEffect, useMemo, useState } from 'react';
@@ -17,6 +16,7 @@ import Link from '@/components/Link';
 import { LOBE_THEME_NEUTRAL_COLOR, LOBE_THEME_PRIMARY_COLOR } from '@/const/theme';
 import { isDesktop } from '@/const/version';
 import { useIsDark } from '@/hooks/useIsDark';
+import { useTheme } from '@/hooks/useTheme';
 import { getUILocaleAndResources } from '@/libs/getUILocaleAndResources';
 import type { UILocaleResources } from '@/libs/getUILocaleAndResources.utils';
 import { resolveUILocale } from '@/libs/getUILocaleAndResources.utils';
@@ -28,61 +28,20 @@ import { userGeneralSettingsSelectors } from '@/store/user/selectors';
 import { GlobalStyle } from '@/styles';
 import { setCookie } from '@/utils/client/cookie';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  app: css`
-    position: relative;
+import styles from './AppTheme.module.css';
 
-    overscroll-behavior: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    height: 100%;
-    min-height: 100dvh;
-    max-height: 100dvh;
-
-    @media (device-width >= 576px) {
-      overflow: hidden;
-    }
-  `,
-  // scrollbar-width and scrollbar-color are supported from Chrome 121
-  // https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color
-  scrollbar: css`
-    scrollbar-color: ${cssVar.colorFill} transparent;
-    scrollbar-width: thin;
-
-    #lobe-mobile-scroll-container {
-      scrollbar-width: none;
-
-      ::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-      }
-    }
-  `,
-
-  // so this is a polyfill for older browsers
-  scrollbarPolyfill: css`
-    ::-webkit-scrollbar {
-      width: 0.75em;
-      height: 0.75em;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-    }
-
-    :hover::-webkit-scrollbar-thumb {
-      border: 3px solid transparent;
-      background-color: ${cssVar.colorText};
-      background-clip: content-box;
-    }
-
-    ::-webkit-scrollbar-track {
-      background-color: transparent;
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface AppThemeProps {
   children?: ReactNode;

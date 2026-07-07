@@ -1,42 +1,15 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ArrowLeftRight } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './InlineVideoFrames.module.css';
 import UploadCard, { UPLOAD_CARD_SIZE, type UploadData } from './UploadCard';
 
 const STACK_OFFSET = -(UPLOAD_CARD_SIZE - 8);
 const EXPAND_OFFSET = 4;
-
-const styles = createStaticStyles(({ css }) => ({
-  addCirclePos: css`
-    position: absolute;
-    z-index: 100;
-    inset-block-end: -2px;
-    inset-inline-end: -2px;
-  `,
-  refGroup: css`
-    position: relative;
-  `,
-  stack: css`
-    position: relative;
-    padding-block: 4px;
-    padding-inline: 0;
-
-    &:hover {
-      .inline-ref-close {
-        opacity: 1;
-      }
-    }
-  `,
-  swapIcon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-}));
 
 interface InlineVideoFramesProps {
   endImageUrl?: string | null;

@@ -2,54 +2,11 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Accordion, AccordionItem, Flexbox, Tag, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { SearchMemoryParams, SearchUserMemoryState } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-
-    width: 100%;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  empty: css`
-    padding: 24px;
-    color: ${cssVar.colorTextTertiary};
-    text-align: center;
-  `,
-  item: css`
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px dashed ${cssVar.colorBorderSecondary};
-
-    &:last-child {
-      border-block-end: none;
-    }
-  `,
-  itemContent: css`
-    font-size: 13px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  itemTitle: css`
-    font-size: 14px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-  sectionHeader: css`
-    font-size: 12px;
-    font-weight: 500;
-  `,
-  tags: css`
-    padding-block-start: 6px;
-  `,
-}));
+import styles from './index.module.css';
 
 interface MemoryItemProps {
   content?: string | null;

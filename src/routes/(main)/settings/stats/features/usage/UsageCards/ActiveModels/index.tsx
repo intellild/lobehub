@@ -1,6 +1,5 @@
 import { ModelIcon, ProviderIcon } from '@lobehub/icons';
 import { ActionIcon, Avatar, Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { MaximizeIcon } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -69,7 +68,7 @@ const ActiveModels = memo<UsageChartProps>(({ data, isLoading, groupBy, resolveU
 
   const renderIcon = (item: string, i: number) => {
     const baseStyle = {
-      border: `2px solid ${cssVar.colorBgContainer}`,
+      border: `2px solid ${'var(--ant-color-bg-container)'}`,
       boxSizing: 'content-box' as const,
       marginRight: -8,
       zIndex: i + 1,
@@ -79,7 +78,7 @@ const ActiveModels = memo<UsageChartProps>(({ data, isLoading, groupBy, resolveU
       return (
         <Avatar
           avatar={display?.avatar || display?.name || item}
-          background={cssVar.colorFillSecondary}
+          background={'var(--ant-color-fill-secondary)'}
           key={item}
           shape={'circle'}
           size={18}

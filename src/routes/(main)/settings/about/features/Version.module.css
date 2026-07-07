@@ -1,0 +1,3 @@
+.logo {
+border-radius: calc(var(--ant-border-radius-lg) * 2);
+}

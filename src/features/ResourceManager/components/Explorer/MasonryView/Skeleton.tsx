@@ -1,30 +1,9 @@
-import { createStaticStyles, keyframes } from 'antd-style';
+
 import { memo } from 'react';
 
-const pulse = keyframes`
-  0%,
-  100% {
-    opacity: 1;
-  }
+import stylesModule from './Skeleton.module.css';
 
-  50% {
-    opacity: 0.6;
-  }
-`;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorFillQuaternary};
-    animation: ${pulse} 1.5s ease-in-out infinite;
-  `,
-  grid: css`
-    display: grid;
-    gap: 16px;
-    padding-block: 12px;
-    padding-inline: 24px;
-  `,
-}));
+const styles = stylesModule;
 
 interface MasonrySkeletonProps {
   columnCount: number;

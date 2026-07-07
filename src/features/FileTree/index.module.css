@@ -1,0 +1,52 @@
+.item {
+cursor: pointer;
+
+display: flex;
+gap: 6px;
+align-items: center;
+
+padding-block: 6px;
+padding-inline-end: 8px;
+border-radius: 6px;
+
+font-size: 13px;
+line-height: 1.4;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.itemSelected {
+color: var(--ant-color-primary);
+background: var(--ant-color-fill-secondary);
+}
+
+.label {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.editingInput {
+margin: 0 !important;
+padding: 0 !important;
+border: none !important;
+
+font-size: 13px !important;
+line-height: 1.4 !important;
+
+background: transparent !important;
+outline: none !important;
+box-shadow: none !important;
+}
+
+.editingInputRoot {
+margin: 0 !important;
+padding: 0 !important;
+border: none !important;
+border-radius: 0 !important;
+
+background: transparent !important;
+box-shadow: none !important;
+}

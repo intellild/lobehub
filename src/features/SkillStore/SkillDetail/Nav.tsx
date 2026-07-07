@@ -2,26 +2,11 @@
 
 import { Flexbox, Icon } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import { BookOpenIcon, BotIcon, CodeIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  nav: css`
-    border-block-end: 1px solid ${cssVar.colorBorder};
-  `,
-  tabs: css`
-    scrollbar-width: none;
-    overflow-x: auto;
-    flex: 1;
-    min-width: 0;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  `,
-}));
+import styles from './Nav.module.css';
 
 export type TabKey = 'agents' | 'overview' | 'schema';
 

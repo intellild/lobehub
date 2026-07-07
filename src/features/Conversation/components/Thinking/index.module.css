@@ -1,0 +1,15 @@
+.contentScroll {
+max-height: min(40vh, 320px);
+padding-block-end: 8px;
+padding-inline: 8px;
+color: var(--ant-color-text-description);
+
+article * {
+  color: var(--ant-color-text-description);
+}
+}
+
+.scrollRoot {
+border-radius: 0;
+background: transparent;
+}

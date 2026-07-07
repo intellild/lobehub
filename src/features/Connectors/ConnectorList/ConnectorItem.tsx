@@ -1,31 +1,10 @@
-import { createStaticStyles } from 'antd-style';
+
 import { LinkIcon } from 'lucide-react';
 import { memo } from 'react';
 
 import type { ConnectorWithTools } from '@/store/tool/slices/connector';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  active: css`
-    background: ${cssVar.colorFillSecondary};
-  `,
-  item: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    margin-block: 0;
-    margin-inline: 4px;
-    padding-block: 6px;
-    padding-inline: 12px;
-    border-radius: 6px;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
+import styles from './ConnectorItem.module.css';
 
 interface ConnectorItemProps {
   active?: boolean;

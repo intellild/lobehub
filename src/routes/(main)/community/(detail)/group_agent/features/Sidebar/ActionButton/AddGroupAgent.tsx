@@ -3,7 +3,6 @@
 import { Button, DropdownMenu, Flexbox, Icon } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { ChevronDownIcon } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,21 +15,7 @@ import { discoverService } from '@/services/discover';
 import { useAgentGroupStore } from '@/store/agentGroup';
 
 import { useDetailContext } from '../../DetailProvider';
-
-const styles = createStaticStyles(({ css }) => ({
-  buttonGroup: css`
-    width: 100%;
-  `,
-  menuButton: css`
-    padding-inline: 8px;
-    border-start-start-radius: 0 !important;
-    border-end-start-radius: 0 !important;
-  `,
-  primaryButton: css`
-    border-start-end-radius: 0 !important;
-    border-end-end-radius: 0 !important;
-  `,
-}));
+import styles from './AddGroupAgent.module.css';
 
 const AddGroupAgent = memo<{ mobile?: boolean }>(() => {
   const {

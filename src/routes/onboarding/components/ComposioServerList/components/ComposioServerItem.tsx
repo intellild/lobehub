@@ -1,7 +1,6 @@
 'use client';
 
 import { Block, Flexbox, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import { type ComposioAppType } from '@/const/index';
@@ -63,8 +62,8 @@ const ComposioServerItem = memo<ComposioServerItemProps>(
         style={
           isConnected
             ? {
-                background: cssVar.colorSuccessBg,
-                borderColor: cssVar.colorSuccessBorder,
+                background: 'var(--ant-color-success-bg)',
+                borderColor: 'var(--ant-color-success-border)',
               }
             : {}
         }

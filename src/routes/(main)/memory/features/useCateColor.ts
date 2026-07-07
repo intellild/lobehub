@@ -1,6 +1,8 @@
-import { useTheme } from 'antd-style';
+
 import { darken, lighten, mix, rgba, saturate } from 'polished';
 import { useMemo } from 'react';
+
+import { useTheme } from '@/hooks/useTheme';
 
 function getStableRandom(str: string, min = 0, max = 100) {
   if (min > max) {

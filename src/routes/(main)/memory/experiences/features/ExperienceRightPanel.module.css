@@ -1,0 +1,16 @@
+.content {
+font-size: 14px;
+line-height: 1.8;
+color: var(--ant-color-text);
+white-space: pre-wrap;
+}
+
+.stepsContainer {
+.ant-steps-item-content {
+  min-height: auto;
+}
+
+.ant-steps-item-description {
+  padding-block-end: 16px !important;
+}
+}

@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router';
 
@@ -17,18 +16,8 @@ import { BOT_RUNTIME_STATUSES, type BotRuntimeStatus } from '../../../../types/b
 import { type ChannelPlatformDefinition, COMING_SOON_PLATFORMS } from './const';
 import PlatformDetail from './detail';
 import ComingSoonDetail from './detail/ComingSoon';
+import styles from './index.module.css';
 import PlatformList from './list';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-
-    width: 100%;
-    height: 100%;
-  `,
-}));
 
 const ChannelPage = memo(() => {
   const { aid } = useParams<{ aid?: string }>();

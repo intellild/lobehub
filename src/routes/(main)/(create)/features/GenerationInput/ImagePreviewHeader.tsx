@@ -1,18 +1,10 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import type { PropsWithChildren } from 'react';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    margin-block-end: 8px;
-    padding-block: 8px;
-    padding-inline: 8px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-}));
+import styles from './ImagePreviewHeader.module.css';
 
 const ImagePreviewHeader = memo<PropsWithChildren>(({ children }) => {
   if (!children) return null;

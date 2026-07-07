@@ -1,5 +1,4 @@
 import { Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Loader2Icon, LockIcon } from 'lucide-react';
 import { type CSSProperties } from 'react';
 import React, { memo, useCallback, useMemo } from 'react';
@@ -68,10 +67,10 @@ const KnowledgeBaseItem = memo<KnowledgeBaseItemProps>(
     // Lock signals "only you can see this" — mirrors the private-agent / private-task visual.
     const icon = useMemo(() => {
       if (isLoading) {
-        return <Icon spin color={cssVar.colorTextDescription} icon={Loader2Icon} size={18} />;
+        return <Icon spin color={'var(--ant-color-text-description)'} icon={Loader2Icon} size={18} />;
       }
       if (visibility === 'private') {
-        return <Icon color={cssVar.colorTextDescription} icon={LockIcon} size={18} />;
+        return <Icon color={'var(--ant-color-text-description)'} icon={LockIcon} size={18} />;
       }
       return <RepoIcon size={18} />;
     }, [isLoading, visibility]);

@@ -1,0 +1,62 @@
+.bar {
+pointer-events: auto;
+
+position: absolute;
+inset-block-end: 100%;
+inset-inline: 0;
+transform: translateY(4px);
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+height: 28px;
+padding-block-end: 4px;
+
+opacity: 0;
+background: transparent;
+
+transition:
+  opacity 160ms ease-out,
+  transform 160ms ease-out;
+}
+
+.visible {
+transform: translateY(0);
+opacity: 1;
+}
+
+.trigger {
+cursor: pointer;
+
+display: inline-flex;
+gap: 6px;
+align-items: center;
+
+height: 24px;
+padding-inline: 10px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 12px;
+
+font-size: 12px;
+line-height: 1;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-bg-elevated);
+box-shadow: var(--ant-box-shadow-tertiary);
+
+transition:
+  color 160ms,
+  border-color 160ms,
+  background 160ms;
+
+&:hover {
+  border-color: var(--ant-color-border);
+  color: var(--ant-color-text);
+  background: var(--ant-color-bg-container);
+}
+}
+
+.hidden {
+pointer-events: none;
+}

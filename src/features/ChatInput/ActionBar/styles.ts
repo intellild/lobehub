@@ -1,16 +1,6 @@
-import { createStaticStyles } from 'antd-style';
+
+import stylesModule from './styles.module.css';
 
 const prefixCls = 'ant';
+export const styles = stylesModule;
 
-export const styles = createStaticStyles(({ css }) => ({
-  dropdownMenu: css`
-    &.${prefixCls}-dropdown-menu {
-      .${prefixCls}-dropdown-menu-item-group-list {
-        margin: 0;
-      }
-      .${prefixCls}-avatar {
-        margin-inline-end: var(--ant-margin-xs);
-      }
-    }
-  `,
-}));

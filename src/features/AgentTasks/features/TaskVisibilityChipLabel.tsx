@@ -1,5 +1,4 @@
 import { Block, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { LockIcon, UsersIcon } from 'lucide-react';
 import { type ComponentProps, memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -34,7 +33,7 @@ const TaskVisibilityChipLabel = memo<TaskVisibilityChipLabelProps>(
       defaultValue: getTaskVisibilityDefaultLabel(visibility),
     });
 
-    const iconColor = variant === 'tag' ? cssVar.colorTextSecondary : cssVar.colorTextDescription;
+    const iconColor = variant === 'tag' ? 'var(--ant-color-text-secondary)' : 'var(--ant-color-text-description)';
     const iconSize = variant === 'tag' ? 16 : 14;
 
     return (

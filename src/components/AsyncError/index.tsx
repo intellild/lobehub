@@ -2,12 +2,13 @@
 
 import { Center, Flexbox, Icon, Text } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { RotateCwIcon, TriangleAlertIcon } from 'lucide-react';
 import { memo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { normalizeAsyncError } from '@/libs/swr/normalizeError';
+
+import styles from './index.module.css';
 
 /**
  * The error counterpart to the loading family (`NeuralNetworkLoading`,
@@ -36,33 +37,6 @@ export interface AsyncErrorProps {
   variant?: AsyncErrorVariant;
 }
 
-const styles = createStaticStyles(({ css }) => ({
-  block: css`
-    width: 100%;
-    min-height: 180px;
-    padding: 32px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  icon: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-  inline: css`
-    padding-block: 8px;
-  `,
-  metric: css`
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  page: css`
-    flex: 1;
-    width: 100%;
-    min-height: 320px;
-    padding: 48px;
-  `,
-}));
-
 const AsyncError = memo<AsyncErrorProps>(
   ({ variant = 'block', error, onRetry, title, description }) => {
     const { t } = useTranslation('error');
@@ -80,14 +54,14 @@ const AsyncError = memo<AsyncErrorProps>(
       return (
         <Flexbox horizontal align={'center'} className={styles.metric} gap={6}>
           <Icon icon={TriangleAlertIcon} size={14} />
-          <Text color={cssVar.colorTextQuaternary} fontSize={13}>
+          <Text color={'var(--ant-color-text-quaternary)'} fontSize={13}>
             {t('asyncState.metricLabel')}
           </Text>
           {showRetry && (
             <Text
               aria-label={t('error.retry')}
               role={'button'}
-              style={{ color: cssVar.colorPrimary, cursor: 'pointer' }}
+              style={{ color: 'var(--ant-color-primary)', cursor: 'pointer' }}
               tabIndex={0}
               onClick={onRetry}
             >
@@ -103,13 +77,13 @@ const AsyncError = memo<AsyncErrorProps>(
       return (
         <Flexbox horizontal align={'center'} className={styles.inline} gap={8} justify={'center'}>
           <Icon className={styles.icon} icon={TriangleAlertIcon} size={14} />
-          <Text color={cssVar.colorTextSecondary} fontSize={13}>
+          <Text color={'var(--ant-color-text-secondary)'} fontSize={13}>
             {heading}
           </Text>
           {showRetry && (
             <Text
               role={'button'}
-              style={{ color: cssVar.colorPrimary, cursor: 'pointer' }}
+              style={{ color: 'var(--ant-color-primary)', cursor: 'pointer' }}
               tabIndex={0}
               onClick={onRetry}
             >
@@ -134,7 +108,7 @@ const AsyncError = memo<AsyncErrorProps>(
           </Text>
           <Text
             align={'center'}
-            color={cssVar.colorTextTertiary}
+            color={'var(--ant-color-text-tertiary)'}
             fontSize={13}
             style={{ maxWidth: 360 }}
           >

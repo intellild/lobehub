@@ -1,0 +1,11 @@
+.page {
+.ant-pagination-item-active {
+    border-color: var(--ant-color-fill-secondary);
+    background: var(--ant-color-fill-secondary);
+
+    &:hover {
+      border-color: var(--ant-color-fill);
+      background: var(--ant-color-fill);
+    }
+  }
+}

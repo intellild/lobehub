@@ -1,17 +1,9 @@
 import { type ActionIconProps, type FlexboxProps } from '@lobehub/ui';
 import { ActionIcon, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { type ReactNode } from 'react';
 import React from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  header: css`
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  title: css`
-    font-weight: 550;
-  `,
-}));
+import styles from './Header.module.css';
 
 interface HeaderProps extends Omit<FlexboxProps, 'title' | 'children'> {
   actions?: ActionIconProps[];

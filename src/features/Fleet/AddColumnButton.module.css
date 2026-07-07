@@ -1,0 +1,19 @@
+.trigger {
+cursor: pointer;
+
+display: flex;
+flex: none;
+align-items: center;
+justify-content: center;
+
+width: 52px;
+height: 100%;
+
+color: var(--ant-color-text-tertiary);
+
+transition: color 0.15s;
+
+&:hover {
+  color: var(--ant-color-primary);
+}
+}

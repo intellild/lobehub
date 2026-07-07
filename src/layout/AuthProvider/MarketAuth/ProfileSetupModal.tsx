@@ -4,7 +4,6 @@ import { Center, Flexbox, Icon, Input, Text, TextArea, Tooltip } from '@lobehub/
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { type UploadProps } from 'antd';
 import { App, Form, Upload } from 'antd';
-import { cssVar } from 'antd-style';
 import { CircleHelp, Globe, ImagePlus, Trash2 } from 'lucide-react';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -500,11 +499,11 @@ const ProfileSetupModal = memo<ProfileSetupModalProps>(
                   >
                     <div
                       style={{
-                        backgroundColor: bannerUrl ? undefined : cssVar.colorFillTertiary,
+                        backgroundColor: bannerUrl ? undefined : 'var(--ant-color-fill-tertiary)',
                         backgroundImage: bannerUrl ? `url(${bannerUrl})` : undefined,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
-                        borderRadius: cssVar.borderRadiusLG,
+                        borderRadius: 'var(--ant-border-radius-lg)',
                         cursor: 'pointer',
                         height: 120,
                         overflow: 'hidden',
@@ -530,11 +529,11 @@ const ProfileSetupModal = memo<ProfileSetupModalProps>(
                         <Flexbox align="center" gap={8}>
                           <ImagePlus
                             size={24}
-                            style={{ color: bannerUrl ? '#fff' : cssVar.colorTextSecondary }}
+                            style={{ color: bannerUrl ? '#fff' : 'var(--ant-color-text-secondary)' }}
                           />
                           <Text
                             style={{
-                              color: bannerUrl ? '#fff' : cssVar.colorTextSecondary,
+                              color: bannerUrl ? '#fff' : 'var(--ant-color-text-secondary)',
                               fontSize: 12,
                             }}
                           >
@@ -550,7 +549,7 @@ const ProfileSetupModal = memo<ProfileSetupModalProps>(
                     <Flexbox horizontal align="center" gap={8} justify="flex-end">
                       <Text
                         style={{
-                          color: cssVar.colorError,
+                          color: 'var(--ant-color-error)',
                           cursor: 'pointer',
                           fontSize: 12,
                         }}
@@ -611,7 +610,7 @@ const ProfileSetupModal = memo<ProfileSetupModalProps>(
                   placeholder={t('profileSetup.fields.website.placeholder')}
                   prefix={
                     <Icon
-                      color={cssVar.colorTextSecondary}
+                      color={'var(--ant-color-text-secondary)'}
                       icon={Globe}
                       style={{ marginRight: 8 }}
                     />

@@ -2,7 +2,6 @@
 
 import { isDesktop } from '@lobechat/const';
 import { Flexbox, Icon, Skeleton, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { CircleAlertIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,53 +14,7 @@ import { agentByIdSelectors } from '@/store/agent/selectors';
 
 import ClaudeCodeQuotaMenu from './ClaudeCodeQuotaMenu';
 import CodexQuotaMenu from './CodexQuotaMenu';
-
-const styles = createStaticStyles(({ css }) => ({
-  bar: css`
-    container: runtimebar / inline-size;
-    padding-block: 0;
-    padding-inline: 4px;
-  `,
-  fullAccess: css`
-    cursor: default;
-
-    display: flex;
-    flex: none;
-    gap: 6px;
-    align-items: center;
-
-    padding-block: 2px;
-    padding-inline: 4px;
-    border-radius: 4px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    white-space: nowrap;
-  `,
-  // On a narrow bar the "full access" badge collapses to just its icon — the
-  // hover tooltip still spells it out. Saves a chunk of horizontal space that
-  // the truncating workspace cluster can use instead.
-  fullAccessLabel: css`
-    @container runtimebar (width < 600px) {
-      display: none;
-    }
-  `,
-  // Mirror RuntimeConfig: the workspace cluster shrinks then scrolls horizontally
-  // (hidden scrollbar) instead of wrapping each chip's text on narrow screens.
-  leftGroup: css`
-    scrollbar-width: none;
-    overflow: auto hidden;
-    flex: 1;
-    min-width: 0;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  `,
-  rightGroup: css`
-    flex: none;
-  `,
-}));
+import styles from './HeteroControlBar.module.css';
 
 const HeteroControlBar = memo(() => {
   const { t: tChat } = useTranslation('chat');

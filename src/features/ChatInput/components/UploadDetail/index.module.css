@@ -1,0 +1,6 @@
+.status {
+&.ant-tag {
+  padding-inline: 0;
+  background: none;
+}
+}

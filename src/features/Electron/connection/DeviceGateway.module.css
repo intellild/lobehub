@@ -1,0 +1,39 @@
+.fieldLabel {
+font-size: 12px;
+color: var(--ant-color-text-description);
+}
+
+.greenDot {
+position: absolute;
+inset-block-end: 0;
+inset-inline-end: 0;
+
+width: 8px;
+height: 8px;
+border: 1.5px solid var(--ant-color-bg-container);
+border-radius: 50%;
+
+background: #52c41a;
+}
+
+.input {
+border: none;
+background: var(--ant-color-fill-tertiary);
+
+&:hover,
+&:focus {
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.popoverContent {
+width: 280px;
+padding-block: 4px;
+padding-inline: 0;
+}
+
+.statusTitle {
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-text);
+}

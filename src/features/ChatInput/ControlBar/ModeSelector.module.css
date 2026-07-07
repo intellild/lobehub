@@ -1,0 +1,114 @@
+.activeOption {
+background: var(--ant-color-fill-secondary);
+}
+
+.agentTooltip {
+display: flex;
+flex-direction: column;
+gap: 4px;
+min-width: 160px;
+}
+
+.agentTooltipCap {
+display: flex;
+gap: 6px;
+align-items: center;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+}
+
+.agentTooltipTitle {
+margin-block-end: 2px;
+font-size: 12px;
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.button {
+cursor: pointer;
+
+display: flex;
+flex: none;
+gap: 6px;
+align-items: center;
+
+height: 28px;
+padding-inline: 8px;
+border-radius: 6px;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+white-space: nowrap;
+
+transition: all 0.2s;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.buttonDisabled {
+cursor: not-allowed;
+opacity: 0.5;
+
+&:hover {
+  color: var(--ant-color-text-secondary);
+  background: transparent;
+}
+}
+
+.option {
+cursor: pointer;
+
+width: 100%;
+padding-block: 10px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius);
+
+transition: background-color 0.2s;
+
+&:hover {
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.optionDisabled {
+cursor: not-allowed;
+opacity: 0.55;
+
+&:hover {
+  background: transparent;
+}
+}
+
+.optionDesc {
+font-size: 12px;
+line-height: 1.4;
+color: var(--ant-color-text-description);
+}
+
+.optionIcon {
+flex-shrink: 0;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius);
+background: var(--ant-color-bg-elevated);
+}
+
+.optionTitle {
+font-size: 14px;
+font-weight: 500;
+line-height: 1.4;
+color: var(--ant-color-text);
+}
+
+.popoverPopup {
+/* The popup pads its option rows by 4px, so its corner must be one step larger
+   than the rows' radius (borderRadius 8 → borderRadiusLG 12 = 8 + 4) to wrap them
+   concentrically instead of looking tighter than them. &&& outranks the base
+   popup style's border-radius. */
+&&& {
+  border-radius: var(--ant-border-radius-lg);
+}
+}

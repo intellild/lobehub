@@ -1,6 +1,5 @@
 import { resolveCCSubagentType } from '@lobechat/builtin-tool-claude-code/client';
 import { Flexbox, Icon, Tag, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { ListTree } from 'lucide-react';
 import { memo } from 'react';
@@ -23,11 +22,11 @@ const Active = memo(() => {
 
   return (
     <Flexbox horizontal align={'center'} gap={8} style={{ marginInlineStart: 4 }}>
-      <Icon color={cssVar.colorTextSecondary} icon={ListTree} size={18} />
+      <Icon color={'var(--ant-color-text-secondary)'} icon={ListTree} size={18} />
       <Text
         className={oneLineEllipsis}
         ellipsis={true}
-        style={{ color: cssVar.colorTextSecondary, fontSize: 14 }}
+        style={{ color: 'var(--ant-color-text-secondary)', fontSize: 14 }}
       >
         {currentThread.title === LOADING_FLAT ? (
           <Flexbox flex={1} height={30} justify={'center'}>
@@ -42,7 +41,7 @@ const Active = memo(() => {
           icon={<Icon icon={subagentTypeInfo.icon} />}
           size={'small'}
           style={{
-            color: cssVar.colorTextDescription,
+            color: 'var(--ant-color-text-description)',
             flexShrink: 0,
             fontSize: 11,
           }}

@@ -1,6 +1,5 @@
 import type { TaskStatus } from '@lobechat/types';
 import { ActionIcon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import type { LucideIcon } from 'lucide-react';
 import {
   CircleCheck,
@@ -21,13 +20,13 @@ interface StatusMeta {
 }
 
 const STATUS_META: Record<TaskStatus, StatusMeta> = {
-  backlog: { color: cssVar.colorTextQuaternary, icon: CircleDashed },
-  canceled: { color: cssVar.colorTextSecondary, icon: CircleSlash },
-  completed: { color: cssVar.colorSuccess, icon: CircleCheck },
-  failed: { color: cssVar.colorError, icon: CircleX },
-  paused: { color: cssVar.colorInfo, icon: HandIcon },
-  running: { color: cssVar.colorWarning, icon: CircleDot },
-  scheduled: { color: cssVar.colorWarning, icon: Clock },
+  backlog: { color: 'var(--ant-color-text-quaternary)', icon: CircleDashed },
+  canceled: { color: 'var(--ant-color-text-secondary)', icon: CircleSlash },
+  completed: { color: 'var(--ant-color-success)', icon: CircleCheck },
+  failed: { color: 'var(--ant-color-error)', icon: CircleX },
+  paused: { color: 'var(--ant-color-info)', icon: HandIcon },
+  running: { color: 'var(--ant-color-warning)', icon: CircleDot },
+  scheduled: { color: 'var(--ant-color-warning)', icon: Clock },
 };
 
 interface TaskStatusIconProps {

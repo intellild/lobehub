@@ -1,0 +1,15 @@
+.title {
+cursor: pointer;
+
+overflow: hidden;
+
+font-size: 14px;
+font-weight: 500;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+
+&:hover {
+  color: var(--ant-color-primary);
+}
+}

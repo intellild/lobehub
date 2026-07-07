@@ -2,7 +2,6 @@
 
 import { Github } from '@lobehub/icons';
 import { Flexbox, Icon, Popover, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { CheckIcon, ChevronDownIcon, SquircleDashed } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,92 +13,20 @@ import { useChatStore } from '@/store/chat';
 import { getPendingTopicRepos, setPendingTopicRepos } from '@/store/chat/pendingTopicRepos';
 import { topicSelectors } from '@/store/chat/selectors';
 
-const styles = createStaticStyles(({ css }) => ({
-  button: css`
-    cursor: pointer;
+import styles from './CloudRepoSwitcher.module.css';
 
-    display: flex;
-    gap: 6px;
-    align-items: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    padding-block: 2px;
-    padding-inline: 4px;
-    border-radius: 4px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    transition: background 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  buttonDisabled: css`
-    cursor: not-allowed;
-    opacity: 0.5;
-
-    &:hover {
-      background: transparent;
-    }
-  `,
-  checkIndicator: css`
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 20px;
-    height: 20px;
-    border: 1.5px solid ${cssVar.colorBorder};
-    border-radius: 4px;
-  `,
-  checkIndicatorChecked: css`
-    border-color: ${cssVar.colorPrimary};
-    color: #fff;
-    background: ${cssVar.colorPrimary};
-  `,
-  repoItem: css`
-    cursor: pointer;
-
-    padding-block: 6px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  repoName: css`
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-  repoUrl: css`
-    overflow: hidden;
-
-    font-size: 11px;
-    color: ${cssVar.colorTextDescription};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  scrollContainer: css`
-    overflow-y: auto;
-    max-height: 360px;
-  `,
-  sectionTitle: css`
-    padding-block: 6px 2px;
-    padding-inline: 8px;
-
-    font-size: 11px;
-    font-weight: 500;
-    color: ${cssVar.colorTextQuaternary};
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const getRepoName = (repo: string) => repo.split('/').findLast(Boolean) || repo;
 
@@ -222,7 +149,7 @@ const CloudRepoSwitcher = memo<CloudRepoSwitcherProps>(({ agentId }) => {
               >
                 {isChecked && <Icon icon={CheckIcon} size={12} />}
               </div>
-              <Github size={16} style={{ color: cssVar.colorTextTertiary, flex: 'none' }} />
+              <Github size={16} style={{ color: 'var(--ant-color-text-tertiary)', flex: 'none' }} />
               <Flexbox flex={1} style={{ minWidth: 0 }}>
                 <div className={styles.repoName}>{getRepoName(repo)}</div>
                 <div className={styles.repoUrl}>{repo}</div>

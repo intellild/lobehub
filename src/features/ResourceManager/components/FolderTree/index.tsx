@@ -2,31 +2,24 @@
 
 import { CaretDownFilled } from '@ant-design/icons';
 import { ActionIcon, Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { FolderIcon, FolderOpenIcon } from 'lucide-react';
 import * as m from 'motion/react-m';
 import { memo, useCallback } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  folderHeader: css`
-    cursor: pointer;
+import styles from './index.module.css';
 
-    padding-block: 4px;
-    padding-inline: 8px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    color: ${cssVar.colorTextSecondary};
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      background-color: ${cssVar.colorFillTertiary};
-    }
-  `,
-  folderHeaderActive: css`
-    color: ${cssVar.colorText};
-    background-color: ${cssVar.colorFillSecondary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface FolderTreeItem {
   children?: FolderTreeItem[];

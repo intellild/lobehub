@@ -1,5 +1,4 @@
 import { useAnalytics } from '@lobehub/analytics/react';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import LazyLoad from 'react-lazy-load';
 import { Link } from 'react-router';
@@ -15,13 +14,11 @@ import { type LobeSessions } from '@/types/session';
 
 import SkeletonList from '../../SkeletonList';
 import AddButton from './AddButton';
+import stylesModule from './index.module.css';
 import SessionItem from './Item';
 
-const styles = createStaticStyles(
-  ({ css }) => css`
-    min-height: 70px;
-  `,
-);
+const styles = stylesModule.root;
+
 interface SessionListProps {
   dataSource?: LobeSessions;
   groupId?: string;

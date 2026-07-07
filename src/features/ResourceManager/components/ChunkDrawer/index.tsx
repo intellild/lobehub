@@ -1,6 +1,5 @@
 import { Flexbox } from '@lobehub/ui';
 import { Drawer } from 'antd';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import dynamic from '@/libs/next/dynamic';
@@ -39,7 +38,7 @@ const ChunkDrawer = memo(() => {
             <FileViewer {...file} id={file.fileId ?? file.id} />
           </Flexbox>
         )}
-        <Flexbox flex={1} style={{ borderInlineStart: `1px solid ${cssVar.colorSplit}` }}>
+        <Flexbox flex={1} style={{ borderInlineStart: `1px solid ${'var(--ant-color-split)'}` }}>
           <Content />
         </Flexbox>
       </Flexbox>

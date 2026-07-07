@@ -1,0 +1,8 @@
+.icon {
+flex-shrink: 0;
+margin-inline-end: 4px;
+}
+
+.text {
+color: var(--ant-color-text);
+}

@@ -6,7 +6,6 @@ import { Block, Button, Flexbox, Icon, Text } from '@lobehub/ui';
 import { TypewriterEffect } from '@lobehub/ui/awesome';
 import { LoadingDots } from '@lobehub/ui/chat';
 import { Steps, Switch } from 'antd';
-import { cssVar } from 'antd-style';
 import { BrainIcon, HeartHandshakeIcon, PencilRulerIcon, ShieldCheck } from 'lucide-react';
 import { memo, useCallback, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
@@ -50,7 +49,7 @@ const TelemetryStep = memo<TelemetryStepProps>(({ onNext }) => {
         variant="outlined"
         width={32}
       >
-        <Icon color={cssVar.colorTextDescription} icon={icon} size={16} />
+        <Icon color={'var(--ant-color-text-description)'} icon={icon} size={16} />
       </Block>
     );
   }, []);
@@ -84,7 +83,7 @@ const TelemetryStep = memo<TelemetryStepProps>(({ onNext }) => {
         items={[
           {
             description: (
-              <Text as={'p'} color={cssVar.colorTextSecondary} style={{ marginBottom: 16 }}>
+              <Text as={'p'} color={'var(--ant-color-text-secondary)'} style={{ marginBottom: 16 }}>
                 {t('telemetry.rows.create.desc')}
               </Text>
             ),
@@ -97,7 +96,7 @@ const TelemetryStep = memo<TelemetryStepProps>(({ onNext }) => {
           },
           {
             description: (
-              <Text as={'p'} color={cssVar.colorTextSecondary} style={{ marginBottom: 16 }}>
+              <Text as={'p'} color={'var(--ant-color-text-secondary)'} style={{ marginBottom: 16 }}>
                 {t('telemetry.rows.collaborate.desc')}
               </Text>
             ),
@@ -110,7 +109,7 @@ const TelemetryStep = memo<TelemetryStepProps>(({ onNext }) => {
           },
           {
             description: (
-              <Text as={'p'} color={cssVar.colorTextSecondary}>
+              <Text as={'p'} color={'var(--ant-color-text-secondary)'}>
                 {t('telemetry.rows.evolve.desc')}
               </Text>
             ),
@@ -124,7 +123,7 @@ const TelemetryStep = memo<TelemetryStepProps>(({ onNext }) => {
         ]}
       />
       <Flexbox gap={8}>
-        <Text as={'p'} color={cssVar.colorTextSecondary}>
+        <Text as={'p'} color={'var(--ant-color-text-secondary)'}>
           {t('telemetry.rows.privacy.desc', { appName: BRANDING_NAME })}
         </Text>
         <Flexbox horizontal align="center" gap={8}>
@@ -151,7 +150,7 @@ const TelemetryStep = memo<TelemetryStepProps>(({ onNext }) => {
           <Icon
             icon={ShieldCheck}
             size={16}
-            style={{ color: cssVar.colorSuccess, flexShrink: 0 }}
+            style={{ color: 'var(--ant-color-success)', flexShrink: 0 }}
           />
           <Text fontSize={12} type="secondary">
             <Trans

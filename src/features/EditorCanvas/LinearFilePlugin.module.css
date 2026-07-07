@@ -1,0 +1,73 @@
+.card {
+  cursor: pointer;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding-block: 10px;
+  padding-inline: 12px;
+  border: 1px solid var(--ant-color-border-secondary);
+  border-radius: var(--ant-border-radius-lg);
+
+  color: var(--ant-color-text);
+
+  background: var(--ant-color-bg-container);
+
+  transition: background var(--ant-motion-duration-mid);
+}
+
+.card:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+
+.card:hover [data-lobehub-file-download] {
+  opacity: 1;
+}
+
+.download {
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity var(--ant-motion-duration-mid);
+}
+
+.info {
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  overflow: hidden;
+
+  font-size: var(--ant-font-size);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ant-color-text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.size {
+  margin-block-start: 2px;
+  font-size: var(--ant-font-size-sm);
+  line-height: 1.4;
+  color: var(--ant-color-text-tertiary);
+}
+
+.state {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  padding-block: 10px;
+  padding-inline: 12px;
+  border: 1px solid var(--ant-color-border-secondary);
+  border-radius: var(--ant-border-radius-lg);
+
+  color: var(--ant-color-text-secondary);
+
+  background: var(--ant-color-bg-container);
+}

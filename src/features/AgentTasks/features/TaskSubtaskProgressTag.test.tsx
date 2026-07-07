@@ -40,10 +40,6 @@ vi.mock('antd', () => ({
   Progress: () => <span>progress</span>,
 }));
 
-vi.mock('antd-style', () => ({
-  cssVar: { colorSuccess: 'green' },
-}));
-
 vi.mock('./TaskStatusIcon', () => ({
   default: () => <span>status</span>,
 }));

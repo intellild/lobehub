@@ -2,10 +2,11 @@
 
 import { ActionIcon, Avatar, Flexbox, Icon, Text } from '@lobehub/ui';
 import { Tabs, useModalContext } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import { type LucideIcon, XIcon } from 'lucide-react';
 import { memo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import styles from './SettingsModalLayout.module.css';
 
 export interface SettingsModalTabItem {
   icon?: LucideIcon;
@@ -22,20 +23,6 @@ export interface SettingsModalLayoutProps {
   tabs?: SettingsModalTabItem[];
   title: ReactNode;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  header: css`
-    flex-shrink: 0;
-    padding-block: 10px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  tabsBar: css`
-    flex-shrink: 0;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-}));
 
 const SettingsModalLayout = memo<SettingsModalLayoutProps>(
   ({ avatar, background, title, tabs, activeTab, onTabChange, children }) => {

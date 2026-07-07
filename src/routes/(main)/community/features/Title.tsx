@@ -2,31 +2,26 @@
 
 import { type FlexboxProps } from '@lobehub/ui';
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { ChevronRight } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
 
 import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  more: css`
-    display: flex;
-    align-items: center;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  title: css`
-    margin-block: 0.2em;
-    font-weight: bold;
-    line-height: 1.5;
-  `,
-  title2: css`
-    font-size: 18px;
-  `,
-  title3: css`
-    font-size: 16px;
-  `,
-}));
+import styles from './Title.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface TitleProps extends FlexboxProps {
   icon?: ReactNode;

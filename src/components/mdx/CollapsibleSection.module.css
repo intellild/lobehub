@@ -1,0 +1,10 @@
+.collapse {
+margin-block: 1em;
+}
+
+.label {
+font-size: 1.25em;
+font-weight: 600;
+line-height: 1.4;
+color: var(--ant-color-text);
+}

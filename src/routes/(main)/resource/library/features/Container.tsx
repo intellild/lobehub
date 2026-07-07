@@ -1,8 +1,9 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { useTheme } from 'antd-style';
 import { type FC, type PropsWithChildren } from 'react';
+
+import { useTheme } from '@/hooks/useTheme';
 
 const Container: FC<PropsWithChildren> = ({ children }) => {
   const theme = useTheme();

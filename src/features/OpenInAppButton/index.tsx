@@ -1,12 +1,12 @@
 import { isDesktop } from '@lobechat/const';
 import type { OpenInAppId } from '@lobechat/electron-client-ipc';
 import { DropdownMenu, type DropdownMenuProps, Icon, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ChevronDownIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { APP_ICONS } from './apps';
+import styles from './index.module.css';
 import { useOpenInApp } from './useOpenInApp';
 
 interface AppIconProps {
@@ -30,60 +30,6 @@ const AppIcon = ({ id, icon, size = 16 }: AppIconProps) => {
   const Fallback = APP_ICONS[id];
   return <Icon icon={Fallback} size={size} />;
 };
-
-const styles = createStaticStyles(({ css }) => ({
-  dropdownItem: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  `,
-  leftButton: css`
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding-inline: 8px;
-
-    color: ${cssVar.colorTextSecondary};
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  rightButton: css`
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding-inline: 4px;
-    border-inline-start: 1px solid ${cssVar.colorBorderSecondary};
-
-    color: ${cssVar.colorTextSecondary};
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  root: css`
-    overflow: hidden;
-    display: inline-flex;
-    align-items: stretch;
-
-    height: 24px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 6px;
-  `,
-}));
 
 export interface OpenInAppButtonProps {
   className?: string;

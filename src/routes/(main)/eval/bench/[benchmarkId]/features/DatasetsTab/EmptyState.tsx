@@ -1,35 +1,10 @@
 import { Button, Flexbox, Icon, Text } from '@lobehub/ui';
 import { Card } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Database, Plus } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css }) => ({
-  emptyCard: css`
-    .ant-card-body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      padding-block: 64px;
-      padding-inline: 24px;
-    }
-  `,
-  iconBox: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 56px;
-    height: 56px;
-    margin-block-end: 16px;
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorPrimaryBg};
-  `,
-}));
+import styles from './EmptyState.module.css';
 
 interface EmptyStateProps {
   onAddDataset: () => void;
@@ -41,11 +16,11 @@ const EmptyState = memo<EmptyStateProps>(({ onAddDataset }) => {
   return (
     <Card className={styles.emptyCard}>
       <div className={styles.iconBox}>
-        <Icon icon={Database} size={24} style={{ color: cssVar.colorPrimary }} />
+        <Icon icon={Database} size={24} style={{ color: 'var(--ant-color-primary)' }} />
       </div>
       <Flexbox align="center" gap={4}>
         <Text weight={600}>{t('dataset.empty.title')}</Text>
-        <Text color={cssVar.colorTextTertiary} fontSize={12}>
+        <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
           {t('dataset.empty.description')}
         </Text>
       </Flexbox>

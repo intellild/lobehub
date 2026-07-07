@@ -1,0 +1,17 @@
+.pre {
+overflow: auto;
+
+max-height: 200px;
+margin: 0;
+padding: 8px;
+border-radius: 6px;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+line-height: 1.6;
+color: var(--ant-color-text);
+word-break: break-word;
+white-space: pre-wrap;
+
+background: var(--ant-color-fill-tertiary);
+}

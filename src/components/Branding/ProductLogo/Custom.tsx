@@ -3,21 +3,13 @@ import { type IconType } from '@lobehub/icons';
 import { type FlexboxProps } from '@lobehub/ui';
 import { Flexbox } from '@lobehub/ui';
 import { type LobeChatProps } from '@lobehub/ui/brand';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
 
 import { type ImageProps } from '@/libs/next/Image';
 import Image from '@/libs/next/Image';
 
-const styles = createStaticStyles(({ css }) => {
-  return {
-    extraTitle: css`
-      font-weight: 300;
-      white-space: nowrap;
-    `,
-  };
-});
+import styles from './Custom.module.css';
 
 const CustomTextLogo = memo<FlexboxProps & { size: number }>(({ size, style, ...rest }) => {
   return (
@@ -118,7 +110,7 @@ const CustomLogo = memo<LobeChatProps>(({ extra, size = 32, className, style, ty
   return (
     <Flexbox horizontal align={'center'} className={className} flex={'none'} {...rest}>
       {logoComponent}
-      <Divider size={extraSize} style={{ color: cssVar.colorFill }} />
+      <Divider size={extraSize} style={{ color: 'var(--ant-color-fill)' }} />
       <div className={styles.extraTitle} style={{ fontSize: extraSize }}>
         {extra}
       </div>

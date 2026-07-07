@@ -1,59 +1,20 @@
 import { Block, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    agent: css`
-      padding: 4px;
-      border-radius: 2px;
-    `,
-    agentActive: css`
-      background: ${cssVar.colorFillSecondary};
-    `,
-    bubble: css`
-      padding: 6px;
-      border: 1px solid color-mix(in srgb, ${cssVar.colorBorderSecondary} 66%, transparent);
-      border-radius: 3px;
-      background-color: ${cssVar.colorBgContainer};
-    `,
-    container: css`
-      overflow: hidden;
-      justify-self: flex-end;
+import styles from './Preview.module.css';
 
-      width: 332px;
-      height: 200px;
-      border: 1px solid ${cssVar.colorBorder};
-      border-radius: ${cssVar.borderRadiusLG};
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-      background: ${cssVar.colorBgLayout};
-    `,
-    conversation: css`
-      background: ${cssVar.colorBgContainer};
-    `,
-    header: css`
-      border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-    `,
-    icon: css`
-      flex: none;
-      border-radius: 2px;
-      background: ${cssVar.colorFillSecondary};
-    `,
-    input: css`
-      border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-    `,
-    nav: css`
-      padding: 4px;
-      border-inline-end: 1px solid ${cssVar.colorBorderSecondary};
-      background: ${cssVar.colorBgLayout};
-    `,
-    sidebar: css`
-      padding: 4px;
-      border-inline-end: 1px solid ${cssVar.colorBorderSecondary};
-      background: ${cssVar.colorBgLayout};
-    `,
-  };
-});
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const AgentItem = memo<{
   active?: boolean;
@@ -79,7 +40,7 @@ const AgentItem = memo<{
           height={2}
           width={'66%'}
           style={{
-            background: cssVar.colorTextTertiary,
+            background: 'var(--ant-color-text-tertiary)',
           }}
         />
         <Flexbox
@@ -87,7 +48,7 @@ const AgentItem = memo<{
           height={2}
           width={'100%'}
           style={{
-            background: cssVar.colorTextQuaternary,
+            background: 'var(--ant-color-text-quaternary)',
           }}
         />
       </Flexbox>
@@ -101,7 +62,7 @@ const Preview = memo(() => {
       <Flexbox
         className={styles.icon}
         height={14}
-        style={{ border: `2px solid ${cssVar.colorPrimary}`, borderRadius: '50%' }}
+        style={{ border: `2px solid ${'var(--ant-color-primary)'}`, borderRadius: '50%' }}
         width={14}
       />
       <Flexbox className={styles.icon} height={12} width={12} />
@@ -125,7 +86,7 @@ const Preview = memo(() => {
           height={8}
           width={'100%'}
           style={{
-            background: cssVar.colorFillTertiary,
+            background: 'var(--ant-color-fill-tertiary)',
           }}
         />
       </Flexbox>
@@ -168,7 +129,7 @@ const Preview = memo(() => {
         height={12}
         width={32}
         style={{
-          background: cssVar.colorPrimary,
+          background: 'var(--ant-color-primary)',
         }}
       />
     </Flexbox>
@@ -188,7 +149,7 @@ const Preview = memo(() => {
                 height={2}
                 width={'100%'}
                 style={{
-                  background: cssVar.colorTextQuaternary,
+                  background: 'var(--ant-color-text-quaternary)',
                 }}
               />
               <Flexbox
@@ -196,7 +157,7 @@ const Preview = memo(() => {
                 height={2}
                 width={'66%'}
                 style={{
-                  background: cssVar.colorTextQuaternary,
+                  background: 'var(--ant-color-text-quaternary)',
                 }}
               />
             </Flexbox>
@@ -220,7 +181,7 @@ const Preview = memo(() => {
                 height={2}
                 width={'100%'}
                 style={{
-                  background: cssVar.colorTextQuaternary,
+                  background: 'var(--ant-color-text-quaternary)',
                 }}
               />
               <Flexbox
@@ -228,7 +189,7 @@ const Preview = memo(() => {
                 height={2}
                 width={'66%'}
                 style={{
-                  background: cssVar.colorTextQuaternary,
+                  background: 'var(--ant-color-text-quaternary)',
                 }}
               />
               <Flexbox
@@ -236,7 +197,7 @@ const Preview = memo(() => {
                 height={2}
                 width={'100%'}
                 style={{
-                  background: cssVar.colorTextQuaternary,
+                  background: 'var(--ant-color-text-quaternary)',
                 }}
               />
               <Flexbox
@@ -244,7 +205,7 @@ const Preview = memo(() => {
                 height={2}
                 width={'100%'}
                 style={{
-                  background: cssVar.colorTextQuaternary,
+                  background: 'var(--ant-color-text-quaternary)',
                 }}
               />
               <Flexbox
@@ -252,7 +213,7 @@ const Preview = memo(() => {
                 height={2}
                 width={'33%'}
                 style={{
-                  background: cssVar.colorTextQuaternary,
+                  background: 'var(--ant-color-text-quaternary)',
                 }}
               />
             </Flexbox>
@@ -264,7 +225,7 @@ const Preview = memo(() => {
                 height={2}
                 width={'100%'}
                 style={{
-                  background: cssVar.colorTextQuaternary,
+                  background: 'var(--ant-color-text-quaternary)',
                 }}
               />
               <Flexbox
@@ -272,7 +233,7 @@ const Preview = memo(() => {
                 height={2}
                 width={'66%'}
                 style={{
-                  background: cssVar.colorTextQuaternary,
+                  background: 'var(--ant-color-text-quaternary)',
                 }}
               />
             </Flexbox>

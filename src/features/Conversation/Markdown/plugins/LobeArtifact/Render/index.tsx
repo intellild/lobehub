@@ -1,5 +1,4 @@
 import { Center, Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { Loader2 } from 'lucide-react';
 import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,43 +10,20 @@ import { dotLoading } from '@/styles/loading';
 
 import { type MarkdownElementProps } from '../../type';
 import ArtifactIcon from './Icon';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  avatar: css`
-    border-inline-end: 1px solid ${cssVar.colorSplit};
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  container: css`
-    cursor: pointer;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    margin-block-start: 12px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 8px;
-
-    color: ${cssVar.colorText};
-
-    box-shadow: ${cssVar.boxShadowTertiary};
-
-    &:hover {
-      background: ${cssVar.colorFillQuaternary};
-    }
-  `,
-  container_dark: css`
-    box-shadow: ${cssVar.boxShadowSecondary};
-  `,
-  desc: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  title: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
-    text-overflow: ellipsis;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ArtifactProps extends MarkdownElementProps {
   identifier: string;
@@ -104,7 +80,7 @@ const Render = memo<ArtifactProps>(({ identifier, title, type, language, childre
         </Center>
         <Flexbox gap={4} paddingBlock={8} paddingInline={12}>
           {!title && isGenerating ? (
-            <Flexbox horizontal className={cx(dotLoading)}>
+            <Flexbox horizontal className={dotLoading as string}>
               {t('artifact.generating')}
             </Flexbox>
           ) : (

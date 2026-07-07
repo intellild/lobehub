@@ -3,91 +3,15 @@
 import { type FileUploadState } from '@lobechat/types';
 import { Center, Flexbox, Icon, Tag } from '@lobehub/ui';
 import { Progress, Upload } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { CloudUpload, ImportIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { type DatasetPreset } from '../../config/datasetPresets';
 import { ROLE_COLORS } from './const';
+import styles from './UploadStep.module.css';
 
 const { Dragger } = Upload;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  // Preset summary panel — a single tonal card describing the chosen format.
-  container: css`
-    overflow: hidden;
-
-    padding: 16px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  // Bold dropzone — the single primary action of this step.
-  dragger: css`
-    .ant-upload-drag {
-      border-radius: ${cssVar.borderRadiusLG};
-      transition: border-color 0.15s ease;
-
-      @media (prefers-reduced-motion: reduce) {
-        transition: none;
-      }
-    }
-  `,
-  draggerContent: css`
-    min-height: 160px;
-  `,
-  fieldsWrapper: css`
-    flex-wrap: wrap;
-  `,
-  formatDescription: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-  hintText: css`
-    margin: 0;
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-  icon: css`
-    color: ${cssVar.colorPrimary};
-  `,
-  iconCenter: css`
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-    background: ${cssVar.colorBgElevated};
-  `,
-  presetDescription: css`
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextSecondary};
-  `,
-  presetName: css`
-    font-size: ${cssVar.fontSizeLG};
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-  progressWrapper: css`
-    width: 100%;
-    max-width: 320px;
-  `,
-  roleLabel: css`
-    font-size: ${cssVar.fontSizeSM};
-  `,
-  // Section label above the field-role legend.
-  sectionLabel: css`
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  uploadText: css`
-    margin: 0;
-    font-size: ${cssVar.fontSizeLG};
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 interface UploadStepProps {
   loading: boolean;

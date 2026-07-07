@@ -1,0 +1,9 @@
+.container {
+cursor: pointer;
+
+height: 100%;
+padding: 8px;
+
+font-size: 12px;
+color: initial;
+}

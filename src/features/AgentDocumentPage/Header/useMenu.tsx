@@ -5,7 +5,6 @@ import { Icon } from '@lobehub/ui';
 import type { DropdownItem } from '@lobehub/ui/base-ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { cssVar, useResponsive } from 'antd-style';
 import { Download, Link2, Maximize2, Trash2 } from 'lucide-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { useActiveWorkspaceSlug } from '@/business/client/hooks/useActiveWorkspaceSlug';
 import { formatPageEditorInfoTime } from '@/features/PageEditor/formatPageEditorInfoTime';
 import { useAppOrigin } from '@/hooks/useAppOrigin';
+import { useResponsive } from '@/hooks/useResponsive';
 import { agentDocumentService } from '@/services/agentDocument';
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
@@ -160,7 +160,7 @@ export const useMenu = ({
           disabled: true,
           key: 'doc-info',
           label: (
-            <span style={{ color: cssVar.colorTextTertiary, fontSize: 12, lineHeight: 1.6 }}>
+            <span style={{ color: 'var(--ant-color-text-tertiary)', fontSize: 12, lineHeight: 1.6 }}>
               {t('pageEditor.editedAt', {
                 time: formatPageEditorInfoTime(updatedAt, dateLocale),
               })}

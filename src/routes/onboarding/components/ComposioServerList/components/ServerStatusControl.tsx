@@ -1,5 +1,4 @@
 import { Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { CheckIcon, CircleX, Loader2 } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +18,7 @@ const ServerStatusControl = memo<ServerStatusControlProps>(
 
     // Loading states
     if (isConnecting || isWaitingAuth) {
-      return <Icon spin color={cssVar.colorTextDescription} icon={Loader2} />;
+      return <Icon spin color={'var(--ant-color-text-description)'} icon={Loader2} />;
     }
 
     // No server yet - show nothing (click to connect)
@@ -30,7 +29,7 @@ const ServerStatusControl = memo<ServerStatusControlProps>(
     // Server status indicators
     switch (server.status) {
       case ComposioServerStatus.ACTIVE: {
-        return <Icon color={cssVar.colorSuccess} icon={CheckIcon} />;
+        return <Icon color={'var(--ant-color-success)'} icon={CheckIcon} />;
       }
 
       case ComposioServerStatus.PENDING_AUTH: {
@@ -40,7 +39,7 @@ const ServerStatusControl = memo<ServerStatusControlProps>(
       case ComposioServerStatus.ERROR: {
         return (
           <Icon
-            color={cssVar.colorError}
+            color={'var(--ant-color-error)'}
             icon={CircleX}
             title={t('tools.composio.error', { defaultValue: 'Error' })}
           />

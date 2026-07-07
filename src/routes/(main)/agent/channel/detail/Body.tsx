@@ -3,7 +3,6 @@
 import { Flexbox, Form, FormGroup, FormItem, Tag, Text } from '@lobehub/ui';
 import { Button, Switch } from '@lobehub/ui/base-ui';
 import { Form as AntdForm, type FormInstance, InputNumber, Popconfirm, Select } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { Plus, RotateCcw, Trash2 } from 'lucide-react';
 import { Fragment, memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,19 +16,12 @@ import type {
 import { isDev } from '@/utils/env';
 
 import { platformCredentialBodyMap, platformCredentialExtrasMap } from '../platform/registry';
+import stylesModule from './Body.module.css';
 import { extractSettingsDefaults } from './formState';
 import type { ChannelFormValues } from './index';
 
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css }) => ({
-  form: css`
-    .${prefixCls}-form-item-control {
-      flex: 0 0 50% !important;
-      width: 50%;
-    }
-  `,
-}));
+const styles = stylesModule;
 
 // --------------- Validation rules builder ---------------
 

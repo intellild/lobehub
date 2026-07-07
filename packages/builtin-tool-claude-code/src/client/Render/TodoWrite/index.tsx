@@ -2,83 +2,25 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Block, Checkbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { CircleArrowRight, CircleCheckBig, ListTodo } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { ClaudeCodeTodoItem, TodoWriteArgs } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  header: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  headerLabel: css`
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-    gap: 0;
-    align-items: center;
-
-    min-width: 0;
-
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  headerDetail: css`
-    overflow: hidden;
-    min-width: 0;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-  `,
-  headerCount: css`
-    flex-shrink: 0;
-
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  itemRow: css`
-    width: 100%;
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px dashed ${cssVar.colorBorderSecondary};
-
-    &:last-child {
-      border-block-end: none;
-    }
-  `,
-  processingRow: css`
-    display: flex;
-    gap: 7px;
-    align-items: center;
-  `,
-  textCompleted: css`
-    color: ${cssVar.colorTextQuaternary};
-    text-decoration: line-through;
-  `,
-  textPending: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-  textProcessing: css`
-    color: ${cssVar.colorText};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface TodoRowProps {
   item: ClaudeCodeTodoItem;
@@ -90,7 +32,7 @@ const TodoRow = memo<TodoRowProps>(({ item }) => {
   if (status === 'in_progress') {
     return (
       <div className={cx(styles.itemRow, styles.processingRow)}>
-        <Icon icon={CircleArrowRight} size={17} style={{ color: cssVar.colorInfo }} />
+        <Icon icon={CircleArrowRight} size={17} style={{ color: 'var(--ant-color-info)' }} />
         <span className={styles.textProcessing}>{activeForm || content}</span>
       </div>
     );
@@ -100,7 +42,7 @@ const TodoRow = memo<TodoRowProps>(({ item }) => {
 
   return (
     <Checkbox
-      backgroundColor={cssVar.colorSuccess}
+      backgroundColor={'var(--ant-color-success)'}
       checked={isCompleted}
       shape={'circle'}
       style={{ borderWidth: 1.5, cursor: 'default' }}
@@ -131,10 +73,10 @@ const TodoHeader = memo<TodoHeaderProps>(({ completed, total, inProgress }) => {
 
   const icon = inProgress ? CircleArrowRight : allDone ? CircleCheckBig : ListTodo;
   const color = inProgress
-    ? cssVar.colorInfo
+    ? 'var(--ant-color-info)'
     : allDone
-      ? cssVar.colorSuccess
-      : cssVar.colorTextSecondary;
+      ? 'var(--ant-color-success)'
+      : 'var(--ant-color-text-secondary)';
 
   const label = inProgress
     ? t('builtins.lobe-claude-code.todoWrite.currentStep')

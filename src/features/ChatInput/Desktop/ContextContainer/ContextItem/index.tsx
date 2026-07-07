@@ -1,6 +1,5 @@
 import { createRawModal, Flexbox, Tag, Tooltip } from '@lobehub/ui';
 import { Progress } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import { useEventCallback } from '@/hooks/useEventCallback';
@@ -10,69 +9,8 @@ import { UPLOAD_STATUS_SET } from '@/types/files/upload';
 
 import Content from './Content';
 import FilePreviewModal from './FilePreviewModal';
+import styles from './index.module.css';
 import { getFileBasename } from './utils';
-
-const styles = createStaticStyles(({ css }) => ({
-  closeBtn: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextTertiary};
-
-    &:hover {
-      color: ${cssVar.colorError};
-      background: ${cssVar.colorErrorBg};
-    }
-  `,
-  content: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    min-width: 0;
-  `,
-  icon: css`
-    position: relative;
-
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 18px;
-    height: 18px;
-    border-radius: 4px;
-
-    line-height: 0;
-
-    img,
-    video {
-      width: 100%;
-      height: 100%;
-      border-radius: 4px;
-      object-fit: cover;
-    }
-  `,
-  name: css`
-    overflow: hidden;
-    flex: 1;
-
-    min-width: 0;
-
-    line-height: 18px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  progress: css`
-    position: absolute;
-    inset: -3px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 4px;
-
-    background: ${cssVar.colorBgMask};
-  `,
-}));
 
 type FileItemProps = UploadFileItem;
 

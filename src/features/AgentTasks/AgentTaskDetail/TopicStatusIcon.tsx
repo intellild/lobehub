@@ -1,5 +1,4 @@
 import { Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import {
   CircleAlert,
   CircleCheck,
@@ -16,16 +15,16 @@ const STATIC_META: Record<
   Exclude<TopicRunStatus, 'running'>,
   { color: string; icon: LucideIcon }
 > = {
-  canceled: { color: cssVar.colorTextSecondary, icon: CircleSlash },
-  completed: { color: cssVar.colorSuccess, icon: CircleCheck },
-  failed: { color: cssVar.colorError, icon: CircleX },
-  pending: { color: cssVar.colorTextQuaternary, icon: CircleDashed },
-  timeout: { color: cssVar.colorWarning, icon: CircleAlert },
+  canceled: { color: 'var(--ant-color-text-secondary)', icon: CircleSlash },
+  completed: { color: 'var(--ant-color-success)', icon: CircleCheck },
+  failed: { color: 'var(--ant-color-error)', icon: CircleX },
+  pending: { color: 'var(--ant-color-text-quaternary)', icon: CircleDashed },
+  timeout: { color: 'var(--ant-color-warning)', icon: CircleAlert },
 };
 
 const RunningIcon = memo<{ size: number }>(({ size }) => {
-  const mainColor = cssVar.colorWarning;
-  const ringColor = `color-mix(in srgb, ${cssVar.colorWarning} 35%, transparent)`;
+  const mainColor = 'var(--ant-color-warning)';
+  const ringColor = `color-mix(in srgb, ${'var(--ant-color-warning)'} 35%, transparent)`;
   return (
     <svg aria-hidden fill="none" height={size} viewBox="0 0 16 16" width={size}>
       <circle cx="8" cy="8" r="6.5" stroke={ringColor} strokeWidth="1.5" />

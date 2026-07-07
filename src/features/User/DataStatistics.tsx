@@ -3,7 +3,6 @@
 import { type FlexboxProps } from '@lobehub/ui';
 import { Flexbox, Tooltip } from '@lobehub/ui';
 import { Badge } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { isUndefined } from 'es-toolkit/compat';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,31 +17,7 @@ import { useServerConfigStore } from '@/store/serverConfig';
 import { formatShortenNumber } from '@/utils/format';
 import { today } from '@/utils/time';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    padding-block: 6px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-    background: ${cssVar.colorFillTertiary};
-
-    &:hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  count: css`
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 1.2;
-  `,
-  title: css`
-    font-size: 12px;
-    line-height: 1.2;
-    color: ${cssVar.colorTextDescription};
-  `,
-  today: css`
-    font-size: 12px;
-  `,
-}));
+import styles from './DataStatistics.module.css';
 
 const DataStatistics = memo<Omit<FlexboxProps, 'children'>>(({ style, ...rest }) => {
   const mobile = useServerConfigStore((s) => s.isMobile);
@@ -120,8 +95,8 @@ const DataStatistics = memo<Omit<FlexboxProps, 'children'>>(({ style, ...rest })
                   <Badge
                     count={`+${item.countToady}`}
                     style={{
-                      background: cssVar.colorSuccess,
-                      color: cssVar.colorSuccessBg,
+                      background: 'var(--ant-color-success)',
+                      color: 'var(--ant-color-success-bg)',
                       cursor: 'pointer',
                     }}
                   />

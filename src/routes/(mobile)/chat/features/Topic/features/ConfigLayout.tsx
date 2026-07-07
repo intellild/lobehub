@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { ChevronRight } from 'lucide-react';
 import { type CSSProperties, type ReactNode } from 'react';
 import { memo } from 'react';
@@ -10,19 +9,22 @@ import SidebarHeader from '@/components/SidebarHeader';
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  chevron: css`
-    transition: transform 0.2s ${cssVar.motionEaseInOut};
-  `,
-  chevronExpanded: css`
-    transform: rotate(90deg);
-  `,
-  container: css`
-    position: relative;
-    overflow: hidden auto;
-    transition: all 0.2s ${cssVar.motionEaseInOut};
-  `,
-}));
+import styles from './ConfigLayout.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
+export { styles };
 
 export interface ConfigLayoutProps {
   actions?: ReactNode;

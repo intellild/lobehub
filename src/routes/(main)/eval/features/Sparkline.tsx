@@ -1,17 +1,7 @@
 'use client';
-
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css }) => ({
-  bar: css`
-    transition: height 0.2s ease;
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-}));
+import styles from './Sparkline.module.css';
 
 interface SparklineProps {
   /** Highest-index value is the most recent run. */
@@ -39,7 +29,7 @@ const Sparkline = memo<SparklineProps>(({ values, width = 132 }) => {
         return (
           <rect
             className={styles.bar}
-            fill={isLatest ? cssVar.colorPrimary : cssVar.colorSuccess}
+            fill={isLatest ? 'var(--ant-color-primary)' : 'var(--ant-color-success)'}
             height={barHeight}
             key={i}
             opacity={isLatest ? 1 : 0.45}

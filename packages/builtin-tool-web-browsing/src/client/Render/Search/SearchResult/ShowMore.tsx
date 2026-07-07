@@ -1,5 +1,4 @@
 import { Block, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import type { CSSProperties } from 'react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,15 +7,7 @@ import { useChatStore } from '@/store/chat';
 
 import { WebBrowsingManifest } from '../../../../manifest';
 import { EngineAvatarGroup } from '../../../components/EngineAvatar';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    cursor: pointer;
-    padding: 8px;
-    font-size: 12px;
-    color: initial;
-  `,
-}));
+import styles from './ShowMore.module.css';
 
 interface ShowMoreProps {
   engines: string[];

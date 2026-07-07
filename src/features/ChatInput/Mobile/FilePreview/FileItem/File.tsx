@@ -1,5 +1,4 @@
 import { ActionIcon, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Trash } from 'lucide-react';
 import { memo } from 'react';
 
@@ -7,37 +6,7 @@ import FileIcon from '@/components/FileIcon';
 import UploadDetail from '@/features/ChatInput/components/UploadDetail';
 import { type UploadFileItem } from '@/types/files';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    cursor: pointer;
-
-    position: relative;
-
-    overflow: hidden;
-
-    width: 250px;
-    height: 64px;
-    padding-block: 4px;
-    padding-inline: 8px 24px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 8px;
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  deleteButton: css`
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-end: 0;
-
-    color: #fff;
-
-    background: ${cssVar.colorBgMask};
-
-    &:hover {
-      background: ${cssVar.colorError};
-    }
-  `,
-}));
+import styles from './File.module.css';
 
 interface FileItemProps extends UploadFileItem {
   onRemove?: () => void;

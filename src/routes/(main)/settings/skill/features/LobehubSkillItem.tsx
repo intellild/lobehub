@@ -12,7 +12,6 @@ import {
 } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { Button } from 'antd';
-import { cssVar } from 'antd-style';
 import {
   CircleCheck,
   Loader2,
@@ -212,7 +211,7 @@ const LobehubSkillItem = memo<LobehubSkillItemProps>(
       if (typeof icon === 'string') {
         return <Avatar alt={label} avatar={icon} size={16} />;
       }
-      return <Icon fill={cssVar.colorText} icon={icon} size={16} />;
+      return <Icon fill={'var(--ant-color-text)'} icon={icon} size={16} />;
     };
 
     const renderStatus = () => {
@@ -303,7 +302,7 @@ const LobehubSkillItem = memo<LobehubSkillItemProps>(
         return (
           <Tooltip title={t('tools.lobehubSkill.connected', { defaultValue: 'Connected' })}>
             <Center width={20}>
-              <Icon icon={CircleCheck} size={16} style={{ color: cssVar.colorSuccess }} />
+              <Icon icon={CircleCheck} size={16} style={{ color: 'var(--ant-color-success)' }} />
             </Center>
           </Tooltip>
         );
@@ -327,7 +326,7 @@ const LobehubSkillItem = memo<LobehubSkillItemProps>(
       const renderNavIcon = () => {
         const { icon, label } = provider;
         if (typeof icon === 'string') return <Avatar alt={label} avatar={icon} size={18} />;
-        return <Icon fill={cssVar.colorText} icon={icon} size={18} />;
+        return <Icon fill={'var(--ant-color-text)'} icon={icon} size={18} />;
       };
       return (
         <NavItem
@@ -335,7 +334,7 @@ const LobehubSkillItem = memo<LobehubSkillItemProps>(
           extra={renderNavExtra()}
           icon={renderNavIcon}
           title={provider.label}
-          titleColor={!isConnected ? cssVar.colorTextDescription : undefined}
+          titleColor={!isConnected ? 'var(--ant-color-text-description)' : undefined}
           // Only connected connectors open the detail panel. When disconnected,
           // the row is inert and the only affordance is the inline Connect button —
           // otherwise clicking opens a blank detail panel that reads as a bug.

@@ -1,6 +1,5 @@
 import type { VerifyCheckItem } from '@lobechat/types';
 import { ActionIcon, Button, Flexbox, Icon, Input, TextArea } from '@lobehub/ui';
-import { createStyles } from 'antd-style';
 import {
   Check,
   CheckCircle2,
@@ -21,96 +20,13 @@ import { useTranslation } from 'react-i18next';
 
 import RingLoadingIcon from '@/components/RingLoading';
 import type { VerifyCheckResultItem } from '@/database/schemas/verify';
+import { useTheme } from '@/hooks/useTheme';
 import { verifyService } from '@/services/verify';
 import { useChatStore } from '@/store/chat';
 
+import styles from './CheckerDock.module.css';
 import { useVerifyResults, useVerifyState } from './hooks';
 import { countResults, phaseFromStatus } from './utils';
-
-const useStyles = createStyles(({ css, token }) => ({
-  actions: css`
-    margin-block-start: 12px;
-    border-block-start: 1px solid ${token.colorBorderSecondary};
-  `,
-  body: css`
-    padding-block: 0 12px;
-    padding-inline: 12px;
-    border-block-start: 1px solid ${token.colorBorderSecondary};
-  `,
-  /* In the merged verify card the RunResult header already draws the divider —
-     drop our own top border so they don't stack into a 2px line. */
-  bodyEmbedded: css`
-    border-block-start: none;
-  `,
-  checkRow: css`
-    display: grid;
-    grid-template-columns: 20px minmax(0, 1fr) auto;
-    gap: 8px;
-    align-items: start;
-
-    padding-block: 12px;
-
-    &:not(:last-child) {
-      border-block-end: 1px solid ${token.colorBorderSecondary};
-    }
-  `,
-  chevron: css`
-    flex: none;
-    color: ${token.colorTextQuaternary};
-  `,
-  clickable: css`
-    cursor: pointer;
-    transition: background 150ms ${token.motionEaseOut};
-
-    &:hover {
-      background: ${token.colorFillQuaternary};
-    }
-  `,
-  desc: css`
-    margin-block-start: 3px;
-    font-size: 12px;
-    line-height: 1.45;
-    color: ${token.colorTextTertiary};
-  `,
-  dock: css`
-    overflow: hidden;
-    border: 1px solid ${token.colorBorder};
-    border-radius: 16px;
-    background: ${token.colorBgElevated};
-  `,
-  head: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 11px;
-    padding-inline: 12px;
-  `,
-  inputPanel: css`
-    margin-block-start: 10px;
-    padding: 10px;
-    border: 1px solid ${token.colorBorderSecondary};
-    border-radius: 12px;
-
-    background: ${token.colorFillQuaternary};
-  `,
-  sub: css`
-    overflow: hidden;
-
-    font-size: 12px;
-    color: ${token.colorTextTertiary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  title: css`
-    font-size: 13px;
-    font-weight: 700;
-    color: ${token.colorText};
-  `,
-}));
 
 const statusIcon = (status: VerifyCheckResultItem['status'] | undefined) => {
   switch (status) {
@@ -145,7 +61,7 @@ interface CheckerDockProps {
  * and a failure feedback panel.
  */
 const CheckerDock = memo<CheckerDockProps>(({ operationId, embedded }) => {
-  const { styles, cx, theme } = useStyles();
+  const theme = useTheme();
   const { t } = useTranslation('verify');
   const { data: state, mutate: mutateState } = useVerifyState(operationId);
   const { data: results, mutate: mutateResults } = useVerifyResults(operationId);
@@ -212,7 +128,7 @@ const CheckerDock = memo<CheckerDockProps>(({ operationId, embedded }) => {
     const evidence = result?.toulmin?.reasoning || result?.suggestion;
     return (
       <div
-        className={cx(styles.checkRow, styles.clickable)}
+        className={[styles.checkRow, styles.clickable].join(' ')}
         key={item.id}
         onClick={() => openVerifyResult(operationId, item.id)}
       >
@@ -350,7 +266,7 @@ const CheckerDock = memo<CheckerDockProps>(({ operationId, embedded }) => {
   };
 
   const body = (
-    <div className={cx(styles.body, embedded && styles.bodyEmbedded)}>
+    <div className={[styles.body, embedded && styles.bodyEmbedded].filter(Boolean).join(' ')}>
       {editing ? (
         renderEditor()
       ) : (

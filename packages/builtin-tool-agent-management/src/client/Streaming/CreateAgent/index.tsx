@@ -2,31 +2,10 @@
 
 import type { BuiltinStreamingProps } from '@lobechat/types';
 import { Block, Flexbox, Markdown, Tag } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import type { CreateAgentParams } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  `,
-  field: css`
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  `,
-  label: css`
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  value: css`
-    font-size: 13px;
-  `,
-}));
+import styles from './index.module.css';
 
 export const CreateAgentStreaming = memo<BuiltinStreamingProps<CreateAgentParams>>(({ args }) => {
   const { title, description, systemRole, plugins, model, provider } = args || {};

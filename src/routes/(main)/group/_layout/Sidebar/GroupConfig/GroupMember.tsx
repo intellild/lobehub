@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { UserMinus } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,19 +20,8 @@ import { useUserStore } from '@/store/user';
 import { userProfileSelectors } from '@/store/user/slices/auth/selectors';
 
 import AddGroupMemberModal from '../AddGroupMemberModal';
+import styles from './GroupMember.module.css';
 import GroupMemberItem from './GroupMemberItem';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  memberTrigger: css`
-    border-radius: ${cssVar.borderRadius};
-    transition: background 0.2s ${cssVar.motionEaseOut};
-
-    &[data-popup-open],
-    &[data-active='true'] {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
 
 interface GroupMemberProps {
   addModalOpen: boolean;

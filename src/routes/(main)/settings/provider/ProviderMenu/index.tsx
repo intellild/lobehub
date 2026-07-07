@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Icon, SearchBar } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { SearchIcon } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
@@ -29,8 +28,8 @@ const Layout = memo(({ children, mobile }: ProviderMenuProps) => {
     <Flexbox
       width={width}
       style={{
-        background: cssVar.colorBgContainer,
-        borderRight: `1px solid ${cssVar.colorBorderSecondary}`,
+        background: 'var(--ant-color-bg-container)',
+        borderRight: `1px solid ${'var(--ant-color-border-secondary)'}`,
         minWidth: width,
         overflow: mobile ? undefined : 'scroll',
       }}
@@ -43,8 +42,8 @@ const Layout = memo(({ children, mobile }: ProviderMenuProps) => {
         padding={8}
         width={'100%'}
         style={{
-          background: cssVar.colorBgContainer,
-          borderBottom: `1px solid ${cssVar.colorBorderSecondary}`,
+          background: 'var(--ant-color-bg-container)',
+          borderBottom: `1px solid ${'var(--ant-color-border-secondary)'}`,
           marginBottom: 8,
           position: 'sticky',
           top: 0,
@@ -59,7 +58,7 @@ const Layout = memo(({ children, mobile }: ProviderMenuProps) => {
           variant={'borderless'}
           prefix={
             <Icon
-              color={cssVar.colorTextDescription}
+              color={'var(--ant-color-text-description)'}
               icon={SearchIcon}
               style={{
                 marginRight: 12,

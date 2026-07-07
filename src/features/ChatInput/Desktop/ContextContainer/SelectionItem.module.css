@@ -1,0 +1,62 @@
+.codeLine {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.codePreview {
+  overflow: auto;
+  max-width: min(560px, 80vw);
+  max-height: 220px;
+  margin: 0;
+  padding-block: 8px;
+  padding-inline: 0;
+  font-family: var(--ant-font-family-code);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.content {
+  overflow: hidden;
+  min-width: 0;
+  color: var(--ant-color-text);
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+
+.lineNumber {
+  user-select: none;
+  color: var(--ant-color-text-quaternary);
+  text-align: end;
+}
+
+.meta {
+  overflow: hidden;
+  max-width: min(560px, 80vw);
+  padding-block-end: 6px;
+  border-block-end: 1px solid var(--ant-color-border-secondary);
+  font-family: var(--ant-font-family-code);
+  font-size: 12px;
+  color: var(--ant-color-text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.name {
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.textPreview {
+  max-width: min(420px, 70vw);
+  color: var(--ant-color-text);
+  white-space: pre-wrap;
+}
+
+.truncated {
+  padding-block-start: 4px;
+  color: var(--ant-color-text-quaternary);
+}

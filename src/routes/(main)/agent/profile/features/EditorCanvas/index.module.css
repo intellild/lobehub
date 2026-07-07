@@ -1,0 +1,29 @@
+.desc {
+font-size: 13px;
+line-height: 1.6;
+color: var(--ant-color-text-secondary);
+}
+
+.editorShell {
+min-height: 300px;
+padding-block: 18px;
+padding-inline: 18px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-container);
+}
+
+.header {
+max-width: 820px;
+}
+
+.root {
+padding-block-end: 16px;
+}
+
+.title {
+font-size: 16px;
+font-weight: 600;
+color: var(--ant-color-text);
+}

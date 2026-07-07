@@ -1,0 +1,33 @@
+.button {
+position: absolute;
+z-index: 10;
+inset-block-start: 50%;
+transform: translateY(-50%);
+
+color: var(--ant-color-text-secondary);
+
+opacity: 0;
+
+transition: opacity var(--ant-motion-duration-mid) var(--ant-motion-ease-in-out);
+
+&:hover {
+  border-color: var(--ant-color-border) !important;
+  box-shadow: var(--ant-box-shadow-tertiary) !important;
+}
+}
+
+.container {
+position: relative;
+
+&:hover .scroll-button {
+  opacity: 1;
+}
+}
+
+.leftButton {
+inset-inline-start: 16px;
+}
+
+.rightButton {
+inset-inline-end: 16px;
+}

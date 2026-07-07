@@ -1,7 +1,6 @@
 'use client';
 
 import { Button, Empty, Flexbox, Skeleton, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { FlaskConical, Plus } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,29 +10,7 @@ import { useEvalStore } from '@/store/eval';
 
 import BenchmarkCard from './features/BenchmarkCard';
 import { createCreateBenchmarkModal } from './features/CreateBenchmarkModal';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    overflow-y: auto;
-    padding-block: 24px;
-    padding-inline: 32px;
-  `,
-  grid: css`
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-    gap: 20px;
-  `,
-  skeletonCard: css`
-    padding: 20px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorBgContainer};
-  `,
-  title: css`
-    margin: 0;
-    line-height: 1.3;
-  `,
-}));
+import styles from './index.module.css';
 
 // Loading placeholder that reuses the benchmark-card chrome so loading → loaded
 // is a content swap, not a relayout (ux §4.1).

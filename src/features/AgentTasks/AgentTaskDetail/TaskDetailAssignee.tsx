@@ -1,11 +1,11 @@
 import type { TaskStatus } from '@lobechat/types';
 import { Block, Icon, Text, Tooltip } from '@lobehub/ui';
-import { cssVar, useThemeMode } from 'antd-style';
 import { UserCircle2 } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import HeterogeneousTag from '@/features/HeterogeneousTag';
+import { useThemeMode } from '@/hooks/useTheme';
 import { useHomeStore } from '@/store/home';
 import { homeAgentListSelectors } from '@/store/home/selectors';
 import { useTaskStore } from '@/store/task';
@@ -54,8 +54,8 @@ const TaskDetailAssignee = memo(() => {
             </>
           ) : (
             <>
-              <Icon color={cssVar.colorTextDescription} icon={UserCircle2} size={18} />
-              <Text style={{ color: cssVar.colorTextDescription }} weight={500}>
+              <Icon color={'var(--ant-color-text-description)'} icon={UserCircle2} size={18} />
+              <Text style={{ color: 'var(--ant-color-text-description)' }} weight={500}>
                 {t('taskList.unassigned')}
               </Text>
             </>

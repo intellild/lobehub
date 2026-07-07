@@ -1,19 +1,11 @@
 import { Skeleton, Tooltip } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { type FC } from 'react';
 
 import InstantSwitch from '@/components/InstantSwitch';
 import { usePermission } from '@/hooks/usePermission';
 import { aiProviderSelectors, useAiInfraStore } from '@/store/aiInfra';
 
-const styles = createStaticStyles(({ css }) => ({
-  switchLoading: css`
-    width: 44px !important;
-    min-width: 44px !important;
-    height: 22px !important;
-    border-radius: 12px !important;
-  `,
-}));
+import styles from './EnableSwitch.module.css';
 
 interface SwitchProps {
   Component?: FC<{ id: string }>;

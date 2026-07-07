@@ -1,32 +1,32 @@
 import type { BuiltinPlaceholderProps, SearchQuery } from '@lobechat/types';
 import { Flexbox, Icon, Skeleton } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { SearchIcon } from 'lucide-react';
 import { memo } from 'react';
 
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { shinyTextStyles } from '@/styles';
 
+import stylesModule from './Search.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const ITEM_HEIGHT = 80;
 const ITEM_WIDTH = 160;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  query: cx(
-    css`
-      padding-block: 4px;
-      padding-inline: 8px;
-      border-radius: 8px;
-
-      font-size: 12px;
-      color: ${cssVar.colorTextSecondary};
-
-      &:hover {
-        background: ${cssVar.colorFillTertiary};
-      }
-    `,
-    shinyTextStyles.shinyText,
-  ),
-}));
+const styles: typeof stylesModule & { query: string } = {
+  ...stylesModule,
+  query: [stylesModule.query, shinyTextStyles.shinyText].join(' '),
+};
 
 export const Search = memo<BuiltinPlaceholderProps<SearchQuery>>(({ args }) => {
   const { query } = args || {};

@@ -12,23 +12,12 @@ import {
 } from '@lobehub/editor';
 import { Editor, useEditor } from '@lobehub/editor/react';
 import { Flexbox, TextArea } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { CreatePlanParams } from '../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  description: css`
-    font-size: 14px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  title: css`
-    font-size: 28px;
-    font-weight: 600;
-  `,
-}));
+import styles from './CreatePlan.module.css';
 
 const CreatePlanIntervention = memo<BuiltinInterventionProps<CreatePlanParams>>(
   ({ args, onArgsChange, registerBeforeApprove }) => {

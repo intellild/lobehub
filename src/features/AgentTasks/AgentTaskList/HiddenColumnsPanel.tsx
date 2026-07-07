@@ -1,94 +1,29 @@
 import type { TaskStatus } from '@lobechat/types';
 import { Icon, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { PanelRightClose, PanelRightOpen } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import TaskStatusIcon from '../features/TaskStatusIcon';
+import styles from './HiddenColumnsPanel.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const HIDDEN_PANEL_WIDTH = {
   collapsed: 36,
   expanded: 220,
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    padding-block: 8px;
-    padding-inline: 10px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-
-    transition: border-color 0.2s;
-
-    &:hover {
-      border-color: ${cssVar.colorPrimaryBorder};
-    }
-  `,
-  collapsedHeader: css`
-    cursor: pointer;
-
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: center;
-
-    padding-block: 12px;
-    padding-inline: 6px;
-
-    color: ${cssVar.colorTextSecondary};
-  `,
-  count: css`
-    margin-inline-start: auto;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  header: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 6px;
-    align-items: center;
-
-    padding-block: 10px 8px;
-    padding-inline: 6px;
-
-    color: ${cssVar.colorTextSecondary};
-  `,
-  list: css`
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-
-    padding-block: 4px 12px;
-    padding-inline: 2px;
-  `,
-  panel: css`
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-
-    max-height: 100%;
-    margin-inline-start: auto;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  verticalLabel: css`
-    writing-mode: vertical-rl;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-  `,
-}));
 
 interface HiddenColumn {
   columnKey: string;

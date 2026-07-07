@@ -1,0 +1,75 @@
+.authorLink {
+cursor: pointer;
+
+display: inline-flex;
+gap: 4px;
+align-items: center;
+
+color: var(--ant-color-primary);
+
+&:hover {
+  text-decoration: underline;
+}
+}
+
+.code {
+font-family: var(--ant-font-family-code);
+}
+
+.detailItem {
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+
+.detailLabel {
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.header {
+display: flex;
+gap: 16px;
+align-items: center;
+border-radius: 12px;
+
+/* background: var(--ant-color-fill-tertiary); */
+}
+
+.icon {
+display: flex;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+
+width: 56px;
+height: 56px;
+}
+
+.introduction {
+font-size: 14px;
+line-height: 1.8;
+color: var(--ant-color-text);
+}
+
+.nav {
+border-block-end: 1px solid var(--ant-color-border);
+}
+
+.sectionTitle {
+font-size: 14px;
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.title {
+font-size: 18px;
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.trustWarning {
+font-size: 12px;
+line-height: 1.6;
+color: var(--ant-color-text-tertiary);
+}

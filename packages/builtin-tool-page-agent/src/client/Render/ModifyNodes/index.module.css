@@ -1,0 +1,50 @@
+.content {
+overflow: hidden;
+flex: 1;
+
+min-width: 0;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.index {
+flex-shrink: 0;
+
+width: 18px;
+
+font-size: 12px;
+color: var(--ant-color-text-quaternary);
+text-align: end;
+}
+
+.position {
+flex-shrink: 0;
+
+padding-block: 1px;
+padding-inline: 6px;
+border-radius: 4px;
+
+font-family: var(--ant-font-family-code);
+font-size: 11px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.row {
+display: flex;
+gap: 8px;
+align-items: center;
+
+padding-block: 8px;
+padding-inline: 12px;
+border-block-end: 1px dashed var(--ant-color-border-secondary);
+
+&:last-child {
+  border-block-end: none;
+}
+}

@@ -2,7 +2,6 @@ import react from '@vitejs/plugin-react';
 import { codeInspectorPlugin } from 'code-inspector-plugin';
 import type { ModulePreloadOptions } from 'vite';
 
-import { viteEmotionSpeedy } from './emotionSpeedy';
 import { viteMarkdownImport } from './markdownImport';
 import { viteNodeModuleStub } from './nodeModuleStub';
 import { vitePlatformResolve } from './platformResolve';
@@ -206,7 +205,6 @@ interface SharedRendererOptions {
 
 export function sharedRendererPlugins(options: SharedRendererOptions) {
   return [
-    viteEmotionSpeedy(),
     viteMarkdownImport(),
     viteNodeModuleStub(),
     vitePlatformResolve(options.platform),
@@ -260,7 +258,6 @@ export const sharedOptimizeDeps = {
     '@ant-design/icons',
     '@lobehub/ui',
     '@lobehub/ui > @emotion/react',
-    'antd-style',
     'zustand',
     'zustand/middleware',
     'swr',

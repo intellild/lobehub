@@ -1,103 +1,11 @@
 import { Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ClipboardList } from 'lucide-react';
 import { memo, useMemo } from 'react';
 
 import { type MarkdownElementProps } from '../type';
 import { useTaskCardScope } from './context';
 import { type ParsedTaskContent, parseTaskContent } from './parseTaskContent';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  divider: css`
-    inline-size: 100%;
-    block-size: 1px;
-    background: ${cssVar.colorSplit};
-  `,
-  fallback: css`
-    overflow: auto;
-
-    padding-block: 12px;
-    padding-inline: 14px;
-    border: 1px dashed ${cssVar.colorBorderSecondary};
-    border-radius: 8px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    white-space: pre-wrap;
-  `,
-  fieldKey: css`
-    flex: none;
-    min-inline-size: 64px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  fieldRow: css`
-    font-size: 13px;
-    line-height: 1.6;
-  `,
-  fieldValue: css`
-    color: ${cssVar.colorTextSecondary};
-    word-break: break-word;
-  `,
-  headerIcon: css`
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    inline-size: 32px;
-    block-size: 32px;
-
-    color: ${cssVar.colorTextSecondary};
-  `,
-  identifier: css`
-    flex: none;
-
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-radius: 4px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  instruction: css`
-    font-size: 13px;
-    line-height: 1.7;
-    color: ${cssVar.colorText};
-    white-space: pre-wrap;
-  `,
-  rawList: css`
-    margin: 0;
-    padding: 0;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-    list-style: none;
-
-    li {
-      white-space: pre-wrap;
-    }
-  `,
-  section: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-
-    summary {
-      cursor: pointer;
-      padding-block: 4px;
-      color: ${cssVar.colorTextSecondary};
-
-      &:hover {
-        color: ${cssVar.colorText};
-      }
-    }
-  `,
-}));
+import styles from './Render.module.css';
 
 const FieldRow = memo<{ label: string; value?: string }>(({ label, value }) => {
   if (!value) return null;

@@ -4,7 +4,6 @@ import { ActionIcon, Avatar, Checkbox, Flexbox, List, SearchBar, Text, Tooltip }
 import { Button } from '@lobehub/ui/base-ui';
 import { useHover } from 'ahooks';
 import { List as AntdList, Switch } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import { X } from 'lucide-react';
 import { type ChangeEvent } from 'react';
 import { memo, useCallback, useMemo, useRef, useState } from 'react';
@@ -18,6 +17,21 @@ import { useEnabledChatModels } from '@/hooks/useEnabledChatModels';
 import { useSessionStore } from '@/store/session';
 import { type LobeAgentSession } from '@/types/session';
 import { LobeSessionType } from '@/types/session';
+
+import styles from './MemberSelectionModal.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const AvailableAgentItem = memo<{
   agent: LobeAgentSession;
@@ -67,67 +81,6 @@ const AvailableAgentItem = memo<{
     </AntdList.Item>
   );
 });
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    display: flex;
-    flex-direction: row;
-
-    height: 500px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-  `,
-  description: css`
-    font-size: 11px;
-    line-height: 1.2;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  hostCard: css`
-    margin-block-end: ${cssVar.paddingSM};
-    padding: ${cssVar.padding};
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  leftColumn: css`
-    user-select: none;
-
-    overflow-y: auto;
-    flex: 1;
-
-    padding-block: ${cssVar.paddingSM} 0;
-    padding-inline: ${cssVar.paddingSM};
-    border-inline-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  listItem: css`
-    cursor: pointer;
-
-    position: relative;
-
-    margin-block: 2px;
-    padding: ${cssVar.paddingSM} !important;
-    border-radius: ${cssVar.borderRadius};
-
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  modelSelectDisabled: css`
-    pointer-events: none;
-  `,
-  rightColumn: css`
-    overflow-y: auto;
-    flex: 1;
-    padding: ${cssVar.paddingSM};
-  `,
-  selectedItem: css`
-    opacity: 0.6;
-    background: ${cssVar.colorFillQuaternary};
-  `,
-}));
 
 export type MemberSelectionMode = 'create' | 'add';
 

@@ -1,0 +1,13 @@
+.image {
+margin-block: 0 !important;
+box-shadow: none;
+
+img {
+  object-fit: contain;
+}
+}
+
+.video {
+overflow: hidden;
+border-radius: 8px;
+}

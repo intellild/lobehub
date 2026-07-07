@@ -2,7 +2,6 @@
 
 import { ActionIcon, Flexbox, Text } from '@lobehub/ui';
 import { DropdownMenu } from '@lobehub/ui/base-ui';
-import { cssVar, cx } from 'antd-style';
 import { MoreHorizontal } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +16,19 @@ import { agentSelectors } from '@/store/agent/selectors';
 import { oneLineEllipsis } from '@/styles';
 
 import { useMenu } from './useMenu';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface HeaderProps {
   agentDocumentId?: string;
@@ -57,14 +69,14 @@ const Header = memo<HeaderProps>(
               style={{ cursor: 'pointer', flexShrink: 0 }}
               onClick={onBack}
             >
-              <Text style={{ color: cssVar.colorTextSecondary }}>
+              <Text style={{ color: 'var(--ant-color-text-secondary)' }}>
                 {meta.title || t('untitledAgent', { ns: 'chat' })}
               </Text>
             </Flexbox>
-            <Text style={{ color: cssVar.colorTextQuaternary, flexShrink: 0 }}>/</Text>
+            <Text style={{ color: 'var(--ant-color-text-quaternary)', flexShrink: 0 }}>/</Text>
             <Text
               className={cx(oneLineEllipsis)}
-              style={{ color: showTitleError ? cssVar.colorError : undefined, minWidth: 0 }}
+              style={{ color: showTitleError ? 'var(--ant-color-error)' : undefined, minWidth: 0 }}
               weight={500}
             >
               {resolvedTitle}

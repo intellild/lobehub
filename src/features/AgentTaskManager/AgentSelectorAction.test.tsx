@@ -61,14 +61,6 @@ vi.mock('@lobehub/ui', () => ({
   ),
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({
-    chevron: 'chevron',
-    container: 'container',
-  }),
-  cx: (...classes: string[]) => classes.filter(Boolean).join(' '),
-}));
-
 vi.mock('lucide-react', () => ({
   ChevronsUpDownIcon: () => <span data-testid="chevron" />,
 }));

@@ -1,0 +1,17 @@
+.bubble {
+padding-block: 8px;
+  padding-inline: 12px;
+  border-radius: var(--ant-border-radius-lg);
+  background-color: var(--ant-color-fill-tertiary);
+}
+
+.disabled {
+user-select: none;
+  color: var(--ant-color-text-secondary);
+}
+
+.message {
+position: relative;
+  overflow: hidden;
+  max-width: 100%;
+}

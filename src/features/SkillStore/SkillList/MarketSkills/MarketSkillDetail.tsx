@@ -4,7 +4,6 @@ import { type SkillResourceTreeNode } from '@lobechat/types';
 import { Github } from '@lobehub/icons';
 import { ActionIcon, Avatar, Flexbox, Icon } from '@lobehub/ui';
 import { Skeleton } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { unzip } from 'fflate';
 import { DotIcon, ExternalLinkIcon } from 'lucide-react';
 import { memo, useEffect, useMemo, useState } from 'react';
@@ -19,46 +18,7 @@ import { useToolStore } from '@/store/tool';
 import { agentSkillsSelectors } from '@/store/tool/selectors';
 import { type DiscoverSkillDetail as DiscoverSkillDetailType } from '@/types/discover';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  description: css`
-    overflow: hidden;
-
-    margin: 0;
-
-    font-size: 13px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  divider: css`
-    flex-shrink: 0;
-    width: 1px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  left: css`
-    overflow-y: auto;
-    flex-shrink: 0;
-    width: 240px;
-    padding: 8px;
-  `,
-  meta: css`
-    flex-shrink: 0;
-    padding: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  name: css`
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: ${cssVar.colorText};
-  `,
-  right: css`
-    container-type: size;
-    overflow: auto;
-    flex: 1;
-  `,
-}));
+import styles from './MarketSkillDetail.module.css';
 
 interface MarketSkillDetailProps {
   identifier: string;
@@ -216,7 +176,7 @@ const MarketSkillDetail = memo<MarketSkillDetailProps>(({ identifier }) => {
                 {github?.url && (
                   <a href={github.url} rel="noreferrer" target={'_blank'}>
                     <ActionIcon
-                      fill={cssVar.colorTextDescription}
+                      fill={'var(--ant-color-text-description)'}
                       icon={Github}
                       title={t('agentSkillDetail.repository')}
                     />

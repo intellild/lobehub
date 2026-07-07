@@ -1,5 +1,4 @@
 import { Block, Flexbox, Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { ListTodo } from 'lucide-react';
 import { type FC, type PropsWithChildren } from 'react';
 
@@ -21,7 +20,7 @@ const TaskAvatar: FC<PropsWithChildren> = ({ children }) => {
           top: -4,
         }}
       >
-        <Icon color={cssVar.colorTextDescription} icon={ListTodo} size={10} />
+        <Icon color={'var(--ant-color-text-description)'} icon={ListTodo} size={10} />
       </Block>
     </Flexbox>
   );

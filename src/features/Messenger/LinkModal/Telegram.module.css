@@ -1,0 +1,24 @@
+.qrIconOverlay {
+pointer-events: none;
+
+position: absolute;
+z-index: 1;
+inset-block-start: 50%;
+inset-inline-start: 50%;
+transform: translate(-50%, -50%);
+
+border: 3px solid var(--ant-color-bg-container);
+border-radius: 50%;
+
+line-height: 0;
+}
+
+.qrWrap {
+position: relative;
+
+padding: 14px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 16px;
+
+background: var(--ant-color-bg-container);
+}

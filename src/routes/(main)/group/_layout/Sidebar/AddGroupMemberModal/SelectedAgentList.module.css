@@ -1,0 +1,11 @@
+.container {
+overflow-y: auto;
+flex: 1;
+padding: var(--ant-padding-sm)px;
+}
+
+.title {
+font-size: 12px;
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}

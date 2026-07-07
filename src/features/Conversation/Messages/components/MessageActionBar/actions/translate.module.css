@@ -1,0 +1,4 @@
+.translatePopup :global(.ant-dropdown-menu-sub) {
+  overflow-y: scroll;
+  max-height: 400px;
+}

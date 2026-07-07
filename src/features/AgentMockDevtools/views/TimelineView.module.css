@@ -1,0 +1,24 @@
+.list {
+overflow: hidden;
+flex: 1;
+
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 8px;
+
+background: var(--ant-color-bg-container);
+}
+
+.meta {
+margin-block-end: 8px;
+font-size: 11px;
+color: var(--ant-color-text-tertiary);
+}
+
+.wrap {
+display: flex;
+flex: 1;
+flex-direction: column;
+
+height: 100%;
+min-height: 0;
+}

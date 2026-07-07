@@ -3,7 +3,6 @@
 import { AGENT_CHAT_TOPIC_URL } from '@lobechat/const';
 import { formatPrice, formatTokenNumber } from '@lobechat/utils/format';
 import { Block, Checkbox, Flexbox, Icon, Tag, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { CircleDollarSign, FolderIcon, MessageSquare, Star, Zap } from 'lucide-react';
 import { memo, type MouseEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,65 +13,8 @@ import type { ChatTopic } from '@/types/topic';
 
 import StatusDot from './StatusDot';
 import { useTopicsViewStore } from './store';
+import styles from './TopicCard.module.css';
 import { getProjectLabel } from './utils';
-
-const styles = createStaticStyles(({ css }) => ({
-  card: css`
-    cursor: pointer;
-
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-
-    /* min-height keeps short cards consistent without forcing tall empty
-       whitespace — preview + footer can still grow the card naturally. */
-    min-height: 140px;
-    padding: 14px;
-
-    transition:
-      transform 0.18s,
-      box-shadow 0.18s,
-      border-color 0.18s;
-
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgb(0 0 0 / 6%);
-    }
-  `,
-  cardSelected: css`
-    border-color: ${cssVar.colorPrimary};
-    box-shadow: 0 0 0 1px ${cssVar.colorPrimary};
-  `,
-  checkbox: css`
-    position: absolute;
-    z-index: 1;
-    inset-block-start: 10px;
-    inset-inline-end: 10px;
-  `,
-  checkboxBox: css`
-    border-color: ${cssVar.colorBorder};
-  `,
-  description: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  `,
-  footer: css`
-    /* push to bottom so cards with short content keep the stats row anchored */
-    margin-block-start: auto;
-    padding-block-start: 10px;
-    border-block-start: 1px solid ${cssVar.colorSplit};
-  `,
-  title: css`
-    overflow: hidden;
-    display: -webkit-box;
-    flex: 1;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-  `,
-}));
 
 interface TopicCardProps {
   agentId: string;
@@ -140,7 +82,7 @@ const TopicCard = memo<TopicCardProps>(({ topic, agentId }) => {
 
       <Flexbox horizontal align={'center'} gap={6}>
         {topic.favorite && (
-          <Icon icon={Star} size={13} style={{ color: cssVar.colorWarning, flexShrink: 0 }} />
+          <Icon icon={Star} size={13} style={{ color: 'var(--ant-color-warning)', flexShrink: 0 }} />
         )}
         <Text className={styles.title} fontSize={14} weight={600}>
           {topic.title || t('defaultTitle')}
@@ -164,7 +106,7 @@ const TopicCard = memo<TopicCardProps>(({ topic, agentId }) => {
           horizontal
           align={'center'}
           gap={10}
-          style={{ color: cssVar.colorTextQuaternary, fontSize: 11 }}
+          style={{ color: 'var(--ant-color-text-quaternary)', fontSize: 11 }}
         >
           {messageCount > 0 && (
             <Flexbox horizontal align={'center'} gap={3}>

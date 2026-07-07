@@ -3,7 +3,6 @@
 import { type UIChatMessage } from '@lobechat/types';
 import { ActionIcon } from '@lobehub/ui';
 import { FloatingSheet, type FloatingSheetProps } from '@lobehub/ui/base-ui';
-import { createStaticStyles } from 'antd-style';
 import { ChevronDown } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { memo, useCallback, useMemo, useState } from 'react';
@@ -26,42 +25,12 @@ import { messageMapKey } from '@/store/chat/utils/messageMapKey';
 
 import ChatBody from './ChatBody';
 import { useSingleInstanceGuard } from './guard';
+import styles from './index.module.css';
 import InputRow from './InputRow';
 
 const SNAP_POINTS = [320, 800] as const;
 const MID_SNAP_POINT = SNAP_POINTS[0];
 const MAX_SNAP_POINT = SNAP_POINTS.at(-1)!;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  panel: css`
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    align-self: stretch;
-
-    width: 100%;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-
-    background: ${cssVar.colorBgContainer};
-
-    transition:
-      border-block-start-color 240ms cubic-bezier(0.32, 0.72, 0, 1),
-      background 240ms cubic-bezier(0.32, 0.72, 0, 1);
-
-    &[data-collapsed='true'] {
-      border-block-start-color: transparent;
-      background: transparent;
-    }
-  `,
-  sheetSeamless: css`
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  `,
-  titleSpacer: css`
-    flex: 1;
-  `,
-}));
 
 export interface FloatingChatPanelProps {
   /**

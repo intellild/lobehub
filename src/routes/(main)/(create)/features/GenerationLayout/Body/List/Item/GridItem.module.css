@@ -1,0 +1,25 @@
+.gridItem {
+cursor: pointer;
+
+position: relative;
+
+aspect-ratio: 1;
+width: 100% !important;
+height: auto !important;
+border-radius: 4px;
+
+object-fit: cover;
+background: var(--ant-color-fill-secondary);
+
+transition: border 0.15s var(--ant-motion-ease-in-out);
+
+img {
+  aspect-ratio: 1;
+  width: 100% !important;
+}
+}
+
+.gridItemActive {
+border: 2px solid var(--ant-color-bg-layout) !important;
+box-shadow: 0 0 0 2px var(--ant-color-primary);
+}

@@ -1,0 +1,27 @@
+.background {
+position: absolute;
+
+  width: max(64%, 1280px);
+  height: 100%;
+
+  opacity: 0.8;
+  filter: blur(60px);
+}
+
+.containerDark {
+position: relative;
+overflow: hidden;
+background-color: var(--ant-color-fill);
+}
+
+.containerLight {
+position: relative;
+overflow: hidden;
+background-color: var(--ant-color-fill-secondary);
+}
+
+.wrapper {
+z-index: 1;
+overflow: hidden;
+max-width: 100%;
+}

@@ -1,7 +1,6 @@
 import { formatUsageValue } from '@lobechat/utils';
 import { Flexbox } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cssVar } from 'antd-style';
 import { memo } from 'react';
 
 interface TokenProgressItem {
@@ -26,7 +25,7 @@ const TokenProgress = memo<TokenProgressProps>(({ data, showIcon, showTotal }) =
         height={6}
         width={'100%'}
         style={{
-          background: total === 0 ? cssVar.colorFill : undefined,
+          background: total === 0 ? 'var(--ant-color-fill)' : undefined,
           borderRadius: 3,
           overflow: 'hidden',
           position: 'relative',
@@ -55,7 +54,7 @@ const TokenProgress = memo<TokenProgressProps>(({ data, showIcon, showTotal }) =
                   }}
                 />
               )}
-              <div style={{ color: cssVar.colorTextSecondary }}>{item.title}</div>
+              <div style={{ color: 'var(--ant-color-text-secondary)' }}>{item.title}</div>
             </Flexbox>
             <div style={{ fontWeight: 500 }}>{formatUsageValue(item.value)}</div>
           </Flexbox>
@@ -64,7 +63,7 @@ const TokenProgress = memo<TokenProgressProps>(({ data, showIcon, showTotal }) =
           <>
             <Divider style={{ marginBlock: 8 }} />
             <Flexbox horizontal align={'center'} gap={4} justify={'space-between'}>
-              <div style={{ color: cssVar.colorTextSecondary }}>{showTotal}</div>
+              <div style={{ color: 'var(--ant-color-text-secondary)' }}>{showTotal}</div>
               <div style={{ fontWeight: 500 }}>{formatUsageValue(total)}</div>
             </Flexbox>
           </>

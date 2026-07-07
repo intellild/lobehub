@@ -1,5 +1,4 @@
 import { AccordionItem, Center, Flexbox, Icon, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import {
   Archive,
   CheckCircle2,
@@ -20,13 +19,13 @@ import { type GroupItemComponentProps } from '../GroupedAccordion';
 // (awaiting input / failed / unread completion) into one group; `favorite` is
 // the synthetic group split out by `buildGroupedTopics`, so it gets a star.
 const STATUS_ICON: Record<string, { color: string; icon: LucideIcon }> = {
-  active: { color: cssVar.colorTextTertiary, icon: CircleDot },
-  archived: { color: cssVar.colorTextDescription, icon: Archive },
-  completed: { color: cssVar.colorTextDescription, icon: CheckCircle2 },
-  favorite: { color: cssVar.colorWarning, icon: Star },
-  paused: { color: cssVar.colorTextDescription, icon: PauseCircle },
-  pending: { color: cssVar.colorWarning, icon: CircleAlert },
-  running: { color: cssVar.colorWarning, icon: Loader },
+  active: { color: 'var(--ant-color-text-tertiary)', icon: CircleDot },
+  archived: { color: 'var(--ant-color-text-description)', icon: Archive },
+  completed: { color: 'var(--ant-color-text-description)', icon: CheckCircle2 },
+  favorite: { color: 'var(--ant-color-warning)', icon: Star },
+  paused: { color: 'var(--ant-color-text-description)', icon: PauseCircle },
+  pending: { color: 'var(--ant-color-warning)', icon: CircleAlert },
+  running: { color: 'var(--ant-color-warning)', icon: Loader },
 };
 
 const GroupItem = memo<GroupItemComponentProps>(({ group, activeTopicId, activeThreadId }) => {

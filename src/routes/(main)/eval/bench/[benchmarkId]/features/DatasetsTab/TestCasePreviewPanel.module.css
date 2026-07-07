@@ -1,0 +1,52 @@
+.container {
+flex-shrink: 0;
+width: 360px;
+border-inline-start: 1px solid var(--ant-color-border-secondary);
+}
+
+.content {
+overflow-y: auto;
+flex: 1;
+padding: 16px;
+}
+
+.fieldLabel {
+margin: 0;
+
+font-size: var(--ant-font-size-sm);
+font-weight: 600;
+color: var(--ant-color-text-tertiary);
+text-transform: uppercase;
+letter-spacing: 0.02em;
+}
+
+.fieldValue {
+padding-block: 8px;
+padding-inline: 12px;
+border-radius: var(--ant-border-radius);
+
+font-size: var(--ant-font-size);
+line-height: 1.6;
+color: var(--ant-color-text);
+word-break: break-word;
+white-space: pre-wrap;
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+padding-block: 12px;
+padding-inline: 16px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.title {
+margin: 0;
+font-size: var(--ant-font-size);
+font-weight: 500;
+color: var(--ant-color-text);
+}

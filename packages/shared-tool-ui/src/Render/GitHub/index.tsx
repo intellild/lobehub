@@ -3,12 +3,12 @@
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { fromNow } from '@lobechat/utils/time';
 import { Block, Flexbox, Highlighter, Icon, Markdown, Tag, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ExternalLink, Link2 } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './index.module.css';
 import {
   buildGitHubRenderModel,
   formatIsoDate,
@@ -16,126 +16,6 @@ import {
   type GitHubField,
   type GitHubLink,
 } from './utils';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-    min-width: 0;
-  `,
-  description: css`
-    overflow: auto;
-
-    max-height: 180px;
-    padding-block: 8px;
-    padding-inline: 10px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 6px;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  entityHeader: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
-
-    min-width: 0;
-  `,
-  headLeft: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    min-width: 0;
-  `,
-  linkRow: css`
-    overflow: hidden;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    min-width: 0;
-    padding-block: 6px;
-    padding-inline: 8px;
-    border-radius: 6px;
-
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillQuaternary};
-
-    &:hover {
-      color: ${cssVar.colorLink};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  linkText: css`
-    overflow: hidden;
-    min-width: 0;
-  `,
-  metaItem: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: baseline;
-
-    min-width: 0;
-
-    font-size: 12px;
-    line-height: 1.5;
-  `,
-  metaLabel: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  metaRow: css`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 16px;
-    align-items: baseline;
-
-    min-width: 0;
-  `,
-  metaValue: css`
-    overflow: hidden;
-
-    min-width: 0;
-
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  rawDetails: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    summary {
-      cursor: pointer;
-      width: fit-content;
-      margin-block-end: 6px;
-    }
-  `,
-  sectionLabel: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  timeItem: css`
-    flex-shrink: 0;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-    white-space: nowrap;
-  `,
-  titleLink: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    min-width: 0;
-
-    color: inherit;
-
-    &:hover {
-      color: ${cssVar.colorLink};
-    }
-  `,
-}));
 
 const hasItems = <T,>(items: T[]) => items.length > 0;
 

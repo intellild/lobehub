@@ -1,0 +1,65 @@
+.backLink {
+display: inline-flex;
+gap: 4px;
+align-items: center;
+
+width: fit-content;
+
+font-size: var(--ant-font-size);
+color: var(--ant-color-text-tertiary);
+text-decoration: none;
+
+transition: color 0.15s ease;
+
+&:hover {
+  color: var(--ant-color-text);
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+}
+
+.header {
+display: flex;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+
+width: 40px;
+height: 40px;
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-primary-bg);
+}
+
+.heroBand {
+padding: 20px;
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-fill-quaternary);
+}
+
+.heroValue {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-heading-2);
+font-weight: 600;
+line-height: 1;
+color: var(--ant-color-text);
+}
+
+.summaryDot {
+width: 8px;
+height: 8px;
+border-radius: 999px;
+}
+
+.tableWrapper {
+overflow: hidden;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius);
+}

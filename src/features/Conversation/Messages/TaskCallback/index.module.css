@@ -1,0 +1,15 @@
+.card {
+  overflow: hidden;
+
+  padding-block: 12px;
+  padding-inline: 16px;
+  border: 1px solid var(--ant-color-border-secondary);
+  border-radius: 16px;
+
+  background: var(--ant-color-bg-elevated);
+}
+
+.identifier {
+  font-family: var(--ant-font-family-code);
+  color: var(--ant-color-text-secondary);
+}

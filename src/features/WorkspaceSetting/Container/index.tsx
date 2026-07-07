@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, type FlexboxProps } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo, type PropsWithChildren, type ReactNode } from 'react';
 
 interface WorkspaceSettingsContainerProps extends FlexboxProps {
@@ -18,7 +17,7 @@ const WorkspaceSettingsContainer = memo<PropsWithChildren<WorkspaceSettingsConta
         height={'100%'}
         width={'100%'}
         style={{
-          background: cssVar.colorBgContainer,
+          background: 'var(--ant-color-bg-container)',
           overflowX: 'hidden',
           overflowY: 'auto',
           ...style,

@@ -2,7 +2,6 @@
 
 import type { GitWorkingTreePatch } from '@lobechat/electron-client-ipc';
 import { ActionIcon, Center, type DropdownItem, DropdownMenu, Empty, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import {
   ArrowLeftIcon,
   ChevronDownIcon,
@@ -30,6 +29,7 @@ import { useFetchGitBranch } from '@/store/device';
 import FileRow from './FileRow';
 import FileTreeNav from './FileTreeNav';
 import GroupHeader from './GroupHeader';
+import styles from './index.module.css';
 import { itemKey } from './reviewTreeNodes';
 import {
   invalidateGitReviewCaches,
@@ -71,158 +71,6 @@ interface ReviewProps {
 // either way keeps Shiki tokenization under ~250ms on first paint.
 const DEFAULT_EXPAND_BYTE_BUDGET = 100 * 1024;
 const DEFAULT_EXPAND_MAX_COUNT = 50;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  caret: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  totalAdditions: css`
-    color: ${cssVar.colorSuccess};
-  `,
-  totalDeletions: css`
-    color: ${cssVar.colorError};
-  `,
-  totalStats: css`
-    display: inline-flex;
-    flex-shrink: 0;
-    gap: 6px;
-    align-items: center;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    font-variant-numeric: tabular-nums;
-  `,
-  // Two-pane body: diff list (left, flexes) + tree-nav rail (right, fixed).
-  body: css`
-    overflow: hidden;
-    min-height: 0;
-  `,
-  list: css`
-    position: relative;
-    min-width: 0;
-    border-block: 1px solid ${cssVar.colorBorderSecondary};
-
-    /* Strip the first visible row's own top border — the list's
-       border-block-start already provides the separator under the subheader,
-       so without this we'd render a doubled-up 2px line at the top. */
-    & > :first-child {
-      border-block-start: none;
-    }
-  `,
-  treeRail: css`
-    flex: none;
-
-    width: 240px;
-    min-height: 0;
-    padding-block: 4px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-    border-inline-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  arrow: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  basePicker: css`
-    cursor: pointer;
-    user-select: none;
-
-    overflow: hidden;
-    display: inline-flex;
-    flex: 0 1 auto;
-    gap: 4px;
-    align-items: center;
-
-    min-width: 0;
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-radius: 4px;
-
-    transition: background 0.15s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  compareChip: css`
-    overflow: hidden;
-    display: inline-flex;
-    flex: 0 1 auto;
-    gap: 6px;
-    align-items: center;
-
-    min-width: 0;
-  `,
-  headRefText: css`
-    overflow: hidden;
-    flex: 0 1 auto;
-
-    min-width: 0;
-    padding-inline-end: 4px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  refName: css`
-    overflow: hidden;
-    flex: 0 1 auto;
-
-    min-width: 0;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  scopeChip: css`
-    cursor: pointer;
-    user-select: none;
-
-    display: inline-flex;
-    flex-shrink: 0;
-    gap: 6px;
-    align-items: center;
-
-    padding-block: 2px;
-    padding-inline: 6px;
-    border-radius: 4px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    transition: background 0.15s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  subheader: css`
-    display: flex;
-    flex-shrink: 0;
-    gap: 8px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 4px 8px;
-    padding-inline: 8px;
-  `,
-  // Empty submodule group — pointer-only bump where the submodule's own
-  // working tree is clean. We still surface the group so the user knows the
-  // submodule pointer moved, just with a softer "no changes" line instead of
-  // a list of files.
-  groupEmpty: css`
-    padding-block: 6px 10px;
-    padding-inline: 10px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
 
 const Review = memo<ReviewProps>(({ active, deviceId, onToggleTree, showTree, workingDirectory }) => {
   const { t } = useTranslation('chat');

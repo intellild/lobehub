@@ -1,0 +1,73 @@
+.item {
+cursor: pointer;
+
+overflow: hidden;
+
+padding-block: 6px;
+padding-inline: 10px;
+border-radius: 6px;
+
+font-size: 13px;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+
+transition: background 0.15s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.itemActive {
+font-weight: 600;
+background: var(--ant-color-fill-secondary);
+
+&:hover {
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.trigger {
+cursor: pointer;
+
+overflow: hidden;
+display: inline-block;
+
+min-width: 0;
+padding-block: 2px;
+padding-inline: 6px;
+border: none;
+border-radius: 6px;
+
+font-size: 14px;
+font-weight: 600;
+line-height: 1.5;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+
+background: transparent;
+outline: none;
+
+transition: background 0.15s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+
+&:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Keep a visible landmark for keyboard focus (mirrors DeviceItem). */
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: -1px;
+}
+
+&[data-popup-open] {
+  background: var(--ant-color-fill-tertiary);
+}
+}

@@ -1,0 +1,12 @@
+.root {
+overflow: hidden;
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.title {
+flex-shrink: 0;
+color: var(--ant-color-text-secondary);
+white-space: nowrap;
+}

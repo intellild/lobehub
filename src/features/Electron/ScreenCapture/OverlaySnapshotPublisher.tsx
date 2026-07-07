@@ -5,12 +5,12 @@ import type {
   ScreenCaptureModelOption,
   ScreenCaptureOverlayTheme,
 } from '@lobechat/electron-client-ipc';
-import { useTheme } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo, useEffect, useMemo, useRef } from 'react';
 
 import { useEnabledChatModels } from '@/hooks/useEnabledChatModels';
 import { useFetchAgentList } from '@/hooks/useFetchAgentList';
+import { useTheme } from '@/hooks/useTheme';
 import { useAgentStore } from '@/store/agent';
 import { agentByIdSelectors, agentSelectors, builtinAgentSelectors } from '@/store/agent/selectors';
 import { useHomeStore } from '@/store/home';

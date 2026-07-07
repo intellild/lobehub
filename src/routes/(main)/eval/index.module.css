@@ -1,0 +1,23 @@
+.container {
+overflow-y: auto;
+padding-block: 24px;
+padding-inline: 32px;
+}
+
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+gap: 20px;
+}
+
+.skeletonCard {
+padding: 20px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-bg-container);
+}
+
+.title {
+margin: 0;
+line-height: 1.3;
+}

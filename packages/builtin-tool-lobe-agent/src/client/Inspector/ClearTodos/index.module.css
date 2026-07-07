@@ -1,0 +1,5 @@
+.mode {
+padding-block-end: 1px;
+color: var(--ant-color-text);
+background: linear-gradient(to top, var(--ant-color-warning-bg) 40%, transparent 40%);
+}

@@ -1,0 +1,8 @@
+.highlight {
+color: var(--ant-color-info);
+
+&::before,
+&::after {
+  content: '`';
+}
+}

@@ -1,0 +1,31 @@
+.container {
+width: 320px;
+padding: 12px;
+}
+
+.description {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 6;
+
+font-size: 12px;
+line-height: 1.5;
+color: var(--ant-color-text-secondary);
+}
+
+.identifier {
+overflow: hidden;
+
+font-family: var(--ant-font-family-code);
+font-size: 11px;
+color: var(--ant-color-text-tertiary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.title {
+font-size: 14px;
+font-weight: 600;
+color: var(--ant-color-text);
+}

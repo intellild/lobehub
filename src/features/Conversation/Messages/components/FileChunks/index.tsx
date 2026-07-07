@@ -1,6 +1,5 @@
 import { type ChatFileChunk } from '@lobechat/types';
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { BookOpenTextIcon, ChevronDown, ChevronRight } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,40 +7,20 @@ import { useTranslation } from 'react-i18next';
 import { useIsDark } from '@/hooks/useIsDark';
 
 import ChunkItem from './ChunkItem';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    cursor: pointer;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    padding-block: 8px;
-    padding-inline: 12px;
-    padding-inline-end: 12px;
-    border-radius: 8px;
-
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  containerDark: css`
-    &:hover {
-      background: '';
-    }
-  `,
-  containerLight: css`
-    &:hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  title: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
-    font-size: 12px;
-    text-overflow: ellipsis;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface FileChunksProps {
   data: ChatFileChunk[];
@@ -64,7 +43,7 @@ const FileChunks = memo<FileChunksProps>(({ data }) => {
     >
       <Flexbox horizontal distribution={'space-between'} flex={1}>
         <Flexbox horizontal gap={8}>
-          <Icon color={cssVar.geekblue} icon={BookOpenTextIcon} /> {t('rag.referenceChunks')}
+          <Icon color={'var(--ant-geekblue)'} icon={BookOpenTextIcon} /> {t('rag.referenceChunks')}
         </Flexbox>
         <Icon icon={showDetail ? ChevronDown : ChevronRight} />
       </Flexbox>

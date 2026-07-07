@@ -2,26 +2,13 @@
 
 import type { UIChatMessage } from '@lobechat/types';
 import { Flexbox, ScrollArea } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import type { RefObject } from 'react';
 import { memo, useMemo } from 'react';
 
 import { resolveAssistantGroupFromMessages } from '../utils/resolveAssistantGroupFromMessages';
 import ContentBlock from './ContentBlock';
+import styles from './ContentBlocksScroll.module.css';
 import type { RenderableAssistantContentBlock } from './types';
-
-const styles = createStaticStyles(({ css }) => ({
-  scrollRoot: css`
-    border-radius: 0;
-    background: transparent;
-  `,
-  scrollTask: css`
-    max-height: min(50vh, 300px);
-  `,
-  scrollWorkflow: css`
-    max-height: min(40vh, 320px);
-  `,
-}));
 
 interface ContentBlocksScrollBaseProps {
   disableEditing?: boolean;

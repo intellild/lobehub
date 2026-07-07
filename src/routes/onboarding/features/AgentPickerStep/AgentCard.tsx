@@ -1,11 +1,23 @@
 import type { AgentTemplate } from '@lobechat/builtin-tool-web-onboarding/agentMarketplace';
 import { Avatar, Icon } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import { CheckIcon } from 'lucide-react';
 import type { KeyboardEvent } from 'react';
 import { memo, useCallback } from 'react';
 
 import { styles } from './style';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface AgentCardProps {
   onToggle: (id: string) => void;

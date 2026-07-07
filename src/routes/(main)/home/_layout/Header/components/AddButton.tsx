@@ -1,6 +1,5 @@
 import { ActionIcon, DropdownMenu, Flexbox, Tooltip } from '@lobehub/ui';
 import { CreateBotIcon } from '@lobehub/ui/icons';
-import { cssVar } from 'antd-style';
 import { ChevronDownIcon } from 'lucide-react';
 import React, { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -51,7 +50,7 @@ const AddButton = memo(() => {
       {canCreate && (
         <DropdownMenu items={dropdownItems}>
           <ActionIcon
-            color={cssVar.colorTextQuaternary}
+            color={'var(--ant-color-text-quaternary)'}
             icon={ChevronDownIcon}
             size={{ blockSize: 32, size: 14 }}
             style={{

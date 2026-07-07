@@ -1,5 +1,4 @@
 import { Block, Flexbox, Icon, Text, Tooltip } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { ClockIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -67,7 +66,7 @@ const TaskTriggerTag = memo<TaskTriggerTagProps>(
       return (
         <Tooltip title={data?.tooltip}>
           <Flexbox horizontal align="center" gap={10} style={FLEX_MIN_WIDTH_0}>
-            <Icon color={cssVar.colorTextDescription} icon={ClockIcon} size={16} />
+            <Icon color={'var(--ant-color-text-description)'} icon={ClockIcon} size={16} />
             <Text
               ellipsis
               style={FLEX_MIN_WIDTH_0}
@@ -96,7 +95,7 @@ const TaskTriggerTag = memo<TaskTriggerTagProps>(
           style={PILL_STYLE}
           variant={'outlined'}
         >
-          <Icon color={cssVar.colorTextDescription} icon={ClockIcon} size={16} />
+          <Icon color={'var(--ant-color-text-description)'} icon={ClockIcon} size={16} />
           <Text ellipsis fontSize={12} style={FLEX_MIN_WIDTH_0} type={'secondary'}>
             {data.primary}
           </Text>

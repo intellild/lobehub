@@ -1,0 +1,73 @@
+.closeButton {
+cursor: pointer;
+
+position: absolute;
+inset-block-start: 20px;
+inset-inline-end: 20px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 28px;
+height: 28px;
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-text-secondary);
+
+transition: all 0.2s;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.container {
+position: fixed;
+z-index: 9999;
+inset: 0;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+background: var(--ant-color-bg-mask);
+}
+
+.content {
+position: relative;
+
+overflow: hidden;
+
+max-width: 480px;
+padding: 24px;
+border: 1px solid var(--ant-color-fill-quaternary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-container);
+box-shadow: var(--ant-box-shadow-secondary);
+}
+
+.desc {
+line-height: 1.6;
+color: var(--ant-color-text-secondary);
+}
+
+.title {
+font-size: 16px;
+font-weight: bold;
+color: var(--ant-color-warning-text);
+}
+
+.titleIcon {
+flex-shrink: 0;
+color: var(--ant-color-warning);
+}
+
+.warning {
+padding: 12px;
+border-radius: var(--ant-border-radius);
+color: var(--ant-color-warning-text);
+background: var(--warning-yellow-bg, var(--ant-color-warning-bg));
+}

@@ -2,7 +2,6 @@
 
 import { useWatchBroadcast } from '@lobechat/electron-client-ipc';
 import { ActionIcon, Flexbox, Popover, Tooltip } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ArrowLeft, ArrowRight, Clock } from 'lucide-react';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +16,7 @@ import { isMacOS } from '@/utils/platform';
 
 import { useNavigationHistory } from '../navigation/useNavigationHistory';
 import { getMacTrafficLightPadding } from './layout';
+import styles from './NavigationBar.module.css';
 import RecentlyViewed from './RecentlyViewed';
 
 const isMac = isMacOS();
@@ -34,15 +34,6 @@ const navPanelSelector = (s: GlobalState) => {
 const useNavPanelWidth = () => {
   return useGlobalStore(navPanelSelector);
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  clock: css`
-    &[data-popup-open] {
-      border-radius: ${cssVar.borderRadiusSM};
-      background-color: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
 
 const NavigationBar = memo(() => {
   const { t } = useTranslation('electron');

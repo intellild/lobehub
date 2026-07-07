@@ -2,101 +2,16 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './WebSearchRender.module.css';
 import {
   type CodexWebSearchArgs,
   getWebSearchOutput,
   getWebSearchQuery,
   getWebSearchResults,
 } from './webSearchUtils';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  output: css`
-    overflow: auto;
-
-    max-height: 280px;
-    margin: 0;
-    padding-block: 2px;
-    padding-inline: 4px;
-
-    font-family: ${cssVar.fontFamily};
-    font-size: 13px;
-    line-height: 1.55;
-    color: ${cssVar.colorTextSecondary};
-    white-space: pre-wrap;
-  `,
-  query: css`
-    overflow: hidden;
-
-    min-width: 0;
-
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  queryLabel: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  queryRow: css`
-    gap: 6px;
-    align-items: center;
-
-    padding-block: 2px;
-    padding-inline: 4px;
-
-    font-size: 12px;
-  `,
-  resultItem: css`
-    min-width: 0;
-    padding-block: 5px;
-    padding-inline: 4px;
-    border-block-end: 1px solid ${cssVar.colorSplit};
-
-    &:last-child {
-      border-block-end: 0;
-    }
-  `,
-  resultList: css`
-    gap: 0;
-    min-width: 0;
-  `,
-  root: css`
-    gap: 4px;
-    min-width: 0;
-    padding-block: 2px;
-  `,
-  snippet: css`
-    font-size: 12px;
-    line-height: 1.45;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  title: css`
-    overflow: hidden;
-
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.45;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &:hover {
-      color: ${cssVar.colorLink};
-    }
-  `,
-  url: css`
-    overflow: hidden;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
 
 const WebSearchRender = memo<BuiltinRenderProps<CodexWebSearchArgs, CodexWebSearchArgs>>(
   ({ args, content, pluginState }) => {

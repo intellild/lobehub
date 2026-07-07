@@ -1,0 +1,49 @@
+.content {
+overflow: auto;
+flex: 1;
+padding-inline: 16px;
+}
+
+.contentFull {
+/* Width is handled by WideScreenContainer; keep only the scroll host. */
+overflow: auto;
+flex: 1;
+}
+
+.frontmatter {
+margin-block: 16px 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 8px;
+background: var(--ant-color-bg-container);
+}
+
+.metadataKey {
+flex-shrink: 0;
+width: 112px;
+font-family: var(--ant-font-family-code);
+color: var(--ant-color-text-secondary);
+}
+
+.metadataRow {
+padding-block: 10px;
+padding-inline: 12px;
+
+&:not(:last-child) {
+  border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+}
+
+.metadataValue {
+min-width: 0;
+white-space: pre-wrap;
+}
+
+.sectionHeader {
+padding-block: 10px;
+padding-inline: 12px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.textArea {
+font-family: var(--ant-font-family-code);
+}

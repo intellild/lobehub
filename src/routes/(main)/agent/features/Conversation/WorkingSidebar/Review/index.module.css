@@ -1,0 +1,158 @@
+.caret {
+flex-shrink: 0;
+color: var(--ant-color-text-tertiary);
+}
+
+.totalAdditions {
+color: var(--ant-color-success);
+}
+
+.totalDeletions {
+color: var(--ant-color-error);
+}
+
+.totalStats {
+display: inline-flex;
+flex-shrink: 0;
+gap: 6px;
+align-items: center;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+font-variant-numeric: tabular-nums;
+}
+
+.body {
+overflow: hidden;
+min-height: 0;
+}
+
+.list {
+position: relative;
+min-width: 0;
+border-block: 1px solid var(--ant-color-border-secondary);
+
+/* Strip the first visible row's own top border — the list's
+   border-block-start already provides the separator under the subheader,
+   so without this we'd render a doubled-up 2px line at the top. */
+& > :first-child {
+  border-block-start: none;
+}
+}
+
+.treeRail {
+flex: none;
+
+width: 240px;
+min-height: 0;
+padding-block: 4px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+border-inline-start: 1px solid var(--ant-color-border-secondary);
+}
+
+.arrow {
+flex-shrink: 0;
+color: var(--ant-color-text-tertiary);
+}
+
+.basePicker {
+cursor: pointer;
+user-select: none;
+
+overflow: hidden;
+display: inline-flex;
+flex: 0 1 auto;
+gap: 4px;
+align-items: center;
+
+min-width: 0;
+padding-block: 1px;
+padding-inline: 6px;
+border-radius: 4px;
+
+transition: background 0.15s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.compareChip {
+overflow: hidden;
+display: inline-flex;
+flex: 0 1 auto;
+gap: 6px;
+align-items: center;
+
+min-width: 0;
+}
+
+.headRefText {
+overflow: hidden;
+flex: 0 1 auto;
+
+min-width: 0;
+padding-inline-end: 4px;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.refName {
+overflow: hidden;
+flex: 0 1 auto;
+
+min-width: 0;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.scopeChip {
+cursor: pointer;
+user-select: none;
+
+display: inline-flex;
+flex-shrink: 0;
+gap: 6px;
+align-items: center;
+
+padding-block: 2px;
+padding-inline: 6px;
+border-radius: 4px;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+
+transition: background 0.15s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.subheader {
+display: flex;
+flex-shrink: 0;
+gap: 8px;
+align-items: center;
+justify-content: space-between;
+
+padding-block: 4px 8px;
+padding-inline: 8px;
+}
+
+.groupEmpty {
+padding-block: 6px 10px;
+padding-inline: 10px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}

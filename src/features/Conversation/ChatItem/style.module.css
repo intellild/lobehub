@@ -1,0 +1,50 @@
+.container {
+position: relative;
+  max-width: 100%;
+
+  time,
+  div[role='menubar'] {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 200ms var(--ant-motion-ease-out);
+  }
+
+  time {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  div[role='menubar'] {
+    display: flex;
+  }
+
+  &:has([data-popup-open]) {
+    div[role='menubar'] {
+      pointer-events: unset;
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    time,
+    div[role='menubar'] {
+      pointer-events: unset;
+      opacity: 1;
+    }
+  }
+}
+
+.loading {
+position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: -4px;
+  inset-inline-end: unset;
+
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+
+  color: var(--ant-color-bg-layout);
+
+  background: var(--ant-color-primary);
+}

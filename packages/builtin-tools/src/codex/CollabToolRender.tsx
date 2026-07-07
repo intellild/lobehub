@@ -2,10 +2,10 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, Markdown, Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './CollabToolRender.module.css';
 import type { CodexCollabToolArgs, CodexCollabToolState } from './collabToolUtils';
 import {
   formatCollabStatus,
@@ -14,47 +14,18 @@ import {
   getCollabStatusTone,
 } from './collabToolUtils';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  agentHeader: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  agentRow: css`
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  promptBox: css`
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorFillTertiary};
-  `,
-  sectionLabel: css`
-    margin-block-end: 4px;
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  statusDot: css`
-    flex: none;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-
-    background: ${cssVar.colorTextQuaternary};
-  `,
-  statusDotError: css`
-    background: ${cssVar.colorError};
-  `,
-  statusDotProcessing: css`
-    background: ${cssVar.colorInfo};
-  `,
-  statusDotSuccess: css`
-    background: ${cssVar.colorSuccess};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const STATUS_DOT_CLASS = {
   error: styles.statusDotError,

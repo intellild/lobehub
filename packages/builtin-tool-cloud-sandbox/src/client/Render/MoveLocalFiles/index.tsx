@@ -3,32 +3,11 @@
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Block, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ArrowRight } from 'lucide-react';
 import { memo } from 'react';
 
 import type { MoveLocalFilesState } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  arrow: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-  container: css`
-    overflow: hidden;
-    padding-inline: 8px 0;
-  `,
-  header: css`
-    font-size: 12px;
-  `,
-  moveItem: css`
-    padding-block: 4px;
-    padding-inline: 8px;
-    border-radius: 4px;
-  `,
-  statusIcon: css`
-    font-size: 12px;
-  `,
-}));
+import styles from './index.module.css';
 
 interface MoveLocalFilesParams {
   operations: Array<{
@@ -52,10 +31,10 @@ const MoveLocalFiles = memo<BuiltinRenderProps<MoveLocalFilesParams, MoveLocalFi
           {allSuccess ? (
             <CheckCircleFilled
               className={styles.statusIcon}
-              style={{ color: cssVar.colorSuccess }}
+              style={{ color: 'var(--ant-color-success)' }}
             />
           ) : (
-            <CloseCircleFilled className={styles.statusIcon} style={{ color: cssVar.colorError }} />
+            <CloseCircleFilled className={styles.statusIcon} style={{ color: 'var(--ant-color-error)' }} />
           )}
           <Text className={styles.header}>
             Moved {pluginState.successCount}/{pluginState.totalCount} items
@@ -73,13 +52,13 @@ const MoveLocalFiles = memo<BuiltinRenderProps<MoveLocalFilesParams, MoveLocalFi
                 gap={8}
                 key={index}
                 style={{
-                  background: result.success ? cssVar.colorSuccessBg : cssVar.colorErrorBg,
+                  background: result.success ? 'var(--ant-color-success-bg)' : 'var(--ant-color-error-bg)',
                 }}
               >
                 {result.success ? (
-                  <CheckCircleFilled style={{ color: cssVar.colorSuccess, fontSize: 12 }} />
+                  <CheckCircleFilled style={{ color: 'var(--ant-color-success)', fontSize: 12 }} />
                 ) : (
-                  <CloseCircleFilled style={{ color: cssVar.colorError, fontSize: 12 }} />
+                  <CloseCircleFilled style={{ color: 'var(--ant-color-error)', fontSize: 12 }} />
                 )}
                 <Text code ellipsis as={'span'} fontSize={11} style={{ maxWidth: 200 }}>
                   {result.source}

@@ -1,5 +1,4 @@
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo } from 'react';
 
 import { useMentionStore } from '@/store/mention';
@@ -7,19 +6,8 @@ import { mentionSelectors } from '@/store/mention/selectors';
 import { useSessionStore } from '@/store/session';
 import { sessionSelectors } from '@/store/session/selectors';
 
+import styles from './index.module.css';
 import MentionedUserItem from './MentionedUserItem';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    overflow-x: scroll;
-
-    width: 100%;
-    border-start-start-radius: 8px;
-    border-start-end-radius: 8px;
-
-    background: color-mix(in srgb, ${cssVar.colorBgLayout} 99%, white);
-  `,
-}));
 
 const MentionedUsers = memo(() => {
   const currentSession = useSessionStore(sessionSelectors.currentSession);

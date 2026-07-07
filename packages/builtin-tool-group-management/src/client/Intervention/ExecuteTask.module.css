@@ -1,0 +1,50 @@
+.agentCard {
+padding: 4px;
+border-radius: var(--ant-border-radius);
+background: var(--ant-color-fill-tertiary);
+}
+
+.agentDescription {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+
+font-size: 12px;
+line-height: 1.4;
+color: var(--ant-color-text-secondary);
+}
+
+.agentTitle {
+font-size: 14px;
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.container {
+padding-block: 12px;
+border-radius: var(--ant-border-radius);
+}
+
+.header {
+font-size: 14px;
+font-weight: 600;
+}
+
+.icon {
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 32px;
+height: 32px;
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-primary);
+
+background: var(--ant-color-primary-bg);
+}
+
+.timeoutInput {
+width: 100px;
+}

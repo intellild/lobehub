@@ -2,7 +2,6 @@ import type { TaskDetailSubtask } from '@lobechat/types';
 import { type DropdownMenuProps } from '@lobehub/ui';
 import { Block, DropdownMenu, Flexbox, Text } from '@lobehub/ui';
 import { Progress } from 'antd';
-import { cssVar } from 'antd-style';
 import { memo, useMemo } from 'react';
 
 import TaskStatusIcon from './TaskStatusIcon';
@@ -138,7 +137,7 @@ const TaskSubtaskProgressTag = memo<TaskSubtaskProgressTagProps>(
           percent={data.percent}
           showInfo={false}
           size={16}
-          strokeColor={cssVar.colorSuccess}
+          strokeColor={'var(--ant-color-success)'}
           type={'circle'}
         />
         <Text fontSize={12} type={'secondary'}>

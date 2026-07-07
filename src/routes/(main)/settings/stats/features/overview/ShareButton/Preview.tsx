@@ -1,6 +1,5 @@
-import { imageUrl, OFFICIAL_URL } from '@lobechat/const';
-import { Center, Flexbox, Grid, lobeStaticStylish } from '@lobehub/ui';
-import { createStaticStyles, cx, responsive } from 'antd-style';
+import { OFFICIAL_URL } from '@lobechat/const';
+import { Center, Flexbox, Grid } from '@lobehub/ui';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -10,83 +9,7 @@ import UserAvatar from '@/features/User/UserAvatar';
 import AiHeatmaps from '../../visualization/AiHeatmaps';
 import TotalMessages from '../TotalMessages';
 import TotalTokens from '../TotalTokens';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  avatar: css`
-    box-sizing: content-box;
-    border: 4px solid ${cssVar.colorBgLayout};
-    background: ${cssVar.colorText};
-  `,
-  background: css`
-    position: relative;
-
-    width: 100%;
-    padding: 24px;
-
-    background-color: ${cssVar.colorBgLayout};
-    background-image: url(${imageUrl('screenshot_background.webp')});
-    background-position: center;
-    background-size: 120% 120%;
-  `,
-
-  container: css`
-    position: relative;
-
-    overflow: hidden;
-
-    width: 100%;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: calc(${cssVar.borderRadiusLG} * 2);
-
-    background: ${cssVar.colorBgLayout};
-    box-shadow: ${cssVar.boxShadow};
-  `,
-  decs: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  footer: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  heatmaps: css`
-    .legend-month,
-    footer {
-      display: none;
-    }
-  `,
-  preview: cx(
-    lobeStaticStylish.noScrollbar,
-    css`
-      overflow: hidden scroll;
-
-      width: 100%;
-      max-height: 70dvh;
-      border: 1px solid ${cssVar.colorBorder};
-      border-radius: ${cssVar.borderRadiusLG};
-
-      background: ${cssVar.colorBgLayout};
-
-      * {
-        pointer-events: none;
-
-        ::-webkit-scrollbar {
-          width: 0 !important;
-          height: 0 !important;
-        }
-      }
-
-      ${responsive.sm} {
-        max-height: 40dvh;
-      }
-    `,
-  ),
-  title: css`
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-  `,
-}));
+import styles from './Preview.module.css';
 
 const Preview = memo(() => {
   const { t } = useTranslation('auth');

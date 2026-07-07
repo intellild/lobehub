@@ -16,7 +16,6 @@ import {
 } from '@lobehub/ui';
 import { useDebounceFn } from 'ahooks';
 import { Form as AntdForm, Switch } from 'antd';
-import { createStaticStyles, cssVar, cx, responsive } from 'antd-style';
 import { Loader2Icon, LockIcon } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { memo, useCallback, useLayoutEffect, useRef } from 'react';
@@ -42,66 +41,25 @@ import { isResponsesApiSupportedSdkType } from '../providerSettings';
 import { type CheckErrorRender } from './Checker';
 import Checker from './Checker';
 import EnableSwitch from './EnableSwitch';
+import stylesModule from './index.module.css';
 import OAuthDeviceFlowAuth from './OAuthDeviceFlowAuth';
 import UpdateProviderInfo from './UpdateProviderInfo';
 
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  aceGcm: css`
-    padding-block: 0 !important;
-    .${prefixCls}-form-item-label {
-      display: none;
-    }
-    .${prefixCls}-form-item-control {
-      width: 100%;
-
-      font-size: 12px;
-      color: ${cssVar.colorTextSecondary};
-      text-align: center;
-
-      opacity: 0.66;
-
-      transition: opacity 0.2s ${cssVar.motionEaseInOut};
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-  `,
-  form: css`
-    .${prefixCls}-form-item-control:has(.${prefixCls}-input,.${prefixCls}-select) {
-      flex: none;
-    }
-    ${responsive.sm} {
-      width: 100%;
-      min-width: unset !important;
-    }
-    .${prefixCls}-select-selection-overflow-item {
-      font-size: 12px;
-    }
-  `,
-  help: css`
-    border-radius: 50%;
-
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextDescription};
-
-    background: ${cssVar.colorFillTertiary};
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFill};
-    }
-  `,
-  switchLoading: css`
-    width: 44px !important;
-    min-width: 44px !important;
-    height: 22px !important;
-    border-radius: 12px !important;
-  `,
-}));
+const styles = stylesModule;
 
 export interface ProviderConfigProps extends Omit<AiProviderDetailItem, 'enabled' | 'source'> {
   apiKeyItems?: FormItemProps[];
@@ -288,7 +246,7 @@ const ProviderConfig = memo<ProviderConfigProps>(
                   placeholder={t('providerModels.config.apiKey.placeholder', { name })}
                   suffix={
                     configUpdating && (
-                      <Icon spin icon={Loader2Icon} style={{ color: cssVar.colorTextTertiary }} />
+                      <Icon spin icon={Loader2Icon} style={{ color: 'var(--ant-color-text-tertiary)' }} />
                     )
                   }
                 />
@@ -352,7 +310,7 @@ const ProviderConfig = memo<ProviderConfigProps>(
               }
               suffix={
                 configUpdating && (
-                  <Icon spin icon={Loader2Icon} style={{ color: cssVar.colorTextTertiary }} />
+                  <Icon spin icon={Loader2Icon} style={{ color: 'var(--ant-color-text-tertiary)' }} />
                 )
               }
             />

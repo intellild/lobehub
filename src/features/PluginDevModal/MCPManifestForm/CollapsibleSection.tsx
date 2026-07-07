@@ -1,36 +1,22 @@
-import { createStaticStyles, cx } from 'antd-style';
+
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { useState } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    margin-block-end: ${cssVar.marginLG};
-  `,
+import styles from './CollapsibleSection.module.css';
 
-  header: css`
-    cursor: pointer;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    display: flex;
-    align-items: center;
-
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorTextTertiary};
-
-    transition: all ${cssVar.motionDurationMid} ease;
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-  `,
-
-  title: css`
-    margin-inline-start: 4px;
-    font-weight: ${cssVar.fontWeightStrong};
-    color: ${cssVar.colorText};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface CollapsibleSectionProps {
   /** Child component content */

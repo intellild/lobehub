@@ -1,0 +1,33 @@
+.expandBtn {
+cursor: pointer;
+
+position: absolute;
+z-index: 20;
+inset-block-start: 12px;
+inset-inline-start: 12px;
+
+display: inline-flex;
+align-items: center;
+justify-content: center;
+
+width: 28px;
+height: 28px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 6px;
+
+color: var(--ant-color-text-tertiary);
+
+background: var(--ant-color-bg-container);
+
+&:hover {
+  border-color: var(--ant-color-border);
+  color: var(--ant-color-text);
+}
+}
+
+.main {
+position: relative;
+flex: 1;
+min-width: 0;
+height: 100%;
+}

@@ -83,11 +83,6 @@ vi.mock('@lobehub/ui', () => ({
   ),
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({}),
-  cssVar: new Proxy({}, { get: () => 'var(--mock)' }),
-}));
-
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string, values?: Record<string, unknown>) =>

@@ -1,5 +1,4 @@
 import { Flexbox, Icon, SearchResultCards, Tag } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { ChevronDown, ChevronRight, Globe, Images } from 'lucide-react';
 import { AnimatePresence, m } from 'motion/react';
 import { memo, useState } from 'react';
@@ -8,6 +7,21 @@ import { useTranslation } from 'react-i18next';
 import { useIsDark } from '@/hooks/useIsDark';
 import Image from '@/libs/next/Image';
 import { type GroundingSearch } from '@/types/search';
+
+import styles from './SearchGrounding.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 // Resolve the favicon host defensively: some providers (e.g. OpenRouter built-in
 // web search) may emit citations with an empty/invalid url, and `new URL(undefined)`
@@ -32,94 +46,6 @@ const stripHtml = (html: string) =>
     .replaceAll('&quot;', '"')
     .replaceAll('&#39;', "'")
     .replaceAll('&nbsp;', ' ');
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    width: fit-content;
-    padding-block: 4px;
-    padding-inline: 8px;
-    border-radius: 6px;
-
-    color: ${cssVar.colorTextTertiary};
-  `,
-  containerDark: css`
-    &:hover {
-      background: ${cssVar.colorFillQuaternary};
-    }
-  `,
-  containerLight: css`
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  expandDark: css`
-    background: ${cssVar.colorFillQuaternary} !important;
-  `,
-  expandLight: css`
-    background: ${cssVar.colorFillTertiary} !important;
-  `,
-  imageCard: css`
-    overflow: hidden;
-    border-radius: 8px;
-  `,
-  imageCardLink: css`
-    color: inherit;
-    text-decoration: none;
-    transition: opacity 0.2s;
-
-    &:hover {
-      opacity: 0.75;
-    }
-  `,
-  imageDomain: css`
-    overflow: hidden;
-
-    font-size: 11px;
-    line-height: 1;
-    color: ${cssVar.colorTextQuaternary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  imageGrid: css`
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 8px;
-  `,
-  imageThumb: css`
-    display: block;
-    width: 100%;
-    height: 80px;
-    object-fit: cover;
-  `,
-  imageThumbWrap: css`
-    overflow: hidden;
-    display: block;
-    flex-shrink: 0;
-
-    height: 80px;
-    border-radius: 6px;
-  `,
-  imageTitle: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-
-    font-size: 11px;
-    line-height: 1.4;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-  `,
-  title: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
-    font-size: 12px;
-    text-overflow: ellipsis;
-  `,
-}));
 
 const SearchGrounding = memo<GroundingSearch>(
   ({ searchQueries, citations, imageResults, imageSearchQueries }) => {
@@ -172,7 +98,7 @@ const SearchGrounding = memo<GroundingSearch>(
                     src={`https://icons.duckduckgo.com/ip3/${getFaviconHost(item.favicon, item.url)}.ico`}
                     width={16}
                     style={{
-                      background: cssVar.colorBgContainer,
+                      background: 'var(--ant-color-bg-container)',
                       borderRadius: 8,
                       marginInline: -2,
                       padding: 2,
@@ -193,7 +119,7 @@ const SearchGrounding = memo<GroundingSearch>(
                     src={`https://icons.duckduckgo.com/ip3/${item.domain || ''}.ico`}
                     width={16}
                     style={{
-                      background: cssVar.colorBgContainer,
+                      background: 'var(--ant-color-bg-container)',
                       borderRadius: 8,
                       marginInline: -2,
                       padding: 2,

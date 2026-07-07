@@ -10,7 +10,6 @@ import {
   stopPropagation,
   Text,
 } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { ChevronsUpDownIcon } from 'lucide-react';
 import { type DragEvent } from 'react';
 import { memo, useCallback, useMemo, useState } from 'react';
@@ -22,19 +21,20 @@ import { useDragActive } from '@/routes/(main)/resource/features/DndContextWrapp
 import { useResourceManagerStore } from '@/routes/(main)/resource/features/store';
 import { knowledgeBaseSelectors, useKnowledgeBaseStore } from '@/store/library';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  dropZoneActive: css`
-    color: ${cssVar.colorBgElevated} !important;
-    background-color: ${cssVar.colorText} !important;
+import styles from './LibraryHead.module.css';
 
-    * {
-      color: ${cssVar.colorBgElevated} !important;
-    }
-  `,
-  menuIcon: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 /**
  * Quickly switch between libraries

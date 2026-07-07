@@ -4,65 +4,10 @@ import type { SkillResourceTreeNode } from '@lobechat/types';
 import type { MenuProps } from '@lobehub/ui';
 import { ContextMenuTrigger, Icon } from '@lobehub/ui';
 import { Input, type InputRef } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { ChevronDown, ChevronRight, File, FolderIcon, FolderOpenIcon } from 'lucide-react';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  item: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 6px;
-    align-items: center;
-
-    padding-block: 6px;
-    padding-inline-end: 8px;
-    border-radius: 6px;
-
-    font-size: 13px;
-    line-height: 1.4;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  itemSelected: css`
-    color: ${cssVar.colorPrimary};
-    background: ${cssVar.colorFillSecondary};
-  `,
-  label: css`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  // Inline rename should look like plain filename text.
-  // Ant Input adds default spacing/border/font styles (and `size="small"` adds extra scaling),
-  // so we fully neutralize visual chrome to avoid layout jump when entering edit mode.
-  editingInput: css`
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-
-    font-size: 13px !important;
-    line-height: 1.4 !important;
-
-    background: transparent !important;
-    outline: none !important;
-    box-shadow: none !important;
-  `,
-  // Reset wrapper-level styles too; Ant applies some padding/radius on the semantic root.
-  // If only `input` is reset, the row can still shift by a few pixels.
-  editingInputRoot: css`
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    border-radius: 0 !important;
-
-    background: transparent !important;
-    box-shadow: none !important;
-  `,
-}));
+import styles from './index.module.css';
 
 interface FileTreeProps {
   editableFilePath?: string | null;

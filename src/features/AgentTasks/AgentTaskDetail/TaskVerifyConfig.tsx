@@ -16,7 +16,6 @@ import {
 } from '@lobehub/ui';
 import { Switch } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import {
   ChevronRight,
   ChevronUp,
@@ -42,33 +41,9 @@ import { taskDetailSelectors } from '@/store/task/selectors';
 import { useUserStore } from '@/store/user';
 import { labPreferSelectors } from '@/store/user/selectors';
 
-const SAVE_DEBOUNCE_MS = 600;
+import styles from './TaskVerifyConfig.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  collapsedRequirement: css`
-    /* full requirement, wrapping to as many lines as it needs — readable at a glance.
-       Inset past the trigger icon so it reads flat under the title, not as a clickable row. */
-    padding-inline: 32px 8px;
-    line-height: 1.5;
-  `,
-  list: css`
-    width: 100%;
-  `,
-  row: css`
-    padding-block: 8px;
-    padding-inline: 8px;
-  `,
-  rowTitle: css`
-    flex: 1;
-  `,
-  section: css`
-    padding: 16px;
-    border-radius: 12px;
-  `,
-  subtitle: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+const SAVE_DEBOUNCE_MS = 600;
 
 /** Working item: a draft plus a stable client id, so reorder/edit is jitter-free. */
 interface DraftItem extends VerifyCriterionDraft {
@@ -384,11 +359,11 @@ const TaskVerifyConfig = memo(() => {
         onClick={() => setExpanded(true)}
       >
         <Icon
-          color={cssVar.colorTextDescription}
+          color={'var(--ant-color-text-description)'}
           icon={isConfigured ? ShieldCheck : Plus}
           size={16}
         />
-        <Text color={cssVar.colorTextSecondary} fontSize={13} weight={500}>
+        <Text color={'var(--ant-color-text-secondary)'} fontSize={13} weight={500}>
           {t('verifyConfig.empty.title')}
         </Text>
         {savedCount > 0 ? (

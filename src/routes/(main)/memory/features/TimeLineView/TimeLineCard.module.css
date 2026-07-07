@@ -1,0 +1,16 @@
+.actions {
+transition: opacity 0.15s ease;
+}
+
+.timelineCard {
+position: relative;
+.memory-actions {
+  opacity: 0;
+}
+
+&:hover {
+  .memory-actions {
+    opacity: 1;
+  }
+}
+}

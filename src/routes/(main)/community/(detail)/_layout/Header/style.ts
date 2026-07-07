@@ -1,8 +1,5 @@
-import { createStaticStyles } from 'antd-style';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  // Header container
-  headerContainer: css`
-    border-block-end: 1px solid var(--header-border-color, ${cssVar.colorBorderSecondary});
-  `,
-}));
+import styles from './style.module.css';
+
+export { styles };
+

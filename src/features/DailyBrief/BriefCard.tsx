@@ -1,7 +1,6 @@
 import { DEFAULT_AVATAR, INBOX_SESSION_ID } from '@lobechat/const';
 import { ActionIcon, Avatar, Block, Flexbox, Icon, Text } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cssVar } from 'antd-style';
 import { Check, ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -28,7 +27,7 @@ const ProducingAgentAvatar = memo<ProducingAgentAvatarProps>(({ agent }) => {
   return (
     <Avatar
       avatar={agent.avatar || (isInbox ? DEFAULT_INBOX_AVATAR : DEFAULT_AVATAR)}
-      background={agent.backgroundColor || cssVar.colorBgContainer}
+      background={agent.backgroundColor || 'var(--ant-color-bg-container)'}
       shape={'circle'}
       size={28}
       title={agent.title || (isInbox ? t('inbox.title', { ns: 'chat' }) : t('defaultSession'))}
@@ -65,7 +64,7 @@ const BriefCard = memo<BriefCardProps>(
         className={styles.card}
         gap={12}
         padding={12}
-        style={{ borderRadius: cssVar.borderRadiusLG }}
+        style={{ borderRadius: 'var(--ant-border-radius-lg)' }}
         variant={'outlined'}
       >
         <Flexbox
@@ -86,7 +85,7 @@ const BriefCard = memo<BriefCardProps>(
           <Flexbox horizontal align={'center'} gap={8}>
             {isResolved && !expanded && (
               <Flexbox horizontal align={'center'} gap={4}>
-                <Icon color={cssVar.colorTextQuaternary} icon={Check} size={14} />
+                <Icon color={'var(--ant-color-text-quaternary)'} icon={Check} size={14} />
                 <Text className={styles.resolvedTag}>{t('brief.resolved')}</Text>
               </Flexbox>
             )}

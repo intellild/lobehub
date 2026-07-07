@@ -1,0 +1,39 @@
+.item {
+cursor: pointer;
+
+overflow: hidden;
+
+padding-block: 6px;
+padding-inline: 10px;
+border-radius: var(--ant-border-radius);
+
+font-size: 13px;
+line-height: 20px;
+color: var(--ant-color-text-secondary);
+text-overflow: ellipsis;
+white-space: nowrap;
+
+transition: background 0.1s var(--ant-motion-ease-out);
+}
+
+.itemActive {
+color: var(--ant-color-text);
+background: var(--ant-color-fill-secondary);
+}
+
+.root {
+position: absolute;
+z-index: 50;
+inset-block-end: calc(100% + 8px);
+inset-inline: 0;
+
+overflow-y: auto;
+
+max-height: 240px;
+padding: 4px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-elevated);
+box-shadow: var(--ant-box-shadow-secondary);
+}

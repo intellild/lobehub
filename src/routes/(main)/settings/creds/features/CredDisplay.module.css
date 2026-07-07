@@ -1,0 +1,10 @@
+.container {
+display: inline-flex;
+gap: 4px;
+align-items: center;
+}
+
+.value {
+font-family: monospace;
+font-size: 12px;
+}

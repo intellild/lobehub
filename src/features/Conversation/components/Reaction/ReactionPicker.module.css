@@ -1,0 +1,45 @@
+.emojiButton {
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 32px;
+height: 32px;
+border-radius: var(--ant-border-radius);
+
+font-size: 18px;
+
+transition: all 0.2s;
+
+&:hover {
+  transform: scale(1.1);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.moreButton {
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 32px;
+height: 32px;
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-text-tertiary);
+
+transition: all 0.2s;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.pickerContainer {
+padding: 4px;
+}

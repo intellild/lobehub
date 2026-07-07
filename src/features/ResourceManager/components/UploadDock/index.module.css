@@ -1,0 +1,33 @@
+.container {
+position: fixed;
+  z-index: 100;
+  inset-block-end: 24px;
+  inset-inline-end: 24px;
+
+  overflow: hidden;
+
+  width: 360px;
+  border: 1px solid var(--ant-color-split);
+  border-radius: 8px;
+
+  box-shadow: var(--ant-box-shadow);
+}
+
+.progress {
+pointer-events: none;
+
+  position: absolute;
+  inset-block: 0;
+  inset-inline: 0 1%;
+
+  height: 100%;
+  border-block-end: 3px solid var(--ant-geekblue);
+
+  background: var(--ant-color-fill-tertiary);
+}
+
+.title {
+height: 36px;
+  font-size: 16px;
+  color: var(--ant-color-text);
+}

@@ -6,7 +6,6 @@ import { ActionIcon, Flexbox, Icon, Tag } from '@lobehub/ui';
 import { Select } from '@lobehub/ui/base-ui';
 import { Badge, Input, Table, Tooltip } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Footprints, Play, RotateCcw } from 'lucide-react';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,102 +14,9 @@ import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
 import SegmentBar from '@/routes/(main)/eval/features/SegmentBar';
 
 import { getResumeTarget } from '../resumeTarget';
+import stylesModule from './index.module.css';
 
-const styles = createStaticStyles(({ css }) => ({
-  caseLink: css`
-    color: inherit;
-    text-decoration: none;
-
-    &:hover {
-      color: ${cssVar.colorPrimary};
-    }
-  `,
-  durationSub: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-  chip: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
-
-    padding-block: 4px;
-    padding-inline: 10px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 999px;
-
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorBgContainer};
-
-    transition:
-      border-color 0.15s ease,
-      background 0.15s ease;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: 1px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  chipActive: css`
-    border-color: ${cssVar.colorText};
-    color: ${cssVar.colorText};
-    background: ${cssVar.colorFillSecondary};
-  `,
-  chipCount: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-weight: 600;
-  `,
-  chipDot: css`
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-  `,
-  filterBar: css`
-    padding-block: 12px;
-    padding-inline: 20px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  summaryBar: css`
-    padding-block: 16px;
-    padding-inline: 20px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  summaryLabel: css`
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  indexCell: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-  monoCell: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextSecondary};
-  `,
-  threadDot: css`
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-  `,
-}));
+const styles = stylesModule;
 
 interface CaseResultsTableProps {
   benchmarkId: string;
@@ -121,12 +27,7 @@ interface CaseResultsTableProps {
   runId: string;
   runStatus?: string;
 }
-
-const badgeTextStyle = createStaticStyles(({ css, cssVar }) => ({
-  text: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+const badgeTextStyle = stylesModule;
 
 const BadgeText = memo<{ children: string }>(({ children }) => (
   <span className={badgeTextStyle.text}>{children}</span>
@@ -177,24 +78,24 @@ const StatusBadge = memo<{ record: any }>(({ record }) => {
 const ThreadDots = memo<{ threads: EvalThreadResult[] }>(({ threads }) => (
   <Flexbox horizontal align="center" gap={4}>
     {threads.map((thread) => {
-      let color: string = cssVar.colorTextTertiary;
+      let color: string = 'var(--ant-color-text-tertiary)';
 
       if (thread.status === 'running') {
-        color = cssVar.colorPrimary;
+        color = 'var(--ant-color-primary)';
       } else if (thread.status === 'error') {
-        color = cssVar.colorError;
+        color = 'var(--ant-color-error)';
       } else if (thread.passed === true) {
-        color = cssVar.colorSuccess;
+        color = 'var(--ant-color-success)';
       } else if (thread.passed === false) {
-        color = cssVar.colorError;
+        color = 'var(--ant-color-error)';
       }
 
       if (thread.status === 'external') {
-        color = cssVar.colorWarning;
+        color = 'var(--ant-color-warning)';
       }
 
       if (thread.status === 'completed') {
-        color = cssVar.colorPrimary;
+        color = 'var(--ant-color-primary)';
       }
 
       const label = thread.error
@@ -304,25 +205,25 @@ const CaseResultsTable = memo<CaseResultsTableProps>(
 
     const statusChips = [
       {
-        color: cssVar.colorSuccess,
+        color: 'var(--ant-color-success)',
         count: distribution.passed,
         label: t('table.filter.passed'),
         value: 'passed',
       },
       {
-        color: cssVar.colorError,
+        color: 'var(--ant-color-error)',
         count: distribution.failed,
         label: t('table.filter.failed'),
         value: 'failed',
       },
       {
-        color: cssVar.colorWarning,
+        color: 'var(--ant-color-warning)',
         count: distribution.error,
         label: t('table.filter.error'),
         value: 'error',
       },
       {
-        color: cssVar.colorTextQuaternary,
+        color: 'var(--ant-color-text-quaternary)',
         count: distribution.pending,
         label: t('run.status.pending'),
         value: 'pending',
@@ -330,10 +231,10 @@ const CaseResultsTable = memo<CaseResultsTableProps>(
     ];
 
     const segments = [
-      { color: cssVar.colorSuccess, value: distribution.passed },
-      { color: cssVar.colorError, value: distribution.failed },
-      { color: cssVar.colorWarning, value: distribution.error },
-      { color: cssVar.colorTextQuaternary, value: distribution.pending },
+      { color: 'var(--ant-color-success)', value: distribution.passed },
+      { color: 'var(--ant-color-error)', value: distribution.failed },
+      { color: 'var(--ant-color-warning)', value: distribution.error },
+      { color: 'var(--ant-color-text-quaternary)', value: distribution.pending },
     ];
 
     const columns: ColumnsType<any> = useMemo(() => {
@@ -633,7 +534,7 @@ const CaseResultsTable = memo<CaseResultsTableProps>(
             ]}
             onChange={setStatusFilter}
           />
-          <span style={{ color: cssVar.colorTextTertiary, fontSize: 12, whiteSpace: 'nowrap' }}>
+          <span style={{ color: 'var(--ant-color-text-tertiary)', fontSize: 12, whiteSpace: 'nowrap' }}>
             {t('table.total', { count: filteredResults.length })}
           </span>
         </Flexbox>

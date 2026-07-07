@@ -2,7 +2,6 @@
 
 import { DEFAULT_BLOCK_ANCHOR_PADDING, EditorProvider } from '@lobehub/editor/react';
 import { Flexbox } from '@lobehub/ui';
-import { createStyles, cssVar } from 'antd-style';
 import type { CSSProperties, FC, ReactNode, UIEvent } from 'react';
 import { memo, useCallback, useEffect, useRef } from 'react';
 
@@ -22,6 +21,7 @@ import Header from './Header';
 import LockedAlert from './LockedAlert';
 import LockStatusBanner from './LockStatusBanner';
 import { PageAgentProvider } from './PageAgentProvider';
+import pageEditorStyles from './PageEditor.module.css';
 import { PageEditorProvider } from './PageEditorProvider';
 import RightPanel from './RightPanel';
 import { usePageEditorStore } from './store';
@@ -81,23 +81,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const useTableOverrideStyles = createStyles(({ css }) => ({
-  editorContent: css`
-    .lobe-editor-table-scroll-wrapper.lobe-editor-table-scroll-wrapper {
-      --lobe-block-anchor-padding: var(--lobe-pageeditor-table-bleed-inline);
-
-      position: relative;
-      box-sizing: border-box;
-      width: 100cqi;
-      margin-inline: calc(var(--lobe-pageeditor-table-bleed-inline) * -1);
-    }
-
-    .lobe-editor-table-scroll-wrapper .editor_table {
-      width: max-content;
-    }
-  `,
-}));
-
 interface PageEditorProps {
   emoji?: string;
   /**
@@ -149,7 +132,6 @@ const PageEditorCanvas = memo<PageEditorCanvasProps>(({ header, fullWidthHeader,
   const editor = usePageEditorStore((s) => s.editor);
   const documentId = usePageEditorStore((s) => s.documentId);
   const wideScreen = useGlobalStore(systemStatusSelectors.wideScreen);
-  const { styles: overrideStyles } = useTableOverrideStyles();
   const tableBleedInline = wideScreen
     ? `${TABLE_BASE_BLEED}px`
     : `calc(${TABLE_BASE_BLEED}px + max((100cqi - ${CONVERSATION_MIN_WIDTH}px) / 2, 0px))`;
@@ -301,7 +283,7 @@ const PageEditorCanvas = memo<PageEditorCanvasProps>(({ header, fullWidthHeader,
             editor?.focus();
           }}
         >
-          <Flexbox className={overrideStyles.editorContent} flex={1} style={editorContentStyle}>
+          <Flexbox className={pageEditorStyles.editorContent} flex={1} style={editorContentStyle}>
             <TitleSection />
             <PageMetaBar />
             {/* Surfaces local heartbeat health (unstable/lost) for the holder.
@@ -320,7 +302,7 @@ const PageEditorCanvas = memo<PageEditorCanvasProps>(({ header, fullWidthHeader,
 
   if (fullWidthHeader) {
     return (
-      <Flexbox height={'100%'} style={{ backgroundColor: cssVar.colorBgContainer }} width={'100%'}>
+      <Flexbox height={'100%'} style={{ backgroundColor: 'var(--ant-color-bg-container)' }} width={'100%'}>
         {headerSlot}
         <Flexbox horizontal flex={1} style={{ minHeight: 0 }} width={'100%'}>
           {editorPane}
@@ -334,7 +316,7 @@ const PageEditorCanvas = memo<PageEditorCanvasProps>(({ header, fullWidthHeader,
     <Flexbox
       horizontal
       height={'100%'}
-      style={{ backgroundColor: cssVar.colorBgContainer }}
+      style={{ backgroundColor: 'var(--ant-color-bg-container)' }}
       width={'100%'}
     >
       {editorPane}

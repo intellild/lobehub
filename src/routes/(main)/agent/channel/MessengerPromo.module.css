@@ -1,0 +1,48 @@
+.card {
+cursor: pointer;
+
+position: relative;
+
+display: flex;
+flex-direction: column;
+gap: 8px;
+
+margin-block: 0 8px;
+margin-inline: 12px;
+padding: 12px;
+border: 1px solid var(--ant-color-fill-secondary);
+border-radius: 12px;
+
+background: color-mix(in srgb, var(--ant-color-fill-quaternary) 50%, var(--ant-color-bg-container));
+
+transition: background 0.2s;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.closeButton {
+position: absolute;
+z-index: 1;
+inset-block-start: 4px;
+inset-inline-end: 4px;
+}
+
+.desc {
+font-size: 11px;
+line-height: 1.5;
+color: var(--ant-color-text-tertiary);
+}
+
+.iconRow {
+display: flex;
+gap: 6px;
+align-items: center;
+}
+
+.title {
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-text);
+}

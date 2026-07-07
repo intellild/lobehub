@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, Avatar, Flexbox, Skeleton, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { XIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -36,7 +35,7 @@ const DocumentModalHeader = memo<DocumentModalHeaderProps>(({ onClose }) => {
       height={HEADER_HEIGHT}
       justify={'space-between'}
       padding={8}
-      style={{ borderBlockEnd: `1px solid ${cssVar.colorBorderSecondary}` }}
+      style={{ borderBlockEnd: `1px solid ${'var(--ant-color-border-secondary)'}` }}
     >
       <Flexbox allowShrink horizontal align={'center'} gap={6} style={{ minWidth: 0 }}>
         {emoji && <Avatar avatar={emoji} shape={'square'} size={24} />}

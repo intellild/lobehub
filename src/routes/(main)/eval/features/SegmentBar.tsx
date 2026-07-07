@@ -1,28 +1,7 @@
 'use client';
-
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css }) => ({
-  segment: css`
-    height: 100%;
-
-    transition: width 0.3s ease;
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  track: css`
-    display: flex;
-    overflow: hidden;
-
-    width: 100%;
-    border-radius: 999px;
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-}));
+import styles from './SegmentBar.module.css';
 
 interface SegmentBarProps {
   height?: number;

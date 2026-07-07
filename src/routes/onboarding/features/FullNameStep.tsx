@@ -2,7 +2,6 @@
 
 import { SendButton } from '@lobehub/editor/react';
 import { Button, Flexbox, Icon, Input } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { SignatureIcon, Undo2Icon } from 'lucide-react';
 import { memo, useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -55,7 +54,7 @@ const FullNameStep = memo<FullNameStepProps>(({ onBack, onNext }) => {
           value={value}
           prefix={
             <Icon
-              color={cssVar.colorTextDescription}
+              color={'var(--ant-color-text-description)'}
               icon={SignatureIcon}
               size={32}
               style={{
@@ -89,7 +88,7 @@ const FullNameStep = memo<FullNameStepProps>(({ onBack, onNext }) => {
           icon={Undo2Icon}
           type={'text'}
           style={{
-            color: cssVar.colorTextDescription,
+            color: 'var(--ant-color-text-description)',
           }}
           onClick={handleBack}
         >

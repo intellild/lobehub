@@ -1,0 +1,17 @@
+.card {
+&:hover {
+  border-color: var(--ant-color-border) !important;
+}
+
+&:hover .task-template-dismiss {
+  pointer-events: auto;
+  opacity: 1;
+}
+}
+
+.dismissBtn {
+pointer-events: none;
+flex-shrink: 0;
+opacity: 0;
+transition: opacity 0.15s;
+}

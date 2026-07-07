@@ -1,0 +1,52 @@
+.body {
+gap: 24px;
+max-width: 1200px;
+padding: 28px;
+}
+
+.content {
+position: relative;
+overflow: auto;
+flex: 1;
+
+/* keep a jumped-to card clear of the sticky lifecycle bar */
+& [id^='api-'] {
+  scroll-margin-block-start: 80px;
+}
+}
+
+.controlGroup {
+gap: 8px;
+align-items: center;
+}
+
+.empty {
+flex: 1;
+gap: 6px;
+align-items: center;
+justify-content: center;
+
+color: var(--ant-color-text-tertiary);
+}
+
+.header {
+gap: 8px;
+padding-block-end: 4px;
+}
+
+.modeBar {
+position: sticky;
+z-index: 2;
+inset-block-start: 0;
+
+gap: 16px;
+align-items: center;
+
+padding-block: 10px;
+padding-inline: 14px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 14px;
+
+background: var(--ant-color-bg-container);
+box-shadow: var(--ant-box-shadow-tertiary);
+}

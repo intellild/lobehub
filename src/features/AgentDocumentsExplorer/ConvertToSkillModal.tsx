@@ -3,7 +3,6 @@
 import { Button, Flexbox, Input, Text, TextArea } from '@lobehub/ui';
 import { createModal, type ModalInstance, useModalContext } from '@lobehub/ui/base-ui';
 import { type InputRef } from 'antd';
-import { cssVar } from 'antd-style';
 import { t } from 'i18next';
 import { Sparkles } from 'lucide-react';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -212,7 +211,7 @@ const ConvertToSkillContent = memo<ConvertToSkillContentProps>(
             }}
           />
           {nameInvalid ? (
-            <Text style={{ color: cssVar.colorError, fontSize: 12 }}>
+            <Text style={{ color: 'var(--ant-color-error)', fontSize: 12 }}>
               {tChat('workingPanel.skills.convert.nameInvalid')}
             </Text>
           ) : (
@@ -246,7 +245,7 @@ const ConvertToSkillContent = memo<ConvertToSkillContentProps>(
             }}
           />
         </Flexbox>
-        {error ? <Text style={{ color: cssVar.colorError, fontSize: 12 }}>{error}</Text> : null}
+        {error ? <Text style={{ color: 'var(--ant-color-error)', fontSize: 12 }}>{error}</Text> : null}
         <Flexbox horizontal gap={8} justify={'flex-end'}>
           <Button disabled={busy} onClick={close}>
             {tCommon('cancel')}

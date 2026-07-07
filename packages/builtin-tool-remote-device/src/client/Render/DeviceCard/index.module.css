@@ -1,0 +1,64 @@
+.activated {
+color: var(--ant-color-success);
+background: var(--ant-color-success-bg);
+}
+
+.badge {
+display: inline-flex;
+gap: 4px;
+align-items: center;
+
+padding-block: 2px;
+padding-inline: 8px;
+border-radius: 6px;
+
+font-size: 12px;
+line-height: 16px;
+white-space: nowrap;
+}
+
+.card {
+width: 100%;
+padding-block: 10px;
+padding-inline: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 10px;
+
+background: var(--ant-color-bg-container);
+}
+
+.hostname {
+overflow: hidden;
+
+font-size: 14px;
+font-weight: 500;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.icon {
+flex: none;
+
+width: 32px;
+height: 32px;
+border-radius: 8px;
+
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.meta {
+overflow: hidden;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text-description);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.online {
+color: var(--ant-color-text-secondary);
+background: var(--ant-color-fill-tertiary);
+}

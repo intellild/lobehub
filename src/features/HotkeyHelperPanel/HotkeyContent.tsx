@@ -1,5 +1,4 @@
 import { Flexbox, Hotkey } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,22 +9,7 @@ import { useUserStore } from '@/store/user';
 import { settingsSelectors } from '@/store/user/slices/settings/selectors';
 import { type HotkeyGroupId } from '@/types/hotkey';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  desc: css`
-    font-size: 12px;
-    line-height: 1.3;
-    color: ${cssVar.colorTextDescription};
-  `,
-  hotkey: css`
-    gap: 4px;
-
-    kbd {
-      min-width: 26px;
-      height: 26px;
-      border: 1px solid ${cssVar.colorBorder};
-    }
-  `,
-}));
+import styles from './HotkeyContent.module.css';
 
 interface HotkeyContentProps {
   groupId: HotkeyGroupId;

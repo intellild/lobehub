@@ -3,7 +3,6 @@
 import { Github } from '@lobehub/icons';
 import { ActionIcon, Avatar, Block, Flexbox, Icon, stopPropagation, Tag, Text } from '@lobehub/ui';
 import { Spotlight } from '@lobehub/ui/awesome';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ClockIcon, FileTextIcon, StarIcon } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,38 +14,8 @@ import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
 import { discoverService } from '@/services/discover';
 import { type DiscoverSkillItem } from '@/types/discover';
 
+import styles from './Item.module.css';
 import MetaInfo from './MetaInfo';
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    author: css`
-      color: ${cssVar.colorTextDescription};
-    `,
-    desc: css`
-      flex: 1;
-      margin: 0 !important;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    footer: css`
-      margin-block-start: 16px;
-      border-block-start: 1px dashed ${cssVar.colorBorder};
-      background: ${cssVar.colorBgContainer};
-    `,
-    secondaryDesc: css`
-      font-size: 12px;
-      color: ${cssVar.colorTextDescription};
-    `,
-    title: css`
-      margin: 0 !important;
-      font-size: 16px !important;
-      font-weight: 500 !important;
-
-      &:hover {
-        color: ${cssVar.colorLink};
-      }
-    `,
-  };
-});
 
 const SkillItem = memo<DiscoverSkillItem>(
   ({
@@ -137,7 +106,7 @@ const SkillItem = memo<DiscoverSkillItem>(
               <Flexbox horizontal align={'center'} className={styles.author} gap={8}>
                 {Boolean(ratingAvg) && (
                   <Flexbox horizontal align={'center'} gap={4} style={{ fontSize: 13 }}>
-                    <Icon fill={cssVar.colorTextDescription} icon={StarIcon} size={12} />
+                    <Icon fill={'var(--ant-color-text-description)'} icon={StarIcon} size={12} />
                     {ratingAvg?.toFixed(1)}
                   </Flexbox>
                 )}
@@ -153,7 +122,7 @@ const SkillItem = memo<DiscoverSkillItem>(
                 target={'_blank'}
                 onClick={stopPropagation}
               >
-                <ActionIcon fill={cssVar.colorTextDescription} icon={Github} />
+                <ActionIcon fill={'var(--ant-color-text-description)'} icon={Github} />
               </a>
             )}
           </Flexbox>

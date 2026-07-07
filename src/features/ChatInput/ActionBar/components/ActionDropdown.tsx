@@ -1,5 +1,7 @@
 'use client';
 
+import './ActionDropdown.global.module.css';
+
 import {
   type BaseMenuItemType,
   type DropdownMenuPopupProps,
@@ -17,7 +19,6 @@ import {
   DropdownMenuTrigger,
   renderDropdownMenuItems,
 } from '@lobehub/ui';
-import { createGlobalStyle, createStaticStyles, cssVar, cx } from 'antd-style';
 import { type CSSProperties, type ReactNode } from 'react';
 import {
   isValidElement,
@@ -33,93 +34,20 @@ import {
 import DebugNode from '@/components/DebugNode';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  dropdownMenu: css`
-    .ant-avatar {
-      margin-inline-end: var(--ant-margin-xs);
-    }
-  `,
-  trigger: css`
-    outline: none;
+import styles from './ActionDropdown.module.css';
 
-    /* Keyboard users still need a landmark for where Enter will land. */
-    &:focus-visible {
-      border-radius: ${cssVar.borderRadius};
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: 2px;
-    }
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-const SubmenuScrollStyle = createGlobalStyle`
-  /* base-ui DropdownMenu.Item reserves an indicator slot (empty aria-hidden
-     span) for checkbox/radio variants. Our menu items don't use it, so the
-     empty slot only contributes left whitespace. Collapse it across both
-     the top-level menu and any nested submenu popups. */
-  [role='menu'] [role='menuitem'] > * > span[aria-hidden='true']:empty,
-  [role='menu'] [role='menuitem'] > span[aria-hidden='true']:empty {
-    display: none;
-  }
-
-  [data-submenu] > [role='menu'] {
-    will-change: auto;
-
-    /* Submenus have 0ms animation, so disabling compositing is safe.
-       Both will-change:transform AND the inherited transform: scaleY(1) from
-       Menu.Positioner ('& > *' rule) create a new containing block, which
-       breaks position:sticky for descendants and lets items leak below the
-       popup. Disable both for submenus where animation is already 0ms. */
-    transform: none !important;
-
-    overflow: hidden auto;
-    overscroll-behavior: contain;
-
-    max-height: min(50vh, 640px);
-    padding-block-end: 4px;
-  }
-
-  /* base-ui menu-item internal containers are flex by default but don't set
-     min-width:0, which blocks descendant text-overflow:ellipsis from working.
-     Force min-width:0 down the chain so long titles can truncate. */
-  [data-submenu] > [role='menu'] [role='menuitem'] > *,
-  [data-submenu] > [role='menu'] [role='menuitem'] > * > * {
-    min-width: 0;
-  }
-
-  /* Align base-ui separator color with the stats-footer's border-block-start
-     (colorBorderSecondary) so all dividers in the menu look consistent. */
-  [data-submenu] > [role='menu'] [role='separator'] {
-    background: ${cssVar.colorBorderSecondary};
-  }
-
-  /* base-ui group label is rendered inside a [role='presentation'] with its
-     own default vertical padding, which stacks with our activationGroupHeader
-     padding and inflates the gap above/below group headers. Reset only the
-     vertical padding for skill activation groups; other groups (e.g. the
-     Knowledge submenu's Libraries/Files headers) keep their default padding. */
-  [data-submenu] > [role='menu'] [role='group']:has([data-skill-activation-group]) > [role='presentation'] {
-    padding-block: 0;
-  }
-
-  /* The skill submenu is the only submenu that uses a header slot (the search
-     bar). renderDropdownMenuItems wraps it in DropdownMenuHeader's default
-     8px/12px padding — which can't be reached via props — leaving the borderless
-     search floating in a tall gap and indented past the rows below. Trim the
-     padding so the search sits snug against the divider and its icon lines up
-     with the 16px icon column shared by the menu rows. */
-  [data-submenu] > [role='menu'] > *:has(.lobe-skill-submenu-search) {
-    padding-block: 4px;
-    padding-inline: 4px;
-  }
-
-  /* Submenu triggers that opt into a custom trailing chevron (the Plus menu's
-     Skills / Attachments rows mark their extra icon with .lobe-submenu-chevron)
-     render that chevron themselves; hide base-ui's default triangle submenu arrow
-     — always the last child of the trigger's content — so the two don't stack. */
-  [role='menuitem']:has(.lobe-submenu-chevron) > * > *:last-child {
-    display: none;
-  }
-`;
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export type ActionDropdownMenuItem = MenuItemType;
 
@@ -368,7 +296,6 @@ const ActionDropdown = memo<ActionDropdownProps>(
 
     return (
       <>
-        <SubmenuScrollStyle />
         <DropdownMenuRoot
           {...rest}
           defaultOpen={defaultOpen}

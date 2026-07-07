@@ -1,58 +1,9 @@
 import { ActionIcon, CopyButton, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { X } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    flex-shrink: 0;
-    width: 360px;
-    border-inline-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  content: css`
-    overflow-y: auto;
-    flex: 1;
-    padding: 16px;
-  `,
-  fieldLabel: css`
-    margin: 0;
-
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 600;
-    color: ${cssVar.colorTextTertiary};
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  `,
-  fieldValue: css`
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadius};
-
-    font-size: ${cssVar.fontSize};
-    line-height: 1.6;
-    color: ${cssVar.colorText};
-    word-break: break-word;
-    white-space: pre-wrap;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  header: css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  title: css`
-    margin: 0;
-    font-size: ${cssVar.fontSize};
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+import styles from './TestCasePreviewPanel.module.css';
 
 interface TestCasePreviewPanelProps {
   onClose: () => void;

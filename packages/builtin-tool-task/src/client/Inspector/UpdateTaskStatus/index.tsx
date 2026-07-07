@@ -1,52 +1,36 @@
 'use client';
 
 import type { BuiltinInspectorProps, TaskStatus } from '@lobechat/types';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { UpdateTaskStatusParams, UpdateTaskStatusState } from '../../../types';
+import styles from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const STATUS_TONE: Partial<Record<TaskStatus, { bg: string; fg: string }>> = {
-  backlog: { bg: cssVar.colorFillTertiary, fg: cssVar.colorTextSecondary },
-  canceled: { bg: cssVar.colorFillTertiary, fg: cssVar.colorTextSecondary },
-  completed: { bg: cssVar.colorSuccessBg, fg: cssVar.colorSuccess },
-  failed: { bg: cssVar.colorErrorBg, fg: cssVar.colorError },
-  paused: { bg: cssVar.colorFillTertiary, fg: cssVar.colorTextSecondary },
-  running: { bg: cssVar.colorWarningBg, fg: cssVar.colorWarning },
-  scheduled: { bg: cssVar.colorInfoBg, fg: cssVar.colorInfo },
+  backlog: { bg: 'var(--ant-color-fill-tertiary)', fg: 'var(--ant-color-text-secondary)' },
+  canceled: { bg: 'var(--ant-color-fill-tertiary)', fg: 'var(--ant-color-text-secondary)' },
+  completed: { bg: 'var(--ant-color-success-bg)', fg: 'var(--ant-color-success)' },
+  failed: { bg: 'var(--ant-color-error-bg)', fg: 'var(--ant-color-error)' },
+  paused: { bg: 'var(--ant-color-fill-tertiary)', fg: 'var(--ant-color-text-secondary)' },
+  running: { bg: 'var(--ant-color-warning-bg)', fg: 'var(--ant-color-warning)' },
+  scheduled: { bg: 'var(--ant-color-info-bg)', fg: 'var(--ant-color-info)' },
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  identifierChip: css`
-    flex-shrink: 0;
-
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  separator: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  statusChip: css`
-    flex-shrink: 0;
-
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 999px;
-
-    font-size: 12px;
-  `,
-}));
 
 export const UpdateTaskStatusInspector = memo<
   BuiltinInspectorProps<UpdateTaskStatusParams, UpdateTaskStatusState>
@@ -73,8 +57,8 @@ export const UpdateTaskStatusInspector = memo<
           <span
             className={styles.statusChip}
             style={{
-              background: tone?.bg ?? cssVar.colorFillTertiary,
-              color: tone?.fg ?? cssVar.colorTextSecondary,
+              background: tone?.bg ?? 'var(--ant-color-fill-tertiary)',
+              color: tone?.fg ?? 'var(--ant-color-text-secondary)',
             }}
           >
             {status}

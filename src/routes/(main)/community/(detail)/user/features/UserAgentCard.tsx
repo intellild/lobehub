@@ -14,7 +14,6 @@ import {
   TooltipGroup,
 } from '@lobehub/ui';
 import { App } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import {
   AlertTriangle,
   ClockIcon,
@@ -42,6 +41,20 @@ import { type AgentStatus, type DiscoverAssistantItem } from '@/types/discover';
 import { formatIntergerNumber } from '@/utils/format';
 
 import { useUserDetailContext } from './DetailProvider';
+import styles from './UserAgentCard.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const getStatusTagColor = (status?: AgentStatus) => {
   switch (status) {
@@ -62,61 +75,6 @@ const getStatusTagColor = (status?: AgentStatus) => {
     }
   }
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    author: css`
-      color: ${cssVar.colorTextDescription};
-    `,
-    desc: css`
-      flex: 1;
-      margin: 0 !important;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    footer: css`
-      margin-block-start: 16px;
-      border-block-start: 1px dashed ${cssVar.colorBorder};
-      background: ${cssVar.colorBgContainer};
-    `,
-    moreButton: css`
-      position: absolute;
-      z-index: 10;
-      inset-block-start: 12px;
-      inset-inline-end: 12px;
-
-      opacity: 0;
-
-      transition: opacity 0.2s;
-    `,
-    secondaryDesc: css`
-      font-size: 12px;
-      color: ${cssVar.colorTextDescription};
-    `,
-    statTag: css`
-      border-radius: 4px;
-
-      font-family: ${cssVar.fontFamilyCode};
-      font-size: 11px;
-      color: ${cssVar.colorTextSecondary};
-
-      background: ${cssVar.colorFillTertiary};
-    `,
-    title: css`
-      margin: 0 !important;
-      font-size: 16px !important;
-      font-weight: 500 !important;
-
-      &:hover {
-        color: ${cssVar.colorLink};
-      }
-    `,
-    wrapper: css`
-      &:hover .more-button {
-        opacity: 1;
-      }
-    `,
-  };
-});
 
 type UserAgentCardProps = DiscoverAssistantItem;
 

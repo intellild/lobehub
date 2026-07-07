@@ -1,0 +1,14 @@
+.link {
+display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  color: var(--ant-color-text-description);
+
+  &:hover {
+    color: var(--ant-color-info);
+  }
+}
+
+.nav {
+border-block-end: 1px solid var(--ant-color-border);
+}

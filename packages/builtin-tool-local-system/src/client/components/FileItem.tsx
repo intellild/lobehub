@@ -1,6 +1,5 @@
 import { useToolRenderCapabilities } from '@lobechat/shared-tool-ui';
 import { ActionIcon, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import dayjs from 'dayjs';
 import { FolderOpen } from 'lucide-react';
 import nodePath from 'path-browserify-esm';
@@ -10,55 +9,7 @@ import { useTranslation } from 'react-i18next';
 import FileIcon from '@/components/FileIcon';
 import { formatSize } from '@/utils/format';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    border-radius: 4px;
-    color: ${cssVar.colorTextSecondary};
-
-    :hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  dir: css`
-    overflow: hidden;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 11px;
-    line-height: 1.3;
-    color: ${cssVar.colorTextTertiary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  size: css`
-    flex-shrink: 0;
-
-    min-width: 56px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 11px;
-    color: ${cssVar.colorTextTertiary};
-    text-align: end;
-  `,
-  time: css`
-    overflow: hidden;
-
-    font-size: 11px;
-    line-height: 1;
-    color: ${cssVar.colorTextDescription};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  title: css`
-    overflow: hidden;
-    display: block;
-
-    line-height: 1.3;
-    color: inherit;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+import styles from './FileItem.module.css';
 
 interface FileItemProps {
   createdTime?: Date | string;

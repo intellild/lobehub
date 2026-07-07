@@ -3,45 +3,12 @@
 import { DEFAULT_AVATAR } from '@lobechat/const';
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Avatar, Block, Flexbox, Markdown, Tag } from '@lobehub/ui';
-import { createStaticStyles, useTheme } from 'antd-style';
 import { memo } from 'react';
 
+import { useTheme } from '@/hooks/useTheme';
+
 import type { GetAgentDetailParams, GetAgentDetailState } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding-block: 4px;
-  `,
-  field: css`
-    margin-block-end: 8px;
-
-    &:last-child {
-      margin-block-end: 0;
-    }
-  `,
-  header: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-
-    margin-block-end: 12px;
-    padding-block-end: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  label: css`
-    margin-block-end: 4px;
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  title: css`
-    font-size: 14px;
-    font-weight: 600;
-  `,
-  value: css`
-    font-size: 13px;
-  `,
-}));
+import styles from './index.module.css';
 
 export const GetAgentDetailRender = memo<
   BuiltinRenderProps<GetAgentDetailParams, GetAgentDetailState>

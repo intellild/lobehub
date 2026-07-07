@@ -2,7 +2,6 @@
 
 import { Flexbox, SearchBar, Text, TextArea } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,76 +13,22 @@ import { useHomeStore } from '@/store/home';
 import { homeAgentListSelectors } from '@/store/home/selectors';
 
 import { contextSelectors, useConversationStore } from '../store';
+import styles from './ForwardModal.module.css';
 import SelectCircle from './SelectCircle';
 import { type ForwardTarget, useForwardMessages } from './useForwardMessages';
 
-const styles = createStaticStyles(({ css }) => ({
-  body: css`
-    block-size: 460px;
-  `,
-  divider: css`
-    align-self: stretch;
-    inline-size: 1px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  list: css`
-    overflow-y: auto;
-    flex: 1;
-    margin-inline: -4px;
-    padding-inline: 4px;
-  `,
-  // Shared container holding the message preview and the note input, split by a
-  // divider above the input.
-  preview: css`
-    overflow: hidden;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  previewLines: css`
-    overflow-y: auto;
-    flex: 1;
-    padding-block: 12px;
-    padding-inline: 12px;
-  `,
-  note: css`
-    background: transparent;
-  `,
-  noteDivider: css`
-    block-size: 1px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  previewLine: css`
-    overflow: hidden;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  previewMore: css`
-    padding-block-start: 2px;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  row: css`
-    cursor: pointer;
-
-    min-block-size: 44px;
-    padding-block: 6px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadiusLG};
-
-    transition: background-color 0.1s ${cssVar.motionEaseInOut};
-
-    &:hover {
-      background-color: ${cssVar.colorFillTertiary};
-    }
-  `,
-  rowSelected: css`
-    background-color: ${cssVar.colorFillQuaternary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ForwardModalProps {
   onClose: () => void;

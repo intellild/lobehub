@@ -1,0 +1,132 @@
+.aheadBehindStat {
+display: inline-flex;
+  gap: 0;
+  align-items: center;
+
+  margin-inline-start: -2px;
+
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.aheadStat {
+color: var(--ant-color-info);
+}
+
+.behindStat {
+color: var(--ant-color-error);
+}
+
+.branchLabel {
+overflow: hidden;
+  max-width: 160px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.diffStat {
+display: inline-flex;
+  flex-shrink: 0;
+  gap: 4px;
+  align-items: center;
+
+  font-variant-numeric: tabular-nums;
+}
+
+.diffStatAdded {
+color: var(--ant-color-success);
+}
+
+.diffStatDeleted {
+color: var(--ant-color-error);
+}
+
+.diffStatModified {
+color: var(--ant-color-warning);
+}
+
+.prTrigger {
+cursor: pointer;
+
+  display: flex;
+  flex: none;
+  gap: 4px;
+  align-items: center;
+
+  padding-block: 2px;
+  padding-inline: 4px;
+  border-radius: 4px;
+
+  font-size: 12px;
+  color: var(--ant-color-text-secondary);
+  white-space: nowrap;
+
+  transition: background 0.2s;
+
+  &:hover {
+    color: var(--ant-color-text);
+    background: var(--ant-color-fill-tertiary);
+  }
+}
+
+.separator {
+flex: none;
+  width: 1px;
+  height: 10px;
+  background: var(--ant-color-split);
+}
+
+.syncTrigger {
+cursor: pointer;
+
+  display: inline-flex;
+  flex: none;
+  gap: 2px;
+  align-items: center;
+
+  padding-block: 2px;
+  padding-inline: 4px;
+  border-radius: 4px;
+
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--ant-color-fill-tertiary);
+  }
+}
+
+.syncTriggerDisabled {
+cursor: progress;
+  opacity: 0.6;
+
+  &:hover {
+    background: transparent;
+  }
+}
+
+.trigger {
+cursor: pointer;
+
+  display: flex;
+  flex: none;
+  gap: 4px;
+  align-items: center;
+
+  padding-block: 2px;
+  padding-inline: 4px;
+  border-radius: 4px;
+
+  font-size: 12px;
+  color: var(--ant-color-text-secondary);
+  white-space: nowrap;
+
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--ant-color-fill-tertiary);
+  }
+}

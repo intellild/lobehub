@@ -1,7 +1,6 @@
 import { type ToolManifestSettings } from '@lobechat/types';
 import { Form, Markdown } from '@lobehub/ui';
 import { Form as AForm } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo } from 'react';
 
@@ -9,6 +8,7 @@ import { useToolStore } from '@/store/tool';
 import { pluginSelectors } from '@/store/tool/selectors';
 
 import ItemRender from '../../components/JSONSchemaConfig/ItemRender';
+import styles from './index.module.css';
 
 export const transformPluginSettings = (pluginSettings: ToolManifestSettings) => {
   if (!pluginSettings?.properties) return [];
@@ -30,14 +30,6 @@ interface PluginSettingsConfigProps {
   id: string;
   schema: ToolManifestSettings;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  markdown: css`
-    p {
-      color: ${cssVar.colorTextDescription};
-    }
-  `,
-}));
 
 const PluginSettingsConfig = memo<PluginSettingsConfigProps>(({ schema, id }) => {
   const [updatePluginSettings] = useToolStore((s) => [s.updatePluginSettings]);

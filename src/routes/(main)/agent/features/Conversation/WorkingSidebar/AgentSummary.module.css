@@ -1,0 +1,22 @@
+.header {
+min-height: 128px;
+}
+
+.title {
+overflow: hidden;
+
+font-size: 16px;
+font-weight: 600;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.channelCount {
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+}
+
+.channelIcon {
+flex-shrink: 0;
+}

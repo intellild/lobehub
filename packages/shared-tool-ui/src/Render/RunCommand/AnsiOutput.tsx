@@ -1,28 +1,9 @@
 'use client';
 
 import Anser from 'anser';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useMemo } from 'react';
 
-const styles = createStaticStyles(({ css }) => ({
-  pre: css`
-    overflow: auto;
-
-    max-height: 200px;
-    margin: 0;
-    padding: 8px;
-    border-radius: 6px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    line-height: 1.6;
-    color: ${cssVar.colorText};
-    word-break: break-word;
-    white-space: pre-wrap;
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
+import styles from './AnsiOutput.module.css';
 
 interface AnsiOutputProps {
   text: string;

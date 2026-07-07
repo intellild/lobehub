@@ -1,0 +1,16 @@
+.desc {
+line-height: 1.4;
+color: var(--ant-color-text-description);
+}
+
+.header {
+padding-block: 24px 0;
+padding-inline: 0.75rem;
+}
+
+.title {
+margin: 0;
+font-size: 26px;
+font-weight: 600;
+line-height: 1.3;
+}

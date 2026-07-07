@@ -3,66 +3,16 @@
 import type { ModifyNodesArgs, ModifyOperation } from '@lobechat/editor-runtime';
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Block, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Check, DiffIcon, Minus, Plus, X } from 'lucide-react';
 import { memo } from 'react';
 
 import type { ModifyNodesState } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  content: css`
-    overflow: hidden;
-    flex: 1;
-
-    min-width: 0;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  index: css`
-    flex-shrink: 0;
-
-    width: 18px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextQuaternary};
-    text-align: end;
-  `,
-  position: css`
-    flex-shrink: 0;
-
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-radius: 4px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 11px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  row: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-block-end: 1px dashed ${cssVar.colorBorderSecondary};
-
-    &:last-child {
-      border-block-end: none;
-    }
-  `,
-}));
+import styles from './index.module.css';
 
 const actionMeta = {
-  insert: { color: cssVar.colorSuccess, icon: Plus },
-  modify: { color: cssVar.colorWarning, icon: DiffIcon },
-  remove: { color: cssVar.colorError, icon: Minus },
+  insert: { color: 'var(--ant-color-success)', icon: Plus },
+  modify: { color: 'var(--ant-color-warning)', icon: DiffIcon },
+  remove: { color: 'var(--ant-color-error)', icon: Minus },
 } as const;
 
 const getOperationDetails = (op: ModifyOperation) => {
@@ -107,12 +57,12 @@ export const ModifyNodesRender = memo<BuiltinRenderProps<ModifyNodesArgs, Modify
                 <Icon
                   icon={Check}
                   size={14}
-                  style={{ color: cssVar.colorSuccess, flexShrink: 0 }}
+                  style={{ color: 'var(--ant-color-success)', flexShrink: 0 }}
                 />
               )}
               {failed && (
                 <>
-                  <Icon icon={X} size={14} style={{ color: cssVar.colorError, flexShrink: 0 }} />
+                  <Icon icon={X} size={14} style={{ color: 'var(--ant-color-error)', flexShrink: 0 }} />
                   {result?.error && (
                     <Text as={'span'} fontSize={11} type={'danger'}>
                       {result.error}

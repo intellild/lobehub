@@ -4,7 +4,6 @@ import { isDesktop } from '@lobechat/const';
 import { isRemoteHeterogeneousType } from '@lobechat/heterogeneous-agents';
 import { Flexbox } from '@lobehub/ui';
 import { Tabs, type TabsItem } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,27 +18,8 @@ import AgentHeader from './AgentHeader';
 import AgentTool from './AgentTool';
 import CloudHeterogeneousConfig from './CloudHeterogeneousConfig';
 import HeterogeneousAgentStatusCard from './HeterogeneousAgentStatusCard';
+import styles from './index.module.css';
 import RemoteAgentConfigCard from './RemoteAgentConfigCard';
-
-const styles = createStaticStyles(({ css }) => ({
-  configLabel: css`
-    font-size: 12px;
-    line-height: 1;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  configPanel: css`
-    padding-block: 12px;
-    padding-inline: 14px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  topArea: css`
-    cursor: default;
-    margin-block-end: 28px;
-  `,
-}));
 
 const ProfileEditor = memo(() => {
   const { t } = useTranslation('setting');

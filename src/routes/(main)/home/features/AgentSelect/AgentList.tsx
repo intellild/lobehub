@@ -2,7 +2,6 @@
 
 import { type SidebarAgentItem } from '@lobechat/types';
 import { Avatar, Block, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -14,24 +13,7 @@ import { agentSelectors, builtinAgentSelectors } from '@/store/agent/selectors';
 import { useHomeStore } from '@/store/home';
 import { homeAgentListSelectors } from '@/store/home/selectors';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  active: css`
-    background: ${cssVar.colorFillTertiary};
-  `,
-  item: css`
-    cursor: pointer;
-    padding-block: 6px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-
-    &:hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  list: css`
-    padding: 8px;
-  `,
-}));
+import styles from './AgentList.module.css';
 
 interface AgentListProps {
   activeAgentId: string;
@@ -128,7 +110,7 @@ const AgentList = memo<AgentListProps>(({ activeAgentId, error, onRetry, onSelec
               />
               <Text
                 ellipsis
-                color={isActive ? cssVar.colorText : cssVar.colorTextSecondary}
+                color={isActive ? 'var(--ant-color-text)' : 'var(--ant-color-text-secondary)'}
                 style={{ flex: 1 }}
                 weight={isActive ? 600 : 500}
               >

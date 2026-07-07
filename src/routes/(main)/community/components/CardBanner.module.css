@@ -1,0 +1,15 @@
+.banner {
+position: relative;
+
+overflow: hidden;
+
+height: 64px;
+margin-block-end: -56px;
+
+background: var(--ant-color-fill-secondary);
+}
+
+.bannerImg {
+position: absolute;
+filter: blur(40px) saturate(1.5);
+}

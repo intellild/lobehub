@@ -1,0 +1,23 @@
+.card {
+cursor: pointer;
+
+padding: 16px;
+border: 1px solid var(--ant-color-border);
+border-radius: var(--ant-border-radius);
+
+transition: border-color 0.2s ease;
+
+&:hover {
+  border-color: var(--ant-color-primary-border-hover);
+}
+}
+
+.grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 12px;
+
+@media (width <= 720px) {
+  grid-template-columns: 1fr;
+}
+}

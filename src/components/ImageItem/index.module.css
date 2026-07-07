@@ -1,0 +1,25 @@
+.deleteButton {
+color: #fff;
+background: var(--ant-color-bg-mask);
+
+&:hover {
+  background: var(--ant-color-error);
+}
+}
+
+.editableImage {
+background: var(--ant-color-bg-container);
+box-shadow: 0 0 0 1px var(--ant-color-fill) inset;
+}
+
+.image {
+margin-block: 0 !important;
+
+.ant-image {
+  height: 100% !important;
+
+  img {
+    height: 100% !important;
+  }
+}
+}

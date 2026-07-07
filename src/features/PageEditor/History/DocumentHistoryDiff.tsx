@@ -3,7 +3,6 @@
 import type { LexicalDiffProps } from '@lobehub/editor/renderer';
 import { LexicalDiff } from '@lobehub/editor/renderer';
 import { Empty, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import type { SerializedEditorState } from 'lexical';
 import { GitCompareArrowsIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
@@ -16,26 +15,7 @@ import { documentService } from '@/services/document';
 import { useDocumentStore } from '@/store/document';
 import { editorSelectors } from '@/store/document/slices/editor';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-
-    min-height: 0;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  content: css`
-    overflow: auto;
-    flex: 1;
-    min-height: 0;
-  `,
-  empty: css`
-    padding: 24px;
-  `,
-}));
+import styles from './DocumentHistoryDiff.module.css';
 
 const isObject = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null;

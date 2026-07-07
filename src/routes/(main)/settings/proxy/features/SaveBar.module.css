@@ -1,0 +1,68 @@
+.container {
+pointer-events: none;
+
+position: fixed;
+z-index: 1000;
+inset-block-end: 24px;
+inset-inline-start: 50%;
+transform: translateX(-50%);
+}
+
+.pill {
+pointer-events: auto;
+
+display: inline-flex;
+gap: 8px;
+align-items: center;
+
+padding-block: 6px;
+padding-inline: 16px 6px;
+border: 1px solid color-mix(in srgb, var(--ant-color-border-secondary) 60%, transparent);
+border-radius: 999px;
+
+font-size: 13px;
+color: var(--ant-color-text);
+
+background: color-mix(in srgb, var(--ant-color-bg-elevated) 85%, transparent);
+backdrop-filter: blur(16px) saturate(1.2);
+box-shadow: var(--ant-box-shadow-secondary);
+}
+
+.dot {
+flex-shrink: 0;
+
+width: 6px;
+height: 6px;
+border-radius: 50%;
+
+background: var(--ant-color-warning);
+}
+
+.message {
+color: var(--ant-color-text-secondary);
+}
+
+.resetButton {
+height: 28px;
+padding-block: 0;
+padding-inline: 12px;
+border-radius: 999px;
+
+color: var(--ant-color-text-secondary) !important;
+
+background: transparent;
+
+&:hover {
+  color: var(--ant-color-text) !important;
+  background: var(--ant-color-fill-secondary) !important;
+}
+}
+
+.saveButton {
+height: 28px;
+padding-block: 0;
+padding-inline: 14px;
+border-radius: 999px;
+
+font-weight: 500;
+}

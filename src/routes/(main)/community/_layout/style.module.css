@@ -1,0 +1,5 @@
+.mainContainer {
+position: relative;
+overflow: hidden;
+background: var(--ant-color-bg-container);
+}

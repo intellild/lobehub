@@ -1,0 +1,7 @@
+.back {
+color: var(--ant-color-text-description);
+
+  &:hover {
+    color: var(--ant-color-text);
+  }
+}

@@ -26,20 +26,6 @@ vi.mock('@lobehub/ui', () => ({
   Tooltip: ({ children }: { children?: ReactNode }) => <>{children}</>,
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({
-    dotContainer: 'dotContainer',
-    neonDot: 'neonDot',
-    neonDotWrapper: 'neonDotWrapper',
-  }),
-  cssVar: {
-    colorInfo: '#00f',
-    colorTextDescription: '#999',
-  },
-  keyframes: () => 'keyframes',
-  useTheme: () => ({ isDarkMode: false }),
-}));
-
 vi.mock('motion/react', () => ({
   AnimatePresence: ({ children }: { children?: ReactNode }) => <>{children}</>,
   m: {

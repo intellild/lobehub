@@ -1,6 +1,5 @@
 import type { ChatTopicMetadata, DeviceGitPullRequestCiStatus } from '@lobechat/types';
 import { Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import type { Clock } from 'lucide-react';
 import {
   CircleAlert,
@@ -17,89 +16,8 @@ import { useTranslation } from 'react-i18next';
 
 import DirIcon from '@/features/ChatInput/ControlBar/DirIcon';
 
+import styles from './MetaHoverCard.module.css';
 import { getPullRequestState, getTopicMetaCard, PR_STATE_VISUAL } from './metaCardData';
-
-const styles = createStaticStyles(({ css }) => ({
-  card: css`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    width: 300px;
-    max-width: calc(100vw - 48px);
-  `,
-  header: css`
-    display: flex;
-    gap: 12px;
-    align-items: baseline;
-    justify-content: space-between;
-  `,
-  headerTime: css`
-    flex: none;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  headerTitle: css`
-    overflow: hidden;
-
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  row: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    min-width: 0;
-
-    font-size: 13px;
-    line-height: 18px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  rowIcon: css`
-    flex: none;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  rowText: css`
-    overflow: hidden;
-    min-width: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  warnRow: css`
-    align-items: flex-start;
-    color: ${cssVar.colorWarning};
-  `,
-  warnIcon: css`
-    flex: none;
-    margin-block-start: 1px;
-    color: ${cssVar.colorWarning};
-  `,
-  warnText: css`
-    min-width: 0;
-    line-height: 18px;
-    white-space: normal;
-  `,
-  prLink: css`
-    cursor: pointer;
-
-    margin-inline: -6px;
-    padding-block: 2px;
-    padding-inline: 6px;
-    border-radius: 6px;
-
-    color: inherit;
-    text-decoration: none;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
 
 interface CiVisual {
   color: string;
@@ -110,16 +28,16 @@ interface CiVisual {
 const getCiVisual = (status?: DeviceGitPullRequestCiStatus): CiVisual => {
   switch (status) {
     case 'success': {
-      return { color: cssVar.colorSuccess, icon: CircleCheck, labelKey: 'metaCard.ci.success' };
+      return { color: 'var(--ant-color-success)', icon: CircleCheck, labelKey: 'metaCard.ci.success' };
     }
     case 'failure': {
-      return { color: cssVar.colorError, icon: CircleX, labelKey: 'metaCard.ci.failure' };
+      return { color: 'var(--ant-color-error)', icon: CircleX, labelKey: 'metaCard.ci.failure' };
     }
     case 'pending': {
-      return { color: cssVar.colorWarning, icon: LoaderCircle, labelKey: 'metaCard.ci.pending' };
+      return { color: 'var(--ant-color-warning)', icon: LoaderCircle, labelKey: 'metaCard.ci.pending' };
     }
     default: {
-      return { color: cssVar.colorTextTertiary, icon: CircleSlash, labelKey: 'metaCard.ci.none' };
+      return { color: 'var(--ant-color-text-tertiary)', icon: CircleSlash, labelKey: 'metaCard.ci.none' };
     }
   }
 };
@@ -216,7 +134,7 @@ const MetaHoverCard = memo<MetaHoverCardProps>(({ metadata, title, time }) => {
                   {t(prVisual.labelKey)}
                 </span>
                 {pullRequest.title ? ` · ${pullRequest.title}` : ''}
-                <span style={{ color: cssVar.colorTextTertiary }}>{` #${pullRequest.number}`}</span>
+                <span style={{ color: 'var(--ant-color-text-tertiary)' }}>{` #${pullRequest.number}`}</span>
               </span>
             </>
           );

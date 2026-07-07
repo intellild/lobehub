@@ -2,7 +2,6 @@ import { BRANDING_PROVIDER } from '@lobechat/business-const';
 import { ProviderCombine, ProviderIcon } from '@lobehub/icons';
 import { Avatar, Flexbox, Skeleton, Tag, Text } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cssVar, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -12,6 +11,19 @@ import { type AiProviderListItem } from '@/types/aiProvider';
 
 import EnableSwitch from './EnableSwitch';
 import { styles } from './style';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const isCodingPlanProvider = (id: string) => id.endsWith('codingplan');
 
@@ -55,7 +67,7 @@ const ProviderCard = memo<ProviderCardProps>(
                     <ProviderCombine
                       provider={id}
                       size={24}
-                      style={{ color: cssVar.colorText }}
+                      style={{ color: 'var(--ant-color-text)' }}
                       title={name}
                     />
                     {isCodingPlanProvider(id) && <Tag color={'geekblue'}>{'Coding Plan'}</Tag>}

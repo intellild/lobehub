@@ -1,6 +1,5 @@
 import { type SidebarGroup } from '@lobechat/types';
 import { AccordionItem, ContextMenuTrigger, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { HashIcon, Loader2 } from 'lucide-react';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 
@@ -10,13 +9,8 @@ import { useCreateMenuItems } from '../../../../hooks';
 import { useAgentModal } from '../../ModalProvider';
 import SessionList from '../List';
 import Actions from './Actions';
+import styles from './Item.module.css';
 import { useGroupDropdownMenu } from './useDropdownMenu';
-
-const styles = createStaticStyles(({ css }) => ({
-  item: css`
-    padding-inline-start: 14px;
-  `,
-}));
 
 const GroupItem = memo<SidebarGroup>(({ items, id, name, visibility }) => {
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);

@@ -2,7 +2,6 @@
 
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Check } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,13 +9,20 @@ import { useTranslation } from 'react-i18next';
 import { inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { UpdatePromptParams, UpdatePromptState } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css }) => ({
-  statusIcon: css`
-    margin-block-end: -2px;
-    margin-inline-start: 4px;
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const UpdatePromptInspector = memo<
   BuiltinInspectorProps<UpdatePromptParams, UpdatePromptState>
@@ -62,7 +68,7 @@ export const UpdatePromptInspector = memo<
         <Text
           code
           as={'span'}
-          color={lengthDiff >= 0 ? cssVar.colorSuccess : cssVar.colorError}
+          color={lengthDiff >= 0 ? 'var(--ant-color-success)' : 'var(--ant-color-error)'}
           fontSize={12}
           style={{ marginInlineStart: 4 }}
         >
@@ -76,7 +82,7 @@ export const UpdatePromptInspector = memo<
         <Text
           code
           as={'span'}
-          color={cssVar.colorTextDescription}
+          color={'var(--ant-color-text-description)'}
           fontSize={12}
           style={{ marginInlineStart: 4 }}
         >
@@ -85,7 +91,7 @@ export const UpdatePromptInspector = memo<
         </Text>
       )}
       {!isLoading && !isArgumentsStreaming && isSuccess && (
-        <Check className={styles.statusIcon} color={cssVar.colorSuccess} size={14} />
+        <Check className={styles.statusIcon} color={'var(--ant-color-success)'} size={14} />
       )}
     </div>
   );

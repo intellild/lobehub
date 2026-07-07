@@ -4,7 +4,6 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { ModelTag } from '@lobehub/icons';
 import { ActionIconGroup, Block, Flexbox, Grid, Image, Markdown, Tag, Text } from '@lobehub/ui';
 import { App } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import dayjs from 'dayjs';
 import { omit } from 'es-toolkit/compat';
 import { CopyIcon, RotateCcwSquareIcon, Trash2 } from 'lucide-react';
@@ -19,40 +18,14 @@ import { useImageStore } from '@/store/image';
 import { AsyncTaskErrorType } from '@/types/asyncTask';
 import { type GenerationBatch } from '@/types/generation';
 
+import stylesModule from './BatchItem.module.css';
 import { GenerationItem } from './GenerationItem';
 import { ReferenceImages } from './ReferenceImages';
 
-const styles = createStaticStyles(({ css, cssVar, cx }) => ({
-  batchActions: cx(
-    'batch-actions',
-    css`
-      opacity: 0;
-      transition: opacity 0.1s ${cssVar.motionEaseInOut};
-    `,
-  ),
-  batchDeleteButton: css`
-    &:hover {
-      border-color: ${cssVar.colorError} !important;
-      color: ${cssVar.colorError} !important;
-      background: ${cssVar.colorErrorBg} !important;
-    }
-  `,
-  container: css`
-    &:hover {
-      .batch-actions {
-        opacity: 1;
-      }
-    }
-  `,
-
-  prompt: css`
-    pre {
-      overflow: hidden !important;
-      padding-block: 4px;
-      font-size: 13px;
-    }
-  `,
-}));
+const styles: typeof stylesModule & { batchActions: string } = {
+  ...stylesModule,
+  batchActions: [stylesModule.batchActions, 'batch-actions'].join(' '),
+};
 
 interface GenerationBatchItemProps {
   batch: GenerationBatch;

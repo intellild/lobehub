@@ -3,7 +3,6 @@ import { copyImageToClipboard, sanitizeSVGContent } from '@lobechat/utils/client
 import { Button, Center, DropdownMenu, Flexbox, Tooltip } from '@lobehub/ui';
 import { snapdom } from '@zumer/snapdom';
 import { App, Space } from 'antd';
-import { css, cx } from 'antd-style';
 import { CopyIcon, DownloadIcon } from 'lucide-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,21 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useChatStore } from '@/store/chat';
 import { chatPortalSelectors } from '@/store/chat/selectors';
 
-const svgContainer = css`
-  width: 100%;
-  height: 100%;
-
-  > svg {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const actions = css`
-  position: absolute;
-  inset-block-end: 8px;
-  inset-inline-end: 8px;
-`;
+import styles from './SVG.module.css';
 
 const DOM_ID = 'artfact-svg';
 interface SVGRendererProps {
@@ -92,11 +77,11 @@ const SVGRenderer = ({ content }: SVGRendererProps) => {
       style={{ position: 'relative' }}
     >
       <Center
-        className={cx(svgContainer)}
+        className={styles.svgContainer}
         dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         id={DOM_ID}
       />
-      <Flexbox className={cx(actions)}>
+      <Flexbox className={styles.actions}>
         <Space.Compact>
           <DropdownMenu
             items={[

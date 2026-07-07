@@ -1,45 +1,13 @@
 import { Icon } from '@lobehub/ui';
 import { type CollapseProps } from 'antd';
 import { Collapse } from 'antd';
-import { createStaticStyles, responsive } from 'antd-style';
 import { ChevronDown } from 'lucide-react';
 import { memo } from 'react';
 
+import stylesModule from './index.module.css';
+
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    .${prefixCls}-collapse-header {
-      padding-inline: 16px 10px !important;
-      border-radius: ${cssVar.borderRadius} !important;
-      color: ${cssVar.colorTextDescription} !important;
-
-      ${responsive.sm} {
-        border-radius: 0 !important;
-      }
-
-      &:hover {
-        color: ${cssVar.colorText} !important;
-        background: ${cssVar.colorFillTertiary};
-        .${prefixCls}-collapse-extra {
-          display: block;
-        }
-      }
-    }
-    .${prefixCls}-collapse-extra {
-      display: none;
-    }
-    .${prefixCls}-collapse-content {
-      border-radius: 0 !important;
-    }
-    .${prefixCls}-collapse-content-box {
-      padding: 0 !important;
-    }
-  `,
-  icon: css`
-    transition: all 100ms ${cssVar.motionEaseOut};
-  `,
-}));
+const styles = stylesModule;
 
 const CollapseGroup = memo<CollapseProps>((props) => {
   return (

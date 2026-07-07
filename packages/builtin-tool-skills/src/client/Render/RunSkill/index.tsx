@@ -2,39 +2,10 @@
 
 import { type BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, Markdown, ScrollShadow } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import type { ActivateSkillParams, ActivateSkillState } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-
-    width: 100%;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  content: css`
-    padding-block: 8px;
-    padding-inline: 16px;
-    font-size: 14px;
-  `,
-  description: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  header: css`
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  name: css`
-    font-weight: 500;
-  `,
-}));
+import styles from './index.module.css';
 
 const RunSkill = memo<BuiltinRenderProps<ActivateSkillParams, ActivateSkillState>>(
   ({ content, pluginState }) => {

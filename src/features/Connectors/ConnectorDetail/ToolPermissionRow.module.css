@@ -1,0 +1,76 @@
+.btn {
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 28px;
+height: 28px;
+border-radius: 6px;
+
+color: var(--ant-color-text-quaternary);
+
+transition:
+  color 0.15s,
+  background 0.15s;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.btnActive {
+color: var(--ant-color-primary);
+background: var(--ant-color-primary-bg);
+
+&:hover {
+  color: var(--ant-color-primary);
+  background: var(--ant-color-primary-bg-hover);
+}
+}
+
+.description {
+overflow: hidden;
+
+font-size: 11px;
+line-height: 1.4;
+color: var(--ant-color-text-tertiary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.nameCell {
+overflow: hidden;
+flex: 1;
+min-width: 0;
+}
+
+.row {
+display: flex;
+gap: 8px;
+align-items: center;
+
+padding-block: 8px;
+padding-inline: 12px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+
+&:last-child {
+  border-block-end: none;
+}
+
+&:hover {
+  background: var(--ant-color-fill-quaternary);
+}
+}
+
+.toolName {
+overflow: hidden;
+
+font-family: var(--font-mono, monospace);
+font-size: 13px;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}

@@ -3,28 +3,13 @@
 import { type TaskDetail } from '@lobechat/types';
 import { type IconProps } from '@lobehub/ui';
 import { Flexbox, Icon, Tag } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Footprints, Timer, Wrench } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Markdown from '../../../Markdown';
+import styles from './CompletedState.module.css';
 import { formatCost, formatDuration } from './utils';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  collapseContent: css`
-    padding-block: 8px;
-    padding-inline: 0;
-    font-size: 13px;
-    line-height: 1.6;
-  `,
-  separator: css`
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: ${cssVar.colorTextQuaternary};
-  `,
-}));
 
 export type CompletedStateVariant = 'detail' | 'compact';
 
@@ -44,7 +29,7 @@ interface MetricItemProps {
 export const MetricItem = memo<MetricItemProps>(({ icon, label, value }) => (
   <Tag
     icon={<Icon icon={icon} />}
-    style={{ color: cssVar.colorTextDescription, padding: 0 }}
+    style={{ color: 'var(--ant-color-text-description)', padding: 0 }}
     variant={'borderless'}
   >
     {value}

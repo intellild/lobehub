@@ -1,0 +1,20 @@
+.main {
+overflow: hidden;
+flex: 1;
+
+min-width: 0;
+min-height: 0;
+
+background:
+  radial-gradient(circle at top, var(--ant-color-fill-tertiary) 0%, transparent 35%),
+  var(--ant-color-bg-layout);
+}
+
+.page {
+overflow: hidden;
+width: 100%;
+
+/* Bind to the viewport directly so the columns scroll internally regardless
+   of whether the mounting route provides a bounded height. */
+height: 100dvh;
+}

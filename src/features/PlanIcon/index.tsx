@@ -1,10 +1,11 @@
 import { Plans } from '@lobechat/types';
 import { Center, Flexbox, Tag } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Atom, Box, CircleSlash, Sparkle, Zap } from 'lucide-react';
 import { type CSSProperties, type MouseEvent } from 'react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import styles from './index.module.css';
 
 export const themes = {
   [Plans.Free]: {
@@ -44,13 +45,6 @@ export const themes = {
   },
 };
 
-const styles = createStaticStyles(({ css }) => ({
-  icon: css`
-    flex: none;
-    box-shadow: 0 0 0 1px ${cssVar.colorFillSecondary};
-  `,
-}));
-
 const getPlanIconMetrics = (size: number) => ({
   glyphSize: Math.max(12, Math.round(size / 2)),
   radius: Math.max(8, Math.round(size / 3)),
@@ -81,7 +75,7 @@ const PlanIcon = memo<PlanIconProps>(
           className={className}
           variant={'filled'}
           style={{
-            ...(theme || { background: cssVar.colorFillSecondary, color: cssVar.colorText }),
+            ...(theme || { background: 'var(--ant-color-fill-secondary)', color: 'var(--ant-color-text)' }),
             border: 'none',
             borderRadius: 12,
             cursor: 'pointer',

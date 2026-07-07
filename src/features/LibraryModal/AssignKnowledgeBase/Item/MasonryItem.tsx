@@ -1,5 +1,4 @@
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { LockIcon } from 'lucide-react';
 import { memo } from 'react';
 
@@ -7,41 +6,7 @@ import KnowledgeIcon from '@/components/KnowledgeIcon';
 import { type KnowledgeItem } from '@/types/knowledgeBase';
 
 import Actions from './Action';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    cursor: pointer;
-
-    position: relative;
-
-    overflow: hidden;
-
-    padding: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-
-    transition: all ${cssVar.motionDurationMid};
-
-    &:hover {
-      border-color: ${cssVar.colorPrimary};
-      box-shadow: ${cssVar.boxShadowTertiary};
-    }
-  `,
-  desc: css`
-    margin: 0 !important;
-    font-size: 12px;
-    line-height: 1.4;
-    color: ${cssVar.colorTextDescription};
-  `,
-  title: css`
-    margin: 0 !important;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.4;
-  `,
-}));
+import styles from './MasonryItem.module.css';
 
 const MasonryItem = memo<KnowledgeItem>(
   ({ id, fileType, name, type, description, enabled, visibility }) => {
@@ -58,7 +23,7 @@ const MasonryItem = memo<KnowledgeItem>(
             <Flexbox flex={1} gap={6} style={{ overflow: 'hidden', position: 'relative' }}>
               <Flexbox horizontal align={'center'} gap={6}>
                 {visibility === 'private' && (
-                  <Icon color={cssVar.colorTextDescription} icon={LockIcon} size={12} />
+                  <Icon color={'var(--ant-color-text-description)'} icon={LockIcon} size={12} />
                 )}
                 <Text className={styles.title} ellipsis={{ rows: 2 }}>
                   {name}

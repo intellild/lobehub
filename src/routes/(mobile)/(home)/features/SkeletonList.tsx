@@ -1,45 +1,12 @@
 'use client';
 
 import { Flexbox, Skeleton } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo } from 'react';
 
+import stylesModule from './SkeletonList.module.css';
+
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  item: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-radius: ${cssVar.borderRadius};
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    .${prefixCls}-skeleton-header {
-      padding: 0;
-    }
-  `,
-  paragraph: css`
-    margin-block: 8px 0 !important;
-
-    > li {
-      height: 12px !important;
-    }
-  `,
-  title: css`
-    height: 16px !important;
-    margin-block-end: 0 !important;
-
-    > li {
-      height: 16px !important;
-    }
-  `,
-}));
+const styles = stylesModule;
 
 interface SkeletonListProps {
   count?: number;
@@ -54,7 +21,7 @@ const SkeletonList = memo<SkeletonListProps>(({ count = 4 }) => {
             active
             shape="square"
             size={40}
-            style={{ borderRadius: cssVar.borderRadius, flex: 'none' }}
+            style={{ borderRadius: 'var(--ant-border-radius)', flex: 'none' }}
           />
           <Flexbox flex={1} style={{ overflow: 'hidden' }}>
             <Skeleton

@@ -3,56 +3,24 @@
 import { inspectorTextStyles, shinyTextStyles } from '@lobechat/shared-tool-ui/styles';
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Github } from '@lobehub/icons';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Check, X } from 'lucide-react';
 import { memo } from 'react';
 
+import styles from './RunCommandInspector.module.css';
 import { getGhSubcommand, type GithubRunCommandArgs, type GithubRunCommandState } from './utils';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  chip: css`
-    overflow: hidden;
-    display: inline-flex;
-    flex-shrink: 1;
-    gap: 6px;
-    align-items: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    min-width: 0;
-    padding-block: 2px;
-    padding-inline: 10px;
-    border-radius: 999px;
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  command: css`
-    overflow: hidden;
-
-    min-width: 0;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  ghPrefix: css`
-    flex-shrink: 0;
-
-    margin-inline-end: 6px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  icon: css`
-    flex-shrink: 0;
-    margin-inline-end: 6px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  statusIcon: css`
-    margin-inline-start: 4px;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const GithubRunCommandInspector = memo<
   BuiltinInspectorProps<GithubRunCommandArgs, GithubRunCommandState>
@@ -77,9 +45,9 @@ const GithubRunCommandInspector = memo<
       )}
       {hasResult ? (
         isSuccess ? (
-          <Check className={styles.statusIcon} color={cssVar.colorSuccess} size={14} />
+          <Check className={styles.statusIcon} color={'var(--ant-color-success)'} size={14} />
         ) : (
-          <X className={styles.statusIcon} color={cssVar.colorError} size={14} />
+          <X className={styles.statusIcon} color={'var(--ant-color-error)'} size={14} />
         )
       ) : null}
     </div>

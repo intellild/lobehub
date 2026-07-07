@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Icon, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { LockIcon, UsersIcon } from 'lucide-react';
 import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,50 +9,20 @@ import { useActiveWorkspaceId } from '@/business/client/hooks/useActiveWorkspace
 import { useResourceManagerStore } from '@/routes/(main)/resource/features/store';
 import type { ResourceListVisibilityFilter } from '@/routes/(main)/resource/features/store/initialState';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    button: css`
-      cursor: pointer;
+import styles from './index.module.css';
 
-      display: inline-flex;
-      flex: 1;
-      gap: 6px;
-      align-items: center;
-      justify-content: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-      padding-block: 6px;
-      padding-inline: 8px;
-      border: none;
-      border-radius: ${cssVar.borderRadius};
-
-      font-size: 13px;
-      font-weight: 500;
-      color: ${cssVar.colorTextSecondary};
-
-      background: transparent;
-
-      transition: background 0.15s;
-
-      &:hover {
-        background: ${cssVar.colorFillTertiary};
-      }
-    `,
-    buttonActive: css`
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorBgElevated};
-      box-shadow: 0 1px 2px rgb(0 0 0 / 6%);
-    `,
-    group: css`
-      display: inline-flex;
-
-      width: 100%;
-      padding: 3px;
-      border-radius: ${cssVar.borderRadiusLG};
-
-      background: ${cssVar.colorFillQuaternary};
-    `,
-  };
-});
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const OPTIONS: Array<{
   icon: typeof LockIcon;

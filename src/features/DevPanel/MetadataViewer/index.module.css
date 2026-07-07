@@ -1,0 +1,8 @@
+.container {
+* {
+  font-size: 12px;
+}
+.ant-form-item {
+  padding-block: 8px;
+}
+}

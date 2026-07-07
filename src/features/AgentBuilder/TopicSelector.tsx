@@ -1,6 +1,5 @@
 import { type DropdownMenuCheckboxItem } from '@lobehub/ui';
 import { ActionIcon, DropdownMenu, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import dayjs from 'dayjs';
 import { Clock3Icon, PlusIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
@@ -11,21 +10,7 @@ import NavHeader from '@/features/NavHeader';
 import { useChatStore } from '@/store/chat';
 import { topicSelectors } from '@/store/chat/slices/topic/selectors';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  time: css`
-    margin-inline-start: 6px;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  title: css`
-    overflow: hidden;
-
-    font-size: 14px;
-    font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+import styles from './TopicSelector.module.css';
 
 interface TopicSelectorProps {
   agentId: string;

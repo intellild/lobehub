@@ -1,7 +1,6 @@
 'use client';
 
 import { type BuiltinInspectorProps } from '@lobechat/types';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Check, X } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,13 +8,20 @@ import { useTranslation } from 'react-i18next';
 import { highlightTextStyles, inspectorTextStyles, shinyTextStyles } from '@/styles';
 
 import type { ExecScriptParams, ExecScriptState } from '../../../types';
+import styles from './index.module.css';
 
-const styles = createStaticStyles(({ css }) => ({
-  statusIcon: css`
-    margin-block-end: -2px;
-    margin-inline-start: 4px;
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export const ExecScriptInspector = memo<BuiltinInspectorProps<ExecScriptParams, ExecScriptState>>(
   ({ args, partialArgs, isArgumentsStreaming, isLoading, pluginState }) => {
@@ -49,9 +55,9 @@ export const ExecScriptInspector = memo<BuiltinInspectorProps<ExecScriptParams, 
           {description && <span className={highlightTextStyles.primary}>{description}</span>}
           {isLoading ? null : pluginState?.success !== undefined ? (
             isSuccess ? (
-              <Check className={styles.statusIcon} color={cssVar.colorSuccess} size={14} />
+              <Check className={styles.statusIcon} color={'var(--ant-color-success)'} size={14} />
             ) : (
-              <X className={styles.statusIcon} color={cssVar.colorError} size={14} />
+              <X className={styles.statusIcon} color={'var(--ant-color-error)'} size={14} />
             )
           ) : null}
         </span>

@@ -3,7 +3,6 @@
 import { Flexbox } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
 import { Divider } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
@@ -14,25 +13,9 @@ import { agentService } from '@/services/agent';
 
 import { type AgentItemData } from './AgentItem';
 import AvailableAgentList from './AvailableAgentList';
+import styles from './index.module.css';
 import SelectedAgentList from './SelectedAgentList';
 import { useAgentSelectionStore } from './store';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    display: flex;
-    flex-direction: row;
-
-    height: 500px;
-    padding: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius}px;
-  `,
-  rightColumn: css`
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-  `,
-}));
 
 export interface AddGroupMemberModalProps {
   existingMembers?: string[];

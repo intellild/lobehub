@@ -7,7 +7,6 @@ import { ActionIcon, Center, Empty, Flexbox, Text } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { SkillsIcon } from '@lobehub/ui/icons';
 import { App } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import type { LucideIcon } from 'lucide-react';
@@ -38,74 +37,28 @@ import { chatConfigByIdSelectors } from '@/store/agent/selectors';
 import { useChatStore } from '@/store/chat';
 import { standardizeIdentifier } from '@/utils/identifier';
 
+import styles from './AgentDocumentsGroup.module.css';
 import DeviceLevelSkills from './DeviceLevelSkills';
 import ProjectLevelSkills from './ProjectLevelSkills';
 import UserLevelSkills, { useUserSkills } from './UserLevelSkills';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 dayjs.extend(relativeTime);
 
 type ResourceFilter = 'skills' | 'documents' | 'web';
 type DocumentOpenMode = 'portal' | 'route';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    cursor: pointer;
-    padding: 12px;
-    border-radius: 8px;
-    background: ${cssVar.colorFillTertiary};
-
-    &:hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  containerActive: css`
-    background: ${cssVar.colorFillSecondary};
-  `,
-  description: css`
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  meta: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  pillActive: css`
-    font-weight: 500;
-    color: ${cssVar.colorText};
-    background: ${cssVar.colorFillSecondary};
-
-    &:hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  pillTab: css`
-    cursor: pointer;
-    user-select: none;
-
-    padding-block: 4px;
-    padding-inline: 12px;
-    border-radius: 999px;
-
-    font-size: 12px;
-    line-height: 1.4;
-    color: ${cssVar.colorTextSecondary};
-
-    background: transparent;
-
-    transition:
-      background ${cssVar.motionDurationFast} ${cssVar.motionEaseInOut},
-      color ${cssVar.motionDurationFast} ${cssVar.motionEaseInOut};
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  title: css`
-    font-weight: 500;
-  `,
-}));
 
 const FILTER_OPTIONS = [
   { labelKey: 'workingPanel.resources.filter.skills', value: 'skills' },

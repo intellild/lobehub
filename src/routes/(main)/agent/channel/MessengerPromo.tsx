@@ -2,7 +2,6 @@
 
 import { ActionIcon } from '@lobehub/ui';
 import { Discord, Slack, Telegram } from '@lobehub/ui/icons';
-import { createStaticStyles } from 'antd-style';
 import { X } from 'lucide-react';
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,56 +10,11 @@ import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwar
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
 
+import styles from './MessengerPromo.module.css';
+
 // Bump this id when the card content changes so dismissing the old
 // variant does not hide the new one.
 const MESSENGER_PROMO_ID = 'messenger-promo-v1';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    cursor: pointer;
-
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    margin-block: 0 8px;
-    margin-inline: 12px;
-    padding: 12px;
-    border: 1px solid ${cssVar.colorFillSecondary};
-    border-radius: 12px;
-
-    background: color-mix(in srgb, ${cssVar.colorFillQuaternary} 50%, ${cssVar.colorBgContainer});
-
-    transition: background 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  closeButton: css`
-    position: absolute;
-    z-index: 1;
-    inset-block-start: 4px;
-    inset-inline-end: 4px;
-  `,
-  desc: css`
-    font-size: 11px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  iconRow: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  `,
-  title: css`
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 const ICON_SIZE = 16;
 

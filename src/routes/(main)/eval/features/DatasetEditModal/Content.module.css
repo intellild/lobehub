@@ -1,0 +1,71 @@
+.sectionLabel {
+font-size: var(--ant-font-size-sm);
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}
+
+.presetCard {
+cursor: pointer;
+
+position: relative;
+
+padding: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius);
+
+background: var(--ant-color-bg-container);
+
+transition:
+  border-color 0.15s ease,
+  background 0.15s ease;
+
+&:hover {
+  border-color: var(--ant-color-border);
+  background: var(--ant-color-fill-tertiary);
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+}
+
+.presetCardSelected {
+border-color: var(--ant-color-primary-border);
+background: var(--ant-color-primary-bg);
+
+&:hover {
+  border-color: var(--ant-color-primary-border);
+  background: var(--ant-color-primary-bg);
+}
+}
+
+.presetGrid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 8px;
+}
+
+.presetIcon {
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius);
+background: var(--ant-color-bg-elevated);
+}
+
+.selectedMark {
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 18px;
+height: 18px;
+border-radius: 999px;
+
+color: var(--ant-color-bg-container);
+
+background: var(--ant-color-primary);
+}

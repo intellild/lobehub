@@ -1,41 +1,16 @@
 'use client';
 
 import { ActionIcon, Block, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import dayjs from 'dayjs';
 import { ArchiveIcon, BellIcon, ImageIcon, VideoIcon } from 'lucide-react';
 import { memo, useCallback } from 'react';
 
 import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwareNavigate';
 
+import stylesModule from './NotificationItem.module.css';
+
 const ACTION_CLASS_NAME = 'notification-item-actions';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    cursor: pointer;
-    user-select: none;
-
-    .${ACTION_CLASS_NAME} {
-      opacity: 0;
-      transition: opacity 0.2s ${cssVar.motionEaseOut};
-    }
-
-    &:hover {
-      .${ACTION_CLASS_NAME} {
-        opacity: 1;
-      }
-    }
-  `,
-  unreadDot: css`
-    flex-shrink: 0;
-
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-
-    background: ${cssVar.colorPrimary};
-  `,
-}));
+const styles = stylesModule;
 
 const TYPE_ICON_MAP: Record<string, typeof BellIcon> = {
   image_generation_completed: ImageIcon,
@@ -84,7 +59,7 @@ const NotificationItem = memo<NotificationItemProps>(
       >
         <Flexbox horizontal align="flex-start" gap={8}>
           <Icon
-            color={cssVar.colorTextDescription}
+            color={'var(--ant-color-text-description)'}
             icon={TypeIcon}
             size={18}
             style={{ flexShrink: 0, marginTop: 2 }}

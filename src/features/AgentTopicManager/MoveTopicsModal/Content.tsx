@@ -3,7 +3,6 @@
 import { AGENT_CHAT_URL, DEFAULT_INBOX_AVATAR } from '@lobechat/const';
 import { Button, Flexbox, Icon, Text } from '@lobehub/ui';
 import { useModalContext } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { CircleCheck } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +19,8 @@ import { useChatStore } from '@/store/chat';
 import { useHomeStore } from '@/store/home';
 import { homeAgentListSelectors } from '@/store/home/selectors';
 
+import styles from './Content.module.css';
+
 type Step = 'pick' | 'confirm' | 'moving' | 'done';
 
 export interface MoveTopicsContentProps {
@@ -29,27 +30,6 @@ export interface MoveTopicsContentProps {
   sourceAgentId?: string | null;
   topicIds: string[];
 }
-
-const styles = createStaticStyles(({ css }) => ({
-  searchInput: css`
-    width: 100%;
-    padding-block: 6px;
-    padding-inline: 10px;
-    border: none;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    font-family: inherit;
-    font-size: 13px;
-    color: ${cssVar.colorText};
-
-    background: transparent;
-    outline: none;
-
-    &::placeholder {
-      color: ${cssVar.colorTextPlaceholder};
-    }
-  `,
-}));
 
 const MoveTopicsContent = memo<MoveTopicsContentProps>(({ onMoved, sourceAgentId, topicIds }) => {
   const { t } = useTranslation(['topic', 'chat', 'common']);
@@ -195,7 +175,7 @@ const MoveTopicsContent = memo<MoveTopicsContentProps>(({ onMoved, sourceAgentId
   return (
     <Flexbox align={'center'} gap={20} justify={'center'} padding={48}>
       <Flexbox align={'center'} gap={12}>
-        <Icon color={cssVar.colorSuccess} icon={CircleCheck} size={32} />
+        <Icon color={'var(--ant-color-success)'} icon={CircleCheck} size={32} />
         <Text weight={500}>{t('management.moveModal.done', { count })}</Text>
       </Flexbox>
       <Flexbox horizontal gap={8}>

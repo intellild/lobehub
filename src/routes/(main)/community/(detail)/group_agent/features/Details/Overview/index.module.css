@@ -1,0 +1,11 @@
+.desc {
+flex: 1;
+  margin: 0 !important;
+  color: var(--ant-color-text-secondary);
+}
+
+.title {
+margin: 0 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}

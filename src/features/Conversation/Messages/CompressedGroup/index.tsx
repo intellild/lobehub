@@ -3,7 +3,6 @@
 import type { CompressionGroupMetadata, UIChatMessage } from '@lobechat/types';
 import { ActionIcon, Flexbox, Icon, Markdown, ScrollShadow } from '@lobehub/ui';
 import { confirmModal, Tabs, type TabsItem } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { ChevronDown, ChevronUp, History, Sparkles, Undo2 } from 'lucide-react';
 import { memo, useCallback, useMemo, useState } from 'react';
@@ -16,7 +15,21 @@ import { shinyTextStyles } from '@/styles/loading';
 
 import { dataSelectors, useConversationStore } from '../../store';
 import CompressedMessageItem from './CompressedMessageItem';
+import styles from './index.module.css';
 import { isCompressionSummaryGenerating, shouldShowCompressedGroupPanel } from './logic';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const STORAGE_KEY_PREFIX = 'compressed-group-tab:';
 
@@ -29,29 +42,6 @@ const setStoredTab = (id: string, tab: string) => {
   if (typeof window === 'undefined') return;
   localStorage.setItem(`${STORAGE_KEY_PREFIX}${id}`, tab);
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    margin-block-end: 8px;
-    padding-block: 8px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  contentScroll: css`
-    max-height: min(40vh, 400px);
-  `,
-  header: css`
-    .ant-tabs-nav {
-      margin-block-end: 0;
-    }
-  `,
-  messagesContainer: css`
-    padding-block: 8px;
-  `,
-}));
 
 export interface CompressedGroupMessageProps {
   id: string;

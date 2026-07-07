@@ -9,7 +9,6 @@ import {
   Flexbox,
   menuSharedStyles,
 } from '@lobehub/ui';
-import { cssVar, cx } from 'antd-style';
 import { Check } from 'lucide-react';
 import type { ComponentType } from 'react';
 import { memo, useState } from 'react';
@@ -22,6 +21,19 @@ import { styles as modelSwitchPanelStyles } from '@/features/ModelSwitchPanel/st
 import type { ListItem } from '@/features/ModelSwitchPanel/types';
 import { menuKey } from '@/features/ModelSwitchPanel/utils';
 import type { EnabledProviderWithModels } from '@/types/index';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface GenerationMultipleProvidersItemProps {
   activeKey: string;
@@ -76,7 +88,7 @@ const GenerationMultipleProvidersItem = memo<GenerationMultipleProvidersItemProp
                   provider={(activeProvider ?? item.data.providers[0]).id}
                 />
                 <Flexbox gap={4} paddingBlock={8} paddingInline={8}>
-                  <Flexbox style={{ color: cssVar.colorTextSecondary, fontSize: 12 }}>
+                  <Flexbox style={{ color: 'var(--ant-color-text-secondary)', fontSize: 12 }}>
                     {t('ModelSwitchPanel.useModelFrom')}
                   </Flexbox>
                   {item.data.providers.map((p) => {

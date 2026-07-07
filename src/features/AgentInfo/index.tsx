@@ -1,26 +1,12 @@
 import { Avatar, Center, Markdown, Tag } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { startCase } from 'es-toolkit/compat';
 import { type CSSProperties } from 'react';
 import { memo } from 'react';
 
 import { type MetaData } from '@/types/meta';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  avatar: css`
-    flex: none;
-  `,
-  desc: css`
-    color: ${cssVar.colorTextDescription};
-    text-align: center;
-  `,
-  title: css`
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;
-  `,
-}));
+import styles from './index.module.css';
 
 export interface AgentInfoProps {
   meta?: MetaData;
@@ -38,7 +24,7 @@ const AgentInfo = memo<AgentInfoProps>(({ systemRole, style, meta, onAvatarClick
         <Avatar
           animation
           avatar={meta.avatar}
-          background={meta.backgroundColor || cssVar.colorFillTertiary}
+          background={meta.backgroundColor || 'var(--ant-color-fill-tertiary)'}
           className={styles.avatar}
           shape={'square'}
           size={100}

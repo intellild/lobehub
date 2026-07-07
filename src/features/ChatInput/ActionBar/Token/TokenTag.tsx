@@ -2,7 +2,6 @@ import { ToolNameResolver } from '@lobechat/context-engine';
 import { pluginPrompts } from '@lobechat/prompts';
 import { Center, Flexbox, Tooltip } from '@lobehub/ui';
 import { TokenTag } from '@lobehub/ui/chat';
-import { cssVar } from 'antd-style';
 import numeral from 'numeral';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -160,7 +159,7 @@ const Token = memo(() => {
   const content = (
     <Flexbox gap={12} style={{ minWidth: 200 }}>
       <Flexbox horizontal align={'center'} gap={4} justify={'space-between'} width={'100%'}>
-        <div style={{ color: cssVar.colorTextDescription }}>{t('tokenDetails.title')}</div>
+        <div style={{ color: 'var(--ant-color-text-description)' }}>{t('tokenDetails.title')}</div>
         <Tooltip
           styles={{ root: { maxWidth: 'unset', pointerEvents: 'none' } }}
           title={t('ModelSelect.featureTag.tokens', {
@@ -172,10 +171,10 @@ const Token = memo(() => {
             height={20}
             paddingInline={4}
             style={{
-              background: cssVar.colorFillTertiary,
+              background: 'var(--ant-color-fill-tertiary)',
               borderRadius: 4,
-              color: cssVar.colorTextSecondary,
-              fontFamily: cssVar.fontFamilyCode,
+              color: 'var(--ant-color-text-secondary)',
+              fontFamily: 'var(--ant-font-family-code)',
               fontSize: 11,
             }}
           >
@@ -188,25 +187,25 @@ const Token = memo(() => {
           showIcon
           data={[
             {
-              color: cssVar.magenta,
+              color: 'var(--ant-magenta)',
               id: 'systemRole',
               title: t('tokenDetails.systemRole'),
               value: systemRoleToken,
             },
             {
-              color: cssVar.geekblue,
+              color: 'var(--ant-geekblue)',
               id: 'tools',
               title: t('tokenDetails.tools'),
               value: toolsToken,
             },
             {
-              color: cssVar.orange,
+              color: 'var(--ant-orange)',
               id: 'historySummary',
               title: t('tokenDetails.historySummary'),
               value: historySummaryToken,
             },
             {
-              color: cssVar.gold,
+              color: 'var(--ant-gold)',
               id: 'chats',
               title: t('tokenDetails.chats'),
               value: chatsToken,
@@ -219,13 +218,13 @@ const Token = memo(() => {
         showTotal={t('tokenDetails.total')}
         data={[
           {
-            color: cssVar.colorSuccess,
+            color: 'var(--ant-color-success)',
             id: 'used',
             title: t('tokenDetails.used'),
             value: totalToken,
           },
           {
-            color: cssVar.colorFill,
+            color: 'var(--ant-color-fill)',
             id: 'rest',
             title: t('tokenDetails.rest'),
             value: maxTokens - totalToken,

@@ -1,0 +1,68 @@
+.container {
+border: 1px solid var(--ant-color-fill-secondary);
+border-block-end: none;
+border-radius: 12px 12px 0 0;
+background: var(--ant-color-bg-elevated);
+}
+
+.fileChip {
+overflow: hidden;
+flex-shrink: 0;
+
+max-width: 160px;
+height: 28px;
+padding-block: 0;
+padding-inline: 6px;
+border: 1px solid var(--ant-color-fill-tertiary);
+border-radius: 6px;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+white-space: nowrap;
+}
+
+.fileChipName {
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.icon {
+flex-shrink: 0;
+color: var(--ant-color-text-description);
+}
+
+.imageThumb {
+flex-shrink: 0;
+
+width: 28px !important;
+height: 28px !important;
+margin-block: 0 !important;
+border: 1px solid var(--ant-color-fill-tertiary);
+border-radius: 6px;
+
+box-shadow: none;
+
+img {
+  width: 28px !important;
+  height: 28px !important;
+  object-fit: cover;
+}
+}
+
+.item {
+padding-block: 6px 4px;
+padding-inline: 12px 8px;
+}
+
+.itemDivider {
+border-block-start: 1px solid var(--ant-color-fill-tertiary);
+}
+
+.text {
+overflow: hidden;
+
+font-size: 13px;
+line-height: 1.4;
+text-overflow: ellipsis;
+white-space: nowrap;
+}

@@ -1,0 +1,15 @@
+.lite {
+height: 36px;
+}
+
+.heroSelect {
+width: auto;
+font-size: inherit;
+line-height: 1.2;
+}
+
+.heroText {
+font-size: 24px;
+font-weight: 600;
+line-height: 1.2;
+}

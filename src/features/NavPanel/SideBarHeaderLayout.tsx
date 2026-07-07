@@ -3,7 +3,6 @@
 import { Flexbox, Icon, Text } from '@lobehub/ui';
 import type { BreadcrumbProps } from 'antd';
 import { Breadcrumb } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { ChevronRightIcon, HomeIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { memo } from 'react';
@@ -14,34 +13,11 @@ import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwar
 import { isModifierClick } from '@/utils/navigation';
 
 import BackButton from './components/BackButton';
+import stylesModule from './SideBarHeaderLayout.module.css';
 import ToggleLeftPanelButton from './ToggleLeftPanelButton';
 
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  breadcrumb: css`
-    ol {
-      align-items: center;
-    }
-    .${prefixCls}-breadcrumb-separator {
-      margin-inline: 4px;
-    }
-    .${prefixCls}-breadcrumb-link {
-      display: flex !important;
-      align-items: center !important;
-      font-size: 12px;
-      color: ${cssVar.colorTextDescription};
-    }
-    a.${prefixCls}-breadcrumb-link {
-      &:hover {
-        color: ${cssVar.colorText};
-      }
-    }
-  `,
-  container: css`
-    overflow: hidden;
-  `,
-}));
+const styles = stylesModule;
 
 type BreadcrumbItem = NonNullable<BreadcrumbProps['items']>[number];
 

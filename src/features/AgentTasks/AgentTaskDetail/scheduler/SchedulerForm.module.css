@@ -1,0 +1,55 @@
+.fieldLabel {
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+}
+
+.timezoneOffset {
+flex-shrink: 0;
+margin-inline-start: 12px;
+font-size: 12px;
+color: var(--ant-color-text-description);
+}
+
+.timezoneOption {
+display: flex;
+gap: 12px;
+align-items: center;
+justify-content: space-between;
+
+min-width: 0;
+}
+
+.weekdayButton {
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 36px;
+height: 32px;
+border-radius: 6px;
+
+font-size: 12px;
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+
+background: transparent;
+
+transition: all 0.15s ease;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.weekdayButtonActive {
+color: var(--ant-color-primary);
+background: var(--ant-color-primary-bg);
+
+&:hover {
+  color: var(--ant-color-primary);
+  background: var(--ant-color-primary-bg-hover);
+}
+}

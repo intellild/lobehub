@@ -1,6 +1,5 @@
 import { Block, Button, Flexbox, Tag, Text } from '@lobehub/ui';
 import { App, Divider } from 'antd';
-import { cssVar, cx } from 'antd-style';
 import { memo, type ReactNode, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -8,6 +7,19 @@ import BriefCardSummary from '@/features/DailyBrief/BriefCardSummary';
 import { styles as briefStyles } from '@/features/DailyBrief/style';
 
 import { styles } from './style';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface RecommendationCardProps {
   ctaKey: string;
@@ -49,7 +61,7 @@ export const RecommendationCard = memo<RecommendationCardProps>(
         className={cx(briefStyles.card, styles.card)}
         gap={12}
         padding={12}
-        style={{ borderRadius: cssVar.borderRadiusLG }}
+        style={{ borderRadius: 'var(--ant-border-radius-lg)' }}
         variant={'outlined'}
       >
         <Flexbox horizontal align={'center'} gap={16} justify={'space-between'}>

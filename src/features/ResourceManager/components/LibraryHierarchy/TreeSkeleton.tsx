@@ -1,21 +1,9 @@
 'use client';
 
 import { Flexbox, Skeleton } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-
-    height: 32px;
-    padding-block: 4px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadiusSM};
-  `,
-}));
+import styles from './TreeSkeleton.module.css';
 
 interface TreeSkeletonItemProps {
   opacity?: number;

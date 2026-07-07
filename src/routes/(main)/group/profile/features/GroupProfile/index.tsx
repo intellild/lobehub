@@ -3,7 +3,6 @@
 import { ActionIcon, Button, DropdownMenu, Flexbox } from '@lobehub/ui';
 import { type ModalInstance } from '@lobehub/ui/base-ui';
 import { Divider } from 'antd';
-import { useTheme } from 'antd-style';
 import { MoreHorizontalIcon, PlayIcon, Settings2Icon } from 'lucide-react';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +14,7 @@ import { EditingIndicator, type EditLockClient, useEditLock } from '@/features/E
 import { EditorCanvas } from '@/features/EditorCanvas';
 import { usePermission } from '@/hooks/usePermission';
 import { useQueryRoute } from '@/hooks/useQueryRoute';
+import { useTheme } from '@/hooks/useTheme';
 import { lambdaClient } from '@/libs/trpc/client';
 import { useAgentGroupStore } from '@/store/agentGroup';
 import { agentGroupSelectors } from '@/store/agentGroup/selectors';

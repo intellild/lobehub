@@ -1,113 +1,29 @@
 import { Block, Center, Flexbox, Popover } from '@lobehub/ui';
 import { Progress } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { type ScoreResult } from '../../MCP/calculateScore';
 import { sortItemsByPriority } from '../../MCP/calculateScore';
+import styles from './TotalScore.module.css';
 
-// Version of getGradeColor using cssVar
+// Version of getGradeColor using Ant Design CSS variables.
 const getGradeColor = (grade: string): string => {
   switch (grade) {
     case 'a': {
-      return cssVar.colorSuccess;
+      return 'var(--ant-color-success)';
     }
     case 'b': {
-      return cssVar.colorWarning;
+      return 'var(--ant-color-warning)';
     }
     case 'f': {
-      return cssVar.colorError;
+      return 'var(--ant-color-error)';
     }
     default: {
-      return cssVar.colorTextSecondary;
+      return 'var(--ant-color-text-secondary)';
     }
   }
 };
-
-const styles = createStaticStyles(({ css }) => ({
-  colorDot: css`
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  `,
-  container: css`
-    padding: 24px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  description: css`
-    margin-block-start: 8px;
-    font-size: 14px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  gradeBadge: css`
-    flex: none;
-
-    width: 32px;
-    height: 32px;
-    border: 2px solid;
-    border-radius: 50%;
-
-    font-size: 16px;
-    font-weight: bold;
-  `,
-  gradeInfo: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    margin-block-start: 12px;
-  `,
-  itemList: css`
-    margin-block: 8px;
-    margin-inline: 0;
-    padding-inline-start: 16px;
-
-    li {
-      margin-block: 4px;
-      margin-inline: 0;
-    }
-  `,
-  legend: css`
-    display: flex;
-    gap: 16px;
-    margin-block-start: 8px;
-    font-size: 12px;
-  `,
-  legendItem: css`
-    display: flex;
-    gap: 4px;
-    align-items: center;
-  `,
-  progressContainer: css`
-    margin-block-start: 16px;
-  `,
-  scoreText: css`
-    font-size: 24px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-  sectionTitle: css`
-    margin-block: 12px 6px;
-    margin-inline: 0;
-    padding-block-start: 8px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-
-    font-size: 14px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-
-    &:first-of-type {
-      padding-block-start: 0;
-      border-block-start: none;
-    }
-  `,
-  tooltipContent: css`
-    max-width: 400px;
-    line-height: 1.5;
-  `,
-}));
 
 interface ScoreItem {
   check: boolean;
@@ -130,13 +46,13 @@ const TotalScore = memo<TotalScoreProps>(({ scoreResult, scoreItems = [], isVali
   // Segment-level color configuration using theme colors
   const SEGMENT_COLORS = {
     // Green (80-100%)
-    A_COLOR: cssVar.colorSuccess,
+    A_COLOR: 'var(--ant-color-success)',
 
     // Yellow (60-85%)
-    B_COLOR: cssVar.colorWarning,
+    B_COLOR: 'var(--ant-color-warning)',
 
     // Red (0-60%)
-    F_COLOR: cssVar.colorError,
+    F_COLOR: 'var(--ant-color-error)',
   };
 
   const allItems = sortItemsByPriority([...scoreItems]);
@@ -177,7 +93,7 @@ const TotalScore = memo<TotalScoreProps>(({ scoreResult, scoreItems = [], isVali
 
       {incompleteRequired.length > 0 && (
         <>
-          <div className={styles.sectionTitle} style={{ color: cssVar.colorError }}>
+          <div className={styles.sectionTitle} style={{ color: 'var(--ant-color-error)' }}>
             {t('mcp.details.totalScore.popover.incompleteRequired', {
               count: incompleteRequired.length,
             })}
@@ -209,7 +125,7 @@ const TotalScore = memo<TotalScoreProps>(({ scoreResult, scoreItems = [], isVali
 
       {incompleteOptional.length > 0 && (
         <>
-          <div className={styles.sectionTitle} style={{ color: cssVar.colorTextSecondary }}>
+          <div className={styles.sectionTitle} style={{ color: 'var(--ant-color-text-secondary)' }}>
             {t('mcp.details.totalScore.popover.incompleteOptional', {
               count: incompleteOptional.length,
             })}

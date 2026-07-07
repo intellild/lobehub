@@ -13,7 +13,6 @@ import {
   Tooltip,
 } from '@lobehub/ui';
 import { Spotlight } from '@lobehub/ui/awesome';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ClockIcon } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -29,41 +28,8 @@ import { discoverService } from '@/services/discover';
 import { type DiscoverMcpItem } from '@/types/discover';
 
 import ConnectionTypeTag from './ConnectionTypeTag';
+import styles from './Item.module.css';
 import MetaInfo from './MetaInfo';
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    author: css`
-      color: ${cssVar.colorTextDescription};
-    `,
-    code: css`
-      font-family: ${cssVar.fontFamilyCode};
-    `,
-    desc: css`
-      flex: 1;
-      margin: 0 !important;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    footer: css`
-      margin-block-start: 16px;
-      border-block-start: 1px dashed ${cssVar.colorBorder};
-      background: ${cssVar.colorBgContainer};
-    `,
-    secondaryDesc: css`
-      font-size: 12px;
-      color: ${cssVar.colorTextDescription};
-    `,
-    title: css`
-      margin: 0 !important;
-      font-size: 16px !important;
-      font-weight: 500 !important;
-
-      &:hover {
-        color: ${cssVar.colorLink};
-      }
-    `,
-  };
-});
 
 const McpItem = memo<DiscoverMcpItem>(
   ({
@@ -172,7 +138,7 @@ const McpItem = memo<DiscoverMcpItem>(
                 target={'_blank'}
                 onClick={stopPropagation}
               >
-                <ActionIcon fill={cssVar.colorTextDescription} icon={Github} />
+                <ActionIcon fill={'var(--ant-color-text-description)'} icon={Github} />
               </a>
             )}
           </Flexbox>

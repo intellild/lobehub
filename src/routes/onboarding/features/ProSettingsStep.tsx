@@ -1,7 +1,6 @@
 'use client';
 
 import { Button, Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Undo2Icon } from 'lucide-react';
 import { memo, useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -47,7 +46,7 @@ const ProSettingsStep = memo<ProSettingsStepProps>(({ onBack, onNext }) => {
           icon={Undo2Icon}
           type={'text'}
           style={{
-            color: cssVar.colorTextDescription,
+            color: 'var(--ant-color-text-description)',
           }}
           onClick={handleBack}
         >

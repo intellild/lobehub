@@ -1,5 +1,4 @@
 import { Block, Flexbox, Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { LucideArrowRight, LucideBolt } from 'lucide-react';
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -34,7 +33,7 @@ export const Footer: FC<FooterProps> = ({ onClose }) => {
           <Icon icon={LucideBolt} size={'small'} />
           {t('ModelSwitchPanel.manageProvider')}
         </Flexbox>
-        <Icon color={cssVar.colorTextDescription} icon={LucideArrowRight} size={'small'} />
+        <Icon color={'var(--ant-color-text-description)'} icon={LucideArrowRight} size={'small'} />
       </Block>
     </Flexbox>
   );

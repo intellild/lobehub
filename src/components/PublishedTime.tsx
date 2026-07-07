@@ -1,9 +1,22 @@
 'use client';
-
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import dayjs from 'dayjs';
 import { type CSSProperties, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import styles from './PublishedTime.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const LAST_MODIFIED = new Date().toISOString();
 
@@ -26,16 +39,6 @@ const formatDate = (date: string, t: (key: string) => string, template?: string)
   if (d.isSame(now, 'year')) return d.format(t('time.formatThisYear'));
   return d.format(t('time.formatOtherYear'));
 };
-
-const styles = createStaticStyles(({ css }) => {
-  return {
-    time: css`
-      font-size: 12px;
-      color: ${cssVar.colorTextSecondary};
-      letter-spacing: 0.02em;
-    `,
-  };
-});
 
 interface PublishedTimeProps {
   className?: string;

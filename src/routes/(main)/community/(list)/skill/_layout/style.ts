@@ -1,7 +1,5 @@
-import { createStaticStyles } from 'antd-style';
 
-export const styles = createStaticStyles(({ css }) => ({
-  mainContainer: css`
-    position: relative;
-  `,
-}));
+import styles from './style.module.css';
+
+export { styles };
+

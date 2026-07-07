@@ -4,18 +4,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import DocumentBody from './Body';
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({
-    content: 'content',
-  }),
-  cssVar: {
-    colorBgContainer: 'var(--color-bg-container)',
-    colorBorderSecondary: 'var(--color-border-secondary)',
-    colorTextSecondary: 'var(--color-text-secondary)',
-    fontFamilyCode: 'monospace',
-  },
-}));
-
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,

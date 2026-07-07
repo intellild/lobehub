@@ -1,12 +1,12 @@
 import { Flexbox, Tag, Text } from '@lobehub/ui';
 import { Tabs, type TabsItem } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { CaseTrigger } from './CaseTrigger';
 import { StatsStrip } from './components/StatsStrip';
 import { StatusPill } from './components/StatusPill';
 import { TransportBar } from './components/TransportBar';
+import styles from './DevtoolsLayout.module.css';
 import { useAgentMockPlayer } from './hooks/useAgentMockPlayer';
 import { useAgentMockReplayTarget } from './hooks/useAgentMockReplayTarget';
 import { useMockCases } from './hooks/useMockCases';
@@ -18,54 +18,6 @@ const TAB_OPTIONS: TabsItem[] = [
   { key: 'timeline', label: 'Timeline' },
   { key: 'fixture', label: 'Fixture' },
 ];
-
-const styles = createStaticStyles(({ css }) => ({
-  body: css`
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 12px;
-
-    padding: 16px;
-  `,
-  hint: css`
-    font-size: 11px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  layout: css`
-    display: flex;
-    flex-direction: column;
-    height: min(720px, 80vh);
-    min-height: 480px;
-  `,
-  meta: css`
-    overflow: hidden;
-    flex: 1;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  rowOne: css`
-    padding-block: 12px;
-    padding-inline: 16px;
-  `,
-  rowTwo: css`
-    padding-block: 8px;
-    padding-inline: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  view: css`
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-
-    min-height: 0;
-  `,
-}));
 
 export const DevtoolsLayout = memo(() => {
   const activeTab = useAgentMockStore((s) => s.activeTab);

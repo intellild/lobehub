@@ -1,6 +1,5 @@
 import { builtinToolIdentifiers } from '@lobechat/builtin-tools/identifiers';
 import { Icon } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { ChevronRight } from 'lucide-react';
 import { memo, useMemo } from 'react';
@@ -10,33 +9,22 @@ import { pluginHelpers, useToolStore } from '@/store/tool';
 import { toolSelectors } from '@/store/tool/selectors';
 import { shinyTextStyles } from '@/styles';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  aborted: css`
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  apiName: css`
-    font-family: ${cssVar.fontFamilyCode};
-    color: ${cssVar.colorTextSecondary};
-  `,
-  paramKey: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  paramValue: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  root: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+import styles from './ToolTitle.module.css';
 
-    color: ${cssVar.colorTextDescription};
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
+export { styles };
 
 // Maximum number of parameters to display
 const MAX_PARAMS = 1;

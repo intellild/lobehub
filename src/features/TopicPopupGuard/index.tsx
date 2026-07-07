@@ -2,34 +2,13 @@
 
 import { type TopicPopupInfo } from '@lobechat/electron-client-ipc';
 import { Button, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ExternalLinkIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ensureElectronIpc } from '@/utils/electron/ipc';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  description: css`
-    max-width: 360px;
-
-    font-size: 14px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-    text-align: center;
-  `,
-  title: css`
-    margin-block: 0;
-    font-size: 18px;
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-  wrapper: css`
-    width: 100%;
-    height: 100%;
-    padding: 24px;
-  `,
-}));
+import styles from './index.module.css';
 
 interface TopicInPopupGuardProps {
   popup: TopicPopupInfo;

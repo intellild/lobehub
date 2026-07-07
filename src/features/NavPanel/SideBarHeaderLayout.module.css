@@ -1,0 +1,23 @@
+.breadcrumb {
+ol {
+  align-items: center;
+}
+.ant-breadcrumb-separator {
+  margin-inline: 4px;
+}
+.ant-breadcrumb-link {
+  display: flex !important;
+  align-items: center !important;
+  font-size: 12px;
+  color: var(--ant-color-text-description);
+}
+a.ant-breadcrumb-link {
+  &:hover {
+    color: var(--ant-color-text);
+  }
+}
+}
+
+.container {
+overflow: hidden;
+}

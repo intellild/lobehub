@@ -1,31 +1,27 @@
 import { Block, Flexbox, Tag, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
 
 import CateTag from '../CateTag';
 import HashTags from '../HashTags';
 import Time from '../Time';
+import stylesModule from './TimeLineCard.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const ACTION_CLASSNAME = 'memory-actions';
-
-const styles = createStaticStyles(({ css }) => ({
-  actions: css`
-    transition: opacity 0.15s ease;
-  `,
-  timelineCard: css`
-    position: relative;
-    .${ACTION_CLASSNAME} {
-      opacity: 0;
-    }
-
-    &:hover {
-      .${ACTION_CLASSNAME} {
-        opacity: 1;
-      }
-    }
-  `,
-}));
+const styles = stylesModule;
 
 interface TimeLineCardProps {
   actions?: ReactNode;
@@ -71,7 +67,7 @@ const TimeLineCard = memo<TimeLineCardProps>(
           </Flexbox>
         )}
         {typeof children === 'string' ? (
-          <Text as={'p'} color={cssVar.colorTextSecondary} ellipsis={{ rows: 3 }}>
+          <Text as={'p'} color={'var(--ant-color-text-secondary)'} ellipsis={{ rows: 3 }}>
             {children}
           </Text>
         ) : (

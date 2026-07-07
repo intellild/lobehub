@@ -2,7 +2,6 @@ import { ModelIcon } from '@lobehub/icons';
 import { ActionIcon, copyToClipboard, Flexbox, Tag, Text } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App, Switch } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { LucidePencil, TrashIcon } from 'lucide-react';
 import { type AiProviderModelListItem } from 'model-bank';
 import { AiModelSourceEnum } from 'model-bank';
@@ -22,42 +21,13 @@ import {
 } from '@/utils/pricing';
 
 import { createModelConfigModal } from './ModelConfigModal';
+import stylesModule from './ModelItem.module.css';
 import { ProviderSettingsContext } from './ProviderSettingsContext';
 
-const styles = createStaticStyles(({ css, cx }) => {
-  return {
-    config: cx(
-      'model-item-config',
-      css`
-        opacity: 0;
-        transition: all 100ms ease-in-out;
-      `,
-    ),
-    container: css`
-      position: relative;
-      border-radius: ${cssVar.borderRadiusLG}px;
-      transition: all 200ms ease-in-out;
-
-      &:hover {
-        background-color: ${cssVar.colorFillTertiary};
-
-        .model-item-config {
-          opacity: 1;
-        }
-      }
-    `,
-    desc: css`
-      flex: 1;
-      min-width: 0;
-
-      span {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-    `,
-  };
-});
+const styles: typeof stylesModule & { config: string } = {
+  ...stylesModule,
+  config: [stylesModule.config, 'model-item-config'].join(' '),
+};
 
 interface ModelItemProps extends AiProviderModelListItem {
   enabled: boolean;
@@ -286,7 +256,7 @@ const ModelItem = memo<ModelItemProps>(
             </Flexbox>
             <Flexbox horizontal align={'baseline'} gap={8}>
               {content.length > 0 && (
-                <Text style={{ color: cssVar.colorTextSecondary, fontSize: 12, marginBottom: 0 }}>
+                <Text style={{ color: 'var(--ant-color-text-secondary)', fontSize: 12, marginBottom: 0 }}>
                   {content.join(' · ')}
                 </Text>
               )}

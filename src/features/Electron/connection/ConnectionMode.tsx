@@ -2,7 +2,6 @@ import { type StorageMode } from '@lobechat/electron-client-ipc';
 import { StorageModeEnum } from '@lobechat/electron-client-ipc';
 import { Button, Center, Flexbox, Input, stopPropagation } from '@lobehub/ui';
 import { LobeHub } from '@lobehub/ui/brand';
-import { createStaticStyles } from 'antd-style';
 import { Server } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,66 +9,8 @@ import { useTranslation } from 'react-i18next';
 import { useElectronStore } from '@/store/electron';
 import { electronSyncSelectors } from '@/store/electron/selectors';
 
+import styles from './ConnectionMode.module.css';
 import { Option } from './Option';
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    cardGroup: css`
-      width: 400px; /* Increased width */
-    `,
-    container: css`
-      overflow-y: auto;
-
-      width: 100%;
-      height: 100%;
-      padding-block: 0 40px;
-      padding-inline: 24px; /* Increased top padding */
-    `,
-    continueButton: css`
-      width: 100%;
-      margin-block-start: 40px;
-    `,
-    groupTitle: css`
-      padding-inline-start: 4px; /* Align with card padding */
-      font-size: 16px;
-      font-weight: 500;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    header: css`
-      text-align: center;
-    `,
-    inputError: css`
-      margin-block-start: 8px;
-      font-size: 12px;
-      color: ${cssVar.colorError};
-    `,
-    modal: css`
-      .ant-drawer-close {
-        position: absolute;
-        inset-block-start: 8px;
-        inset-inline-end: 0;
-      }
-    `,
-    selfHostedInput: css`
-      margin-block-start: 12px;
-    `,
-    selfHostedText: css`
-      cursor: pointer;
-      font-size: 14px;
-      color: ${cssVar.colorTextTertiary};
-
-      :hover {
-        color: ${cssVar.colorTextSecondary};
-      }
-    `,
-    title: css`
-      margin-block: 16px 48px; /* Increased Spacing below title */
-      font-size: 24px; /* Increased font size */
-      font-weight: 600;
-      color: ${cssVar.colorTextHeading};
-    `,
-  };
-});
 
 type RemoteStorageMode = Extract<StorageMode, 'cloud' | 'selfHost'>;
 

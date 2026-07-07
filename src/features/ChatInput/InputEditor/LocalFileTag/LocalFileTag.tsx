@@ -1,7 +1,6 @@
 import { isDesktop } from '@lobechat/const';
 import { Flexbox, Icon, Popover, Text } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import type { LexicalEditor } from 'lexical';
 import { $createNodeSelection, $setSelection, CLICK_COMMAND, COMMAND_PRIORITY_LOW } from 'lexical';
 import { ExternalLink, EyeIcon, FolderOpen } from 'lucide-react';
@@ -19,8 +18,21 @@ import { useChatStore } from '@/store/chat';
 import { topicSelectors } from '@/store/chat/selectors';
 
 import { parseLocalFileHref } from '../../../Conversation/Markdown/plugins/LocalFileLink/parse';
-import { TAG_MARGIN_INLINE_END } from '../constants';
 import { getFileExtension } from '../MentionMenu/localFileDisplay';
+import styles from './LocalFileTag.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const PREVIEWABLE_IMAGE_EXTENSIONS = new Set([
   'avif',
@@ -33,87 +45,6 @@ const PREVIEWABLE_IMAGE_EXTENSIONS = new Set([
   'svg',
   'webp',
 ]);
-
-const styles = createStaticStyles(({ css }) => ({
-  actionBar: css`
-    flex-wrap: wrap;
-    max-width: 320px;
-  `,
-  label: css`
-    overflow: hidden;
-    font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  path: css`
-    max-width: 360px;
-    padding-block: 8px;
-    padding-inline: 10px;
-    border-radius: ${cssVar.borderRadius};
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextSecondary};
-    word-break: break-all;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  popover: css`
-    max-width: 392px;
-  `,
-  previewFrame: css`
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: min(360px, 72vw);
-    max-height: 240px;
-    border: 1px solid ${cssVar.colorFillSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  previewImage: css`
-    display: block;
-    max-width: 100%;
-    max-height: 240px;
-    object-fit: contain;
-  `,
-  tag: css`
-    cursor: default;
-    user-select: none;
-
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    max-width: 240px;
-    margin-inline-end: ${TAG_MARGIN_INLINE_END}px;
-    padding-inline: 2px;
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorInfo};
-    vertical-align: baseline;
-
-    &.selected {
-      outline: 2px solid ${cssVar.colorInfo};
-      outline-offset: 1px;
-    }
-  `,
-  thumbnail: css`
-    flex-shrink: 0;
-
-    width: 16px;
-    height: 16px;
-    border-radius: ${cssVar.borderRadiusXS};
-
-    object-fit: cover;
-    background: ${cssVar.colorFillQuaternary};
-    box-shadow: inset 0 0 0 1px ${cssVar.colorFillSecondary};
-  `,
-}));
 
 export interface LocalFileTagData {
   isDirectory?: boolean;

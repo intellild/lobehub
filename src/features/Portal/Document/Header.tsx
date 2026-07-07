@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Skeleton, Text } from '@lobehub/ui';
-import { cx } from 'antd-style';
 
 import { useClientDataSWR } from '@/libs/swr';
 import { portalKeys } from '@/libs/swr/keys';
@@ -11,6 +10,19 @@ import { getDocumentRenderMode } from '@/utils/documentRenderMode';
 
 import AutoSaveHint from './AutoSaveHint';
 import { useResolvedDocumentId } from './documentViewContext';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const Header = () => {
   const documentId = useResolvedDocumentId();

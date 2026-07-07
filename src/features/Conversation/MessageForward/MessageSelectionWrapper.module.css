@@ -1,0 +1,69 @@
+.band {
+cursor: pointer;
+user-select: none;
+inline-size: 100%;
+transition: background-color 0.1s var(--ant-motion-ease-in-out);
+
+&:hover {
+  background-color: var(--ant-color-fill-tertiary);
+}
+}
+
+.bandSelected {
+background-color: var(--ant-color-fill-quaternary);
+
+&:hover {
+  background-color: var(--ant-color-fill-quaternary);
+}
+}
+
+.checkbox {
+flex: none;
+padding-inline-start: 16px;
+}
+
+.content {
+/* Content is non-interactive while selecting — the whole row is the toggle. */
+pointer-events: none;
+flex: 1;
+min-width: 0;
+
+/* The hover action bar is suppressed in selection mode, so collapse its 28px
+   placeholder too — otherwise every selected row carries a big empty
+   highlighted strip beneath the bubble. */
+[data-user-action-bar-portal],
+[data-assitant-action-bar-portal],
+[data-assistant-group-action-bar-portal] {
+  display: none;
+}
+
+/* The avatar + name + time header is redundant while scanning to select —
+   drop it so every turn reads as one clean line. */
+.message-header {
+  display: none;
+}
+}
+
+.contentAssistant {
+.message-wrapper {
+  align-items: flex-start !important;
+  padding-inline-start: 0 !important;
+}
+}
+
+.contentCollapsed {
+overflow: hidden;
+max-height: 84px;
+
+mask-image: linear-gradient(to bottom, #000 56%, transparent 100%);
+}
+
+.disabledBand {
+cursor: not-allowed;
+inline-size: 100%;
+opacity: 0.4;
+}
+
+.lane {
+padding-inline: 16px;
+}

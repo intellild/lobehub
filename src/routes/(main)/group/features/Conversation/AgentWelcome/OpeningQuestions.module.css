@@ -1,0 +1,19 @@
+.card {
+padding-block: 8px;
+padding-inline: 16px;
+border-radius: 48px;
+
+@media (max-width: 575.98px) {
+  padding-block: 8px;
+  padding-inline: 16px;
+}
+}
+
+.container {
+padding-block: 0;
+padding-inline: 0;
+}
+
+.title {
+color: var(--ant-color-text-description);
+}

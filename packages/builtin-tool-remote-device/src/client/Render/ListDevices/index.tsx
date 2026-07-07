@@ -2,25 +2,11 @@
 
 import { type BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import type { ListOnlineDevicesState } from '../../../types';
 import DeviceCard from '../DeviceCard';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  empty: css`
-    padding-block: 12px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 10px;
-
-    font-size: 13px;
-    color: ${cssVar.colorTextDescription};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
+import styles from './index.module.css';
 
 const ListDevices = memo<BuiltinRenderProps<undefined, ListOnlineDevicesState>>(
   ({ pluginState }) => {

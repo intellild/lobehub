@@ -1,0 +1,59 @@
+.actionTag {
+  cursor: default;
+  user-select: none;
+
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+
+  margin-inline-end: 4px;
+  padding-inline: 2px;
+}
+
+.actionTagLabel {
+  font-weight: 500;
+}
+
+.agentSkillTag,
+.projectSkillTag,
+.skillTag {
+  color: var(--ant-color-success);
+}
+
+.agentSkillTag:global(.selected),
+.projectSkillTag:global(.selected),
+.skillTag:global(.selected) {
+  border-radius: var(--ant-border-radius);
+  outline: 2px solid var(--ant-color-success);
+  outline-offset: 1px;
+}
+
+.clickable {
+  cursor: pointer;
+  border-radius: var(--ant-border-radius);
+  transition: background 0.2s;
+}
+
+.clickable:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+
+.commandTag {
+  color: var(--ant-purple);
+}
+
+.commandTag:global(.selected) {
+  border-radius: var(--ant-border-radius);
+  outline: 2px solid var(--ant-purple);
+  outline-offset: 1px;
+}
+
+.toolTag {
+  color: var(--ant-color-info);
+}
+
+.toolTag:global(.selected) {
+  border-radius: var(--ant-border-radius);
+  outline: 2px solid var(--ant-color-info);
+  outline-offset: 1px;
+}

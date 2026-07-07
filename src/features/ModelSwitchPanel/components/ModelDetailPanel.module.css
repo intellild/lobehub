@@ -1,0 +1,43 @@
+.actionText {
+font-size: 14px;
+font-weight: 500;
+color: var(--ant-color-text);
+}
+
+.container {
+padding-block-end: 8px;
+}
+
+.description {
+margin: 0;
+padding-block: 8px;
+padding-inline: 8px;
+
+line-height: 1.5;
+overflow-wrap: anywhere;
+white-space: pre-wrap;
+}
+
+.row {
+padding-block: 4px;
+padding-inline: 8px;
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+}
+
+.originalPriceText {
+color: var(--ant-color-text-tertiary);
+text-decoration: line-through;
+}
+
+.priceValue {
+display: inline-flex;
+gap: 4px;
+align-items: baseline;
+}
+
+.titleText {
+font-size: 14px;
+font-weight: 400;
+color: var(--ant-color-text-secondary);
+}

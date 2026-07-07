@@ -1,5 +1,4 @@
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { type LucideIcon } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
@@ -7,42 +6,10 @@ import { memo } from 'react';
 import ImperativeModal from '@/components/ImperativeModal';
 import { useIsDark } from '@/hooks/useIsDark';
 
+import stylesModule from './index.module.css';
+
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  modalTitleDark: css`
-    &.${prefixCls}-modal-header {
-      height: 80px;
-      background:
-        linear-gradient(
-          180deg,
-          color-mix(in srgb, ${cssVar.colorBgElevated} 0%, transparent),
-          ${cssVar.colorBgContainer} 80px
-        ),
-        fixed 0 0 /10px 10px radial-gradient(${cssVar.colorFill} 1px, transparent 0);
-    }
-
-    & .${prefixCls}-modal-title {
-      font-size: 24px;
-    }
-  `,
-  modalTitleLight: css`
-    &.${prefixCls}-modal-header {
-      height: 80px;
-      background:
-        linear-gradient(
-          180deg,
-          color-mix(in srgb, ${cssVar.colorBgElevated} 0%, transparent),
-          ${cssVar.colorBgContainer} 140px
-        ),
-        fixed 0 0 /10px 10px radial-gradient(${cssVar.colorFill} 1px, transparent 0);
-    }
-
-    & .${prefixCls}-modal-title {
-      font-size: 24px;
-    }
-  `,
-}));
+const styles = stylesModule;
 
 interface DataStyleModalProps {
   children: ReactNode;

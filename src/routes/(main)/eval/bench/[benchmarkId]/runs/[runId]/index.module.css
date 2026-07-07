@@ -1,0 +1,39 @@
+.panel {
+overflow: hidden;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-bg-container);
+}
+
+.panelBody {
+display: flex;
+flex-direction: column;
+gap: 20px;
+padding: 20px;
+}
+
+.panelHeader {
+display: flex;
+gap: 12px;
+align-items: center;
+justify-content: space-between;
+
+padding-block: 12px;
+padding-inline: 20px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.panelLabel {
+font-size: var(--ant-font-size-sm);
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}
+
+.stateBody {
+display: flex;
+align-items: center;
+justify-content: center;
+
+min-height: 430px;
+padding: 20px;
+}

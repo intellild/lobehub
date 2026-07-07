@@ -1,5 +1,4 @@
 import { Flexbox, Tag, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { type CSSProperties } from 'react';
 import { memo } from 'react';
 
@@ -17,11 +16,11 @@ const TitleWithPercentage = memo<TitleWithPercentageProps>(
     const percentage = calcGrowthPercentage(count || 0, prvCount || 0);
 
     const upStyle: CSSProperties = {
-      color: cssVar.colorSuccess,
+      color: 'var(--ant-color-success)',
     };
 
     const downStyle: CSSProperties = {
-      color: cssVar.colorWarning,
+      color: 'var(--ant-color-warning)',
     };
 
     return (

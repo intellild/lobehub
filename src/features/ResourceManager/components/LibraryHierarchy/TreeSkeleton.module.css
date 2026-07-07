@@ -1,0 +1,10 @@
+.container {
+display: flex;
+gap: 6px;
+align-items: center;
+
+height: 32px;
+padding-block: 4px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius-sm);
+}

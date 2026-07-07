@@ -2,56 +2,13 @@
 
 import { Avatar, Checkbox, Flexbox, stopPropagation, Text } from '@lobehub/ui';
 import { useHover } from 'ahooks';
-import { createStaticStyles } from 'antd-style';
 import { X } from 'lucide-react';
 import { memo, useRef } from 'react';
 
 import { DEFAULT_AVATAR } from '@/const/meta';
 
+import styles from './AgentItem.module.css';
 import { useAgentSelectionStore } from './store';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  item: css`
-    cursor: pointer;
-
-    margin-block: 1px;
-    padding-block: 6px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-
-    transition: background 0.2s ease;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  removeButton: css`
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    transition: all 0.2s ease;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  title: css`
-    overflow: hidden;
-    flex: 1;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
 
 export interface AgentItemData {
   avatar: string | null;

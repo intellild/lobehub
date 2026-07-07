@@ -6,7 +6,6 @@ import {
   getTopicMetadataWorkingDirectorySourcePath,
 } from '@lobechat/utils/client/topic';
 import { Flexbox, Icon, Popover, Skeleton, Tag, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar, keyframes, useTheme } from 'antd-style';
 import { CheckCircle2, Hand, HashIcon, MessageSquareDashed, TriangleAlert } from 'lucide-react';
 import type { CSSProperties } from 'react';
 import { memo, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
@@ -20,6 +19,7 @@ import DirIcon from '@/features/ChatInput/ControlBar/DirIcon';
 import { useHasDraft } from '@/features/ChatInput/draftStorage';
 import NavItem from '@/features/NavPanel/components/NavItem';
 import { buildWorkspaceAwarePath } from '@/features/Workspace/workspaceAwarePath';
+import { useTheme } from '@/hooks/useTheme';
 import { getPlatformIcon } from '@/routes/(main)/agent/channel/const';
 import { useAgentStore } from '@/store/agent';
 import { agentSelectors } from '@/store/agent/selectors';
@@ -34,79 +34,8 @@ import Actions from './Actions';
 import Editing from './Editing';
 import { getPullRequestState, getTopicMetaCard, PR_STATE_VISUAL } from './metaCardData';
 import MetaHoverCard from './MetaHoverCard';
+import styles from './index.module.css';
 import { useTopicItemDropdownMenu } from './useDropdownMenu';
-
-const rippleAnim = keyframes`
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(3);
-    opacity: 0;
-  }
-`;
-
-// Base UI Popover plays an opacity/scale enter+exit transition driven by these
-// CSS vars on the positioner. Zero them so the meta hover card appears instantly
-// instead of easing in — the hover-intent delay (`mouseEnterDelay`) still gates
-// when it shows. `styles.root` maps to the positioner (inline style → wins over
-// the library's default without a specificity fight).
-const META_HOVER_CARD_STYLES = {
-  content: { padding: 12 },
-  root: {
-    '--lobe-popover-animation-duration': '0ms',
-    '--lobe-popover-animation-duration-exit': '0ms',
-  } as CSSProperties,
-};
-
-const styles = createStaticStyles(({ css }) => ({
-  unreadWrapper: css`
-    position: relative;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 14px;
-    height: 14px;
-  `,
-  unreadDot: css`
-    position: relative;
-    z-index: 1;
-
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-
-    background: ${cssVar.colorInfo};
-  `,
-  unreadRipple: css`
-    position: absolute;
-    inset: 0;
-
-    width: 6px;
-    height: 6px;
-    margin: auto;
-    border: 1px solid ${cssVar.colorInfo};
-    border-radius: 50%;
-
-    background: transparent;
-
-    animation: ${rippleAnim} 1.8s ease-out infinite;
-  `,
-  runningElapsedTime: css`
-    flex: none;
-
-    min-width: 42px;
-
-    font-size: 12px;
-    font-variant-numeric: tabular-nums;
-    line-height: 1;
-    color: ${cssVar.colorTextTertiary};
-    text-align: end;
-  `,
-}));
 
 // Module-scoped so a click on any topic cancels a pending click on another.
 // Per-item refs can't do that, which lets rapid clicks across items all
@@ -201,8 +130,8 @@ const TopicItem = memo<TopicItemProps>(
     const addTab = useElectronStore((s) => s.addTab);
 
     const loadingRingColor = isDarkMode
-      ? cssVar.colorWarningBorder
-      : `color-mix(in srgb, ${cssVar.colorWarning} 45%, transparent)`;
+      ? 'var(--ant-color-warning-border)'
+      : `color-mix(in srgb, ${'var(--ant-color-warning)'} 45%, transparent)`;
 
     // Construct href for cmd+click support
     const href = useMemo(() => {
@@ -304,7 +233,7 @@ const TopicItem = memo<TopicItemProps>(
       showWorkingDirectory && workingDirectoryDisplay ? (
         <Flexbox horizontal align={'center'} gap={4} style={{ overflow: 'hidden' }}>
           <DirIcon repoType={workingDirectoryDisplay.repoType} size={12} />
-          <Text ellipsis fontSize={11} style={{ color: cssVar.colorTextDescription }}>
+          <Text ellipsis fontSize={11} style={{ color: 'var(--ant-color-text-description)' }}>
             {workingDirectoryDisplay.label}
           </Text>
         </Flexbox>
@@ -333,7 +262,7 @@ const TopicItem = memo<TopicItemProps>(
     );
     const hasDraft = useHasDraft(draftKey);
     const draftPrefix = hasDraft ? (
-      <Text fontSize={12} style={{ color: cssVar.colorError, flex: 'none' }}>
+      <Text fontSize={12} style={{ color: 'var(--ant-color-error)', flex: 'none' }}>
         {t('draft')}
       </Text>
     ) : undefined;
@@ -344,16 +273,16 @@ const TopicItem = memo<TopicItemProps>(
         <NavItem
           active={Boolean(active && !isInAgentSubRoute && !isInTopicContextRoute)}
           slots={{ titlePrefix: draftPrefix }}
-          titleColor={cssVar.colorText}
+          titleColor={'var(--ant-color-text)'}
           icon={
             isLoading ? (
               <RingLoadingIcon
                 ringColor={loadingRingColor}
                 size={14}
-                style={{ color: cssVar.colorWarning }}
+                style={{ color: 'var(--ant-color-warning)' }}
               />
             ) : (
-              <Icon color={cssVar.colorTextDescription} icon={MessageSquareDashed} size={'small'} />
+              <Icon color={'var(--ant-color-text-description)'} icon={MessageSquareDashed} size={'small'} />
             )
           }
           title={
@@ -362,7 +291,7 @@ const TopicItem = memo<TopicItemProps>(
               <Tag
                 size={'small'}
                 style={{
-                  color: cssVar.colorTextDescription,
+                  color: 'var(--ant-color-text-description)',
                   fontSize: 10,
                 }}
               >
@@ -391,24 +320,24 @@ const TopicItem = memo<TopicItemProps>(
         href={href}
         slots={{ titlePrefix: draftPrefix }}
         title={title === '...' ? <DotsLoading gap={3} size={4} /> : title}
-        titleColor={cssVar.colorText}
+        titleColor={'var(--ant-color-text)'}
         icon={(() => {
           if (isWaitingForHuman) {
-            return <Icon icon={Hand} size={'small'} style={{ color: cssVar.colorInfo }} />;
+            return <Icon icon={Hand} size={'small'} style={{ color: 'var(--ant-color-info)' }} />;
           }
           if (shouldShowRunningIcon) {
             return (
               <RingLoadingIcon
                 ringColor={loadingRingColor}
                 size={14}
-                style={{ color: cssVar.colorWarning }}
+                style={{ color: 'var(--ant-color-warning)' }}
               />
             );
           }
           if (isFailed) {
             return (
               <Tooltip title={t('failedStatusTip')}>
-                <Icon icon={TriangleAlert} size={'small'} style={{ color: cssVar.colorError }} />
+                <Icon icon={TriangleAlert} size={'small'} style={{ color: 'var(--ant-color-error)' }} />
               </Tooltip>
             );
           }
@@ -428,7 +357,7 @@ const TopicItem = memo<TopicItemProps>(
               <Icon
                 icon={CheckCircle2}
                 size={'small'}
-                style={{ color: cssVar.colorTextDescription }}
+                style={{ color: 'var(--ant-color-text-description)' }}
               />
             );
           }
@@ -436,7 +365,7 @@ const TopicItem = memo<TopicItemProps>(
           if (metadata?.bot?.platform) {
             const ProviderIcon = getPlatformIcon(metadata.bot!.platform);
             if (ProviderIcon) {
-              return <ProviderIcon color={cssVar.colorTextDescription} size={16} />;
+              return <ProviderIcon color={'var(--ant-color-text-description)'} size={16} />;
             }
           }
           return (
@@ -444,7 +373,7 @@ const TopicItem = memo<TopicItemProps>(
               icon={HashIcon}
               size={'small'}
               style={{
-                color: cssVar.colorTextDescription,
+                color: 'var(--ant-color-text-description)',
                 // Heterogeneous agents (Claude Code, Codex, …) have no chat-style
                 // topic semantics, so suppress the `#` glyph while keeping its
                 // box so the title stays aligned with sibling rows.

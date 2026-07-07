@@ -1,0 +1,14 @@
+.editorWrapper {
+min-height: 200px;
+padding-block: 8px;
+padding-inline: 12px;
+border: 1px solid var(--ant-color-border);
+border-radius: 8px;
+}
+
+.wrapper {
+max-width: 798px;
+margin-inline: auto;
+padding-block: 0;
+padding-inline: 24px;
+}

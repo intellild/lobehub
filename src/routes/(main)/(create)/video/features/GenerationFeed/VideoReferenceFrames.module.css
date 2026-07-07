@@ -1,0 +1,28 @@
+.container {
+flex-shrink: 0;
+width: 48px;
+height: 48px;
+margin-inline-start: -16px;
+}
+
+.image {
+padding: 2px;
+box-shadow: var(--ant-box-shadow-tertiary);
+
+img {
+  border-radius: 6px;
+}
+}
+
+.icon {
+pointer-events: none;
+
+z-index: 10;
+
+border-radius: 50% !important;
+
+color: var(--ant-color-bg-layout);
+
+background: var(--ant-color-fill);
+box-shadow: var(--ant-box-shadow-tertiary);
+}

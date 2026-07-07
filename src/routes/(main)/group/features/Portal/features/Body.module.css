@@ -1,0 +1,4 @@
+.body:has(.portal-artifact) {
+  overflow: hidden;
+  padding-block-end: 12px;
+}

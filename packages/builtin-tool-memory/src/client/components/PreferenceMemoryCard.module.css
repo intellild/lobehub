@@ -1,0 +1,87 @@
+.container {
+overflow: hidden;
+
+width: 100%;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 16px;
+
+background: var(--ant-color-bg-container);
+}
+
+.content {
+padding-block: 12px;
+padding-inline: 16px;
+}
+
+.detail {
+font-size: 13px;
+line-height: 1.6;
+color: var(--ant-color-text-secondary);
+}
+
+.directive {
+font-size: 14px;
+line-height: 1.6;
+color: var(--ant-color-text);
+}
+
+.header {
+padding-block: 10px;
+padding-inline: 12px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.section {
+padding: 4px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+}
+
+.stepContent {
+font-size: 13px;
+line-height: 1.6;
+color: var(--ant-color-text-secondary);
+white-space: pre-wrap;
+}
+
+.stepsContainer {
+.ant-steps-item-content {
+  min-height: auto;
+}
+
+.ant-steps-item-description {
+  padding-block-end: 12px !important;
+}
+}
+
+.suggestion {
+padding-block: 8px;
+padding-inline: 12px;
+border-radius: 8px;
+
+font-size: 13px;
+line-height: 1.5;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.summary {
+font-size: 14px;
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}
+
+.tags {
+padding-block-start: 8px;
+border-block-start: 1px dashed var(--ant-color-border-secondary);
+}
+
+.title {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+
+font-weight: 500;
+color: var(--ant-color-text);
+}

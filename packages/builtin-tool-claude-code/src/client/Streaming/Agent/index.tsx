@@ -1,8 +1,8 @@
 'use client';
 
 import type { BuiltinStreamingProps } from '@lobechat/types';
-import { Button, Flexbox, Markdown, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
+import { Flexbox, Icon, Markdown, Text } from '@lobehub/ui';
+import { Button } from '@lobehub/ui/base-ui';
 import { ListTree } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,31 +11,7 @@ import { useChatStore } from '@/store/chat';
 import { portalThreadSelectors, threadSelectors } from '@/store/chat/selectors';
 
 import type { AgentArgs } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding-block: 4px;
-  `,
-  label: css`
-    padding-inline-start: 4px;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  labelRow: css`
-    margin-block-end: 4px;
-  `,
-  openThread: css`
-    height: 22px;
-    padding-inline: 6px;
-    font-size: 12px;
-  `,
-  promptBox: css`
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
+import styles from './index.module.css';
 
 /**
  * Streaming view for CC's `Agent` tool — shown while the subagent is still
@@ -86,7 +62,7 @@ const AgentStreaming = memo<BuiltinStreamingProps<AgentArgs>>(({ args, toolCallI
             {subagentThread && (
               <Button
                 className={styles.openThread}
-                icon={ListTree}
+                icon={<Icon icon={ListTree} />}
                 size={'small'}
                 type={'text'}
                 onClick={handleToggleThread}

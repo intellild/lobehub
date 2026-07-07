@@ -2,7 +2,6 @@ import { SOCIAL_URL } from '@lobechat/business-const';
 import { copyToClipboard, Icon } from '@lobehub/ui';
 import { DiscordIcon } from '@lobehub/ui/icons';
 import { Button, message } from 'antd';
-import { cssVar } from 'antd-style';
 import { AlertTriangle, Copy, RotateCw } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -71,7 +70,7 @@ const TraceIdError = memo<TraceIdErrorProps>(({ id, traceId }) => {
               cursor: 'pointer',
               opacity: 0.65,
               textDecoration: 'underline dashed',
-              textDecorationColor: cssVar.colorTextQuaternary,
+              textDecorationColor: 'var(--ant-color-text-quaternary)',
               textUnderlineOffset: 3,
             }}
             onClick={handleCopyTraceId}

@@ -1,5 +1,4 @@
 import { Icon } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { CornerDownRight } from 'lucide-react';
 import { memo, useCallback } from 'react';
 
@@ -58,7 +57,7 @@ const ThreadItem = memo<ThreadItemProps>(({ title, id, isSubagent }) => {
         contextMenuItems={dropdownMenu}
         data-thread-id={id}
         disabled={editing}
-        icon={<Icon color={cssVar.colorTextDescription} icon={CornerDownRight} size={'small'} />}
+        icon={<Icon color={'var(--ant-color-text-description)'} icon={CornerDownRight} size={'small'} />}
         // The capped ThreadList is a flex column, so rows shrink to fit its
         // max-height instead of overflowing — the scroll never engages. Pin the
         // row min-height to the NavItem height (36) to force overflow → scroll.

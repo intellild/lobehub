@@ -2,12 +2,12 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, Icon, Markdown, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { CircleCheckBig, SendHorizontal } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { SendMessageArgs, SendMessageResult } from '../../../types';
+import styles from './index.module.css';
 
 const parseResult = (content: unknown): SendMessageResult | undefined => {
   if (content && typeof content === 'object') return content as SendMessageResult;
@@ -18,28 +18,6 @@ const parseResult = (content: unknown): SendMessageResult | undefined => {
     return undefined;
   }
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  bodyBox: css`
-    overflow: hidden;
-
-    padding-block: 4px;
-    padding-inline: 8px;
-    border-radius: 8px;
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  container: css`
-    padding-block: 4px;
-  `,
-  header: css`
-    padding-inline: 4px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  status: css`
-    padding-inline: 4px;
-  `,
-}));
 
 const SendMessage = memo<BuiltinRenderProps<SendMessageArgs>>(({ args, content }) => {
   const { t } = useTranslation('plugin');
@@ -72,8 +50,8 @@ const SendMessage = memo<BuiltinRenderProps<SendMessageArgs>>(({ args, content }
 
       {delivered && (
         <Flexbox horizontal align={'center'} className={styles.status} gap={6}>
-          <Icon icon={CircleCheckBig} size={'small'} style={{ color: cssVar.colorSuccess }} />
-          <Text style={{ color: cssVar.colorTextSecondary, fontSize: 12 }}>
+          <Icon icon={CircleCheckBig} size={'small'} style={{ color: 'var(--ant-color-success)' }} />
+          <Text style={{ color: 'var(--ant-color-text-secondary)', fontSize: 12 }}>
             {t('builtins.lobe-claude-code.sendMessage.queued')}
           </Text>
         </Flexbox>

@@ -3,7 +3,6 @@
 import type { InitDocumentArgs } from '@lobechat/editor-runtime';
 import type { BuiltinStreamingProps } from '@lobechat/types';
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { FileText, Hash, ListTree } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,46 +10,9 @@ import { useTranslation } from 'react-i18next';
 import StreamingMarkdown from '@/components/StreamingMarkdown';
 
 import { AnimatedNumber } from '../../components/AnimatedNumber';
+import styles from './index.module.css';
 
 const MAX_PREVIEW_CHARS = 4000;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-
-    width: 100%;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 8px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  header: css`
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  icon: css`
-    color: ${cssVar.colorPrimary};
-  `,
-  meta: css`
-    color: ${cssVar.colorTextDescription};
-  `,
-  preview: css`
-    max-height: 360px;
-    overflow: auto;
-    padding-block: 8px;
-    padding-inline: 12px;
-  `,
-  title: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 const extractTitle = (markdown: string) => {
   const titleLine = markdown
@@ -89,11 +51,11 @@ export const InitPageStreaming = memo<BuiltinStreamingProps<InitDocumentArgs>>((
             {title || t('builtins.lobe-page-agent.apiName.initPage.creating')}
           </div>
           <Flexbox horizontal align={'center'} className={styles.meta} gap={10}>
-            <Text as={'span'} color={cssVar.colorTextDescription} fontSize={12}>
+            <Text as={'span'} color={'var(--ant-color-text-description)'} fontSize={12}>
               <Icon icon={ListTree} size={12} /> <AnimatedNumber value={lines} />
               {t('builtins.lobe-page-agent.apiName.initPage.lines')}
             </Text>
-            <Text as={'span'} color={cssVar.colorTextDescription} fontSize={12}>
+            <Text as={'span'} color={'var(--ant-color-text-description)'} fontSize={12}>
               <Icon icon={Hash} size={12} /> <AnimatedNumber value={chars} />
               {t('builtins.lobe-page-agent.apiName.initPage.chars')}
             </Text>

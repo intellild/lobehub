@@ -1,0 +1,28 @@
+.container {
+overflow: hidden;
+padding: 12px;
+border: 1px solid var(--ant-color-border);
+border-radius: 8px;
+}
+
+.description {
+font-size: 14px;
+color: var(--ant-color-text-secondary);
+}
+
+.header {
+display: flex;
+gap: 8px;
+align-items: center;
+padding-block: 4px;
+}
+
+.title {
+overflow: hidden;
+
+font-size: 16px;
+font-weight: 500;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}

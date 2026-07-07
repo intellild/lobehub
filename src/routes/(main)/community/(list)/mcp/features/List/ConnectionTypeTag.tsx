@@ -1,5 +1,4 @@
 import { Flexbox, Icon, Tooltip } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Blend, Cloud, LaptopMinimalIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,15 +12,15 @@ const ConnectionTypeTag = memo<ConnectionTypeTagProps>(({ type }) => {
 
   const icons = {
     hybrid: {
-      color: cssVar.purple,
+      color: 'var(--ant-purple)',
       icon: Blend,
     },
     local: {
-      color: cssVar.colorWarning,
+      color: 'var(--ant-color-warning)',
       icon: LaptopMinimalIcon,
     },
     remote: {
-      color: cssVar.colorInfo,
+      color: 'var(--ant-color-info)',
       icon: Cloud,
     },
   };
@@ -35,7 +34,7 @@ const ConnectionTypeTag = memo<ConnectionTypeTagProps>(({ type }) => {
         align={'center'}
         gap={6}
         style={{
-          color: cssVar.colorTextSecondary,
+          color: 'var(--ant-color-text-secondary)',
           fontSize: 12,
         }}
       >

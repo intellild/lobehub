@@ -4,64 +4,19 @@ import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
 import { ActionIcon, Flexbox, Tooltip } from '@lobehub/ui';
 import { Popover } from 'antd';
-import { createStaticStyles, useTheme } from 'antd-style';
 import { PlusIcon, SmilePlus } from 'lucide-react';
 import { type FC, memo, type ReactNode, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { usePermission } from '@/hooks/usePermission';
+import { useTheme } from '@/hooks/useTheme';
 import { useGlobalStore } from '@/store/global';
 import { globalGeneralSelectors } from '@/store/global/selectors';
 
 import { useConversationStore } from '../../store';
+import styles from './ReactionPicker.module.css';
 
 const QUICK_REACTIONS = ['👍', '👎', '❤️', '😄', '😂', '😅', '🎉', '😢', '🤔', '🚀'];
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  emojiButton: css`
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 32px;
-    height: 32px;
-    border-radius: ${cssVar.borderRadius};
-
-    font-size: 18px;
-
-    transition: all 0.2s;
-
-    &:hover {
-      transform: scale(1.1);
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  moreButton: css`
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 32px;
-    height: 32px;
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorTextTertiary};
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  pickerContainer: css`
-    padding: 4px;
-  `,
-}));
 
 interface ReactionPickerProps {
   messageId: string;

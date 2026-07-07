@@ -1,12 +1,12 @@
 import { Billboard, Html, OrbitControls, Text } from '@react-three/drei';
 import type { ThreeEvent } from '@react-three/fiber';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useTheme } from 'antd-style';
 import { memo, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 import { type QueryTagsResult } from '@/database/models/userMemory';
 import UserAvatar from '@/features/User/UserAvatar';
+import { useTheme } from '@/hooks/useTheme';
 
 // Configuration constants
 const CONFIG = {

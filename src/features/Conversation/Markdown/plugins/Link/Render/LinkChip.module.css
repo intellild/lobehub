@@ -1,0 +1,15 @@
+.chip {
+color: var(--ant-color-link);
+text-decoration: none;
+transition: color 0.15s;
+
+&:hover {
+  color: var(--ant-color-link-hover);
+}
+}
+
+.icon {
+display: inline-flex;
+margin-inline-end: 4px;
+vertical-align: -0.15em;
+}

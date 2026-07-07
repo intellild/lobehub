@@ -1,26 +1,12 @@
 'use client';
 
 import { Block, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useConversationStore } from '@/features/Conversation';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    padding-block: 8px;
-    padding-inline: 16px;
-    border-radius: 48px;
-  `,
-  container: css`
-    padding-block: 0;
-    padding-inline: 0;
-  `,
-  title: css`
-    color: ${cssVar.colorTextDescription};
-  `,
-}));
+import styles from './OpeningQuestions.module.css';
 
 interface OpeningQuestionsProps {
   questions: string[];

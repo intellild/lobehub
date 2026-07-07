@@ -1,39 +1,26 @@
 import { type ImageProps } from '@lobehub/ui';
 import { ActionIcon, Image } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { Trash } from 'lucide-react';
 import { type CSSProperties } from 'react';
 import { memo } from 'react';
 
 import { usePlatform } from '@/hooks/usePlatform';
 
+import styles from './index.module.css';
 import { MIN_IMAGE_SIZE } from './style';
 
-const styles = createStaticStyles(({ css }) => ({
-  deleteButton: css`
-    color: #fff;
-    background: ${cssVar.colorBgMask};
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    &:hover {
-      background: ${cssVar.colorError};
-    }
-  `,
-  editableImage: css`
-    background: ${cssVar.colorBgContainer};
-    box-shadow: 0 0 0 1px ${cssVar.colorFill} inset;
-  `,
-  image: css`
-    margin-block: 0 !important;
-
-    .ant-image {
-      height: 100% !important;
-
-      img {
-        height: 100% !important;
-      }
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ImageItemProps {
   alt?: string;

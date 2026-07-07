@@ -1,0 +1,38 @@
+.avatar {
+border-inline-end: 1px solid var(--ant-color-split);
+background: var(--ant-color-fill-quaternary);
+}
+
+.container {
+cursor: pointer;
+
+margin-block-start: 12px;
+border: 1px solid var(--ant-color-border);
+border-radius: 8px;
+
+color: var(--ant-color-text);
+
+box-shadow: var(--ant-box-shadow-tertiary);
+
+&:hover {
+  background: var(--ant-color-fill-quaternary);
+}
+}
+
+.container_dark {
+box-shadow: var(--ant-box-shadow-secondary);
+}
+
+.desc {
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.title {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+
+text-overflow: ellipsis;
+}

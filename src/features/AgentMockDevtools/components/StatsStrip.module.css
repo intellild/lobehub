@@ -1,0 +1,32 @@
+.card {
+flex: 1;
+
+padding: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 8px;
+
+background: var(--ant-color-bg-container);
+}
+
+.empty {
+color: var(--ant-color-text-tertiary);
+}
+
+.label {
+margin-block-end: 4px;
+font-size: 11px;
+color: var(--ant-color-text-tertiary);
+}
+
+.sub {
+margin-block-start: 2px;
+font-size: 11px;
+color: var(--ant-color-text-secondary);
+}
+
+.value {
+font-size: 18px;
+font-feature-settings: 'tnum';
+font-weight: 600;
+color: var(--ant-color-text);
+}

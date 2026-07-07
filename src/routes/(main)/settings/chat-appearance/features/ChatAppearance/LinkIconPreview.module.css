@@ -1,0 +1,13 @@
+.bubble {
+align-self: flex-start;
+
+padding-block: 10px;
+padding-inline: 14px;
+border-radius: 12px;
+
+font-size: 14px;
+line-height: 1.8;
+color: var(--ant-color-text);
+
+background: var(--ant-color-fill-tertiary);
+}

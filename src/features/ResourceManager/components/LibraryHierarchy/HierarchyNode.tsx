@@ -4,7 +4,6 @@ import { CaretDownFilled, LoadingOutlined } from '@ant-design/icons';
 import { DERIVED_DOCUMENT_SOURCE_TYPE } from '@lobechat/const';
 import { ActionIcon, Block, Flexbox, Icon, showContextMenu, stopPropagation } from '@lobehub/ui';
 import { App, Input } from 'antd';
-import { cx } from 'antd-style';
 import { FileText, FolderIcon, FolderOpenIcon } from 'lucide-react';
 import * as m from 'motion/react-m';
 import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
@@ -24,6 +23,19 @@ import { useTreeStore } from '@/store/tree';
 import { useFileItemClick } from '../Explorer/hooks/useFileItemClick';
 import { useFileItemDropdown } from '../Explorer/ItemDropdown/useFileItemDropdown';
 import { styles } from './styles';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface HierarchyNodeProps {
   isExpanded: boolean;

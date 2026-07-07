@@ -1,0 +1,30 @@
+.body {
+height: 100%;
+@media (max-width: 575.98px) {
+  padding-block-end: 68px;
+}
+}
+
+.footer {
+@media (max-width: 575.98px) {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline: 0;
+
+  width: 100%;
+  margin: 0;
+  padding: 16px;
+
+  background: var(--ant-color-bg-container);
+}
+}
+
+.sidebar {
+flex: none;
+width: max(240px, 25%);
+@media (max-width: 575.98px) {
+  flex: 1;
+  width: unset;
+  margin-inline: -16px;
+}
+}

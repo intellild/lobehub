@@ -4,7 +4,6 @@ import type { TaskTemplate } from '@lobechat/const';
 import { ActionIcon, Button, Flexbox, Icon, Markdown, Text } from '@lobehub/ui';
 import { createModal, type ModalInstance, useModalContext } from '@lobehub/ui/base-ui';
 import { Divider } from 'antd';
-import { cssVar } from 'antd-style';
 import { Clock, X } from 'lucide-react';
 import { memo, useEffect, useMemo } from 'react';
 
@@ -59,7 +58,7 @@ const TaskTemplateDetailContent = memo<TaskTemplateDetailContentProps>(
                 {title}
               </Text>
               <Flexbox horizontal align={'center'} gap={4}>
-                <Icon color={cssVar.colorTextSecondary} icon={Clock} size={12} />
+                <Icon color={'var(--ant-color-text-secondary)'} icon={Clock} size={12} />
                 <Text fontSize={12} type={'secondary'}>
                   {scheduleText}
                 </Text>

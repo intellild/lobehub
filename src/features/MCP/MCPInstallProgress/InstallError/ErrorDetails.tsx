@@ -1,5 +1,4 @@
 import { Flexbox, Highlighter, Tag } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import * as m from 'motion/react-m';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -22,7 +21,7 @@ const ErrorDetails = memo<{
         <Flexbox
           gap={8}
           style={{
-            backgroundColor: cssVar.colorFillQuaternary,
+            backgroundColor: 'var(--ant-color-fill-quaternary)',
             borderRadius: 8,
             fontFamily: 'monospace',
             fontSize: '11px',

@@ -3,7 +3,6 @@
 import type { EvalThreadResult } from '@lobechat/types';
 import { Flexbox } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { cssVar } from 'antd-style';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
@@ -118,7 +117,7 @@ const CaseDetail = memo(() => {
           {hasMultipleThreads && (
             <Flexbox
               paddingInline={16}
-              style={{ borderBlockEnd: `1px solid ${cssVar.colorBorderSecondary}`, flex: 'none' }}
+              style={{ borderBlockEnd: `1px solid ${'var(--ant-color-border-secondary)'}`, flex: 'none' }}
             >
               <Tabs
                 activeKey={activeThreadId!}

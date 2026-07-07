@@ -1,0 +1,11 @@
+.sectionHeader {
+padding-block: 4px;
+padding-inline: 8px;
+line-height: 20px;
+}
+
+.trigger {
+&[data-popup-open] {
+  background: var(--ant-color-fill-tertiary);
+}
+}

@@ -1,0 +1,76 @@
+.header {
+display: flex;
+gap: 8px;
+align-items: center;
+
+padding-block: 10px;
+padding-inline: 12px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.headerLabel {
+overflow: hidden;
+display: flex;
+flex: 1;
+gap: 0;
+align-items: center;
+
+min-width: 0;
+
+color: var(--ant-color-text-secondary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.headerDetail {
+overflow: hidden;
+min-width: 0;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+}
+
+.headerCount {
+flex-shrink: 0;
+
+padding-block: 2px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.itemRow {
+width: 100%;
+padding-block: 10px;
+padding-inline: 12px;
+border-block-end: 1px dashed var(--ant-color-border-secondary);
+
+&:last-child {
+  border-block-end: none;
+}
+}
+
+.processingRow {
+display: flex;
+gap: 7px;
+align-items: center;
+}
+
+.textCompleted {
+color: var(--ant-color-text-quaternary);
+text-decoration: line-through;
+}
+
+.textPending {
+color: var(--ant-color-text-secondary);
+}
+
+.textProcessing {
+color: var(--ant-color-text);
+}

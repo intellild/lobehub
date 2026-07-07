@@ -1,0 +1,82 @@
+.active {
+border-color: var(--ant-color-primary);
+
+&:hover {
+  border-color: var(--ant-color-primary);
+}
+}
+
+.cardDescription {
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-description);
+}
+
+.cardTitle {
+font-weight: bold;
+}
+
+.checkIcon {
+position: absolute;
+inset-block-start: 12px;
+inset-inline-end: 12px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 20px;
+height: 20px;
+border-radius: 50%;
+
+color: var(--ant-color-bg-container);
+
+background-color: var(--ant-color-primary);
+}
+
+.container {
+cursor: pointer;
+
+position: relative;
+
+width: 100%;
+padding-block: 12px;
+padding-inline: 16px;
+border: 1px solid var(--ant-color-border);
+border-radius: var(--ant-border-radius-lg);
+
+background-color: var(--ant-color-bg-container);
+
+transition:
+  border-color 0.3s var(--ant-motion-ease-in-out),
+  box-shadow 0.3s var(--ant-motion-ease-in-out);
+
+&:hover {
+  border-color: var(--ant-color-primary-hover);
+}
+}
+
+.disabled {
+cursor: not-allowed;
+border-color: var(--ant-color-border);
+opacity: 0.5;
+background-color: var(--ant-color-bg-container-disabled);
+
+&:hover {
+  border-color: var(--ant-color-border);
+}
+}
+
+.featureIcon {
+color: var(--ant-color-text-secondary);
+}
+
+.featureItem {
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.featureText {
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-secondary);
+}

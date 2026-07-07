@@ -1,5 +1,4 @@
 import { Button, Center, Flexbox, FluentEmoji } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { type ComponentType, type CSSProperties } from 'react';
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
@@ -7,17 +6,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { MORE_FILE_PREVIEW_REQUEST_URL } from '@/const/url';
 import { downloadFile } from '@/utils/client/downloadFile';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  page: css`
-    width: 100%;
-    margin: 12px;
-    padding: 24px;
-    border-radius: 4px;
-
-    background: ${cssVar.colorBgContainer};
-    box-shadow: ${cssVar.boxShadowTertiary};
-  `,
-}));
+import styles from './index.module.css';
 
 interface NotSupportProps {
   fileName?: string;

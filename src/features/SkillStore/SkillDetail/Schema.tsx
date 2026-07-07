@@ -3,7 +3,6 @@
 import { type SkillItem } from '@lobechat/types';
 import { Flexbox, Skeleton, Tag } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -15,25 +14,7 @@ import { ModeType } from '@/features/MCPPluginDetail/Schema/types';
 import Title from '@/routes/(main)/community/features/Title';
 
 import { useDetailContext } from './DetailContext';
-
-const styles = createStaticStyles(({ css }) => ({
-  divider: css`
-    flex-shrink: 0;
-    width: 1px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  left: css`
-    overflow-y: auto;
-    flex-shrink: 0;
-    width: 240px;
-    padding: 8px;
-  `,
-  right: css`
-    container-type: size;
-    overflow: auto;
-    flex: 1;
-  `,
-}));
+import styles from './Schema.module.css';
 
 const Schema = memo(() => {
   const { t } = useTranslation('discover');
@@ -83,7 +64,7 @@ const Schema = memo(() => {
           <Flexbox
             horizontal
             style={{
-              border: `1px solid ${cssVar.colorBorderSecondary}`,
+              border: `1px solid ${'var(--ant-color-border-secondary)'}`,
               borderRadius: 8,
               height: 400,
               overflow: 'hidden',

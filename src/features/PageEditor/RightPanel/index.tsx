@@ -1,7 +1,6 @@
 'use client';
 
 import { Freeze } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { AnimatePresence, m, useIsPresent } from 'motion/react';
 import { type ReactNode } from 'react';
 import { memo, useMemo, useRef } from 'react';
@@ -21,35 +20,8 @@ import {
 import Conversation from '../Copilot/Conversation';
 import HistoryPanel from '../History';
 import { selectors, usePageEditorStore } from '../store';
+import styles from './index.module.css';
 import { usePageAgentPanelControl } from './OverrideContext';
-
-const styles = createStaticStyles(({ css }) => ({
-  inner: css`
-    position: relative;
-
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-
-    width: 100%;
-    height: 100%;
-    min-height: 0;
-  `,
-  layer: css`
-    will-change: opacity, transform;
-
-    position: absolute;
-    inset: 0;
-
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-
-    min-height: 100%;
-    max-height: 100%;
-  `,
-}));
 
 const ExitingFrozenContent = memo<{ children: ReactNode }>(({ children }) => {
   const isPresent = useIsPresent();

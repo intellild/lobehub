@@ -4,7 +4,6 @@ import { DOWNLOAD_URL } from '@lobechat/const';
 import type { DeviceScope } from '@lobechat/types';
 import { CopyButton, Flexbox, Icon, Text } from '@lobehub/ui';
 import { Button, Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { DownloadIcon, MonitorDownIcon, ShieldCheckIcon, TerminalIcon } from 'lucide-react';
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,57 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useActiveWorkspaceId } from '@/business/client/hooks/useActiveWorkspaceId';
 import ImperativeModal from '@/components/ImperativeModal';
 
-const styles = createStaticStyles(({ css }) => ({
-  codeBlock: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-
-    padding-block: 12px;
-    padding-inline: 16px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  command: css`
-    overflow: hidden;
-    flex: 1;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  footer: css`
-    margin-block-start: 4px;
-    padding-block-start: 16px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  index: css`
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 600;
-    color: ${cssVar.colorPrimary};
-
-    background: ${cssVar.colorPrimaryBg};
-  `,
-  line: css`
-    flex: 1;
-    width: 1px;
-    margin-block-start: 4px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-}));
+import styles from './DeviceConnectModal.module.css';
 
 interface StepProps {
   children?: React.ReactNode;
@@ -80,7 +29,7 @@ const Step = memo<StepProps>(({ index, title, desc, children, last }) => (
     </Flexbox>
     <Flexbox flex={1} gap={4} style={{ paddingBlockEnd: last ? 0 : 24 }}>
       <Text weight={500}>{title}</Text>
-      <Text color={cssVar.colorTextTertiary} lineHeight={1.6}>
+      <Text color={'var(--ant-color-text-tertiary)'} lineHeight={1.6}>
         {desc}
       </Text>
       {children && <div style={{ marginBlockStart: 12 }}>{children}</div>}
@@ -163,7 +112,7 @@ const DeviceConnectModal = memo<DeviceConnectModalProps>(({ onClose, open, initi
       onCancel={onClose}
     >
       <Flexbox gap={20}>
-        <Text color={cssVar.colorTextTertiary}>
+        <Text color={'var(--ant-color-text-tertiary)'}>
           {isWorkspace ? t('workspaceSetting.devices.desc') : t('devices.connectWizard.subtitle')}
         </Text>
 
@@ -220,8 +169,8 @@ const DeviceConnectModal = memo<DeviceConnectModalProps>(({ onClose, open, initi
         )}
 
         <Flexbox horizontal align={'center'} className={styles.footer} gap={8}>
-          <Icon icon={ShieldCheckIcon} size={14} style={{ color: cssVar.colorTextTertiary }} />
-          <Text color={cssVar.colorTextTertiary} fontSize={12}>
+          <Icon icon={ShieldCheckIcon} size={14} style={{ color: 'var(--ant-color-text-tertiary)' }} />
+          <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
             {t('devices.connectWizard.footer')}
           </Text>
         </Flexbox>

@@ -1,0 +1,63 @@
+.container {
+position: fixed;
+z-index: 1000;
+inset-block-end: 16px;
+inset-inline-start: 16px;
+}
+
+.installLaterCloseButton {
+all: unset;
+
+cursor: pointer;
+
+display: inline-flex;
+align-items: center;
+justify-content: center;
+
+inline-size: 24px;
+block-size: 24px;
+border-radius: 6px;
+
+color: var(--ant-color-text-tertiary);
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-tertiary);
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: 2px;
+}
+}
+
+.installLaterToast {
+position: fixed;
+z-index: 1000;
+inset-block-end: 20px;
+inset-inline-start: 16px;
+
+display: flex;
+gap: 8px;
+align-items: center;
+
+max-inline-size: calc(100vw - 32px);
+padding-block: 10px;
+padding-inline: 16px 10px;
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-text);
+
+background: var(--ant-color-bg-elevated);
+box-shadow: var(--ant-box-shadow);
+}
+
+.releaseNote {
+overflow: scroll;
+
+max-height: 300px;
+padding: 8px;
+border-radius: 8px;
+
+background: var(--ant-color-fill-quaternary);
+}

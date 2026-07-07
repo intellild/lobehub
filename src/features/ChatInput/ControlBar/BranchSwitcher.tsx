@@ -9,7 +9,6 @@ import {
   DropdownMenuTrigger,
   toast,
 } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import {
   CheckIcon,
   GitBranchIcon,
@@ -37,177 +36,22 @@ import { deviceKeys } from '@/libs/swr/keys';
 import { gitService } from '@/services/git';
 import { useFetchGitWorkingTreeStatus } from '@/store/device';
 
+import styles from './BranchSwitcher.module.css';
 import { openCreateBranchModal } from './CreateBranchModal';
 import { openRenameBranchModal } from './RenameBranchModal';
 
-const styles = createStaticStyles(({ css }) => ({
-  branchLabel: css`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  triggerAnchor: css`
-    display: inline-flex;
-    flex: none;
-  `,
-  container: css`
-    display: flex;
-    flex-direction: column;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    width: 300px;
-    height: 360px;
-
-    /* Cancel DropdownMenuPopup's default 4px padding so our sections align edge-to-edge */
-    margin: -4px;
-  `,
-  createItemWrapper: css`
-    padding: 4px;
-    border-block-start: 1px solid ${cssVar.colorSplit};
-  `,
-  createItem: css`
-    border-radius: calc(${cssVar.borderRadius} - 4px);
-  `,
-  emptyState: css`
-    padding-block: 12px;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-    text-align: center;
-  `,
-  item: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 4px;
-
-    font-size: 13px;
-    line-height: 1.3;
-    color: ${cssVar.colorText};
-
-    /* Swap the checkmark for the row actions while hovering the row. */
-    &:hover .branch-row-actions {
-      display: flex;
-    }
-
-    &:hover .branch-row-check {
-      display: none;
-    }
-  `,
-  itemCheck: css`
-    flex: none;
-    color: ${cssVar.colorPrimary};
-  `,
-  rowAction: css`
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  rowActionDanger: css`
-    &:hover {
-      color: ${cssVar.colorError};
-      background: ${cssVar.colorErrorBg};
-    }
-  `,
-  rowActions: css`
-    display: none;
-    flex: none;
-    gap: 2px;
-    align-items: center;
-  `,
-  itemIcon: css`
-    flex: none;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  itemMain: css`
-    overflow: hidden;
-    flex: 1;
-    min-width: 0;
-  `,
-  itemMeta: css`
-    margin-block-start: 1px;
-    font-size: 11px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  list: css`
-    overflow-y: auto;
-    flex: 1;
-    padding-block: 2px;
-    padding-inline: 4px;
-  `,
-  searchBar: css`
-    padding-block: 4px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorSplit};
-
-    .ant-input-affix-wrapper {
-      padding-inline: 0;
-    }
-
-    .ant-input-prefix {
-      margin-inline-end: 8px;
-    }
-  `,
-  refreshButton: css`
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  section: css`
-    flex: 1;
-    font-size: 11px;
-    font-weight: 500;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  sectionRow: css`
-    display: flex;
-    gap: 4px;
-    align-items: center;
-
-    padding-block: 4px 2px;
-    padding-inline: 8px;
-  `,
-  spinning: css`
-    animation: branch-switcher-spin 0.8s linear infinite;
-
-    @keyframes branch-switcher-spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface BranchSwitcherProps {
   children: ReactElement;

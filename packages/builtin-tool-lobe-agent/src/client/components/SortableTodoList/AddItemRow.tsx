@@ -2,23 +2,26 @@
 
 import { ActionIcon, Checkbox, Flexbox, Input } from '@lobehub/ui';
 import type { InputRef } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import { Plus } from 'lucide-react';
 import type { ChangeEvent, KeyboardEvent } from 'react';
 import { memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './AddItemRow.module.css';
 import { ADD_ITEM_ID, useTodoListStore } from './store';
 
-const styles = createStaticStyles(({ css }) => ({
-  addRow: css`
-    padding-block: 10px;
-    padding-inline: 12px;
-  `,
-  dragHandlePlaceholder: css`
-    width: 8px;
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface AddItemRowProps {
   className?: string;

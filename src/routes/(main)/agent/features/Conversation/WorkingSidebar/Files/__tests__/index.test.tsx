@@ -140,10 +140,6 @@ vi.mock('@lobehub/ui', () => ({
   stopPropagation: vi.fn(),
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => () => ({}),
-}));
-
 vi.mock('@/components/NeuralNetworkLoading', () => ({
   default: () => <div />,
 }));

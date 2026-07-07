@@ -1,0 +1,10 @@
+.container {
+height: 36px;
+padding-inline: 8px;
+border-radius: var(--ant-border-radius);
+transition: background 0.2s ease-in-out;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}

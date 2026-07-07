@@ -1,0 +1,26 @@
+.container {
+margin-block-end: var(--ant-margin-lg);
+}
+
+.header {
+cursor: pointer;
+
+display: flex;
+align-items: center;
+
+border-radius: var(--ant-border-radius);
+
+color: var(--ant-color-text-tertiary);
+
+transition: all var(--ant-motion-duration-mid) ease;
+
+&:hover {
+  color: var(--ant-color-text);
+}
+}
+
+.title {
+margin-inline-start: 4px;
+font-weight: var(--ant-font-weight-strong);
+color: var(--ant-color-text);
+}

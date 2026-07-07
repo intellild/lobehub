@@ -9,7 +9,6 @@ import {
 } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { cssVar } from 'antd-style';
 import {
   BarChart3Icon,
   CircleDashedIcon,
@@ -124,7 +123,7 @@ export const useTaskContextMenuActions = (
         return {
           extra: renderMenuExtra(String(index + 1), isCurrent),
           icon: (
-            <PriorityIcon color={isUrgent ? cssVar.orange : cssVar.colorTextSecondary} size={16} />
+            <PriorityIcon color={isUrgent ? 'var(--ant-orange)' : 'var(--ant-color-text-secondary)'} size={16} />
           ),
           key: `priority-${level}`,
           label: t(`taskDetail.${meta.labelKey}` as never, { defaultValue: meta.label }),

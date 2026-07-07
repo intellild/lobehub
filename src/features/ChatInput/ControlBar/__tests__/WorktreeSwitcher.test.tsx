@@ -54,12 +54,6 @@ vi.mock('@lobehub/ui/base-ui', () => ({
   toast: { error: messageErrorMock, info: vi.fn(), success: messageSuccessMock },
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({}),
-  cssVar: new Proxy({}, { get: () => 'var(--mock)' }),
-  cx: (...classes: string[]) => classes.filter(Boolean).join(' '),
-}));
-
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string, values?: Record<string, unknown>) =>

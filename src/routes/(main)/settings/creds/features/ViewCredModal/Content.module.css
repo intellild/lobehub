@@ -1,0 +1,74 @@
+.kvKey {
+min-width: 140px;
+padding-block: 8px;
+padding-inline: 12px;
+border-radius: var(--ant-border-radius) 0 0 var(--ant-border-radius);
+
+font-family: var(--ant-font-family-code);
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.kvRow {
+display: flex;
+align-items: stretch;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius);
+
+&:not(:last-child) {
+  margin-block-end: 8px;
+}
+}
+
+.kvValue {
+display: flex;
+flex: 1;
+gap: 8px;
+align-items: center;
+justify-content: space-between;
+
+padding-block: 8px;
+padding-inline: 12px;
+border-radius: 0 var(--ant-border-radius) var(--ant-border-radius) 0;
+
+font-family: var(--ant-font-family-code);
+font-size: 13px;
+
+background: var(--ant-color-bg-container);
+}
+
+.maskedValue {
+color: var(--ant-color-text-quaternary);
+letter-spacing: 2px;
+}
+
+.toggleBtn {
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+padding: 4px;
+border-radius: var(--ant-border-radius-sm);
+
+color: var(--ant-color-text-tertiary);
+
+transition: all 0.2s;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.valuesSection {
+margin-block-start: 16px;
+}
+
+.valuesTitle {
+margin-block-end: 12px;
+font-weight: 500;
+}

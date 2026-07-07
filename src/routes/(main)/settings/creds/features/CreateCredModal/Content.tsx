@@ -3,20 +3,14 @@
 import { type CredType } from '@lobechat/types';
 import { useModalContext } from '@lobehub/ui/base-ui';
 import { Steps } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { type FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './Content.module.css';
 import CredTypeSelector from './CredTypeSelector';
 import FileCredForm from './FileCredForm';
 import KVCredForm from './KVCredForm';
 import OAuthCredForm from './OAuthCredForm';
-
-const styles = createStaticStyles(({ css }) => ({
-  steps: css`
-    margin-block-end: 24px;
-  `,
-}));
 
 export interface CreateCredModalContentProps {
   onSuccess?: () => void;

@@ -2,89 +2,11 @@
 
 import { Block, Flexbox, Icon, Tag } from '@lobehub/ui';
 import { Input, Space } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css }) => ({
-  apiDesc: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  apiHeader: css`
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  `,
-  apiTitle: css`
-    font-family: ${cssVar.fontFamilyCode};
-  `,
-
-  emptyState: css`
-    padding: 32px;
-    color: ${cssVar.colorTextDisabled};
-    text-align: center;
-  `,
-  header: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    margin-block-end: 24px;
-  `,
-  paramDesc: css`
-    font-size: 12px;
-    line-height: 18px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  paramGrid: css`
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 12px;
-    align-items: center;
-
-    margin-block-end: 12px;
-  `,
-  paramName: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    font-family: monospace;
-  `,
-  params: css`
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  required: css`
-    margin-inline-start: 2px;
-    color: ${cssVar.colorError};
-  `,
-  searchIcon: css`
-    position: absolute;
-    z-index: 1;
-    inset-block-start: 50%;
-    inset-inline-start: 12px;
-    transform: translateY(-50%);
-
-    color: ${cssVar.colorTextSecondary};
-  `,
-  searchWrapper: css`
-    position: relative;
-  `,
-  typeTag: css`
-    height: 20px;
-    padding-block: 0;
-    padding-inline: 6px;
-
-    font-size: 12px;
-    line-height: 20px;
-  `,
-}));
+import styles from './ApiVisualizer.module.css';
 
 interface ApiItemProps {
   api: {
@@ -117,7 +39,7 @@ const ApiItem = memo<ApiItemProps>(({ api }) => {
         <Flexbox
           gap={12}
           padding={16}
-          style={{ background: cssVar.colorFillQuaternary, borderRadius: 6 }}
+          style={{ background: 'var(--ant-color-fill-quaternary)', borderRadius: 6 }}
         >
           {params.length === 0 ? (
             <div className={styles.params}>{t('dev.preview.api.noParams')}</div>

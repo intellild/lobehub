@@ -1,6 +1,5 @@
 'use client';
 
-import { StyleProvider } from 'antd-style';
 import { useServerInsertedHTML } from 'next/navigation';
 import { type PropsWithChildren } from 'react';
 
@@ -18,7 +17,7 @@ const StyleRegistry = ({ children }: PropsWithChildren) => {
     );
   });
 
-  return <StyleProvider>{children}</StyleProvider>;
+  return children;
 };
 
 export default StyleRegistry;

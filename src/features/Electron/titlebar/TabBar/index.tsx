@@ -13,7 +13,6 @@ import {
 import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
 import { useWatchBroadcast } from '@lobechat/electron-client-ipc';
 import { ActionIcon, ScrollArea } from '@lobehub/ui';
-import { cx } from 'antd-style';
 import { Plus } from 'lucide-react';
 import { startTransition, useCallback, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -31,6 +30,19 @@ import { useResolvedTabs } from './hooks/useResolvedTabs';
 import { resolveTabScope } from './scope';
 import { useStyles } from './styles';
 import TabItem from './TabItem';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const TAB_WIDTH = 180;
 const TAB_GAP = 0;

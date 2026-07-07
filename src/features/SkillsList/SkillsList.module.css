@@ -1,0 +1,129 @@
+.chevron {
+flex-shrink: 0;
+color: var(--ant-color-text-tertiary);
+transition: transform var(--ant-motion-duration-fast) var(--ant-motion-ease-in-out);
+}
+
+.chevronExpanded {
+transform: rotate(90deg);
+}
+
+.childItem {
+cursor: pointer;
+
+height: 26px;
+padding-inline-end: 8px;
+border-radius: 6px;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.childItemIcon {
+flex-shrink: 0;
+color: var(--ant-color-text-tertiary);
+}
+
+.description {
+max-width: 320px;
+font-size: 12px;
+line-height: 1.5;
+color: var(--ant-color-text-secondary);
+}
+
+.item {
+cursor: pointer;
+
+height: 28px;
+padding-inline: 4px 8px;
+border-radius: 6px;
+
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-tertiary);
+}
+
+/* Swap the file count for the row actions while hovering the row. */
+&:hover .skill-row-actions {
+  display: flex;
+}
+
+&:hover .skill-row-count {
+  display: none;
+}
+}
+
+.itemCount {
+flex-shrink: 0;
+font-size: 12px;
+font-variant-numeric: tabular-nums;
+color: var(--ant-color-text-tertiary);
+}
+
+.rowAction {
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 20px;
+height: 20px;
+border-radius: 4px;
+
+color: var(--ant-color-text-tertiary);
+
+transition: all 0.2s;
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.rowActionDanger {
+&:hover {
+  color: var(--ant-color-error);
+  background: var(--ant-color-error-bg);
+}
+}
+
+.rowActionDisabled {
+cursor: not-allowed;
+color: var(--ant-color-text-quaternary);
+
+&:hover {
+  color: var(--ant-color-text-quaternary);
+  background: transparent;
+}
+}
+
+.rowActions {
+display: none;
+flex: none;
+gap: 2px;
+align-items: center;
+}
+
+.itemIcon {
+flex-shrink: 0;
+color: var(--ant-color-text-tertiary);
+}
+
+.treeChevronSlot {
+display: flex;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+
+width: 14px;
+height: 14px;
+}

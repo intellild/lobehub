@@ -1,0 +1,64 @@
+.icon {
+margin-block-start: 1px;
+color: var(--ant-color-text-secondary);
+}
+
+.description {
+margin-block-start: 2px;
+font-size: 12px;
+line-height: 1.5;
+color: var(--ant-color-text-tertiary);
+}
+
+.card {
+overflow: hidden;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 12px;
+background: var(--ant-color-bg-elevated);
+}
+
+.kicker {
+font-size: 12px;
+font-weight: 600;
+color: var(--ant-color-text-tertiary);
+}
+
+.row {
+cursor: pointer;
+padding-block: 10px;
+padding-inline: 12px;
+transition: background 150ms var(--ant-motion-ease-out);
+
+&:not(:last-child) {
+  border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+&:hover {
+  background: var(--ant-color-fill-quaternary);
+}
+}
+
+.tag {
+flex: none;
+
+padding-block: 2px;
+padding-inline: 8px;
+border-radius: 6px;
+
+font-size: 11px;
+font-weight: 500;
+color: var(--ant-color-text-tertiary);
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.tagRequired {
+color: var(--ant-color-text);
+background: var(--ant-color-fill-secondary);
+}
+
+.title {
+font-weight: 500;
+line-height: 1.5;
+color: var(--ant-color-text);
+}

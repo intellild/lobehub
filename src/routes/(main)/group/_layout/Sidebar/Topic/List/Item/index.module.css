@@ -1,0 +1,35 @@
+.neonDotWrapper {
+position: absolute;
+inset: 0;
+
+display: flex;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+
+width: 18px;
+height: 18px;
+}
+
+.dotContainer {
+will-change: width;
+
+position: relative;
+
+width: 18px;
+height: 18px;
+margin-inline-start: -6px;
+
+transition: width 0.2s var(--ant-motion-ease-out);
+}
+
+.neonDot {
+width: 6px;
+height: 6px;
+border-radius: 50%;
+
+background: var(--ant-color-info);
+box-shadow:
+  0 0 3px var(--ant-color-info),
+  0 0 6px var(--ant-color-info);
+}

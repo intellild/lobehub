@@ -1,6 +1,5 @@
 import { type MenuRenderProps } from '@lobehub/editor';
 import { Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
@@ -51,10 +50,10 @@ const MentionDropdown = memo<MenuRenderProps>(
     return (
       <Flexbox
         style={{
-          background: cssVar.colorBgElevated,
-          border: `1px solid ${cssVar.colorBorderSecondary}`,
+          background: 'var(--ant-color-bg-elevated)',
+          border: `1px solid ${'var(--ant-color-border-secondary)'}`,
           borderRadius: 12,
-          boxShadow: cssVar.boxShadowSecondary,
+          boxShadow: 'var(--ant-box-shadow-secondary)',
           left: position.x,
           maxHeight: 260,
           maxWidth: 400,
@@ -70,7 +69,7 @@ const MentionDropdown = memo<MenuRenderProps>(
             return (
               <div
                 key={`divider-${(option as any)?.key ?? 'divider'}`}
-                style={{ borderTop: `1px solid ${cssVar.colorBorderSecondary}` }}
+                style={{ borderTop: `1px solid ${'var(--ant-color-border-secondary)'}` }}
               />
             );
           }
@@ -88,7 +87,7 @@ const MentionDropdown = memo<MenuRenderProps>(
               paddingInline={12}
               ref={isActive ? activeItemRef : null}
               style={{
-                background: isActive ? cssVar.colorFillSecondary : undefined,
+                background: isActive ? 'var(--ant-color-fill-secondary)' : undefined,
                 cursor: 'pointer',
               }}
               onMouseEnter={() => setActiveKey?.(String(item.key))}
@@ -100,7 +99,7 @@ const MentionDropdown = memo<MenuRenderProps>(
               {item.icon && <Flexbox style={{ flex: 'none' }}>{item?.icon as ReactNode}</Flexbox>}
               <div
                 style={{
-                  color: cssVar.colorText,
+                  color: 'var(--ant-color-text)',
                   fontSize: 14,
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',

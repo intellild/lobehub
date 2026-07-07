@@ -1,0 +1,19 @@
+.connector {
+width: 40px;
+height: 40px;
+
+@media (width <= 768px) {
+  width: 32px;
+  height: 32px;
+}
+}
+
+.connectorLine {
+width: 24px;
+height: 1px;
+background-color: var(--ant-color-border-secondary);
+
+@media (width <= 768px) {
+  width: 24px;
+}
+}

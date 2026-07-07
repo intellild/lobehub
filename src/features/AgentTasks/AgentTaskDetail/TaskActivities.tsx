@@ -1,6 +1,5 @@
 import type { BriefType, TaskDetailActivity } from '@lobechat/types';
 import { Accordion, AccordionItem, Avatar, Empty, Flexbox, Icon, Tag, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import type { TFunction } from 'i18next';
 import { BotMessageSquare, CircleDot, CirclePlus, MessageCircle } from 'lucide-react';
 import { memo, useCallback, useMemo } from 'react';
@@ -85,7 +84,7 @@ const ActivityRow = memo<{ activity: TaskDetailActivity }>(({ activity }) => {
       {activity.author?.name && (
         <Text
           className={isAgent ? styles.agentAuthorName : undefined}
-          style={isAgent ? undefined : { color: cssVar.colorTextSecondary, fontWeight: 500 }}
+          style={isAgent ? undefined : { color: 'var(--ant-color-text-secondary)', fontWeight: 500 }}
         >
           {activity.author.name}
         </Text>
@@ -111,11 +110,11 @@ const ActivityRow = memo<{ activity: TaskDetailActivity }>(({ activity }) => {
       ) : (
         authorNode
       )}
-      <Text ellipsis style={{ color: cssVar.colorTextSecondary, flex: 1, minWidth: 0 }}>
+      <Text ellipsis style={{ color: 'var(--ant-color-text-secondary)', flex: 1, minWidth: 0 }}>
         {text}
         {relTime && (
           <span
-            style={{ color: cssVar.colorTextQuaternary, marginInlineStart: 4 }}
+            style={{ color: 'var(--ant-color-text-quaternary)', marginInlineStart: 4 }}
             title={relTimeTitle}
           >
             · {relTime}
@@ -156,8 +155,8 @@ const TaskActivities = memo(() => {
         paddingInline={8}
         title={
           <Flexbox horizontal align="center" gap={8}>
-            <Icon color={cssVar.colorTextDescription} icon={BotMessageSquare} size={16} />
-            <Text color={cssVar.colorTextSecondary} fontSize={13} weight={500}>
+            <Icon color={'var(--ant-color-text-description)'} icon={BotMessageSquare} size={16} />
+            <Text color={'var(--ant-color-text-secondary)'} fontSize={13} weight={500}>
               {t('taskDetail.activities')}
             </Text>
           </Flexbox>

@@ -3,7 +3,6 @@
 import { ActionIcon, Block, DropdownMenu, Flexbox, Icon, Tag } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { SkillsIcon } from '@lobehub/ui/icons';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { DownloadIcon, MoreVerticalIcon, PackageSearch, Trash2 } from 'lucide-react';
 import { lazy, memo, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,28 +15,11 @@ import { useToolStore } from '@/store/tool';
 import { type SkillListItem } from '@/types/index';
 import { downloadFile } from '@/utils/client/downloadFile';
 
+import styles from './AgentSkillItem.module.css';
 import { itemStyles } from './style';
 
 const AgentSkillDetail = lazy(() => import('@/features/AgentSkillDetail'));
 const AgentSkillEdit = lazy(() => import('@/features/AgentSkillEdit'));
-
-const styles = createStaticStyles(({ css }) => ({
-  title: css`
-    cursor: pointer;
-
-    overflow: hidden;
-
-    font-size: 14px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &:hover {
-      color: ${cssVar.colorPrimary};
-    }
-  `,
-}));
 
 interface AgentSkillItemProps {
   skill: SkillListItem;

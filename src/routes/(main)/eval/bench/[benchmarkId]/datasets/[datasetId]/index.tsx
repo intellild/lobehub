@@ -3,7 +3,6 @@
 import { Button, Flexbox, Text } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ArrowLeft, Database, Pencil, Plus, Trash2 } from 'lucide-react';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -25,71 +24,7 @@ import TestCaseTable from '../../features/DatasetsTab/TestCaseTable';
 import { createRunCreateModal } from '../../features/RunCreateModal';
 import EmptyState from '../../features/RunsTab/EmptyState';
 import RunCard from '../../features/RunsTab/RunCard';
-
-const styles = createStaticStyles(({ css }) => ({
-  backLink: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    width: fit-content;
-
-    font-size: ${cssVar.fontSize};
-    color: ${cssVar.colorTextTertiary};
-    text-decoration: none;
-
-    transition: color 0.15s ease;
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: 2px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  header: css`
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 40px;
-    height: 40px;
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorPrimaryBg};
-  `,
-  // Summary hero — leads the dataset detail with its headline case count as a
-  // large mono figure, mirroring the benchmark/run result heroes.
-  heroBand: css`
-    padding: 20px;
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  heroValue: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeHeading2};
-    font-weight: 600;
-    line-height: 1;
-    color: ${cssVar.colorText};
-  `,
-  summaryDot: css`
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-  `,
-  tableWrapper: css`
-    overflow: hidden;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-  `,
-}));
+import styles from './index.module.css';
 
 const DatasetDetail = memo(() => {
   const { t } = useTranslation('eval');
@@ -145,9 +80,9 @@ const DatasetDetail = memo(() => {
     return {
       counts,
       segments: [
-        { color: cssVar.colorSuccess, value: counts.easy },
-        { color: cssVar.colorWarning, value: counts.medium },
-        { color: cssVar.colorError, value: counts.hard },
+        { color: 'var(--ant-color-success)', value: counts.easy },
+        { color: 'var(--ant-color-warning)', value: counts.medium },
+        { color: 'var(--ant-color-error)', value: counts.hard },
       ],
       tagged: counts.easy + counts.medium + counts.hard,
     };
@@ -228,7 +163,7 @@ const DatasetDetail = memo(() => {
             <Flexbox horizontal align="start" justify="space-between">
               <Flexbox horizontal align="start" gap={12}>
                 <div className={styles.header}>
-                  <Database size={20} style={{ color: cssVar.colorPrimary }} />
+                  <Database size={20} style={{ color: 'var(--ant-color-primary)' }} />
                 </div>
                 <Flexbox gap={4}>
                   <Text as="h4" style={{ fontSize: 20, fontWeight: 600, margin: 0 }}>
@@ -263,7 +198,7 @@ const DatasetDetail = memo(() => {
             >
               <Flexbox gap={6}>
                 <span className={styles.heroValue}>{total}</span>
-                <Text color={cssVar.colorTextTertiary} fontSize={12}>
+                <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
                   {t('dataset.detail.testCases')}
                 </Text>
               </Flexbox>
@@ -278,13 +213,13 @@ const DatasetDetail = memo(() => {
                           style={{
                             background:
                               d === 'easy'
-                                ? cssVar.colorSuccess
+                                ? 'var(--ant-color-success)'
                                 : d === 'medium'
-                                  ? cssVar.colorWarning
-                                  : cssVar.colorError,
+                                  ? 'var(--ant-color-warning)'
+                                  : 'var(--ant-color-error)',
                           }}
                         />
-                        <Text color={cssVar.colorTextTertiary} fontSize={12}>
+                        <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
                           {t(`difficulty.${d}`)} {difficulty.counts[d]}
                         </Text>
                       </Flexbox>

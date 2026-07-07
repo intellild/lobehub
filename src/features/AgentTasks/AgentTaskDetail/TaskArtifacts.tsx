@@ -10,7 +10,6 @@ import {
   Text,
 } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
-import { cssVar } from 'antd-style';
 import { FileTextIcon, MoreHorizontal, Package, Trash } from 'lucide-react';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -74,7 +73,7 @@ const ArtifactCard = memo<{ node: TaskDetailWorkspaceNode }>(({ node }) => {
       onClick={() => openDocumentPreview(node.documentId)}
     >
       <Icon
-        color={cssVar.colorTextSecondary}
+        color={'var(--ant-color-text-secondary)'}
         icon={FileTextIcon}
         size={{ size: 18, strokeWidth: 1.5 }}
         style={{ flexShrink: 0 }}
@@ -137,12 +136,12 @@ const TaskArtifacts = memo(() => {
           variant="borderless"
           onClick={() => setIsExpanded((prev) => !prev)}
         >
-          <Icon color={cssVar.colorTextDescription} icon={Package} size={16} />
-          <Text color={cssVar.colorTextSecondary} fontSize={13} weight={500}>
+          <Icon color={'var(--ant-color-text-description)'} icon={Package} size={16} />
+          <Text color={'var(--ant-color-text-secondary)'} fontSize={13} weight={500}>
             {t('taskDetail.artifacts')}
           </Text>
           <Tag size="small">{items.length}</Tag>
-          <AccordionArrowIcon isOpen={isExpanded} style={{ color: cssVar.colorTextDescription }} />
+          <AccordionArrowIcon isOpen={isExpanded} style={{ color: 'var(--ant-color-text-description)' }} />
         </Block>
       </Flexbox>
       {isExpanded && (

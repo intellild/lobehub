@@ -33,7 +33,6 @@ import {
   DropdownMenuTrigger,
   Tooltip,
 } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { CheckIcon, ChevronDownIcon, ChevronRightIcon, ZapIcon } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
@@ -44,6 +43,20 @@ import { useAgentStore } from '@/store/agent';
 import { agentByIdSelectors } from '@/store/agent/selectors';
 
 import { useAgentId } from '../hooks/useAgentId';
+import styles from './HeteroModel.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 type HeteroReasoningEffort =
   ClaudeCodeReasoningEffort | CodexReasoningEffort | HeterogeneousAgentDefaultSelection;
@@ -87,173 +100,6 @@ const CODEX_EFFORT_LABEL_KEYS = {
   ...EFFORT_LABEL_KEYS,
   low: 'heteroAgent.modelSelector.reasoning.light',
 } as const satisfies Record<HeteroReasoningEffort, string>;
-
-const styles = createStaticStyles(({ css }) => ({
-  check: css`
-    flex: none;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  divider: css`
-    height: 1px;
-    margin-block: 6px;
-    background: ${cssVar.colorSplit};
-  `,
-  label: css`
-    overflow: hidden;
-    max-width: 150px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  option: css`
-    cursor: pointer;
-
-    display: flex;
-    gap: 18px;
-    align-items: center;
-    justify-content: space-between;
-
-    min-height: 34px;
-    padding-inline: 10px;
-    border-radius: 8px;
-
-    font-size: 14px;
-    line-height: 1.2;
-    color: ${cssVar.colorText};
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  optionBody: css`
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 3px;
-
-    min-width: 0;
-    padding-block: 7px;
-  `,
-  optionDesc: css`
-    overflow: hidden;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  optionIcon: css`
-    flex: none;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  optionLabel: css`
-    overflow: hidden;
-    flex: 1;
-
-    min-width: 0;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  optionTitle: css`
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    white-space: nowrap;
-  `,
-  popup: css`
-    padding: 8px;
-    border-radius: 16px;
-    background: ${cssVar.colorBgElevated};
-    box-shadow:
-      0 0 0 1px ${cssVar.colorBorderSecondary},
-      0 12px 32px rgb(0 0 0 / 10%),
-      0 4px 12px rgb(0 0 0 / 8%);
-  `,
-  scroll: css`
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    max-height: 250px;
-  `,
-  sectionTitle: css`
-    padding-block: 0 8px;
-    padding-inline: 10px;
-
-    font-size: 13px;
-    line-height: 1.2;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  submenuTrigger: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: space-between;
-
-    min-height: 34px;
-    padding-inline: 10px;
-    border-radius: 8px;
-
-    font-size: 14px;
-    color: ${cssVar.colorText};
-  `,
-  submenuLead: css`
-    overflow: hidden;
-    display: flex;
-    gap: 6px;
-    align-items: center;
-
-    min-width: 0;
-  `,
-  submenuMeta: css`
-    overflow: hidden;
-    min-width: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  submenuTrail: css`
-    display: inline-flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    color: ${cssVar.colorTextSecondary};
-  `,
-  trigger: css`
-    cursor: pointer;
-
-    display: flex;
-    flex: none;
-    gap: 6px;
-    align-items: center;
-
-    height: 28px;
-    padding-inline: 8px;
-    border-radius: 6px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    white-space: nowrap;
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  triggerDisabled: css`
-    cursor: not-allowed;
-    opacity: 0.5;
-
-    &:hover {
-      color: ${cssVar.colorTextSecondary};
-      background: transparent;
-    }
-  `,
-}));
 
 const stripCliFlags = (
   args: string[] | undefined,

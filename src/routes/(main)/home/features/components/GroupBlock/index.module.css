@@ -1,0 +1,12 @@
+.action {
+opacity: 0;
+transition: opacity var(--ant-motion-duration-mid) var(--ant-motion-ease-in-out);
+
+button {
+  color: var(--ant-color-text-secondary);
+}
+}
+
+.actionVisible {
+opacity: 1;
+}

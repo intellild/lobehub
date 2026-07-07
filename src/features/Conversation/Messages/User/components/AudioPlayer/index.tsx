@@ -1,86 +1,12 @@
 'use client';
 
 import { Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { PauseIcon, PlayIcon } from 'lucide-react';
 import { memo, type MouseEvent, useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './index.module.css';
 import { useWaveform } from './useWaveform';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  bar: css`
-    flex: 1;
-
-    min-width: 2px;
-    border-radius: 4px;
-
-    background: ${cssVar.colorTextQuaternary};
-
-    transition: background 120ms ease;
-  `,
-  barPlayed: css`
-    background: ${cssVar.colorText};
-  `,
-  button: css`
-    cursor: pointer;
-
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 36px;
-    height: 36px;
-    border: none;
-    border-radius: 8px;
-
-    color: ${cssVar.colorBgContainer};
-
-    background: ${cssVar.colorText};
-
-    transition: opacity 120ms ease;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  `,
-  container: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-
-    width: 360px;
-    max-width: 100%;
-    padding-block: 8px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  time: css`
-    flex: none;
-
-    min-width: 36px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    font-variant-numeric: tabular-nums;
-    color: ${cssVar.colorTextSecondary};
-    text-align: end;
-  `,
-  waveform: css`
-    cursor: pointer;
-
-    display: flex;
-    flex: 1;
-    gap: 2px;
-    align-items: center;
-
-    height: 32px;
-  `,
-}));
 
 const formatTime = (seconds: number): string => {
   if (!Number.isFinite(seconds) || seconds < 0) return '0:00';

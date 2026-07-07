@@ -1,6 +1,4 @@
 'use client';
-
-import { createStaticStyles } from 'antd-style';
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import {
   memo,
@@ -13,57 +11,13 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './CollapsibleContent.module.css';
+
 const DEFAULT_MAX_HEIGHT = 280;
 const VIEWPORT_RATIO = 0.35;
 // Only collapse when the overflow is meaningful; avoids hiding a button for a
 // handful of extra pixels.
 const OVERFLOW_THRESHOLD = 32;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    position: relative;
-    width: 100%;
-  `,
-  contentCollapsed: css`
-    overflow: hidden;
-
-    mask-image: linear-gradient(to bottom, #000 calc(100% - 48px), transparent);
-  `,
-  contentExpanded: css`
-    overflow: visible;
-  `,
-  toggleButton: css`
-    cursor: pointer;
-
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    block-size: 24px;
-    padding-inline: 10px;
-    border: none;
-    border-radius: 12px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillQuaternary};
-
-    transition:
-      color 150ms ${cssVar.motionEaseOut},
-      background 150ms ${cssVar.motionEaseOut};
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  toggleWrapper: css`
-    display: flex;
-    justify-content: center;
-    margin-block-start: 6px;
-  `,
-}));
 
 const computeThreshold = () => {
   if (typeof window === 'undefined') return DEFAULT_MAX_HEIGHT;

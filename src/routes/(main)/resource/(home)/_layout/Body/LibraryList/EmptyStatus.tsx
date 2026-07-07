@@ -1,27 +1,9 @@
 import { type IconType } from '@lobehub/icons';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { Trans } from 'react-i18next';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-
-  paragraph: css`
-    justify-content: center;
-    width: 100%;
-
-    kbd {
-      margin-inline: 2px;
-      padding-inline: 6px;
-      border-radius: 4px;
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
+import styles from './EmptyStatus.module.css';
 
 const LineIcon: IconType = (({ ref, size = 130, style, ...rest }) => (
   <svg

@@ -1,5 +1,4 @@
 import { Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { type FC, type PropsWithChildren } from 'react';
 import { useMemo, useRef } from 'react';
 
@@ -29,13 +28,13 @@ const DesktopLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
   const innerCssVariables = useMemo<Record<string, string>>(() => {
     const darwinMajorVersion = getDarwinMajorVersion();
 
-    const borderRadius = darwinMajorVersion >= 25 ? '12px' : cssVar.borderRadius;
+    const borderRadius = darwinMajorVersion >= 25 ? '12px' : 'var(--ant-border-radius)';
     const borderBottomRightRadius =
       darwinMajorVersion >= 26 || isMacOSWithLargeWindowBorders() ? '12px' : borderRadius;
 
     return {
       '--container-border-bottom-right-radius': borderBottomRightRadius,
-      '--container-border-color': isDarkMode ? cssVar.colorBorderSecondary : cssVar.colorBorder,
+      '--container-border-color': isDarkMode ? 'var(--ant-color-border-secondary)' : 'var(--ant-color-border)',
       '--container-border-radius': borderRadius,
     };
   }, [isDarkMode]);

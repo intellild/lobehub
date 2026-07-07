@@ -1,106 +1,27 @@
 'use client';
 
 import { Avatar, DropdownMenu, Flexbox, type MenuProps, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { Plus } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { memo, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css, cssVar: cv }) => ({
-  addButton: css`
-    cursor: pointer;
+import stylesModule from './index.module.css';
 
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
-    color: ${cv.colorTextTertiary};
-
-    background: transparent;
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cv.colorTextSecondary};
-      background: ${cv.colorFillTertiary};
-    }
-  `,
-  addButtonDisabled: css`
-    cursor: not-allowed;
-    color: ${cv.colorTextQuaternary};
-
-    &:hover {
-      color: ${cv.colorTextQuaternary};
-      background: transparent;
-    }
-  `,
-  container: css`
-    display: flex;
-    gap: 2px;
-    align-items: center;
-  `,
-  externalTag: css`
-    flex-shrink: 0;
-
-    padding-block: 1px;
-    padding-inline: 4px;
-    border-radius: 4px;
-
-    font-size: 10px;
-    line-height: 1.2;
-
-    background: ${cv.colorFillSecondary};
-  `,
-  tab: css`
-    cursor: pointer;
-
-    display: flex;
-    flex-shrink: 0;
-    gap: 6px;
-    align-items: center;
-
-    height: 32px;
-    padding-block: 6px;
-    padding-inline: 12px;
-    border-radius: 8px;
-
-    color: ${cv.colorTextTertiary};
-
-    background: transparent;
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cv.colorTextSecondary};
-      background: ${cv.colorFillTertiary};
-    }
-  `,
-  tabActive: css`
-    color: ${cv.colorText};
-    background: ${cv.colorFillTertiary};
-
-    &:hover {
-      color: ${cv.colorText};
-      background: ${cv.colorFillTertiary};
-    }
-  `,
-  tabTitle: css`
-    overflow: hidden;
-
-    max-width: 120px;
-
-    font-size: 13px;
-    line-height: 1.2;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+const styles = stylesModule;
 
 export interface ChromeTabItem {
   avatar?: string;

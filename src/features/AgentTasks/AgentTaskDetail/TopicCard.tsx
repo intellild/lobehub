@@ -14,7 +14,6 @@ import {
 } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { useSize } from 'ahooks';
-import { cssVar } from 'antd-style';
 import { CircleDot, CircleStop, Copy, ExternalLink, MoreHorizontal, SquarePen } from 'lucide-react';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -189,7 +188,7 @@ const TopicCard = memo<TopicCardProps>(({ activity }) => {
       gap={8}
       paddingBlock={8}
       paddingInline={8}
-      style={{ borderRadius: cssVar.borderRadiusLG }}
+      style={{ borderRadius: 'var(--ant-border-radius-lg)' }}
       variant={'outlined'}
       onClick={activity.id ? handleOpen : undefined}
     >
@@ -250,7 +249,7 @@ const TopicCard = memo<TopicCardProps>(({ activity }) => {
           {activity.summary && (
             <Text
               fontSize={13}
-              style={{ color: cssVar.colorTextDescription, whiteSpace: 'pre-wrap' }}
+              style={{ color: 'var(--ant-color-text-description)', whiteSpace: 'pre-wrap' }}
             >
               {activity.summary}
             </Text>

@@ -1,0 +1,33 @@
+.collapseHeader {
+cursor: pointer;
+user-select: none;
+
+padding-block: 6px;
+padding-inline: 10px;
+
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+
+&:hover {
+  color: var(--ant-color-text-secondary);
+}
+}
+
+.description {
+padding-block: 8px;
+padding-inline: 16px;
+
+font-size: var(--ant-font-size);
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.reason {
+margin-block-start: -4px;
+padding-block-end: 8px;
+padding-inline: 16px;
+
+font-size: var(--ant-font-size-sm);
+line-height: 1.45;
+color: var(--ant-color-text-secondary);
+}

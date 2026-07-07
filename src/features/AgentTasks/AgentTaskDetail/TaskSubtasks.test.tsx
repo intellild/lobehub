@@ -89,13 +89,6 @@ vi.mock('antd', () => ({
   ),
 }));
 
-vi.mock('antd-style', () => ({
-  cssVar: {
-    colorTextDescription: '#999',
-    colorTextSecondary: '#666',
-  },
-}));
-
 vi.mock('@lobehub/ui/base-ui', () => ({
   confirmModal: vi.fn(),
 }));

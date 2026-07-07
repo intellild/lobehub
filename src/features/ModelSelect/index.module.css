@@ -1,0 +1,11 @@
+.popup {
+  width: max(360px, var(--anchor-width));
+}
+
+.popup:global(.ant-select-dropdown) :global(.ant-select-item-option-grouped) {
+  padding-inline-start: 12px;
+}
+
+.select :global(.ant-select-selection-item) :global(.lobe-model-info-tags) {
+  display: none;
+}

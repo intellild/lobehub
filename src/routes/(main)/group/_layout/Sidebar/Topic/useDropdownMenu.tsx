@@ -2,7 +2,6 @@ import { type MenuProps } from '@lobehub/ui';
 import { Icon } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App, Upload } from 'antd';
-import { css, cx } from 'antd-style';
 import { Hash, Import, LucideCheck, Trash } from 'lucide-react';
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,14 +11,7 @@ import { useChatStore } from '@/store/chat';
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
 
-const hotArea = css`
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: transparent;
-  }
-`;
+import styles from './useDropdownMenu.module.css';
 
 interface UseTopicActionsDropdownMenuOptions {
   onUploadClose?: () => void;
@@ -97,7 +89,7 @@ export const useTopicActionsDropdownMenu = (
             disabled={!canCreateTopic}
             showUploadList={false}
           >
-            <div className={cx(hotArea)}>{t('actions.import')}</div>
+            <div className={styles.hotArea}>{t('actions.import')}</div>
           </Upload>
         ),
         ...(onUploadClose ? { closeOnClick: false } : null),

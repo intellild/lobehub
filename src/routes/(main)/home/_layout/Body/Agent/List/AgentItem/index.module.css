@@ -1,0 +1,50 @@
+.badge {
+pointer-events: none;
+
+position: absolute;
+inset-block-end: -3px;
+inset-inline-end: -3px;
+
+display: inline-flex;
+align-items: center;
+justify-content: center;
+
+min-width: 14px;
+height: 14px;
+padding-inline: 3px;
+border: 1.5px solid var(--ant-color-bg-container);
+border-radius: 999px;
+
+font-size: 9px;
+font-weight: 600;
+line-height: 1;
+color: #fff;
+
+background: var(--ant-color-error);
+}
+
+.runningBadge {
+pointer-events: none;
+
+position: absolute;
+inset-block-end: -3px;
+inset-inline-end: -3px;
+
+display: inline-flex;
+align-items: center;
+justify-content: center;
+
+width: 14px;
+height: 14px;
+border: 1.5px solid var(--ant-color-bg-container);
+border-radius: 999px;
+
+color: var(--ant-color-warning);
+
+background: var(--ant-color-bg-container);
+}
+
+.wrapper {
+position: relative;
+display: inline-flex;
+}

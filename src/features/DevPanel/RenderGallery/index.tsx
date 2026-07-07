@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { useEffect } from 'react';
 import { Outlet, useParams } from 'react-router';
 
@@ -15,30 +14,9 @@ import {
   DEVTOOLS_GROUP_DETAIL,
   DEVTOOLS_GROUP_ID,
 } from './fixtures';
+import styles from './index.module.css';
 import Sidebar from './Sidebar';
 import { toToolsetPath, useDevtoolsEntries } from './useDevtoolsEntries';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  main: css`
-    overflow: hidden;
-    flex: 1;
-
-    min-width: 0;
-    min-height: 0;
-
-    background:
-      radial-gradient(circle at top, ${cssVar.colorFillTertiary} 0%, transparent 35%),
-      ${cssVar.colorBgLayout};
-  `,
-  page: css`
-    overflow: hidden;
-    width: 100%;
-
-    /* Bind to the viewport directly so the columns scroll internally regardless
-       of whether the mounting route provides a bounded height. */
-    height: 100dvh;
-  `,
-}));
 
 const DevtoolsLayout = () => {
   const { menuItems } = useDevtoolsEntries();

@@ -1,0 +1,117 @@
+.addCircle {
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 28px;
+height: 28px;
+border-radius: 50%;
+
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-bg-elevated);
+box-shadow:
+  0 2px 8px rgb(0 0 0 / 15%),
+  0 0 0 1px var(--ant-color-border-secondary);
+
+transition: all var(--ant-motion-duration-mid) ease;
+
+&:hover {
+  color: var(--ant-color-primary);
+  background: var(--ant-color-primary-bg);
+  box-shadow:
+    0 2px 8px rgb(0 0 0 / 15%),
+    0 0 0 1px var(--ant-color-primary);
+}
+}
+
+.closeButton {
+position: absolute;
+z-index: 10;
+inset-block-start: -6px;
+inset-inline-end: -6px;
+
+border-radius: 50% !important;
+}
+
+.filledCard {
+cursor: pointer;
+
+position: relative;
+
+flex-shrink: 0;
+
+width: 64px;
+height: 64px;
+padding: 2px;
+border-radius: 6px;
+
+transition: all var(--ant-motion-duration-mid) ease;
+
+.upload-card-close {
+  opacity: 0 !important;
+}
+
+&:hover {
+  z-index: 99 !important;
+
+  .upload-card-close {
+    opacity: 1 !important;
+  }
+}
+}
+
+.filledCardInner {
+position: relative;
+
+overflow: hidden;
+
+width: 100%;
+height: 100%;
+border-radius: 3px;
+}
+
+.label {
+padding-inline: 4px;
+
+font-size: 10px;
+line-height: 1;
+color: var(--ant-color-text-quaternary);
+text-align: center;
+}
+
+.placeholderCard {
+cursor: pointer;
+
+flex-shrink: 0;
+
+width: 64px;
+height: 64px;
+border-radius: 6px;
+
+color: var(--ant-color-text-quaternary);
+}
+
+.uploadOverlay {
+position: absolute;
+z-index: 5;
+inset: 0;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 3px;
+
+background: var(--ant-color-bg-mask);
+
+/* antd resets the Spin's own color to colorText (near-black in the light
+   theme) and the percent ring's stroke is `currentcolor`, so it smears into
+   the dark mask. The mask is a dark scrim in both themes — override the Spin
+   color to white for contrast. */
+.ant-spin {
+  color: var(--ant-color-white);
+}
+}

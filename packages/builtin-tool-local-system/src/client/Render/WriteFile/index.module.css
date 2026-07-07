@@ -1,0 +1,9 @@
+.container {
+padding-block: 4px;
+}
+
+.previewBox {
+overflow: hidden;
+border-radius: 8px;
+background: var(--ant-color-fill-tertiary);
+}

@@ -1,35 +1,9 @@
 'use client';
 
 import { Menu, type MenuProps, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  header: css`
-    padding-block: 16px 12px;
-    padding-inline: 20px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  menu: css`
-    padding-block: 8px;
-    border-inline-end: none !important;
-  `,
-  sidebar: css`
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-
-    width: 260px;
-    height: 100%;
-    border-inline-end: 1px solid ${cssVar.colorBorderSecondary};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  scroll: css`
-    overflow: auto;
-    flex: 1;
-  `,
-}));
+import styles from './Sidebar.module.css';
 
 interface SidebarProps {
   items: MenuProps['items'];

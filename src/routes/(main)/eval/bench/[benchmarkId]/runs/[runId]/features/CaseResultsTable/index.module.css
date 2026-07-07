@@ -1,0 +1,108 @@
+.caseLink {
+color: inherit;
+text-decoration: none;
+
+&:hover {
+  color: var(--ant-color-primary);
+}
+}
+
+.durationSub {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+}
+
+.chip {
+cursor: pointer;
+
+display: inline-flex;
+gap: 6px;
+align-items: center;
+
+padding-block: 4px;
+padding-inline: 10px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 999px;
+
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-bg-container);
+
+transition:
+  border-color 0.15s ease,
+  background 0.15s ease;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+}
+
+.chipActive {
+border-color: var(--ant-color-text);
+color: var(--ant-color-text);
+background: var(--ant-color-fill-secondary);
+}
+
+.chipCount {
+font-family: var(--ant-font-family-code);
+font-weight: 600;
+}
+
+.chipDot {
+display: inline-block;
+width: 8px;
+height: 8px;
+border-radius: 999px;
+}
+
+.filterBar {
+padding-block: 12px;
+padding-inline: 20px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.summaryBar {
+padding-block: 16px;
+padding-inline: 20px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.summaryLabel {
+font-size: var(--ant-font-size-sm);
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}
+
+.indexCell {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+}
+
+.monoCell {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-secondary);
+}
+
+.threadDot {
+display: inline-block;
+width: 8px;
+height: 8px;
+border-radius: 999px;
+}
+
+.text {
+color: var(--ant-color-text-secondary);
+}

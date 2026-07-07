@@ -1,6 +1,5 @@
 import { Accordion, AccordionItem, Checkbox, Flexbox, Icon, InputNumber, Text } from '@lobehub/ui';
 import { Select } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import dayjs, { type Dayjs } from 'dayjs';
 import { Globe, Hash, SlidersHorizontal } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
@@ -15,60 +14,20 @@ import {
   type TimezoneOption,
   WEEKDAYS,
 } from './CronConfig';
+import styles from './SchedulerForm.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  fieldLabel: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  timezoneOffset: css`
-    flex-shrink: 0;
-    margin-inline-start: 12px;
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  timezoneOption: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    min-width: 0;
-  `,
-  weekdayButton: css`
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 36px;
-    height: 32px;
-    border-radius: 6px;
-
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-
-    background: transparent;
-
-    transition: all 0.15s ease;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  weekdayButtonActive: css`
-    color: ${cssVar.colorPrimary};
-    background: ${cssVar.colorPrimaryBg};
-
-    &:hover {
-      color: ${cssVar.colorPrimary};
-      background: ${cssVar.colorPrimaryBgHover};
-    }
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const DEFAULT_PATTERN = '0 9 * * *';
 const DEFAULT_TIMEZONE = 'UTC';
@@ -312,8 +271,8 @@ const SchedulerForm = memo<SchedulerFormProps>(({ maxExecutions, onChange, patte
           paddingInline={0}
           title={
             <Flexbox horizontal align="center" gap={8}>
-              <Icon color={cssVar.colorTextDescription} icon={SlidersHorizontal} size={14} />
-              <Text style={{ color: cssVar.colorTextSecondary }}>
+              <Icon color={'var(--ant-color-text-description)'} icon={SlidersHorizontal} size={14} />
+              <Text style={{ color: 'var(--ant-color-text-secondary)' }}>
                 {t('taskSchedule.advancedSettings')}
               </Text>
             </Flexbox>
@@ -322,7 +281,7 @@ const SchedulerForm = memo<SchedulerFormProps>(({ maxExecutions, onChange, patte
           <Flexbox gap={14} paddingBlock={'8px 4px'}>
             <Flexbox gap={6}>
               <Flexbox horizontal align="center" gap={6}>
-                <Icon color={cssVar.colorTextDescription} icon={Globe} size={14} />
+                <Icon color={'var(--ant-color-text-description)'} icon={Globe} size={14} />
                 <Text className={styles.fieldLabel}>{t('taskSchedule.timezone')}</Text>
               </Flexbox>
               <Select
@@ -348,7 +307,7 @@ const SchedulerForm = memo<SchedulerFormProps>(({ maxExecutions, onChange, patte
 
             <Flexbox gap={6}>
               <Flexbox horizontal align="center" gap={6}>
-                <Icon color={cssVar.colorTextDescription} icon={Hash} size={14} />
+                <Icon color={'var(--ant-color-text-description)'} icon={Hash} size={14} />
                 <Text className={styles.fieldLabel}>{t('taskSchedule.maxExecutions')}</Text>
               </Flexbox>
               <Flexbox horizontal align="center" gap={12}>

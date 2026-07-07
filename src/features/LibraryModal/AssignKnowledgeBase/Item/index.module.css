@@ -1,0 +1,17 @@
+.desc {
+margin: 0 !important;
+font-size: 12px;
+line-height: 1;
+color: var(--ant-color-text-description);
+}
+
+.link {
+overflow: hidden;
+color: var(--ant-color-text);
+}
+
+.title {
+margin: 0 !important;
+font-size: 14px;
+line-height: 1;
+}

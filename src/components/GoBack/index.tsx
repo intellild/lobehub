@@ -1,27 +1,10 @@
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ArrowLeft } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
-const styles = createStaticStyles(({ css }) => {
-  return {
-    container: css`
-      width: fit-content;
-      height: 24px;
-      padding-inline: 8px;
-      border-radius: 6px;
-
-      color: ${cssVar.colorTextTertiary};
-
-      &:hover {
-        color: ${cssVar.colorTextSecondary};
-        background: ${cssVar.colorFillTertiary};
-      }
-    `,
-  };
-});
+import styles from './index.module.css';
 
 interface GoBackProps {
   href: string;

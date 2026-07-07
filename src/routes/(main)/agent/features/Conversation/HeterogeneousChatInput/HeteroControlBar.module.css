@@ -1,0 +1,43 @@
+.bar {
+container: runtimebar / inline-size;
+padding-block: 0;
+padding-inline: 4px;
+}
+
+.fullAccess {
+cursor: default;
+
+display: flex;
+flex: none;
+gap: 6px;
+align-items: center;
+
+padding-block: 2px;
+padding-inline: 4px;
+border-radius: 4px;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+white-space: nowrap;
+}
+
+.fullAccessLabel {
+@container runtimebar (width < 600px) {
+  display: none;
+}
+}
+
+.leftGroup {
+scrollbar-width: none;
+overflow: auto hidden;
+flex: 1;
+min-width: 0;
+
+&::-webkit-scrollbar {
+  display: none;
+}
+}
+
+.rightGroup {
+flex: none;
+}

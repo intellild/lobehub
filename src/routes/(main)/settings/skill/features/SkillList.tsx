@@ -13,7 +13,6 @@ import {
 import { type BuiltinSkill, type LobeBuiltinTool } from '@lobechat/types';
 import { Center, Empty } from '@lobehub/ui';
 import { SkillsIcon } from '@lobehub/ui/icons';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { ChevronDownIcon, ChevronRightIcon } from 'lucide-react';
 import type React from 'react';
@@ -42,42 +41,7 @@ import ComposioSkillItem from './ComposioSkillItem';
 import LobehubSkillItem from './LobehubSkillItem';
 import McpSkillItem from './McpSkillItem';
 import type { ToolDetailType } from './SkillDetail';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  `,
-  description: css`
-    margin-block-end: 8px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  empty: css`
-    padding: 24px;
-    color: ${cssVar.colorTextTertiary};
-    text-align: center;
-  `,
-  sectionHeader: css`
-    cursor: pointer;
-    user-select: none;
-
-    display: flex;
-    gap: 4px;
-    align-items: center;
-
-    padding-block: 12px 4px;
-    padding-inline: 4px;
-
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-  `,
-}));
+import styles from './SkillList.module.css';
 
 export type SkillViewMode = 'connector' | 'skill';
 

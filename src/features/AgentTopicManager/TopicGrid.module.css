@@ -1,0 +1,27 @@
+.grid {
+display: grid;
+
+/*
+  min(280px, 100%) lets columns shrink below 280px when the available
+  width itself is narrower (e.g. agent sidebar expanded), so the layout
+  keeps wrapping instead of overflowing horizontally.
+*/
+grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+gap: 12px;
+
+width: 100%;
+min-width: 0;
+
+@media (max-width: 767.98px) {
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+}
+}
+
+.groupTitle {
+margin-block-start: 8px;
+padding-block-end: 4px;
+
+font-size: 13px;
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}

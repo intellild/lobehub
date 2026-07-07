@@ -1,0 +1,23 @@
+@keyframes pulse {
+0%,
+  100% {
+opacity: 1;
+  }
+
+  50% {
+opacity: 0.6;
+  }
+}
+
+.card {
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-fill-quaternary);
+animation: pulse 1.5s ease-in-out infinite;
+}
+
+.grid {
+display: grid;
+gap: 16px;
+padding-block: 12px;
+padding-inline: 24px;
+}

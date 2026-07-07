@@ -1,0 +1,16 @@
+.popover {
+  inset-inline-start: 8px !important;
+  border-radius: 10px;
+}
+
+.popoverDesktop {
+  inset-block-start: 32px !important;
+}
+
+.popoverWeb {
+  inset-block-start: 8px !important;
+}
+
+.popoverContent {
+  padding: 0;
+}

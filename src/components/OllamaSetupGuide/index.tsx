@@ -2,37 +2,20 @@ import { ProviderCombine } from '@lobehub/icons';
 import { Flexbox, Highlighter, Snippet } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
 import { Steps } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { readableColor } from 'polished';
 import React, { memo, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
+import stylesModule from './index.module.css';
+
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  steps: css`
-    margin-block-start: 32px;
-    &.${prefixCls}-steps-small .${prefixCls}-steps-item-title {
-      margin-block-end: 16px;
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    .${prefixCls}-steps-item-description {
-      margin-block-end: 24px;
-    }
-
-    .${prefixCls}-steps-icon {
-      color: var(--steps-icon-color, ${cssVar.colorText}) !important;
-    }
-  `,
-}));
+const styles = stylesModule;
 
 const SetupGuide = memo(() => {
   const iconColor = useMemo(() => {
     if (typeof window === 'undefined') return '#fff';
 
-    const variableExpression = cssVar.colorPrimary;
+    const variableExpression = 'var(--ant-color-primary)';
     const variableName = variableExpression.match(/var\((--[^),\s]+)/)?.[1];
     const computedColor = variableName
       ? getComputedStyle(document.documentElement).getPropertyValue(variableName).trim()

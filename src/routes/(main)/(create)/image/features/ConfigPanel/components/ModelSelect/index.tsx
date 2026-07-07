@@ -1,6 +1,5 @@
 import { type SelectProps } from '@lobehub/ui';
 import { ActionIcon, Flexbox, Icon, Select } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { LucideArrowRight, LucideBolt } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,26 +13,10 @@ import { imageGenerationConfigSelectors } from '@/store/image/selectors';
 import { type EnabledProviderWithModels } from '@/types/index';
 
 import ImageModelItem from './ImageModelItem';
+import stylesModule from './index.module.css';
 
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  popup: css`
-    &.${prefixCls}-select-dropdown .${prefixCls}-select-item-option {
-      margin-block: 1px;
-      margin-inline: 4px;
-      padding-block: 8px;
-      padding-inline: 8px;
-      border-radius: ${cssVar.borderRadiusSM};
-    }
-    &.${prefixCls}-select-dropdown .${prefixCls}-select-item-option-selected {
-      background: ${cssVar.colorFillTertiary};
-    }
-    &.${prefixCls}-select-dropdown .${prefixCls}-select-item-option-grouped {
-      padding-inline-start: 12px;
-    }
-  `,
-}));
+const styles = stylesModule;
 
 interface ModelOption {
   label: any;
@@ -67,7 +50,7 @@ const ModelSelect = memo(() => {
           {
             disabled: true,
             label: (
-              <Flexbox horizontal gap={8} style={{ color: cssVar.colorTextTertiary }}>
+              <Flexbox horizontal gap={8} style={{ color: 'var(--ant-color-text-tertiary)' }}>
                 {t('ModelSwitchPanel.emptyModel')}
                 <Icon icon={LucideArrowRight} />
               </Flexbox>
@@ -89,7 +72,7 @@ const ModelSelect = memo(() => {
         {
           disabled: true,
           label: (
-            <Flexbox horizontal gap={8} style={{ color: cssVar.colorTextTertiary }}>
+            <Flexbox horizontal gap={8} style={{ color: 'var(--ant-color-text-tertiary)' }}>
               {t('ModelSwitchPanel.emptyProvider')}
               <Icon icon={LucideArrowRight} />
             </Flexbox>

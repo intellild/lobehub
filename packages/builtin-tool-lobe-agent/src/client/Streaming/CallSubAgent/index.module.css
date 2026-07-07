@@ -1,0 +1,16 @@
+.container {
+padding: 12px;
+border-radius: 8px;
+background: var(--ant-color-fill-quaternary);
+}
+
+.description {
+margin-block-end: 8px;
+font-weight: 500;
+color: var(--ant-color-text);
+}
+
+.instruction {
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+}

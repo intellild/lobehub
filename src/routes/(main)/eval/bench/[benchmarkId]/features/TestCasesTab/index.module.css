@@ -1,0 +1,143 @@
+.card {
+.ant-card-body {
+  padding: 0;
+}
+}
+
+.filterButton {
+cursor: pointer;
+
+padding-block: 4px;
+padding-inline: 8px;
+border: none;
+
+font-size: var(--ant-font-size-sm);
+font-weight: 500;
+text-transform: capitalize;
+
+background: transparent;
+
+transition:
+  color 0.15s ease,
+  background 0.15s ease;
+
+&[data-active='true'] {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-secondary);
+}
+
+&[data-active='false'] {
+  color: var(--ant-color-text-tertiary);
+
+  &:hover {
+    color: var(--ant-color-text);
+  }
+}
+
+&:not(:first-child) {
+  border-inline-start: 1px solid var(--ant-color-border-secondary);
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: -1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+}
+
+.filterContainer {
+overflow: hidden;
+display: flex;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-sm);
+}
+
+.header {
+padding-block: 12px;
+padding-inline: 16px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.headerTitle {
+font-size: var(--ant-font-size);
+font-weight: 600;
+color: var(--ant-color-text);
+}
+
+.indexCell {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+}
+
+.inputCell {
+overflow: hidden;
+
+max-width: 400px;
+margin: 0;
+
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.summaryDot {
+width: 8px;
+height: 8px;
+border-radius: 999px;
+}
+
+.summaryRow {
+display: flex;
+gap: 16px;
+align-items: center;
+
+padding-block: 12px;
+padding-inline: 16px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.summaryValue {
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-lg);
+font-weight: 600;
+line-height: 1;
+color: var(--ant-color-text);
+}
+
+.searchIcon {
+position: absolute;
+inset-block-start: 50%;
+inset-inline-start: 12px;
+transform: translateY(-50%);
+
+color: var(--ant-color-text-tertiary);
+}
+
+.searchInput {
+width: 192px;
+padding-inline-start: 32px;
+font-size: var(--ant-font-size-sm);
+}
+
+.table {
+.ant-table {
+  font-size: var(--ant-font-size);
+}
+
+.ant-table-thead > tr > th {
+  font-size: var(--ant-font-size-sm);
+  font-weight: 500;
+  color: var(--ant-color-text-tertiary);
+  background: var(--ant-color-fill-quaternary);
+}
+
+.ant-table-tbody > tr {
+  &:hover {
+    background: var(--ant-color-fill-quaternary);
+  }
+}
+}

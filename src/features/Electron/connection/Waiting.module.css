@@ -1,0 +1,47 @@
+.container {
+overflow: hidden;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+
+min-height: 100vh;
+
+color: var(--ant-color-text-base);
+
+background-color: var(--ant-color-bg-container);
+}
+
+.content {
+z-index: 10;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.description {
+margin-block-end: var(--ant-margin-xl) !important;
+color: var(--ant-color-text-secondary) !important;
+}
+
+.errorIcon {
+margin-block-end: var(--ant-margin-xl);
+color: var(--ant-color-error);
+}
+
+.errorMessage {
+margin-block-end: var(--ant-margin-xl) !important;
+color: var(--ant-color-error) !important;
+text-align: center;
+}
+
+.helpText {
+margin-block-start: var(--ant-margin-lg);
+font-size: var(--ant-font-size-sm);
+color: var(--ant-color-text-tertiary);
+}
+
+.title {
+margin-block-end: var(--ant-margin-sm) !important;
+color: var(--ant-color-text) !important;
+}

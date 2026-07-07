@@ -1,5 +1,4 @@
 import { Block, Icon, Image } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import type { LucideIcon } from 'lucide-react';
 import { memo } from 'react';
 
@@ -24,7 +23,7 @@ export const TemplateBriefIcon = memo<TemplateBriefIconProps>(({ spec, tileSize 
       align={'center'}
       height={tileSize}
       justify={'center'}
-      style={{ background: cssVar.colorFillSecondary, flexShrink: 0 }}
+      style={{ background: 'var(--ant-color-fill-secondary)', flexShrink: 0 }}
       width={tileSize}
     >
       {spec.kind === 'url' ? (
@@ -37,8 +36,8 @@ export const TemplateBriefIcon = memo<TemplateBriefIconProps>(({ spec, tileSize 
         />
       ) : (
         <Icon
-          color={cssVar.colorTextSecondary}
-          fill={cssVar.colorTextSecondary}
+          color={'var(--ant-color-text-secondary)'}
+          fill={'var(--ant-color-text-secondary)'}
           icon={spec.Comp}
           size={glyphSize}
         />

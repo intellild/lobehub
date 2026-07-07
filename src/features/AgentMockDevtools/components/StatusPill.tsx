@@ -1,40 +1,8 @@
 import type { PlaybackState } from '@lobechat/agent-mock';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useMemo } from 'react';
 
-const styles = createStaticStyles(({ css }) => ({
-  dot: css`
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-  `,
-  dotIdle: css`
-    background: ${cssVar.colorTextTertiary};
-  `,
-  dotPlaying: css`
-    background: ${cssVar.colorText};
-    box-shadow: 0 0 0 3px ${cssVar.colorFillTertiary};
-  `,
-  dotError: css`
-    background: ${cssVar.colorError};
-  `,
-  pill: css`
-    display: inline-flex;
-    gap: 8px;
-    align-items: center;
-
-    padding-block: 3px;
-    padding-inline: 10px;
-    border-radius: 999px;
-
-    font-size: 11px;
-    font-feature-settings: 'tnum';
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
+import styles from './StatusPill.module.css';
 
 interface StatusPillProps {
   playback: PlaybackState | null;

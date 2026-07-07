@@ -1,29 +1,23 @@
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo, useMemo } from 'react';
 
 import { useFileStore } from '@/store/file';
 import { type FileChunk } from '@/types/chunk';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding-block: 12px;
-    padding-inline: 8px;
-    border-block-end: 1px dashed ${cssVar.colorBorderSecondary};
-    border-radius: 4px;
+import styles from './ChunkItem.module.css';
 
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  text: css`
-    font-size: 14px;
-    line-height: 24px;
-  `,
-  title: css`
-    font-size: 18px;
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 type ChunkItemProps = FileChunk;
 

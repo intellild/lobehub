@@ -1,0 +1,18 @@
+.checked {
+border-color: var(--ant-color-primary);
+color: var(--ant-color-bg-container);
+background: var(--ant-color-primary);
+}
+
+.circle {
+flex: none;
+
+inline-size: 20px;
+block-size: 20px;
+border: 1.5px solid var(--ant-color-border);
+border-radius: 50%;
+
+transition:
+  background-color 0.15s var(--ant-motion-ease-in-out),
+  border-color 0.15s var(--ant-motion-ease-in-out);
+}

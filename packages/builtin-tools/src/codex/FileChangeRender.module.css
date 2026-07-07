@@ -1,0 +1,88 @@
+.emptyState {
+padding: 4px;
+font-size: 13px;
+color: var(--ant-color-text-tertiary);
+}
+
+.kindAdded {
+background: var(--ant-color-success);
+}
+
+.kindDeleted {
+background: var(--ant-color-error);
+}
+
+.kindDot {
+flex-shrink: 0;
+width: 8px;
+height: 8px;
+border-radius: 999px;
+}
+
+.kindModified {
+background: var(--ant-color-info);
+}
+
+.kindRenamed {
+background: var(--ant-color-warning);
+}
+
+.lineAdded {
+color: var(--ant-color-success);
+}
+
+.lineDeleted {
+color: var(--ant-color-error);
+}
+
+.lineStats {
+display: inline-flex;
+flex-shrink: 0;
+gap: 6px;
+align-items: center;
+
+font-size: 12px;
+}
+
+.list {
+gap: 2px;
+min-width: 0;
+padding-block: 2px;
+padding-inline: 4px;
+}
+
+.patch {
+overflow: hidden;
+padding-block-end: 8px;
+padding-inline-start: 16px;
+}
+
+.rowMain {
+display: flex;
+flex: 1;
+gap: 10px;
+align-items: center;
+
+min-width: 0;
+}
+
+.path {
+overflow: hidden;
+display: flex;
+align-items: center;
+min-width: 0;
+}
+
+.row {
+gap: 8px;
+align-items: center;
+
+min-height: 26px;
+padding-block: 3px;
+padding-inline: 0;
+}
+
+.unknownPath {
+font-size: 13px;
+color: var(--ant-color-text-tertiary);
+}

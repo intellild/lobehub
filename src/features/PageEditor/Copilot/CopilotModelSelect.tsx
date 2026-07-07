@@ -1,5 +1,4 @@
 import { ActionIcon, Center, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ChevronDownIcon, Settings2Icon } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 
@@ -12,30 +11,7 @@ import { useAgentStore } from '@/store/agent';
 import { agentByIdSelectors } from '@/store/agent/selectors';
 import { aiModelSelectors, useAiInfraStore } from '@/store/aiInfra';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  chevron: css`
-    color: ${cssVar.colorTextQuaternary};
-  `,
-  name: css`
-    overflow: hidden;
-
-    max-width: 120px;
-
-    font-size: 12px;
-    line-height: 1;
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  trigger: css`
-    cursor: pointer;
-    border-radius: 6px;
-
-    :hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
+import styles from './CopilotModelSelect.module.css';
 
 const CopilotModelSelect = memo(() => {
   const { allowed: canEdit } = usePermission('edit_own_content');

@@ -1,34 +1,27 @@
 import { Block, Center, Flexbox, Tag, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
 
 import HashTags from '../HashTags';
 import Time from '../Time';
 import { useCateColor } from '../useCateColor';
+import stylesModule from './GridCard.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const ACTION_CLASSNAME = 'memory-masonry-actions';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  actions: css`
-    transition: opacity 0.15s ease;
-  `,
-  masonryCard: css`
-    cursor: pointer;
-    position: relative;
-    background: ${cssVar.colorFillQuaternary};
-    box-shadow: 0 0 0 1px ${cssVar.colorFillTertiary} inset;
-    .${ACTION_CLASSNAME} {
-      opacity: 0;
-    }
-
-    &:hover {
-      .${ACTION_CLASSNAME} {
-        opacity: 1;
-      }
-    }
-  `,
-}));
+const styles = stylesModule;
 
 interface GridCardProps {
   actions?: ReactNode;
@@ -106,7 +99,7 @@ const GridCard = memo<GridCardProps>(
             </>
           )}
           {typeof children === 'string' ? (
-            <Text as={'p'} color={cssVar.colorTextSecondary} ellipsis={{ rows: 4 }}>
+            <Text as={'p'} color={'var(--ant-color-text-secondary)'} ellipsis={{ rows: 4 }}>
               {children}
             </Text>
           ) : (
@@ -154,7 +147,7 @@ const GridCard = memo<GridCardProps>(
           <Center flex={'none'}>
             <Text
               align={'center'}
-              color={cateColor?.backgroundTextColor || cssVar.colorTextSecondary}
+              color={cateColor?.backgroundTextColor || 'var(--ant-color-text-secondary)'}
               weight={'bold'}
               style={{
                 opacity: 0.5,

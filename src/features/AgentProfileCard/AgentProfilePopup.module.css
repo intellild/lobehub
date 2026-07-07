@@ -1,0 +1,31 @@
+.footer {
+padding-block: 12px;
+padding-inline: 16px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+}
+
+.section {
+padding-block: 12px;
+padding-inline: 16px;
+}
+
+.sectionTitle {
+margin-block-end: 8px;
+
+font-size: 11px;
+font-weight: 600;
+color: var(--ant-color-text-tertiary);
+text-transform: uppercase;
+}
+
+.statItem {
+color: var(--ant-color-text-secondary);
+}
+
+.trigger {
+border-radius: var(--ant-border-radius);
+
+&[data-popup-open] {
+  background: var(--ant-color-fill-tertiary);
+}
+}

@@ -19,13 +19,6 @@ vi.mock('@lobehub/ui', () => ({
   Flexbox: ({ children }: any) => <div>{children}</div>,
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({
-    time: 'time',
-    title: 'title',
-  }),
-}));
-
 vi.mock('dayjs', () => {
   const dayjs = () => ({
     diff: () => 0,

@@ -1,0 +1,36 @@
+.clickable {
+cursor: pointer;
+
+  &:hover {
+    .plugin-title {
+      color: var(--ant-color-link);
+    }
+  }
+}
+
+.desc {
+flex: 1;
+  margin: 0 !important;
+  font-size: 14px !important;
+  color: var(--ant-color-text-secondary);
+}
+
+.noLink {
+cursor: default;
+}
+
+.tag {
+flex-shrink: 0;
+}
+
+.title {
+margin: 0 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.titleRow {
+display: flex;
+  gap: 8px;
+  align-items: center;
+}

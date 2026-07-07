@@ -2,7 +2,6 @@
 
 import { ActionIcon, Flexbox, Text } from '@lobehub/ui';
 import { Drawer } from 'antd';
-import { cssVar } from 'antd-style';
 import { XIcon } from 'lucide-react';
 import type { ReactNode, Ref } from 'react';
 import { cloneElement, isValidElement, memo, Suspense, useCallback, useState } from 'react';
@@ -79,17 +78,17 @@ const SideBarDrawer = memo<SideBarDrawerProps>(
           }}
           styles={{
             body: {
-              background: cssVar.colorBgLayout,
+              background: 'var(--ant-color-bg-layout)',
               padding: 0,
             },
             header: {
-              background: cssVar.colorBgLayout,
+              background: 'var(--ant-color-bg-layout)',
               borderBottom: 'none',
               padding: 0,
             },
             wrapper: {
-              borderLeft: `1px solid ${cssVar.colorBorderSecondary}`,
-              borderRight: `1px solid ${cssVar.colorBorderSecondary}`,
+              borderLeft: `1px solid ${'var(--ant-color-border-secondary)'}`,
+              borderRight: `1px solid ${'var(--ant-color-border-secondary)'}`,
               boxShadow: `4px 0 8px -2px rgba(0,0,0,.04)`,
               zIndex: 0,
             },

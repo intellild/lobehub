@@ -1,0 +1,40 @@
+.container {
+position: relative;
+
+width: 180px;
+height: 64px;
+border-radius: 8px;
+
+background: var(--ant-color-bg-container);
+
+:hover {
+  background: var(--ant-color-bg-elevated);
+}
+}
+
+.removeButton {
+cursor: pointer;
+
+position: absolute;
+z-index: 10;
+inset-block-start: -4px;
+inset-inline-end: -4px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 20px;
+height: 20px;
+border-radius: 5px;
+
+background: var(--ant-color-bg-elevated);
+box-shadow:
+  0 0 0 0.5px var(--ant-color-fill-secondary) inset,
+  var(--ant-box-shadow-tertiary);
+
+:hover {
+  color: var(--ant-color-error);
+  background: var(--ant-color-error-bg);
+}
+}

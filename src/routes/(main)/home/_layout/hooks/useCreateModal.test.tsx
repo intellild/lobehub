@@ -139,17 +139,6 @@ vi.mock('@lobehub/ui/base-ui', () => ({
     ) : null,
 }));
 
-vi.mock('antd-style', () => ({
-  cssVar: {
-    borderRadiusLG: 8,
-    colorError: '#f00',
-    colorSuccess: '#0a0',
-    colorTextDescription: '#666',
-    colorTextSecondary: '#666',
-    colorTextTertiary: '#999',
-  },
-}));
-
 vi.mock('react-i18next', () => ({
   useTranslation: (namespace: string) => ({
     t: (key: string) =>

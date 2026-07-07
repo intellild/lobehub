@@ -6,7 +6,6 @@ import {
 import { builtinToolIdentifiers } from '@lobechat/builtin-tools/identifiers';
 import { safeParseJSON } from '@lobechat/utils';
 import { ActionIcon, Avatar, Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { ChevronDown, ChevronRight, Edit3Icon } from 'lucide-react';
 import { memo, Suspense, useCallback, useMemo, useState } from 'react';
@@ -21,41 +20,8 @@ import { toolInterventionSelectors } from '@/store/user/selectors';
 import { useConversationStore } from '../../../../../store';
 import Arguments from '../Arguments';
 import ApprovalActions from './ApprovalActions';
+import styles from './Fallback.module.css';
 import KeyValueEditor from './KeyValueEditor';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  collapseHeader: css`
-    cursor: pointer;
-    user-select: none;
-
-    padding-block: 6px;
-    padding-inline: 10px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-
-    &:hover {
-      color: ${cssVar.colorTextSecondary};
-    }
-  `,
-  description: css`
-    padding-block: 8px;
-    padding-inline: 16px;
-
-    font-size: ${cssVar.fontSize};
-    font-weight: 600;
-    color: ${cssVar.colorText};
-  `,
-  reason: css`
-    margin-block-start: -4px;
-    padding-block-end: 8px;
-    padding-inline: 16px;
-
-    font-size: ${cssVar.fontSizeSM};
-    line-height: 1.45;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
 
 interface FallbackInterventionProps {
   actionsPortalTarget?: HTMLDivElement | null;

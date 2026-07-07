@@ -1,5 +1,4 @@
 import { Flexbox, Icon, Tag } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { HashIcon } from 'lucide-react';
 import { memo } from 'react';
 
@@ -19,7 +18,7 @@ const HashTags = memo<HashTagsProps>(({ hashTags }) => {
             key={index}
             variant={'borderless'}
             style={{
-              color: cssVar.colorTextDescription,
+              color: 'var(--ant-color-text-description)',
               gap: 2,
               marginRight: 12,
               paddingInline: 0,

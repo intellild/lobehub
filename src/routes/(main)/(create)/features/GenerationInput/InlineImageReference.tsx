@@ -1,33 +1,13 @@
 'use client';
 
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo, useState } from 'react';
 
+import styles from './InlineImageReference.module.css';
 import UploadCard, { UPLOAD_CARD_SIZE, type UploadData } from './UploadCard';
 
 const STACK_OFFSET = -(UPLOAD_CARD_SIZE - 8);
 const EXPAND_OFFSET = 4;
-
-const styles = createStaticStyles(({ css }) => ({
-  addCirclePos: css`
-    position: absolute;
-    z-index: 100;
-    inset-block-end: -2px;
-    inset-inline-end: -2px;
-  `,
-  stack: css`
-    position: relative;
-    padding-block: 4px;
-    padding-inline: 0;
-
-    &:hover {
-      .inline-ref-close {
-        opacity: 1;
-      }
-    }
-  `,
-}));
 
 interface InlineImageReferenceProps {
   imageConstraints?: any;

@@ -1,0 +1,31 @@
+.more {
+display: flex;
+align-items: center;
+color: var(--ant-color-text-secondary);
+}
+
+.tag {
+flex: none;
+
+padding-block: 0.1em;
+padding-inline: 0.3em;
+border-radius: var(--ant-border-radius);
+
+font-size: 18px;
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-secondary);
+@media (max-width: 575.98px) {
+  font-size: 14px;
+}
+}
+
+.title {
+margin-block-start: 0.5em;
+font-size: 20px;
+font-weight: 600;
+@media (max-width: 575.98px) {
+  font-size: 18px;
+}
+}

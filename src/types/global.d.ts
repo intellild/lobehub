@@ -1,19 +1,16 @@
-import 'antd-style';
-
 import { type IEditor } from '@lobehub/editor';
-import { type LobeCustomStylish, type LobeCustomToken } from '@lobehub/ui';
-import { type AntdToken } from 'antd-style/lib/types/theme';
+import { type LobeCustomToken } from '@lobehub/ui';
+import { type AliasToken } from 'antd/es/theme/interface';
 
 import { type SPAServerConfig } from './spaServerConfig';
 
-declare module 'antd-style' {
-  export interface CustomToken extends LobeCustomToken {}
-
-  export interface CustomStylish extends LobeCustomStylish {}
+declare module 'styled-components' {
+  export interface DefaultTheme extends AliasToken, LobeCustomToken {}
 }
 
-declare module 'styled-components' {
-  export interface DefaultTheme extends AntdToken, LobeCustomToken {}
+declare module '*.module.css' {
+  const classes: Record<string, string>;
+  export default classes;
 }
 
 declare global {

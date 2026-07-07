@@ -1,43 +1,16 @@
-import { createStaticStyles } from 'antd-style';
-
 import { isMacOSWithLargeWindowBorders } from '@/utils/platform';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  // Divider style
-  divider: css`
-    height: 24px;
-  `,
+import stylesModule from './style.module.css';
 
-  // Inner container - dark mode
-  innerContainerDark: css`
-    position: relative;
+const borderRadiusClass = isMacOSWithLargeWindowBorders()
+  ? stylesModule.largeWindowBorderRadius
+  : stylesModule.defaultBorderRadius;
 
-    overflow: hidden;
-
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${!isMacOSWithLargeWindowBorders()
-      ? cssVar.borderRadius
-      : `${cssVar.borderRadius} 12px ${cssVar.borderRadius} 12px`};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-
-  // Inner container - light mode
-  innerContainerLight: css`
-    position: relative;
-
-    overflow: hidden;
-
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: ${!isMacOSWithLargeWindowBorders()
-      ? cssVar.borderRadius
-      : `${cssVar.borderRadius} 12px ${cssVar.borderRadius} 12px`};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-
-  // Outer container
-  outerContainer: css`
-    position: relative;
-  `,
-}));
+export const styles: typeof stylesModule & {
+  innerContainerDark: string;
+  innerContainerLight: string;
+} = {
+  ...stylesModule,
+  innerContainerDark: [stylesModule.innerContainerDark, borderRadiusClass].join(' '),
+  innerContainerLight: [stylesModule.innerContainerLight, borderRadiusClass].join(' '),
+};

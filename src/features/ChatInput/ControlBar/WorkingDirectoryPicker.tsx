@@ -5,7 +5,6 @@ import type { WorkingDirEntry } from '@lobechat/types';
 import { getWorkingDirEffectivePath } from '@lobechat/types';
 import { Flexbox, Icon, Input, Popover, Tooltip } from '@lobehub/ui';
 import { toast } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import {
   CheckIcon,
   ChevronDownIcon,
@@ -38,176 +37,24 @@ import { authSelectors } from '@/store/user/selectors';
 import DirIcon from './DirIcon';
 import { useCommitWorkingDirectory } from './useCommitWorkingDirectory';
 import { useMigrateDeviceRecents } from './useMigrateDeviceRecents';
+import styles from './WorkingDirectoryPicker.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 // Show the in-place search box only once the list is long enough that scanning
 // gets tedious — a short list doesn't need the extra chrome.
 const SEARCH_THRESHOLD = 8;
-
-const styles = createStaticStyles(({ css }) => ({
-  badge: css`
-    flex: none;
-
-    padding-inline: 5px;
-    border-radius: 999px;
-
-    font-size: 10px;
-    line-height: 15px;
-    color: ${cssVar.colorTextTertiary};
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  button: css`
-    cursor: pointer;
-
-    display: flex;
-    flex: none;
-    gap: 6px;
-    align-items: center;
-
-    padding-block: 2px;
-    padding-inline: 4px;
-    border-radius: 4px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    white-space: nowrap;
-
-    transition: background 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  buttonLabel: css`
-    overflow: hidden;
-    max-width: 140px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  chooseFolderItem: css`
-    cursor: pointer;
-
-    padding-block: 8px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  clearText: css`
-    cursor: pointer;
-
-    padding-block: 6px 2px;
-    padding-inline: 8px;
-
-    font-size: 11px;
-    font-weight: 500;
-    color: ${cssVar.colorTextTertiary};
-
-    transition: color 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-  `,
-  dirItem: css`
-    cursor: pointer;
-
-    padding-block: 6px;
-    padding-inline: 8px;
-    border-radius: ${cssVar.borderRadius};
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    /* Reveal the row actions (set-default / remove) only on hover. */
-    &:hover .wd-row-actions {
-      display: flex;
-    }
-  `,
-  dirItemActive: css`
-    background: ${cssVar.colorFillTertiary};
-  `,
-  dirName: css`
-    overflow: hidden;
-
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  dirPath: css`
-    overflow: hidden;
-
-    font-size: 11px;
-    color: ${cssVar.colorTextDescription};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  rowAction: css`
-    cursor: pointer;
-
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 20px;
-    height: 20px;
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorTextQuaternary};
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorTextSecondary};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  rowActions: css`
-    display: none;
-    flex: none;
-    gap: 2px;
-    align-items: center;
-  `,
-  scrollContainer: css`
-    overflow-y: auto;
-    max-height: 320px;
-  `,
-  searchBar: css`
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-block-end: 1px solid ${cssVar.colorSplit};
-
-    .ant-input-affix-wrapper {
-      padding-inline: 0;
-    }
-
-    .ant-input-prefix {
-      margin-inline-end: 8px;
-    }
-  `,
-  sectionTitle: css`
-    padding-block: 6px 2px;
-    padding-inline: 8px;
-
-    font-size: 11px;
-    font-weight: 500;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-}));
 
 const getDirName = (path: string) => path.split('/').findLast(Boolean) || path;
 
@@ -460,7 +307,7 @@ const WorkingDirectoryPicker = memo<WorkingDirectoryPickerProps>(({ agentId }) =
             )}
           </div>
           {isActive && (
-            <Icon icon={CheckIcon} size={16} style={{ color: cssVar.colorSuccess, flex: 'none' }} />
+            <Icon icon={CheckIcon} size={16} style={{ color: 'var(--ant-color-success)', flex: 'none' }} />
           )}
         </Flexbox>
       </Flexbox>
@@ -495,7 +342,7 @@ const WorkingDirectoryPicker = memo<WorkingDirectoryPickerProps>(({ agentId }) =
           <Flexbox
             align={'center'}
             justify={'center'}
-            style={{ color: cssVar.colorTextQuaternary, fontSize: 12, padding: '12px 8px' }}
+            style={{ color: 'var(--ant-color-text-quaternary)', fontSize: 12, padding: '12px 8px' }}
           >
             {search.trim() ? t('workingDirectory.noMatch') : t('workingDirectory.noRecent')}
           </Flexbox>

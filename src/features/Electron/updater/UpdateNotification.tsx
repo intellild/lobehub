@@ -2,7 +2,6 @@ import { type UpdateInfo } from '@lobechat/electron-client-ipc';
 import { useWatchBroadcast } from '@lobechat/electron-client-ipc';
 import { Flexbox, Icon, Markdown } from '@lobehub/ui';
 import { Button as BaseButton, createModal, useModalContext } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { t } from 'i18next';
 import { CircleFadingArrowUp, X } from 'lucide-react';
 import React, { memo, useState } from 'react';
@@ -10,71 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 import { autoUpdateService } from '@/services/electron/autoUpdate';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    position: fixed;
-    z-index: 1000;
-    inset-block-end: 16px;
-    inset-inline-start: 16px;
-  `,
-
-  installLaterCloseButton: css`
-    all: unset;
-
-    cursor: pointer;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    inline-size: 24px;
-    block-size: 24px;
-    border-radius: 6px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: 2px;
-    }
-  `,
-
-  installLaterToast: css`
-    position: fixed;
-    z-index: 1000;
-    inset-block-end: 20px;
-    inset-inline-start: 16px;
-
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    max-inline-size: calc(100vw - 32px);
-    padding-block: 10px;
-    padding-inline: 16px 10px;
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorBgElevated};
-    box-shadow: ${cssVar.boxShadow};
-  `,
-
-  releaseNote: css`
-    overflow: scroll;
-
-    max-height: 300px;
-    padding: 8px;
-    border-radius: 8px;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-}));
+import styles from './UpdateNotification.module.css';
 
 interface UpdateDetailContentProps {
   updateInfo: UpdateInfo;
@@ -87,7 +22,7 @@ const UpdateDetailContent = memo<UpdateDetailContentProps>(({ updateInfo }) => {
 
   return (
     <Flexbox gap={12} style={{ maxWidth: 480 }}>
-      <div style={{ color: cssVar.colorTextSecondary, fontSize: 12 }}>{updateInfo.version}</div>
+      <div style={{ color: 'var(--ant-color-text-secondary)', fontSize: 12 }}>{updateInfo.version}</div>
       {updateInfo.releaseNotes &&
         (typeof updateInfo.releaseNotes === 'string' ? (
           <div className={styles.releaseNote}>
@@ -182,11 +117,11 @@ export const UpdateNotification: React.FC = () => {
         <div
           style={{
             alignItems: 'center',
-            background: cssVar.colorBgElevated,
-            border: `1px solid ${cssVar.colorBorderSecondary}`,
+            background: 'var(--ant-color-bg-elevated)',
+            border: `1px solid ${'var(--ant-color-border-secondary)'}`,
             borderRadius: 12,
-            boxShadow: cssVar.boxShadow,
-            color: cssVar.colorText,
+            boxShadow: 'var(--ant-box-shadow)',
+            color: 'var(--ant-color-text)',
             display: 'flex',
             gap: 8,
             padding: '8px 10px',

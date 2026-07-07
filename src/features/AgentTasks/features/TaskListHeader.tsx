@@ -1,5 +1,4 @@
 import { ActionIcon, Button, Flexbox, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { ClipboardList } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +28,7 @@ const TaskListHeader = memo<TaskListHeaderProps>(({ onViewAll, count }) => {
           onClick={onViewAll}
         />
         <Text weight={500}>{t('taskList.title')}</Text>
-        <Text color={cssVar.colorTextQuaternary} fontSize={12}>
+        <Text color={'var(--ant-color-text-quaternary)'} fontSize={12}>
           {count}
         </Text>
       </Flexbox>
@@ -37,7 +36,7 @@ const TaskListHeader = memo<TaskListHeaderProps>(({ onViewAll, count }) => {
         size={'small'}
         type={'text'}
         style={{
-          color: cssVar.colorTextDescription,
+          color: 'var(--ant-color-text-description)',
         }}
         onClick={onViewAll}
       >

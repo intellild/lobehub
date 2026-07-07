@@ -2,53 +2,18 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { Check, PenLine } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { AskUserQuestionArgs, AskUserQuestionItem } from '../../../types';
+import styles from './index.module.css';
 
 /** Persisted draft + answer shape stored on `pluginState`. */
 interface AskUserQuestionState {
   askUserAnswers?: Record<string, string | string[]>;
   askUserDraft?: Record<string, string | string[]>;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  answer: css`
-    line-height: 1.6;
-    color: ${cssVar.colorText};
-  `,
-  check: css`
-    flex-shrink: 0;
-    margin-block-start: 3px;
-    color: ${cssVar.colorPrimary};
-  `,
-  container: css`
-    padding-block: 4px;
-  `,
-  description: css`
-    font-size: 13px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  divider: css`
-    align-self: stretch;
-    height: 1px;
-    background: ${cssVar.colorFillSecondary};
-  `,
-  label: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  question: css`
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.5;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 interface QABlockProps {
   answer?: string | string[];

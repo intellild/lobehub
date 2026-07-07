@@ -1,54 +1,25 @@
 'use client';
 
 import { ConfigProvider } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import { type ReactNode } from 'react';
 import { useCallback, useState } from 'react';
 
 import ImperativeModal from '@/components/ImperativeModal';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  body: css`
-    height: 100%;
-    max-height: calc(100dvh - 56px) !important;
-  `,
-  content: css`
-    height: 100%;
-    border: none !important;
-    background: transparent !important;
-  `,
-  extra: css`
-    position: fixed;
-    z-index: ${cssVar.zIndexPopupBase + 10};
-    inset-block: 0;
-    inset-inline-end: 0;
+import styles from './FullscreenModal.module.css';
 
-    width: 0;
-    border-inline-start: 1px solid ${cssVar.colorSplit};
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    background: ${cssVar.colorBgLayout};
-  `,
-  header: css`
-    background: transparent !important;
-  `,
-  modal: css`
-    position: relative;
-    inset-block-start: 0;
-
-    width: 100vw !important;
-    max-width: none;
-    height: 100%;
-    margin: 0;
-    padding-block-end: 0;
-
-    > div {
-      height: 100%;
-    }
-  `,
-  modal_withDetail: css`
-    width: calc(100vw) !important;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface FullscreenModalProps {
   children: ReactNode;

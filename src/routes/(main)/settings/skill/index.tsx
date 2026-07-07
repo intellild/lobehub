@@ -1,6 +1,4 @@
 'use client';
-
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
@@ -12,24 +10,12 @@ import { agentSkillsSelectors, builtinToolSelectors } from '@/store/tool/selecto
 import LeftPanel from './features/LeftPanel';
 import SkillDetail, { type ToolDetailType } from './features/SkillDetail';
 import { type SkillViewMode } from './features/SkillList';
+import styles from './index.module.css';
 
 export interface SelectedTool {
   identifier: string;
   type: ToolDetailType;
 }
-
-const styles = createStaticStyles(({ css }) => ({
-  detail: css`
-    overflow-y: auto;
-    flex: 1;
-  `,
-  root: css`
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-    height: 100%;
-  `,
-}));
 
 const Page = memo(() => {
   const [searchParams] = useSearchParams();

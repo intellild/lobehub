@@ -1,0 +1,30 @@
+.loadingIcon {
+flex-shrink: 0;
+color: var(--ant-color-text-secondary);
+animation: spin 1s linear infinite;
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+}
+
+.notInstalledTag {
+border-color: var(--ant-color-warning-border);
+background: var(--ant-color-warning-bg);
+}
+
+.tag {
+height: 28px !important;
+border-radius: var(--ant-border-radius-sm) !important;
+}
+
+.warningIcon {
+flex-shrink: 0;
+color: var(--ant-color-warning);
+}

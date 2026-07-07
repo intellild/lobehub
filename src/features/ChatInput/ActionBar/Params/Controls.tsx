@@ -1,7 +1,6 @@
 import { DEFAULT_AGENT_CONFIG } from '@lobechat/const';
 import { Flexbox, Icon, Select, SliderWithInput, TextArea } from '@lobehub/ui';
 import { Form as AntdForm, Switch } from 'antd';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { debounce } from 'es-toolkit/compat';
 import isEqual from 'fast-deep-equal';
 import { ChevronDown, ChevronUp } from 'lucide-react';
@@ -23,6 +22,20 @@ import type { LobeAgentConfig } from '@/types/agent';
 
 import { useAgentId } from '../../hooks/useAgentId';
 import { useUpdateAgentConfig } from '../../hooks/useUpdateAgentConfig';
+import styles from './Controls.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ControlsProps {
   setUpdating: (updating: boolean) => void;
@@ -50,315 +63,6 @@ interface SliderConfig {
   step: number;
   unlimitedInput?: boolean;
 }
-
-const styles = createStaticStyles(({ css }) => ({
-  advancedContent: css`
-    display: flex;
-    flex-direction: column;
-
-    .control-row {
-      border-block-start: 1px solid ${cssVar.colorSplit};
-    }
-
-    .control-row:first-child {
-      border-block-start: none;
-    }
-  `,
-  sectionHeader: css`
-    cursor: pointer;
-
-    width: calc(100% + 16px);
-    margin-inline: -8px;
-    padding-block: 12px;
-    padding-inline: 8px;
-    border: none;
-    border-radius: 10px;
-
-    font: inherit;
-    font-size: 12px;
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-    text-align: start;
-
-    background: transparent;
-
-    transition: color 0.2s ease;
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-
-    &:hover .section-header-label {
-      color: ${cssVar.colorText};
-    }
-
-    &:focus-visible {
-      outline: 1px solid ${cssVar.colorBorder};
-      outline-offset: 2px;
-    }
-  `,
-  body: css`
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-
-    min-height: 0;
-    padding-block-end: 4px;
-    padding-inline: 12px;
-  `,
-  commonSection: css`
-    display: flex;
-    flex-direction: column;
-    padding-block: 0;
-  `,
-  divider: css`
-    height: 1px;
-    background: ${cssVar.colorSplit};
-  `,
-  hint: css`
-    font-size: 12px;
-    line-height: 18px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  form: css`
-    margin: 0;
-  `,
-  formSidebar: css`
-    display: flex;
-    flex: 1;
-
-    width: 100%;
-    height: 100%;
-    min-height: 0;
-  `,
-  header: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-block: 16px;
-    padding-inline: 12px;
-    border-block-end: 1px solid ${cssVar.colorSplit};
-
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.4;
-    color: ${cssVar.colorText};
-  `,
-  headerLoading: css`
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 18px;
-    height: 18px;
-
-    color: ${cssVar.colorTextTertiary};
-  `,
-  headerTitle: css`
-    overflow: hidden;
-    min-width: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  label: css`
-    user-select: none;
-
-    min-width: 0;
-
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 20px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  labelMain: css`
-    flex-wrap: wrap;
-    min-width: 0;
-  `,
-  muted: css`
-    .control-label {
-      color: ${cssVar.colorTextTertiary};
-    }
-  `,
-  modelConfigSection: css`
-    padding-block: 12px;
-
-    .ant-form {
-      margin: 0;
-    }
-
-    .ant-form-item {
-      padding-block: 12px;
-    }
-
-    .ant-form-item-row {
-      gap: 10px;
-    }
-
-    .ant-form-item-label > label {
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 20px;
-      color: ${cssVar.colorTextSecondary};
-    }
-
-    .ant-form-item-label > label div {
-      color: ${cssVar.colorTextSecondary};
-    }
-
-    .ant-form-item-label > label small,
-    .ant-form-item-label > label small *:not(a) {
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 18px;
-      color: ${cssVar.colorTextTertiary};
-    }
-
-    .ant-form-item:first-child {
-      padding-block-start: 0;
-    }
-
-    .ant-form-item:last-child {
-      padding-block-end: 0;
-    }
-
-    .ant-divider {
-      display: none;
-    }
-  `,
-  panel: css`
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-
-    width: min(384px, 100%);
-    max-height: 50vh;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 16px;
-
-    background: ${cssVar.colorBgElevated};
-    box-shadow: ${cssVar.boxShadowSecondary};
-
-    .ant-switch {
-      min-width: 28px;
-      background: ${cssVar.colorFillSecondary};
-    }
-
-    .ant-switch .ant-switch-handle::before {
-      background: ${cssVar.colorBgElevated};
-    }
-
-    .ant-switch.ant-switch-checked {
-      background: ${cssVar.colorText};
-    }
-
-    .ant-form-item {
-      margin: 0;
-    }
-  `,
-  sidebarPanel: css`
-    width: 100%;
-    height: 100%;
-    max-height: none;
-    border: none;
-    border-radius: 0;
-
-    background: transparent;
-    box-shadow: none;
-  `,
-  rowControl: css`
-    width: 100%;
-  `,
-  rowRoot: css`
-    padding-block: 12px;
-  `,
-  tag: css`
-    user-select: none;
-
-    align-self: flex-start;
-
-    width: fit-content;
-    padding-block: 2px;
-    padding-inline: 7px;
-    border-radius: 999px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 1.2;
-    color: ${cssVar.colorTextQuaternary};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  tooltipContent: css`
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    max-width: 240px;
-  `,
-  slider: css`
-    width: 100%;
-
-    .ant-slider {
-      margin-block: 0;
-      margin-inline: 0;
-    }
-
-    .ant-slider-rail {
-      background: ${cssVar.colorFillQuaternary};
-    }
-
-    .ant-slider-track {
-      background: ${cssVar.colorTextSecondary};
-    }
-
-    .ant-slider-handle::after {
-      background: ${cssVar.colorBgElevated};
-      box-shadow: 0 0 0 2px ${cssVar.colorTextSecondary};
-    }
-
-    .ant-slider-handle:hover::after,
-    .ant-slider-handle:focus::after,
-    .ant-slider-handle:active::after {
-      box-shadow: 0 0 0 3px ${cssVar.colorTextSecondary};
-    }
-
-    .ant-input-number,
-    .ant-input-number-affix-wrapper {
-      overflow: hidden;
-
-      height: 28px;
-      border: none;
-      border-radius: 10px;
-
-      color: ${cssVar.colorTextSecondary};
-
-      background: ${cssVar.colorFillTertiary};
-      box-shadow: none;
-    }
-
-    .ant-input-number:hover,
-    .ant-input-number-focused,
-    .ant-input-number-affix-wrapper:hover,
-    .ant-input-number-affix-wrapper-focused {
-      background: ${cssVar.colorFillSecondary};
-      box-shadow: none;
-    }
-
-    .ant-input-number-input {
-      height: 28px;
-      padding-inline: 6px;
-
-      font-size: 13px;
-      color: ${cssVar.colorTextSecondary};
-      text-align: center;
-    }
-  `,
-}));
 
 const PARAM_NAME_MAP: Record<ParamKey, (string | number)[]> = {
   frequency_penalty: ['params', 'frequency_penalty'],

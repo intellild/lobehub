@@ -1,0 +1,18 @@
+.absoluteContainer {
+position: absolute;
+inset: 0;
+}
+
+.contentDark {
+overflow: hidden;
+background: linear-gradient(
+  to bottom,
+  var(--ant-color-bg-container),
+  var(--content-bg-secondary, var(--ant-color-bg-container))
+);
+}
+
+.contentLight {
+overflow: hidden;
+background: var(--content-bg-secondary, var(--ant-color-bg-container));
+}

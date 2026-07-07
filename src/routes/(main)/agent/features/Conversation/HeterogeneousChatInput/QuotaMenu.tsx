@@ -2,101 +2,28 @@
 
 import type { HeteroQuotaWindow } from '@lobechat/electron-client-ipc';
 import { ActionIcon, Flexbox, Icon, Popover, Skeleton, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { ChevronDownIcon, GaugeIcon, RefreshCwIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import styles from './QuotaMenu.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const QUOTA_STALE_MS = 60_000;
 const QUOTA_RETRY_COOLDOWN_MS = 60_000;
-
-const styles = createStaticStyles(({ css }) => ({
-  emptyState: css`
-    padding-block: 10px;
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-  `,
-  error: css`
-    padding: 8px;
-    border: 1px solid ${cssVar.colorErrorBorder};
-    border-radius: ${cssVar.borderRadius};
-
-    font-size: 12px;
-    color: ${cssVar.colorError};
-
-    background: ${cssVar.colorErrorBg};
-  `,
-  refreshNotice: css`
-    padding: 8px;
-    border: 1px solid ${cssVar.colorWarningBorder};
-    border-radius: ${cssVar.borderRadius};
-
-    font-size: 12px;
-    color: ${cssVar.colorWarningText};
-
-    background: ${cssVar.colorWarningBg};
-  `,
-  header: css`
-    padding-block-end: 8px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  popover: css`
-    width: 292px;
-  `,
-  progressFill: css`
-    height: 100%;
-    border-radius: inherit;
-    background: ${cssVar.colorSuccess};
-  `,
-  progressTrack: css`
-    overflow: hidden;
-
-    width: 100%;
-    height: 6px;
-    border-radius: 999px;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  trigger: css`
-    cursor: pointer;
-
-    display: flex;
-    flex: none;
-    gap: 6px;
-    align-items: center;
-
-    padding-block: 2px;
-    padding-inline: 4px;
-    border: 0;
-    border-radius: 4px;
-
-    font: inherit;
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    white-space: nowrap;
-
-    appearance: none;
-    background: transparent;
-
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${cssVar.colorTextSecondary};
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  triggerOpen: css`
-    color: ${cssVar.colorTextSecondary};
-    background: ${cssVar.colorFillSecondary};
-  `,
-  value: css`
-    color: ${cssVar.colorText};
-  `,
-  window: css`
-    min-width: 0;
-  `,
-}));
 
 const clampPercent = (value: number) => Math.min(100, Math.max(0, Math.round(value)));
 

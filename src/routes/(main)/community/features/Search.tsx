@@ -2,7 +2,6 @@
 
 import { type SearchBarProps } from '@lobehub/ui';
 import { SearchBar } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import urlJoin from 'url-join';
@@ -11,18 +10,10 @@ import { withSuspense } from '@/components/withSuspense';
 import { useQueryRoute } from '@/hooks/useQueryRoute';
 import { usePathname, useQuery } from '@/libs/router/navigation';
 
-const prefixCls = 'ant';
+import stylesModule from './Search.module.css';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  active: css`
-    box-shadow: ${cssVar.boxShadow};
-  `,
-  bar: css`
-    .${prefixCls}-input-group-wrapper {
-      padding: 0;
-    }
-  `,
-}));
+const prefixCls = 'ant';
+export const styles = stylesModule;
 
 interface StoreSearchBarProps extends SearchBarProps {
   mobile?: boolean;

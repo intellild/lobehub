@@ -2,22 +2,10 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Markdown } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
 import type { SpeakParams } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding: 12px;
-    border-radius: 8px;
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  instruction: css`
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+import styles from './index.module.css';
 
 export const SpeakRender = memo<BuiltinRenderProps<SpeakParams>>(({ args }) => {
   const { instruction } = args || {};

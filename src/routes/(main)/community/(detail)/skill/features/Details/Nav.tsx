@@ -3,7 +3,6 @@
 import { Flexbox, Icon, Tag } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
 import { SkillsIcon } from '@lobehub/ui/icons';
-import { createStaticStyles } from 'antd-style';
 import { BookOpenIcon, DownloadIcon, FileTextIcon, HistoryIcon, ListIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,19 +10,9 @@ import urlJoin from 'url-join';
 
 import { useDetailContext } from '../DetailProvider';
 import { SkillNavKey } from '../types';
+import styles from './Nav.module.css';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  link: css`
-    color: ${cssVar.colorTextDescription};
-
-    &:hover {
-      color: ${cssVar.colorInfo};
-    }
-  `,
-  nav: css`
-    border-block-end: 1px solid ${cssVar.colorBorder};
-  `,
-}));
+export { styles };
 
 const Nav = memo<{
   activeTab?: SkillNavKey;

@@ -2,7 +2,6 @@
 
 import type { UIChatMessage } from '@lobechat/types';
 import { Block, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { Component, memo, type ReactNode, useMemo } from 'react';
 
 import { type ConversationContext, ConversationProvider } from '@/features/Conversation';
@@ -14,19 +13,8 @@ import {
   type LifecycleMode,
   type ToolRenderFixtureVariant,
 } from './lifecycleMode';
+import styles from './toolSurfaces.module.css';
 import type { ApiEntry } from './useDevtoolsEntries';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  missingShell: css`
-    padding-block: 12px;
-    padding-inline: 16px;
-    border: 1px dashed ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
 
 /** Catches a render/inspector crash so one bad fixture can't blank the page. */
 export class RenderBoundary extends Component<

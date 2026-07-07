@@ -3,33 +3,11 @@
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { ActionIcon, Block, Flexbox, Highlighter, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { memo, useState } from 'react';
 
 import type { EditLocalFileState } from '../../../types';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    overflow: hidden;
-    padding-inline: 8px 0;
-  `,
-  header: css`
-    .action-icon {
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    &:hover {
-      .action-icon {
-        opacity: 1;
-      }
-    }
-  `,
-  statusIcon: css`
-    font-size: 12px;
-  `,
-}));
+import styles from './index.module.css';
 
 interface EditLocalFileParams {
   all?: boolean;
@@ -56,12 +34,12 @@ const EditLocalFile = memo<BuiltinRenderProps<EditLocalFileParams, EditLocalFile
             {pluginState === undefined ? null : isSuccess ? (
               <CheckCircleFilled
                 className={styles.statusIcon}
-                style={{ color: cssVar.colorSuccess }}
+                style={{ color: 'var(--ant-color-success)' }}
               />
             ) : (
               <CloseCircleFilled
                 className={styles.statusIcon}
-                style={{ color: cssVar.colorError }}
+                style={{ color: 'var(--ant-color-error)' }}
               />
             )}
             <Text code as={'span'} fontSize={12}>

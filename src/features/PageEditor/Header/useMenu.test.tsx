@@ -48,16 +48,6 @@ vi.mock('antd', () => ({
   },
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({}),
-  cssVar: {
-    colorTextTertiary: 'colorTextTertiary',
-  },
-  cx: (...args: unknown[]) => args.filter(Boolean).join(' '),
-  keyframes: () => '',
-  useResponsive: () => ({ lg: true }),
-}));
-
 vi.mock('@/business/client/hooks/useActiveWorkspaceId', () => ({
   useActiveWorkspaceId: () => undefined,
 }));

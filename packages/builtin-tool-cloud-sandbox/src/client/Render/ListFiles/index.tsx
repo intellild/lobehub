@@ -2,34 +2,11 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Block, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { File, Folder } from 'lucide-react';
 import { memo } from 'react';
 
 import type { ListLocalFilesState } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    overflow: hidden;
-    padding-inline: 8px 0;
-  `,
-  fileIcon: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-  fileItem: css`
-    cursor: default;
-    padding-block: 4px;
-    padding-inline: 8px;
-    border-radius: 4px;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  folderIcon: css`
-    color: ${cssVar.colorWarning};
-  `,
-}));
+import styles from './index.module.css';
 
 interface ListLocalFilesParams {
   directoryPath: string;

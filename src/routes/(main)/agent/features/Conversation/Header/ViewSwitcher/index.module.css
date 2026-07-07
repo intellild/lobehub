@@ -1,0 +1,23 @@
+.label {
+justify-content: center;
+width: 100%;
+min-width: 0;
+}
+
+.icon {
+display: none;
+
+@container agent-conv-header (max-width: 860px) {
+  display: block;
+}
+}
+
+.text {
+display: block;
+text-align: center;
+white-space: nowrap;
+
+@container agent-conv-header (max-width: 860px) {
+  display: none;
+}
+}

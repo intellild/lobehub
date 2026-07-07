@@ -1,37 +1,16 @@
 'use client';
 
 import { Block, Flexbox, Icon, Markdown, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ListChecksIcon } from 'lucide-react';
 import { memo } from 'react';
 
 import { useChatStore } from '@/store/chat';
 
 import type { Plan } from '../../../types';
+import stylesModule from './PlanCard.module.css';
 
 const MAX_CONTENT_HEIGHT = 100;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  content: css`
-    overflow: hidden auto;
-
-    max-height: ${MAX_CONTENT_HEIGHT}px;
-    padding: 12px;
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  header: css`
-    cursor: pointer;
-    padding-block: 4px;
-    padding-inline: 0;
-    transition: opacity 0.2s;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  `,
-}));
+const styles = stylesModule;
 
 interface PlanCardProps {
   plan: Plan;

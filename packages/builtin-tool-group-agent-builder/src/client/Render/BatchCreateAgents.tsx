@@ -2,7 +2,6 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Avatar, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { Users } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,45 +9,7 @@ import { useTranslation } from 'react-i18next';
 import ToolTag from '@/features/ToolTag';
 
 import type { BatchCreateAgentsParams, BatchCreateAgentsState } from '../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding-block: 4px;
-    padding-inline: 16px;
-    border-radius: 8px;
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  description: css`
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextDescription};
-    text-overflow: ellipsis;
-  `,
-  empty: css`
-    padding: 16px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  item: css`
-    padding-block: 12px;
-
-    &:not(:last-child) {
-      border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-    }
-  `,
-  title: css`
-    overflow: hidden;
-
-    font-size: 13px;
-    font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
+import styles from './BatchCreateAgents.module.css';
 
 interface AgentItemProps {
   agent: {

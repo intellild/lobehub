@@ -1,0 +1,14 @@
+.arrow {
+margin-inline: 4px;
+color: var(--ant-color-text-quaternary);
+}
+
+.from {
+color: var(--ant-color-text-secondary);
+text-decoration: line-through;
+}
+
+.title {
+margin-inline-end: 8px;
+color: var(--ant-color-text);
+}

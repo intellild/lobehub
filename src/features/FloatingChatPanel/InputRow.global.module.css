@@ -1,0 +1,5 @@
+:global(::view-transition-old(floating-chat-panel-input)),
+:global(::view-transition-new(floating-chat-panel-input)) {
+  animation-duration: 240ms;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}

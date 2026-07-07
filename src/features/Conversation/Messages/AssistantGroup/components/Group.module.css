@@ -1,0 +1,5 @@
+.container {
+&:has(.tool-blocks) {
+    width: 100%;
+  }
+}

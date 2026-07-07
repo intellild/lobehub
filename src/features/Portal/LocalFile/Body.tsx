@@ -2,7 +2,6 @@ import { isDesktop } from '@lobechat/const';
 import type { MarkdownProps } from '@lobehub/ui';
 import { ActionIcon, Center, Empty, Flexbox, Icon, Image, Markdown, Text } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { CodeIcon, EyeIcon, RefreshCwIcon } from 'lucide-react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -23,6 +22,7 @@ import {
 } from '@/utils/skillMarkdown';
 
 import { extensionToLanguage, getFileExtension } from './Body.helpers';
+import frontmatterStylesModule from './Body.module.css';
 import MarkdownImage from './MarkdownImage';
 
 interface ImagePreviewProps {
@@ -62,39 +62,7 @@ ImagePreview.displayName = 'ImagePreview';
 // ============== TextPreviewPane ==============
 
 const MARKDOWN_EXTS = new Set(['md', 'mdx', 'markdown']);
-
-const frontmatterStyles = createStaticStyles(({ css }) => ({
-  card: css`
-    margin-block: 8px 12px;
-    margin-inline: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 8px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  key: css`
-    flex-shrink: 0;
-
-    width: 96px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  row: css`
-    padding-block: 8px;
-    padding-inline: 12px;
-
-    &:not(:last-child) {
-      border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-    }
-  `,
-  value: css`
-    min-width: 0;
-    font-size: 12px;
-    white-space: pre-wrap;
-  `,
-}));
+const frontmatterStyles = frontmatterStylesModule;
 
 interface SkillFrontmatterPreviewCardProps {
   metadata: SkillMarkdownMetadataItem[];
@@ -120,31 +88,7 @@ SkillFrontmatterPreviewCard.displayName = 'SkillFrontmatterPreviewCard';
 type TextPreviewMode = 'render' | 'raw';
 
 const NO_TOPIC_KEY = '__no_topic__';
-
-const floatingControlsStyles = createStaticStyles(({ css }) => ({
-  container: css`
-    position: absolute;
-    z-index: 2;
-    inset-block-start: 8px;
-    inset-inline-end: 12px;
-
-    padding: 4px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 8px;
-
-    opacity: 0.55;
-    background: ${cssVar.colorBgElevated};
-    backdrop-filter: blur(8px);
-    box-shadow: ${cssVar.boxShadowTertiary};
-
-    transition: opacity 0.15s ease;
-
-    &:hover,
-    &:focus-within {
-      opacity: 1;
-    }
-  `,
-}));
+const floatingControlsStyles = frontmatterStylesModule;
 
 interface TextPreviewPaneProps {
   activeTopicId?: string | null;

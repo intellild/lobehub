@@ -3,7 +3,6 @@
 import { Flexbox, Input, Text } from '@lobehub/ui';
 import { Select } from '@lobehub/ui/base-ui';
 import { Checkbox, Table } from 'antd';
-import { cssVar } from 'antd-style';
 import { memo, type ReactNode, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -162,7 +161,7 @@ const MappingStep = memo<MappingStepProps>(
       [headers, mapping, hideSkipped],
     );
 
-    const roleDescColor = (role: MappingTarget) => ROLE_COLORS[role] || cssVar.colorTextTertiary;
+    const roleDescColor = (role: MappingTarget) => ROLE_COLORS[role] || 'var(--ant-color-text-tertiary)';
 
     const targetOptions: { label: ReactNode; value: MappingTarget }[] = [
       { desc: 'inputDesc', label: 'input', value: 'input' },
@@ -210,7 +209,7 @@ const MappingStep = memo<MappingStepProps>(
             dataIndex: h,
             ellipsis: !allowWrap,
             onCell: isIgnored
-              ? () => ({ style: { color: cssVar.colorTextQuaternary } })
+              ? () => ({ style: { color: 'var(--ant-color-text-quaternary)' } })
               : allowWrap
                 ? () => ({
                     style: {
@@ -231,7 +230,7 @@ const MappingStep = memo<MappingStepProps>(
                   variant="borderless"
                   style={{
                     color:
-                      color || (isIgnored ? cssVar.colorTextQuaternary : cssVar.colorTextTertiary),
+                      color || (isIgnored ? 'var(--ant-color-text-quaternary)' : 'var(--ant-color-text-tertiary)'),
                     fontSize: 12,
                     marginInlineStart: -8,
                   }}
@@ -259,13 +258,13 @@ const MappingStep = memo<MappingStepProps>(
               {t('dataset.import.step.mapping')}
             </Text>
             <Flexbox horizontal align="center" gap={8}>
-              <Text color={cssVar.colorTextTertiary} fontSize={12}>
+              <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
                 {t('dataset.import.fieldMapping.desc')}
               </Text>
               <Text
-                color={cssVar.colorTextQuaternary}
+                color={'var(--ant-color-text-quaternary)'}
                 fontSize={12}
-                style={{ fontFamily: cssVar.fontFamilyCode }}
+                style={{ fontFamily: 'var(--ant-font-family-code)' }}
               >
                 {t('dataset.import.preview.rows', { count: totalCount })}
               </Text>

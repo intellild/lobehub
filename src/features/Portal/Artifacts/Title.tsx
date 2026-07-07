@@ -2,7 +2,6 @@ import { ArtifactType } from '@lobechat/types';
 import { ActionIcon, Flexbox, Icon, Text } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
 import { ConfigProvider } from 'antd';
-import { cx } from 'antd-style';
 import { ArrowLeft, CodeIcon, EyeIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -10,6 +9,19 @@ import { useChatStore } from '@/store/chat';
 import { chatPortalSelectors } from '@/store/chat/selectors';
 import { ArtifactDisplayMode } from '@/store/chat/slices/portal/initialState';
 import { oneLineEllipsis } from '@/styles';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const Title = () => {
   const { t } = useTranslation('portal');

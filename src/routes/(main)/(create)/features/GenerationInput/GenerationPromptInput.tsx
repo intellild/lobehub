@@ -2,9 +2,10 @@
 
 import { ChatInput, ChatInputActionBar, SendButton } from '@lobehub/editor/react';
 import { Flexbox, TextArea } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import type { KeyboardEvent, ReactNode } from 'react';
 import { memo } from 'react';
+
+import styles from './GenerationPromptInput.module.css';
 
 interface GenerationPromptInputProps {
   centerActions?: ReactNode;
@@ -26,13 +27,6 @@ interface GenerationPromptInputProps {
   rightActions?: ReactNode;
   value?: string;
 }
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  textarea: css`
-    padding: 0;
-    border-radius: 0;
-  `,
-}));
 
 const GenerationPromptInput = memo<GenerationPromptInputProps>(
   ({

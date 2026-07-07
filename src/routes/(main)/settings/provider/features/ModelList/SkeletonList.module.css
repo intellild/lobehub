@@ -1,0 +1,33 @@
+.container {
+display: flex;
+gap: 24px;
+align-items: center;
+justify-content: space-between;
+
+padding: 12px;
+border-radius: var(--ant-border-radius-lg);
+}
+
+.leftContent {
+display: flex;
+flex: 1;
+gap: 8px;
+align-items: center;
+
+min-width: 0;
+}
+
+.rightContent {
+display: flex;
+gap: 4px;
+align-items: center;
+}
+
+.textContent {
+display: flex;
+flex: 1;
+flex-direction: column;
+gap: 4px;
+
+min-width: 0;
+}

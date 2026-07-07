@@ -1,0 +1,57 @@
+.commandBlock {
+position: relative;
+
+padding-block: var(--ant-padding-xs);
+padding-inline: var(--ant-padding-sm);
+border: 1px solid var(--ant-color-border);
+border-radius: var(--ant-border-radius-sm);
+
+font-family: var(--ant-font-family-code);
+font-size: var(--ant-font-size-sm);
+
+background-color: var(--ant-color-fill-tertiary);
+
+&:hover {
+  background-color: var(--ant-color-fill-secondary);
+}
+}
+
+.container {
+margin-block-start: var(--ant-margin-xs);
+padding: var(--ant-padding);
+border: 1px solid var(--ant-color-border);
+border-radius: var(--ant-border-radius);
+
+background-color: var(--ant-color-bg-container);
+}
+
+.copyButton {
+position: absolute;
+inset-block-start: var(--ant-padding-xxs);
+inset-inline-end: var(--ant-padding-xxs);
+
+height: auto;
+min-height: auto;
+padding-block: 2px;
+padding-inline: 6px;
+
+font-size: 12px;
+}
+
+.dependencyCard {
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-sm);
+}
+
+.footer {
+display: flex;
+gap: var(--ant-margin-xs);
+justify-content: flex-end;
+margin-block-start: var(--ant-margin-xs);
+}
+
+.statusIcon {
+display: flex;
+gap: var(--ant-margin-xxs);
+align-items: center;
+}

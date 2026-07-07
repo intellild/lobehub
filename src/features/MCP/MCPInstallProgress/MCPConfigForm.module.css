@@ -1,0 +1,24 @@
+.container {
+margin-block-start: var(--ant-margin-xs);
+padding: var(--ant-padding);
+border: 1px solid var(--ant-color-border);
+border-radius: var(--ant-border-radius);
+
+background-color: var(--ant-color-bg-container);
+}
+
+.footer {
+display: flex;
+gap: var(--ant-margin-xs);
+justify-content: flex-end;
+
+margin-block-start: var(--ant-margin);
+padding-block-start: var(--ant-padding-xs);
+border-block-start: 1px solid var(--ant-color-border-secondary);
+}
+
+.markdown {
+p {
+  color: var(--ant-color-text-description);
+}
+}

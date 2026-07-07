@@ -2,7 +2,6 @@
 
 import { ChatInput, ChatInputActionBar } from '@lobehub/editor/react';
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { memo } from 'react';
 
 import ChatInputNotice from '@/features/ChatInput/ChatInputNotice';
@@ -12,23 +11,23 @@ import dynamic from '@/libs/next/dynamic';
 import ActionBar from '../ActionBar';
 import InputEditor from '../InputEditor';
 import SendArea from '../SendArea';
+import stylesModule from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const FilePreview = dynamic(() => import('./FilePreview'), { ssr: false });
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css``,
-  fullscreen: css`
-    position: absolute;
-    z-index: 100;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-    padding: 12px;
-
-    background: ${cssVar.colorBgLayout};
-  `,
-}));
+const styles = stylesModule;
 
 const DesktopChatInput = memo(() => {
   const [slashMenuRef, expand] = useChatInputStore((s) => [s.slashMenuRef, s.expand]);

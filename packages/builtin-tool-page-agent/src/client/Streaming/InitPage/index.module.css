@@ -1,0 +1,40 @@
+.container {
+overflow: hidden;
+
+width: 100%;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 8px;
+
+background: var(--ant-color-bg-container);
+}
+
+.header {
+padding-block: 10px;
+padding-inline: 12px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.icon {
+color: var(--ant-color-primary);
+}
+
+.meta {
+color: var(--ant-color-text-description);
+}
+
+.preview {
+max-height: 360px;
+overflow: auto;
+padding-block: 8px;
+padding-inline: 12px;
+}
+
+.title {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+
+font-weight: 500;
+color: var(--ant-color-text);
+}

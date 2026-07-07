@@ -1,5 +1,4 @@
 import { Avatar, Center, Flexbox, Icon, Skeleton, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { Origami } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -30,11 +29,11 @@ const ArtifactList = () => {
     <Center
       gap={8}
       paddingBlock={24}
-      style={{ border: `1px dashed ${cssVar.colorSplit}`, borderRadius: 8, marginInline: 12 }}
+      style={{ border: `1px dashed ${'var(--ant-color-split)'}`, borderRadius: 8, marginInline: 12 }}
     >
       <Avatar
         avatar={<Icon icon={Origami} size={'large'} />}
-        background={cssVar.colorFillTertiary}
+        background={'var(--ant-color-fill-tertiary)'}
         shape={'square'}
         size={48}
       />

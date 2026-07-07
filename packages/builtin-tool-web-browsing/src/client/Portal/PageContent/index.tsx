@@ -7,87 +7,17 @@ import {
   Highlighter,
   Icon,
   Markdown,
-  Segmented,
   stopPropagation,
   Text,
 } from '@lobehub/ui';
+import { Segmented } from '@lobehub/ui/base-ui';
 import { Descriptions } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { ExternalLink } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { CRAWL_CONTENT_LIMITED_COUNT } from '../../../const';
-
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    cardBody: css`
-      padding-block: 12px 8px;
-      padding-inline: 16px;
-    `,
-    container: css`
-      cursor: pointer;
-
-      overflow: hidden;
-
-      max-width: 360px;
-      border: 1px solid ${cssVar.colorBorderSecondary};
-      border-radius: 12px;
-
-      transition: border-color 0.2s;
-
-      :hover {
-        border-color: ${cssVar.colorPrimary};
-      }
-    `,
-    description: css`
-      margin-block: 0 4px !important;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    detailsSection: css`
-      padding-block: ${cssVar.paddingSM};
-    `,
-    externalLink: css`
-      color: ${cssVar.colorPrimary};
-    `,
-    footer: css`
-      padding: ${cssVar.paddingXS};
-      border-radius: 6px;
-      text-align: center;
-      background-color: ${cssVar.colorFillQuaternary};
-    `,
-    footerText: css`
-      font-size: ${cssVar.fontSizeSM};
-      color: ${cssVar.colorTextTertiary} !important;
-    `,
-    metaInfo: css`
-      display: flex;
-      align-items: center;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    sliced: css`
-      color: ${cssVar.colorTextQuaternary};
-    `,
-    title: css`
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-
-      margin-block-end: 0;
-
-      font-size: 16px;
-      font-weight: bold;
-    `,
-    titleRow: css`
-      color: ${cssVar.colorText};
-    `,
-
-    url: css`
-      color: ${cssVar.colorTextTertiary};
-    `,
-  };
-});
+import styles from './index.module.css';
 
 enum DisplayType {
   Raw = 'raw',

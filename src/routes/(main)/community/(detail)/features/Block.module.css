@@ -1,0 +1,12 @@
+.more {
+display: flex;
+align-items: center;
+color: var(--ant-color-text-secondary);
+}
+
+.title {
+margin-block: 0;
+font-size: 16px;
+font-weight: bold;
+line-height: 1.2;
+}

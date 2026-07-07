@@ -2,7 +2,6 @@ import type { AgentEvalRunListItem } from '@lobechat/types';
 import { type DropdownItem, DropdownMenu, Flexbox, Icon } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import {
   AlertTriangle,
   ArrowRight,
@@ -23,155 +22,7 @@ import { useEvalStore } from '@/store/eval';
 import SegmentBar from '../../../../features/SegmentBar';
 import StatusBadge from '../../../../features/StatusBadge';
 import { formatDuration } from '../../../../utils';
-
-const styles = createStaticStyles(({ css }) => ({
-  arrowIcon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextTertiary};
-    transition: transform 0.15s ease;
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  card: css`
-    padding: 20px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-
-    transition:
-      border-color 0.15s ease,
-      background 0.15s ease;
-
-    &:hover {
-      border-color: ${cssVar.colorBorder};
-    }
-
-    &:hover .run-card-arrow {
-      transform: translateX(2px);
-      color: ${cssVar.colorText};
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-
-      &:hover .run-card-arrow {
-        transform: none;
-      }
-    }
-  `,
-  cardLink: css`
-    text-decoration: none;
-  `,
-  dropdownTrigger: css`
-    cursor: pointer;
-
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 28px;
-    height: 28px;
-    border-radius: ${cssVar.borderRadiusSM};
-
-    color: ${cssVar.colorTextTertiary};
-
-    transition:
-      color 0.15s ease,
-      background 0.15s ease;
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillSecondary};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: -1px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  // Tonal hero band carrying the headline outcome — the first thing the eye lands on.
-  hero: css`
-    padding: 16px;
-    border-radius: ${cssVar.borderRadius};
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  heroValue: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeHeading2};
-    font-weight: 600;
-    line-height: 1;
-    color: ${cssVar.colorText};
-  `,
-  meta: css`
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-  metaHighlight: css`
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextSecondary};
-  `,
-  monoText: css`
-    font-family: ${cssVar.fontFamilyCode};
-  `,
-  name: css`
-    overflow: hidden;
-
-    font-size: ${cssVar.fontSizeLG};
-    font-weight: 600;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  progressFill: css`
-    height: 100%;
-    border-radius: 999px;
-    background: ${cssVar.colorPrimary};
-    transition: width 0.3s ease;
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  progressTrack: css`
-    overflow: hidden;
-
-    width: 100%;
-    height: 8px;
-    border-radius: 999px;
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  separator: css`
-    color: ${cssVar.colorBorderSecondary};
-  `,
-  stat: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-    font-size: ${cssVar.fontSizeSM};
-  `,
-  statError: css`
-    color: ${cssVar.colorError};
-  `,
-  statSuccess: css`
-    color: ${cssVar.colorSuccess};
-  `,
-  statWarning: css`
-    color: ${cssVar.colorWarning};
-  `,
-  unit: css`
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
+import styles from './RunCard.module.css';
 
 interface RunCardProps {
   benchmarkId: string;
@@ -395,9 +246,9 @@ const RunCard = memo<RunCardProps>(({ benchmarkId, run, onRefresh, onEdit }) => 
             </Flexbox>
             <SegmentBar
               segments={[
-                { color: cssVar.colorSuccess, value: passedCases },
-                { color: cssVar.colorError, value: failedCases },
-                { color: cssVar.colorWarning, value: errorCases },
+                { color: 'var(--ant-color-success)', value: passedCases },
+                { color: 'var(--ant-color-error)', value: failedCases },
+                { color: 'var(--ant-color-warning)', value: errorCases },
               ]}
             />
           </Flexbox>

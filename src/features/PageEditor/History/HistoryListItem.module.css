@@ -1,0 +1,111 @@
+.description {
+overflow: hidden;
+
+font-size: 12px;
+line-height: 1.2;
+color: var(--ant-color-text-tertiary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.rowMain {
+overflow: hidden;
+flex: 1;
+min-width: 0;
+}
+
+.actions {
+pointer-events: none;
+
+position: absolute;
+inset-block: 50%;
+inset-inline-end: 10px;
+transform: translateY(-50%);
+
+display: flex;
+gap: 2px;
+align-items: center;
+
+opacity: 0;
+
+transition: opacity var(--ant-motion-duration-mid) var(--ant-motion-ease-in-out);
+}
+
+.currentBadge {
+flex-shrink: 0;
+margin: 0;
+}
+
+.row {
+cursor: pointer;
+
+position: relative;
+
+display: flex;
+gap: 8px;
+align-items: center;
+
+padding-block: 8px;
+padding-inline: 16px;
+
+transition: background var(--ant-motion-duration-mid) var(--ant-motion-ease-in-out);
+
+&:hover,
+&:focus-within {
+  background: var(--ant-color-fill-quaternary);
+
+  .history-source-tag {
+    opacity: 0;
+  }
+
+  .history-actions {
+    pointer-events: auto;
+    opacity: 1;
+  }
+}
+}
+
+.rowCurrent {
+cursor: default;
+
+&:hover,
+&:focus-within {
+  background: transparent;
+
+  .history-source-tag {
+    opacity: 1;
+  }
+}
+}
+
+.rowRight {
+position: relative;
+
+display: flex;
+flex-shrink: 0;
+gap: 8px;
+align-items: center;
+
+margin-inline-start: auto;
+}
+
+.rowTime {
+flex-shrink: 0;
+
+font-size: 13px;
+font-weight: 600;
+font-variant-numeric: tabular-nums;
+line-height: 1;
+color: var(--ant-color-text);
+}
+
+.rowTimeCurrent {
+font-size: 14px;
+color: var(--ant-color-primary);
+}
+
+.sourceTag {
+flex-shrink: 0;
+margin: 0;
+transition: opacity var(--ant-motion-duration-mid) var(--ant-motion-ease-in-out);
+}

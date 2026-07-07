@@ -1,22 +1,11 @@
 import type { UniformSearchResult } from '@lobechat/types';
 import { Block, Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import type { CSSProperties } from 'react';
 import { memo } from 'react';
 
 import WebFavicon from '@/components/WebFavicon';
 
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    cursor: pointer;
-
-    height: 100%;
-    padding: 8px;
-
-    font-size: 12px;
-    color: initial;
-  `,
-}));
+import styles from './SearchResultItem.module.css';
 
 const SearchResultItem = memo<UniformSearchResult & { style?: CSSProperties }>(
   ({ url, title, style }) => {

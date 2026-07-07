@@ -5,7 +5,6 @@ import {
 import { type ModelPerformance, type ModelUsage } from '@lobechat/types';
 import { ModelIcon } from '@lobehub/icons';
 import { Center, Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { CircleDollarSignIcon } from 'lucide-react';
 import { memo } from 'react';
@@ -18,14 +17,10 @@ import { systemStatusSelectors } from '@/store/global/selectors';
 import { isDev } from '@/utils/env';
 
 import { contextSelectors, useConversationStore } from '../../../../store';
+import styles from './index.module.css';
 import TokenDetail from './UsageDetail';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-}));
+export { styles };
 
 // Cheap messages don't need a cost callout — only surface it once it's
 // expensive enough to matter.

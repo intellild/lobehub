@@ -1,5 +1,4 @@
 import { Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo, useMemo } from 'react';
 
@@ -20,6 +19,7 @@ import {
   isFoldableStatusLine,
 } from '../toolDisplayNames';
 import { CollapsedMessage } from './CollapsedMessage';
+import styles from './Group.module.css';
 import GroupItem from './GroupItem';
 import ProcessFold from './ProcessFold';
 import type { GroupRenderSegment } from './segments';
@@ -31,16 +31,6 @@ import {
 } from './segments';
 import type { RenderableAssistantContentBlock } from './types';
 import WorkflowCollapse, { type WorkflowExpandLevelDefault } from './WorkflowCollapse';
-
-const styles = createStaticStyles(({ css }) => {
-  return {
-    container: css`
-      &:has(.tool-blocks) {
-        width: 100%;
-      }
-    `,
-  };
-});
 
 interface GroupChildrenProps {
   blocks: AssistantContentBlock[];

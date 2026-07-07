@@ -13,7 +13,6 @@ import {
   Tag,
   Text,
 } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import dayjs from 'dayjs';
 import { FolderOpenIcon, FolderPlusIcon, LockIcon, XIcon } from 'lucide-react';
 import { memo, type ReactNode, useState } from 'react';
@@ -27,56 +26,9 @@ import { electronSystemService } from '@/services/electron/system';
 import { nextWorkingDirs } from '@/store/device';
 
 import { refreshDeviceList } from './const';
+import styles from './DeviceDetailPanel.module.css';
 import { getDeviceIcon } from './getDeviceIcon';
 import { useCanEditDevice } from './useCanEditDevice';
-
-const styles = createStaticStyles(({ css }) => ({
-  container: css`
-    padding-block: 16px;
-    padding-inline: 20px;
-  `,
-  dot: css`
-    flex: none;
-
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  `,
-  header: css`
-    padding-block-end: 16px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  iconTile: css`
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    width: 32px;
-    height: 32px;
-    border-radius: ${cssVar.borderRadius};
-
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  path: css`
-    overflow: hidden;
-    flex: 1;
-
-    min-width: 0;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextSecondary};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  recentItem: css`
-    padding-block: 8px;
-    padding-inline: 8px;
-  `,
-}));
 
 // Section label — one consistent treatment for every field heading in the panel.
 const FieldLabel = memo<{ children: ReactNode; extra?: ReactNode }>(({ children, extra }) => (
@@ -233,7 +185,7 @@ const DeviceDetailPanel = memo<DeviceDetailPanelProps>(({ device, isCurrent, onC
           enrollment (personal scope is always editable). */}
       {!canEdit && (
         <Flexbox horizontal align={'center'} gap={8}>
-          <Icon icon={LockIcon} size={14} style={{ color: cssVar.colorTextTertiary }} />
+          <Icon icon={LockIcon} size={14} style={{ color: 'var(--ant-color-text-tertiary)' }} />
           <Text fontSize={12} type={'secondary'}>
             {t('workspaceSetting.devices.readonlyHint')}
           </Text>
@@ -261,7 +213,7 @@ const DeviceDetailPanel = memo<DeviceDetailPanelProps>(({ device, isCurrent, onC
         {channels.length > 0 ? (
           channels.map((channel, index) => (
             <Flexbox horizontal align={'center'} gap={8} key={`${channel.connectedAt}-${index}`}>
-              <span className={styles.dot} style={{ background: cssVar.colorSuccess }} />
+              <span className={styles.dot} style={{ background: 'var(--ant-color-success)' }} />
               {channel.channel && <Tag size={'small'}>{channel.channel}</Tag>}
               <Text fontSize={12} type={'secondary'}>
                 {t('devices.channel.connected', { time: dayjs(channel.connectedAt).fromNow() })}
@@ -270,7 +222,7 @@ const DeviceDetailPanel = memo<DeviceDetailPanelProps>(({ device, isCurrent, onC
           ))
         ) : (
           <Flexbox horizontal align={'center'} gap={8}>
-            <span className={styles.dot} style={{ background: cssVar.colorTextQuaternary }} />
+            <span className={styles.dot} style={{ background: 'var(--ant-color-text-quaternary)' }} />
             <Text fontSize={12} type={'secondary'}>
               {t('devices.status.offline')} ·{' '}
               {t('devices.lastSeen', { time: dayjs(device.lastSeen).fromNow() })}

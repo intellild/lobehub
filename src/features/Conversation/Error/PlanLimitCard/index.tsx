@@ -1,7 +1,6 @@
 import { BRANDING_URL } from '@lobechat/business-const';
 import { ChatErrorType, Plans } from '@lobechat/types';
 import { Button, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -14,6 +13,7 @@ import {
   isKnownPlan,
   type PlanLimitPricingBasis,
 } from './budget';
+import styles from './index.module.css';
 
 /** Credits are displayed in units of 1M */
 const CREDIT_UNIT = 1_000_000;
@@ -26,33 +26,6 @@ const PLAN_TITLE_KEYS = {
   [Plans.Starter]: 'plans.plan.starter.title',
   [Plans.Ultimate]: 'plans.plan.ultimate.title',
 } as const satisfies Record<Plans, string>;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  budgetFact: css`
-    display: flex;
-    justify-content: space-between;
-
-    width: 100%;
-
-    font-size: 13px;
-    line-height: 1.4;
-  `,
-  budgetFactLabel: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-  budgetFactValue: css`
-    font-weight: 600;
-    color: ${cssVar.colorText};
-    white-space: nowrap;
-  `,
-  budgetFactWarningValue: css`
-    font-weight: 700;
-    color: ${cssVar.colorError};
-  `,
-  budgetFacts: css`
-    width: 100%;
-  `,
-}));
 
 const getBudgetDescriptionKey = (pricingBasis?: PlanLimitPricingBasis) => {
   switch (pricingBasis) {

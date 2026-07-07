@@ -2,13 +2,25 @@
 
 import type { BuiltinInspectorProps } from '@lobechat/types';
 import { Icon, Text } from '@lobehub/ui';
-import { cssVar, cx } from 'antd-style';
 import { Plus } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FilePathDisplay } from '../../components/FilePathDisplay';
 import { inspectorTextStyles, shinyTextStyles } from '../../styles';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface WriteFileArgs {
   content?: string;
@@ -46,7 +58,7 @@ export const createWriteLocalFileInspector = (translationKey: string) => {
           {!isLoading && lineCount && (
             <>
               {' '}
-              <Text code as={'span'} color={cssVar.colorSuccess} fontSize={12}>
+              <Text code as={'span'} color={'var(--ant-color-success)'} fontSize={12}>
                 <Icon icon={Plus} size={12} />
                 {lineCount}
               </Text>

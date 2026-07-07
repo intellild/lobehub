@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, Block, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import type { LucideIcon } from 'lucide-react';
 import { PanelRight, PanelRightClose } from 'lucide-react';
 import type { ReactNode } from 'react';
@@ -13,101 +12,20 @@ import { useAgentDisplayMeta } from '@/features/AgentTasks/shared/useAgentDispla
 import { useChatStore } from '@/store/chat';
 import { chatPortalSelectors } from '@/store/chat/selectors';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  assignee: css`
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
+import styles from './shared.module.css';
 
-    min-width: 0;
-    max-width: 100%;
-  `,
-  assigneeName: css`
-    overflow: hidden;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    font-size: 13px;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  body: css`
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    padding-block: 12px;
-    padding-inline: 12px;
-  `,
-  header: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    padding-block: 10px;
-    padding-inline: 12px;
-  `,
-  headerDivider: css`
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  identifier: css`
-    flex-shrink: 0;
-
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-radius: 4px;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  inlineRow: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    min-width: 0;
-  `,
-  inlineValue: css`
-    overflow: hidden;
-    flex: 1;
-
-    min-width: 0;
-
-    font-size: 13px;
-    color: ${cssVar.colorText};
-  `,
-  label: css`
-    flex-shrink: 0;
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  mono: css`
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  section: css`
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
-  `,
-  sectionValue: css`
-    font-size: 13px;
-    line-height: 1.6;
-    color: ${cssVar.colorTextSecondary};
-    overflow-wrap: anywhere;
-  `,
-  spacer: css`
-    flex: 1;
-  `,
-  title: css`
-    font-size: 13px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 /**
  * Shared open/close wiring for a task's detail portal, reused by every
@@ -169,7 +87,7 @@ export const TaskResultCard = memo<TaskResultCardProps>(
       >
         <div className={cx(styles.header, !!children && styles.headerDivider)}>
           {icon && (
-            <Icon icon={icon} size={15} style={{ color: iconColor ?? cssVar.colorTextSecondary }} />
+            <Icon icon={icon} size={15} style={{ color: iconColor ?? 'var(--ant-color-text-secondary)' }} />
           )}
           <Text className={styles.title}>{title}</Text>
           {identifier && <span className={styles.identifier}>{identifier}</span>}

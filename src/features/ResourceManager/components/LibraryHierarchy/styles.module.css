@@ -1,0 +1,18 @@
+.dragging {
+will-change: transform;
+opacity: 0.5;
+}
+
+.fileItemDragOver {
+outline: 1px dashed var(--ant-color-primary-border);
+outline-offset: -2px;
+
+&,
+&:hover {
+  background: var(--ant-color-primary-bg);
+}
+}
+
+.treeItem {
+cursor: pointer;
+}

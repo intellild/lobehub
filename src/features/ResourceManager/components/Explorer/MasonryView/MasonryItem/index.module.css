@@ -1,0 +1,94 @@
+.actions {
+opacity: 0;
+transition: opacity var(--ant-motion-duration-mid);
+}
+
+.card {
+cursor: pointer;
+
+position: relative;
+
+overflow: hidden;
+
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-container);
+
+transition: all var(--ant-motion-duration-mid);
+
+&:hover {
+  border-color: var(--ant-color-primary);
+  box-shadow: var(--ant-box-shadow-tertiary);
+
+  .actions {
+    opacity: 1;
+  }
+
+  .checkbox {
+    opacity: 1;
+  }
+
+  .dropdown {
+    opacity: 1;
+  }
+
+  .floatingChunkBadge {
+    opacity: 1;
+  }
+}
+}
+
+.checkbox {
+position: absolute;
+z-index: 2;
+inset-block-start: 8px;
+inset-inline-start: 8px;
+
+opacity: 0;
+
+transition: opacity var(--ant-motion-duration-mid);
+}
+
+.content {
+position: relative;
+}
+
+.contentWithPadding {
+padding: 12px;
+}
+
+.dragOver {
+border-color: var(--ant-color-text) !important;
+color: var(--ant-color-bg-elevated) !important;
+background-color: var(--ant-color-text) !important;
+
+* {
+  color: var(--ant-color-bg-elevated) !important;
+}
+}
+
+.dragging {
+will-change: transform;
+opacity: 0.5;
+}
+
+.dropdown {
+position: absolute;
+z-index: 2;
+inset-block-start: 8px;
+inset-inline-end: 8px;
+
+opacity: 0;
+
+transition: opacity var(--ant-motion-duration-mid);
+}
+
+.selected {
+border-color: var(--ant-color-primary);
+background: var(--ant-color-primary-bg);
+
+.checkbox {
+  opacity: 1;
+}
+}

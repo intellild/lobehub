@@ -1,0 +1,20 @@
+.chip {
+cursor: pointer;
+
+overflow: hidden;
+display: inline-block;
+
+min-width: 0;
+max-width: 200px;
+
+font-size: 13px;
+color: var(--ant-color-text-tertiary);
+text-overflow: ellipsis;
+white-space: nowrap;
+
+transition: color 0.2s;
+
+&:hover {
+  color: var(--ant-color-text);
+}
+}

@@ -1,0 +1,21 @@
+.active {
+background: var(--ant-color-fill-tertiary);
+}
+
+.container {
+cursor: pointer;
+
+padding-block: 4px;
+padding-inline: 6px;
+border-radius: 6px;
+
+font-size: 12px;
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.extra {
+color: var(--ant-color-text-secondary);
+}

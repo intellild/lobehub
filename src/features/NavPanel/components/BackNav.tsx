@@ -1,5 +1,4 @@
 import { ActionIcon, Button, Flexbox } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ChevronLeftIcon } from 'lucide-react';
 import { type MouseEvent, type PropsWithChildren, type ReactNode, useCallback } from 'react';
 import { memo } from 'react';
@@ -11,19 +10,7 @@ import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwar
 import { isModifierClick } from '@/utils/navigation';
 
 import ToggleLeftPanelButton from '../ToggleLeftPanelButton';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  button: css`
-    height: 32px;
-    padding-inline-start: 4px;
-    font-size: 13px;
-    color: ${cssVar.colorTextSecondary};
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-  `,
-}));
+import styles from './BackNav.module.css';
 
 const BackLink = ({ children }: { children: ReactNode }) => {
   const navigate = useWorkspaceAwareNavigate();

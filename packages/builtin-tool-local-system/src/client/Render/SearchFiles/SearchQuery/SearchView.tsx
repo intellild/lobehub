@@ -1,25 +1,24 @@
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { SearchIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { shinyTextStyles } from '@/styles';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  font: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  query: css`
-    padding-block: 4px;
-    padding-inline: 8px;
-    border-radius: 8px;
+import styles from './SearchView.module.css';
 
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface SearchBarProps {
   defaultQuery: string;

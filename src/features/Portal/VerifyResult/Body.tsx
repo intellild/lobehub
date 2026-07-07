@@ -1,6 +1,5 @@
 import type { VerifierType } from '@lobechat/types';
 import { Button, Flexbox, Markdown, Text } from '@lobehub/ui';
-import { createStyles } from 'antd-style';
 import { ListTree } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { memo } from 'react';
@@ -12,65 +11,12 @@ import {
   useVerifyResults,
   useVerifyState,
 } from '@/features/Verify/hooks';
+import { useTheme } from '@/hooks/useTheme';
 import { verifyService } from '@/services/verify';
 import { useChatStore } from '@/store/chat';
 import { chatPortalSelectors, threadSelectors } from '@/store/chat/selectors';
 
-const useStyles = createStyles(({ css, token }) => ({
-  confidenceCard: css`
-    padding: 12px;
-    border: 1px solid ${token.colorBorderSecondary};
-    border-radius: ${token.borderRadiusLG}px;
-    background: ${token.colorFillQuaternary};
-  `,
-  confidenceValue: css`
-    font-size: 20px;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-  `,
-  fill: css`
-    height: 100%;
-    border-radius: 999px;
-    transition: width 300ms ${token.motionEaseOut};
-  `,
-  label: css`
-    margin-block-end: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    color: ${token.colorTextSecondary};
-  `,
-  metaKey: css`
-    color: ${token.colorTextTertiary};
-  `,
-  metaRow: css`
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
-
-    font-size: 13px;
-  `,
-  metaValue: css`
-    overflow: hidden;
-    color: ${token.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  text: css`
-    font-size: 13px;
-    line-height: 1.7;
-    color: ${token.colorText};
-  `,
-  track: css`
-    overflow: hidden;
-
-    width: 100%;
-    height: 8px;
-    border-radius: 999px;
-
-    background: ${token.colorFillSecondary};
-  `,
-}));
+import styles from './Body.module.css';
 
 /** Score zone → theme color token, mirroring the A/B/F grade bands. */
 const confidenceColor = (ratio: number) => {
@@ -90,7 +36,6 @@ const formatDuration = (started?: Date | string | null, completed?: Date | strin
 };
 
 const Field = memo<{ children: ReactNode; label: string }>(({ label, children }) => {
-  const { styles } = useStyles();
   return (
     <Flexbox>
       <div className={styles.label}>{label}</div>
@@ -100,7 +45,7 @@ const Field = memo<{ children: ReactNode; label: string }>(({ label, children })
 });
 
 const Body = () => {
-  const { styles, theme } = useStyles();
+  const theme = useTheme();
   const { t } = useTranslation('verify');
   const operationId = useChatStore(chatPortalSelectors.verifyResultOperationId);
   const checkItemId = useChatStore(chatPortalSelectors.verifyResultCheckItemId);

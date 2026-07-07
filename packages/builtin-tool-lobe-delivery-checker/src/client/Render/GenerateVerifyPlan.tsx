@@ -2,7 +2,6 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { ActionIcon, Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import type { LucideIcon } from 'lucide-react';
 import { Bot, Scale, SlidersHorizontal, SquareTerminal } from 'lucide-react';
 import { memo } from 'react';
@@ -17,6 +16,7 @@ import type {
   VerifyVerifierType,
 } from '../../types';
 import { LobeDeliveryCheckerIdentifier } from '../../types';
+import styles from './GenerateVerifyPlan.module.css';
 
 /** Verifier-type icon, matching the config panel: agent → bot, llm → scale. */
 const VERIFIER_ICON: Record<VerifyVerifierType, LucideIcon> = {
@@ -24,66 +24,6 @@ const VERIFIER_ICON: Record<VerifyVerifierType, LucideIcon> = {
   llm: Scale,
   program: SquareTerminal,
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  icon: css`
-    margin-block-start: 1px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  description: css`
-    margin-block-start: 2px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  card: css`
-    overflow: hidden;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-    background: ${cssVar.colorBgElevated};
-  `,
-  kicker: css`
-    font-size: 12px;
-    font-weight: 600;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  row: css`
-    cursor: pointer;
-    padding-block: 10px;
-    padding-inline: 12px;
-    transition: background 150ms ${cssVar.motionEaseOut};
-
-    &:not(:last-child) {
-      border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-    }
-
-    &:hover {
-      background: ${cssVar.colorFillQuaternary};
-    }
-  `,
-  tag: css`
-    flex: none;
-
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 6px;
-
-    font-size: 11px;
-    font-weight: 500;
-    color: ${cssVar.colorTextTertiary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  tagRequired: css`
-    color: ${cssVar.colorText};
-    background: ${cssVar.colorFillSecondary};
-  `,
-  title: css`
-    font-weight: 500;
-    line-height: 1.5;
-    color: ${cssVar.colorText};
-  `,
-}));
 
 /**
  * Renders the `generateVerifyPlan` tool call: the delivery standard title plus

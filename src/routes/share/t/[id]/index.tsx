@@ -2,7 +2,6 @@
 
 import { Button, Center, Flexbox } from '@lobehub/ui';
 import { TRPCClientError } from '@trpc/client';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
@@ -15,21 +14,8 @@ import { shareKeys } from '@/libs/swr/keys';
 import { lambdaClient } from '@/libs/trpc/client';
 
 import ActionBar from './features/ActionBar';
+import styles from './index.module.css';
 import SharedMessageList from './SharedMessageList';
-
-const styles = createStaticStyles(({ css }) => ({
-  errorContainer: css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    height: 80vh;
-    padding: 48px;
-
-    text-align: center;
-  `,
-}));
 
 const ShareTopicPage = memo(() => {
   const { t } = useTranslation('chat');

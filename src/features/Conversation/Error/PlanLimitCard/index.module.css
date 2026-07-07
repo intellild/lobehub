@@ -1,0 +1,28 @@
+.budgetFact {
+display: flex;
+justify-content: space-between;
+
+width: 100%;
+
+font-size: 13px;
+line-height: 1.4;
+}
+
+.budgetFactLabel {
+color: var(--ant-color-text-tertiary);
+}
+
+.budgetFactValue {
+font-weight: 600;
+color: var(--ant-color-text);
+white-space: nowrap;
+}
+
+.budgetFactWarningValue {
+font-weight: 700;
+color: var(--ant-color-error);
+}
+
+.budgetFacts {
+width: 100%;
+}

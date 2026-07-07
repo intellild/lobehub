@@ -1,20 +1,7 @@
 import { Skeleton } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    padding: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-    background: ${cssVar.colorBgContainer};
-  `,
-  grid: css`
-    display: grid;
-    gap: 16px;
-    padding-block: 12px;
-  `,
-}));
+import styles from './MasonrySkeleton.module.css';
 
 interface MasonrySkeletonProps {
   columnCount: number;

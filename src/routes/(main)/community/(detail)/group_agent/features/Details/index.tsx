@@ -1,8 +1,8 @@
 import { Flexbox } from '@lobehub/ui';
-import { useResponsive } from 'antd-style';
 import { memo } from 'react';
 
 import { useQueryState } from '@/hooks/useQueryParam';
+import { useResponsive } from '@/hooks/useResponsive';
 
 import Sidebar from '../Sidebar';
 import Nav, { GroupAgentNavKey } from './Nav';

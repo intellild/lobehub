@@ -6,7 +6,6 @@ import type {
 } from '@lobechat/builtin-tool-web-onboarding/agentMarketplace';
 import { getTemplatesByCategoryPriority } from '@lobechat/builtin-tool-web-onboarding/agentMarketplace';
 import { Button, Flexbox, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { Undo2Icon } from 'lucide-react';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -193,7 +192,7 @@ const AgentPickerStep = memo<AgentPickerStepProps>(({ onBack }) => {
           <Button
             disabled={!!pending}
             icon={Undo2Icon}
-            style={{ color: cssVar.colorTextDescription }}
+            style={{ color: 'var(--ant-color-text-description)' }}
             type={'text'}
             onClick={handleBack}
           >

@@ -4,7 +4,6 @@ import { isDesktop } from '@lobechat/const';
 import { ContextMenuTrigger, type GenericItemType, Icon } from '@lobehub/ui';
 import { confirmModal, ScrollArea } from '@lobehub/ui/base-ui';
 import { SkillsIcon } from '@lobehub/ui/icons';
-import { createStaticStyles } from 'antd-style';
 import { XIcon } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,118 +14,14 @@ import { useChatStore } from '@/store/chat';
 import { chatPortalSelectors } from '@/store/chat/selectors';
 import { getLocalFileTabId } from '@/store/chat/slices/portal/helpers';
 
+import styles from './TabStrip.module.css';
+
 const SKILL_PATH_RE = /\/\.(?:agents|claude)\/skills\/([^/]+)\/SKILL\.md$/;
 
 const resolveSkillName = (filePath: string): string | null => {
   const match = filePath.match(SKILL_PATH_RE);
   return match ? match[1] : null;
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  tabIcon: css`
-    display: inline-flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 14px;
-    height: 14px;
-  `,
-  tabClose: css`
-    cursor: pointer;
-
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    width: 16px;
-    height: 16px;
-    padding: 0;
-    border: none;
-    border-radius: 3px;
-
-    color: inherit;
-
-    opacity: 0.6;
-    background: transparent;
-
-    .cm-tab-close-x {
-      display: inline-flex;
-    }
-
-    .cm-tab-close-dot {
-      display: none;
-
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-
-      background: ${cssVar.colorPrimary};
-    }
-
-    &[data-dirty='true'] {
-      .cm-tab-close-x {
-        display: none;
-      }
-
-      .cm-tab-close-dot {
-        display: inline-block;
-      }
-    }
-
-    &:hover {
-      opacity: 1;
-      background: ${cssVar.colorFillSecondary};
-
-      .cm-tab-close-x {
-        display: inline-flex;
-      }
-
-      .cm-tab-close-dot {
-        display: none;
-      }
-    }
-  `,
-  tabItem: css`
-    cursor: pointer;
-    user-select: none;
-
-    display: flex;
-    flex-shrink: 0;
-    gap: 4px;
-    align-items: center;
-
-    max-width: 160px;
-    padding-block: 4px;
-    padding-inline: 8px;
-    border-radius: 6px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-
-    transition:
-      color 0.15s,
-      background 0.15s;
-
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-  `,
-  tabItemActive: css`
-    color: ${cssVar.colorText};
-    background: ${cssVar.colorFillTertiary};
-  `,
-  tabLabel: css`
-    overflow: hidden;
-    flex: 1;
-
-    min-width: 0;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
 
 const SCROLL_AREA_STYLE = {
   background: 'transparent',

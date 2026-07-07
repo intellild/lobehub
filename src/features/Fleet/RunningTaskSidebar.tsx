@@ -2,7 +2,6 @@
 
 import { formatElapsedClockTime } from '@lobechat/utils';
 import { ActionIcon, Avatar, Button, Flexbox, Skeleton, Tag, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, useTheme } from 'antd-style';
 import { ListXIcon, PlusIcon } from 'lucide-react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +14,7 @@ import StatusDot from '@/features/AgentTopicManager/StatusDot';
 import { NavPanelPortal } from '@/features/NavPanel';
 import SideBarHeaderLayout from '@/features/NavPanel/SideBarHeaderLayout';
 import SideBarLayout from '@/features/NavPanel/SideBarLayout';
+import { useTheme } from '@/hooks/useTheme';
 import { useChatStore } from '@/store/chat';
 import { operationSelectors } from '@/store/chat/selectors';
 import { type ChatTopicStatus } from '@/types/topic';
@@ -22,28 +22,9 @@ import { type ChatTopicStatus } from '@/types/topic';
 import { getIdleColumnKeys } from './idleColumns';
 import RowsSwitcher from './RowsSwitcher';
 import { getFleetSidebarStatus } from './runningStatus';
+import styles from './RunningTaskSidebar.module.css';
 import { useFleetStore } from './store';
 import { type FleetColumn } from './types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  empty: css`
-    padding-block: 24px;
-    padding-inline: 16px;
-
-    font-size: 13px;
-    color: ${cssVar.colorTextQuaternary};
-    text-align: center;
-  `,
-  item: css`
-    cursor: pointer;
-    border-radius: ${cssVar.borderRadius};
-    transition: background 0.15s;
-
-    &:hover {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-}));
 
 /** Live elapsed clock since `startedAt`, re-rendering once per second. */
 const useElapsedClock = (startedAt: number | undefined) => {
@@ -88,15 +69,15 @@ const RunningStatus = memo<RunningStatusProps>(({ agentId, status, topicId }) =>
   if (!elapsed) return <StatusDot status={sidebarStatus} />;
 
   const ringColor = isDarkMode
-    ? cssVar.colorWarningBorder
-    : `color-mix(in srgb, ${cssVar.colorWarning} 45%, transparent)`;
+    ? 'var(--ant-color-warning-border)'
+    : `color-mix(in srgb, ${'var(--ant-color-warning)'} 45%, transparent)`;
 
   return (
     <Flexbox horizontal align={'center'} gap={6} style={{ flex: 'none' }}>
-      <RingLoadingIcon ringColor={ringColor} size={10} style={{ color: cssVar.colorWarning }} />
+      <RingLoadingIcon ringColor={ringColor} size={10} style={{ color: 'var(--ant-color-warning)' }} />
       <span
         style={{
-          color: cssVar.colorTextSecondary,
+          color: 'var(--ant-color-text-secondary)',
           fontSize: 11,
           fontVariantNumeric: 'tabular-nums',
         }}

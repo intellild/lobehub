@@ -1,0 +1,125 @@
+.header {
+cursor: pointer;
+user-select: none;
+
+position: sticky;
+z-index: 1;
+inset-block-start: 0;
+
+display: flex;
+flex: none;
+gap: 6px;
+align-items: center;
+
+/* Fixed height accommodates the ActionIcon (size='small' is ~24px tall)
+   so the header stays the same size whether or not the fold button is
+   rendered. Without this, expanding/collapsing a group would jitter the
+   sticky header height because the button toggles between rendered and
+   not. flex:none keeps the column flex list from compressing the sticky
+   header during expand/collapse. padding-inline keeps the left-edge
+   alignment with file rows. */
+block-size: 32px;
+padding-inline: 10px;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-quaternary);
+
+transition: background 0.12s;
+
+/* Separate non-first groups from the preceding group's last row.
+   The first header sits against the list's own top border. */
+&:not(:first-child) {
+  border-block-start: 1px solid var(--ant-color-border-secondary);
+}
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: -2px;
+}
+}
+
+.chevron {
+flex: none;
+color: var(--ant-color-text-tertiary);
+transition: transform 0.2s;
+
+&[data-expanded='true'] {
+  transform: rotate(90deg);
+}
+}
+
+.meta {
+overflow: hidden;
+display: inline-flex;
+flex: 1 1 auto;
+gap: 6px;
+align-items: center;
+
+min-width: 0;
+}
+
+.name {
+overflow: hidden;
+flex: 0 1 auto;
+
+min-width: 0;
+
+font-weight: 600;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.fileCount {
+flex-shrink: 0;
+font-variant-numeric: tabular-nums;
+color: var(--ant-color-text-tertiary);
+}
+
+.stats {
+display: inline-flex;
+flex-shrink: 0;
+gap: 6px;
+align-items: center;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+font-variant-numeric: tabular-nums;
+}
+
+.additions {
+color: var(--ant-color-success);
+}
+
+.deletions {
+color: var(--ant-color-error);
+}
+
+.branch {
+overflow: hidden;
+flex: 0 1 auto;
+
+min-width: 0;
+
+font-family: var(--ant-font-family-code);
+color: var(--ant-color-text-tertiary);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.foldButton {
+margin-inline-start: auto;
+opacity: 0;
+transition: opacity 0.15s;
+
+[data-review-group-header]:hover &,
+[data-review-group-header]:focus-within & {
+  opacity: 1;
+}
+}

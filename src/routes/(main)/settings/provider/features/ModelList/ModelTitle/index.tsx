@@ -1,7 +1,6 @@
 import { ActionIcon, Button, DropdownMenu, Flexbox, Skeleton, Text, Tooltip } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App, Space } from 'antd';
-import { cssVar } from 'antd-style';
 import { CircleX, EllipsisVertical, LucideRefreshCcwDot, PlusIcon } from 'lucide-react';
 import { memo, use, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -63,7 +62,7 @@ const ModelTitle = memo<ModelFetcherProps>(
         gap={12}
         paddingBlock={8}
         style={{
-          background: cssVar.colorBgContainer,
+          background: 'var(--ant-color-bg-container)',
           marginTop: mobile ? 0 : -12,
           paddingTop: mobile ? 0 : 20,
           position: 'sticky',

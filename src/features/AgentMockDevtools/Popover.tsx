@@ -1,5 +1,4 @@
 import { ActionIcon, Button, Flexbox, toast } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import {
   GripHorizontal,
   Maximize2,
@@ -17,6 +16,7 @@ import { CaseTrigger } from './CaseTrigger';
 import { useAgentMockPlayer } from './hooks/useAgentMockPlayer';
 import { useAgentMockReplayTarget } from './hooks/useAgentMockReplayTarget';
 import { useMockCases } from './hooks/useMockCases';
+import stylesModule from './Popover.module.css';
 import { useAgentMockStore } from './store/agentMockStore';
 
 const POPOVER_WIDTH = 320;
@@ -62,127 +62,7 @@ const clampToViewport = (pos: PanelPosition, width: number, height: number): Pan
     y: Math.min(Math.max(VIEWPORT_INSET, pos.y), maxY),
   };
 };
-
-const styles = createStaticStyles(({ css }) => ({
-  body: css`
-    padding: 12px;
-    padding-block-start: 0;
-  `,
-  closeBtn: css`
-    cursor: pointer;
-
-    width: 22px;
-    height: 22px;
-    border-radius: 4px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    &:hover {
-      color: ${cssVar.colorText};
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  counter: css`
-    font-size: 11px;
-    font-feature-settings: 'tnum';
-    color: ${cssVar.colorTextSecondary};
-  `,
-  footer: css`
-    padding-block: 8px;
-    padding-inline: 12px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-    background: ${cssVar.colorFillTertiary};
-  `,
-  grip: css`
-    cursor: grab;
-    user-select: none;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 20px;
-    height: 22px;
-    border-radius: 4px;
-
-    color: ${cssVar.colorTextQuaternary};
-
-    transition: color 120ms ease;
-
-    &:hover {
-      color: ${cssVar.colorTextSecondary};
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &:active {
-      cursor: grabbing;
-    }
-  `,
-  gripDragging: css`
-    cursor: grabbing;
-    color: ${cssVar.colorText};
-  `,
-  header: css`
-    padding-block: 8px;
-    padding-inline: 10px;
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  panel: css`
-    position: fixed;
-    z-index: 1099;
-
-    overflow: hidden;
-
-    width: ${POPOVER_WIDTH}px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 10px;
-
-    background: ${cssVar.colorBgElevated};
-    box-shadow: 0 12px 32px rgb(0 0 0 / 12%);
-  `,
-  progress: css`
-    touch-action: none;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-
-    height: 14px;
-    margin-block-end: 8px;
-
-    &:hover .agent-mock-progress-track {
-      background: ${cssVar.colorFillTertiary};
-    }
-  `,
-  progressFill: css`
-    pointer-events: none;
-
-    position: absolute;
-    inset-block: 0;
-    inset-inline-start: 0;
-
-    height: 100%;
-    border-radius: inherit;
-
-    background: ${cssVar.colorText};
-
-    transition: width 0.16s linear;
-  `,
-  progressTrack: css`
-    position: relative;
-
-    overflow: hidden;
-    flex: 1;
-
-    height: 4px;
-    border-radius: 2px;
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  progressTrackScrubbing: css`
-    background: ${cssVar.colorFillTertiary} !important;
-  `,
-}));
+const styles = stylesModule;
 
 export const Popover = memo(() => {
   const popoverOpen = useAgentMockStore((s) => s.popoverOpen);

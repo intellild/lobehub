@@ -1,5 +1,4 @@
 import { Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { type CSSProperties } from 'react';
 import { memo } from 'react';
@@ -9,22 +8,21 @@ import { useIsDark } from '@/hooks/useIsDark';
 import { useChatStore } from '@/store/chat';
 import { threadSelectors } from '@/store/chat/selectors';
 
+import styles from './Thread.module.css';
 import ThreadItem from './ThreadItem';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    cursor: pointer;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    padding-block: 8px 4px;
-    padding-inline: 4px;
-    border-radius: 6px;
-
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  container_dark: css`
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface ThreadProps {
   id: string;

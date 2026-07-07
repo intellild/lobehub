@@ -2,23 +2,20 @@
 
 import { type DraggablePanelProps } from '@lobehub/ui';
 import { DraggablePanel, DraggablePanelContainer } from '@lobehub/ui';
-import { createStaticStyles, cssVar, useResponsive } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { type PropsWithChildren } from 'react';
 import { memo, useEffect, useState } from 'react';
 
 import UsageFooter from '@/business/client/features/FileSidePanel/UsageFooter';
 import { FOLDER_WIDTH } from '@/const/layoutTokens';
+import { useResponsive } from '@/hooks/useResponsive';
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
 import { serverConfigSelectors, useServerConfigStore } from '@/store/serverConfig';
 
-export const styles = createStaticStyles(({ css }) => ({
-  panel: css`
-    height: 100%;
-    background: ${cssVar.colorBgLayout};
-  `,
-}));
+import styles from './index.module.css';
+
+export { styles };
 
 const FileSidePanel = memo<PropsWithChildren>(({ children }) => {
   const { md = true } = useResponsive();

@@ -1,0 +1,26 @@
+.community {
+color: color-mix(in srgb, var(--ant-color-info) 75%, transparent);
+background: var(--ant-color-info-bg);
+
+&:hover {
+  color: var(--ant-color-info);
+}
+}
+
+.custom {
+color: color-mix(in srgb, var(--ant-color-warning) 75%, transparent);
+background: var(--ant-color-warning-bg);
+
+&:hover {
+  color: var(--ant-color-warning);
+}
+}
+
+.official {
+color: color-mix(in srgb, var(--ant-color-success) 75%, transparent);
+background: var(--ant-color-success-bg);
+
+&:hover {
+  color: var(--ant-color-success);
+}
+}

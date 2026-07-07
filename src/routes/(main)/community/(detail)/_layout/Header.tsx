@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { ArrowLeft } from 'lucide-react';
 import { memo } from 'react';
 import { useLocation } from 'react-router';
@@ -51,7 +50,7 @@ const Header = memo(() => {
   };
 
   const cssVariables: Record<string, string> = {
-    '--header-border-color': cssVar.colorBorderSecondary,
+    '--header-border-color': 'var(--ant-color-border-secondary)',
   };
 
   return (

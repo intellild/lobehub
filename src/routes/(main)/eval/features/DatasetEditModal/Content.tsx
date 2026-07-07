@@ -3,7 +3,6 @@
 import { Center, Flexbox, Icon, Input, Text, TextArea } from '@lobehub/ui';
 import { Select, useModalContext } from '@lobehub/ui/base-ui';
 import { App, Form } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { CheckIcon } from 'lucide-react';
 import { type FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { agentEvalService } from '@/services/agentEval';
 
 import { getPresetsByCategory } from '../../config/datasetPresets';
+import styles from './Content.module.css';
 
 const CATEGORY_LABELS: Record<string, string> = {
   'custom': 'Custom',
@@ -19,75 +19,6 @@ const CATEGORY_LABELS: Record<string, string> = {
   'research': 'Deep Research / QA',
   'tool-use': 'Tool Use',
 };
-
-const styles = createStaticStyles(({ css }) => ({
-  sectionLabel: css`
-    font-size: ${cssVar.fontSizeSM};
-    font-weight: 500;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  presetCard: css`
-    cursor: pointer;
-
-    position: relative;
-
-    padding: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-
-    background: ${cssVar.colorBgContainer};
-
-    transition:
-      border-color 0.15s ease,
-      background 0.15s ease;
-
-    &:hover {
-      border-color: ${cssVar.colorBorder};
-      background: ${cssVar.colorFillTertiary};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: -2px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  presetCardSelected: css`
-    border-color: ${cssVar.colorPrimaryBorder};
-    background: ${cssVar.colorPrimaryBg};
-
-    &:hover {
-      border-color: ${cssVar.colorPrimaryBorder};
-      background: ${cssVar.colorPrimaryBg};
-    }
-  `,
-  presetGrid: css`
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-  `,
-  presetIcon: css`
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadius};
-    background: ${cssVar.colorBgElevated};
-  `,
-  selectedMark: css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 18px;
-    height: 18px;
-    border-radius: 999px;
-
-    color: ${cssVar.colorBgContainer};
-
-    background: ${cssVar.colorPrimary};
-  `,
-}));
 
 export interface DatasetEditContentProps {
   dataset: {
@@ -217,7 +148,7 @@ const DatasetEditContent: FC<DatasetEditContentProps> = ({
         <span className={styles.sectionLabel}>{t('dataset.create.preset.label')}</span>
         {orderedCategories.map(([category, presets]) => (
           <Flexbox gap={8} key={category}>
-            <Text color={cssVar.colorTextTertiary} fontSize={12}>
+            <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
               {CATEGORY_LABELS[category] || category}
             </Text>
             <div className={styles.presetGrid}>
@@ -246,7 +177,7 @@ const DatasetEditContent: FC<DatasetEditContentProps> = ({
                         <Text ellipsis weight={500}>
                           {preset.name}
                         </Text>
-                        <Text ellipsis color={cssVar.colorTextTertiary} fontSize={12}>
+                        <Text ellipsis color={'var(--ant-color-text-tertiary)'} fontSize={12}>
                           {preset.description}
                         </Text>
                       </Flexbox>

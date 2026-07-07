@@ -1,0 +1,22 @@
+.tree {
+--trees-bg-override: transparent;
+--trees-border-color-override: transparent;
+--trees-selected-bg-override: var(--ant-color-fill-secondary);
+--trees-selected-fg-override: var(--ant-color-text);
+--trees-bg-muted-override: var(--ant-color-fill-tertiary);
+--trees-fg-override: var(--ant-color-text-secondary);
+--trees-fg-muted-override: var(--ant-color-text-secondary);
+--trees-accent-override: var(--ant-color-primary);
+--trees-padding-inline-override: 0px;
+--trees-font-size-override: 12px;
+--trees-border-radius-override: 6px;
+
+flex: 1;
+min-height: 0;
+}
+
+.subheader {
+flex-shrink: 0;
+padding-block: 6px 8px;
+padding-inline: 12px;
+}

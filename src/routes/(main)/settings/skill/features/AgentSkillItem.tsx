@@ -5,7 +5,6 @@ import { Avatar, DropdownMenu, Flexbox, Icon, stopPropagation } from '@lobehub/u
 import { Button, confirmModal, createModal } from '@lobehub/ui/base-ui';
 import { SkillsIcon } from '@lobehub/ui/icons';
 import { Space } from 'antd';
-import { cssVar } from 'antd-style';
 import { DownloadIcon, MoreHorizontalIcon, Plus, Trash2 } from 'lucide-react';
 import { lazy, memo, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -207,7 +206,7 @@ const AgentSkillItem = memo<AgentSkillItemProps>(({ skill, isSelected, onSelect 
       <NavItem
         active={isSelected}
         title={title}
-        titleColor={showDisconnected ? cssVar.colorTextDescription : undefined}
+        titleColor={showDisconnected ? 'var(--ant-color-text-description)' : undefined}
         icon={() =>
           avatar ? <Avatar avatar={avatar} size={18} /> : <Icon icon={SkillsIcon} size={18} />
         }

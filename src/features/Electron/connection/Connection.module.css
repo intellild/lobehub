@@ -1,0 +1,12 @@
+.modal :global(.ant-drawer-close) {
+  position: absolute;
+  inset-inline-end: 6px;
+}
+
+.modalMac :global(.ant-drawer-close) {
+  inset-block-start: 12px;
+}
+
+.modalDefault :global(.ant-drawer-close) {
+  inset-block-start: 46px;
+}

@@ -1,5 +1,4 @@
 import { Flexbox, Skeleton } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router';
@@ -11,28 +10,20 @@ import { useFileStore } from '@/store/file';
 import { knowledgeBaseSelectors, useKnowledgeBaseStore } from '@/store/library';
 import { FilesTabs } from '@/types/files';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  breadcrumb: css`
-    font-size: 14px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  breadcrumbItem: css`
-    cursor: pointer;
-    transition: color ${cssVar.motionDurationSlow};
+import styles from './Breadcrumb.module.css';
 
-    &:hover {
-      color: ${cssVar.colorText};
-    }
-  `,
-  currentItem: css`
-    font-weight: 500;
-    color: ${cssVar.colorText};
-  `,
-  separator: css`
-    margin-inline: 8px;
-    color: ${cssVar.colorTextQuaternary};
-  `,
-}));
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface BreadcrumbProps {
   category?: string;

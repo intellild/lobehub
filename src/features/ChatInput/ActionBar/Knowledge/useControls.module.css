@@ -1,0 +1,37 @@
+.viewMore {
+cursor: pointer;
+
+display: flex;
+gap: 8px;
+align-items: center;
+
+/* width 320 + margin-inline -12 anchors the submenu to 320px (matching the skill
+   submenu) and lets the row span full width; padding-inline 12 lines its icon/text
+   up with the menu items above. */
+width: 320px;
+min-height: 32px;
+
+/* The footer wrapper adds padding-block: 8px top & bottom; the top keeps it separated
+   from the list, but the bottom leaves a dead gap against the popup edge — cancel it. */
+margin-block-end: -8px;
+margin-inline: -12px;
+padding-inline: 12px;
+border: 0;
+border-radius: 6px;
+
+font-size: 14px;
+color: var(--ant-color-text);
+
+background: transparent;
+
+transition: background 150ms var(--ant-motion-ease-out);
+
+&:hover {
+  background: var(--ant-color-fill-tertiary);
+}
+}
+
+.viewMoreLabel {
+flex: 1;
+text-align: start;
+}

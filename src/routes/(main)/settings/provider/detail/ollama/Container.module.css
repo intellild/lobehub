@@ -1,0 +1,21 @@
+.close {
+position: absolute;
+inset-block-start: 16px;
+inset-inline-end: 16px;
+}
+
+.container {
+position: relative;
+
+width: 100%;
+padding-inline: 40px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 8px;
+
+background: var(--ant-color-bg-container);
+
+@media (max-width: 575.98px) {
+  width: 100%;
+  padding-inline: 12px;
+}
+}

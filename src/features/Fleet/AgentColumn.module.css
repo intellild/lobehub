@@ -1,0 +1,134 @@
+.body {
+position: relative;
+overflow: hidden;
+flex: 1;
+width: 100%;
+}
+
+.column {
+position: relative;
+flex: none;
+height: 100%;
+border-inline-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.dragPreview {
+cursor: grabbing;
+
+overflow: hidden;
+
+width: 100%;
+height: 100%;
+border-radius: 8px;
+
+background: var(--ant-color-bg-container);
+box-shadow:
+  inset 0 0 0 1px var(--ant-color-border),
+  var(--ant-box-shadow-secondary);
+}
+
+.dragPreviewBody {
+flex: 1;
+padding: 16px;
+color: var(--ant-color-text-quaternary);
+text-align: center;
+}
+
+.grip {
+cursor: grab;
+flex: none;
+color: var(--ant-color-text-quaternary);
+transition: color 0.15s;
+
+&:hover {
+  color: var(--ant-color-text-tertiary);
+}
+
+&:active {
+  cursor: grabbing;
+}
+}
+
+.header {
+flex: none;
+padding-block: 8px;
+padding-inline: 8px 6px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.list {
+/* Owns the flexible space so the seamless tray + reply bar below keep their
+   natural height instead of being squeezed (and clipped) by the list. */
+position: relative;
+flex: 1;
+min-height: 0;
+}
+
+.replyBar {
+flex: none;
+padding-block: 8px;
+padding-inline: 12px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+}
+
+.replyClose {
+pointer-events: none;
+
+position: absolute;
+z-index: 11;
+inset-block-end: 100%;
+inset-inline-start: 12px;
+
+/* sit just above the input's top edge */
+overflow: hidden;
+
+margin-block-end: 4px;
+border-radius: var(--ant-border-radius);
+
+/* opaque chip so the conversation behind never bleeds through the button */
+background: var(--ant-color-bg-container);
+
+/* lifted above the floating status tray (translateY set inline) so it never
+   overlaps and cuts into the tray's top border */
+transition: transform 0.2s var(--ant-motion-ease-in-out);
+
+button {
+  pointer-events: auto;
+}
+}
+
+.replyOpen {
+position: relative;
+flex: none;
+}
+
+.resize {
+cursor: col-resize;
+
+position: absolute;
+z-index: 6;
+inset-block: 0;
+inset-inline-end: -3px;
+
+width: 6px;
+
+opacity: 0;
+
+transition: opacity 0.15s;
+
+&::after {
+  content: '';
+
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 2px;
+
+  width: 2px;
+
+  background: var(--ant-color-primary-border);
+}
+
+&:hover {
+  opacity: 1;
+}
+}

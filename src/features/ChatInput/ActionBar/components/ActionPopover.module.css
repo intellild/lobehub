@@ -1,0 +1,10 @@
+.popoverContent {
+.ant-form {
+  .ant-form-item:first-child {
+    padding-block: 0 4px;
+  }
+  .ant-form-item:last-child {
+    padding-block: 4px 0;
+  }
+}
+}

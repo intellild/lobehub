@@ -1,0 +1,263 @@
+@keyframes pulse {
+0%,
+  100% {
+opacity: 1;
+  }
+
+  50% {
+opacity: 0.5;
+  }
+}
+
+.card {
+cursor: pointer;
+
+display: flex;
+flex-direction: column;
+gap: 10px;
+
+padding: 16px;
+border: 1px solid var(--ant-color-fill-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-elevated);
+
+transition:
+  border-color var(--ant-motion-duration-mid),
+  background var(--ant-motion-duration-mid);
+
+&:hover {
+  border-color: var(--ant-color-primary-hover);
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: 2px;
+}
+}
+
+.cardHeader {
+display: flex;
+gap: 10px;
+align-items: center;
+min-width: 0;
+}
+
+.cardDescription {
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 4;
+
+font-size: 12px;
+line-height: 1.6;
+color: var(--ant-color-text-secondary);
+}
+
+.cardSelected {
+border-color: var(--ant-color-primary);
+background: var(--ant-color-primary-bg);
+
+&:hover {
+  border-color: var(--ant-color-primary);
+}
+}
+
+.cardTitle {
+overflow: hidden;
+flex: 1;
+
+min-width: 0;
+
+font-size: 14px;
+font-weight: 600;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.container {
+display: grid;
+grid-template-rows: auto minmax(0, 1fr);
+flex: 1;
+gap: 12px;
+
+min-height: 0;
+}
+
+.content {
+overflow-y: auto;
+overscroll-behavior: contain;
+
+min-width: 0;
+min-height: 0;
+padding-inline-end: 4px;
+}
+
+.categoryItem {
+cursor: pointer;
+
+flex: none;
+
+padding-block: 6px;
+padding-inline: 12px;
+border: none;
+border-radius: var(--ant-border-radius);
+
+font-size: 13px;
+color: var(--ant-color-text-secondary);
+white-space: nowrap;
+
+background: transparent;
+
+transition:
+  background var(--ant-motion-duration-mid),
+  color var(--ant-motion-duration-mid);
+
+&:hover {
+  color: var(--ant-color-text);
+  background: var(--ant-color-fill-tertiary);
+}
+
+&:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: 2px;
+}
+}
+
+.categoryItemActive {
+font-weight: 500;
+color: var(--ant-color-text);
+background: var(--ant-color-fill-secondary);
+
+&:hover {
+  background: var(--ant-color-fill-secondary);
+}
+}
+
+.empty {
+display: flex;
+flex: 1;
+align-items: center;
+justify-content: center;
+
+min-height: 160px;
+padding: 24px;
+
+font-size: 13px;
+color: var(--ant-color-text-tertiary);
+}
+
+.footer {
+display: flex;
+flex: none;
+align-items: center;
+justify-content: space-between;
+}
+
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+gap: 12px;
+align-content: start;
+}
+
+.header {
+display: flex;
+flex: none;
+flex-direction: column;
+gap: 8px;
+}
+
+.root {
+position: absolute;
+z-index: 10;
+inset-block-end: -2px;
+inset-inline: -2px;
+
+overflow: hidden;
+
+height: min(640px, 72vh);
+min-height: 480px;
+padding: 16px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-elevated);
+box-shadow: 0 16px 48px color-mix(in srgb, #000 16%, transparent);
+}
+
+.tabBar {
+overflow: auto hidden;
+overscroll-behavior: contain;
+display: flex;
+flex-flow: row nowrap;
+gap: 6px;
+
+margin-inline: -12px;
+padding-block-end: 8px;
+padding-inline: 12px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.skeletonAvatar {
+flex: none;
+
+width: 36px;
+height: 36px;
+border-radius: var(--ant-border-radius);
+
+background: var(--ant-color-fill-tertiary);
+
+animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonCard {
+display: flex;
+flex-direction: column;
+gap: 10px;
+
+padding: 16px;
+border: 1px solid var(--ant-color-fill-secondary);
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-bg-elevated);
+}
+
+.skeletonLine {
+height: 10px;
+border-radius: var(--ant-border-radius);
+background: var(--ant-color-fill-tertiary);
+animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonTabBarItem {
+flex: none;
+
+width: 88px;
+height: 32px;
+border-radius: var(--ant-border-radius);
+
+background: var(--ant-color-fill-tertiary);
+
+animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skipLink {
+cursor: pointer;
+
+display: inline-flex;
+gap: 4px;
+align-items: center;
+
+padding-block: 4px;
+padding-inline: 0;
+
+font-size: 13px;
+
+transition: color var(--ant-motion-duration-mid);
+
+&:hover {
+  color: var(--ant-color-primary) !important;
+}
+}

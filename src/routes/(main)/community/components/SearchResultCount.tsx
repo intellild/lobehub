@@ -1,21 +1,9 @@
 'use client';
-
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { Trans } from 'react-i18next';
 
+import styles from './SearchResultCount.module.css';
 import Title from './Title';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  highlight: css`
-    color: ${cssVar.colorInfo};
-
-    &::before,
-    &::after {
-      content: '\`';
-    }
-  `,
-}));
 
 const SearchResultCount = memo<{ count: number; keyword: string }>(({ keyword, count }) => {
   return (

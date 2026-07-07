@@ -1,101 +1,24 @@
 'use client';
 
 import { Center, Flexbox, Icon, Text, Tooltip } from '@lobehub/ui';
-import { createStaticStyles, cx } from 'antd-style';
 import { FileText } from 'lucide-react';
 import type { KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  actionable: css`
-    cursor: pointer;
+import styles from './index.module.css';
 
-    &:hover {
-      background: ${cssVar.colorFillQuaternary};
-    }
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: 2px;
-    }
-  `,
-  avatar: css`
-    flex: none;
-    align-self: stretch;
-    border-inline-end: 1px solid ${cssVar.colorBorderSecondary};
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  openLabel: css`
-    display: flex;
-    align-items: center;
-
-    height: 28px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 6px;
-
-    font-size: 13px;
-    line-height: 1;
-    color: ${cssVar.colorText};
-    white-space: nowrap;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  actionButton: css`
-    cursor: pointer;
-
-    height: 28px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 6px;
-
-    font-size: 13px;
-    line-height: 1;
-    color: ${cssVar.colorText};
-    white-space: nowrap;
-
-    background: ${cssVar.colorBgContainer};
-
-    &:hover {
-      background: ${cssVar.colorFillQuaternary};
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: 2px;
-    }
-  `,
-  container: css`
-    overflow: hidden;
-
-    width: 100%;
-    height: 64px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 12px;
-
-    color: ${cssVar.colorText};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  content: css`
-    overflow: hidden;
-    min-width: 0;
-  `,
-  desc: css`
-    font-size: 12px;
-    line-height: 1.3;
-    color: ${cssVar.colorTextTertiary};
-  `,
-  title: css`
-    font-weight: 500;
-    line-height: 1.35;
-  `,
-  trigger: css`
-    overflow: hidden;
-    min-width: 0;
-    height: 100%;
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface PortalResourceCardProps {
   className?: string;

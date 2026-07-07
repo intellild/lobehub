@@ -1,5 +1,4 @@
 import { Block, Flexbox, Icon, Tag } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { MessageCircleHeartIcon, MessageCircleQuestionIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -33,7 +32,7 @@ const Overview = memo(() => {
           <Title>{t('assistants.details.systemRole.openingMessage')}</Title>
           <Block horizontal align={'flex-start'} gap={12} padding={16} variant={'outlined'}>
             <Icon
-              color={cssVar.colorError}
+              color={'var(--ant-color-error)'}
               icon={MessageCircleHeartIcon}
               size={20}
               style={{
@@ -52,7 +51,7 @@ const Overview = memo(() => {
           <Flexbox gap={8}>
             {openingQuestions?.map((item, key) => (
               <Block horizontal gap={12} key={key} padding={16} variant={'outlined'}>
-                <Icon color={cssVar.colorWarning} icon={MessageCircleQuestionIcon} size={20} />
+                <Icon color={'var(--ant-color-warning)'} icon={MessageCircleQuestionIcon} size={20} />
                 <MarkdownRender>{item}</MarkdownRender>
               </Block>
             ))}

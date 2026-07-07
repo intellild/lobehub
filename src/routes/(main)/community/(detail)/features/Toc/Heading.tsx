@@ -1,13 +1,26 @@
 'use client';
 
 import { Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { kebabCase } from 'es-toolkit/compat';
 import { Heading2, Heading3, Heading4, Heading5 } from 'lucide-react';
 import { type ComponentProps, type FC, type ReactNode } from 'react';
 import { Children, isValidElement, useEffect, useMemo } from 'react';
 
+import stylesModule from './Heading.module.css';
 import { useToc } from './useToc';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const extractTextChildren = (children: ReactNode) => {
   let text = '';
@@ -29,24 +42,10 @@ const HeadingIcon: any = {
   h4: Heading4,
   h5: Heading5,
 };
-
-const styles = createStaticStyles(({ cx, css, cssVar }) => ({
-  anchor: cx(
-    'toc-anchor',
-    css`
-      display: none;
-      margin-inline-start: 0.5rem;
-      color: ${cssVar.colorTextDescription} !important;
-    `,
-  ),
-  container: css`
-    &:hover {
-      .toc-anchor {
-        display: inline;
-      }
-    }
-  `,
-}));
+const styles: typeof stylesModule & { anchor: string } = {
+  ...stylesModule,
+  anchor: [stylesModule.anchor, 'toc-anchor'].join(' '),
+};
 
 const createHeading = (Tag: `h${1 | 2 | 3 | 4 | 5 | 6}`) => {
   const Heading: FC<ComponentProps<'h2'>> = ({ children, className, style, ...props }) => {
@@ -71,7 +70,7 @@ const createHeading = (Tag: `h${1 | 2 | 3 | 4 | 5 | 6}`) => {
 
     if (Tag === 'h1')
       return (
-        <Tag style={{ color: cssVar.colorText, ...style }} {...props} id={id}>
+        <Tag style={{ color: 'var(--ant-color-text)', ...style }} {...props} id={id}>
           {children}
         </Tag>
       );
@@ -79,7 +78,7 @@ const createHeading = (Tag: `h${1 | 2 | 3 | 4 | 5 | 6}`) => {
     return (
       <Tag
         className={cx(styles.container, className)}
-        style={{ color: cssVar.colorText, ...style }}
+        style={{ color: 'var(--ant-color-text)', ...style }}
         {...props}
         id={id}
       >

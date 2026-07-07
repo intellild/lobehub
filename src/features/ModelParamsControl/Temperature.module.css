@@ -1,0 +1,8 @@
+.alert .ant-alert-message {
+  font-size: 12px;
+  line-height: 18px !important;
+}
+
+.alert .ant-alert-icon {
+  height: 18px !important;
+}

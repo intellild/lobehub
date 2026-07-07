@@ -2,44 +2,28 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Block, Checkbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { CircleArrowRight } from 'lucide-react';
 import { memo } from 'react';
 
 import type { TodoItem, TodoList as TodoListType, TodoStatus } from '../../../types';
+import styles from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 export interface TodoListRenderState {
   todos?: TodoListType;
 }
-
-// Styles matching TodoItemRow in SortableTodoList
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  itemRow: css`
-    width: 100%;
-    padding-block: 10px;
-    padding-inline: 12px;
-    border-block-end: 1px dashed ${cssVar.colorBorderSecondary};
-
-    &:last-child {
-      border-block-end: none;
-    }
-  `,
-  processingRow: css`
-    display: flex;
-    gap: 7px;
-    align-items: center;
-  `,
-  textCompleted: css`
-    color: ${cssVar.colorTextQuaternary};
-    text-decoration: line-through;
-  `,
-  textProcessing: css`
-    color: ${cssVar.colorText};
-  `,
-  textTodo: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
 
 interface ReadOnlyTodoItemProps {
   status: TodoStatus;
@@ -57,7 +41,7 @@ const ReadOnlyTodoItem = memo<ReadOnlyTodoItemProps>(({ text, status }) => {
   if (isProcessing) {
     return (
       <div className={cx(styles.itemRow, styles.processingRow)}>
-        <Icon icon={CircleArrowRight} size={17} style={{ color: cssVar.colorTextSecondary }} />
+        <Icon icon={CircleArrowRight} size={17} style={{ color: 'var(--ant-color-text-secondary)' }} />
         <span className={styles.textProcessing}>{text}</span>
       </div>
     );
@@ -66,7 +50,7 @@ const ReadOnlyTodoItem = memo<ReadOnlyTodoItemProps>(({ text, status }) => {
   // Todo and completed states use Checkbox
   return (
     <Checkbox
-      backgroundColor={cssVar.colorSuccess}
+      backgroundColor={'var(--ant-color-success)'}
       checked={isCompleted}
       shape={'circle'}
       style={{ borderWidth: 1.5, cursor: 'default' }}

@@ -1,0 +1,23 @@
+.empty {
+margin-block: 24px;
+margin-inline: auto;
+}
+
+.questionItemContainer {
+padding-block: 8px;
+padding-inline-end: 8px;
+}
+
+.questionItemContent {
+flex: 1;
+}
+
+.questionsList {
+width: 100%;
+margin-block-start: 16px;
+}
+
+.repeatError {
+margin: 0;
+color: var(--ant-color-error-text);
+}

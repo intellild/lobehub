@@ -1,0 +1,33 @@
+.icon {
+transition: scale 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.modelDisabled {
+cursor: not-allowed;
+opacity: 0.5;
+
+:hover {
+  background: transparent;
+}
+
+:active {
+  div {
+    scale: 1;
+  }
+}
+}
+
+.model {
+cursor: pointer;
+border-radius: 24px;
+
+:hover {
+  background: var(--ant-color-fill-secondary);
+}
+
+:active {
+  div {
+    scale: 0.8;
+  }
+}
+}

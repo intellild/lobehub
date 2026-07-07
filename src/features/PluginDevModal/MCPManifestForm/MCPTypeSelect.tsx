@@ -1,95 +1,31 @@
 import { Center, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { CheckIcon, RouterIcon, TerminalIcon } from 'lucide-react';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { isDesktop } from '@/const/version';
 
-// Define styles using antd-style (moved from MCPManifestForm)
-const styles = createStaticStyles(({ css }) => ({
-  active: css`
-    border-color: ${cssVar.colorPrimary};
+import styles from './MCPTypeSelect.module.css';
 
-    &:hover {
-      border-color: ${cssVar.colorPrimary};
-    }
-  `,
-  cardDescription: css`
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextDescription};
-  `,
-  cardTitle: css`
-    font-weight: bold;
-  `,
-  checkIcon: css`
-    position: absolute;
-    inset-block-start: 12px;
-    inset-inline-end: 12px;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-
-    color: ${cssVar.colorBgContainer};
-
-    background-color: ${cssVar.colorPrimary};
-  `,
-  container: css`
-    cursor: pointer;
-
-    position: relative;
-
-    width: 100%;
-    padding-block: 12px;
-    padding-inline: 16px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background-color: ${cssVar.colorBgContainer};
-
-    transition:
-      border-color 0.3s ${cssVar.motionEaseInOut},
-      box-shadow 0.3s ${cssVar.motionEaseInOut};
-
-    &:hover {
-      border-color: ${cssVar.colorPrimaryHover};
-    }
-  `,
-  disabled: css`
-    cursor: not-allowed;
-    border-color: ${cssVar.colorBorder};
-    opacity: 0.5;
-    background-color: ${cssVar.colorBgContainerDisabled};
-
-    &:hover {
-      border-color: ${cssVar.colorBorder};
-    }
-  `,
-  featureIcon: css`
-    color: ${cssVar.colorTextSecondary};
-  `,
-  featureItem: css`
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  `,
-  featureText: css`
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 // Helper component for feature list items (moved from MCPManifestForm)
 const FeatureItem = memo(({ children }: { children: React.ReactNode }) => {
   return (
     <div className={styles.featureItem}>
       <Center className={styles.featureIcon}>
-        <CheckIcon color={cssVar.colorSuccess} size={16} />
+        <CheckIcon color={'var(--ant-color-success)'} size={16} />
       </Center>
       <div className={styles.featureText}>{children}</div>
     </div>

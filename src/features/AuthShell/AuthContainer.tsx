@@ -2,7 +2,6 @@
 
 import { Center, Flexbox } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cx } from 'antd-style';
 import { type FC, type PropsWithChildren } from 'react';
 
 import { ProductLogo } from '@/components/Branding';
@@ -12,6 +11,19 @@ import AuthFooterLinks from './AuthFooterLinks';
 import AuthLangButton from './AuthLangButton';
 import AuthThemeButton from './AuthThemeButton';
 import { styles } from './style';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const AuthContainer: FC<PropsWithChildren> = ({ children }) => {
   const isDarkMode = useIsDark();

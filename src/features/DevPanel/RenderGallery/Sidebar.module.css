@@ -1,0 +1,27 @@
+.header {
+padding-block: 16px 12px;
+padding-inline: 20px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+
+.menu {
+padding-block: 8px;
+border-inline-end: none !important;
+}
+
+.sidebar {
+display: flex;
+flex-direction: column;
+flex-shrink: 0;
+
+width: 260px;
+height: 100%;
+border-inline-end: 1px solid var(--ant-color-border-secondary);
+
+background: var(--ant-color-bg-container);
+}
+
+.scroll {
+overflow: auto;
+flex: 1;
+}

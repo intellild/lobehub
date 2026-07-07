@@ -1,0 +1,12 @@
+.emptyIcon {
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 48px;
+height: 48px;
+margin-block-end: 12px;
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-primary-bg);
+}

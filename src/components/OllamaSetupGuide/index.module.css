@@ -1,0 +1,16 @@
+.steps {
+margin-block-start: 32px;
+&.ant-steps-small .ant-steps-item-title {
+  margin-block-end: 16px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ant-steps-item-description {
+  margin-block-end: 24px;
+}
+
+.ant-steps-icon {
+  color: var(--steps-icon-color, var(--ant-color-text)) !important;
+}
+}

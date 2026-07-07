@@ -1,0 +1,47 @@
+.container {
+overflow: hidden;
+  min-width: 360px;
+  max-width: 360px;
+}
+
+.detailsSection {
+padding-block: var(--ant-padding-sm);
+}
+
+.externalLink {
+color: var(--ant-color-text-quaternary);
+
+  :hover {
+    color: var(--ant-color-text);
+  }
+}
+
+.footer {
+padding-block: 4px;
+  padding-inline: 12px;
+  background-color: var(--ant-color-fill-quaternary);
+}
+
+.footerText {
+font-size: 12px !important;
+  color: var(--ant-color-text-tertiary) !important;
+}
+
+.metaInfo {
+display: flex;
+  align-items: center;
+  color: var(--ant-color-text-secondary);
+}
+
+.title {
+overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+
+  margin-block-end: 0;
+}
+
+.titleRow {
+overflow: hidden;
+}

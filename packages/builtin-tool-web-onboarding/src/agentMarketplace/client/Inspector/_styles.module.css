@@ -1,0 +1,25 @@
+.chip {
+overflow: hidden;
+display: inline-flex;
+flex-shrink: 1;
+align-items: center;
+
+min-width: 0;
+max-width: 200px;
+padding-block: 2px;
+padding-inline: 8px;
+border-radius: 999px;
+
+font-size: 12px;
+color: var(--ant-color-text);
+text-overflow: ellipsis;
+white-space: nowrap;
+
+background: var(--ant-color-fill-tertiary);
+}
+
+.meta {
+flex-shrink: 0;
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}

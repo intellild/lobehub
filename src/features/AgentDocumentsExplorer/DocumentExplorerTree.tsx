@@ -2,7 +2,6 @@ import { AGENT_DOCUMENT_CATEGORY } from '@lobechat/const';
 import { Center, Empty, Flexbox, Icon } from '@lobehub/ui';
 import { SkillsIcon } from '@lobehub/ui/icons';
 import type { MenuProps } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { FileTextIcon, Maximize2Icon, PenLineIcon, Trash2Icon } from 'lucide-react';
 import type { CSSProperties } from 'react';
 import { memo, useCallback, useMemo, useRef } from 'react';
@@ -27,6 +26,7 @@ import { agentDocumentService } from '@/services/agentDocument';
 
 import { openConvertToSkillModal, slugifySkillName } from './ConvertToSkillModal';
 import DocumentExplorerToolbar from './DocumentExplorerToolbar';
+import styles from './DocumentExplorerTree.module.css';
 import { useDocumentTreeOps } from './hooks/useDocumentTreeOps';
 import type { AgentDocumentItem } from './types';
 import { isOrphanSkillBundleItem } from './types';
@@ -51,22 +51,6 @@ const selectStemOfActiveRenameInput = (root: HTMLElement | null) => {
   if (dotIndex <= 0) return;
   input.setSelectionRange(0, dotIndex);
 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  tree: css`
-    --trees-bg-override: transparent;
-    --trees-border-color-override: transparent;
-    --trees-selected-bg-override: ${cssVar.colorFillSecondary};
-    --trees-selected-fg-override: ${cssVar.colorText};
-    --trees-bg-muted-override: ${cssVar.colorFillTertiary};
-    --trees-fg-override: ${cssVar.colorTextSecondary};
-    --trees-fg-muted-override: ${cssVar.colorTextSecondary};
-    --trees-accent-override: ${cssVar.colorPrimary};
-    --trees-padding-inline-override: 0px;
-    --trees-font-size-override: 12px;
-    --trees-border-radius-override: 6px;
-  `,
-}));
 
 interface Props {
   agentId: string;

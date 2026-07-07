@@ -2,30 +2,11 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, Icon, Markdown, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { Sparkles } from 'lucide-react';
 import { memo } from 'react';
 
 import type { SkillArgs } from '../../../types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    padding-block: 4px;
-  `,
-  header: css`
-    padding-inline: 4px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  previewBox: css`
-    overflow: hidden;
-
-    padding-block: 4px;
-    padding-inline: 8px;
-    border-radius: 8px;
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
+import styles from './index.module.css';
 
 const Skill = memo<BuiltinRenderProps<SkillArgs>>(({ args, content }) => {
   const skillName = args?.skill;

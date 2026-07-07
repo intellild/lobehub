@@ -1,66 +1,24 @@
 import { type MenuProps as AntdMenuProps } from 'antd';
 import { ConfigProvider, Menu as AntdMenu } from 'antd';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { memo } from 'react';
 
+import stylesModule from './index.module.css';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
+
 const prefixCls = 'ant';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  compact: css`
-    display: flex;
-    flex-direction: column;
-    gap: 0.125rem;
-  `,
-  menu: css`
-    flex: 1;
-    border: none !important;
-    background: transparent;
-
-    .${prefixCls}-menu-item-divider {
-      margin-block: 0.125rem;
-      border-color: ${cssVar.colorFillTertiary};
-
-      &:first-child {
-        margin-block-start: 0;
-      }
-
-      &:last-child {
-        margin-block-end: 0;
-      }
-    }
-
-    .${prefixCls}-menu-item, .${prefixCls}-menu-submenu-title {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-
-      height: unset;
-      min-height: 2rem;
-      padding-block: 0.375rem;
-      padding-inline: 0.75rem;
-
-      line-height: 2;
-
-      .anticon + .${prefixCls}-menu-title-content {
-        margin-inline-start: 0;
-      }
-    }
-
-    .${prefixCls}-menu-item-selected {
-      .${prefixCls}-menu-item-icon svg {
-        color: ${cssVar.colorText};
-      }
-    }
-
-    .${prefixCls}-menu-item-icon svg {
-      color: ${cssVar.colorTextSecondary};
-    }
-
-    .${prefixCls}-menu-title-content {
-      flex: 1;
-    }
-  `,
-}));
+const styles = stylesModule;
 
 export interface MenuProps extends AntdMenuProps {
   compact?: boolean;
@@ -76,11 +34,11 @@ const Menu = memo<MenuProps>(({ className, selectable = false, compact, ...rest 
             iconMarginInlineEnd: 8,
             iconSize: 16,
             itemBorderRadius: 8,
-            itemColor: selectable ? cssVar.colorTextSecondary : cssVar.colorText,
-            itemHoverBg: cssVar.colorFillTertiary,
+            itemColor: selectable ? 'var(--ant-color-text-secondary)' : 'var(--ant-color-text)',
+            itemHoverBg: 'var(--ant-color-fill-tertiary)',
             itemMarginBlock: compact ? 0 : 4,
             itemMarginInline: compact ? 0 : 4,
-            itemSelectedBg: cssVar.colorFillSecondary,
+            itemSelectedBg: 'var(--ant-color-fill-secondary)',
             paddingXS: -8,
           },
         },

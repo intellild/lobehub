@@ -1,7 +1,7 @@
-import { cssVar } from 'antd-style';
+
 
 export const ROLE_COLORS: Partial<Record<string, string>> = {
-  choices: cssVar.colorWarning,
-  expected: cssVar.colorSuccess,
-  input: cssVar.colorInfo,
+  choices: 'var(--ant-color-warning)',
+  expected: 'var(--ant-color-success)',
+  input: 'var(--ant-color-info)',
 };

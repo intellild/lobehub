@@ -2,7 +2,6 @@ import { type HeatmapsProps } from '@lobehub/charts';
 import { Heatmaps } from '@lobehub/charts';
 import { Flexbox, Icon, Tag } from '@lobehub/ui';
 import { Tabs } from '@lobehub/ui/base-ui';
-import { cssVar } from 'antd-style';
 import { CoinsIcon, FlameIcon, MessageSquareIcon } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -114,7 +113,7 @@ const AiHeatmaps = memo<
         <Flexbox horizontal align={'baseline'} gap={4} justify={'space-between'}>
           <div
             style={{
-              color: cssVar.colorTextDescription,
+              color: 'var(--ant-color-text-description)',
               fontSize: 12,
             }}
           >

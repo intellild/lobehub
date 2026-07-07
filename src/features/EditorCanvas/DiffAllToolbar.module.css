@@ -1,0 +1,24 @@
+.container {
+position: absolute;
+z-index: 1000;
+inset-block-end: 24px;
+inset-inline-start: 50%;
+transform: translateX(-50%);
+}
+
+.toolbar {
+border-color: var(--ant-color-fill-secondary);
+background: var(--ant-color-bg-elevated);
+}
+
+.toolbarDark {
+box-shadow:
+  0 14px 28px -6px #0003,
+  0 2px 4px -1px #0000001f;
+}
+
+.toolbarLight {
+box-shadow:
+  0 14px 28px -6px #0000001a,
+  0 2px 4px -1px #0000000f;
+}

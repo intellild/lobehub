@@ -1,0 +1,30 @@
+.bar {
+pointer-events: auto;
+
+padding-block: 8px;
+padding-inline: 16px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 999px;
+
+background: var(--ant-color-bg-elevated);
+box-shadow: var(--ant-box-shadow-secondary);
+}
+
+.divider {
+width: 1px;
+height: 16px;
+margin-inline: 2px;
+background: var(--ant-color-border-secondary);
+}
+
+.overlay {
+pointer-events: none;
+
+position: fixed;
+z-index: 1000;
+inset-block-end: 24px;
+inset-inline: 0;
+
+display: flex;
+justify-content: center;
+}

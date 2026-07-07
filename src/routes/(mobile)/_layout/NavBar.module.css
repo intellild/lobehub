@@ -1,0 +1,12 @@
+.active {
+svg {
+  fill: color-mix(in srgb, var(--ant-color-primary) 33%, transparent);
+}
+}
+
+.container {
+position: fixed;
+z-index: 100;
+inset-block-end: 0;
+inset-inline: 0;
+}

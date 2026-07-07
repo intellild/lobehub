@@ -1,0 +1,7 @@
+.sectionLabel {
+margin-block-end: 12px;
+
+font-size: var(--ant-font-size-sm);
+font-weight: 500;
+color: var(--ant-color-text-secondary);
+}

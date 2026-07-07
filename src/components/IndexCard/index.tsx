@@ -1,56 +1,10 @@
 import { type FlexboxProps } from '@lobehub/ui';
 import { ActionIcon, Center, Flexbox } from '@lobehub/ui';
-import { createStaticStyles, responsive } from 'antd-style';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { type ReactNode } from 'react';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  card: css`
-    position: relative;
-
-    overflow: hidden;
-
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG};
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  desc: css`
-    font-size: 14px;
-    line-height: 1.4;
-    color: ${cssVar.colorTextDescription};
-    ${responsive.sm} {
-      font-size: 12px;
-    }
-  `,
-  expend: css`
-    position: absolute;
-    inset-block-end: -12px;
-    inset-inline-start: 50%;
-    transform: translateX(-50%);
-
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 50%;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  header: css`
-    border-block-end: 1px solid ${cssVar.colorBorderSecondary};
-    background: ${cssVar.colorFillQuaternary};
-  `,
-  more: css`
-    border: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  title: css`
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 1.4;
-    ${responsive.sm} {
-      font-size: 14px;
-    }
-  `,
-}));
+import styles from './index.module.css';
 
 interface IndexCardProps extends Omit<FlexboxProps, 'title'> {
   desc?: ReactNode;

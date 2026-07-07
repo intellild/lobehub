@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, Flexbox, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { RefreshCw } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -56,7 +55,7 @@ const List = memo<ListProps>(({ mode, count = 3, disabled }) => {
         }}
       >
         <ActionIcon disabled={disabled} icon={RefreshCw} size={'small'} />
-        <Text color={cssVar.colorTextSecondary} fontSize={12}>
+        <Text color={'var(--ant-color-text-secondary)'} fontSize={12}>
           {tCommon('switch')}
         </Text>
       </Flexbox>

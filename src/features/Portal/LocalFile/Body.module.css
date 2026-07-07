@@ -1,0 +1,56 @@
+.card {
+margin-block: 8px 12px;
+margin-inline: 12px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 8px;
+
+background: var(--ant-color-bg-container);
+}
+
+.key {
+flex-shrink: 0;
+
+width: 96px;
+
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+}
+
+.row {
+padding-block: 8px;
+padding-inline: 12px;
+
+&:not(:last-child) {
+  border-block-end: 1px solid var(--ant-color-border-secondary);
+}
+}
+
+.value {
+min-width: 0;
+font-size: 12px;
+white-space: pre-wrap;
+}
+
+.container {
+position: absolute;
+z-index: 2;
+inset-block-start: 8px;
+inset-inline-end: 12px;
+
+padding: 4px;
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 8px;
+
+opacity: 0.55;
+background: var(--ant-color-bg-elevated);
+backdrop-filter: blur(8px);
+box-shadow: var(--ant-box-shadow-tertiary);
+
+transition: opacity 0.15s ease;
+
+&:hover,
+&:focus-within {
+  opacity: 1;
+}
+}

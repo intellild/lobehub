@@ -1,5 +1,4 @@
 import { Block, Flexbox, Icon, Tag } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { CheckIcon, MinusIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -89,7 +88,7 @@ const Versions = memo(() => {
               dataIndex: 'isValidated',
               render: (_: any, record: any) => (
                 <Icon
-                  color={record.isValidated ? cssVar.colorSuccess : cssVar.colorTextDescription}
+                  color={record.isValidated ? 'var(--ant-color-success)' : 'var(--ant-color-text-description)'}
                   icon={record.isValidated ? CheckIcon : MinusIcon}
                 />
               ),

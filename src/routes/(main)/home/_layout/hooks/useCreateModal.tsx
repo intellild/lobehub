@@ -1,6 +1,5 @@
 import { ActionIcon, Block, Flexbox, Text } from '@lobehub/ui';
 import { Button } from '@lobehub/ui/base-ui';
-import { cssVar } from 'antd-style';
 import { Blocks, CheckCircle2, Lightbulb, PencilLineIcon, RefreshCw, X } from 'lucide-react';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -57,20 +56,20 @@ const SkillSuggestionPanel = memo<SkillSuggestionPanelProps>(
       <Flexbox
         gap={12}
         style={{
-          background: cssVar.colorFillQuaternary,
-          border: `1px solid ${cssVar.colorFillSecondary}`,
+          background: 'var(--ant-color-fill-quaternary)',
+          border: `1px solid ${'var(--ant-color-fill-secondary)'}`,
           borderRadius: 12,
           padding: 14,
         }}
       >
         <Flexbox gap={4}>
           <Flexbox horizontal align={'center'} gap={8}>
-            <Blocks color={cssVar.colorTextSecondary} size={18} />
+            <Blocks color={'var(--ant-color-text-secondary)'} size={18} />
             <Text fontSize={14} style={{ fontWeight: 600 }}>
               {t('createModal.skillSuggestion.title')}
             </Text>
           </Flexbox>
-          <Text color={cssVar.colorTextSecondary} fontSize={13}>
+          <Text color={'var(--ant-color-text-secondary)'} fontSize={13}>
             {t('createModal.skillSuggestion.description')}
           </Text>
         </Flexbox>
@@ -86,8 +85,8 @@ const SkillSuggestionPanel = memo<SkillSuggestionPanelProps>(
                 justify={'space-between'}
                 key={item.identifier}
                 style={{
-                  background: cssVar.colorBgContainer,
-                  border: `1px solid ${cssVar.colorFillTertiary}`,
+                  background: 'var(--ant-color-bg-container)',
+                  border: `1px solid ${'var(--ant-color-fill-tertiary)'}`,
                   borderRadius: 10,
                   padding: 10,
                 }}
@@ -96,7 +95,7 @@ const SkillSuggestionPanel = memo<SkillSuggestionPanelProps>(
                   <Text ellipsis fontSize={13} style={{ fontWeight: 500 }}>
                     {item.name}
                   </Text>
-                  <Text color={cssVar.colorTextTertiary} ellipsis={{ rows: 2 }} fontSize={12}>
+                  <Text color={'var(--ant-color-text-tertiary)'} ellipsis={{ rows: 2 }} fontSize={12}>
                     {item.description}
                   </Text>
                 </Flexbox>
@@ -118,12 +117,12 @@ const SkillSuggestionPanel = memo<SkillSuggestionPanelProps>(
           })}
         </Flexbox>
         {installError && (
-          <Text color={cssVar.colorError} fontSize={12}>
+          <Text color={'var(--ant-color-error)'} fontSize={12}>
             {t('createModal.skillSuggestion.installError')}
           </Text>
         )}
         <Flexbox horizontal align={'center'} gap={8} justify={'flex-end'}>
-          <Text color={cssVar.colorTextTertiary} fontSize={12}>
+          <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
             {t('createModal.skillSuggestion.actions.createAnywayHint')}
           </Text>
           <Button disabled={installing} onClick={onContinueCreate}>
@@ -157,19 +156,19 @@ const SkillInstalledPanel = memo<SkillInstalledPanelProps>(({ onClose, onOpenSki
           align={'center'}
           justify={'center'}
           style={{
-            background: cssVar.colorSuccessBg,
+            background: 'var(--ant-color-success-bg)',
             borderRadius: '50%',
             height: 48,
             width: 48,
           }}
         >
-          <CheckCircle2 color={cssVar.colorSuccess} size={28} />
+          <CheckCircle2 color={'var(--ant-color-success)'} size={28} />
         </Flexbox>
         <Text fontSize={18} style={{ fontWeight: 600 }}>
           {t('createModal.skillSuggestion.installed.title')}
         </Text>
         <Text
-          color={cssVar.colorTextSecondary}
+          color={'var(--ant-color-text-secondary)'}
           fontSize={13}
           style={{ maxWidth: 360, textAlign: 'center' }}
         >
@@ -182,8 +181,8 @@ const SkillInstalledPanel = memo<SkillInstalledPanelProps>(({ onClose, onOpenSki
         gap={12}
         justify={'space-between'}
         style={{
-          background: cssVar.colorFillQuaternary,
-          border: `1px solid ${cssVar.colorFillTertiary}`,
+          background: 'var(--ant-color-fill-quaternary)',
+          border: `1px solid ${'var(--ant-color-fill-tertiary)'}`,
           borderRadius: 12,
           padding: 12,
           width: '100%',
@@ -193,21 +192,21 @@ const SkillInstalledPanel = memo<SkillInstalledPanelProps>(({ onClose, onOpenSki
           align={'center'}
           justify={'center'}
           style={{
-            background: cssVar.colorBgContainer,
-            border: `1px solid ${cssVar.colorFillTertiary}`,
+            background: 'var(--ant-color-bg-container)',
+            border: `1px solid ${'var(--ant-color-fill-tertiary)'}`,
             borderRadius: 10,
             flex: 'none',
             height: 38,
             width: 38,
           }}
         >
-          <Blocks color={cssVar.colorTextSecondary} size={18} />
+          <Blocks color={'var(--ant-color-text-secondary)'} size={18} />
         </Flexbox>
         <Flexbox flex={1} gap={4} style={{ minWidth: 0 }}>
           <Text ellipsis fontSize={13} style={{ fontWeight: 500 }}>
             {skill.name}
           </Text>
-          <Text color={cssVar.colorTextTertiary} fontSize={12}>
+          <Text color={'var(--ant-color-text-tertiary)'} fontSize={12}>
             {t('createModal.skillSuggestion.installed.ready')}
           </Text>
         </Flexbox>
@@ -239,7 +238,7 @@ const ExampleItem = memo<ExampleItemProps>(({ title, description, onClick, promp
       clickable
       variant={'outlined'}
       style={{
-        borderRadius: cssVar.borderRadiusLG,
+        borderRadius: 'var(--ant-border-radius-lg)',
         cursor: 'pointer',
       }}
       onClick={() => onClick(prompt)}
@@ -248,7 +247,7 @@ const ExampleItem = memo<ExampleItemProps>(({ title, description, onClick, promp
         <Text ellipsis fontSize={14} style={{ fontWeight: 500 }}>
           {title}
         </Text>
-        <Text color={cssVar.colorTextTertiary} ellipsis={{ rows: 2 }} fontSize={12}>
+        <Text color={'var(--ant-color-text-tertiary)'} ellipsis={{ rows: 2 }} fontSize={12}>
           {description}
         </Text>
       </Flexbox>
@@ -272,8 +271,8 @@ const Examples = memo<ExamplesProps>(({ suggestMode, onExampleClick }) => {
     <Flexbox gap={16}>
       <Flexbox horizontal align={'center'} justify={'space-between'}>
         <Flexbox horizontal align={'center'} gap={8}>
-          <Lightbulb color={cssVar.colorTextDescription} size={18} />
-          <Text color={cssVar.colorTextSecondary}>{tCommon('home.suggestQuestions')}</Text>
+          <Lightbulb color={'var(--ant-color-text-description)'} size={18} />
+          <Text color={'var(--ant-color-text-secondary)'}>{tCommon('home.suggestQuestions')}</Text>
         </Flexbox>
         <Flexbox
           horizontal
@@ -283,7 +282,7 @@ const Examples = memo<ExamplesProps>(({ suggestMode, onExampleClick }) => {
           onClick={refresh}
         >
           <ActionIcon icon={RefreshCw} size={'small'} />
-          <Text color={cssVar.colorTextSecondary} fontSize={12}>
+          <Text color={'var(--ant-color-text-secondary)'} fontSize={12}>
             {tCommon('switch')}
           </Text>
         </Flexbox>

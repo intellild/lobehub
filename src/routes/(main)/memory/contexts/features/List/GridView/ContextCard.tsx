@@ -1,4 +1,4 @@
-import { cssVar } from 'antd-style';
+
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -32,7 +32,7 @@ const ContextCard = memo<ContextCardProps>(({ context, onClick }) => {
             format={(percent) => `${t('filter.sort.scoreUrgency')}: ${percent}%`}
             percent={(context.scoreUrgency ?? 0) * 100}
             strokeColor={
-              (context.scoreUrgency ?? 0) >= 0.7 ? cssVar.colorError : cssVar.colorWarning
+              (context.scoreUrgency ?? 0) >= 0.7 ? 'var(--ant-color-error)' : 'var(--ant-color-warning)'
             }
           />
         </>

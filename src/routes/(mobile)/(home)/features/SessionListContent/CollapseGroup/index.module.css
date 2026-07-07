@@ -1,0 +1,32 @@
+.container {
+.ant-collapse-header {
+  padding-inline: 16px 10px !important;
+  border-radius: var(--ant-border-radius) !important;
+  color: var(--ant-color-text-description) !important;
+
+  @media (max-width: 575.98px) {
+    border-radius: 0 !important;
+  }
+
+  &:hover {
+    color: var(--ant-color-text) !important;
+    background: var(--ant-color-fill-tertiary);
+    .ant-collapse-extra {
+      display: block;
+    }
+  }
+}
+.ant-collapse-extra {
+  display: none;
+}
+.ant-collapse-content {
+  border-radius: 0 !important;
+}
+.ant-collapse-content-box {
+  padding: 0 !important;
+}
+}
+
+.icon {
+transition: all 100ms var(--ant-motion-ease-out);
+}

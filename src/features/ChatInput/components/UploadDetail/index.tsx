@@ -1,5 +1,4 @@
 import { Flexbox, Text } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -7,16 +6,8 @@ import FileParsingStatus from '@/components/FileParsingStatus';
 import { type FileParsingTask } from '@/types/asyncTask';
 import { type FileUploadState, type FileUploadStatus } from '@/types/files';
 
+import styles from './index.module.css';
 import UploadStatus from './UploadStatus';
-
-const styles = createStaticStyles(({ css }) => ({
-  status: css`
-    &.ant-tag {
-      padding-inline: 0;
-      background: none;
-    }
-  `,
-}));
 
 interface UploadDetailProps {
   size: number;

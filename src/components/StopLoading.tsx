@@ -1,5 +1,17 @@
 import { type IconType } from '@lobehub/icons';
-import { cssVar, cx } from 'antd-style';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const StopLoadingIcon: IconType = (({ ref, size = 16, className, style, ...rest }) => {
   return (
@@ -20,7 +32,7 @@ const StopLoadingIcon: IconType = (({ ref, size = 16, className, style, ...rest 
           cy="512"
           fill="none"
           r="426"
-          stroke={cssVar.colorBorder}
+          stroke={'var(--ant-color-border)'}
           strokeWidth="72"
         />
         <rect fill="currentColor" height="252" rx="24" ry="24" width="252" x="386" y="386" />

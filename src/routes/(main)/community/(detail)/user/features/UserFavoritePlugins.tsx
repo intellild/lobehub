@@ -12,7 +12,6 @@ import {
   Tooltip,
 } from '@lobehub/ui';
 import { App } from 'antd';
-import { createStaticStyles, cx } from 'antd-style';
 import { ClockIcon, Heart } from 'lucide-react';
 import qs from 'query-string';
 import { memo, useCallback } from 'react';
@@ -28,52 +27,20 @@ import { socialService } from '@/services/social';
 import { useDiscoverStore } from '@/store/discover';
 
 import { useUserDetailContext } from './DetailProvider';
+import styles from './UserFavoritePlugins.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => {
-  return {
-    desc: css`
-      flex: 1;
-      margin: 0 !important;
-      color: ${cssVar.colorTextSecondary};
-    `,
-    favoriteButton: css`
-      cursor: pointer;
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-      position: absolute;
-      inset-block-start: 12px;
-      inset-inline-end: 12px;
-
-      color: ${cssVar.colorError};
-
-      opacity: 0;
-
-      transition: opacity 0.2s;
-    `,
-    footer: css`
-      margin-block-start: 16px;
-      border-block-start: 1px dashed ${cssVar.colorBorder};
-      background: ${cssVar.colorBgContainer};
-    `,
-    secondaryDesc: css`
-      font-size: 12px;
-      color: ${cssVar.colorTextDescription};
-    `,
-    title: css`
-      margin: 0 !important;
-      font-size: 16px !important;
-      font-weight: 500 !important;
-
-      &:hover {
-        color: ${cssVar.colorLink};
-      }
-    `,
-    wrapper: css`
-      &:hover .favorite-button {
-        opacity: 1;
-      }
-    `,
-  };
-});
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface FavoritePluginCardProps extends FavoritePluginItem {
   onUnfavorite: (identifier: string) => void;

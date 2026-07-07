@@ -1,0 +1,40 @@
+.handle {
+cursor: col-resize;
+user-select: none;
+
+position: absolute;
+z-index: 1;
+inset-block: 0;
+inset-inline-end: 0;
+transform: translateX(-4px);
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+width: 16px;
+
+&::after {
+  content: '';
+
+  width: 1.5px;
+  height: calc(100% - 16px);
+  border-radius: 1px;
+
+  background-color: var(--ant-color-border);
+
+  transition: all 0.2s;
+}
+
+&:hover::after {
+  width: 3px;
+  background-color: var(--ant-color-primary);
+}
+}
+
+.handleDragging {
+&::after {
+  width: 3px !important;
+  background-color: var(--ant-color-primary) !important;
+}
+}

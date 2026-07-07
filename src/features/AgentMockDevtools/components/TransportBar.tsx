@@ -1,7 +1,6 @@
 import type { SpeedMultiplier } from '@lobechat/agent-mock';
 import { ActionIcon, type DropdownItem, DropdownMenu, Flexbox, toast } from '@lobehub/ui';
 import { Tabs, type TabsItem } from '@lobehub/ui/base-ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Pause, Play, Repeat, RotateCcw, SkipForward } from 'lucide-react';
 import { memo, useCallback, useMemo, useRef } from 'react';
 
@@ -9,6 +8,7 @@ import { useAgentMockPlayer } from '../hooks/useAgentMockPlayer';
 import { useAgentMockReplayTarget } from '../hooks/useAgentMockReplayTarget';
 import { useMockCases } from '../hooks/useMockCases';
 import { useAgentMockStore } from '../store/agentMockStore';
+import styles from './TransportBar.module.css';
 
 const SPEED_OPTIONS: Array<{ key: string; label: string; value: SpeedMultiplier }> = [
   { key: '0.5', label: '0.5×', value: 0.5 },
@@ -17,52 +17,6 @@ const SPEED_OPTIONS: Array<{ key: string; label: string; value: SpeedMultiplier 
   { key: '5', label: '5×', value: 5 },
   { key: 'instant', label: '∞', value: 'instant' },
 ];
-
-const styles = createStaticStyles(({ css }) => ({
-  bar: css`
-    padding-block: 12px;
-    padding-inline: 16px;
-    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
-  `,
-  loopOn: css`
-    color: ${cssVar.colorBgContainer};
-    background: ${cssVar.colorText};
-
-    &:hover {
-      color: ${cssVar.colorBgContainer};
-      background: ${cssVar.colorText};
-    }
-  `,
-  progress: css`
-    cursor: pointer;
-
-    flex: 1;
-
-    height: 6px;
-    border-radius: 3px;
-
-    background: ${cssVar.colorFillSecondary};
-  `,
-  progressFill: css`
-    height: 100%;
-    border-radius: inherit;
-    background: ${cssVar.colorText};
-    transition: width 0.16s linear;
-  `,
-  progressTrack: css`
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-  `,
-  time: css`
-    min-width: 64px;
-
-    font-size: 11px;
-    font-feature-settings: 'tnum';
-    color: ${cssVar.colorTextSecondary};
-    text-align: end;
-  `,
-}));
 
 export const TransportBar = memo(() => {
   const { all } = useMockCases();

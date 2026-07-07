@@ -1,5 +1,4 @@
 import { ActionIcon, Block, Flexbox, FluentEmoji, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { RefreshCw } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,39 +10,9 @@ import {
   nameSuggestionPool,
   resolveNameSuggestion,
 } from './nameSuggestions.config';
+import styles from './NameSuggestions.module.css';
 
 const SUGGESTIONS_PER_GROUP = 3;
-
-const styles = createStaticStyles(({ css }) => ({
-  chip: css`
-    cursor: pointer;
-
-    flex-shrink: 0;
-
-    padding-block: 6px;
-    padding-inline: 10px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: 999px;
-
-    background: ${cssVar.colorBgContainer};
-
-    transition: background 0.15s;
-
-    &:hover {
-      background: ${cssVar.colorBgTextHover};
-    }
-  `,
-
-  chipRow: css`
-    scrollbar-width: none;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  `,
-}));
 
 const sampleSuggestions = (count: number, excludeIds: string[] = []): NameSuggestionItem[] => {
   const remaining = nameSuggestionPool.filter((item) => !excludeIds.includes(item.id));
@@ -168,7 +137,7 @@ const NameSuggestions = memo<NameSuggestionsProps>(({ variant = 'cards' }) => {
               key={item.id}
               variant={'outlined'}
               style={{
-                borderRadius: cssVar.borderRadiusLG,
+                borderRadius: 'var(--ant-border-radius-lg)',
                 boxShadow: '0 8px 16px -8px rgba(0,0,0,0.06)',
                 cursor: 'pointer',
               }}

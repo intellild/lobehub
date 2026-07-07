@@ -2,65 +2,16 @@
 
 import { UTM_SOURCE } from '@lobechat/business-const';
 import { Center, Flexbox, Icon, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { Database, FileImage, Network, Sparkles } from 'lucide-react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import FeatureList from '@/components/FeatureList';
 import { DATABASE_SELF_HOSTING_URL, OFFICIAL_URL } from '@/const/url';
 
+import styles from './NotSupportClient.module.css';
+
 const BLOCK_SIZE = 100;
 const ICON_SIZE = { size: 72, strokeWidth: 1.5 };
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  actionTitle: css`
-    margin-block-start: 12px;
-    font-size: 16px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-  card: css`
-    cursor: pointer;
-
-    position: relative;
-
-    overflow: hidden;
-
-    width: 200px;
-    height: 140px;
-    border-radius: ${cssVar.borderRadiusLG}px;
-
-    font-weight: 500;
-    text-align: center;
-
-    background: ${cssVar.colorFillTertiary};
-    box-shadow: 0 0 0 1px ${cssVar.colorFillTertiary} inset;
-
-    transition: background 0.3s ease-in-out;
-
-    &:hover {
-      background: ${cssVar.colorFillSecondary};
-    }
-  `,
-  glow: css`
-    position: absolute;
-    inset-block-end: -12px;
-    inset-inline-end: 0;
-
-    width: 48px;
-    height: 48px;
-
-    opacity: 0.5;
-    filter: blur(24px);
-  `,
-
-  icon: css`
-    border-radius: ${cssVar.borderRadiusLG}px;
-    color: ${cssVar.colorTextLightSolid};
-  `,
-  iconGroup: css`
-    margin-block-start: -44px;
-  `,
-}));
 
 const NotSupportClient = () => {
   const { t } = useTranslation('image');
@@ -91,7 +42,7 @@ const NotSupportClient = () => {
           height={BLOCK_SIZE * 1.25}
           width={BLOCK_SIZE}
           style={{
-            background: cssVar.purple,
+            background: 'var(--ant-purple)',
             transform: 'rotateZ(-20deg) translateX(10px)',
           }}
         >
@@ -102,7 +53,7 @@ const NotSupportClient = () => {
           height={BLOCK_SIZE * 1.25}
           width={BLOCK_SIZE}
           style={{
-            background: cssVar.gold,
+            background: 'var(--ant-gold)',
             transform: 'translateY(-22px)',
             zIndex: 1,
           }}
@@ -114,7 +65,7 @@ const NotSupportClient = () => {
           height={BLOCK_SIZE * 1.25}
           width={BLOCK_SIZE}
           style={{
-            background: cssVar.geekblue,
+            background: 'var(--ant-geekblue)',
             transform: 'rotateZ(20deg) translateX(-10px)',
           }}
         >

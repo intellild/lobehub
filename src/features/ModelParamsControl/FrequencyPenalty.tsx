@@ -1,5 +1,4 @@
 import { Flexbox, Icon, SliderWithInput } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { BookOpenText, FileIcon } from 'lucide-react';
 import { memo } from 'react';
 
@@ -24,14 +23,14 @@ const FrequencyPenalty = memo<FrequencyPenaltyProps>(({ value, onChange, disable
         value={value}
         marks={{
           '-2': (
-            <Icon icon={FileIcon} size={'small'} style={{ color: cssVar.colorTextQuaternary }} />
+            <Icon icon={FileIcon} size={'small'} style={{ color: 'var(--ant-color-text-quaternary)' }} />
           ),
           0: <div />,
           2: (
             <Icon
               icon={BookOpenText}
               size={'small'}
-              style={{ color: cssVar.colorTextQuaternary }}
+              style={{ color: 'var(--ant-color-text-quaternary)' }}
             />
           ),
         }}

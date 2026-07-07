@@ -2,9 +2,9 @@
 
 import type { BuiltinRenderProps } from '@lobechat/types';
 import { Flexbox, Highlighter, Text } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { memo, useMemo } from 'react';
 
+import styles from './RunCommandRender.module.css';
 import {
   getGithubOutput,
   type GithubRunCommandArgs,
@@ -12,25 +12,6 @@ import {
   normalizeGhCommand,
   tryParseJson,
 } from './utils';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  exitCode: css`
-    margin-inline-start: 8px;
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-  `,
-  exitCodeError: css`
-    color: ${cssVar.colorError};
-  `,
-  exitCodeSuccess: css`
-    color: ${cssVar.colorSuccess};
-  `,
-  sectionLabel: css`
-    margin-block-end: 4px;
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-  `,
-}));
 
 const GithubRunCommandRender = memo<
   BuiltinRenderProps<GithubRunCommandArgs, GithubRunCommandState>
@@ -96,7 +77,7 @@ const GithubRunCommandRender = memo<
       )}
       {stderr && (
         <div>
-          <Text className={styles.sectionLabel} style={{ color: cssVar.colorError }}>
+          <Text className={styles.sectionLabel} style={{ color: 'var(--ant-color-error)' }}>
             Stderr
           </Text>
           <Highlighter

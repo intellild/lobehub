@@ -1,7 +1,6 @@
 'use client';
 
 import { ActionIcon, Flexbox, Icon, Image } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { ArrowUp, ListEnd, Pencil, Trash2 } from 'lucide-react';
 import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,72 +18,9 @@ import { messageMapKey } from '@/store/chat/utils/messageMapKey';
 import { useFileStore } from '@/store/file';
 
 import { useConversationStore } from '../store';
+import styles from './QueueTray.module.css';
 
 const PREVIEW_SIZE = 28;
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  container: css`
-    border: 1px solid ${cssVar.colorFillSecondary};
-    border-block-end: none;
-    border-radius: 12px 12px 0 0;
-    background: ${cssVar.colorBgElevated};
-  `,
-  fileChip: css`
-    overflow: hidden;
-    flex-shrink: 0;
-
-    max-width: 160px;
-    height: 28px;
-    padding-block: 0;
-    padding-inline: 6px;
-    border: 1px solid ${cssVar.colorFillTertiary};
-    border-radius: 6px;
-
-    font-size: 12px;
-    color: ${cssVar.colorTextSecondary};
-    white-space: nowrap;
-  `,
-  fileChipName: css`
-    overflow: hidden;
-    text-overflow: ellipsis;
-  `,
-  icon: css`
-    flex-shrink: 0;
-    color: ${cssVar.colorTextDescription};
-  `,
-  imageThumb: css`
-    flex-shrink: 0;
-
-    width: 28px !important;
-    height: 28px !important;
-    margin-block: 0 !important;
-    border: 1px solid ${cssVar.colorFillTertiary};
-    border-radius: 6px;
-
-    box-shadow: none;
-
-    img {
-      width: 28px !important;
-      height: 28px !important;
-      object-fit: cover;
-    }
-  `,
-  item: css`
-    padding-block: 6px 4px;
-    padding-inline: 12px 8px;
-  `,
-  itemDivider: css`
-    border-block-start: 1px solid ${cssVar.colorFillTertiary};
-  `,
-  text: css`
-    overflow: hidden;
-
-    font-size: 13px;
-    line-height: 1.4;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-}));
 
 const isImageFile = (f: QueuedFile) => f.mimeType.startsWith('image') && !!f.url;
 

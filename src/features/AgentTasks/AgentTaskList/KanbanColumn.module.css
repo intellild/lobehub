@@ -1,0 +1,122 @@
+.card {
+border-radius: var(--ant-border-radius-lg);
+background: var(--ant-color-bg-elevated);
+box-shadow:
+  0 1px 2px rgb(0 0 0 / 4%),
+  0 2px 6px rgb(0 0 0 / 3%);
+
+&,
+& * {
+  cursor: default;
+}
+
+&:active,
+&:active * {
+  cursor: grabbing;
+}
+
+&:hover > * {
+  background: var(--ant-color-fill-quaternary);
+}
+}
+
+.dragging {
+visibility: hidden;
+}
+
+.action {
+opacity: 0;
+transition: opacity 0.2s;
+}
+
+.addPill {
+cursor: pointer;
+
+display: flex;
+gap: 6px;
+align-items: center;
+justify-content: center;
+
+height: 36px;
+border: 1px solid var(--ant-color-border);
+border-radius: 999px;
+
+color: var(--ant-color-text-tertiary);
+
+transition:
+  border-color 0.2s,
+  color 0.2s,
+  background 0.2s;
+
+&:hover {
+  border-color: var(--ant-color-primary-border);
+  color: var(--ant-color-primary);
+  background: var(--ant-color-bg-container);
+}
+}
+
+.body {
+overflow-y: auto;
+display: flex;
+flex: 1;
+flex-direction: column;
+gap: 6px;
+
+padding-block: 4px 12px;
+padding-inline: 8px;
+}
+
+.column {
+display: flex;
+flex-direction: column;
+flex-shrink: 0;
+
+width: 300px;
+max-height: 100%;
+border-radius: var(--ant-border-radius-lg);
+
+background: var(--ant-color-fill-quaternary);
+
+transition:
+  background 0.2s,
+  box-shadow 0.2s;
+
+&:hover .kanban-col-action {
+  opacity: 1;
+}
+}
+
+.dropActive {
+background: var(--ant-color-fill-tertiary);
+box-shadow: inset 0 0 0 1px var(--ant-color-primary-border-hover);
+}
+
+.emptyText {
+padding-block: 24px;
+padding-inline: 16px;
+
+font-size: 13px;
+color: var(--ant-color-text-quaternary);
+text-align: center;
+}
+
+.header {
+display: flex;
+gap: 6px;
+align-items: center;
+
+padding-block: 10px 8px;
+padding-inline: 10px 6px;
+}
+
+.headerActions {
+display: flex;
+gap: 2px;
+align-items: center;
+margin-inline-start: auto;
+}
+
+.notDroppable {
+pointer-events: none;
+opacity: 0.4;
+}

@@ -3,47 +3,26 @@
 import { ActionIcon, Checkbox, Flexbox, Icon, SortableList } from '@lobehub/ui';
 import type { InputRef } from 'antd';
 import { Input } from 'antd';
-import { createStaticStyles, cssVar, cx } from 'antd-style';
 import { CircleArrowRight, Trash2 } from 'lucide-react';
 import type { ChangeEvent, KeyboardEvent } from 'react';
 import { memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useTodoListStore } from './store';
+import styles from './TodoItemRow.module.css';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  deleteIcon: css`
-    flex-shrink: 0;
-    opacity: 0;
-    transition: opacity 0.2s;
-  `,
-  dragHandle: css`
-    flex-shrink: 0;
-    width: 16px !important;
-    opacity: 0;
-    transition: opacity 0.2s;
-  `,
-  itemRow: css`
-    width: 100%;
-    padding-block: 10px;
-    padding-inline: 4px 12px;
-    border-block-end: 1px dashed ${cssVar.colorBorderSecondary};
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
 
-    &:hover {
-      .drag-handle,
-      .delete-icon {
-        opacity: 1;
-      }
-    }
-  `,
-  textCompleted: css`
-    color: ${cssVar.colorTextQuaternary};
-    text-decoration: line-through;
-  `,
-  textProcessing: css`
-    color: ${cssVar.colorWarningText};
-  `,
-}));
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 interface TodoItemRowProps {
   id: string;
@@ -134,12 +113,12 @@ const TodoItemRow = memo<TodoItemRowProps>(({ id, placeholder }) => {
         <Icon
           icon={CircleArrowRight}
           size={16}
-          style={{ color: cssVar.colorInfo, cursor: 'pointer', flexShrink: 0 }}
+          style={{ color: 'var(--ant-color-info)', cursor: 'pointer', flexShrink: 0 }}
           onClick={handleToggle}
         />
       ) : (
         <Checkbox
-          backgroundColor={cssVar.colorSuccess}
+          backgroundColor={'var(--ant-color-success)'}
           checked={isCompleted}
           shape={'circle'}
           style={{ borderWidth: 1.5 }}

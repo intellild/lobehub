@@ -1,7 +1,6 @@
 'use client';
 
 import { Block, Button, Checkbox, Empty, Flexbox, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { HeartHandshake, Undo2Icon } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -41,7 +40,7 @@ const DataModeStep = memo<DataModeStepProps>(({ onBack, onNext }) => {
   const checkIcon = (
     <Checkbox
       checked
-      backgroundColor={cssVar.colorSuccess}
+      backgroundColor={'var(--ant-color-success)'}
       shape={'circle'}
       size={20}
       style={{ position: 'absolute', right: 12, top: 12 }}
@@ -61,7 +60,7 @@ const DataModeStep = memo<DataModeStepProps>(({ onBack, onNext }) => {
           flex={1}
           gap={16}
           padding={16}
-          style={{ borderColor: selectedMode === 'share' ? cssVar.colorSuccess : undefined }}
+          style={{ borderColor: selectedMode === 'share' ? 'var(--ant-color-success)' : undefined }}
           variant={'outlined'}
           onClick={() => setMode('share')}
         >
@@ -98,7 +97,7 @@ const DataModeStep = memo<DataModeStepProps>(({ onBack, onNext }) => {
           flex={1}
           gap={6}
           padding={16}
-          style={{ borderColor: selectedMode === 'privacy' ? cssVar.colorSuccess : undefined }}
+          style={{ borderColor: selectedMode === 'privacy' ? 'var(--ant-color-success)' : undefined }}
           variant={'outlined'}
           onClick={() => setMode('privacy')}
         >
@@ -111,14 +110,14 @@ const DataModeStep = memo<DataModeStepProps>(({ onBack, onNext }) => {
           </Text>
         </Block>
       </Flexbox>
-      <Text color={cssVar.colorTextSecondary} fontSize={12} style={{ marginTop: 16 }}>
+      <Text color={'var(--ant-color-text-secondary)'} fontSize={12} style={{ marginTop: 16 }}>
         {t('screen4.footerNote')}
       </Text>
       <OnboardingFooterActions
         left={
           <Button
             icon={Undo2Icon}
-            style={{ color: cssVar.colorTextDescription }}
+            style={{ color: 'var(--ant-color-text-description)' }}
             type={'text'}
             onClick={onBack}
           >

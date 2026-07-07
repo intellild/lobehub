@@ -12,7 +12,6 @@ import {
   TooltipGroup,
 } from '@lobehub/ui';
 import { App } from 'antd';
-import { createStaticStyles, cssVar, useResponsive } from 'antd-style';
 import { BookmarkCheckIcon, BookmarkIcon, DotIcon, GitBranchIcon, UsersIcon } from 'lucide-react';
 import qs from 'query-string';
 import { memo, useState } from 'react';
@@ -21,6 +20,7 @@ import useSWR from 'swr';
 
 import PublishedTime from '@/components/PublishedTime';
 import WorkspaceLink from '@/features/Workspace/WorkspaceLink';
+import { useResponsive } from '@/hooks/useResponsive';
 import { useMarketAuth } from '@/layout/AuthProvider/MarketAuth';
 import { favoriteKeys } from '@/libs/swr/keys';
 import { socialService } from '@/services/social';
@@ -28,13 +28,7 @@ import { socialService } from '@/services/social';
 import { resolveCommunityProfileLink } from '../../utils/profileLink';
 import { useDetailContext } from './DetailProvider';
 import GroupAgentForkTag from './GroupAgentForkTag';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  time: css`
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-  `,
-}));
+import styles from './Header.module.css';
 
 const Header = memo<{ mobile?: boolean }>(({ mobile: isMobile }) => {
   const { t } = useTranslation('discover');
@@ -197,7 +191,7 @@ const Header = memo<{ mobile?: boolean }>(({ mobile: isMobile }) => {
           align={'center'}
           gap={mobile ? 12 : 24}
           style={{
-            color: cssVar.colorTextSecondary,
+            color: 'var(--ant-color-text-secondary)',
           }}
         >
           {!mobile && cateButton}

@@ -1,7 +1,6 @@
 'use client';
 
 import { Block, Flexbox, Text } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { memo, useCallback } from 'react';
 
 import { useChatStore } from '@/store/chat';
@@ -28,7 +27,7 @@ const Item = memo<ItemProps>(({ title, description, disabled, prompt }) => {
       clickable={!disabled}
       variant={'outlined'}
       style={{
-        borderRadius: cssVar.borderRadiusLG,
+        borderRadius: 'var(--ant-border-radius-lg)',
         cursor: disabled ? 'not-allowed' : 'pointer',
         opacity: disabled ? 0.65 : undefined,
       }}
@@ -38,7 +37,7 @@ const Item = memo<ItemProps>(({ title, description, disabled, prompt }) => {
         <Text ellipsis fontSize={14} style={{ fontWeight: 500 }}>
           {title}
         </Text>
-        <Text color={cssVar.colorTextTertiary} ellipsis={{ rows: 2 }} fontSize={12}>
+        <Text color={'var(--ant-color-text-tertiary)'} ellipsis={{ rows: 2 }} fontSize={12}>
           {description}
         </Text>
       </Flexbox>

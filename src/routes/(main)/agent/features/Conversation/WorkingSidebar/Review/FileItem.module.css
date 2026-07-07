@@ -1,0 +1,102 @@
+.additions {
+color: var(--ant-color-success);
+}
+
+.actions {
+pointer-events: none;
+
+position: absolute;
+inset-block: 0;
+inset-inline-end: -8px;
+
+align-items: center;
+
+padding-inline: 28px 0;
+
+opacity: 0;
+background:
+  linear-gradient(to right, transparent 0, var(--ant-color-fill-tertiary) 28px),
+  linear-gradient(to right, transparent 0, var(--ant-color-bg-container) 28px);
+
+transition: opacity 0.15s;
+
+[data-review-row]:hover & {
+  pointer-events: auto;
+  opacity: 1;
+}
+}
+
+.rowAction {
+flex: none;
+color: var(--ant-color-text-tertiary);
+}
+
+.revertDanger {
+&:hover {
+  color: var(--ant-color-error);
+}
+}
+
+.deletions {
+color: var(--ant-color-error);
+}
+
+.empty {
+padding-block: 12px;
+color: var(--ant-color-text-tertiary);
+text-align: center;
+}
+
+.dir {
+direction: rtl;
+
+/* Only the directory portion shrinks + head-truncates. Short dirs
+   sit naturally next to the filename (no awkward right-alignment);
+   long dirs collapse leading segments into "…" via the RTL trick. */
+overflow: hidden;
+flex: 0 1 auto;
+
+min-width: 0;
+
+color: var(--ant-color-text-tertiary);
+text-align: start;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.fileName {
+flex: none;
+color: var(--ant-color-text);
+white-space: nowrap;
+}
+
+.header {
+position: relative;
+
+display: flex;
+gap: 8px;
+align-items: center;
+
+width: 100%;
+min-width: 0;
+
+font-size: 12px;
+}
+
+.pathWrapper {
+overflow: hidden;
+
+/* Shrink-only (no grow): short paths stay content-sized so stats sit
+   right after the filename; long paths still shrink so the dir part
+   can head-truncate. */
+display: flex;
+flex: 0 1 auto;
+min-width: 0;
+}
+
+.stats {
+flex: none;
+font-family: var(--ant-font-family-code);
+font-size: 12px;
+font-variant-numeric: tabular-nums;
+}

@@ -1,5 +1,4 @@
 import { ActionIcon, Avatar, Flexbox } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { t } from 'i18next';
 import { XIcon } from 'lucide-react';
 import { memo } from 'react';
@@ -46,7 +45,7 @@ const Header = memo(() => {
         </Flexbox>
       }
       style={{
-        background: cssVar.colorBgContainer,
+        background: 'var(--ant-color-bg-container)',
       }}
     />
   );

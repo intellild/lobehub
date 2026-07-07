@@ -1,0 +1,193 @@
+.container {
+container-type: inline-size;
+
+padding-block: 8px;
+padding-inline: 14px;
+border: 1px solid var(--ant-color-fill-secondary);
+border-block-end: none;
+border-start-start-radius: 12px;
+border-start-end-radius: 12px;
+
+font-size: 12px;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-bg-elevated);
+}
+
+.containerTopAttached {
+border-start-start-radius: 0;
+border-start-end-radius: 0;
+}
+
+.containerSeamless {
+border: none;
+
+/* keep a hairline divider on top so the tray still reads as separated from
+   the conversation above, even without the full card chrome */
+border-block-start: 1px solid var(--ant-color-border-secondary);
+border-radius: 0;
+background: transparent;
+}
+
+.divider {
+width: 1px;
+height: 12px;
+background: var(--ant-color-border-secondary);
+}
+
+.metric {
+display: inline-flex;
+gap: 4px;
+align-items: center;
+
+font-variant-numeric: tabular-nums;
+white-space: nowrap;
+}
+
+.metricGroup {
+display: inline-flex;
+flex: none;
+gap: 10px;
+align-items: center;
+}
+
+.metricGroupFull {
+@container (max-width: 360px) {
+  display: none;
+}
+}
+
+.metricIcon {
+flex: none;
+color: var(--ant-color-text-tertiary);
+}
+
+.metricPopover {
+min-width: 150px;
+padding: 2px;
+}
+
+.metricPopoverLabel {
+color: var(--ant-color-text-tertiary);
+}
+
+.metricPopoverRow {
+font-size: 12px;
+}
+
+.metricPopoverValue {
+font-variant-numeric: tabular-nums;
+color: var(--ant-color-text-secondary);
+}
+
+.metricValue {
+overflow: hidden;
+max-width: 56px;
+text-overflow: ellipsis;
+}
+
+.compactMetric {
+cursor: default;
+display: none;
+flex: none;
+
+@container (max-width: 360px) {
+  display: inline-flex;
+}
+}
+
+.statusMetric {
+overflow: hidden;
+flex: 1 1 auto;
+min-width: 0;
+}
+
+.statusText {
+overflow: hidden;
+font-weight: 500;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.statusPhrase {
+@keyframes op-status-tray-phrase-enter {
+  from {
+    transform: translateY(3px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+display: inline-block;
+animation: op-status-tray-phrase-enter 0.4s ease;
+}
+
+.timerValue {
+flex: none;
+color: var(--ant-color-text-tertiary);
+
+@container (max-width: 260px) {
+  display: none;
+}
+}
+
+.activityGlyph {
+overflow: visible;
+flex: none;
+
+width: 16px;
+height: 16px;
+
+color: var(--ant-color-primary);
+
+@keyframes op-status-tray-glyph-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes op-status-tray-glyph-core {
+  0%,
+  100% {
+    transform: scale(0.86);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+}
+
+.glyphCore {
+transform-origin: center;
+transform-box: fill-box;
+fill: var(--ant-color-primary);
+animation: op-status-tray-glyph-core 1.5s ease-in-out infinite;
+
+@media (prefers-reduced-motion: reduce) {
+  animation: none;
+}
+}
+
+.glyphOrbit {
+transform-origin: center;
+transform-box: fill-box;
+
+fill: none;
+stroke: color-mix(in srgb, var(--ant-color-primary) 76%, transparent);
+stroke-dasharray: 9 18;
+stroke-linecap: round;
+stroke-width: 1.5;
+
+animation: op-status-tray-glyph-spin 2s linear infinite;
+
+@media (prefers-reduced-motion: reduce) {
+  animation: none;
+}
+}

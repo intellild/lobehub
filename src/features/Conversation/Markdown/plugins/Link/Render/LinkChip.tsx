@@ -1,24 +1,7 @@
 'use client';
-
-import { createStaticStyles } from 'antd-style';
 import { memo, type ReactNode } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  chip: css`
-    color: ${cssVar.colorLink};
-    text-decoration: none;
-    transition: color 0.15s;
-
-    &:hover {
-      color: ${cssVar.colorLinkHover};
-    }
-  `,
-  icon: css`
-    display: inline-flex;
-    margin-inline-end: 4px;
-    vertical-align: -0.15em;
-  `,
-}));
+import styles from './LinkChip.module.css';
 
 interface LinkChipProps {
   href?: string;

@@ -1,0 +1,61 @@
+.card {
+scroll-margin-block-start: 16px;
+
+overflow: hidden;
+
+border: 1px solid var(--ant-color-border-secondary);
+border-radius: 20px;
+
+background: var(--ant-color-bg-container);
+}
+
+.cardBody {
+padding: 20px;
+}
+
+.cardHeader {
+gap: 10px;
+
+padding-block: 20px;
+padding-inline: 24px;
+border-block-end: 1px solid var(--ant-color-border-secondary);
+
+background: linear-gradient(
+  180deg,
+  var(--ant-color-fill-quaternary) 0%,
+  var(--ant-color-bg-container) 100%
+);
+}
+
+.code {
+overflow: auto;
+
+max-height: 320px;
+margin: 0;
+padding: 12px;
+border-radius: 12px;
+
+font-size: 12px;
+line-height: 1.55;
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-fill-quaternary);
+}
+
+.fixtureSummary {
+cursor: pointer;
+user-select: none;
+font-size: 12px;
+color: var(--ant-color-text-tertiary);
+}
+
+.previewShell {
+padding: 16px;
+border-radius: 16px;
+background: var(--ant-color-fill-quaternary);
+}
+
+.sectionLabel {
+gap: 8px;
+align-items: center;
+}

@@ -1,72 +1,11 @@
 'use client';
 
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles } from 'antd-style';
 import { CheckCircle2, MonitorIcon } from 'lucide-react';
 import { memo } from 'react';
 
 import type { DeviceAttachment } from '../../../ExecutionRuntime/types';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  activated: css`
-    color: ${cssVar.colorSuccess};
-    background: ${cssVar.colorSuccessBg};
-  `,
-  badge: css`
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-
-    padding-block: 2px;
-    padding-inline: 8px;
-    border-radius: 6px;
-
-    font-size: 12px;
-    line-height: 16px;
-    white-space: nowrap;
-  `,
-  card: css`
-    width: 100%;
-    padding-block: 10px;
-    padding-inline: 12px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 10px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-  hostname: css`
-    overflow: hidden;
-
-    font-size: 14px;
-    font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  icon: css`
-    flex: none;
-
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-
-    color: ${cssVar.colorTextSecondary};
-
-    background: ${cssVar.colorFillTertiary};
-  `,
-  meta: css`
-    overflow: hidden;
-
-    font-family: ${cssVar.fontFamilyCode};
-    font-size: 12px;
-    color: ${cssVar.colorTextDescription};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `,
-  online: css`
-    color: ${cssVar.colorTextSecondary};
-    background: ${cssVar.colorFillTertiary};
-  `,
-}));
+import styles from './index.module.css';
 
 interface DeviceCardProps {
   /** Render the activated treatment (check badge) instead of the online badge. */

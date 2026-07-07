@@ -3,7 +3,6 @@
 import { ActionIcon, Avatar, Block, DropdownMenu, Flexbox, Icon, Tag } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { SkillsIcon } from '@lobehub/ui/icons';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { DownloadIcon, Loader2, MoreVerticalIcon, Plus, Trash2 } from 'lucide-react';
 import { lazy, memo, Suspense, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,26 +16,9 @@ import { type DiscoverSkillItem } from '@/types/discover';
 import { downloadFile } from '@/utils/client/downloadFile';
 
 import { itemStyles } from '../style';
+import styles from './MarketSkillItem.module.css';
 
 const MarketSkillDetail = lazy(() => import('../MarketSkills/MarketSkillDetail'));
-
-const styles = createStaticStyles(({ css }) => ({
-  title: css`
-    cursor: pointer;
-
-    overflow: hidden;
-
-    font-size: 14px;
-    font-weight: 500;
-    color: ${cssVar.colorText};
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &:hover {
-      color: ${cssVar.colorPrimary};
-    }
-  `,
-}));
 
 const MarketSkillItem = memo<DiscoverSkillItem>(({ name, icon, description, identifier }) => {
   const { t } = useTranslation('plugin');

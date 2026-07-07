@@ -3,7 +3,6 @@
 import { ActionIcon, Flexbox } from '@lobehub/ui';
 import { confirmModal } from '@lobehub/ui/base-ui';
 import { App } from 'antd';
-import { cssVar } from 'antd-style';
 import { BookMinusIcon, FileBoxIcon, Trash2Icon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -155,7 +154,7 @@ const Header = memo(() => {
         </>
       }
       style={{
-        borderBottom: `1px solid ${cssVar.colorBorderSecondary}`,
+        borderBottom: `1px solid ${'var(--ant-color-border-secondary)'}`,
       }}
     />
   );

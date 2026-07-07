@@ -7,7 +7,6 @@ import { type ToolManifest } from '@lobechat/types';
 import { type IEditor } from '@lobehub/editor';
 import { INSERT_MENTION_COMMAND } from '@lobehub/editor';
 import { Icon, Image } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import isEqual from 'fast-deep-equal';
 import { memo, useCallback, useMemo } from 'react';
 
@@ -37,7 +36,7 @@ const ComposioIcon = memo<Pick<ComposioAppType, 'icon' | 'label'>>(({ icon, labe
   }
 
   // Fill with theme color, automatically adapts in dark mode
-  return <Icon fill={cssVar.colorText} icon={icon} size={20} />;
+  return <Icon fill={'var(--ant-color-text)'} icon={icon} size={20} />;
 });
 
 const toolNameResolver = new ToolNameResolver();

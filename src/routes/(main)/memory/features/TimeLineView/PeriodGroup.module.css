@@ -1,0 +1,28 @@
+.itemWrapper {
+position: relative;
+padding-inline-start: 24px;
+}
+
+.periodHeader {
+position: sticky;
+z-index: 10;
+inset-block-start: 0;
+
+color: var(--ant-color-text-secondary);
+
+background: var(--ant-color-bg-container);
+}
+
+.timelineDot {
+position: absolute;
+inset-block-start: 20px;
+inset-inline-start: 0;
+
+width: 16px;
+height: 16px;
+border: 1px solid var(--ant-color-border);
+border-radius: 50%;
+
+background: var(--ant-color-bg-elevated);
+box-shadow: 0 2px 4px -2px rgb(0 0 0 / 40%);
+}

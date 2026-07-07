@@ -1,0 +1,9 @@
+.active {
+box-shadow: var(--ant-box-shadow);
+}
+
+.bar {
+.ant-input-group-wrapper {
+  padding: 0;
+}
+}

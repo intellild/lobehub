@@ -4,7 +4,6 @@ import { type UserCredSummary } from '@lobechat/types';
 import { Button, Flexbox } from '@lobehub/ui';
 import { useMutation } from '@tanstack/react-query';
 import { Form, Input, Spin } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { Minus, Plus } from 'lucide-react';
 import { type FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,20 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { usePermission } from '@/hooks/usePermission';
 
 import { useCredsApi } from '../useCredsApi';
-
-const styles = createStaticStyles(({ css }) => ({
-  footer: css`
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-    margin-block-start: 24px;
-  `,
-  kvPair: css`
-    display: flex;
-    gap: 8px;
-    align-items: flex-start;
-  `,
-}));
+import styles from './EditKVForm.module.css';
 
 interface EditKVFormProps {
   cred: UserCredSummary;

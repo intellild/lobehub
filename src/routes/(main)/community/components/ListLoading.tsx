@@ -1,15 +1,11 @@
 'use client';
 
 import { Block, Flexbox, Grid, Skeleton } from '@lobehub/ui';
-import { createStaticStyles, cssVar, useResponsive } from 'antd-style';
 import { memo } from 'react';
 
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  footer: css`
-    border-block-start: 1px dashed ${cssVar.colorBorder};
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
+import { useResponsive } from '@/hooks/useResponsive';
+
+import styles from './ListLoading.module.css';
 
 const ListLoading = memo<{ length?: number; rows?: number }>(({ rows = 3, length = 12 }) => {
   return (
@@ -66,7 +62,7 @@ export const DetailsLoading = memo(() => {
         gap={12}
         height={54}
         style={{
-          borderBottom: `1px solid ${cssVar.colorBorder}`,
+          borderBottom: `1px solid ${'var(--ant-color-border)'}`,
         }}
       >
         <Skeleton.Button />

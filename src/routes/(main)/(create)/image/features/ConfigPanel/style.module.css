@@ -1,0 +1,13 @@
+.dragOver {
+transform: scale(1.02);
+border-color: var(--ant-color-primary) !important;
+box-shadow: 0 0 0 2px color-mix(in srgb, var(--ant-color-primary) 12.5%, transparent);
+transition: transform 0.2s ease;
+}
+
+.dragTransition {
+transition:
+  transform 0.2s ease,
+  border-color 0.2s ease,
+  box-shadow 0.2s ease;
+}

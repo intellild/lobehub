@@ -1,0 +1,12 @@
+.children {
+&::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+}
+}
+
+.wrapper {
+font-size: inherit;
+}

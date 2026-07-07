@@ -1,7 +1,6 @@
 'use client';
 
 import { Flexbox, Icon } from '@lobehub/ui';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { PanelLeftOpen } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,46 +12,8 @@ import { systemStatusSelectors } from '@/store/global/selectors';
 import { useUserStore } from '@/store/user';
 import { authSelectors } from '@/store/user/slices/auth/selectors';
 
+import styles from './index.module.css';
 import ReportListPanel from './ReportListPanel';
-
-const styles = createStaticStyles(({ css }) => ({
-  expandBtn: css`
-    cursor: pointer;
-
-    position: absolute;
-    z-index: 20;
-    inset-block-start: 12px;
-    inset-inline-start: 12px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 28px;
-    height: 28px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 6px;
-
-    color: ${cssVar.colorTextTertiary};
-
-    background: ${cssVar.colorBgContainer};
-
-    &:hover {
-      border-color: ${cssVar.colorBorder};
-      color: ${cssVar.colorText};
-    }
-  `,
-  main: css`
-    position: relative;
-
-    flex: 1;
-
-    min-width: 0;
-    height: 100%;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
 
 /**
  * Verify workspace shell — a master-detail layout: a persistent, collapsible /

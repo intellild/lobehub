@@ -13,7 +13,6 @@ import {
   Tooltip,
 } from '@lobehub/ui';
 import { App } from 'antd';
-import { createStaticStyles, cssVar, useResponsive } from 'antd-style';
 import {
   BookmarkIcon,
   BookmarkMinusIcon,
@@ -33,6 +32,7 @@ import OfficialIcon from '@/components/OfficialIcon';
 import Scores from '@/features/MCP/Scores';
 import { getLanguageColor, getRecommendedDeployment } from '@/features/MCP/utils';
 import { useCategory } from '@/hooks/useMCPCategory';
+import { useResponsive } from '@/hooks/useResponsive';
 import { useMarketAuth } from '@/layout/AuthProvider/MarketAuth';
 import { favoriteKeys } from '@/libs/swr/keys';
 import { socialService } from '@/services/social';
@@ -40,22 +40,7 @@ import { socialService } from '@/services/social';
 import InstallationIcon from '../../components/MCPDepsIcon';
 import PublishedTime from '../../components/PublishedTime';
 import { useDetailContext } from './DetailProvider';
-
-const styles = createStaticStyles(({ css }) => {
-  return {
-    desc: css`
-      color: ${cssVar.colorTextSecondary};
-    `,
-    time: css`
-      font-size: 12px;
-      color: ${cssVar.colorTextDescription};
-    `,
-    version: css`
-      font-family: ${cssVar.fontFamilyCode};
-      font-size: 13px;
-    `,
-  };
-});
+import styles from './Header.module.css';
 
 const Header = memo<{ inModal?: boolean; mobile?: boolean }>(({ mobile: isMobile, inModal }) => {
   const { t } = useTranslation('discover');
@@ -207,7 +192,7 @@ const Header = memo<{ inModal?: boolean; mobile?: boolean }>(({ mobile: isMobile
               )}
               {github?.url && (
                 <a href={github.url} rel="noreferrer" target={'_blank'} onClick={stopPropagation}>
-                  <ActionIcon fill={cssVar.colorTextDescription} icon={Github} />
+                  <ActionIcon fill={'var(--ant-color-text-description)'} icon={Github} />
                 </a>
               )}
               <Tooltip title={isFavorited ? t('assistant.unfavorite') : t('assistant.favorite')}>
@@ -242,7 +227,7 @@ const Header = memo<{ inModal?: boolean; mobile?: boolean }>(({ mobile: isMobile
         gap={mobile ? 12 : 24}
         wrap={'wrap'}
         style={{
-          color: cssVar.colorTextSecondary,
+          color: 'var(--ant-color-text-secondary)',
         }}
       >
         {mobile && scores}
@@ -251,7 +236,7 @@ const Header = memo<{ inModal?: boolean; mobile?: boolean }>(({ mobile: isMobile
           {Boolean(github?.language) && (
             <Flexbox horizontal align={'center'} gap={6}>
               <Icon
-                color={cssVar.colorFillTertiary}
+                color={'var(--ant-color-fill-tertiary)'}
                 fill={getLanguageColor(github?.language)}
                 icon={CircleIcon}
                 size={12}

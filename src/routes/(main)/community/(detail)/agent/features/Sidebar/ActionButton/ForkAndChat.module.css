@@ -1,0 +1,36 @@
+.buttonGroup {
+width: 100%;
+}
+
+.forkButton {
+flex: 1;
+width: unset;
+border-start-start-radius: 0 !important;
+border-end-start-radius: 0 !important;
+}
+
+.visibilitySelect {
+width: 130px;
+border-color: var(--ant-color-primary) !important;
+border-inline-end-width: 0 !important;
+border-start-end-radius: 0 !important;
+border-end-end-radius: 0 !important;
+
+color: var(--ant-color-bg-layout) !important;
+
+background: var(--ant-color-primary) !important;
+
+& svg {
+  color: var(--ant-color-bg-layout);
+}
+
+&:hover:not([data-disabled]) {
+  border-color: var(--ant-color-primary-hover) !important;
+  background: var(--ant-color-primary-hover) !important;
+}
+
+&:active:not([data-disabled]) {
+  border-color: var(--ant-color-primary-active) !important;
+  background: var(--ant-color-primary-active) !important;
+}
+}

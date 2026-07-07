@@ -1,12 +1,13 @@
 import { Flexbox } from '@lobehub/ui';
 import { LoadingDots } from '@lobehub/ui/chat';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { shuffle } from 'es-toolkit/compat';
 import { memo, type MouseEvent, type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useHomeDailyBrief } from '@/hooks/useHomeDailyBrief';
 import { useStableNavigate } from '@/hooks/useStableNavigate';
+
+import linkStyles from './index.module.css';
 
 interface LinkSpan {
   end: number;
@@ -65,19 +66,6 @@ const AUTO_LINK_PATTERNS: AutoLinkPattern[] = [
     regex: /#\d+/g,
   },
 ];
-
-// "Highlighter underline" trick borrowed from builtin-tool Inspector argument
-// chunks (see `highlightTextStyles.primary` in `@/styles/text`): a linear
-// gradient paints a thin tinted bar at the bottom of each character box,
-// instead of `text-decoration: underline`.
-const linkStyles = createStaticStyles(({ css, cssVar }) => ({
-  link: css`
-    padding-block-end: 1px;
-    color: ${cssVar.colorText};
-    text-decoration: none;
-    background: linear-gradient(to top, ${cssVar.colorPrimaryBgHover} 30%, transparent 30%);
-  `,
-}));
 
 const isExternal = (href: string): boolean => /^https?:\/\//i.test(href);
 
@@ -262,7 +250,7 @@ const DailyTypewriter = memo<DailyTypewriterProps>(
             <span
               style={{ display: 'inline-block', marginInlineStart: 4, verticalAlign: 'middle' }}
             >
-              <LoadingDots color={cssVar.colorText} size={12} variant={'pulse'} />
+              <LoadingDots color={'var(--ant-color-text)'} size={12} variant={'pulse'} />
             </span>
           )}
         </span>

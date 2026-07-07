@@ -1,6 +1,5 @@
 import { Block, Flexbox, Skeleton } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cssVar } from 'antd-style';
 import { Fragment, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -100,7 +99,7 @@ const HeatmapStats = memo(() => {
                   item.value
                 )}
               </div>
-              <div style={{ color: cssVar.colorTextDescription, fontSize: 12 }}>{item.label}</div>
+              <div style={{ color: 'var(--ant-color-text-description)', fontSize: 12 }}>{item.label}</div>
             </Flexbox>
           </Fragment>
         ))}

@@ -5,7 +5,6 @@ import { TITLE_BAR_HEIGHT } from '@lobechat/desktop-bridge';
 import { type SkillResourceTreeNode } from '@lobechat/types';
 import { Button, Drawer, Flexbox } from '@lobehub/ui';
 import { Alert, App, Form as AForm, Popconfirm, Skeleton } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -14,26 +13,8 @@ import FileTree from '@/features/FileTree';
 import { usePermission } from '@/hooks/usePermission';
 import { useToolStore } from '@/store/tool';
 
+import styles from './index.module.css';
 import SkillEditForm, { type SkillEditFormValues } from './SkillEditForm';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  divider: css`
-    flex-shrink: 0;
-    width: 1px;
-    background: ${cssVar.colorBorderSecondary};
-  `,
-  left: css`
-    overflow-y: auto;
-    flex-shrink: 0;
-    width: 240px;
-    padding: 8px;
-  `,
-  right: css`
-    container-type: size;
-    overflow: auto;
-    flex: 1;
-  `,
-}));
 
 const buildContentMap = (nodes: SkillResourceTreeNode[]): Record<string, string> => {
   const map: Record<string, string> = {};

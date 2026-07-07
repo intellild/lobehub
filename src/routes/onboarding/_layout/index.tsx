@@ -5,7 +5,6 @@ import { isDesktop } from '@lobechat/const';
 import { MAX_ONBOARDING_STEPS } from '@lobechat/types';
 import { Center, Flexbox, Text } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { cx, useTheme } from 'antd-style';
 import { type FC, type MouseEvent, type PropsWithChildren, useCallback, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router';
@@ -16,11 +15,25 @@ import ThemeButton from '@/features/User/UserPanel/ThemeButton';
 import { useWorkspaceAwareNavigate } from '@/features/Workspace/useWorkspaceAwareNavigate';
 import { useIsDark } from '@/hooks/useIsDark';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { useTheme } from '@/hooks/useTheme';
 import { useServerConfigStore } from '@/store/serverConfig';
 import { useUserStore } from '@/store/user';
 import { stashOnboardingCallbackUrl } from '@/utils/onboardingRedirect';
 
 import { styles } from './style';
+
+type LobeClassValue = false | null | string | undefined | Record<string, boolean | null | undefined>;
+
+const cx = (...classes: LobeClassValue[]) =>
+  classes
+    .flatMap((className) => {
+      if (!className) return [];
+      if (typeof className === 'string') return [className];
+      return Object.entries(className)
+        .filter(([, enabled]) => enabled)
+        .map(([key]) => key);
+    })
+    .join(' ');
 
 const OnBoardingContainer: FC<PropsWithChildren> = ({ children }) => {
   const isDarkMode = useIsDark();

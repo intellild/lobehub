@@ -1,0 +1,4 @@
+.resetCredits {
+padding-block-start: 8px;
+border-block-start: 1px solid var(--ant-color-border-secondary);
+}

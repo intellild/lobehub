@@ -5,7 +5,6 @@ import { Block, Button, Flexbox, Icon, Text } from '@lobehub/ui';
 import { TypewriterEffect } from '@lobehub/ui/awesome';
 import { LoadingDots } from '@lobehub/ui/chat';
 import { Steps } from 'antd';
-import { cssVar } from 'antd-style';
 import { BrainIcon, HeartHandshakeIcon, PencilRulerIcon } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -40,7 +39,7 @@ const WelcomeStep = memo<WelcomeStepProps>(({ onNext }) => {
         variant="outlined"
         width={32}
       >
-        <Icon color={cssVar.colorTextDescription} icon={icon} size={16} />
+        <Icon color={'var(--ant-color-text-description)'} icon={icon} size={16} />
       </Block>
     );
   }, []);
@@ -74,7 +73,7 @@ const WelcomeStep = memo<WelcomeStepProps>(({ onNext }) => {
         items={[
           {
             description: (
-              <Text as={'p'} color={cssVar.colorTextSecondary} style={{ marginBottom: 16 }}>
+              <Text as={'p'} color={'var(--ant-color-text-secondary)'} style={{ marginBottom: 16 }}>
                 {t('telemetry.rows.create.desc')}
               </Text>
             ),
@@ -87,7 +86,7 @@ const WelcomeStep = memo<WelcomeStepProps>(({ onNext }) => {
           },
           {
             description: (
-              <Text as={'p'} color={cssVar.colorTextSecondary} style={{ marginBottom: 16 }}>
+              <Text as={'p'} color={'var(--ant-color-text-secondary)'} style={{ marginBottom: 16 }}>
                 {t('telemetry.rows.collaborate.desc')}
               </Text>
             ),
@@ -100,7 +99,7 @@ const WelcomeStep = memo<WelcomeStepProps>(({ onNext }) => {
           },
           {
             description: (
-              <Text as={'p'} color={cssVar.colorTextSecondary}>
+              <Text as={'p'} color={'var(--ant-color-text-secondary)'}>
                 {t('telemetry.rows.evolve.desc')}
               </Text>
             ),

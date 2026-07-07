@@ -1,0 +1,35 @@
+.deleteIcon {
+flex-shrink: 0;
+opacity: 0;
+transition: opacity 0.2s;
+}
+
+.dragHandle {
+flex-shrink: 0;
+width: 16px !important;
+opacity: 0;
+transition: opacity 0.2s;
+}
+
+.itemRow {
+width: 100%;
+padding-block: 10px;
+padding-inline: 4px 12px;
+border-block-end: 1px dashed var(--ant-color-border-secondary);
+
+&:hover {
+  .drag-handle,
+  .delete-icon {
+    opacity: 1;
+  }
+}
+}
+
+.textCompleted {
+color: var(--ant-color-text-quaternary);
+text-decoration: line-through;
+}
+
+.textProcessing {
+color: var(--ant-color-warning-text);
+}

@@ -1,5 +1,4 @@
 import { Flexbox, Icon, SliderWithInput } from '@lobehub/ui';
-import { cssVar } from 'antd-style';
 import { FlowerIcon, TrainFrontTunnel } from 'lucide-react';
 import { memo } from 'react';
 
@@ -27,12 +26,12 @@ const TopP = memo<TopPProps>(({ value, onChange, disabled }) => {
             <Icon
               icon={TrainFrontTunnel}
               size={'small'}
-              style={{ color: cssVar.colorTextQuaternary }}
+              style={{ color: 'var(--ant-color-text-quaternary)' }}
             />
           ),
           0.9: <div />,
           1: (
-            <Icon icon={FlowerIcon} size={'small'} style={{ color: cssVar.colorTextQuaternary }} />
+            <Icon icon={FlowerIcon} size={'small'} style={{ color: 'var(--ant-color-text-quaternary)' }} />
           ),
         }}
         styles={{

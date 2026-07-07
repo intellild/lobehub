@@ -55,16 +55,6 @@ vi.mock('antd', () => ({
   },
 }));
 
-vi.mock('antd-style', () => ({
-  createStaticStyles: () => ({
-    backButton: 'backButton',
-    card: 'card',
-    emptyRow: 'emptyRow',
-    rowIcon: 'rowIcon',
-    scopeValue: 'scopeValue',
-  }),
-}));
-
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string, options?: { defaultValue?: string }) =>

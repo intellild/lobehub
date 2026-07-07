@@ -3,47 +3,12 @@
 import { formatCost, formatShortenNumber } from '@lobechat/utils';
 import { Flexbox, Tag } from '@lobehub/ui';
 import { Divider, Tooltip } from 'antd';
-import { createStaticStyles, cssVar, useTheme } from 'antd-style';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const styles = createStaticStyles(({ css }) => ({
-  axisLabel: css`
-    pointer-events: none;
-    position: absolute;
-    font-size: ${cssVar.fontSizeSM};
-    color: ${cssVar.colorTextTertiary};
-  `,
-  dot: css`
-    cursor: pointer;
+import { useTheme } from '@/hooks/useTheme';
 
-    transition:
-      transform 0.15s ease,
-      opacity 0.15s ease;
-
-    &:hover {
-      transform: translate(-50%, 50%) scale(1.5);
-      opacity: 1 !important;
-    }
-
-    &:focus-visible {
-      outline: 2px solid ${cssVar.colorPrimary};
-      outline-offset: 1px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
-  `,
-  scatterArea: css`
-    position: relative;
-    overflow: hidden;
-    flex: 1;
-  `,
-  tooltipLabel: css`
-    color: ${cssVar.colorTextTertiary};
-  `,
-}));
+import styles from './ScatterPlot.module.css';
 
 interface ScatterPlotProps {
   benchmarkId: string;

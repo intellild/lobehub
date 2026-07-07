@@ -2,27 +2,15 @@
 
 import { Button, Flexbox } from '@lobehub/ui';
 import { EditableMessage } from '@lobehub/ui/chat';
-import { createStaticStyles } from 'antd-style';
 import { PencilLine } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useStore } from '../store';
 import { selectors } from '../store/selectors';
+import styles from './OpeningMessage.module.css';
 
-export const styles = createStaticStyles(({ css, cssVar }) => ({
-  markdown: css`
-    border: unset;
-  `,
-  wrapper: css`
-    width: 100%;
-    padding: 8px;
-    border: 1px solid ${cssVar.colorBorder};
-    border-radius: calc(${cssVar.borderRadiusLG} - 1px);
-
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
+export { styles };
 
 const OpeningMessage = memo(() => {
   const { t } = useTranslation('setting');

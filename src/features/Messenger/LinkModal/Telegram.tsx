@@ -2,38 +2,12 @@
 
 import { Button, Flexbox, Icon, Text } from '@lobehub/ui';
 import { QRCode } from 'antd';
-import { createStaticStyles } from 'antd-style';
 import { LinkIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { buildTelegramDeepLink, PlatformAvatar } from '../constants';
-
-const styles = createStaticStyles(({ css, cssVar }) => ({
-  qrIconOverlay: css`
-    pointer-events: none;
-
-    position: absolute;
-    z-index: 1;
-    inset-block-start: 50%;
-    inset-inline-start: 50%;
-    transform: translate(-50%, -50%);
-
-    border: 3px solid ${cssVar.colorBgContainer};
-    border-radius: 50%;
-
-    line-height: 0;
-  `,
-  qrWrap: css`
-    position: relative;
-
-    padding: 14px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: 16px;
-
-    background: ${cssVar.colorBgContainer};
-  `,
-}));
+import styles from './Telegram.module.css';
 
 interface TelegramLinkBodyProps {
   botUsername?: string;

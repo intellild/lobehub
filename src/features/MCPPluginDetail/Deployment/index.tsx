@@ -12,7 +12,6 @@ import {
   Tag,
 } from '@lobehub/ui';
 import { Divider, Steps } from 'antd';
-import { createStaticStyles, cssVar } from 'antd-style';
 import { startCase } from 'es-toolkit/compat';
 import {
   CheckIcon,
@@ -35,15 +34,8 @@ import InstallationIcon from '../../../components/MCPDepsIcon';
 import CollapseDesc from '../CollapseDesc';
 import CollapseLayout from '../CollapseLayout';
 import { useDetailContext } from '../DetailProvider';
+import styles from './index.module.css';
 import Platform from './Platform';
-
-const styles = createStaticStyles(({ css }) => {
-  return {
-    code: css`
-      font-family: ${cssVar.fontFamilyCode};
-    `,
-  };
-});
 
 const Deployment = memo<{ mobile?: boolean }>(({ mobile }) => {
   const { t } = useTranslation(['discover', 'plugin']);
@@ -76,19 +68,19 @@ const Deployment = memo<{ mobile?: boolean }>(({ mobile }) => {
   const getPlatformIcon = (type: string) => {
     switch (type.toLowerCase()) {
       case 'macos': {
-        return <SiApple color={cssVar.colorTextDescription} size={16} />;
+        return <SiApple color={'var(--ant-color-text-description)'} size={16} />;
       }
       case 'windows': {
-        return <Microsoft color={cssVar.colorTextDescription} size={16} />;
+        return <Microsoft color={'var(--ant-color-text-description)'} size={16} />;
       }
       case 'linux_debian': {
-        return <SiLinux color={cssVar.colorTextDescription} size={16} />;
+        return <SiLinux color={'var(--ant-color-text-description)'} size={16} />;
       }
       case 'manual': {
-        return <CodeIcon color={cssVar.colorTextDescription} size={16} />;
+        return <CodeIcon color={'var(--ant-color-text-description)'} size={16} />;
       }
       default: {
-        return <CodeIcon color={cssVar.colorTextDescription} size={16} />;
+        return <CodeIcon color={'var(--ant-color-text-description)'} size={16} />;
       }
     }
   };
@@ -148,7 +140,7 @@ const Deployment = memo<{ mobile?: boolean }>(({ mobile }) => {
                           size={'small'}
                           style={{ marginTop: 12 }}
                           items={setupSteps.map((i) => ({
-                            title: <p style={{ color: cssVar.colorText }}>{i}</p>,
+                            title: <p style={{ color: 'var(--ant-color-text)' }}>{i}</p>,
                           }))}
                         />
                       )}
@@ -175,7 +167,7 @@ const Deployment = memo<{ mobile?: boolean }>(({ mobile }) => {
                             <span
                               className={styles.code}
                               style={{
-                                color: cssVar.gold,
+                                color: 'var(--ant-gold)',
                               }}
                             >
                               {record.name}
@@ -194,7 +186,7 @@ const Deployment = memo<{ mobile?: boolean }>(({ mobile }) => {
                             <Icon
                               icon={record.required ? CheckIcon : MinusIcon}
                               color={
-                                record.required ? cssVar.colorSuccess : cssVar.colorTextDescription
+                                record.required ? 'var(--ant-color-success)' : 'var(--ant-color-text-description)'
                               }
                             />
                           ),
@@ -223,7 +215,7 @@ const Deployment = memo<{ mobile?: boolean }>(({ mobile }) => {
                             <Flexbox horizontal align="center" gap={8}>
                               <span
                                 style={{
-                                  fontFamily: cssVar.fontFamilyCode,
+                                  fontFamily: 'var(--ant-font-family-code)',
                                   fontSize: 12,
                                 }}
                               >
@@ -247,7 +239,7 @@ const Deployment = memo<{ mobile?: boolean }>(({ mobile }) => {
                                               </span>
                                             ),
                                             style: {
-                                              fontFamily: cssVar.fontFamilyCode,
+                                              fontFamily: 'var(--ant-font-family-code)',
                                               fontSize: 12,
                                             },
                                             value: code,
@@ -265,7 +257,7 @@ const Deployment = memo<{ mobile?: boolean }>(({ mobile }) => {
                                                 key: 'check',
                                                 label: t('mcp.details.deployment.checkCommand'),
                                                 style: {
-                                                  fontFamily: cssVar.fontFamilyCode,
+                                                  fontFamily: 'var(--ant-font-family-code)',
                                                   fontSize: 12,
                                                 },
                                                 value: dep.checkCommand,
@@ -278,7 +270,7 @@ const Deployment = memo<{ mobile?: boolean }>(({ mobile }) => {
                                   }
                                 >
                                   <ActionIcon
-                                    color={cssVar.colorTextDescription}
+                                    color={'var(--ant-color-text-description)'}
                                     icon={DownloadIcon}
                                     size={'small'}
                                   />
