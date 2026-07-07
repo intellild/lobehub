@@ -32,10 +32,23 @@ import { useTopicNavigation } from '../../hooks/useTopicNavigation';
 import ThreadList from '../../TopicListContent/ThreadList';
 import Actions from './Actions';
 import Editing from './Editing';
+import styles from './index.module.css';
 import { getPullRequestState, getTopicMetaCard, PR_STATE_VISUAL } from './metaCardData';
 import MetaHoverCard from './MetaHoverCard';
-import styles from './index.module.css';
 import { useTopicItemDropdownMenu } from './useDropdownMenu';
+
+// Base UI Popover plays an opacity/scale enter+exit transition driven by these
+// CSS vars on the positioner. Zero them so the meta hover card appears instantly
+// instead of easing in — the hover-intent delay (`mouseEnterDelay`) still gates
+// when it shows. `styles.root` maps to the positioner (inline style wins over
+// the library default without a specificity fight).
+const META_HOVER_CARD_STYLES = {
+  content: { padding: 12 },
+  root: {
+    '--lobe-popover-animation-duration': '0ms',
+    '--lobe-popover-animation-duration-exit': '0ms',
+  } as CSSProperties,
+};
 
 // Module-scoped so a click on any topic cancels a pending click on another.
 // Per-item refs can't do that, which lets rapid clicks across items all
@@ -282,7 +295,11 @@ const TopicItem = memo<TopicItemProps>(
                 style={{ color: 'var(--ant-color-warning)' }}
               />
             ) : (
-              <Icon color={'var(--ant-color-text-description)'} icon={MessageSquareDashed} size={'small'} />
+              <Icon
+                color={'var(--ant-color-text-description)'}
+                icon={MessageSquareDashed}
+                size={'small'}
+              />
             )
           }
           title={
@@ -337,7 +354,11 @@ const TopicItem = memo<TopicItemProps>(
           if (isFailed) {
             return (
               <Tooltip title={t('failedStatusTip')}>
-                <Icon icon={TriangleAlert} size={'small'} style={{ color: 'var(--ant-color-error)' }} />
+                <Icon
+                  icon={TriangleAlert}
+                  size={'small'}
+                  style={{ color: 'var(--ant-color-error)' }}
+                />
               </Tooltip>
             );
           }
