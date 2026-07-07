@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { messengerKeys } from '@/libs/swr/keys';
 
+import scopeStyles from '../scopeOptions.module.css';
 import { UserAgentConnection } from './shared';
 
 const userState = {
@@ -129,6 +130,9 @@ describe('Messenger UserAgentConnection', () => {
     expect(within(personalOption).queryByText('demo-user')).not.toBeInTheDocument();
     expect(within(personalOption).getByTestId('personal-tag')).toHaveTextContent('personal');
     expect(within(personalOption).queryByText('个人')).not.toBeInTheDocument();
-    expect(screen.getByTestId('scope-select')).toHaveAttribute('data-value-class', 'scopeValue');
+    expect(screen.getByTestId('scope-select')).toHaveAttribute(
+      'data-value-class',
+      scopeStyles.scopeValue,
+    );
   });
 });

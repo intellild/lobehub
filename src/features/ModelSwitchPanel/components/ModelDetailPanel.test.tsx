@@ -8,6 +8,7 @@ import { describe, expect, it, vi } from 'vitest';
 import type { EnabledProviderWithModels } from '@/types/aiProvider';
 
 import ModelDetailPanel from './ModelDetailPanel';
+import styles from './ModelDetailPanel.module.css';
 
 vi.mock('@lobehub/ui', () => ({
   Accordion: ({ children }: { children: ReactNode }) => <div>{children}</div>,
@@ -164,7 +165,7 @@ describe('ModelDetailPanel pricing', () => {
       />,
     );
 
-    expect(container.querySelector('.description')).toHaveTextContent(
+    expect(container.getElementsByClassName(styles.description)[0]).toHaveTextContent(
       'Localized model description.',
     );
   });
@@ -192,7 +193,7 @@ describe('ModelDetailPanel pricing', () => {
       />,
     );
 
-    const originalPrice = container.querySelector('.originalPriceText');
+    const originalPrice = container.getElementsByClassName(styles.originalPriceText)[0];
 
     expect(originalPrice).toHaveTextContent('5M');
     expect(originalPrice).not.toHaveTextContent('credits/M tokens');
